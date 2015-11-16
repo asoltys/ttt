@@ -42,6 +42,34 @@
             @Html.DisplayFor(model => model.EndDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Events)
+        </dt>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Date</th>
+                    <th>Hover</th>
+                    <th>Text</th>
+                </tr>
+                @foreach( var item in Model.Events)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hover)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
     </dl>
 </div>
 <p>
