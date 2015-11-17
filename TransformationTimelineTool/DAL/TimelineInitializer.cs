@@ -7,7 +7,7 @@ using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.DAL
 {
-    public class TimelineInitializer : System.Data.Entity.DropCreateDatabaseAlways<TimelineContext>
+    public class TimelineInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TimelineContext>
     {
         protected override void Seed(TimelineContext context)
         {

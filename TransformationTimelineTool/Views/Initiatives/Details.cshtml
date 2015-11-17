@@ -52,6 +52,7 @@
                     <th>Date</th>
                     <th>Hover</th>
                     <th>Text</th>
+                    <th>Action</th>
                 </tr>
                 @foreach( var item in Model.Events)
                 {
@@ -64,6 +65,10 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                        <td>
+                            @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null)
+                            @Html.ActionLink("Edit", "Edit", "Events", new { ID =  item.ID }, null)
                         </td>
                     </tr>
                 }

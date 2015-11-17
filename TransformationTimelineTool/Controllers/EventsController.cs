@@ -11,118 +11,114 @@ using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
 {
-    public class InitiativesController : Controller
+    public class EventsController : Controller
     {
         private TimelineContext db = new TimelineContext();
 
-        // GET: Initiatives
+        // GET: Events
         public ActionResult Index()
         {
-            return View(db.Initiatives.ToList());
+            var events = db.Events.Include(e => e.Initiative);
+            return View(events.ToList());
+
+            //return View(db.Events.ToList());
         }
 
-        // GET: Initiatives/Details/5
+        // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Initiative initiative = db.Initiatives.Find(id);
-            if (initiative == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(initiative);
+            return View(@event);
         }
 
-        // GET: Initiatives/Create
+        // GET: Events/Create
         public ActionResult Create()
         {
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name");
             return View();
         }
 
-        // POST: Initiatives/Create
+        // POST: Events/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Description,StartDate,EndDate")] Initiative initiative)
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,Date,Text,Hover")] Event @event)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    db.Initiatives.Add(initiative);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-
-            }
-            catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                db.Events.Add(@event);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            return View(initiative);
-
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", @event.InitiativeID);
+            return View(@event);
         }
 
-        // GET: Initiatives/Edit/5
+        // GET: Events/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Initiative initiative = db.Initiatives.Find(id);
-            if (initiative == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(initiative);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", @event.InitiativeID);
+            return View(@event);
         }
 
-        // POST: Initiatives/Edit/5
+        // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,StartDate,EndDate")] Initiative initiative)
+        public ActionResult Edit([Bind(Include = "ID,InitiativeID,Date,Text,Hover")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(initiative).State = EntityState.Modified;
+                db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(initiative);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", @event.InitiativeID);
+            return View(@event);
         }
 
-        // GET: Initiatives/Delete/5
+        // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Initiative initiative = db.Initiatives.Find(id);
-            if (initiative == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(initiative);
+            return View(@event);
         }
 
-        // POST: Initiatives/Delete/5
+        // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Initiative initiative = db.Initiatives.Find(id);
-            db.Initiatives.Remove(initiative);
+            Event @event = db.Events.Find(id);
+            db.Events.Remove(@event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
