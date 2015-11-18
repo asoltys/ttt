@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using TransformationTimelineTool.Models;
-
-namespace TransformationTimelineTool.DAL
+namespace TransformationTimelineTool.Migrations
 {
-    public class TimelineInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TimelineContext>
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using Models;
+    using System.Collections.Generic;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<TransformationTimelineTool.DAL.TimelineContext>
     {
-        protected override void Seed(TimelineContext context)
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+
+        protected override void Seed(TransformationTimelineTool.DAL.TimelineContext context)
         {
             var regions = new List<Region>
             {
@@ -46,7 +51,8 @@ namespace TransformationTimelineTool.DAL
             {
                new Event {InitiativeID = 1, Date = DateTime.Parse("2015-07-31"), Text = "Launch of SMART Procurement", Hover = "Launch of SMART Procurement" },
                new Event {InitiativeID = 1, Date = DateTime.Parse("2015-06-28"), Text = "Launch of SMART Procurement LEAN Pilot", Hover = "Launch of SMART Procurement LEAN Pilot" },
-               new Event {InitiativeID = 2, Date = DateTime.Parse("2015-07-31"), Text = "Online E-Learning courses offered", Hover = "Online E-Learning courses offered" }
+               new Event {InitiativeID = 2, Date = DateTime.Parse("2015-07-31"), Text = "Online E-Learning courses offered", Hover = "Online E-Learning courses offered" },
+               new Event {InitiativeID = 1, Date = DateTime.Parse("2015-08-15"), Text = "Birthday", Hover = "Birthday!" }
             };
 
             events.ForEach(e => context.Events.Add(e));

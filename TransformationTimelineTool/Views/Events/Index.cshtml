@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            Initiative @Html.DisplayNameFor(model => model.Initiative.Name)
+            Initiative @Html.DisplayNameFor(model => model.Initiative.NameE)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(@Html.DisplayFor(modelItem => item.Initiative.Name).ToString(), "Details", "Initiatives", new { ID = item.InitiativeID }, null)
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.Initiative.NameE).ToString(), "Details", "Initiatives", new { ID = item.InitiativeID }, null)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)

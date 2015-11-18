@@ -42,7 +42,7 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name");
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace TransformationTimelineTool.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", @event.InitiativeID);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
             return View(@event);
         }
 
@@ -76,7 +76,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", @event.InitiativeID);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
             return View(@event);
         }
 
@@ -93,7 +93,7 @@ namespace TransformationTimelineTool.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", @event.InitiativeID);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
             return View(@event);
         }
 
