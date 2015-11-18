@@ -28,7 +28,7 @@ namespace TransformationTimelineTool.Migrations
 
             var branches = new List<Branch>
             {
-                new Branch {NameShort = "rp", NameE = "Real Propert" },
+                new Branch {NameShort = "rp", NameE = "Real Property" },
                 new Branch {NameShort = "ciob", NameE = "Chief Information Officer Branch" },
                 new Branch {NameShort = "abc", NameE = "Accounting, Banking and Compensation" }
             };

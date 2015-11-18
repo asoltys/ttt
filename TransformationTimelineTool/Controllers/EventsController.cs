@@ -40,9 +40,9 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort");
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE");
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort");
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE");
             return View();
         }
 
@@ -78,9 +78,9 @@ namespace TransformationTimelineTool.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE", @event.RegionID);
             return View(@event);
         }
 
@@ -97,9 +97,9 @@ namespace TransformationTimelineTool.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE", @event.RegionID);
             return View(@event);
         }
 

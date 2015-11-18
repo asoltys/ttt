@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Branch.NameShort)
+            Initiative
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Initiative.NameE)
+            Branch
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Region.NameShort)
+            Region
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -27,27 +27,21 @@
             @Html.DisplayNameFor(model => model.TextE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TextF)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.HoverE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoverF)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Branch.NameShort)
-        </td>
-        <td>
+    <tr> <td>
             @Html.DisplayFor(modelItem => item.Initiative.NameE)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Region.NameShort)
+            @Html.DisplayFor(modelItem => item.Branch.NameE)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Region.NameE)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
@@ -56,13 +50,7 @@
             @Html.DisplayFor(modelItem => item.TextE)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TextF)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.HoverE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoverF)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
