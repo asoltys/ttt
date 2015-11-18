@@ -132,7 +132,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitiativesController.cs" />
     <Compile Include="DAL\TimelineContext.cs" />
-    <Compile Include="DAL\TimelineInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +146,18 @@
     <Compile Include="Migrations\201511182006297_BilingualInitiative.cs" />
     <Compile Include="Migrations\201511182006297_BilingualInitiative.Designer.cs">
       <DependentUpon>201511182006297_BilingualInitiative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511182218315_BilingualEvent.cs" />
+    <Compile Include="Migrations\201511182218315_BilingualEvent.Designer.cs">
+      <DependentUpon>201511182218315_BilingualEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511182239276_EventWithRegionAndBranch.cs" />
+    <Compile Include="Migrations\201511182239276_EventWithRegionAndBranch.Designer.cs">
+      <DependentUpon>201511182239276_EventWithRegionAndBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511182305277_BilingualRegionBranch.cs" />
+    <Compile Include="Migrations\201511182305277_BilingualRegionBranch.Designer.cs">
+      <DependentUpon>201511182305277_BilingualRegionBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -223,6 +234,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511182006297_BilingualInitiative.resx">
       <DependentUpon>201511182006297_BilingualInitiative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511182218315_BilingualEvent.resx">
+      <DependentUpon>201511182218315_BilingualEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511182239276_EventWithRegionAndBranch.resx">
+      <DependentUpon>201511182239276_EventWithRegionAndBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511182305277_BilingualRegionBranch.resx">
+      <DependentUpon>201511182305277_BilingualRegionBranch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

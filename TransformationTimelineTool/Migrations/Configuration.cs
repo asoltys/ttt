@@ -18,10 +18,9 @@ namespace TransformationTimelineTool.Migrations
         {
             var regions = new List<Region>
             {
-                new Region {NameShort = "pac", Name = "Pacific" },
-                new Region {NameShort = "wst", Name = "Western" },
-                new Region {NameShort = "wst", Name = "Western" },
-                new Region {NameShort = "que", Name = "Quebec" }
+                new Region {NameShort = "pac", NameE = "Pacific" },
+                new Region {NameShort = "wst", NameE = "Western" },
+                new Region {NameShort = "que", NameE = "Quebec" }
             };
 
             regions.ForEach(r => context.Regions.Add(r));
@@ -29,9 +28,9 @@ namespace TransformationTimelineTool.Migrations
 
             var branches = new List<Branch>
             {
-                new Branch {NameShort = "rp", Name = "Real Propert" },
-                new Branch {NameShort = "ciob", Name = "Chief Information Officer Branch" },
-                new Branch {NameShort = "abc", Name = "Accounting, Banking and Compensation" }
+                new Branch {NameShort = "rp", NameE = "Real Propert" },
+                new Branch {NameShort = "ciob", NameE = "Chief Information Officer Branch" },
+                new Branch {NameShort = "abc", NameE = "Accounting, Banking and Compensation" }
             };
 
             branches.ForEach(b => context.Branches.Add(b));
@@ -49,10 +48,24 @@ namespace TransformationTimelineTool.Migrations
 
             var events = new List<Event>
             {
-               new Event {InitiativeID = initiatives.Single(d => d.DescriptionE == "Descp 1").ID, Date = DateTime.Parse("2015-07-31"), Text = "Launch of SMART Procurement", Hover = "Launch of SMART Procurement" },
-               new Event {InitiativeID = initiatives.Single(d => d.DescriptionE == "Descp 2").ID, Date = DateTime.Parse("2015-06-30"), Text = "Launch of SMART Procurement LEAN Pilot", Hover = "Launch of SMART Procurement LEAN Pilot" },
-               new Event {InitiativeID = initiatives.Single(d => d.DescriptionE == "Descp 1").ID, Date = DateTime.Parse("2015-07-07"), Text = "Online E-Learning courses offered", Hover = "Online E-Learning courses offered" },
-               new Event {InitiativeID = initiatives.Single(d => d.DescriptionE == "Descp 1").ID, Date = DateTime.Parse("2015-08-15"), Text = "Birthday", Hover = "Birthday!" }
+               new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,
+                   Date = DateTime.Parse("2015-07-31"),
+                   BranchID = branches.Single(b => b.NameShort == "rp").ID,
+                   RegionID = regions.Single(r => r.NameShort == "pac").ID,
+                   TextE = "Launch of SMART Procurement",
+                   HoverE = "Launch of SMART Procurement" },
+               new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,
+                   Date = DateTime.Parse("2015-06-30"),
+                   BranchID = branches.Single(b => b.NameShort == "ciob").ID,
+                   RegionID = regions.Single(r => r.NameShort == "pac").ID,
+                   TextE = "Launch of SMART Procurement Lean",
+                   HoverE = "Launch of SMART Procurement Lean" },
+               new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,
+                   Date = DateTime.Parse("2015-08-15"),
+                   BranchID = branches.Single(b => b.NameShort == "rp").ID,
+                   RegionID = regions.Single(r => r.NameShort == "wst").ID,
+                   TextE = "Matty's 31st birthday",
+                   HoverE = "Matty's 31st birthday" }
             };
 
             events.ForEach(e => context.Events.Add(e));

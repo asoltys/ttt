@@ -12,16 +12,28 @@
 <table class="table">
     <tr>
         <th>
-            Initiative @Html.DisplayNameFor(model => model.Initiative.NameE)
+            @Html.DisplayNameFor(model => model.Branch.NameShort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Initiative.NameE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Region.NameShort)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.TextE)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Hover)
+            @Html.DisplayNameFor(model => model.TextF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoverE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoverF)
         </th>
         <th></th>
     </tr>
@@ -29,16 +41,28 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(@Html.DisplayFor(modelItem => item.Initiative.NameE).ToString(), "Details", "Initiatives", new { ID = item.InitiativeID }, null)
+            @Html.DisplayFor(modelItem => item.Branch.NameShort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Initiative.NameE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Region.NameShort)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Text)
+            @Html.DisplayFor(modelItem => item.TextE)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Hover)
+            @Html.DisplayFor(modelItem => item.TextF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoverE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoverF)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

@@ -12,11 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Branch.NameShort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch.NameShort)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Initiative.NameE)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Initiative.NameE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region.NameShort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region.NameShort)
         </dd>
 
         <dt>
@@ -28,19 +44,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.TextE)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Text)
+            @Html.DisplayFor(model => model.TextE)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Hover)
+            @Html.DisplayNameFor(model => model.TextF)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Hover)
+            @Html.DisplayFor(model => model.TextF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoverE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoverE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoverF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoverF)
         </dd>
 
     </dl>

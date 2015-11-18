@@ -9,6 +9,7 @@ namespace TransformationTimelineTool.Models
     {
         public int ID { get; set; }
         public string NameShort { get; set; }
-        public string Name { get; set; }
+        public string NameE { get; set; }
+        public string NameF { get; set; }
     }
 }

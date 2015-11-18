@@ -18,10 +18,8 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var events = db.Events.Include(e => e.Initiative);
+            var events = db.Events.Include(e => e.Branch).Include(e => e.Initiative).Include(e => e.Region);
             return View(events.ToList());
-
-            //return View(db.Events.ToList());
         }
 
         // GET: Events/Details/5
@@ -42,7 +40,9 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort");
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort");
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InitiativeID,Date,Text,Hover")] Event @event)
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Date,TextE,TextF,HoverE,HoverF")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +60,9 @@ namespace TransformationTimelineTool.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
             return View(@event);
         }
 
@@ -76,7 +78,9 @@ namespace TransformationTimelineTool.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
             return View(@event);
         }
 
@@ -85,7 +89,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,InitiativeID,Date,Text,Hover")] Event @event)
+        public ActionResult Edit([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Date,TextE,TextF,HoverE,HoverF")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +97,9 @@ namespace TransformationTimelineTool.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
+            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
             return View(@event);
         }
 
