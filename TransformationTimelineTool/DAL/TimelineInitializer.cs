@@ -34,8 +34,8 @@ namespace TransformationTimelineTool.DAL
 
             var initiatives = new List<Initiative>
             {
-                new Initiative {NameE = "Defense Procurement Strategy", Description = "Descp 1", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
-                new Initiative {NameE = "Case and Client Relationship Management", Description = "Descp 2", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
+                new Initiative {NameE = "Defense Procurement Strategy", DescriptionE = "Descp 1", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
+                new Initiative {NameE = "Case and Client Relationship Management", DescriptionE = "Descp 2", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
 
             };
 

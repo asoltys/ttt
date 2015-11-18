@@ -59,7 +59,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NameE,Description,StartDate,EndDate")] Initiative initiative)
+        public ActionResult Create([Bind(Include = "NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate")] Initiative initiative)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NameE,Description,StartDate,EndDate")] Initiative initiative)
+        public ActionResult Edit([Bind(Include = "ID,NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate")] Initiative initiative)
         {
             if (ModelState.IsValid)
             {

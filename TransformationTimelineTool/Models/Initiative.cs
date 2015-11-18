@@ -11,7 +11,9 @@ namespace TransformationTimelineTool.Models
     {
         public int ID { get; set; }
         public string NameE { get; set; }
-        public string Description { get; set; }
+        public string NameF { get; set; }
+        public string DescriptionE { get; set; }
+        public string DescriptionF { get; set; }
 
         [Display(Name = "Start")]
         [DataType(DataType.Date)]

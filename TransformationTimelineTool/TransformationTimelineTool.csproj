@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201511181950354_ChangeInitiativeName.Designer.cs">
       <DependentUpon>201511181950354_ChangeInitiativeName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511182006297_BilingualInitiative.cs" />
+    <Compile Include="Migrations\201511182006297_BilingualInitiative.Designer.cs">
+      <DependentUpon>201511182006297_BilingualInitiative.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Event.cs" />
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511181950354_ChangeInitiativeName.resx">
       <DependentUpon>201511181950354_ChangeInitiativeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511182006297_BilingualInitiative.resx">
+      <DependentUpon>201511182006297_BilingualInitiative.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

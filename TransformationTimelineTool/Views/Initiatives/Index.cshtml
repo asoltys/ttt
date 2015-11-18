@@ -11,8 +11,8 @@
 </p>
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>Description</th>
+        <th>NameE</th>
+        <th>NameF</th>
         <th>Start</th>
         <th>End</th>
         <th></th>
@@ -30,7 +30,7 @@
                 @Html.DisplayFor(modelItem => item.NameE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.NameF)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
@@ -70,8 +70,8 @@
                     @item.Text
                 </td>
                 <td>
-                    @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null)
-                    @Html.ActionLink("Edit", "Edit", "Events", new { ID = item.ID }, null)
+                    @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Events", new { ID = item.ID }, null) |
                     @Html.ActionLink("Delete", "Delete", "Events", new { ID = item.ID }, null)
                 </td>
             </tr>
