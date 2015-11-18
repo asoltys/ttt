@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
+using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -16,9 +17,20 @@ namespace TransformationTimelineTool.Controllers
         private TimelineContext db = new TimelineContext();
 
         // GET: Initiatives
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Initiatives.ToList());
+            var viewModel = new InitiativeIndexData();
+
+            viewModel.Initiatives = db.Initiatives.
+                Include(i => i.Events);
+
+            if (id != null)
+            {
+                ViewBag.InitiativeID = id.Value;
+                viewModel.Events = viewModel.Initiatives.Where(
+                    i => i.ID == id.Value).Single().Events;
+            }
+            return View(viewModel);
         }
 
         // GET: Initiatives/Details/5
