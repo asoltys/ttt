@@ -10,9 +10,13 @@ namespace TransformationTimelineTool.Models
     public class Initiative
     {
         public int ID { get; set; }
+        [Display(Name = "English Name")]
         public string NameE { get; set; }
+        [Display(Name = "French Name")]
         public string NameF { get; set; }
+        [Display(Name = "English Description")]
         public string DescriptionE { get; set; }
+        [Display(Name = "French Description")]
         public string DescriptionF { get; set; }
 
         [Display(Name = "Start")]

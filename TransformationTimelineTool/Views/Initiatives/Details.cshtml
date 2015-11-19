@@ -65,10 +65,9 @@
         <dd>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th>Date</th>
-                    <th>Hover</th>
-                    <th>Text</th>
-                    <th>Action</th>
+                    <th class="col-md-2">Date</th>
+                    <th class="">Hover</th>
+                    <th class="col-md-2">Action</th>
                 </tr>
                 @foreach( var item in Model.Events)
                 {
@@ -77,19 +76,46 @@
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Hover)
+                            @Html.DisplayFor(modelItem => item.HoverE)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Text)
-                        </td>
-                        <td>
-                            @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null)
+                            @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null) | 
                             @Html.ActionLink("Edit", "Edit", "Events", new { ID =  item.ID }, null)
                         </td>
                     </tr>
                 }
             </table>
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Model => Model.Impacts)
+        </dt>
+
+        <dd>
+            <table class="table table-condensed table-striped">
+                <tr>
+                    <th>Branch</th>
+                    <th>Level</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.Impacts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Branch.NameE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Level)
+                        </td>
+                        <td>
+                            @Html.ActionLink("View", "Details", "Impacts", new { ID = item.ID }, null) | 
+                            @Html.ActionLink("Edit", "Edit", "Impacts", new { ID = item.ID }, null)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
 
     </dl>
 </div>
