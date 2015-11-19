@@ -11,7 +11,7 @@
 </p>
 <table class="table">
     <tr>
-        <th>NameE</th>
+        <th>Name</th>
         <th>NameF</th>
         <th>Start</th>
         <th>End</th>
@@ -28,9 +28,6 @@
         <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.NameE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameF)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
@@ -64,7 +61,7 @@
         {
             <tr>
                 <td>
-                    @item.Date
+                    @item.Date.ToShortDateString()
                 </td>
                 <td>
                     @item.HoverE
