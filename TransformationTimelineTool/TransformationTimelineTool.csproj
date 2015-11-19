@@ -159,6 +159,10 @@
     <Compile Include="Migrations\201511182305277_BilingualRegionBranch.Designer.cs">
       <DependentUpon>201511182305277_BilingualRegionBranch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511191826013_EventType.cs" />
+    <Compile Include="Migrations\201511191826013_EventType.Designer.cs">
+      <DependentUpon>201511191826013_EventType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Event.cs" />
@@ -189,7 +193,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511182305277_BilingualRegionBranch.resx">
       <DependentUpon>201511182305277_BilingualRegionBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511191826013_EventType.resx">
+      <DependentUpon>201511191826013_EventType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

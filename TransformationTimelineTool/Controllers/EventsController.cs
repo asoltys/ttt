@@ -51,7 +51,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Date,TextE,TextF,HoverE,HoverF")] Event @event)
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Date,TextE,TextF,HoverE,HoverF")] Event @event)
+        public ActionResult Edit([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event)
         {
             if (ModelState.IsValid)
             {

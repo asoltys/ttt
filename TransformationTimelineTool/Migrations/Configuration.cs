@@ -15,7 +15,7 @@ namespace TransformationTimelineTool.Migrations
         }
 
         protected override void Seed(TransformationTimelineTool.DAL.TimelineContext context)
-        {
+        {/*
             var regions = new List<Region>
             {
                 new Region {NameShort = "pac", NameE = "Pacific" },
@@ -70,6 +70,7 @@ namespace TransformationTimelineTool.Migrations
 
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();
+            */
         }
     }
 }
