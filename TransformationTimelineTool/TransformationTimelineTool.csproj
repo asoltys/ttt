@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImpactsController.cs" />
     <Compile Include="Controllers\InitiativesController.cs" />
     <Compile Include="DAL\TimelineContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -162,6 +163,10 @@
     <Compile Include="Migrations\201511191826013_EventType.cs" />
     <Compile Include="Migrations\201511191826013_EventType.Designer.cs">
       <DependentUpon>201511191826013_EventType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511192238327_Impacts-BranchID-InitiativeID.cs" />
+    <Compile Include="Migrations\201511192238327_Impacts-BranchID-InitiativeID.Designer.cs">
+      <DependentUpon>201511192238327_Impacts-BranchID-InitiativeID.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -219,6 +224,12 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Impacts\Create.cshtml" />
+    <Content Include="Views\Impacts\Delete.cshtml" />
+    <Content Include="Views\Impacts\Details.cshtml" />
+    <Content Include="Views\Impacts\Edit.cshtml" />
+    <Content Include="Views\Impacts\Index.cshtml" />
+    <Content Include="Views\Initiatives\Data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511191826013_EventType.resx">
       <DependentUpon>201511191826013_EventType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511192238327_Impacts-BranchID-InitiativeID.resx">
+      <DependentUpon>201511192238327_Impacts-BranchID-InitiativeID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

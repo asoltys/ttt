@@ -123,3 +123,25 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+
+<input name="btnGetMovies" id="btnGetMovies" type="submit" value="Get Movies">
+<ul id="movieList"></ul>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $("#btnGetMovies").click(function () {
+        var actionUrl = '@Url.Action("Data")';
+        alert("hello world!");
+        $.getJSON(actionUrl, displayData);
+    });
+
+    function displayData(response) {
+        if (response != null) {
+            for (var i = 0; i < response.length; i++) {
+                $("#movieList").append("<li>" + response[i].Title + " " + response[i].Genre + " " + response[i].Year + "</li>")
+            }
+        }
+    }
+</script>

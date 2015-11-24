@@ -139,6 +139,66 @@ namespace TransformationTimelineTool.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Data()
+        {
+            var viewModel = new List<object>();
+            var jsonInitiatives = new List<object>();
+
+            Initiative initiative = db.Initiatives.Find(30);
+            List<Initiative> initiatives = db.Initiatives.ToList();
+
+            foreach (var init in initiatives)
+            {
+                var jsonEvents = new List<object>();
+                var jsonImpacts = new List<object>();
+
+                foreach (var e in init.Events)
+                {
+                    jsonEvents.Add(new
+                    {
+                        ID = e.ID,
+                        Type = e.Type.ToString(),
+                        Date = e.Date.ToShortDateString(),
+                        Branch = e.Branch.NameShort,
+                        Region = e.Region.NameShort,
+                        TextE = e.TextE,
+                        HoverE = e.HoverE,
+                        TextF = e.TextF,
+                        HoverF = e.HoverF
+                    });
+                }
+
+                foreach (var impact in init.Impacts)
+                {
+                    jsonImpacts.Add(new
+                    {
+                        Branch = impact.Branch.NameShort,
+                        Level = impact.Level
+                    });
+                }
+
+                jsonInitiatives.Add(new
+                {
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    DescriptionE = init.DescriptionE,
+                    DescriptionF = init.DescriptionF,
+                    StartDate = init.StartDate.ToShortDateString(),
+                    EndDate = init.EndDate.ToShortDateString(),
+                    Impacts = jsonImpacts,
+                    Events = jsonEvents
+                });
+            }
+            
+
+            //viewModel.Add(new { ID = myEvent.ID, Date = myEvent.Date.ToString(), HoverE = myEvent.HoverE});
+            //viewModel.Add(new { Title = "Gone with Wind", Genre = "Drama", Year = 1939 });
+            //viewModel.Add(new { Title = "Star Wars", Genre = "Science Fiction", Year = 1977 });
+
+            return Json(jsonInitiatives, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
