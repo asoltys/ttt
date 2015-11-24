@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 using TransformationTimelineTool.ViewModels;
+using System.DirectoryServices;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -138,7 +139,6 @@ namespace TransformationTimelineTool.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         public ActionResult Data()
         {
             var viewModel = new List<object>();
@@ -191,12 +191,40 @@ namespace TransformationTimelineTool.Controllers
                 });
             }
             
-
             //viewModel.Add(new { ID = myEvent.ID, Date = myEvent.Date.ToString(), HoverE = myEvent.HoverE});
             //viewModel.Add(new { Title = "Gone with Wind", Genre = "Drama", Year = 1939 });
             //viewModel.Add(new { Title = "Star Wars", Genre = "Science Fiction", Year = 1977 });
 
             return Json(jsonInitiatives, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Authenticate(string login, string password)
+        {
+            DirectoryEntry root = new DirectoryEntry(
+                  "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+                  login,
+                  password);
+
+            DirectorySearcher searcher = new DirectorySearcher(
+                root,
+                "(mailNickname=" + login + ")");
+
+            bool success = false;
+            SearchResult person;
+
+            try
+            {
+                person = searcher.FindOne();
+                success = true;
+            }
+            catch
+            {
+                success = false;
+            }
+
+            //jsonData["Verified"] = true;
+            return Json(new { Verified = success }, JsonRequestBehavior.AllowGet);
+
         }
 
         protected override void Dispose(bool disposing)
