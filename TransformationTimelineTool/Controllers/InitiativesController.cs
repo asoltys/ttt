@@ -190,10 +190,6 @@ namespace TransformationTimelineTool.Controllers
                     Events = jsonEvents
                 });
             }
-            
-            //viewModel.Add(new { ID = myEvent.ID, Date = myEvent.Date.ToString(), HoverE = myEvent.HoverE});
-            //viewModel.Add(new { Title = "Gone with Wind", Genre = "Drama", Year = 1939 });
-            //viewModel.Add(new { Title = "Star Wars", Genre = "Science Fiction", Year = 1977 });
 
             return Json(jsonInitiatives, JsonRequestBehavior.AllowGet);
         }
@@ -201,9 +197,9 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Authenticate(string login, string password)
         {
             DirectoryEntry root = new DirectoryEntry(
-                  "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
-                  login,
-                  password);
+                "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+                login,
+                password);
 
             DirectorySearcher searcher = new DirectorySearcher(
                 root,
