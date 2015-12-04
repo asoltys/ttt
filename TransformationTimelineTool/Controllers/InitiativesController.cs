@@ -160,7 +160,7 @@ namespace TransformationTimelineTool.Controllers
                         Type = e.Type.ToString(),
                         Date = e.Date.ToShortDateString(),
                         Branch = e.Branch.NameShort,
-                        Region = e.Region.NameShort,
+                        //Region = e.Region.NameShort,
                         TextE = e.TextE,
                         HoverE = e.HoverE,
                         TextF = e.TextF,

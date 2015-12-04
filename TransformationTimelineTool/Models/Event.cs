@@ -16,7 +16,6 @@ namespace TransformationTimelineTool.Models
         public int ID { get; set; }
         public int InitiativeID { get; set; }
         public int BranchID { get; set; }
-        public int RegionID { get; set; }
         public Type Type { get; set; }
 
         [DataType(DataType.Date)]
@@ -39,6 +38,6 @@ namespace TransformationTimelineTool.Models
 
         public virtual Initiative Initiative { get; set; }
         public virtual Branch Branch { get; set; }
-        public virtual Region Region { get; set; }
+        public virtual ICollection<Region> Regions { get; set; }
     }
 }

@@ -38,8 +38,13 @@
             Region
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Region.NameE)
+        <dd> 
+            @foreach (var region in Model.Regions)
+            {
+                @region.NameE;
+                @: -
+            }
+           
         </dd>
 
         <dt>

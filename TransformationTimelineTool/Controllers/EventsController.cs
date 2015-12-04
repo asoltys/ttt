@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
+using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -18,7 +20,7 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var events = db.Events.Include(e => e.Branch).Include(e => e.Initiative).Include(e => e.Region);
+            var events = db.Events.Include(e => e.Branch).Include(e => e.Initiative).Include(e => e.Regions);
             return View(events.ToList());
         }
 
@@ -62,7 +64,7 @@ namespace TransformationTimelineTool.Controllers
 
             ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
+            //ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
             return View(@event);
         }
 
@@ -73,15 +75,39 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            //Event @event = db.Events.Find(id);
+            Event @event = db.Events
+                .Include(e => e.Regions)
+                .Where(e => e.ID == id)
+                .Single();
+            PopulateEventRegionsData(@event);
             if (@event == null)
             {
                 return HttpNotFound();
             }
             ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", @event.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE", @event.RegionID);
+            //ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE", @event.RegionID);
             return View(@event);
+        }
+
+        private void PopulateEventRegionsData(Event @event)
+        {
+            var allRegions = db.Regions;
+            var eventRegions = new HashSet<int>(@event.Regions.Select(r => r.ID));
+            var viewModel = new List<EventRegionsData>();
+
+            foreach(var region in allRegions)
+            {
+                viewModel.Add(new EventRegionsData
+                {
+                    RegionID = region.ID,
+                    RegionNameE = region.NameE,
+                    RegionNameF = region.NameF,
+                    Flag = eventRegions.Contains(region.ID)
+                });
+            }
+            ViewBag.Regions = viewModel;
         }
 
         // POST: Events/Edit/5
@@ -89,18 +115,68 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event)
+        public ActionResult Edit(int? id, string[] selectedRegions)
         {
-            if (ModelState.IsValid)
+
+            if (id == null)
             {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", @event.BranchID);
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE", @event.RegionID);
-            return View(@event);
+
+            var eventToUpdate = db.Events
+               .Include(e => e.Regions)
+               .Where(i => i.ID == id)
+               .Single();
+
+            if (TryUpdateModel(eventToUpdate, "",
+               new string[] { "InitiativeID,BranchID,Type,Date,TextE,TextF,HoverE,HoverF" }))
+            {
+                try
+                {
+                    UpdateEventRegions(selectedRegions, eventToUpdate);
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+
+            PopulateEventRegionsData(eventToUpdate);
+            return View(eventToUpdate);
+        }
+
+        private void UpdateEventRegions(string[] selectedRegions, Event eventToUpdate)
+        {
+            if (selectedRegions == null)
+            {
+                eventToUpdate.Regions = new List<Region>();
+                return;
+            }
+
+            var selectedRegionHS = new HashSet<string>(selectedRegions);
+            var eventRegions = new HashSet<int>(eventToUpdate.Regions.Select(e => e.ID));
+
+            foreach(var region in db.Regions)
+            {
+                if (selectedRegionHS.Contains(region.ID.ToString())){
+                    if (!eventRegions.Contains(region.ID))
+                    {
+                        eventToUpdate.Regions.Add(region);
+                    }
+                }
+                else
+                {
+                    if (eventRegions.Contains(region.ID))
+                    {
+                        eventToUpdate.Regions.Remove(region);
+                    }
+                }
+            }
         }
 
         // GET: Events/Delete/5
