@@ -14,10 +14,6 @@
            Initiative
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Branch.NameE)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Initiative.NameE)
         </dt>
@@ -31,7 +27,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Branch.NameE)
+            @foreach (var branch in Model.Branches)
+            {
+                @branch.NameE;
+                @: -
+            }
+
         </dd>
 
         <dt>

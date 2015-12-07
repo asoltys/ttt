@@ -159,7 +159,7 @@ namespace TransformationTimelineTool.Controllers
                         ID = e.ID,
                         Type = e.Type.ToString(),
                         Date = e.Date.ToShortDateString(),
-                        Branch = e.Branch.NameShort,
+                        //Branch = e.Branch.NameShort,
                         //Region = e.Region.NameShort,
                         TextE = e.TextE,
                         HoverE = e.HoverE,

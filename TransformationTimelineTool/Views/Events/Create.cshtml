@@ -24,18 +24,76 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BranchID, "BranchID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("BranchID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BranchID, "", new { @class = "text-danger" })
+            <div class="col-md-2 text-right"><strong>Branches</strong></div>
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<TransformationTimelineTool.Models.Branch> branches = ViewBag.Branches;
+
+                            foreach (var branch in branches)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedBranches"
+                                           value="@branch.ID" />
+                                        @branch.NameE
+                                        @:</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   name="selectAllBranches"
+                                   id="selectAllBranches"
+                                   value="allBranches" />
+                            Deselect/Select All
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RegionID, "RegionID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("RegionID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RegionID, "", new { @class = "text-danger" })
+            <div class="col-md-2 text-right"><strong>Regions</strong></div>
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt2 = 0;
+                            List<TransformationTimelineTool.Models.Region> regions = ViewBag.Regions;
+
+                            foreach (var region in regions)
+                            {
+                                if (cnt2++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                               }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedRegions"
+                                           value="@region.ID" />
+                                        @region.NameE
+                                     @:</td>
+                           }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   name="selectAllRegions"
+                                   id="selectAllRegions"
+                                   value="allRegions" />
+                            Deselect/Select All
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -101,4 +159,22 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#selectAllBranches').click(function () {
+                if ($(this).prop("checked")) {
+                    $('input[name="selectedBranches"]').prop("checked", false);
+                } else {
+                    $('input[name="selectedBranches"]').prop("checked", true);
+                }
+            });
+        });
+        $('#selectAllRegions').click(function () {
+            if ($(this).prop("checked")) {
+                $('input[name="selectedRegions"]').prop("checked", false);
+            } else {
+                $('input[name="selectedRegions"]').prop("checked", true);
+            }
+        });
+    </script>
 }

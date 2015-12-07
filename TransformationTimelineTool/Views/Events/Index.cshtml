@@ -15,9 +15,6 @@
             Initiative
         </th>
         <th>
-            Branch
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
@@ -32,9 +29,6 @@
 @foreach (var item in Model) {
     <tr> <td>
             @Html.DisplayFor(modelItem => item.Initiative.NameE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Branch.NameE)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)

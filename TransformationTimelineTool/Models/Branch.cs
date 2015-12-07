@@ -14,6 +14,6 @@ namespace TransformationTimelineTool.Models
         public string NameE { get; set; }
         [Display(Name = "French Name")]
         public string NameF { get; set; }
-
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

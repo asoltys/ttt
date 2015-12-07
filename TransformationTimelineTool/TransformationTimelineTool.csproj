@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201512012208036_MultipleRegionEvents2.Designer.cs">
       <DependentUpon>201512012208036_MultipleRegionEvents2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512042315007_MultipleEventBranches.cs" />
+    <Compile Include="Migrations\201512042315007_MultipleEventBranches.Designer.cs">
+      <DependentUpon>201512042315007_MultipleEventBranches.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Event.cs" />
@@ -208,6 +212,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toggle_checkboxes.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="Views\Shared\_IntraLayout.cshtml" />
     <Content Include="Web.config">
@@ -283,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512012208036_MultipleRegionEvents2.resx">
       <DependentUpon>201512012208036_MultipleRegionEvents2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512042315007_MultipleEventBranches.resx">
+      <DependentUpon>201512042315007_MultipleEventBranches.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

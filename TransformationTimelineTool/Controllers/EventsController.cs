@@ -20,7 +20,7 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var events = db.Events.Include(e => e.Branch).Include(e => e.Initiative).Include(e => e.Regions);
+            var events = db.Events.Include(e => e.Branches).Include(e => e.Initiative).Include(e => e.Regions);
             return View(events.ToList());
         }
 
@@ -42,9 +42,9 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE");
+            ViewBag.Branches = db.Branches.ToList<Branch>();
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
-            ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE");
+            ViewBag.Regions = db.Regions.ToList<Region>();
             return View();
         }
 
@@ -53,18 +53,48 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,RegionID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event)
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event, string[] selectedBranches, string[] selectedRegions)
         {
-            if (ModelState.IsValid)
+            if (TryUpdateModel(@event, "",
+               new string[] { "InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF" }))
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    //UpdateEventRegions(selectedRegions, @event);
+                    //UpdateEventBranches(selectedBranches, @event);
+                    @event.Branches = new List<Branch>();
+                    @event.Regions= new List<Region>();
+                    var selectedBranchesHS = new HashSet<string>(selectedBranches);
+                    foreach (var branch in db.Branches)
+                    {
+                        if (selectedBranches.Contains(branch.ID.ToString()))
+                        {
+                            @event.Branches.Add(branch);
+                        }
+                    }
+
+                    var selectedRegionsHS = new HashSet<string>(selectedRegions);
+                    foreach (var region in db.Regions)
+                    {
+                        if (selectedRegions.Contains(region.ID.ToString()))
+                        {
+                            @event.Regions.Add(region);
+                        }
+                    }
+                    db.Events.Add(@event);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
             }
 
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameShort", @event.BranchID);
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            //ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameShort", @event.RegionID);
+            PopulateEventRegionsData(@event);
+            PopulateEventBranchesData(@event);
             return View(@event);
         }
 
@@ -78,16 +108,19 @@ namespace TransformationTimelineTool.Controllers
             //Event @event = db.Events.Find(id);
             Event @event = db.Events
                 .Include(e => e.Regions)
+                .Include(e => e.Branches)
                 .Where(e => e.ID == id)
                 .Single();
+
             PopulateEventRegionsData(@event);
+            PopulateEventBranchesData(@event);
+
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", @event.BranchID);
+
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            //ViewBag.RegionID = new SelectList(db.Regions, "ID", "NameE", @event.RegionID);
             return View(@event);
         }
 
@@ -97,7 +130,7 @@ namespace TransformationTimelineTool.Controllers
             var eventRegions = new HashSet<int>(@event.Regions.Select(r => r.ID));
             var viewModel = new List<EventRegionsData>();
 
-            foreach(var region in allRegions)
+            foreach (var region in allRegions)
             {
                 viewModel.Add(new EventRegionsData
                 {
@@ -110,30 +143,57 @@ namespace TransformationTimelineTool.Controllers
             ViewBag.Regions = viewModel;
         }
 
+        private void PopulateEventBranchesData(Event @event)
+        {
+            var allBranches = db.Branches;
+            var eventBranches = new HashSet<int>(@event.Branches.Select(b => b.ID));
+            var viewModel = new List<EventBranchesData>();
+
+            foreach(var region in allBranches)
+            {
+                viewModel.Add(new EventBranchesData
+                {
+                    BranchID = region.ID,
+                    BranchNameE = region.NameE,
+                    BranchNameF = region.NameF,
+                    Flag = eventBranches.Contains(region.ID)
+                });
+            }
+            ViewBag.Branches = viewModel;
+        }
+
         // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, string[] selectedRegions)
+        public ActionResult Edit(Event @event, string[] selectedRegions, string[] selectedBranches)
         {
 
-            if (id == null)
+            if (@event == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var eventToUpdate = db.Events
                .Include(e => e.Regions)
-               .Where(i => i.ID == id)
+               .Where(i => i.ID == @event.ID)
                .Single();
 
-            if (TryUpdateModel(eventToUpdate, "",
-               new string[] { "InitiativeID,BranchID,Type,Date,TextE,TextF,HoverE,HoverF" }))
+            if (ModelState.IsValid)
             {
                 try
                 {
+                    eventToUpdate.InitiativeID = @event.InitiativeID;
+                    eventToUpdate.TextE = @event.TextE;
+                    eventToUpdate.TextF = @event.TextF;
+                    eventToUpdate.HoverE = @event.HoverE;
+                    eventToUpdate.HoverF = @event.HoverF;
+                    eventToUpdate.Date = @event.Date;
+                    eventToUpdate.Type = @event.Type;
+
                     UpdateEventRegions(selectedRegions, eventToUpdate);
+                    UpdateEventBranches(selectedBranches, eventToUpdate);
 
                     db.SaveChanges();
 
@@ -148,6 +208,36 @@ namespace TransformationTimelineTool.Controllers
 
             PopulateEventRegionsData(eventToUpdate);
             return View(eventToUpdate);
+        }
+
+        private void UpdateEventBranches (string[] selectedBranches, Event eventToUpdate)
+        {
+            if (selectedBranches == null)
+            {
+                eventToUpdate.Branches = new List<Branch>();
+                return;
+            }
+
+            var selectedBranchesHS = new HashSet<string>(selectedBranches);
+            var eventBranches = new HashSet<int>(eventToUpdate.Branches.Select(e => e.ID));
+
+            foreach (var branch in db.Branches)
+            {
+                if (selectedBranches.Contains(branch.ID.ToString()))
+                {
+                    if (!eventBranches.Contains(branch.ID))
+                    {
+                        eventToUpdate.Branches.Add(branch);
+                    }
+                }
+                else
+                {
+                    if (eventBranches.Contains(branch.ID))
+                    {
+                        eventToUpdate.Branches.Remove(branch);
+                    }
+                }
+            }
         }
 
         private void UpdateEventRegions(string[] selectedRegions, Event eventToUpdate)
