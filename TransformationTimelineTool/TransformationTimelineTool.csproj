@@ -19,8 +19,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -214,6 +214,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\toggle_checkboxes.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Initiatives\Data.cshtml" />
     <None Include="Views\Shared\_IntraLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
