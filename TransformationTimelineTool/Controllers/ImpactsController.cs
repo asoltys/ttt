@@ -19,7 +19,8 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Index()
         {
             var impacts = db.Impacts.
-                Include(i => i.Branch).
+                Include(i => i.Branches).
+                Include(i => i.Regions).
                 Include(i => i.Initiative).
                 OrderBy(i => i.Initiative.NameE);
             return View(impacts.ToList());
@@ -62,7 +63,7 @@ namespace TransformationTimelineTool.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
+            //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", impact.InitiativeID);
             return View(impact);
         }
@@ -79,7 +80,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
+            //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", impact.InitiativeID);
             return View(impact);
         }
@@ -97,7 +98,7 @@ namespace TransformationTimelineTool.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
+            //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", impact.InitiativeID);
             return View(impact);
         }

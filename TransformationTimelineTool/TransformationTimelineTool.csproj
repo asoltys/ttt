@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201512042315007_MultipleEventBranches.Designer.cs">
       <DependentUpon>201512042315007_MultipleEventBranches.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512102108519_MultipleImpactsRegionsBranchs.cs" />
+    <Compile Include="Migrations\201512102108519_MultipleImpactsRegionsBranchs.Designer.cs">
+      <DependentUpon>201512102108519_MultipleImpactsRegionsBranchs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Event.cs" />
@@ -616,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512042315007_MultipleEventBranches.resx">
       <DependentUpon>201512042315007_MultipleEventBranches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512102108519_MultipleImpactsRegionsBranchs.resx">
+      <DependentUpon>201512102108519_MultipleImpactsRegionsBranchs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

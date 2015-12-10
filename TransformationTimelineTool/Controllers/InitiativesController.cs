@@ -172,7 +172,7 @@ namespace TransformationTimelineTool.Controllers
                 {
                     jsonImpacts.Add(new
                     {
-                        Branch = impact.Branch.NameShort,
+                        //Branch = impact.Branch.NameShort,
                         Level = impact.Level
                     });
                 }
