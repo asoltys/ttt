@@ -1,0 +1,42 @@
+﻿@model TransformationTimelineTool.Models.Region
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Region</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameShort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameShort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameF)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
