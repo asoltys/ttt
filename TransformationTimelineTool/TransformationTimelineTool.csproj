@@ -192,8 +192,8 @@
     <Compile Include="Models\Initiative.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\EventBranchesData.cs" />
-    <Compile Include="ViewModels\EventRegionsData.cs" />
+    <Compile Include="ViewModels\BranchesData.cs" />
+    <Compile Include="ViewModels\RegionsData.cs" />
     <Compile Include="ViewModels\InitiativeIndexData.cs" />
   </ItemGroup>
   <ItemGroup>

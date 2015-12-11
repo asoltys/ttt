@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TransformationTimelineTool.ViewModels
 {
-    public class EventBranchesData
+    public class BranchesData
     {
         public int BranchID { get; set; }
         public string BranchNameE { get; set; }

@@ -94,18 +94,32 @@
         <dd>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th>Branch</th>
                     <th>Level</th>
+                    <th>Branch</th>
+                    <th>Region</th>
                     <th></th>
                 </tr>
                 @foreach (var item in Model.Impacts)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Branch.NameE)
+                            @Html.DisplayFor(modelItem => item.Level)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Level)
+                            @foreach (var branch in item.Branches)
+                            {
+
+                                @Html.DisplayFor(modelItem => branch.NameShort)
+                                @: -
+                            }
+                        </td>
+                        <td>
+                            @foreach (var region in item.Regions)
+                            {
+
+                                @Html.DisplayFor(modelItem => region.NameShort)
+                                @: -
+                            }
                         </td>
                         <td>
                             @Html.ActionLink("View", "Details", "Impacts", new { ID = item.ID }, null) | 
@@ -126,7 +140,7 @@
 
 
 
-<input name="btnGetMovies" id="btnGetMovies" type="submit" value="Get Movies">
+<!-- <input name="btnGetMovies" id="btnGetMovies" type="submit" value="Get Movies">-->
 <ul id="movieList"></ul>
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>

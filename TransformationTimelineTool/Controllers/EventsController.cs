@@ -107,8 +107,6 @@ namespace TransformationTimelineTool.Controllers
             }
             //Event @event = db.Events.Find(id);
             Event @event = db.Events
-                .Include(e => e.Regions)
-                .Include(e => e.Branches)
                 .Where(e => e.ID == id)
                 .Single();
 
@@ -128,11 +126,11 @@ namespace TransformationTimelineTool.Controllers
         {
             var allRegions = db.Regions;
             var eventRegions = new HashSet<int>(@event.Regions.Select(r => r.ID));
-            var viewModel = new List<EventRegionsData>();
+            var viewModel = new List<RegionsData>();
 
             foreach (var region in allRegions)
             {
-                viewModel.Add(new EventRegionsData
+                viewModel.Add(new RegionsData
                 {
                     RegionID = region.ID,
                     RegionNameE = region.NameE,
@@ -147,11 +145,11 @@ namespace TransformationTimelineTool.Controllers
         {
             var allBranches = db.Branches;
             var eventBranches = new HashSet<int>(@event.Branches.Select(b => b.ID));
-            var viewModel = new List<EventBranchesData>();
+            var viewModel = new List<BranchesData>();
 
             foreach(var region in allBranches)
             {
-                viewModel.Add(new EventBranchesData
+                viewModel.Add(new BranchesData
                 {
                     BranchID = region.ID,
                     BranchNameE = region.NameE,
@@ -176,7 +174,6 @@ namespace TransformationTimelineTool.Controllers
             }
 
             var eventToUpdate = db.Events
-               .Include(e => e.Regions)
                .Where(i => i.ID == @event.ID)
                .Single();
 

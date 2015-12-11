@@ -173,7 +173,9 @@ namespace TransformationTimelineTool.Controllers
                     jsonImpacts.Add(new
                     {
                         //Branch = impact.Branch.NameShort,
-                        Level = impact.Level
+                        Level = impact.Level,
+                        Branches = impact.Branches.Select(b => b.ID),
+                        Regions = impact.Regions.Select(r => r.ID)
                     });
                 }
 

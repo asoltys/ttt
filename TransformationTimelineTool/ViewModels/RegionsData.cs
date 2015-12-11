@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TransformationTimelineTool.ViewModels
 {
-    public class EventRegionsData
+    public class RegionsData
     {
         public int RegionID { get; set; }
         public string RegionNameE { get; set; }

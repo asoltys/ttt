@@ -32,7 +32,7 @@
                     <tr>
                         @{
                             int cnt = 0;
-                            List<TransformationTimelineTool.ViewModels.EventBranchesData> branches = ViewBag.Branches;
+                            List<TransformationTimelineTool.ViewModels.BranchesData> branches = ViewBag.Branches;
 
                             foreach (var branch in branches)
                             {
@@ -70,7 +70,7 @@
                    <tr>
                        @{ 
                            int cnt2 = 0;
-                           List<TransformationTimelineTool.ViewModels.EventRegionsData> regions = ViewBag.Regions;
+                           List<TransformationTimelineTool.ViewModels.RegionsData> regions = ViewBag.Regions;
 
                            foreach(var region in regions)
                            {
