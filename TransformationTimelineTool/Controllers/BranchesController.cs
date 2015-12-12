@@ -11,7 +11,7 @@ using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
 {
-    public class BranchesController : Controller
+    public class BranchesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 

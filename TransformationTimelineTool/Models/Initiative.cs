@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.Threading;
 
 namespace TransformationTimelineTool.Models
 {
@@ -37,6 +38,21 @@ namespace TransformationTimelineTool.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
+
+        public string Name
+        {
+            get
+            {
+                if(Thread.CurrentThread.CurrentCulture.Name == "fr")
+                {
+                    return NameF;
+                }
+                else
+                {
+                    return NameE;
+                }
+            }
+        }
 
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Impact> Impacts { get; set; }

@@ -15,8 +15,8 @@ namespace TransformationTimelineTool
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Initiatives", action = "Index", id = UrlParameter.Optional }
+                url: "{culture}/{controller}/{action}/{id}",
+                defaults: new { culture = "eng", controller = "Initiatives", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

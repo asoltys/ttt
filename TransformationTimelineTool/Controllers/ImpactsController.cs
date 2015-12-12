@@ -13,7 +13,7 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
-    public class ImpactsController : Controller
+    public class ImpactsController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 

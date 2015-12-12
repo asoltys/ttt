@@ -1,19 +1,19 @@
 ﻿@model TransformationTimelineTool.ViewModels.InitiativeIndexData
 
 @{
-    ViewBag.Title = "Initiatives";
+    ViewBag.Title = Resources.Initiative;
 }
 
-<h2>Initiatives</h2>
+<h2>@Resources.Initiative</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(Resources.Create, "Create")
 </p>
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>Start</th>
-        <th>End</th>
+        <th>@Resources.Name</th>
+        <th>@Resources.Start</th>
+        <th>@Resources.End</th>
         <th></th>
     </tr>
 
@@ -26,7 +26,7 @@
         }
         <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(modelItem => item.NameE)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
@@ -35,10 +35,10 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink(Resources.Select, "Index", new { id = item.ID }) |
+                @Html.ActionLink(Resources.Edit, "Edit", new { id = item.ID }) |
+                @Html.ActionLink(Resources.Details, "Details", new { id = item.ID }) |
+                @Html.ActionLink(Resources.Delete, "Delete", new { id = item.ID })
             </td>
         </tr>
     }
@@ -52,8 +52,8 @@
     </h3>
     <table class="table">
         <tr>
-            <th>Date</th>
-            <th>Text</th>
+            <th>@Resources.Date</th>
+            <th>@Resources.Text</th>
             <th></th>
         </tr>
         @foreach (var item in Model.Events)
@@ -66,9 +66,9 @@
                     @item.HoverE
                 </td>
                 <td>
-                    @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null) |
-                    @Html.ActionLink("Edit", "Edit", "Events", new { ID = item.ID }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Events", new { ID = item.ID }, null)
+                    @Html.ActionLink(Resources.View, "Details", "Events", new { ID = item.ID }, null) |
+                    @Html.ActionLink(Resources.Edit, "Edit", "Events", new { ID = item.ID }, null) |
+                    @Html.ActionLink(Resources.Delete, "Delete", "Events", new { ID = item.ID }, null)
                 </td>
             </tr>
         }

@@ -13,7 +13,7 @@ using System.DirectoryServices;
 
 namespace TransformationTimelineTool.Controllers
 {
-    public class InitiativesController : Controller
+    public class InitiativesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 
