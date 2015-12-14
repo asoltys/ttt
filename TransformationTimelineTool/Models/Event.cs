@@ -9,7 +9,7 @@ namespace TransformationTimelineTool.Models
 {
     public enum Type
     {
-        Class, Milestone
+        Milestone, Class
     }
     public class Event
     {
