@@ -42,9 +42,9 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.Branches = db.Branches.ToList<Branch>();
+            ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
+            ViewBag.Regions = db.Regions.OrderBy(r => r.NameE).ToList<Region>();
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
-            ViewBag.Regions = db.Regions.ToList<Region>();
             return View();
         }
 
