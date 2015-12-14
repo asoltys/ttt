@@ -141,10 +141,8 @@ namespace TransformationTimelineTool.Controllers
         }
         public ActionResult Data()
         {
-            var viewModel = new List<object>();
             var jsonInitiatives = new List<object>();
-
-            Initiative initiative = db.Initiatives.Find(30);
+            
             List<Initiative> initiatives = db.Initiatives.ToList();
 
             foreach (var init in initiatives)

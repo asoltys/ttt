@@ -89,6 +89,25 @@ namespace TransformationTimelineTool.Controllers
             }
             return View(branch);
         }
+        public ActionResult Data()
+        {
+            var jsonBranches = new List<object>();
+            
+            List<Branch> branches= db.Branches.ToList();
+
+            foreach (var branch in branches)
+            {
+                jsonBranches.Add(new
+                {
+                    ID = branch.ID,
+                    NameE = branch.NameShort,
+                    NameF = branch.NameE,
+                    DescriptionE = branch.NameF
+                });
+            }
+
+            return Json(jsonBranches, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Branches/Delete/5
         public ActionResult Delete(int? id)

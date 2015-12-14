@@ -89,6 +89,25 @@ namespace TransformationTimelineTool.Controllers
             }
             return View(region);
         }
+        public ActionResult Data()
+        {
+            var jsonRegions = new List<object>();
+
+            List<Region> regions = db.Regions.ToList();
+
+            foreach (var region in regions)
+            {
+                jsonRegions.Add(new
+                {
+                    ID = region.ID,
+                    NameE = region.NameShort,
+                    NameF = region.NameE,
+                    DescriptionE = region.NameF
+                });
+            }
+
+            return Json(jsonRegions, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Regions/Delete/5
         public ActionResult Delete(int? id)
