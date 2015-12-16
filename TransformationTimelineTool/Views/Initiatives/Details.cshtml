@@ -84,6 +84,11 @@
                         </td>
                     </tr>
                 }
+                <tr>
+                    <td>
+                        @Html.ActionLink("Create Event", "Create", "Events", new { ID = Model.ID }, null)
+                    </td>
+                </tr>
             </table>
         </dd>
 
@@ -106,20 +111,10 @@
                             @Html.DisplayFor(modelItem => item.Level)
                         </td>
                         <td>
-                            @foreach (var branch in item.Branches)
-                            {
-
-                                @Html.DisplayFor(modelItem => branch.NameShort)
-                                @: -
-                            }
+                            @String.Join(" - ", item.Branches.Select(b => b.NameShort))
                         </td>
                         <td>
-                            @foreach (var region in item.Regions)
-                            {
-
-                                @Html.DisplayFor(modelItem => region.NameShort)
-                                @: -
-                            }
+                            @String.Join(" - ", item.Regions.Select(b => b.NameShort))
                         </td>
                         <td>
                             @Html.ActionLink("View", "Details", "Impacts", new { ID = item.ID }, null) | 
@@ -127,6 +122,11 @@
                         </td>
                     </tr>
                 }
+                <tr>
+                    <td>
+                        @Html.ActionLink("Create Impact", "Create", "Impacts", new { ID = Model.ID }, null)
+                    </td>
+                </tr>
             </table>
         </dd>
 

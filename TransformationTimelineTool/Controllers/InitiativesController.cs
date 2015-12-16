@@ -23,13 +23,16 @@ namespace TransformationTimelineTool.Controllers
             var viewModel = new InitiativeIndexData();
 
             viewModel.Initiatives = db.Initiatives.
-                Include(i => i.Events);
+                Include(i => i.Events).
+                Include(i => i.Impacts);
 
             if (id != null)
             {
                 ViewBag.InitiativeID = id.Value;
                 viewModel.Events = viewModel.Initiatives.Where(
                     i => i.ID == id.Value).Single().Events;
+                viewModel.Impacts = viewModel.Initiatives.Where(
+                    i => i.ID == id.Value).Single().Impacts;
             }
             return View(viewModel);
         }

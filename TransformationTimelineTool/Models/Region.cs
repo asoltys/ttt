@@ -16,5 +16,6 @@ namespace TransformationTimelineTool.Models
         public string NameF { get; set; }
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Impact> Impacts { get; set; }
+        public virtual ICollection<Branch> Branches { get; set; }
     }
 }

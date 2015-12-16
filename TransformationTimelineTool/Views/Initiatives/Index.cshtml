@@ -72,5 +72,50 @@
                 </td>
             </tr>
         }
+        <tr>
+            <td>
+                @Html.ActionLink("Create Event", "Create", "Events", new { ID = ViewContext.RouteData.Values["id"] }, null)
+            </td>
+        </tr>
+    </table>
+}
+
+@if (Model.Impacts != null)
+{
+    <h3>
+        Impacts Associated with Selected Initiative
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Level</th>
+            <th>Branches</th>
+            <th>Regions</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Impacts)
+        {
+            <tr>
+                <td>
+                    @item.Level
+                </td>
+                <td>
+                    @String.Join(" - ", item.Branches.Select(b => b.NameShort))
+                </td>
+                <td>
+                    @String.Join(" - ", item.Regions.Select(b => b.NameShort))
+                </td>
+
+                <td>
+                    @Html.ActionLink(Resources.View, "Details", "Impacts", new { ID = item.ID }, null) |
+                    @Html.ActionLink(Resources.Edit, "Edit", "Impacts", new { ID = item.ID }, null) |
+                    @Html.ActionLink(Resources.Delete, "Delete", "Impacts", new { ID = item.ID }, null)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                @Html.ActionLink("Create Impact", "Create", "Impacts", new { ID = ViewContext.RouteData.Values["id"] }, null)
+            </td>
+        </tr>
     </table>
 }

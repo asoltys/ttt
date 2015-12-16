@@ -123,6 +123,9 @@
   <data name="Branch" xml:space="preserve">
     <value>Branch-fra</value>
   </data>
+  <data name="Branches" xml:space="preserve">
+    <value>Direction Générales</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="Regions" xml:space="preserve">
+    <value>Régions</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Sélectionner</value>

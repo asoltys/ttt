@@ -40,11 +40,19 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
             ViewBag.Regions = db.Regions.OrderBy(r => r.NameE).ToList<Region>();
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
+
+            if (id != null)
+            {
+                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", id);
+            }
+            else
+            {
+                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
+            }
             return View();
         }
 
