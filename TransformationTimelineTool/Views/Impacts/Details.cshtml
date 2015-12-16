@@ -31,12 +31,7 @@
         </dt>
 
         <dd>
-            @foreach (var branch in Model.Branches)
-            {
-                @branch.NameE;
-                @: -
-            }
-
+            @String.Join(" - ", Model.Branches.Select(b => b.NameShort))
         </dd>
 
         <dt>
@@ -44,12 +39,7 @@
         </dt>
 
         <dd>
-            @foreach (var region in Model.Regions)
-            {
-                @region.NameE;
-                @: -
-            }
-
+            @String.Join(" - ", Model.Regions.Select(b => b.NameShort))
         </dd>
 
     </dl>
