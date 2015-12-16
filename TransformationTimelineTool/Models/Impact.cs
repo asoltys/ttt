@@ -9,8 +9,13 @@ namespace TransformationTimelineTool.Models
     {
         None, Low, Medium, High
     }
-    public class Impact : Category
+    public class Impact
     {
+        public int ID { get; set; }
+        public int InitiativeID { get; set; }
         public Level Level { get; set; }
+        public virtual Initiative Initiative { get; set; }
+        public virtual ICollection<Branch> Branches { get; set; }
+        public virtual ICollection<Region> Regions { get; set; }
     }
 }
