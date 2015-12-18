@@ -144,18 +144,21 @@ namespace TransformationTimelineTool.Controllers
         }
         public ActionResult Data()
         {
-            var jsonInitiatives = new List<object>();
-            
-            List<Initiative> initiatives = db.Initiatives.ToList();
+            List<Initiative> initiatives = db.Initiatives.
+                Include(e => e.Events).
+                Include(i => i.Impacts).ToList();
 
-            foreach (var init in initiatives)
-            {
-                var jsonEvents = new List<object>();
-                var jsonImpacts = new List<object>();
-
-                foreach (var e in init.Events)
+            return Json(
+                initiatives.Select( i => new
                 {
-                    jsonEvents.Add(new
+                    ID = i.ID,
+                    NameE = i.NameE,
+                    NameF = i.NameF,
+                    DescriptionE = i.DescriptionE,
+                    DescriptionF = i.DescriptionF,
+                    StartDate = i.StartDate.ToShortDateString(),
+                    EndDate = i.EndDate.ToShortDateString(),
+                    Events = i.Events.Select( e => new
                     {
                         ID = e.ID,
                         Type = e.Type.ToString(),
@@ -166,35 +169,15 @@ namespace TransformationTimelineTool.Controllers
                         HoverE = e.HoverE,
                         TextF = e.TextF,
                         HoverF = e.HoverF
-                    });
-                }
-
-                foreach (var impact in init.Impacts)
-                {
-                    jsonImpacts.Add(new
+                    }),
+                    Impacts = i.Impacts.Select( imp => new
                     {
-                        //Branch = impact.Branch.NameShort,
-                        Level = impact.Level,
-                        Branches = impact.Branches.Select(b => b.ID),
-                        Regions = impact.Regions.Select(r => r.ID)
-                    });
-                }
+                        Level = imp.Level,
+                        Branches = imp.Branches.Select(b => b.ID),
+                        Regions = imp.Regions.Select(r => r.ID)
 
-                jsonInitiatives.Add(new
-                {
-                    ID = init.ID,
-                    NameE = init.NameE,
-                    NameF = init.NameF,
-                    DescriptionE = init.DescriptionE,
-                    DescriptionF = init.DescriptionF,
-                    StartDate = init.StartDate.ToShortDateString(),
-                    EndDate = init.EndDate.ToShortDateString(),
-                    Impacts = jsonImpacts,
-                    Events = jsonEvents
-                });
-            }
-
-            return Json(jsonInitiatives, JsonRequestBehavior.AllowGet);
+                    })
+                }) , JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Authenticate(string login, string password)
