@@ -28,7 +28,10 @@
                     <li>@Html.ActionLink(Resources.Regions, "Index", "Regions")</li>
                     <li>@Html.ActionLink(Resources.Branches, "Index", "Branches")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @{
+                    String[] name = User.Identity.Name.Split('\\');
+                    <p class="nav navbar-text navbar-right">Hello, @name[1]!</p>
+                }
             </div>
         </div>
     </div>
