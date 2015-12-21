@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201512150010269_RegionBranchRelation.Designer.cs">
       <DependentUpon>201512150010269_RegionBranchRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512212130370_ImpactsJustification.cs" />
+    <Compile Include="Migrations\201512212130370_ImpactsJustification.Designer.cs">
+      <DependentUpon>201512212130370_ImpactsJustification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Event.cs" />
@@ -595,6 +599,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512150010269_RegionBranchRelation.resx">
       <DependentUpon>201512150010269_RegionBranchRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512212130370_ImpactsJustification.resx">
+      <DependentUpon>201512212130370_ImpactsJustification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

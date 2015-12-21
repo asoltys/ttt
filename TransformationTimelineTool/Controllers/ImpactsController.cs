@@ -66,7 +66,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,Level")] Impact impact, string[] selectedBranches, string[] selectedRegions)
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,Justification,Level")] Impact impact, string[] selectedBranches, string[] selectedRegions)
         {
             if (ModelState.IsValid)
             {
@@ -185,6 +185,7 @@ namespace TransformationTimelineTool.Controllers
                 {
                     impactToUpdate.InitiativeID = impact.InitiativeID;
                     impactToUpdate.Level = impact.Level;
+                    impactToUpdate.Justification = impact.Justification;
 
                     UpdateImpactRegions(selectedRegions, impactToUpdate);
                     UpdateImpactBranches(selectedBranches, impactToUpdate);
