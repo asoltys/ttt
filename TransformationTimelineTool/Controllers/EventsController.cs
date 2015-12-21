@@ -274,6 +274,25 @@ namespace TransformationTimelineTool.Controllers
             }
         }
 
+        public ActionResult Data(string branch, string region)
+        {
+            var regions = db.Regions.Where(r => r.NameShort == region).SelectMany(r => r.Events).ToList();
+            var branches = db.Branches.Where(r => r.NameShort == branch).SelectMany(r => r.Events).ToList();
+            var events = regions.Intersect(branches);
+
+            return Json(
+                events.Select(e => new
+                {
+                    ID = e.ID,
+                    Date = e.Date.ToShortDateString(),
+                    TextE = e.TextE,
+                    TextF = e.TextF,
+                    HoverE = e.HoverE,
+                    HoverF = e.HoverF,
+                    InitiativeID = e.InitiativeID
+                }), JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -180,32 +180,33 @@ namespace TransformationTimelineTool.Controllers
                 }) , JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Authenticate(string login, string password)
+        public ActionResult Authenticate()
         {
+            String[] name = User.Identity.Name.Split('\\');
             DirectoryEntry root = new DirectoryEntry(
                 "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
-                login,
-                password);
+                "pacweb",
+                "god!power");
 
             DirectorySearcher searcher = new DirectorySearcher(
                 root,
-                "(mailNickname=" + login + ")");
+                "(mailNickname=" + name[1] + ")");
 
-            bool success = false;
+            string success = "";
             SearchResult person;
 
             try
             {
                 person = searcher.FindOne();
-                success = true;
+                success = person.Properties["cn"][0].ToString();
             }
             catch
             {
-                success = false;
+                success = "";
             }
 
             //jsonData["Verified"] = true;
-            return Json(new { Verified = success }, JsonRequestBehavior.AllowGet);
+            return Json(new { Name = success }, JsonRequestBehavior.AllowGet);
 
         }
 
