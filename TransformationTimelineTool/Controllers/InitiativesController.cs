@@ -25,6 +25,7 @@ namespace TransformationTimelineTool.Controllers
             viewModel.Initiatives = db.Initiatives.
                 Include(i => i.Events).
                 Include(i => i.Impacts);
+            
 
             if (id != null)
             {
@@ -53,6 +54,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Initiatives/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -87,6 +89,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Initiatives/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -106,6 +109,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate")] Initiative initiative)
         {
             if (ModelState.IsValid)
@@ -118,6 +122,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Initiatives/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -135,6 +140,7 @@ namespace TransformationTimelineTool.Controllers
         // POST: Initiatives/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Initiative initiative = db.Initiatives.Find(id);

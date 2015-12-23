@@ -6,6 +6,8 @@ namespace TransformationTimelineTool.Migrations
     using System.Linq;
     using Models;
     using System.Collections.Generic;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TransformationTimelineTool.DAL.TimelineContext>
     {
@@ -15,7 +17,69 @@ namespace TransformationTimelineTool.Migrations
         }
 
         protected override void Seed(TransformationTimelineTool.DAL.TimelineContext context)
-        {/*
+        {
+            var UserManager = new UserManager<User>(new UserStore<User>(context));
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            string name = "Admin";
+            string role2 = "OPI";
+            string password = "123456";
+
+            if (!RoleManager.RoleExists(name))
+            {
+                var roleResult = RoleManager.Create(new IdentityRole(name));
+            }
+
+            if (!RoleManager.RoleExists(role2))
+            {
+                var roleResult = RoleManager.Create(new IdentityRole(role2));
+            }
+
+            var user = new User();
+            user.UserName = name;
+
+            var adminResult = UserManager.Create(user, password);
+
+            if (adminResult.Succeeded)
+            {
+                var result = UserManager.AddToRole(user.Id, name);
+            }
+
+            user = new User();
+
+            user.UserName = "wongrm";
+
+            var myResult = UserManager.Create(user, password);
+
+            if (myResult.Succeeded)
+            {
+                var result = UserManager.AddToRole(user.Id, name);
+            }
+
+            user = new User();
+            user.UserName = "ttt_opi";
+            myResult = UserManager.Create(user, password);
+
+            if (myResult.Succeeded)
+            {
+                var result = UserManager.AddToRole(user.Id, role2);
+            }
+            user = new User();
+            user.UserName = "ttt_editor";
+            myResult = UserManager.Create(user, password);
+
+            if (myResult.Succeeded)
+            {
+                var result = UserManager.AddToRole(user.Id, role2);
+            }
+
+            user = new User();
+            user.UserName = "matty";
+            myResult = UserManager.Create(user, password);
+
+            base.Seed(context);
+            
+            /*
             var regions = new List<Region>
             {
                 new Region {NameShort = "pac", NameE = "Pacific" },

@@ -40,6 +40,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Create
+        [Authorize(Roles = "Admin,OPI")]
         public ActionResult Create(int? id)
         {
             ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();

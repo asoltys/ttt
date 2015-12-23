@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using TransformationTimelineTool.Models;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TransformationTimelineTool.DAL
 {
-    public class TimelineContext : DbContext
+    public class TimelineContext : IdentityDbContext
     {
         public TimelineContext() : base("TimelineContext")
         {

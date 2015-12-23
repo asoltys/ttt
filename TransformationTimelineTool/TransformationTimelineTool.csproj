@@ -63,6 +63,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -151,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.Designer.cs">
       <DependentUpon>201511181942275_InitialCreate.cs</DependentUpon>
@@ -207,12 +216,17 @@
     <Compile Include="Migrations\201512212130370_ImpactsJustification.Designer.cs">
       <DependentUpon>201512212130370_ImpactsJustification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512221843531_UserRoles.cs" />
+    <Compile Include="Migrations\201512221843531_UserRoles.Designer.cs">
+      <DependentUpon>201512221843531_UserRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Impact.cs" />
     <Compile Include="Models\Initiative.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BranchesData.cs" />
     <Compile Include="ViewModels\RegionsData.cs" />
@@ -556,7 +570,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -602,6 +618,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512212130370_ImpactsJustification.resx">
       <DependentUpon>201512212130370_ImpactsJustification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512221843531_UserRoles.resx">
+      <DependentUpon>201512221843531_UserRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
