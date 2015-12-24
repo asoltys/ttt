@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
+using TransformationTimelineTool.Helpers;
 using TransformationTimelineTool.Models;
 using TransformationTimelineTool.ViewModels;
 
@@ -43,9 +45,10 @@ namespace TransformationTimelineTool.Controllers
         [Authorize(Roles = "Admin,OPI")]
         public ActionResult Create(int? id)
         {
-            ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
-            ViewBag.Regions = db.Regions.OrderBy(r => r.NameE).ToList<Region>();
-
+            var currentUser = Utils.GetCurrentUser();
+            ViewBag.Branches = currentUser.Branches.ToList<Branch>();
+            ViewBag.Regions = currentUser.Regions.ToList<Region>();
+            
             if (id != null)
             {
                 ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", id);
@@ -62,7 +65,9 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event, string[] selectedBranches, string[] selectedRegions)
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event,
+            string[] selectedBranches,
+            string[] selectedRegions)
         {
             if (TryUpdateModel(@event, "",
                new string[] { "InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF" }))
@@ -90,8 +95,21 @@ namespace TransformationTimelineTool.Controllers
                             @event.Regions.Add(region);
                         }
                     }
-                    db.Events.Add(@event);
+
+                    User currentUser = Utils.GetCurrentUser();
+
+                    Edit edit = new Edit
+                    {
+                        Editor = db.Users.Find(currentUser.Id),
+                        Date = DateTime.Now,
+                        Event = @event,
+                        Status = 0
+                    };
+
+                    db.Edits.Add(edit);
                     db.SaveChanges();
+
+                    //@event.Edit = edit;;
 
                     return RedirectToAction("Index");
                 }

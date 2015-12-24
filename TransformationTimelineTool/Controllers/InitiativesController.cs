@@ -174,7 +174,8 @@ namespace TransformationTimelineTool.Controllers
                         TextE = e.TextE,
                         HoverE = e.HoverE,
                         TextF = e.TextF,
-                        HoverF = e.HoverF
+                        HoverF = e.HoverF,
+                        Show = e.Show
                     }),
                     Impacts = i.Impacts.Select( imp => new
                     {

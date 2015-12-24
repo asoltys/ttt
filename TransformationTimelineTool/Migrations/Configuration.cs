@@ -77,28 +77,45 @@ namespace TransformationTimelineTool.Migrations
             user.UserName = "matty";
             myResult = UserManager.Create(user, password);
 
-            base.Seed(context);
-            
             /*
             var regions = new List<Region>
             {
-                new Region {NameShort = "pac", NameE = "Pacific" },
-                new Region {NameShort = "wst", NameE = "Western" },
-                new Region {NameShort = "que", NameE = "Quebec" }
+                new Region {NameShort = "all", NameE = "All", NameF = "Tout" },
+                new Region {NameShort = "pac", NameE = "Pacific", NameF = "Pacifique" },
+                new Region {NameShort = "wst", NameE = "Western", NameF = "Ouest" },
+                new Region {NameShort = "ont", NameE = "Ontario", NameF = "Ontario" },
+                new Region {NameShort = "nca", NameE = "NCA", NameF = "SCN" },
+                new Region {NameShort = "atl", NameE = "Atlantic", NameF = "Atlantique" },
+                new Region {NameShort = "que", NameE = "Quebec", NameF = "Québec" }
             };
 
-            regions.ForEach(r => context.Regions.Add(r));
+            regions.ForEach(r => context.Regions.AddOrUpdate(r));
             context.SaveChanges();
 
             var branches = new List<Branch>
             {
-                new Branch {NameShort = "rp", NameE = "Real Property" },
-                new Branch {NameShort = "ciob", NameE = "Chief Information Officer Branch" },
-                new Branch {NameShort = "abc", NameE = "Accounting, Banking and Compensation" }
+                new Branch {NameShort = "all", NameE = "All", NameF = "Tout" },
+                new Branch {NameShort = "rp", NameE = "Real Property", NameF = "Biens immobiliers" },
+                new Branch {NameShort = "abc", NameE = "Accounting, Banking and Compensation", NameF = "Comptabilité, gestion bancaire et rémunération " },
+                new Branch {NameShort = "acqcomp", NameE = "Real Property", NameF = "Approvisionnements" },
+                new Branch {NameShort = "ciob", NameE = "Chief Information Officer Branch", NameF = "Direction générale du dirigeant principal de l’information" },
+                new Branch {NameShort = "do", NameE = "Departmental Oversight", NameF = "Surveillance" },
+                new Branch {NameShort = "fab", NameE = "Finance and Administration Branch", NameF = "Finances et administration" },
+                new Branch {NameShort = "hr", NameE = "Human Resources", NameF = "Ressources humaines" },
+                new Branch {NameShort = "is", NameE = "Integrated Services", NameF = "Services intégrés" },
+                new Branch {NameShort = "osme", NameE = "Office of Small and Medium Enterprises", NameF = "Bureau des petites et moyennes entreprises" },
+                new Branch {NameShort = "pp", NameE = "Parliamentary Precinct", NameF = "Cité parlementaire" },
+                new Branch {NameShort = "ppp", NameE = "Policy, Planning and Communications", NameF = "Politiques, planification et communications" },
+                new Branch {NameShort = "tb", NameE = "Translation Bureau", NameF = "Bureau de la traduction" },
+                new Branch {NameShort = "cssmc", NameE = "Corporate Services, Strategic Management and Communications", NameF = "Services ministériels, gestion stratégique et communications" },
+                new Branch {NameShort = "rdgo", NameE = "Regional Director General’s Office", NameF = "Bureau du directeur général régional" }
             };
 
-            branches.ForEach(b => context.Branches.Add(b));
+            branches.ForEach(b => context.Branches.AddOrUpdate(b));
             context.SaveChanges();
+
+            base.Seed(context);
+            
 
             var initiatives = new List<Initiative>
             {

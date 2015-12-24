@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TransformationTimelineTool.DAL
 {
-    public class TimelineContext : IdentityDbContext
+    public class TimelineContext : IdentityDbContext<User>
     {
         public TimelineContext() : base("TimelineContext")
         {
@@ -18,6 +18,7 @@ namespace TransformationTimelineTool.DAL
         public DbSet<Impact> Impacts { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Edit> Edits { get; set; }
     }
 
 }

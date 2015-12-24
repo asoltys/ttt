@@ -220,8 +220,17 @@
     <Compile Include="Migrations\201512221843531_UserRoles.Designer.cs">
       <DependentUpon>201512221843531_UserRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512232343188_EventEdits.cs" />
+    <Compile Include="Migrations\201512232343188_EventEdits.Designer.cs">
+      <DependentUpon>201512232343188_EventEdits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512240002404_UserBranchesRegions.cs" />
+    <Compile Include="Migrations\201512240002404_UserBranchesRegions.Designer.cs">
+      <DependentUpon>201512240002404_UserBranchesRegions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Edit.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Impact.cs" />
     <Compile Include="Models\Initiative.cs" />
@@ -248,6 +257,7 @@
     <Content Include="Scripts\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -621,6 +631,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512221843531_UserRoles.resx">
       <DependentUpon>201512221843531_UserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512232343188_EventEdits.resx">
+      <DependentUpon>201512232343188_EventEdits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512240002404_UserBranchesRegions.resx">
+      <DependentUpon>201512240002404_UserBranchesRegions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

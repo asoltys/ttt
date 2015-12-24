@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TransformationTimelineTool.DAL;
 
 namespace TransformationTimelineTool.Models
 {
@@ -13,6 +14,8 @@ namespace TransformationTimelineTool.Models
     }
     public class Event
     {
+
+        private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
         public int InitiativeID { get; set; }
         public Type Type { get; set; }
@@ -34,8 +37,25 @@ namespace TransformationTimelineTool.Models
 
         [Display(Name = "French Hover")]
         public String HoverF { get; set; }
+        public bool Show
+        {
+            get
+            {
+                var result = db.Edits.Where(e => e.EventID == ID && e.Status == Status.Approved);
+
+                if (result.Any())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
 
         public virtual Initiative Initiative { get; set; }
+        public virtual ICollection<Edit> Edit { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
     }
