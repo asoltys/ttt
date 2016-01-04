@@ -28,7 +28,7 @@ namespace TransformationTimelineTool.Helpers
             return userManager.FindByName(GetUserName(HttpContext.Current.User.Identity.Name));
         }
 
-        public static string[] GetUserRoles(string FullIdentityName)
+        public static string[] GetUserRoles(string FullIdentityName = "")
         {
             TimelineContext db = new TimelineContext();
             UserManager<User> userManager;
@@ -37,10 +37,19 @@ namespace TransformationTimelineTool.Helpers
             userManager = new UserManager<User>(new UserStore<User>(db));
             roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
-            var myUser = userManager.FindByName(GetUserName(FullIdentityName)).Roles;
             List<String> userRoles = new List<String>();
+            ICollection<IdentityUserRole> roles;
+            if (FullIdentityName == "")
+            {
+                roles = userManager.FindByName(GetCurrentUser().UserName).Roles;
+            }
+            else
+            {
+                roles = userManager.FindByName(GetUserName(FullIdentityName)).Roles;
 
-            foreach (var role in myUser)
+            }
+
+            foreach (var role in roles)
             {
                 var myRole = roleManager.FindById(role.RoleId);
                 userRoles.Add(myRole.Name);
@@ -48,7 +57,6 @@ namespace TransformationTimelineTool.Helpers
             }
 
             return userRoles.ToArray();
-
         }
     }
 }

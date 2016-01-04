@@ -32,7 +32,10 @@
                 </ul>
                 @{
                     String[] name = User.Identity.Name.Split('\\');
-                    <p class="nav navbar-text navbar-right">Hello, @Utils.GetUserName(User.Identity.Name)!</p>
+                    <p class="nav navbar-text navbar-right">
+                        Hello, @Utils.GetUserName(User.Identity.Name)! 
+                        (@String.Join(" - ", Utils.GetUserRoles()))
+                    </p>
                 }
             </div>
         </div>

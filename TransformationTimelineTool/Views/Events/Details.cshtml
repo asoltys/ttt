@@ -27,12 +27,7 @@
         </dt>
 
         <dd>
-            @foreach (var branch in Model.Branches)
-            {
-                @branch.NameE;
-                @: -
-            }
-
+            @Model.BranchesList
         </dd>
 
         <dt>
@@ -40,12 +35,7 @@
         </dt>
 
         <dd> 
-            @foreach (var region in Model.Regions)
-            {
-                @region.NameE;
-                @: -
-            }
-           
+           @Model.RegionsList
         </dd>
 
         <dt>

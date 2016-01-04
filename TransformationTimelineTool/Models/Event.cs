@@ -37,6 +37,20 @@ namespace TransformationTimelineTool.Models
 
         [Display(Name = "French Hover")]
         public String HoverF { get; set; }
+        public string BranchesList
+        {
+            get
+            {
+                return string.Join(" - ", Branches.Select(b => b.NameShort));
+            }
+        }
+        public string RegionsList
+        {
+            get
+            {
+                return string.Join(" - ", Regions.Select(r => r.NameShort));
+            }
+        }
         public bool Show
         {
             get
