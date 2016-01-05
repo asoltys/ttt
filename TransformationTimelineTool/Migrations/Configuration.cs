@@ -23,6 +23,7 @@ namespace TransformationTimelineTool.Migrations
 
             string name = "Admin";
             string role2 = "OPI";
+            string role3 = "Editor";
             string password = "123456";
 
             if (!RoleManager.RoleExists(name))
@@ -33,6 +34,11 @@ namespace TransformationTimelineTool.Migrations
             if (!RoleManager.RoleExists(role2))
             {
                 var roleResult = RoleManager.Create(new IdentityRole(role2));
+            }
+
+            if (!RoleManager.RoleExists(role3))
+            {
+                var roleResult = RoleManager.Create(new IdentityRole(role3));
             }
 
             var user = new User();

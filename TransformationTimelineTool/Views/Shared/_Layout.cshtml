@@ -22,13 +22,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(Resources.Home, "Index", "Home")</li>
-                    <li>@Html.ActionLink(Resources.About, "About", "Home")</li>
-                    <li>@Html.ActionLink(Resources.Contact, "Contact", "Home")</li>
                     <li>@Html.ActionLink(Resources.Events, "Index", "Events")</li>
                     <li>@Html.ActionLink(Resources.Impacts, "Index", "Impacts")</li>
                     <li>@Html.ActionLink(Resources.Regions, "Index", "Regions")</li>
                     <li>@Html.ActionLink(Resources.Branches, "Index", "Branches")</li>
+                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
                 </ul>
                 @{
                     String[] name = User.Identity.Name.Split('\\');

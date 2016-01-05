@@ -1,4 +1,5 @@
-﻿@model TransformationTimelineTool.Models.User
+﻿@using Microsoft.AspNet.Identity.EntityFramework;
+@model TransformationTimelineTool.Models.User
 
 @{
     ViewBag.Title = "Create";
@@ -23,6 +24,7 @@
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-2 text-right"><strong>Branches</strong></div>
             <div class="col-md-offset-2 col-md-10">
@@ -46,16 +48,6 @@
                                         @:</td>
                             }
                         }
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox"
-                                   name="selectAllBranches"
-                                   id="selectAllBranches"
-                                   value="allBranches"
-                                   checked="checked" />
-                            Deselect/Select All
-                        </td>
                     </tr>
                 </table>
             </div>
@@ -85,15 +77,33 @@
                            }
                         }
                     </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 text-right"><strong>Roles</strong></div>
+            <div class="col-md-offset-2 col-md-10">
+                <table>
                     <tr>
-                        <td>
-                            <input type="checkbox"
-                                   name="selectAllRegions"
-                                   id="selectAllRegions"
-                                   value="allRegions"
-                                   checked="checked" />
-                            Deselect/Select All
-                        </td>
+                        @{
+                            int cnt3 = 0;
+                            List<IdentityRole> roles = ViewBag.Roles;
+
+                            foreach (var role in roles)
+                            {
+                                if (cnt3++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                               }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedRoles"
+                                           value="@role.Name" />
+                                        @role.Name
+                                        @:</td>
+                           }
+                        }
                     </tr>
                 </table>
             </div>

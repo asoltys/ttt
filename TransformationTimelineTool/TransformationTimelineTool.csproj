@@ -241,6 +241,7 @@
     <Compile Include="ViewModels\BranchesData.cs" />
     <Compile Include="ViewModels\RegionsData.cs" />
     <Compile Include="ViewModels\InitiativeIndexData.cs" />
+    <Compile Include="ViewModels\RolesData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
