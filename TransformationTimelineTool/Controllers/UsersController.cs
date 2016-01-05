@@ -329,7 +329,10 @@ namespace TransformationTimelineTool.Controllers
         private void UpdateUserRoles(string[] selectedRoles, User userToUpdate)
         {
             userManager.RemoveFromRoles(userToUpdate.Id, userManager.GetRoles(userToUpdate.Id).ToArray());
-            userManager.AddToRoles(userToUpdate.Id, selectedRoles);
+            if (selectedRoles != null)
+            {
+                userManager.AddToRoles(userToUpdate.Id, selectedRoles);
+            }
         }
     }
 }
