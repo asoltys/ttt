@@ -187,36 +187,6 @@ namespace TransformationTimelineTool.Controllers
                 }) , JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Authenticate()
-        {
-            String[] name = User.Identity.Name.Split('\\');
-            DirectoryEntry root = new DirectoryEntry(
-                "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
-                "pacweb",
-                "god!power");
-
-            DirectorySearcher searcher = new DirectorySearcher(
-                root,
-                "(mailNickname=" + name[1] + ")");
-
-            string success = "";
-            SearchResult person;
-
-            try
-            {
-                person = searcher.FindOne();
-                success = person.Properties["cn"][0].ToString();
-            }
-            catch
-            {
-                success = "";
-            }
-
-            //jsonData["Verified"] = true;
-            return Json(new { Name = success }, JsonRequestBehavior.AllowGet);
-
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
