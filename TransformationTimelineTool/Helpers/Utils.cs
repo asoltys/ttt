@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Linq;
 using System.Web;
 using TransformationTimelineTool.DAL;
@@ -57,6 +58,35 @@ namespace TransformationTimelineTool.Helpers
             }
 
             return userRoles.ToArray();
+        }
+        public static string GetUsernameFromEmail(string email)
+        {
+
+            DirectoryEntry root = new DirectoryEntry(
+                "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+                "pacweb",
+                "god!power");
+
+            DirectorySearcher searcher = new DirectorySearcher(
+                root,
+                "(mail=" + email + ")");
+
+            string username = "";
+            SearchResult person;
+
+            try
+            {
+                person = searcher.FindOne();
+                username = person.Properties["mailNickname"][0].ToString();
+            }
+            catch
+            {
+                username = "";
+            }
+
+            //jsonData["Verified"] = true;
+            return username;
+
         }
     }
 }

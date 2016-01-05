@@ -155,6 +155,7 @@
     <Compile Include="Controllers\ImpactsController.cs" />
     <Compile Include="Controllers\InitiativesController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\TimelineContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -567,6 +568,11 @@
     <Content Include="Views\Impacts\Edit.cshtml" />
     <Content Include="Views\Impacts\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
