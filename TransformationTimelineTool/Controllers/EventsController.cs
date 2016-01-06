@@ -94,7 +94,7 @@ namespace TransformationTimelineTool.Controllers
                         }
                     }
 
-                    CreateEdit(@event);
+                    CreateEdit(@event, Status.Created);
                     db.SaveChanges();
 
                     //@event.Edit = edit;;
@@ -124,7 +124,6 @@ namespace TransformationTimelineTool.Controllers
             Event @event = db.Events
                 .Where(e => e.ID == id)
                 .Single();
-
             PopulateEventRegionsData(@event);
             PopulateEventBranchesData(@event);
 
@@ -180,7 +179,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Event @event, string[] selectedRegions, string[] selectedBranches)
+        public ActionResult Edit(Event @event, string[] selectedRegions, string[] selectedBranches, int status)
         {
 
             if (@event == null)
@@ -207,7 +206,7 @@ namespace TransformationTimelineTool.Controllers
                     UpdateEventRegions(selectedRegions, eventToUpdate);
                     UpdateEventBranches(selectedBranches, eventToUpdate);
 
-                    CreateEdit(eventToUpdate);
+                    CreateEdit(eventToUpdate, (Status)status);
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -337,7 +336,7 @@ namespace TransformationTimelineTool.Controllers
             base.Dispose(disposing);
         }
 
-        private void CreateEdit(Event @event)
+        private void CreateEdit(Event @event, Status status)
         {
             var currentUser = Utils.GetCurrentUser();
 
@@ -346,7 +345,7 @@ namespace TransformationTimelineTool.Controllers
                 Editor = db.Users.Find(currentUser.Id),
                 Date = DateTime.Now,
                 Event = @event,
-                Status = 0
+                Status = status
             };
 
             db.Edits.Add(edit);

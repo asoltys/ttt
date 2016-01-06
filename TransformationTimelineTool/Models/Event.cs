@@ -68,6 +68,17 @@ namespace TransformationTimelineTool.Models
             }
         }
 
+        public Edit LatestEdit { get
+            {
+                if (Edits == null || Edits.Count == 0)
+                {
+                    return new Edit();
+                }
+
+                return Edits.OrderByDescending(e => e.Date).First();
+            }
+        }
+
         public virtual Initiative Initiative { get; set; }
         public virtual ICollection<Edit> Edits { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }

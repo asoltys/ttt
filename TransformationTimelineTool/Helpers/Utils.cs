@@ -38,7 +38,7 @@ namespace TransformationTimelineTool.Helpers
             userManager = new UserManager<User>(new UserStore<User>(db));
             roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
-            List<String> userRoles = new List<String>();
+            List<string> userRoles = new List<string>();
             User user;
 
             if (FullIdentityName == "")

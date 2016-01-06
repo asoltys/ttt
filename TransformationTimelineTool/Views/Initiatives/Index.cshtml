@@ -66,6 +66,7 @@
         <tr>
             <th>@Resources.Date</th>
             <th>@Resources.Text</th>
+            <th>Status</th>
             <th></th>
         </tr>
         @foreach (var item in Model.Events)
@@ -76,6 +77,9 @@
                 </td>
                 <td>
                     @item.HoverE
+                </td>
+                <td>
+                    @item.LatestEdit.Status
                 </td>
                 <td>
                     @Html.ActionLink(Resources.View, "Details", "Events", new { ID = item.ID }, null) |

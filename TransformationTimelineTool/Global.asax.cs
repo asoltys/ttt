@@ -29,7 +29,8 @@ namespace TransformationTimelineTool
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)
         {
-            GenericPrincipal principal = new GenericPrincipal(HttpContext.Current.User.Identity, Utils.GetUserRoles(HttpContext.Current.User.Identity.Name));
+            var user = HttpContext.Current.User.Identity;
+            GenericPrincipal principal = new GenericPrincipal(user, Utils.GetUserRoles(user.Name));
             Thread.CurrentPrincipal = HttpContext.Current.User = principal;
         }
     }

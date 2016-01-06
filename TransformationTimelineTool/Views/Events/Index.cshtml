@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.HoverE)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LatestEdit.Status)
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +43,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HoverE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LatestEdit.Status)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
