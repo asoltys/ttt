@@ -1,4 +1,5 @@
-﻿@model TransformationTimelineTool.ViewModels.InitiativeIndexData
+﻿@using TransformationTimelineTool.Helpers;
+@model TransformationTimelineTool.ViewModels.InitiativeIndexData
 
 @{
     ViewBag.Title = Resources.Initiative;
@@ -6,9 +7,12 @@
 
 <h2>@Resources.Initiative</h2>
 
-<p>
-    @Html.ActionLink(Resources.Create, "Create")
-</p>
+@if (ViewBag.isAdmin)
+{
+    <p>
+        @Html.ActionLink(Resources.Create, "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>@Resources.Name</th>
@@ -35,10 +39,18 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.ActionLink(Resources.Select, "Index", new { id = item.ID }) |
-                @Html.ActionLink(Resources.Edit, "Edit", new { id = item.ID }) |
-                @Html.ActionLink(Resources.Details, "Details", new { id = item.ID }) |
-                @Html.ActionLink(Resources.Delete, "Delete", new { id = item.ID })
+                @if (ViewBag.isAdmin)
+                {
+                    @Html.ActionLink(Resources.Select, "Index", new { id = item.ID }) @:|
+                    @Html.ActionLink(Resources.Edit, "Edit", new { id = item.ID }) @:|
+                    @Html.ActionLink(Resources.Details, "Details", new { id = item.ID }) @:|
+                    @Html.ActionLink(Resources.Delete, "Delete", new { id = item.ID })
+                }
+                else
+                {
+                    @Html.ActionLink(Resources.Select, "Index", new { id = item.ID }) @:|
+                    @Html.ActionLink(Resources.Details, "Details", new { id = item.ID })
+                }
             </td>
         </tr>
     }
@@ -112,10 +124,13 @@
                 </td>
             </tr>
         }
-        <tr>
-            <td>
-                @Html.ActionLink("Create Impact", "Create", "Impacts", new { ID = ViewContext.RouteData.Values["id"] }, null)
-            </td>
-        </tr>
+        @if (ViewBag.isAdmin)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Create Impact", "Create", "Impacts", new { ID = ViewContext.RouteData.Values["id"] }, null)
+                </td>
+            </tr>
+        }
     </table>
 }

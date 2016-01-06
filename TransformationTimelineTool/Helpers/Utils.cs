@@ -28,7 +28,7 @@ namespace TransformationTimelineTool.Helpers
 
             return userManager.FindByName(GetUserName(HttpContext.Current.User.Identity.Name));
         }
-
+        
         public static string[] GetUserRoles(string FullIdentityName = "")
         {
             TimelineContext db = new TimelineContext();

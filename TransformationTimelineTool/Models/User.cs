@@ -27,5 +27,15 @@ namespace TransformationTimelineTool.Models
         public virtual ICollection<Region> Regions { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
 
+        public IEnumerable<Event> Events
+        {
+            get
+            {
+                var userRegions = Regions.SelectMany(r => r.Events);
+                var userBranchEvents = Branches.SelectMany(b => b.Events);
+                return userBranchEvents.Intersect(userRegions);
+            }
+        }
+
     }
 }

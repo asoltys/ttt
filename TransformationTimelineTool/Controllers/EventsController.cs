@@ -22,8 +22,8 @@ namespace TransformationTimelineTool.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var events = db.Events.Include(e => e.Branches).Include(e => e.Initiative).Include(e => e.Regions);
-            return View(events.ToList());
+            var currentUser = Utils.GetCurrentUser();
+            return View(currentUser.Events.ToList());
         }
 
         // GET: Events/Details/5
@@ -48,7 +48,7 @@ namespace TransformationTimelineTool.Controllers
             var currentUser = Utils.GetCurrentUser();
             ViewBag.Branches = currentUser.Branches.ToList<Branch>();
             ViewBag.Regions = currentUser.Regions.ToList<Region>();
-            
+
             if (id != null)
             {
                 ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", id);
@@ -74,10 +74,8 @@ namespace TransformationTimelineTool.Controllers
             {
                 try
                 {
-                    //UpdateEventRegions(selectedRegions, @event);
-                    //UpdateEventBranches(selectedBranches, @event);
                     @event.Branches = new List<Branch>();
-                    @event.Regions= new List<Region>();
+                    @event.Regions = new List<Region>();
                     var selectedBranchesHS = new HashSet<string>(selectedBranches);
                     foreach (var branch in db.Branches)
                     {
@@ -96,17 +94,7 @@ namespace TransformationTimelineTool.Controllers
                         }
                     }
 
-                    User currentUser = Utils.GetCurrentUser();
-
-                    Edit edit = new Edit
-                    {
-                        Editor = db.Users.Find(currentUser.Id),
-                        Date = DateTime.Now,
-                        Event = @event,
-                        Status = 0
-                    };
-
-                    db.Edits.Add(edit);
+                    CreateEdit(@event);
                     db.SaveChanges();
 
                     //@event.Edit = edit;;
@@ -174,14 +162,14 @@ namespace TransformationTimelineTool.Controllers
             var eventBranches = new HashSet<int>(@event.Branches.Select(b => b.ID));
             var viewModel = new List<BranchesData>();
 
-            foreach(var region in allBranches)
+            foreach (var branch in allBranches)
             {
                 viewModel.Add(new BranchesData
                 {
-                    BranchID = region.ID,
-                    BranchNameE = region.NameE,
-                    BranchNameF = region.NameF,
-                    Flag = eventBranches.Contains(region.ID)
+                    BranchID = branch.ID,
+                    BranchNameE = branch.NameE,
+                    BranchNameF = branch.NameF,
+                    Flag = eventBranches.Contains(branch.ID)
                 });
             }
             ViewBag.Branches = viewModel;
@@ -219,6 +207,7 @@ namespace TransformationTimelineTool.Controllers
                     UpdateEventRegions(selectedRegions, eventToUpdate);
                     UpdateEventBranches(selectedBranches, eventToUpdate);
 
+                    CreateEdit(eventToUpdate);
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -234,7 +223,7 @@ namespace TransformationTimelineTool.Controllers
             return View(eventToUpdate);
         }
 
-        private void UpdateEventBranches (string[] selectedBranches, Event eventToUpdate)
+        private void UpdateEventBranches(string[] selectedBranches, Event eventToUpdate)
         {
             if (selectedBranches == null)
             {
@@ -275,9 +264,10 @@ namespace TransformationTimelineTool.Controllers
             var selectedRegionHS = new HashSet<string>(selectedRegions);
             var eventRegions = new HashSet<int>(eventToUpdate.Regions.Select(e => e.ID));
 
-            foreach(var region in db.Regions)
+            foreach (var region in db.Regions)
             {
-                if (selectedRegionHS.Contains(region.ID.ToString())){
+                if (selectedRegionHS.Contains(region.ID.ToString()))
+                {
                     if (!eventRegions.Contains(region.ID))
                     {
                         eventToUpdate.Regions.Add(region);
@@ -345,6 +335,21 @@ namespace TransformationTimelineTool.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void CreateEdit(Event @event)
+        {
+            var currentUser = Utils.GetCurrentUser();
+
+            Edit edit = new Edit
+            {
+                Editor = db.Users.Find(currentUser.Id),
+                Date = DateTime.Now,
+                Event = @event,
+                Status = 0
+            };
+
+            db.Edits.Add(edit);
         }
     }
 }

@@ -49,6 +49,16 @@
                             }
                         }
                     </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   name="selectAllBranches"
+                                   id="selectAllBranches"
+                                   value="allBranches"
+                                   checked="checked" />
+                            Deselect/Select All
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -76,6 +86,16 @@
                                         @:</td>
                            }
                         }
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   name="selectAllRegions"
+                                   id="selectAllRegions"
+                                   value="allRegions"
+                                   checked="checked" />
+                            Deselect/Select All
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -123,4 +143,24 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('#selectAllRegions').click(function () {
+                if ($(this).prop("checked")) {
+                    $('input[name="selectedRegions"]').prop("checked", false);
+                } else {
+                    $('input[name="selectedRegions"]').prop("checked", true);
+                }
+            });
+
+            $('#selectAllBranches').click(function () {
+                if ($(this).prop("checked")) {
+                    $('input[name="selectedBranches"]').prop("checked", false);
+                } else {
+                    $('input[name="selectedBranches"]').prop("checked", true);
+                }
+            });
+        });
+    </script>
 }

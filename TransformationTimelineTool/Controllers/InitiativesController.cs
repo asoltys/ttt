@@ -10,17 +10,28 @@ using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 using TransformationTimelineTool.ViewModels;
 using System.DirectoryServices;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using TransformationTimelineTool.Helpers;
 
 namespace TransformationTimelineTool.Controllers
 {
     public class InitiativesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
+        private UserManager<User> userManager;
 
+        public InitiativesController()
+        { 
+            userManager = new UserManager<User>(new UserStore<User>(db));
+        }
         // GET: Initiatives
         public ActionResult Index(int? id)
         {
             var viewModel = new InitiativeIndexData();
+
+            var currentUser = Utils.GetCurrentUser();
+            ViewBag.isAdmin = User.IsInRole("Admin");
 
             viewModel.Initiatives = db.Initiatives.
                 Include(i => i.Events).
@@ -30,8 +41,7 @@ namespace TransformationTimelineTool.Controllers
             if (id != null)
             {
                 ViewBag.InitiativeID = id.Value;
-                viewModel.Events = viewModel.Initiatives.Where(
-                    i => i.ID == id.Value).Single().Events;
+                viewModel.Events = currentUser.Events.Where(e => e.InitiativeID == id.Value);
                 viewModel.Impacts = viewModel.Initiatives.Where(
                     i => i.ID == id.Value).Single().Impacts;
             }
