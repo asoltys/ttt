@@ -100,9 +100,9 @@ namespace TransformationTimelineTool.Controllers
                 jsonRegions.Add(new
                 {
                     ID = region.ID,
-                    NameE = region.NameShort,
-                    NameF = region.NameE,
-                    DescriptionE = region.NameF
+                    NameShort = region.NameShort,
+                    NameE = region.NameE,
+                    NameF = region.NameF
                 });
             }
 

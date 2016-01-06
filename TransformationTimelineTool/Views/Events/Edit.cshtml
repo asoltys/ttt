@@ -159,11 +159,18 @@
         <div class="form-group">
             <label class="control-label col-md-2">Approved</label>
             <div class="col-md-10">
-                <select class="form-control" name="status">
+                <select class="form-control"
+                        id="statusSelector"
+                        name="statusSelector">
                     <option value="0">Created</option>
                     <option value="1">Pending</option>
                     <option value="2">Approved</option>
                 </select>
+                @{ 
+                    var status = Model.LatestEdit.Status;
+                    var statusInt = (int)status;
+                }
+                <input type="hidden" id="status" name="status" value="@statusInt" />
             </div>
         </div>
 
@@ -185,6 +192,12 @@
 
     <script>
         $(document).ready(function () {
+            $('#statusSelector').val($('#status').val());
+
+            $('#statusSelector').change(function () {
+                $('#status').val(($(this).val()));
+            });
+
             $('#selectAllRegions').click(function () {
                 if ($(this).prop("checked")) {
                     $('input[name="selectedRegions"]').prop("checked", false);

@@ -100,9 +100,9 @@ namespace TransformationTimelineTool.Controllers
                 jsonBranches.Add(new
                 {
                     ID = branch.ID,
-                    NameE = branch.NameShort,
-                    NameF = branch.NameE,
-                    DescriptionE = branch.NameF
+                    NameShort = branch.NameShort,
+                    NameE = branch.NameE,
+                    NameF = branch.NameF
                 });
             }
 

@@ -136,44 +136,6 @@ namespace TransformationTimelineTool.Controllers
             return View(@event);
         }
 
-        private void PopulateEventRegionsData(Event @event)
-        {
-            var allRegions = db.Regions;
-            var eventRegions = new HashSet<int>(@event.Regions.Select(r => r.ID));
-            var viewModel = new List<RegionsData>();
-
-            foreach (var region in allRegions)
-            {
-                viewModel.Add(new RegionsData
-                {
-                    RegionID = region.ID,
-                    RegionNameE = region.NameE,
-                    RegionNameF = region.NameF,
-                    Flag = eventRegions.Contains(region.ID)
-                });
-            }
-            ViewBag.Regions = viewModel;
-        }
-
-        private void PopulateEventBranchesData(Event @event)
-        {
-            var allBranches = db.Branches;
-            var eventBranches = new HashSet<int>(@event.Branches.Select(b => b.ID));
-            var viewModel = new List<BranchesData>();
-
-            foreach (var branch in allBranches)
-            {
-                viewModel.Add(new BranchesData
-                {
-                    BranchID = branch.ID,
-                    BranchNameE = branch.NameE,
-                    BranchNameF = branch.NameF,
-                    Flag = eventBranches.Contains(branch.ID)
-                });
-            }
-            ViewBag.Branches = viewModel;
-        }
-
         // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -220,66 +182,6 @@ namespace TransformationTimelineTool.Controllers
 
             PopulateEventRegionsData(eventToUpdate);
             return View(eventToUpdate);
-        }
-
-        private void UpdateEventBranches(string[] selectedBranches, Event eventToUpdate)
-        {
-            if (selectedBranches == null)
-            {
-                eventToUpdate.Branches = new List<Branch>();
-                return;
-            }
-
-            var selectedBranchesHS = new HashSet<string>(selectedBranches);
-            var eventBranches = new HashSet<int>(eventToUpdate.Branches.Select(e => e.ID));
-
-            foreach (var branch in db.Branches)
-            {
-                if (selectedBranches.Contains(branch.ID.ToString()))
-                {
-                    if (!eventBranches.Contains(branch.ID))
-                    {
-                        eventToUpdate.Branches.Add(branch);
-                    }
-                }
-                else
-                {
-                    if (eventBranches.Contains(branch.ID))
-                    {
-                        eventToUpdate.Branches.Remove(branch);
-                    }
-                }
-            }
-        }
-
-        private void UpdateEventRegions(string[] selectedRegions, Event eventToUpdate)
-        {
-            if (selectedRegions == null)
-            {
-                eventToUpdate.Regions = new List<Region>();
-                return;
-            }
-
-            var selectedRegionHS = new HashSet<string>(selectedRegions);
-            var eventRegions = new HashSet<int>(eventToUpdate.Regions.Select(e => e.ID));
-
-            foreach (var region in db.Regions)
-            {
-                if (selectedRegionHS.Contains(region.ID.ToString()))
-                {
-                    if (!eventRegions.Contains(region.ID))
-                    {
-                        eventToUpdate.Regions.Add(region);
-                    }
-                }
-                else
-                {
-                    if (eventRegions.Contains(region.ID))
-                    {
-                        eventToUpdate.Regions.Remove(region);
-                    }
-                }
-            }
         }
 
         public ActionResult Data(string branch, string region)
@@ -349,6 +251,104 @@ namespace TransformationTimelineTool.Controllers
             };
 
             db.Edits.Add(edit);
+        }
+
+        private void PopulateEventRegionsData(Event @event)
+        {
+            var allRegions = db.Regions;
+            var eventRegions = new HashSet<int>(@event.Regions.Select(r => r.ID));
+            var viewModel = new List<RegionsData>();
+
+            foreach (var region in allRegions)
+            {
+                viewModel.Add(new RegionsData
+                {
+                    RegionID = region.ID,
+                    RegionNameE = region.NameE,
+                    RegionNameF = region.NameF,
+                    Flag = eventRegions.Contains(region.ID)
+                });
+            }
+            ViewBag.Regions = viewModel;
+        }
+
+        private void PopulateEventBranchesData(Event @event)
+        {
+            var allBranches = db.Branches;
+            var eventBranches = new HashSet<int>(@event.Branches.Select(b => b.ID));
+            var viewModel = new List<BranchesData>();
+
+            foreach (var branch in allBranches)
+            {
+                viewModel.Add(new BranchesData
+                {
+                    BranchID = branch.ID,
+                    BranchNameE = branch.NameE,
+                    BranchNameF = branch.NameF,
+                    Flag = eventBranches.Contains(branch.ID)
+                });
+            }
+            ViewBag.Branches = viewModel;
+        }
+
+        private void UpdateEventBranches(string[] selectedBranches, Event eventToUpdate)
+        {
+            if (selectedBranches == null)
+            {
+                eventToUpdate.Branches = new List<Branch>();
+                return;
+            }
+
+            var selectedBranchesHS = new HashSet<string>(selectedBranches);
+            var eventBranches = new HashSet<int>(eventToUpdate.Branches.Select(e => e.ID));
+
+            foreach (var branch in db.Branches)
+            {
+                if (selectedBranches.Contains(branch.ID.ToString()))
+                {
+                    if (!eventBranches.Contains(branch.ID))
+                    {
+                        eventToUpdate.Branches.Add(branch);
+                    }
+                }
+                else
+                {
+                    if (eventBranches.Contains(branch.ID))
+                    {
+                        eventToUpdate.Branches.Remove(branch);
+                    }
+                }
+            }
+        }
+
+        private void UpdateEventRegions(string[] selectedRegions, Event eventToUpdate)
+        {
+            if (selectedRegions == null)
+            {
+                eventToUpdate.Regions = new List<Region>();
+                return;
+            }
+
+            var selectedRegionHS = new HashSet<string>(selectedRegions);
+            var eventRegions = new HashSet<int>(eventToUpdate.Regions.Select(e => e.ID));
+
+            foreach (var region in db.Regions)
+            {
+                if (selectedRegionHS.Contains(region.ID.ToString()))
+                {
+                    if (!eventRegions.Contains(region.ID))
+                    {
+                        eventToUpdate.Regions.Add(region);
+                    }
+                }
+                else
+                {
+                    if (eventRegions.Contains(region.ID))
+                    {
+                        eventToUpdate.Regions.Remove(region);
+                    }
+                }
+            }
         }
     }
 }
