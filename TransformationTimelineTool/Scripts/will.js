@@ -13,11 +13,11 @@ timeLine = {
 	utility : timeLine.utility,
 	render : '',
 	initiatives : '',
-	initiativesURL : 'json/initiatives.json',
+	initiativesURL : '/en/initiatives/data',
 	branches : '',
-	branchesURL : 'json/branches.json',
+	branchesURL : '/en/branches/data',
 	regions : '',
-	regionsURL : 'json/regions.json',
+	regionsURL : '/en/regions/data',
 	startMonth : 1,
 	startYear : 2012,
 	endMonth : 12,
@@ -53,7 +53,7 @@ timeLine = {
 	},
 	leftNav : function () {
 		var html = '';
-		html = "<img src='img/arrow_left.png' style='width:30px; height:30px;' class='scrollButton' id='leftButton' />";
+		html = "<img src='/timeline/img/arrow_left.png' style='width:30px; height:30px;' class='scrollButton' id='leftButton' />";
 		return html;
 	},
 	areaNav : function () {
@@ -92,7 +92,7 @@ timeLine = {
 	},
 	rightNav : function () {
 		var html = '';
-		html += "<img src='img/arrow_right.png' style='width:30px; height:30px;' class='scrollButton' id='rightButton' />";
+		html += "<img src='/timeline/img/arrow_right.png' style='width:30px; height:30px;' class='scrollButton' id='rightButton' />";
 		return html;
 	},
 	projectContainer : function () {
@@ -106,7 +106,7 @@ timeLine = {
 		$.each(timeLine.initiatives, function(key, value) {
 			timeLine.countTimeLine = timeLine.countTimeLine + 1;
 			html += "<div class='projectRow'>" + eval("timeLine.initiatives[key].Name".concat(lang.toUpperCase())) + "</div>";
-			html += "<img src='img/white.gif' class='projectRowBackground' />";
+			html += "<img src='/timeline/img/white.gif' class='projectRowBackground' />";
 			$.each(value.Events, function(key, value) {
 				//alert(value.ID);
 			});
@@ -186,7 +186,7 @@ timeLine = {
 	today : function () {
 		var now = new Date();
 		var today = Number(now.getMonth() + 1) + "/" +  now.getDate() + "/" + now.getFullYear();
-		return "<img src='img/red.gif' id='today' style='margin-left:" + timeLine.getLeft(today) + "px' />";
+		return "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + timeLine.getLeft(today) + "px' />";
 	},
 	timeLineContainer : function () {
 		var html = '';
@@ -207,7 +207,7 @@ timeLine = {
 				} else if (value.Type=='Training'){
 					image = 'book.png'
 				};
-				html += "<img onClick='timeLine.dialog(\"" + value.ID + "\")' src='img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(value.Date,barStartDate) + "px; position:absolute;' />"
+				html += "<img onClick='timeLine.dialog(\"" + value.ID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(value.Date,barStartDate) + "px; position:absolute;' />"
 			});
 			html += "</div></div>";
 		});
