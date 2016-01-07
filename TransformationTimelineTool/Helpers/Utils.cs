@@ -39,18 +39,23 @@ namespace TransformationTimelineTool.Helpers
             roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
             List<String> userRoles = new List<String>();
-            ICollection<IdentityUserRole> roles;
+            User user;
+
             if (FullIdentityName == "")
             {
-                roles = userManager.FindByName(GetCurrentUser().UserName).Roles;
+                 user = GetCurrentUser();
             }
             else
             {
-                roles = userManager.FindByName(GetUserName(FullIdentityName)).Roles;
-
+                 user = userManager.FindByName(GetUserName(FullIdentityName));
             }
 
-            foreach (var role in roles)
+            if (user == null)
+            {
+                return new string[] { };
+            }
+            
+            foreach (var role in user.Roles)
             {
                 var myRole = roleManager.FindById(role.RoleId);
                 userRoles.Add(myRole.Name);

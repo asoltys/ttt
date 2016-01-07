@@ -69,7 +69,7 @@ namespace TransformationTimelineTool.Models
         }
 
         public virtual Initiative Initiative { get; set; }
-        public virtual ICollection<Edit> Edit { get; set; }
+        public virtual ICollection<Edit> Edits { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
     }
