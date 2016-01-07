@@ -55,9 +55,7 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                var result = db.Edits.Where(e => e.EventID == ID && e.Status == Status.Approved);
-
-                if (result.Any())
+                if (LatestEdit.Status == Status.Approved)
                 {
                     return true;
                 }

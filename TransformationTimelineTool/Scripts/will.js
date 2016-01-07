@@ -202,12 +202,14 @@ timeLine = {
 			html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(barStartDate) + "px; width:" + timeLine.getRight(barStartDate,value.EndDate) + "px;'>"
 			$.each(value.Events, function(key, value) {
 				var image = ''
+				if (value.Show){
 				if (value.Type=='Milestone'){
 					image = 'circle.png'
 				} else if (value.Type=='Training'){
 					image = 'book.png'
 				};
 				html += "<img onClick='timeLine.dialog(\"" + value.ID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(value.Date,barStartDate) + "px; position:absolute;' />"
+				}
 			});
 			html += "</div></div>";
 		});

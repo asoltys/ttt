@@ -23,7 +23,7 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Index()
         {
             var currentUser = Utils.GetCurrentUser();
-            return View(currentUser.Events.ToList());
+            return View(currentUser.Events.ToList().OrderByDescending(e => e.Date));
         }
 
         // GET: Events/Details/5
