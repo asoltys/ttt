@@ -87,11 +87,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LatestEdit.EditorID)
+           Last Edited
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LatestEdit.Status)
+            @Html.DisplayFor(model => model.LatestEdit.Date)
+        </dd>
+
+        <dt>
+            Editor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LatestEdit.Editor.UserName)
         </dd>
 
         <dt>

@@ -31,7 +31,6 @@ namespace TransformationTimelineTool.Controllers
             var viewModel = new InitiativeIndexData();
 
             var currentUser = Utils.GetCurrentUser();
-            ViewBag.isAdmin = User.IsInRole("Admin");
 
             viewModel.Initiatives = db.Initiatives.
                 Include(i => i.Events).

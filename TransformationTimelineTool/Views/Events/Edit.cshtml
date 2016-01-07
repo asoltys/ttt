@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    var currentUser = HttpContext.Current.User;
 }
 
 <h2>Edit</h2>
@@ -157,21 +158,33 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Approved</label>
+            <label class="control-label col-md-2">Last Edited by</label>
             <div class="col-md-10">
-                <select class="form-control"
-                        id="statusSelector"
-                        name="statusSelector">
-                    <option value="0">Created</option>
-                    <option value="1">Pending</option>
-                    <option value="2">Approved</option>
-                </select>
-                @{ 
-                    var status = Model.LatestEdit.Status;
-                    var statusInt = (int)status;
-                }
-                <input type="hidden" id="status" name="status" value="@statusInt" />
+                @Html.ActionLink(Model.LatestEdit.Editor.UserName, "Details", "Users", new { ID = Model.LatestEdit.EditorID }, null)
             </div>
+        </div>
+       
+        <div class="form-group">
+             @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
+             {
+                <label class="control-label col-md-2">Approved</label>
+                <div class="col-md-10">
+                    <select class="form-control"
+                            id="statusSelector"
+                            name="statusSelector">
+                        <option value="0">Created</option>
+                        <option value="1">Pending</option>
+                        <option value="2">Approved</option>
+                    </select>
+                </div>
+
+             }
+            
+            @{
+                var status = Model.LatestEdit.Status;
+                var statusInt = (int)status;
+            }
+            <input type="hidden" id="status" name="status" value="@statusInt" />
         </div>
 
         <div class="form-group">

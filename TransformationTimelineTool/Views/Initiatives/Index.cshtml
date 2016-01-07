@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = Resources.Initiative;
+    ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
 <h2>@Resources.Initiative</h2>
