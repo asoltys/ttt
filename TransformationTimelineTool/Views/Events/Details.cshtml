@@ -99,7 +99,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LatestEdit.Editor.UserName)
+            @Html.ActionLink(Model.LatestEdit.Editor.UserName, "Details", "Users", new { ID = Model.LatestEdit.EditorID }, null)
         </dd>
 
         <dt>

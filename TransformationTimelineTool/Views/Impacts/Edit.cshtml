@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Justification, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Justification, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Justification, new { @class = "form-control ckeditor" })
                 @Html.ValidationMessageFor(model => model.Justification, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -131,6 +131,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+
     <script>
         $(document).ready(function () {
             $('#selectAllRegions').click(function () {

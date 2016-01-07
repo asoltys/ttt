@@ -678,6 +678,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="report.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\config.js" />
@@ -1058,7 +1059,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Initiatives\Create.cshtml" />
     <Content Include="Views\Initiatives\Delete.cshtml" />
     <Content Include="Views\Initiatives\Details.cshtml" />

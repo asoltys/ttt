@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TransformationTimelineTool.Models
 {
@@ -14,6 +15,8 @@ namespace TransformationTimelineTool.Models
         public int ID { get; set; }
         public int InitiativeID { get; set; }
         public Level Level { get; set; }
+
+        [AllowHtml]
         public string Justification { get; set; }
         public string BranchesList
         {
