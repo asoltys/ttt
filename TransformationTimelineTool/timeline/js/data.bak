@@ -1,0 +1,178 @@
+/* start params */
+// set default lang to english (this is a catch all)
+var lang = 'e';
+
+// if url has -fra in it change it to french
+if(window.location.href.indexOf("-fra") > 0){
+	var lang = 'f'
+};
+
+timeLine = {
+	about : timeLine.utility.translate("about"),
+	legend : timeLine.utility.translate("legend"),
+	utility : timeLine.utility,
+	render : '',
+	url : 'latest.json',
+	startMonth : 1,
+	startYear : 2012,
+	endMonth : 12,
+	endYear : 2020,
+	start : function() {return (this.startYear * 12) + (this.startMonth - 1);},
+	end : function() {return (this.endYear * 12) + (this.endMonth);},
+	totalMonth : function() {return this.end() - this.start();},
+	countTimeLine : 2,
+	timeLineHeight : 50,
+	widthMonth : 100,
+	heightQuarter : 18,
+	heightMonth : 18,
+	content : function() {
+		$.ajax({
+		type: "GET",
+		url: "latest.json",
+		dataType: "json",
+		timeout: 6000,
+		success: function(data) {
+			$("#about").append(timeLine.about);
+			$("#legend").append(timeLine.legend);
+			timeLine.render += timeLine.projectContainer(data);
+			timeLine.render += timeLine.dragContainer(data);
+			$("#render").append(timeLine.render);
+			$("#dragContainer").draggable({axis:"x"});
+			timeLine.css();
+		}});
+	},
+	projectContainer : function (data) {
+		var html = '';
+		html += "<div id='projectContainer'>";
+		html += "<div class='projectSpace'></div>";
+		$(data).each(function(i) {
+			html += "<div class='projectRow'>" + data[i].NameE + "</div>";
+			$(i).each(function(j) {
+				alert(data[j].Events[0].ID);
+			});
+		});
+		html += "</div>";
+		return html;
+	},
+	dragContainer : function (data) {
+		var html = '';
+		html += "<div id='dragContainer'>";
+		html += timeLine.today(data);
+		html += timeLine.quarterMonthContainer();
+		
+		html += timeLine.timeLineContainer(data);
+		html += "</div>";
+		return html;
+	},
+	quarterMonthContainer : function () {
+		var html = '';
+		html += "<div id='quarterMonthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+		html += timeLine.quarterContainer();
+		html += timeLine.monthContainer();
+		html += "</div>";
+		return html;
+	},
+	quarterContainer : function () {
+		var html = '';
+		var quarter = '';
+		var month = timeLine.startMonth;
+		html += "<div id='quarterContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+		for (i = 1; i < timeLine.totalMonth() + 1; i++) {
+			if(month == 13){
+				month = 1;
+			};
+			if (month == '4' || month == '7' || month == '10' || month == '1'){
+				if (month == '4'){
+					quarter = "| Q1";
+				} else if (month == '7'){
+					quarter = "| Q2";
+				}else if (month == '10'){
+					quarter = "| Q3";
+				}else if (month == '1'){
+					quarter = "| Q4";
+				};
+			} else {
+				quarter = "";
+			};
+			html += "<div class='quarter' style='width:" + timeLine.widthMonth + "px; height:" + timeLine.heightQuarter + "px;'>";
+			html += quarter;
+			html += "</div>";
+			month = month + 1;
+		};
+		html += "</div>";
+		return html;
+	},
+	monthContainer : function () {
+		var html = '';
+		var month = timeLine.startMonth;
+		var year = timeLine.startYear;
+		html += "<div id='monthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+		for (i = 1; i < timeLine.totalMonth() + 1; i++) {
+			if(month == 13){
+				year = year + 1;
+				month = 1;
+			};
+			html += "<div class='month' style='width:" + timeLine.widthMonth + "px; height:" + timeLine.heightMonth + "px;'>" 
+			html += "|" + timeLine.utility.translate("m" + month);
+			if (month == '4' || month == '7' || month == '10' || month == '1'){
+				html += " ";
+				html += year;
+			};
+			html += "</div>";
+			month = month + 1;
+		};
+		html += "</div>";
+		return html;
+	},
+	today : function (data) {
+		var now = new Date();
+		var today = now.getFullYear() + "-" +  Number(now.getMonth() + 1) + "-" + now.getDate();
+		return "<img src='img/red.gif' id='today' style='margin-left:" + timeLine.getLeft(today) + "px' />";
+	},
+	timeLineContainer : function (data) {
+		var html = '';
+		html += "<div id='timeLineContainer'>";
+		$(data).each(function(i) {
+			html += "<div class='timeLineRow' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+			html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(data[i].StartDate) + "px; width:" + timeLine.getRight(data[i].StartDate,data[i].EndDate) + "px;'>"
+			html += "<img src='img/circle.png' style='width:24px; height:32px;' />"
+			html += "<img src='img/book.png' style='width:24px; height:32px;' />"
+			//html += data[0].StartDate + " to " + data[0].EndDate;
+			html += "</div></div>";
+		});
+		html += "</div>";
+		return html;
+	},
+	getLeft : function(date){
+		var date = date.split("-");
+		var barMonth = ((Number(date[0]) * 12) + Number(date[1]));
+		var barDay = ((Number(date[2])/30) * timeLine.widthMonth);
+		var timeLineMonth = (timeLine.startYear * 12) + timeLine.startMonth;
+		var z = ((barMonth - timeLineMonth) * timeLine.widthMonth) + barDay;
+		return z;
+	},
+	getRight : function(s,e){
+		var start = s.split("-");
+		var end = e.split("-");
+		var offsetDay = ((Number(start[2])/30) * timeLine.widthMonth) - 1;
+		var addDay = ((Number(end[2])/30) * timeLine.widthMonth);
+		var x = ((((end[0] - start[0]) * 12) + (end[1] - start[1])) * timeLine.widthMonth) - offsetDay + addDay;
+		return x;
+	},
+	css : function(){
+		var top = timeLine.heightQuarter + timeLine.heightMonth;
+		$(".projectRow").css("height", timeLine.timeLineHeight - 1 - 10);
+		$(".timeLineRow").css("height", timeLine.timeLineHeight - 1);
+		$(".projectSpace").css("height", top - 1);
+		$("#today").css("height", timeLine.countTimeLine * timeLine.timeLineHeight);
+		$("#dragContainer").css("top", ((timeLine.countTimeLine * timeLine.timeLineHeight) + top) * -1);
+		var now = new Date();
+		var today = now.getFullYear() + "-" +  Number(now.getMonth() + 1) + "-" + now.getDate();
+		$("#dragContainer").css("left", timeLine.getLeft(today) * -1 + 575);
+	}
+}
+
+$(document).ready(function() {
+	timeLine.content();
+});
+

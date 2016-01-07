@@ -1,0 +1,140 @@
+#quarterMonthContainer{
+	background-color:#ff0000;
+	position: relative;
+	z-index:1;
+	font-weight: bold;
+}
+#leftButton{
+	float:left;
+}
+#rightButton{
+	float:right;
+}
+.quarter, .month{
+	background-color:#cccccc;
+	float:left;
+}
+.month1, .month2, .month3{
+	background-color:#A3A3A3;
+}
+.month4, .month5, .month6{
+	background-color:#F5F5F5;
+}
+.month7, .month8, .month9{
+	background-color:#D6D6D6;
+}
+.month10, .month11, .month12{
+	background-color:#BDBDBD;
+}
+.projectSpace{
+	/*background-color:#ffffff;*/
+	border-bottom: 1px solid #cccccc;
+	float:left;
+	width: 250px;
+}
+.projectRow{
+	float:left;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	width: 238px;
+	padding:5px; 
+	position: relative;
+	z-index: 10;
+}
+.projectRowBackground{
+	float:left;
+	width:240px;
+	position: relative;
+	margin-top:-50px;
+	margin-bottom:0px;
+	position: relative;
+	z-index: 5;
+}
+.projectGroupRow{
+	float:left;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	width: 1500px;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 19px;
+	position: relative;
+	z-index: 10;
+	background-color: #00ff00;
+}
+.timeLineRow{
+	float:left;
+	border-bottom: 1px dotted #cccccc;
+}
+.timeLineBar{
+	background-color:#eeeeee;
+	float:left;
+	margin-top:5px;
+	height: 38px;
+	border: 1px solid #cccccc;
+	/*border-radius: 5px;*/
+	position: absolute;
+	z-index: 0;
+}
+.timeLineGroupRow{
+	float:left;
+	border-bottom: 1px dotted #cccccc;
+	height: 19px;
+}
+#projectContainer{
+	width: 250px;
+	float: left;
+	position: relative;
+	z-index:2;
+}
+#dragContainer{
+	float: left;
+	z-index:1;
+	cursor: e-resize;
+}
+#today{
+	margin-top: 36px;
+	position: absolute;
+	width:3px;
+	background-color: #ff0000;
+	z-index:100;
+}
+.event{
+	margin-top: 4px;
+	position: absolute;
+	cursor: help;
+}
+#dialog{
+	background-color:#ffffff;
+}
+.ui-dialog, .ui-icon, .ui-button{
+	background-color:#ffffff !important;
+}
+.ui-button{
+	border: 0px !important;
+	background: none !important;
+	background-color:#ffffff !important;
+}
+
+
+
+
+
+#pg0, #tHeader0{
+	background-color:#666666;
+	color: #ffffff;
+}
+#pg1, #tHeader1{
+	background-color:#551155;
+	color: #ffffff;
+}
+#pg2, #tHeader2{
+	background-color:#CCDD44;
+	color: #000000;
+}
+#pg3, #tHeader3{
+	background-color:#226655;
+	color: #ffffff;
+}
