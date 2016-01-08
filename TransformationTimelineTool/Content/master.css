@@ -41,6 +41,7 @@
 	padding:5px; 
 	position: relative;
 	z-index: 10;
+	background-color: #ffffff;
 }
 .projectRowBackground{
 	float:left;
@@ -62,7 +63,6 @@
 	height: 19px;
 	position: relative;
 	z-index: 10;
-	background-color: #00ff00;
 }
 .timeLineRow{
 	float:left;
@@ -79,6 +79,7 @@
 	z-index: 0;
 }
 .timeLineGroupRow{
+	
 	float:left;
 	border-bottom: 1px dotted #cccccc;
 	height: 19px;
@@ -122,19 +123,19 @@
 
 
 
-#projectGroupRow0, #tHeader0{
+#pg0, #tHeader0{
 	background-color:#666666;
 	color: #ffffff;
 }
-#projectGroupRow1, #tHeader1{
+#pg1, #tHeader1{
 	background-color:#551155;
 	color: #ffffff;
 }
-#projectGroupRow2, #tHeader2{
+#pg2, #tHeader2{
 	background-color:#CCDD44;
 	color: #000000;
 }
-#projectGroupRow3, #tHeader3{
+#pg3, #tHeader3{
 	background-color:#226655;
 	color: #ffffff;
 }
