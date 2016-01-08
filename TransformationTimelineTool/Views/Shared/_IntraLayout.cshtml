@@ -186,6 +186,14 @@
             <div id="wb-core-in" class="equalize">
                 <div id="wb-main" role="main">
                     <div id="wb-main-in">
+                        <ul class="nav navbar-nav">
+                            <li style="display:inline">@Html.ActionLink("Initiatives", "Index", "Initiatives")</li>
+                            <li style="display:inline">@Html.ActionLink("Activities", "Index", "Events")</li>
+                            <li style="display:inline">@Html.ActionLink(Resources.Impacts, "Index", "Impacts")</li>
+                            <li style="display:inline">@Html.ActionLink(Resources.Regions, "Index", "Regions")</li>
+                            <li style="display:inline">@Html.ActionLink(Resources.Branches, "Index", "Branches")</li>
+                            <li style="display:inline">@Html.ActionLink("Users", "Index", "Users")</li>
+                        </ul>
                         <!-- Add a # before the word include below to enable the sign in button. See other include lines for an example -->
                         <!--include virtual="/site/wet3.1/html5/includes/os-si-eng.html" -->
                         <!-- MainContentStart -->

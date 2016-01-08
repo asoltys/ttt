@@ -35,21 +35,20 @@
         </dd>
 
         <dt>
-            Branch
+            Branches
         </dt>
 
         <dd>
-            @String.Join(" - ", Model.Branches.Select(b => b.NameShort))
+            @Html.DisplayFor(model => model.BranchesList)
         </dd>
 
         <dt>
-            Region
+            Regions
         </dt>
 
         <dd>
-            @String.Join(" - ", Model.Regions.Select(b => b.NameShort))
+            @Html.DisplayFor(model => model.RegionsList)
         </dd>
-
     </dl>
 </div>
 <p>

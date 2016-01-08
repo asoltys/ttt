@@ -42,14 +42,12 @@
             <td>
                 @if (ViewBag.isAdmin)
                 {
-                    @Html.ActionLink(Resources.Select, "Index", new { id = item.ID }) @:|
                     @Html.ActionLink(Resources.Edit, "Edit", new { id = item.ID }) @:|
                     @Html.ActionLink(Resources.Details, "Details", new { id = item.ID }) @:|
                     @Html.ActionLink(Resources.Delete, "Delete", new { id = item.ID })
                 }
                 else
                 {
-                    @Html.ActionLink(Resources.Select, "Index", new { id = item.ID }) @:|
                     @Html.ActionLink(Resources.Details, "Details", new { id = item.ID })
                 }
             </td>
