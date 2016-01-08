@@ -1151,7 +1151,7 @@
     <Content Include="timeline\json\regions.json" />
     <Content Include="timeline\js\data.bak" />
     <Content Include="timeline\js\PIE\PIE.php" />
-    <None Include="Views\Shared\_IntraLayout.cshtml" />
+    <Content Include="Views\Shared\_IntraLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

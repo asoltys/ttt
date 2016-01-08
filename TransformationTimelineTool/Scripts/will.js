@@ -55,7 +55,7 @@ timeLine = {
     },
     leftNav: function () {
         var html = '';
-        html = "<img src='img/arrow_left.png' style='width:30px; height:30px;' class='scrollButton' id='leftButton' />";
+        html = "<img src='/timeline/img/arrow_left.png' style='width:30px; height:30px;' class='scrollButton' id='leftButton' />";
         return html;
     },
     areaNav: function () {
@@ -111,7 +111,7 @@ timeLine = {
     },
     rightNav: function () {
         var html = '';
-        html += "<img src='img/arrow_right.png' style='width:30px; height:30px;' class='scrollButton' id='rightButton' />";
+        html += "<img src='/timeline/img/arrow_right.png' style='width:30px; height:30px;' class='scrollButton' id='rightButton' />";
         return html;
     },
     projectContainer: function () {
@@ -202,7 +202,7 @@ timeLine = {
     today: function () {
         var now = new Date();
         var today = Number(now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
-        return "<img src='img/red.gif' id='today' style='margin-left:" + timeLine.getLeft(today) + "px' />";
+        return "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + timeLine.getLeft(today) + "px' />";
     },
     timeLineContainer: function () {
         var html = '';
@@ -217,13 +217,15 @@ timeLine = {
             html += "<div class='timeLineRow' id = 't" + value.ID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
             html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(barStartDate) + "px; width:" + timeLine.getRight(barStartDate, value.EndDate) + "px;'>"
             $.each(value.Events, function (key, value) {
-                var image = ''
+                var image = '';
+		if (value.Show){
                 if (value.Type == 'Milestone') {
                     image = 'circle.png'
                 } else if (value.Type == 'Training') {
                     image = 'book.png'
                 };
-                html += "<img title='" + value.HoverE + "' onClick='timeLine.dialog(\"" + value.ID + "\")' src='img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(value.Date, barStartDate) + "px; position:absolute;' />"
+                html += "<img title='" + value.HoverE + "' onClick='timeLine.dialog(\"" + value.ID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(value.Date, barStartDate) + "px; position:absolute;' />"
+		}
             });
             html += "</div></div>";
         });
