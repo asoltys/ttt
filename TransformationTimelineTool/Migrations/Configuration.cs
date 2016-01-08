@@ -43,6 +43,7 @@ namespace TransformationTimelineTool.Migrations
 
             var user = new User();
             user.UserName = name;
+            user.Email = "mathieu.wong-rose@pwgsc.gc.ca";
 
             var adminResult = UserManager.Create(user, password);
 
@@ -54,6 +55,7 @@ namespace TransformationTimelineTool.Migrations
             user = new User();
 
             user.UserName = "wongrm";
+            user.Email = "mathieu.wong-rose@pwgsc.gc.ca";
 
             var myResult = UserManager.Create(user, password);
 
@@ -64,6 +66,7 @@ namespace TransformationTimelineTool.Migrations
 
             user = new User();
             user.UserName = "ttt_opi";
+            user.Email = "mathieu.wong-rose@pwgsc.gc.ca";
             myResult = UserManager.Create(user, password);
 
             if (myResult.Succeeded)
@@ -72,6 +75,7 @@ namespace TransformationTimelineTool.Migrations
             }
             user = new User();
             user.UserName = "ttt_editor";
+            user.Email = "mathieu.wong-rose@pwgsc.gc.ca";
             myResult = UserManager.Create(user, password);
 
             if (myResult.Succeeded)
@@ -81,6 +85,7 @@ namespace TransformationTimelineTool.Migrations
 
             user = new User();
             user.UserName = "matty";
+            user.Email = "mathieu.wong-rose@pwgsc.gc.ca";
             myResult = UserManager.Create(user, password);
 
             /*
