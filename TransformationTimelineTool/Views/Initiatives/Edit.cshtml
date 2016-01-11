@@ -64,12 +64,12 @@
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
-        <p>Executives/Editors</p>
+        <p>@Resources.Executives/@Resources.Editors</p>
         <table>
             <tr>
-                <th>Region</th>
-                <th>Executive</th>
-                <th>Editor</th>
+                <th>@Resources.Region</th>
+                <th>@Resources.Executive</th>
+                <th>@Resources.Editor</th>
             </tr>
             <tr>
                 <td>NCA</td>
@@ -196,7 +196,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.BackToList, "Index")
 </div>
 
 @section Scripts {

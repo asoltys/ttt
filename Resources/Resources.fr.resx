@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>À propos</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="Branch" xml:space="preserve">
     <value>Branch-fra</value>
   </data>
@@ -133,7 +136,7 @@
     <value>Créer nouveau</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Date</value>
+    <value>Date [fra]</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Effacer</value>
@@ -144,23 +147,50 @@
   <data name="Edit" xml:space="preserve">
     <value>Modifier</value>
   </data>
+  <data name="Editor" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="End" xml:space="preserve">
     <value>Fin</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Événements</value>
   </data>
+  <data name="Executive" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="Executives" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
   </data>
   <data name="Impacts" xml:space="preserve">
-    <value>Impacts</value>
+    <value>Impacts [fra]</value>
+  </data>
+  <data name="InitEnglishDesc" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="InitEnglishName" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="InitFrenchDesc" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="InitFrenchName" xml:space="preserve">
+    <value>fra tba</value>
   </data>
   <data name="Initiative" xml:space="preserve">
-    <value>Initiatives</value>
+    <value>Initiatives [fra]</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>fra tba</value>
   </data>
   <data name="Regions" xml:space="preserve">
     <value>Régions</value>

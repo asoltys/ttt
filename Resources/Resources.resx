@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
   <data name="Branch" xml:space="preserve">
     <value>Branch</value>
   </data>
@@ -144,11 +147,23 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Editors" xml:space="preserve">
+    <value>Editors</value>
+  </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Events</value>
+  </data>
+  <data name="Executive" xml:space="preserve">
+    <value>Executive</value>
+  </data>
+  <data name="Executives" xml:space="preserve">
+    <value>Executives</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -156,11 +171,26 @@
   <data name="Impacts" xml:space="preserve">
     <value>Impacts</value>
   </data>
+  <data name="InitEnglishDesc" xml:space="preserve">
+    <value>English Description</value>
+  </data>
+  <data name="InitEnglishName" xml:space="preserve">
+    <value>English Name</value>
+  </data>
+  <data name="InitFrenchDesc" xml:space="preserve">
+    <value>French Description</value>
+  </data>
+  <data name="InitFrenchName" xml:space="preserve">
+    <value>French Name</value>
+  </data>
   <data name="Initiative" xml:space="preserve">
     <value>Initiative</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
   </data>
   <data name="Regions" xml:space="preserve">
     <value>Regions</value>

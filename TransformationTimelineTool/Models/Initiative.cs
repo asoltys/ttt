@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using System.Threading;
+using Resources;
 
 namespace TransformationTimelineTool.Models
 {
@@ -25,28 +26,28 @@ namespace TransformationTimelineTool.Models
         public string AtlExecID { get; set; }
         public string AtlEditorID { get; set; }
 
-        [Display(Name = "English Name")]
+        [Display(Name = "InitEnglishName", ResourceType = typeof(Resources.Resources))]
         public string NameE { get; set; }
 
-        [Display(Name = "French Name")]
-        public string NameF { get; set; } 
-          
-        [Display(Name = "English Description")]
+        [Display(Name = "InitFrenchName", ResourceType = typeof(Resources.Resources))]
+        public string NameF { get; set; }
+
+        [Display(Name = "InitEnglishDesc", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string DescriptionE { get; set; }
 
-        [Display(Name = "French Description")]
+        [Display(Name = "InitFrenchDesc", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string DescriptionF { get; set; }
 
-        [Display(Name = "Start")]
+        [Display(Name = "Start", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
-        [Display(Name = "End")]
+        [Display(Name = "End", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }

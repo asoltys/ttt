@@ -1208,6 +1208,7 @@
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Home\Accessibility.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2Col.cshtml" />
+    <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

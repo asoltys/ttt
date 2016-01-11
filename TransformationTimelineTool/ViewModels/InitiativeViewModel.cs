@@ -26,28 +26,28 @@ namespace TransformationTimelineTool.ViewModels
         public string AtlExecID { get; set; }
         public string AtlEditorID { get; set; }
 
-        [Display(Name = "English Name")]
+        [Display(Name = "InitEnglishName", ResourceType = typeof(Resources.Resources))]
         public string NameE { get; set; }
 
-        [Display(Name = "French Name")]
+        [Display(Name = "InitFrenchName", ResourceType = typeof(Resources.Resources))]
         public string NameF { get; set; }
 
-        [Display(Name = "English Description")]
+        [Display(Name = "InitEnglishDesc", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string DescriptionE { get; set; }
 
-        [Display(Name = "French Description")]
+        [Display(Name = "InitFrenchDesc", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string DescriptionF { get; set; }
 
-        [Display(Name = "Start")]
+        [Display(Name = "Start", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
-        [Display(Name = "End")]
+        [Display(Name = "End", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
@@ -65,7 +65,7 @@ namespace TransformationTimelineTool.ViewModels
         public  User AtlEditor { get; set; }
         public IEnumerable<User> Users { get; set; }
 
-        public InitiativeViewModel(int? id)
+        public InitiativeViewModel(int? id) : base()
         {
             Initiative initiative = db.Initiatives.Find(id);
 
@@ -91,7 +91,7 @@ namespace TransformationTimelineTool.ViewModels
             NCAExec = initiative.NCAExec;
             Users = db.Users.ToList<User>();
         }
-        public InitiativeViewModel()
+        public InitiativeViewModel() : base()
         {
 
         }
