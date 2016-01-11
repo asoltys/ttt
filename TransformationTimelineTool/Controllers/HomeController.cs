@@ -20,6 +20,13 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
+        public ActionResult Accessibility()
+        {
+            ViewBag.Message = "Accessibility.";
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

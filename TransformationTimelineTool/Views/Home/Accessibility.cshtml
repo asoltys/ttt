@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Accessibility";
+}
+
+<h2>Accessibility</h2>
+
+<h1 id="wb-cont">National Transformation Timeline Tool</h1>
+
+
+<p>
+    Transformation initiatives are major projects that affect how we do work in the Department. Find current initiatives below, and select your region and branch from the menus to see which projects will affect you the most. The timeline shows you start and end dates for projects, as well as any major milestones and training opportunities. Contact <strong>add a link here</strong> if you have any questions.
+</p>
+
+<div id="timeline_controller">
+    <div id="region_container">
+        <label for="region_controller">Select your region: </label>
+        <select id="region_controller"><option id="0"></option></select>
+    </div>
+    <div id="branch_container">
+        <label for="branch_controller">Select your branch: </label>
+        <select id="branch_controller"><option id="0"></option></select>
+    </div>
+</div>
+
+<div id="timeline_container">
+    <div id="timeline_accordion" class="accordion">
+
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/master.js"></script>
+}
+
