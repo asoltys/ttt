@@ -1,0 +1,60 @@
+label {
+	display: inline-block;
+}
+
+select {
+	width: auto;
+}
+
+#timeline_controller {
+	width: 95%;
+	position: relative;
+	margin: 0 auto;
+}
+
+#region_container {
+	width: auto;
+	float: left;
+	margin-right: 15px;
+}
+
+#branch_container {
+	width: auto;
+}
+
+#timeline_container {
+	clear: both;
+}
+
+#timeline_accordion {
+	width: 95%;
+	margin: 0 auto;
+}
+
+.closed {
+	display: none;
+}
+
+.accordion-section {
+	margin-bottom: 10px;
+}
+
+.accordion-section-title {
+	width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid #1a1a1a;
+    text-decoration: none;
+    color: black !important;
+    font-size: 1.25em;
+}
+
+a.accordion-section-title:link,
+a.accordion-section-title:visited,
+a.accordion-section-title:active {
+	text-decoration: none;
+	color: black !important;
+}
+
+a.accordion-section-title:hover {
+	background: #dddddd;
+}

@@ -127,8 +127,8 @@ function populateControllers() {
 	getJSON(regionsURL, function(data) {
 		regions = JSON.parse(data);
 		for (var k in regions) {
-			if (regions[k].NameF == "All") showAllRegionKey = regions[k].ID;
-			var option = "<option id=" + regions[k].ID + ">" + regions[k].NameF + "</option>";
+			if (regions[k].NameE == "All") showAllRegionKey = regions[k].ID;
+			var option = "<option id=" + regions[k].ID + ">" + regions[k].NameE + "</option>";
 			regionController.append(option);
 		}
 	});
@@ -136,8 +136,8 @@ function populateControllers() {
 	getJSON(branchesURL, function(data) {
 		branches = JSON.parse(data);
 		for (var k in branches) {
-			if (branches[k].NameF == "All") showAllBranchKey = branches[k].ID;
-			var option = "<option id=" + branches[k].ID + ">" + branches[k].NameF + "</option>";
+			if (branches[k].NameE == "All") showAllBranchKey = branches[k].ID;
+			var option = "<option id=" + branches[k].ID + ">" + branches[k].NameE + "</option>";
 			branchController.append(option);
 		}
 	})
@@ -294,20 +294,22 @@ function createContent(initiativeParam) {
 }
 
 function filterData() {
-	try {
-		$.each(initiatives, function(idx, initiativeParam) {
-			var control = initiativeParam["showControl"];
-			for (var i = 0; i < control.length; i++) {
-				if (control[i] == getControlKey(regionKey, branchKey)) {
-					var content = createContent(initiativeParam);
-					addAccordion(initiativeParam["NameE"], content);
-					break;
-				}
-			}
-		});
-	} catch (e) {
-		log(cons1, e.name + ": " + e.message);
-	}	
+    if (initiatives) {
+        try {
+            $.each(initiatives, function (idx, initiativeParam) {
+                var control = initiativeParam["showControl"];
+                for (var i = 0; i < control.length; i++) {
+                    if (control[i] == getControlKey(regionKey, branchKey)) {
+                        var content = createContent(initiativeParam);
+                        addAccordion(initiativeParam["NameE"], content);
+                        break;
+                    }
+                }
+            });
+        } catch (e) {
+            log(cons1, e.name + ": " + e.message);
+        }
+    }
 }
 
 function toggleAccordion(elem) {
