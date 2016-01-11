@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.Models.Initiative
+﻿@model TransformationTimelineTool.ViewModels.InitiativeViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -64,6 +64,128 @@
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
+        <p>Executives/Editors</p>
+        <table>
+            <tr>
+                <th>Region</th>
+                <th>Executive</th>
+                <th>Editor</th>
+            </tr>
+            <tr>
+                <td>NCA</td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.NCAExecID, new SelectList(Model.Users, "id", "Username", Model.NCAExecID))
+                            @Html.ValidationMessageFor(model => model.NCAExecID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.NCAEditorID, new SelectList(Model.Users, "id", "Username", Model.NCAEditorID), "")
+                            @Html.ValidationMessageFor(model => model.NCAEditorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Pacific</td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.PacExecID, new SelectList(Model.Users, "id", "Username", Model.PacExecID))
+                            @Html.ValidationMessageFor(model => model.PacExecID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.PacEditorID, new SelectList(Model.Users, "id", "Username", Model.PacEditorID), "")
+                            @Html.ValidationMessageFor(model => model.PacEditorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Western</td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.WstExecID, new SelectList(Model.Users, "id", "Username", Model.WstExecID))
+                            @Html.ValidationMessageFor(model => model.WstExecID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.WstEditorID, new SelectList(Model.Users, "id", "Username", Model.WstEditorID), "")
+                            @Html.ValidationMessageFor(model => model.WstEditorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Ontario</td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.OntExecID, new SelectList(Model.Users, "id", "Username", Model.OntExecID))
+                            @Html.ValidationMessageFor(model => model.OntExecID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.OntEditorID, new SelectList(Model.Users, "id", "Username", Model.OntEditorID), "")
+                            @Html.ValidationMessageFor(model => model.OntEditorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Quebec</td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.QueExecID, new SelectList(Model.Users, "id", "Username", Model.QueExecID))
+                            @Html.ValidationMessageFor(model => model.QueExecID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.QueEditorID, new SelectList(Model.Users, "id", "Username", Model.QueEditorID), "")
+                            @Html.ValidationMessageFor(model => model.QueEditorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Atlantic</td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.AtlExecID, new SelectList(Model.Users, "id", "Username", Model.AtlExecID))
+                            @Html.ValidationMessageFor(model => model.AtlExecID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.AtlEditorID, new SelectList(Model.Users, "id", "Username", Model.AtlEditorID), "")
+                            @Html.ValidationMessageFor(model => model.AtlEditorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

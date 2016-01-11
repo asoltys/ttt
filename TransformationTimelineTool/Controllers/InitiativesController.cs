@@ -13,6 +13,7 @@ using System.DirectoryServices;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TransformationTimelineTool.Helpers;
+using System.Data.Entity.Infrastructure;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -105,12 +106,14 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Initiative initiative = db.Initiatives.Find(id);
-            if (initiative == null)
+
+            var initiativeViewModel = new InitiativeViewModel(id);
+
+            if (initiativeViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(initiative);
+            return View(initiativeViewModel);
         }
 
         // POST: Initiatives/Edit/5
@@ -119,15 +122,34 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "ID,NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate")] Initiative initiative)
+        public ActionResult Edit(InitiativeViewModel initiativeViewModel)
         {
+            if (initiativeViewModel == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var initiativeToUpdate = db.Initiatives
+               .Where(i => i.ID == initiativeViewModel.ID)
+               .Single();
+
             if (ModelState.IsValid)
             {
-                db.Entry(initiative).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    initiativeViewModel.BindToModel(initiativeToUpdate);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+              
             }
-            return View(initiative);
+            return View(initiativeViewModel);
         }
 
         // GET: Initiatives/Delete/5

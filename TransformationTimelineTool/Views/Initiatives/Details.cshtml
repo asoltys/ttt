@@ -59,6 +59,50 @@
         </dd>
 
         <dt>
+            Executives/Editors
+        </dt>
+
+        <dd>
+            <table class="table table-condensed table-striped">
+                <tr>
+                    <th>Region</th>
+                    <th>Executive</th>
+                    <th>Editor</th>
+                </tr>
+                <tr>
+                    <td>NCA</td>
+                    <td>@Html.ActionLink(Model.NCAExec.UserName, "Edit", "Users", new { id = Model.NCAExecID }, null)</td>
+                    <td>@if (Model.NCAEditorID != null) { @Html.ActionLink(Model.NCAEditor.UserName, "Edit", "Users", new { ID = Model.NCAEditorID }, null); }</td>
+                </tr>
+                <tr>
+                    <td>Pacific</td>
+                    <td>@Html.ActionLink(Model.PacExec.UserName, "Edit", "Users", new { id = Model.PacExecID }, null)</td>
+                    <td>@if (Model.PacEditorID != null) { @Html.ActionLink(Model.PacEditor.UserName, "Edit", "Users", new { ID = Model.PacEditorID }, null); }</td>
+                </tr>
+                <tr>
+                    <td>Western</td>
+                    <td>@Html.ActionLink(Model.WstExec.UserName, "Edit", "Users", new { id = Model.WstExecID }, null)</td>
+                    <td>@if (Model.WstEditorID != null) { @Html.ActionLink(Model.WstEditor.UserName, "Edit", "Users", new { ID = Model.WstEditorID }, null); }</td>
+                </tr>
+                <tr>
+                    <td>Ontario</td>
+                    <td>@Html.ActionLink(Model.OntExec.UserName, "Edit", "Users", new { id = Model.OntExecID }, null)</td>
+                    <td>@if (Model.OntEditorID != null) { @Html.ActionLink(Model.OntEditor.UserName, "Edit", "Users", new { ID = Model.OntEditorID }, null); }</td>
+                </tr>
+                <tr>
+                    <td>Quebec</td>
+                    <td>@Html.ActionLink(Model.QueExec.UserName, "Edit", "Users", new { id = Model.QueExecID }, null)</td>
+                    <td>@if (Model.QueEditorID != null) { @Html.ActionLink(Model.QueEditor.UserName, "Edit", "Users", new { ID = Model.QueEditorID }, null); }</td>
+                </tr>
+                <tr>
+                    <td>Atlantic</td>
+                    <td>@Html.ActionLink(Model.AtlExec.UserName, "Edit", "Users", new { id = Model.AtlExecID }, null)</td>
+                    <td>@if (Model.AtlEditorID != null) { @Html.ActionLink(Model.AtlEditor.UserName, "Edit", "Users", new { ID = Model.AtlEditorID }, null); }</td>
+                </tr>
+            </table>
+        </dd>
+
+        <dt>
             Activities
         </dt>
 

@@ -12,6 +12,18 @@ namespace TransformationTimelineTool.Models
     public class Initiative
     {
         public int ID { get; set; }
+        public string NCAExecID { get; set; }
+        public string NCAEditorID { get; set; }
+        public string PacExecID { get; set; }
+        public string PacEditorID { get; set; }
+        public string WstExecID { get; set; }
+        public string WstEditorID { get; set; }
+        public string OntExecID { get; set; }
+        public string OntEditorID { get; set; }
+        public string QueExecID { get; set; }
+        public string QueEditorID { get; set; }
+        public string AtlExecID { get; set; }
+        public string AtlEditorID { get; set; }
 
         [Display(Name = "English Name")]
         public string NameE { get; set; }
@@ -56,5 +68,17 @@ namespace TransformationTimelineTool.Models
 
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Impact> Impacts { get; set; }
+        public virtual User NCAExec { get; set; }
+        public virtual User NCAEditor { get; set; }
+        public virtual User PacExec { get; set; }
+        public virtual User PacEditor { get; set; }
+        public virtual User WstExec { get; set; }
+        public virtual User WstEditor { get; set; }
+        public virtual User OntExec { get; set; }
+        public virtual User OntEditor { get; set; }
+        public virtual User QueExec { get; set; }
+        public virtual User QueEditor { get; set; }
+        public virtual User AtlExec { get; set; }
+        public virtual User AtlEditor { get; set; }
     }
 }
