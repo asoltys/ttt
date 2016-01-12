@@ -1,5 +1,40 @@
 @media screen 
     and (min-width: 960px)
+    and (min-device-width: 1024px)
+    and (max-width: 1199px) {
+    label {
+        width: 140px;
+        display: inline-block;
+    }
+
+    select {
+	    width: auto;
+    }
+
+    #timeline_controller {
+	    width: 95%;
+	    position: relative;
+	    margin: 0 auto;
+    }
+
+    #region_container {
+	    width: auto;
+	    float: left;
+	    margin-right: 15px;
+    }
+
+    #branch_container {
+        float: left;
+	    width: auto;
+    }
+
+    #timeline_container {
+	    clear: both;
+    }
+}
+
+@media screen 
+    and (min-width: 1200px)
     and (min-device-width: 1024px) {
     label {
          display: inline-block;
