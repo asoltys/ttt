@@ -87,7 +87,7 @@
                                             <li id="gcwu-gcnb2"><a href="http://www.tpsgc-pwgsc.gc.ca/comm/index-eng.html">Internet</a></li>
                                             <li id="gcwu-gcnb3"><a href="http://gcintranet.tpsgc-pwgsc.gc.ca/gc/index-eng.html">GCintranet</a></li>
                                             <li id="gcwu-gcnb4"><a href="http://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/index-eng.html">Pay and Pension</a></li>
-                                            <li id="gcwu-gcnb-lang"><a href="/cgi-bin/language.pl" lang="fr">FranÃ§ais</a></li>
+                                            <li id="gcwu-gcnb-lang">@Html.ActionLink("FranÃ§ais", "SetCulture", "Home", new { culture = "fr" }, null)</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -212,12 +212,12 @@
                                 <section>
                                     <h3><a href="#">Timeline Tool</a></h3>
                                     <ul>
-                                        <li><a href="/">Initiatives</a></li>
-                                        <li><a href="/en/Events">Activities</a></li>
-                                        <li><a href="/en/Impacts">Impacts</a></li>
-                                        <li><a href="/en/Regions">Regions</a></li>
-                                        <li><a href="/en/Branches">Branches</a></li>
-                                        <li><a href="/en/Users">Users</a></li>
+                                        <li style="display:inline">@Html.ActionLink("Initiatives", "Index", "Initiatives")</li>
+                                        <li style="display:inline">@Html.ActionLink("Activities", "Index", "Events")</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Impacts, "Index", "Impacts")</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Regions, "Index", "Regions")</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Branches, "Index", "Branches")</li>
+                                        <li style="display:inline">@Html.ActionLink("Users", "Index", "Users")</li>
                                     </ul>
                                 </section>
                                 <!-- SecNavEnd -->

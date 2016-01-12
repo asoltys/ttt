@@ -70,6 +70,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activity.
+        /// </summary>
+        public static string Activity {
+            get {
+                return ResourceManager.GetString("Activity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Atlanta.
+        /// </summary>
+        public static string Atlanta {
+            get {
+                return ResourceManager.GetString("Atlanta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to List.
         /// </summary>
         public static string BackToList {
@@ -133,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deselect.
+        /// </summary>
+        public static string Deselect {
+            get {
+                return ResourceManager.GetString("Deselect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Details {
@@ -174,6 +201,42 @@ namespace Resources {
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English Hover.
+        /// </summary>
+        public static string EventEngHover {
+            get {
+                return ResourceManager.GetString("EventEngHover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English Text.
+        /// </summary>
+        public static string EventEngText {
+            get {
+                return ResourceManager.GetString("EventEngText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French Hover.
+        /// </summary>
+        public static string EventFraHover {
+            get {
+                return ResourceManager.GetString("EventFraHover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French Text.
+        /// </summary>
+        public static string EventFraText {
+            get {
+                return ResourceManager.GetString("EventFraText", resourceCulture);
             }
         }
         
@@ -277,6 +340,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NCA.
+        /// </summary>
+        public static string NCA {
+            get {
+                return ResourceManager.GetString("NCA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ontario.
+        /// </summary>
+        public static string Ontario {
+            get {
+                return ResourceManager.GetString("Ontario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pacific.
+        /// </summary>
+        public static string Pacific {
+            get {
+                return ResourceManager.GetString("Pacific", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quebec.
+        /// </summary>
+        public static string Quebec {
+            get {
+                return ResourceManager.GetString("Quebec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Region.
         /// </summary>
         public static string Region {
@@ -304,11 +403,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {
             get {
                 return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         
@@ -331,11 +448,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View.
         /// </summary>
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Western.
+        /// </summary>
+        public static string Western {
+            get {
+                return ResourceManager.GetString("Western", resourceCulture);
             }
         }
     }

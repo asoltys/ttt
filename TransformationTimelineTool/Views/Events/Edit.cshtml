@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="">
-        <h4>Activity</h4>
+        <h4>@Resources.Activity</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Branches</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Branches</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
@@ -44,9 +44,9 @@
                                 @:<td>
                                     <input type="checkbox"
                                            name="selectedBranches"
-                                           value="@branch.BranchID"
+                                           value="@branch.ID"
                                            @(Html.Raw(branch.Flag ? "checked=\"checked\"" : "")) />
-                                        @branch.BranchNameE
+                                        @branch.Name
                                 @:</td>
                             }
                         }
@@ -57,7 +57,7 @@
                                    name="selectAllBranches"
                                   id="selectAllBranches"
                                    value="allBranches" />
-                            Deselect/Select All
+                            @Resources.Deselect/@Resources.SelectAll
                         </td>
                     </tr>
                 </table>
@@ -82,9 +82,9 @@
                                @:<td>
                                     <input type="checkbox"
                                            name="selectedRegions"
-                                           value="@region.RegionID"
+                                           value="@region.ID"
                                            @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
-                                           @region.RegionNameE
+                                           @region.Name
                                @:</td>
                            }
                        }
@@ -95,7 +95,7 @@
                                   name="selectAllRegions"
                                   id="selectAllRegions"
                                   value="allRegions" />
-                           Deselect/Select All
+                           @Resources.Deselect/@Resources.SelectAll
                        </td>
                    </tr>
                </table>
@@ -196,12 +196,13 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.BackToList, "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>  
+    <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="~/Scripts/toggleRegionsBranches.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
@@ -209,22 +210,6 @@
 
             $('#statusSelector').change(function () {
                 $('#status').val(($(this).val()));
-            });
-
-            $('#selectAllRegions').click(function () {
-                if ($(this).prop("checked")) {
-                    $('input[name="selectedRegions"]').prop("checked", false);
-                } else {
-                    $('input[name="selectedRegions"]').prop("checked", true);
-                }
-            });
-
-            $('#selectAllBranches').click(function () {
-                if ($(this).prop("checked")) {
-                    $('input[name="selectedBranches"]').prop("checked", false);
-                } else {
-                    $('input[name="selectedBranches"]').prop("checked", true);
-                }
             });
         });     
     </script>

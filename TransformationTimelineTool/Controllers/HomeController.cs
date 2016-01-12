@@ -33,5 +33,14 @@ namespace TransformationTimelineTool.Controllers
 
             return View();
         }
+
+        public ActionResult SetCulture(string culture)
+        {
+            RouteData.Values["culture"] = culture;
+
+
+            return RedirectToAction("Index","Initiatives");
+            //return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

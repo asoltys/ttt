@@ -263,9 +263,9 @@ namespace TransformationTimelineTool.Controllers
             {
                 viewModel.Add(new RegionsData
                 {
-                    RegionID = region.ID,
-                    RegionNameE = region.NameE,
-                    RegionNameF = region.NameF,
+                    ID = region.ID,
+                    NameE = region.NameE,
+                    NameF = region.NameF,
                     Flag = eventRegions.Contains(region.ID)
                 });
             }
@@ -282,9 +282,9 @@ namespace TransformationTimelineTool.Controllers
             {
                 viewModel.Add(new BranchesData
                 {
-                    BranchID = branch.ID,
-                    BranchNameE = branch.NameE,
-                    BranchNameF = branch.NameF,
+                    ID = branch.ID,
+                    NameE = branch.NameE,
+                    NameF = branch.NameF,
                     Flag = eventBranches.Contains(branch.ID)
                 });
             }

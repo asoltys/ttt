@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -18,25 +19,28 @@ namespace TransformationTimelineTool.Models
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
         public int InitiativeID { get; set; }
+        [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
         public Type Type { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
         public DateTime Date { get; set; }
 
         [AllowHtml]
-        [Display(Name = "English Text")]
+        [Display(Name = "EventEngText", ResourceType = typeof(Resources.Resources))]
         public String TextE { get; set; }
 
-        [Display(Name = "French Text")]
         [AllowHtml]
+        [Display(Name = "EventFraText", ResourceType = typeof(Resources.Resources))]
         public String TextF { get; set; }
 
-        [Display(Name = "English Hover")]
+        [Display(Name = "EventEngHover", ResourceType = typeof(Resources.Resources))]
         public String HoverE { get; set; }
 
-        [Display(Name = "French Hover")]
+        [Display(Name = "EventFraHover", ResourceType = typeof(Resources.Resources))]
         public String HoverF { get; set; }
+        [Display(Name = "Branches", ResourceType = typeof(Resources.Resources))]
         public string BranchesList
         {
             get
@@ -44,6 +48,7 @@ namespace TransformationTimelineTool.Models
                 return string.Join(" - ", Branches.Select(b => b.NameShort));
             }
         }
+        [Display(Name = "Regions", ResourceType = typeof(Resources.Resources))]
         public string RegionsList
         {
             get
@@ -74,6 +79,21 @@ namespace TransformationTimelineTool.Models
                 }
 
                 return Edits.OrderByDescending(e => e.Date).First();
+            }
+        }
+
+        public string Hover
+        {
+            get
+            {
+                if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+                {
+                    return HoverF;
+                }
+                else
+                {
+                    return HoverE;
+                }
             }
         }
 

@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="Atlanta" xml:space="preserve">
+    <value>Atlanta</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>Back to List</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Deselect" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -155,6 +164,18 @@
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
+  </data>
+  <data name="EventEngHover" xml:space="preserve">
+    <value>English Hover</value>
+  </data>
+  <data name="EventEngText" xml:space="preserve">
+    <value>English Text</value>
+  </data>
+  <data name="EventFraHover" xml:space="preserve">
+    <value>French Hover</value>
+  </data>
+  <data name="EventFraText" xml:space="preserve">
+    <value>French Text</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Events</value>
@@ -189,6 +210,18 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NCA" xml:space="preserve">
+    <value>NCA</value>
+  </data>
+  <data name="Ontario" xml:space="preserve">
+    <value>Ontario</value>
+  </data>
+  <data name="Pacific" xml:space="preserve">
+    <value>Pacific</value>
+  </data>
+  <data name="Quebec" xml:space="preserve">
+    <value>Quebec</value>
+  </data>
   <data name="Region" xml:space="preserve">
     <value>Region</value>
   </data>
@@ -198,8 +231,14 @@
   <data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>
@@ -207,7 +246,13 @@
   <data name="TransformationTimelineTool" xml:space="preserve">
     <value>Transformation Timeline Tool</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
+  </data>
+  <data name="Western" xml:space="preserve">
+    <value>Western</value>
   </data>
 </root>

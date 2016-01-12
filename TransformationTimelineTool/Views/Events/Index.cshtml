@@ -7,12 +7,12 @@
 <h2>Activities</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(Resources.Create, "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Initiative
+            @Resources.Initiative
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Type)
@@ -39,7 +39,7 @@
   
     <tr> 
         <td>
-            @Html.DisplayFor(modelItem => item.Initiative.NameE)
+            @Html.DisplayFor(modelItem => item.Initiative.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)
@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HoverE)
+            @Html.DisplayFor(modelItem => item.Hover)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegionsList)
@@ -60,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.LatestEdit.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink(Resources.Edit, "Edit", new { id=item.ID }) |
+            @Html.ActionLink(Resources.Details, "Details", new { id=item.ID }) |
+            @Html.ActionLink(Resources.Delete, "Delete", new { id=item.ID })
         </td>
     </tr>
 }

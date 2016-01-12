@@ -51,9 +51,9 @@
                                 @:<td>
                                     <input type="checkbox"
                                            name="selectedBranches"
-                                           value="@branch.BranchID"
+                                           value="@branch.ID"
                                            @(Html.Raw(branch.Flag ? "checked=\"checked\"" : "")) />
-                                        @branch.BranchNameE
+                                        @branch.Name
                                         @:</td>
                             }
                         }
@@ -89,9 +89,9 @@
                                 @:<td>
                                     <input type="checkbox"
                                            name="selectedRegions"
-                                           value="@region.RegionID"
+                                           value="@region.ID"
                                            @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
-                                        @region.RegionNameE
+                                        @region.Name
                                         @:</td>
                            }
                         }
@@ -147,29 +147,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.BackToList, "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-    <script>
-        $(document).ready(function () {
-            $('#selectAllRegions').click(function () {
-                if ($(this).prop("checked")) {
-                    $('input[name="selectedRegions"]').prop("checked", false);
-                } else {
-                    $('input[name="selectedRegions"]').prop("checked", true);
-                }
-            });
-
-            $('#selectAllBranches').click(function () {
-                if ($(this).prop("checked")) {
-                    $('input[name="selectedBranches"]').prop("checked", false);
-                } else {
-                    $('input[name="selectedBranches"]').prop("checked", true);
-                }
-            });
-        });
-    </script>
+    <script src="~/Scripts/toggleRegionsBranches.js" type="text/javascript"></script>
 }

@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>À propos</value>
   </data>
+  <data name="Activity" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="Atlanta" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>fra tba</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Effacer</value>
   </data>
+  <data name="Deselect" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Détails</value>
   </data>
@@ -155,6 +164,18 @@
   </data>
   <data name="End" xml:space="preserve">
     <value>Fin</value>
+  </data>
+  <data name="EventEngHover" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="EventEngText" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="EventFraHover" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="EventFraText" xml:space="preserve">
+    <value>fra tba</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Événements</value>
@@ -184,10 +205,22 @@
     <value>fra tba</value>
   </data>
   <data name="Initiative" xml:space="preserve">
-    <value>Initiatives [fra]</value>
+    <value>Initiative [fra]</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="NCA" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="Ontario" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="Pacific" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
+  <data name="Quebec" xml:space="preserve">
+    <value>fra tba</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>fra tba</value>
@@ -198,8 +231,14 @@
   <data name="Select" xml:space="preserve">
     <value>Sélectionner</value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Démarrer</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>fra tba</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Envoyer des textos</value>
@@ -207,7 +246,13 @@
   <data name="TransformationTimelineTool" xml:space="preserve">
     <value>Calendrier national des transformations</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>fra tba</value>
+  </data>
   <data name="View" xml:space="preserve">
     <value>Vue</value>
+  </data>
+  <data name="Western" xml:space="preserve">
+    <value>fra tba</value>
   </data>
 </root>

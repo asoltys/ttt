@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Branches</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Branches</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
@@ -42,7 +42,7 @@
                                     <input type="checkbox"
                                            name="selectedBranches"
                                            value="@branch.ID" />
-                                        @branch.NameE
+                                        @branch.Name
                                         @:</td>
                             }
                         }
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Regions</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Regions</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
@@ -80,7 +80,7 @@
                                     <input type="checkbox"
                                            name="selectedRegions"
                                            value="@region.ID" />
-                                        @region.NameE
+                                        @region.Name
                                      @:</td>
                            }
                         }
@@ -156,7 +156,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.BackToList, "Index")
 </div>
 
 @section Scripts {
