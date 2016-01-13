@@ -255,4 +255,7 @@
   <data name="Western" xml:space="preserve">
     <value>Western</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
 </root>
