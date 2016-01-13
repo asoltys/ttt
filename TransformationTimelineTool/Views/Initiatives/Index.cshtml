@@ -6,6 +6,10 @@
     ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
+@section Styles {
+    <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
+}
+
 <h2>Initiatives</h2>
 
 @if (ViewBag.isAdmin)
@@ -17,9 +21,9 @@
 <table class="table">
     <tr>
         <th>@Resources.Name</th>
-        <th>@Resources.Start</th>
-        <th>@Resources.End</th>
-        <th></th>
+        <th class="fix-6em">@Resources.Start</th>
+        <th class="fix-6em">@Resources.End</th>
+        <th class="control-group"></th>
     </tr>
 
     @foreach (var item in Model.Initiatives)

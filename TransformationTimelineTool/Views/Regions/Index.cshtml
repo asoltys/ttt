@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+@section Styles {
+    <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
+}
+
 <h2>Regions</h2>
 
 <p>
@@ -20,7 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.NameF)
         </th>
-        <th></th>
+        <th class="control-group"></th>
     </tr>
 
 @foreach (var item in Model) {

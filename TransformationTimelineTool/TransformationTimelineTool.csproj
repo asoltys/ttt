@@ -692,10 +692,13 @@
     <Content Include="Content\master.css" />
     <Content Include="Content\print.css" />
     <Content Include="Content\screen.css" />
+    <Content Include="Content\table.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\book.png" />
+    <Content Include="Images\circle.png" />
     <Content Include="report.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

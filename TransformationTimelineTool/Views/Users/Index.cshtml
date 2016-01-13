@@ -5,6 +5,10 @@
     ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
+@section Styles {
+    <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
+}
+
 <h2>Users</h2>
 
 @if (ViewBag.isAdmin)
@@ -22,7 +26,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th></th>
+        <th class="control-group"></th>
     </tr>
 
 @foreach (var item in Model) {
