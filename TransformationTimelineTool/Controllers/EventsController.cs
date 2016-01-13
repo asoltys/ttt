@@ -46,10 +46,8 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Create(int? id)
         {
             var currentUser = Utils.GetCurrentUser();
-            var @event = new Event();
-            @event.Branches = currentUser.Branches.ToList<Branch>();
-            @event.Regions = currentUser.Regions.ToList<Region>();
-            @event.PendingDate = DateTime.Now;
+            ViewBag.Branches = currentUser.Branches.ToList<Branch>();
+            ViewBag.Regions = currentUser.Regions.ToList<Region>();
 
             if (id != null)
             {
@@ -59,7 +57,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
             }
-            return View(@event);
+            return View();
         }
 
         // POST: Events/Create
@@ -67,17 +65,17 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Event @event,
+        public ActionResult Create([Bind(Include = "ID,InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event,
             string[] selectedBranches,
             string[] selectedRegions)
         {
-            if (ModelState.IsValid)
+            if (TryUpdateModel(@event, "",
+               new string[] { "InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF" }))
             {
                 try
                 {
                     @event.Branches = new List<Branch>();
                     @event.Regions = new List<Region>();
-                    @event.Date = new DateTime(1900, 1, 1);
                     var selectedBranchesHS = new HashSet<string>(selectedBranches);
                     foreach (var branch in db.Branches)
                     {
@@ -95,7 +93,7 @@ namespace TransformationTimelineTool.Controllers
                             @event.Regions.Add(region);
                         }
                     }
-                    
+
                     CreateEdit(@event, Status.Created);
                     db.SaveChanges();
 
@@ -122,15 +120,11 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-
             //Event @event = db.Events.Find(id);
             Event @event = db.Events
                 .Where(e => e.ID == id)
                 .Single();
-            
             PopulateEventRegionsData(@event);
-            var test = @event.Show;
             PopulateEventBranchesData(@event);
 
             if (@event == null)
@@ -164,11 +158,11 @@ namespace TransformationTimelineTool.Controllers
                 try
                 {
                     eventToUpdate.InitiativeID = @event.InitiativeID;
-                    eventToUpdate.PendingTextE = @event.PendingTextE;
-                    eventToUpdate.PendingTextF = @event.PendingTextF;
-                    eventToUpdate.PendingHoverE = @event.PendingHoverE;
-                    eventToUpdate.PendingHoverF = @event.PendingHoverF;
-                    eventToUpdate.PendingDate = @event.PendingDate;
+                    eventToUpdate.TextE = @event.TextE;
+                    eventToUpdate.TextF = @event.TextF;
+                    eventToUpdate.HoverE = @event.HoverE;
+                    eventToUpdate.HoverF = @event.HoverF;
+                    eventToUpdate.Date = @event.Date;
                     eventToUpdate.Type = @event.Type;
 
                     UpdateEventRegions(selectedRegions, eventToUpdate);
@@ -201,7 +195,7 @@ namespace TransformationTimelineTool.Controllers
                 {
                     ID = e.ID,
                     Date = e.Date.ToShortDateString(),
-                    TextE = e.PendingTextE,
+                    TextE = e.TextE,
                     TextF = e.TextF,
                     HoverE = e.HoverE,
                     HoverF = e.HoverF,
@@ -223,42 +217,6 @@ namespace TransformationTimelineTool.Controllers
             }
             return View(@event);
         }
-
-        // GET: Events/Delete/5
-        public ActionResult Publish(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    @event.TextE = @event.PendingTextE;
-                    @event.TextF = @event.PendingTextF;
-                    @event.HoverE = @event.PendingHoverE;
-                    @event.HoverF = @event.PendingHoverF;
-                    @event.Date = @event.PendingDate;
-                    
-                    CreateEdit(@event, Status.Approved);
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-                catch (RetryLimitExceededException /* dex */)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            }
-
-
-            return RedirectToAction("Index");
-        }
-
 
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
