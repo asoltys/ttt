@@ -202,7 +202,7 @@ namespace TransformationTimelineTool.Controllers
                         Date = e.Date.ToShortDateString(),
                         Branches = e.Branches.Select(b => b.ID),
                         Regions = e.Regions.Select(r => r.ID),
-                        TextE = e.TextE,
+                        TextE = e.PendingTextE,
                         HoverE = e.HoverE,
                         TextF = e.TextF,
                         HoverF = e.HoverF,

@@ -1,5 +1,4 @@
 ﻿@model TransformationTimelineTool.Models.Event
-
 @{
     ViewBag.Title = "Create";
 }
@@ -30,9 +29,8 @@
                     <tr>
                         @{
                             int cnt = 0;
-                            List<TransformationTimelineTool.Models.Branch> branches = ViewBag.Branches;
 
-                            foreach (var branch in branches)
+                            foreach (var branch in Model.Branches)
                             {
                                 if (cnt++ % 3 == 0)
                                 {
@@ -54,7 +52,7 @@
                                    id="selectAllBranches"
                                    value="allBranches"
                                    checked="checked"/>
-                            Deselect/Select All
+                            @Resources.Deselect/@Resources.SelectAll
                         </td>
                     </tr>
                 </table>
@@ -68,9 +66,9 @@
                     <tr>
                         @{
                             int cnt2 = 0;
-                            List<TransformationTimelineTool.Models.Region> regions = ViewBag.Regions;
+                            
 
-                            foreach (var region in regions)
+                            foreach (var region in Model.Regions)
                             {
                                 if (cnt2++ % 3 == 0)
                                 {
@@ -108,42 +106,42 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.PendingDate, htmlAttributes: new { @class = "" })
+            <div class="">
+                @Html.EditorFor(model => model.PendingDate, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.PendingDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TextE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PendingTextE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.TextE, new { @class = "form-control ckeditor" })
-                @Html.ValidationMessageFor(model => model.TextE, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.PendingTextE, new { @class = "form-control ckeditor" })
+                @Html.ValidationMessageFor(model => model.PendingTextE, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TextF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PendingTextF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.TextF, new { @class = "form-control ckeditor" })
-                @Html.ValidationMessageFor(model => model.TextF, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.PendingTextF, new { @class = "form-control ckeditor" })
+                @Html.ValidationMessageFor(model => model.PendingTextF, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoverE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PendingHoverE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoverE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HoverE, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PendingHoverE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PendingHoverE, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoverF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PendingHoverF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoverF, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HoverF, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PendingHoverF, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PendingHoverF, "", new { @class = "text-danger" })
             </div>
         </div>
 

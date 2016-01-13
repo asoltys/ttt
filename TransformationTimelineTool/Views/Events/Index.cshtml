@@ -45,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+            @if (item.Date != new DateTime(1900, 1, 1)) {@Html.DisplayFor(modelItem => item.Date)}
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Hover)
@@ -62,7 +62,8 @@
         <td>
             @Html.ActionLink(Resources.Edit, "Edit", new { id=item.ID }) |
             @Html.ActionLink(Resources.Details, "Details", new { id=item.ID }) |
-            @Html.ActionLink(Resources.Delete, "Delete", new { id=item.ID })
+            @Html.ActionLink(Resources.Delete, "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Publish", "Publish", new { id=item.ID })
         </td>
     </tr>
 }

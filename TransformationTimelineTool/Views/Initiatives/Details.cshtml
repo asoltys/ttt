@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Resources.Details</h2>
 
 <div>
-    <h4>Initiative</h4>
+    <h4>@Resources.Initiative</h4>
     <hr />
     <dl class="">
         <dt>
@@ -103,7 +103,7 @@
         </dd>
 
         <dt>
-            @Resources.Events
+            @Resources.Activities
         </dt>
 
         <dd>
@@ -117,7 +117,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Date)
+                            @if (item.Date != new DateTime(1900, 1, 1)){@Html.DisplayFor(modelItem => item.Date)}
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.HoverE)
@@ -130,7 +130,7 @@
                 }
                 <tr>
                     <td>
-                        @Html.ActionLink("Create Event", "Create", "Events", new { ID = Model.ID }, null)
+                        @Html.ActionLink("Create Activity", "Create", "Events", new { ID = Model.ID }, null)
                     </td>
                 </tr>
             </table>

@@ -6,21 +6,18 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
+using TransformationTimelineTool.Models;
 
-namespace TransformationTimelineTool.Models
+namespace TransformationTimelineTool.ViewModels
 {
-    public enum Type
-    {
-        Milestone, Training
-    }
-    public class Event
+    public class EventViewModel
     {
 
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
         public int InitiativeID { get; set; }
         [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
-        public Type Type { get; set; }
+        public Models.Type Type { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -29,7 +26,7 @@ namespace TransformationTimelineTool.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Pending Date")]
+        [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
         public DateTime PendingDate { get; set; }
 
 
@@ -79,7 +76,7 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                if (Edits.Any(e => e.Status == Status.Approved))
+                if (LatestEdit.Status == Status.Approved)
                 {
                     return true;
                 }
@@ -90,7 +87,9 @@ namespace TransformationTimelineTool.Models
             }
         }
 
-        public Edit LatestEdit { get
+        public Edit LatestEdit
+        {
+            get
             {
                 if (Edits == null || Edits.Count == 0)
                 {
@@ -116,70 +115,11 @@ namespace TransformationTimelineTool.Models
             }
         }
 
-        public string TextEDisplay
-        {
-            get
-            {
-                if(String.IsNullOrEmpty(TextE))
-                {
-                    return "[No Content]";
-                }
-                else
-                {
-                    return TextE;
-                }
-            }
-        }
-
-        public string TextFDisplay
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(TextF))
-                {
-                    return "[No Content]";
-                }
-                else
-                {
-                    return TextF;
-                }
-            }
-        }
-
-        public string HoverEDisplay
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(HoverE))
-                {
-                    return "[No Content]";
-                }
-                else
-                {
-                    return HoverE;
-                }
-            }
-        }
-
-        public string HoverFDisplay
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(HoverF))
-                {
-                    return "[No Content]";
-                }
-                else
-                {
-                    return HoverF;
-                }
-            }
-        }
-        
-
         public virtual Initiative Initiative { get; set; }
         public virtual ICollection<Edit> Edits { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
+        public IEnumerable<Branch> AllBranches { get; set; }
+        public IEnumerable<Region> AllRegions { get; set; }
     }
 }
