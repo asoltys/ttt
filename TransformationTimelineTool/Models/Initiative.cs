@@ -66,6 +66,20 @@ namespace TransformationTimelineTool.Models
                 }
             }
         }
+        public string Description
+        {
+            get
+            {
+                if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+                {
+                    return DescriptionF;
+                }
+                else
+                {
+                    return DescriptionE;
+                }
+            }
+        }
 
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Impact> Impacts { get; set; }

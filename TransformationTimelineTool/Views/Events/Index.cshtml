@@ -4,7 +4,19 @@
     ViewBag.Title = "Activities";
 }
 
+@section Styles {
+    <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
+}
+
 <h2>Activities</h2>
+
+<div id="legend">
+    <img src="~/Images/circle.png" />Milestone <br />
+    <img src="~/Images/book.png" />Training <br />
+    <span class="green-box image-pretender"></span>Approved <br />
+    <span class="yellow-box image-pretender"></span>Pending <br />
+    <span class="red-box image-pretender"></span>Created <br />
+</div>
 
 <p>
     @Html.ActionLink(Resources.Create, "Create")
@@ -32,7 +44,7 @@
         <th>
             @Html.DisplayNameFor(model => model.LatestEdit.Status)
         </th>
-        <th></th>
+        <th class="control-group"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -42,7 +54,7 @@
             @Html.DisplayFor(modelItem => item.Initiative.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Type)
+            <img src="@(item.Type == 0 ? "/Images/circle.png" : "/Images/book.png")" />
         </td>
         <td>
             @if (item.Date != new DateTime(1900, 1, 1)) {@Html.DisplayFor(modelItem => item.Date)}
@@ -57,7 +69,8 @@
             @Html.DisplayFor(modelItem => item.BranchesList)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LatestEdit.Status)
+            <span class="image-pretender
+                  @((int) item.LatestEdit.Status == 0 ? "red-box" : (int) item.LatestEdit.Status == 1 ? "yellow-box" : "green-box")"></span>
         </td>
         <td>
             @Html.ActionLink(Resources.Edit, "Edit", new { id=item.ID }) |
