@@ -42,7 +42,7 @@
             @Html.DisplayNameFor(model => model.BranchesList)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LatestEdit.Status)
+            @Html.DisplayNameFor(model => model.Status)
         </th>
         <th class="control-group"></th>
     </tr>
@@ -70,7 +70,7 @@
         </td>
         <td>
             <span class="image-pretender
-                  @((int) item.LatestEdit.Status == 0 ? "red-box" : (int) item.LatestEdit.Status == 1 ? "yellow-box" : "green-box")"></span>
+                  @((int) item.Status == 0 ? "red-box" : (int) item.Status == 1 ? "yellow-box" : "green-box")"></span>
         </td>
         <td>
             @Html.ActionLink(Resources.Edit, "Edit", new { id=item.ID }) |

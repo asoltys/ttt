@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.ViewModels.EventData
+﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Event.InitiativeID, "InitiativeID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Event.InitiativeID, new SelectList(Model.Initiatives, "id", "NameE"))
+                @Html.DropDownListFor(model => model.Event.InitiativeID, Model.InitiativeSelect)
                 @Html.ValidationMessageFor(model => model.Event.InitiativeID, "", new { @class = "text-danger" })
             </div>
         </div>

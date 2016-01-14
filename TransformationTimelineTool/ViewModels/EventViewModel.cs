@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Helpers;
 using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.ViewModels
 {
-    public class EventData
+    public class EventViewModel
     {
         private TimelineContext db = new TimelineContext();
 
@@ -16,25 +17,23 @@ namespace TransformationTimelineTool.ViewModels
         public Edit Edit { get; set; }
         public IEnumerable<Branch> Branches { get; set; }
         public IEnumerable<Region> Regions { get; set; }
-        public IEnumerable<Initiative> Initiatives { get; set; }
+        public SelectList InitiativeSelect { get; set; }
 
-        public Edit PrepareEventEdit()
+        public Edit GetLatestEdit()
         {
-
-            var currentUser = Utils.GetCurrentUser();
-
-            return new Edit
+            if (Event == null)
             {
-                Editor = db.Users.Find(currentUser.Id),
-                Date = DateTime.Now,
-                Event = Event,
-                TextE = Edit.TextE,
-                TextF = Edit.TextF,
-                HoverE = Edit.HoverE,
-                HoverF = Edit.HoverF,
-                Status = Status.Created
-            };
-            
+                return new Edit();
+            }
+
+            if (Event.Edits == null || Event.Edits.Count == 0)
+            {
+                 return new Edit();
+            }
+            else
+            {
+                return Event.Edits.OrderByDescending(e => e.Date).First();
+            }
         }
     }
 }

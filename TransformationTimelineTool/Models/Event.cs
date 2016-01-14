@@ -18,6 +18,7 @@ namespace TransformationTimelineTool.Models
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
         public int InitiativeID { get; set; }
+
         [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
         public Type Type { get; set; }
 
@@ -25,8 +26,9 @@ namespace TransformationTimelineTool.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
         public DateTime Date { get; set; }
+        public Status Status { get; set; }
 
-       
+
         [Display(Name = "Branches", ResourceType = typeof(Resources.Resources))]
         public string BranchesList
         {
@@ -47,112 +49,34 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                if (Edits == null || Edits.Count == 0)
+                if (Edits == null)
                 {
                     return false;
                 }
-
-                if (Edits.Any(e => e.Status == Status.Approved))
+                var temp = Edits.Any(e => e.Published);
+                if (temp)
                 {
                     return true;
                 }
                 else
                 {
                     return false;
-                }
+                }                
             }
         }
-
-        public string TextE
+        
+        public Edit PublishedEdit
         {
             get
             {
-                if (!String.IsNullOrEmpty(LatestPublished.TextE))
-                {
-                    return LatestPublished.TextE;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }
-        public string TextF
-        {
-            get
-            {
-                if (!String.IsNullOrEmpty(LatestPublished.TextF))
-                {
-                    return LatestPublished.TextF;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }
-
-        public string HoverE
-        {
-            get
-            {
-                if (!String.IsNullOrEmpty(LatestPublished.HoverE))
-                {
-                    return LatestPublished.HoverE;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }
-        public string HoverF
-        {
-            get
-            {
-                if (!String.IsNullOrEmpty(LatestPublished.HoverF))
-                {
-                    return LatestPublished.HoverF;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-        }
-
-        public Edit LatestPublished
-        {
-            get
-            {
-                if (Edits == null || Edits.Count == 0)
+                var temp = Edits.Any(e => e.Published);
+                if (!temp)
                 {
                     return new Edit();
                 }
 
-                if (Show)
-                {
-                    return Edits.Where(e => e.Status == Status.Approved)
-                        .OrderByDescending(e => e.Date)
-                        .First();
-                }
-                else
-                {
-                    return new Edit();
-                }
+                return Edits.Single(e => e.Published == true);
 
-
-            }
-        }
-
-        public Edit LatestEdit { get
-            {
-                if (Edits == null || Edits.Count == 0)
-                {
-                    return new Edit();
-                }
-
-                return Edits.OrderByDescending(e => e.Date).First();
             }
         }
 

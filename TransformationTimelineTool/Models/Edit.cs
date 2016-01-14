@@ -30,8 +30,12 @@ namespace TransformationTimelineTool.Models
 
         [Display(Name = "EventFraHover", ResourceType = typeof(Resources.Resources))]
         public String HoverF { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
-        [Display(Name = "Status", ResourceType = typeof(Resources.Resources))]
+        
+        public bool Published { get; set; }
         public string Hover
         {
             get
@@ -46,7 +50,6 @@ namespace TransformationTimelineTool.Models
                 }
             }
         }
-        public Status Status { get; set; }
         public virtual Event Event { get; set; }
         public virtual User Editor { get; set; }
     }

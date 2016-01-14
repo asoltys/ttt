@@ -23,7 +23,7 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Index()
         {
             var currentUser = Utils.GetCurrentUser();
-            return View(currentUser.Events.ToList().OrderByDescending(e => e.Date));
+            return View(db.Events.ToList());
         }
 
         // GET: Events/Details/5
@@ -33,12 +33,18 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+
+            var eventViewModel = new EventViewModel();
+            eventViewModel.Event = db.Events.Find(id);
+            eventViewModel.Edit = eventViewModel.GetLatestEdit();
+
+
+
+            if (eventViewModel.Event == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(eventViewModel);
         }
 
         // GET: Events/Create
@@ -46,18 +52,17 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Create(int? id)
         {
             var currentUser = Utils.GetCurrentUser();
-            var viewModel = new EventData();
+            var viewModel = new EventViewModel();
             viewModel.Branches= db.Branches.ToList<Branch>();
             viewModel.Regions = db.Regions.ToList<Region>();
-            viewModel.Initiatives = db.Initiatives.ToList<Initiative>();
 
             if (id != null)
             {
-                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", id);
+                viewModel.InitiativeSelect = new SelectList(db.Initiatives.ToList<Initiative>(), "id", "NameE", id);
             }
             else
             {
-                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
+                viewModel.InitiativeSelect = new SelectList(db.Initiatives.ToList<Initiative>(), "id", "NameE");
             }
             return View(viewModel);
         }
@@ -67,7 +72,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(EventData eventViewModel,
+        public ActionResult Create(EventViewModel eventViewModel,
             string[] selectedBranches,
             string[] selectedRegions)
         {
@@ -102,7 +107,7 @@ namespace TransformationTimelineTool.Controllers
                     var currentUser = Utils.GetCurrentUser();
                     eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
                     eventViewModel.Edit.Date = DateTime.Now;
-                    eventViewModel.Edit.Status = Status.Created;
+                    eventViewModel.Event.Status = Status.Created;
 
                     eventToCreate.Edits.Add(eventViewModel.Edit);
 
@@ -135,17 +140,15 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             //Event @event = db.Events.Find(id);
-            var eventViewModel = new EventData();
+            var eventViewModel = new EventViewModel();
             eventViewModel.Event = db.Events
                 .Where(e => e.ID == id)
                 .Single();
-            eventViewModel.Edit = eventViewModel
-                .Event
-                .Edits
-                .OrderByDescending(e => e.Date)
-                .First();
-            eventViewModel.Initiatives = db.Initiatives.ToList<Initiative>();
+
+            eventViewModel.Edit = eventViewModel.GetLatestEdit();
+            eventViewModel.InitiativeSelect = new SelectList(db.Initiatives.ToList<Initiative>(), "id", "NameE");
 
             PopulateEventRegionsData(eventViewModel.Event);
             PopulateEventBranchesData(eventViewModel.Event);
@@ -164,7 +167,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EventData eventViewModel, string[] selectedRegions, string[] selectedBranches)
+        public ActionResult Edit(EventViewModel eventViewModel, string[] selectedRegions, string[] selectedBranches)
         {
 
             if (eventViewModel == null)
@@ -183,6 +186,7 @@ namespace TransformationTimelineTool.Controllers
                     eventToUpdate.InitiativeID = eventViewModel.Event.InitiativeID;
                     eventToUpdate.Date = eventViewModel.Event.Date;
                     eventToUpdate.Type = eventViewModel.Event.Type;
+                    eventToUpdate.Status = eventViewModel.Event.Status;
 
                     UpdateEventRegions(selectedRegions, eventToUpdate);
                     UpdateEventBranches(selectedBranches, eventToUpdate);
@@ -192,10 +196,14 @@ namespace TransformationTimelineTool.Controllers
                     eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
                     eventViewModel.Edit.Date = DateTime.Now;
 
+                    if (eventViewModel.Event.Status == Status.Approved)
+                    {
+                        eventToUpdate.PublishedEdit.Published = false;
+                        eventViewModel.Edit.Published = true;
+                    }
+
                     eventToUpdate.Edits.Add(eventViewModel.Edit);
-
                     db.SaveChanges();
-
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -220,10 +228,10 @@ namespace TransformationTimelineTool.Controllers
                 {
                     ID = e.ID,
                     Date = e.Date.ToShortDateString(),
-                    TextE = e.TextE,
-                    TextF = e.TextF,
-                    HoverE = e.HoverE,
-                    HoverF = e.HoverF,
+                    //TextE = e.TextE,
+                    //TextF = e.TextF,
+                    //HoverE = e.HoverE,
+                    //HoverF = e.HoverF,
                     InitiativeID = e.InitiativeID
                 }), JsonRequestBehavior.AllowGet);
         }
@@ -261,21 +269,6 @@ namespace TransformationTimelineTool.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private void CreateEdit(Event @event, Status status)
-        {
-            var currentUser = Utils.GetCurrentUser();
-
-            Edit edit = new Edit
-            {
-                Editor = db.Users.Find(currentUser.Id),
-                Date = DateTime.Now,
-                Event = @event,
-                Status = status
-            };
-
-            db.Edits.Add(edit);
         }
 
         private void PopulateEventRegionsData(Event @event)
