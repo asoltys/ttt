@@ -46,8 +46,10 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Create(int? id)
         {
             var currentUser = Utils.GetCurrentUser();
-            ViewBag.Branches = currentUser.Branches.ToList<Branch>();
-            ViewBag.Regions = currentUser.Regions.ToList<Region>();
+            var viewModel = new EventData();
+            viewModel.Branches= db.Branches.ToList<Branch>();
+            viewModel.Regions = db.Regions.ToList<Region>();
+            viewModel.Initiatives = db.Initiatives.ToList<Initiative>();
 
             if (id != null)
             {
@@ -57,7 +59,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
             }
-            return View();
+            return View(viewModel);
         }
 
         // POST: Events/Create
@@ -65,23 +67,26 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF")] Event @event,
+        public ActionResult Create(EventData eventViewModel,
             string[] selectedBranches,
             string[] selectedRegions)
         {
-            if (TryUpdateModel(@event, "",
-               new string[] { "InitiativeID,Type,Date,TextE,TextF,HoverE,HoverF" }))
+            var eventToCreate = eventViewModel.Event;
+
+            if (ModelState.IsValid)
             {
                 try
                 {
-                    @event.Branches = new List<Branch>();
-                    @event.Regions = new List<Region>();
+                    eventToCreate.Branches = new List<Branch>();
+                    eventToCreate.Regions = new List<Region>();
+                    eventToCreate.Edits = new List<Edit>();
+
                     var selectedBranchesHS = new HashSet<string>(selectedBranches);
                     foreach (var branch in db.Branches)
                     {
                         if (selectedBranches.Contains(branch.ID.ToString()))
                         {
-                            @event.Branches.Add(branch);
+                            eventToCreate.Branches.Add(branch);
                         }
                     }
 
@@ -90,11 +95,18 @@ namespace TransformationTimelineTool.Controllers
                     {
                         if (selectedRegions.Contains(region.ID.ToString()))
                         {
-                            @event.Regions.Add(region);
+                            eventToCreate.Regions.Add(region);
                         }
                     }
 
-                    CreateEdit(@event, Status.Created);
+                    var currentUser = Utils.GetCurrentUser();
+                    eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
+                    eventViewModel.Edit.Date = DateTime.Now;
+                    eventViewModel.Edit.Status = Status.Created;
+
+                    eventToCreate.Edits.Add(eventViewModel.Edit);
+
+                    db.Events.Add(eventToCreate);
                     db.SaveChanges();
 
                     //@event.Edit = edit;;
@@ -108,9 +120,12 @@ namespace TransformationTimelineTool.Controllers
                 }
             }
 
-            PopulateEventRegionsData(@event);
-            PopulateEventBranchesData(@event);
-            return View(@event);
+            eventViewModel.Regions = new List<Region>();
+            eventViewModel.Branches = new List<Branch>();
+
+            PopulateEventRegionsData(eventViewModel.Event);
+            PopulateEventBranchesData(eventViewModel.Event);
+            return View(eventViewModel);
         }
 
         // GET: Events/Edit/5
@@ -121,19 +136,27 @@ namespace TransformationTimelineTool.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Event @event = db.Events.Find(id);
-            Event @event = db.Events
+            var eventViewModel = new EventData();
+            eventViewModel.Event = db.Events
                 .Where(e => e.ID == id)
                 .Single();
-            PopulateEventRegionsData(@event);
-            PopulateEventBranchesData(@event);
+            eventViewModel.Edit = eventViewModel
+                .Event
+                .Edits
+                .OrderByDescending(e => e.Date)
+                .First();
+            eventViewModel.Initiatives = db.Initiatives.ToList<Initiative>();
 
-            if (@event == null)
+            PopulateEventRegionsData(eventViewModel.Event);
+            PopulateEventBranchesData(eventViewModel.Event);
+
+            if (eventViewModel.Event == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", @event.InitiativeID);
-            return View(@event);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", eventViewModel.Event.InitiativeID);
+            return View(eventViewModel);
         }
 
         // POST: Events/Edit/5
@@ -141,34 +164,36 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Event @event, string[] selectedRegions, string[] selectedBranches, int status)
+        public ActionResult Edit(EventData eventViewModel, string[] selectedRegions, string[] selectedBranches)
         {
 
-            if (@event == null)
+            if (eventViewModel == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var eventToUpdate = db.Events
-               .Where(i => i.ID == @event.ID)
+               .Where(i => i.ID == eventViewModel.Event.ID)
                .Single();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    eventToUpdate.InitiativeID = @event.InitiativeID;
-                    eventToUpdate.TextE = @event.TextE;
-                    eventToUpdate.TextF = @event.TextF;
-                    eventToUpdate.HoverE = @event.HoverE;
-                    eventToUpdate.HoverF = @event.HoverF;
-                    eventToUpdate.Date = @event.Date;
-                    eventToUpdate.Type = @event.Type;
+                    eventToUpdate.InitiativeID = eventViewModel.Event.InitiativeID;
+                    eventToUpdate.Date = eventViewModel.Event.Date;
+                    eventToUpdate.Type = eventViewModel.Event.Type;
 
                     UpdateEventRegions(selectedRegions, eventToUpdate);
                     UpdateEventBranches(selectedBranches, eventToUpdate);
 
-                    CreateEdit(eventToUpdate, (Status)status);
+
+                    var currentUser = Utils.GetCurrentUser();
+                    eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
+                    eventViewModel.Edit.Date = DateTime.Now;
+
+                    eventToUpdate.Edits.Add(eventViewModel.Edit);
+
                     db.SaveChanges();
 
                     return RedirectToAction("Index");

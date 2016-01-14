@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Web;
-using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 
 namespace TransformationTimelineTool.Models
@@ -27,19 +26,7 @@ namespace TransformationTimelineTool.Models
         [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
         public DateTime Date { get; set; }
 
-        [AllowHtml]
-        [Display(Name = "EventEngText", ResourceType = typeof(Resources.Resources))]
-        public String TextE { get; set; }
-
-        [AllowHtml]
-        [Display(Name = "EventFraText", ResourceType = typeof(Resources.Resources))]
-        public String TextF { get; set; }
-
-        [Display(Name = "EventEngHover", ResourceType = typeof(Resources.Resources))]
-        public String HoverE { get; set; }
-
-        [Display(Name = "EventFraHover", ResourceType = typeof(Resources.Resources))]
-        public String HoverF { get; set; }
+       
         [Display(Name = "Branches", ResourceType = typeof(Resources.Resources))]
         public string BranchesList
         {
@@ -60,7 +47,12 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                if (LatestEdit.Status == Status.Approved)
+                if (Edits == null || Edits.Count == 0)
+                {
+                    return false;
+                }
+
+                if (Edits.Any(e => e.Status == Status.Approved))
                 {
                     return true;
                 }
@@ -68,6 +60,88 @@ namespace TransformationTimelineTool.Models
                 {
                     return false;
                 }
+            }
+        }
+
+        public string TextE
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(LatestPublished.TextE))
+                {
+                    return LatestPublished.TextE;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+        public string TextF
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(LatestPublished.TextF))
+                {
+                    return LatestPublished.TextF;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public string HoverE
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(LatestPublished.HoverE))
+                {
+                    return LatestPublished.HoverE;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+        public string HoverF
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(LatestPublished.HoverF))
+                {
+                    return LatestPublished.HoverF;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        public Edit LatestPublished
+        {
+            get
+            {
+                if (Edits == null || Edits.Count == 0)
+                {
+                    return new Edit();
+                }
+
+                if (Show)
+                {
+                    return Edits.Where(e => e.Status == Status.Approved)
+                        .OrderByDescending(e => e.Date)
+                        .First();
+                }
+                else
+                {
+                    return new Edit();
+                }
+
+
             }
         }
 
@@ -79,21 +153,6 @@ namespace TransformationTimelineTool.Models
                 }
 
                 return Edits.OrderByDescending(e => e.Date).First();
-            }
-        }
-
-        public string Hover
-        {
-            get
-            {
-                if (Thread.CurrentThread.CurrentCulture.Name == "fr")
-                {
-                    return HoverF;
-                }
-                else
-                {
-                    return HoverE;
-                }
             }
         }
 

@@ -86,7 +86,7 @@
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.HoverE)
+                            @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
                 @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null) |
