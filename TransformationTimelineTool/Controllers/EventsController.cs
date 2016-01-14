@@ -48,7 +48,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Create
-        [Authorize(Roles = "Admin,OPI")]
+        [Authorize(Roles = "Admin,OPI,Editor")]
         public ActionResult Create(int? id)
         {
             var currentUser = Utils.GetCurrentUser();
@@ -107,7 +107,6 @@ namespace TransformationTimelineTool.Controllers
                     var currentUser = Utils.GetCurrentUser();
                     eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
                     eventViewModel.Edit.Date = DateTime.Now;
-                    eventViewModel.Event.Status = Status.Created;
 
                     eventToCreate.Edits.Add(eventViewModel.Edit);
 

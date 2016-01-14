@@ -12,6 +12,10 @@ namespace TransformationTimelineTool.Models
     {
         Milestone, Training
     }
+    public enum Status
+    {
+        Draft, Pending, Approved
+    }
     public class Event
     {
 
@@ -76,6 +80,22 @@ namespace TransformationTimelineTool.Models
                 }
 
                 return Edits.Single(e => e.Published == true);
+
+            }
+        }
+
+        public Edit LatestEdit
+        {
+            get
+            {
+                if (Edits == null || Edits.Count == 0)
+                {
+                    return new Edit();
+                }
+                else
+                {
+                    return Edits.OrderByDescending(e => e.Date).First();
+                }
 
             }
         }

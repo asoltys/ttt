@@ -164,22 +164,22 @@
             </div>
         </div>
        
-             @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
-             {
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EnumDropDownListFor(model => model.Event.Status)
-                        @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
+        {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Event.Status)
+                @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-             }
-             else
-             {
-                 Model.Event.Status = TransformationTimelineTool.Models.Status.Pending;
-                 @Html.HiddenFor(model => model.Event.Status)
-             }
+        }
+        else
+        {
+            Model.Event.Status = TransformationTimelineTool.Models.Status.Pending;
+            @Html.HiddenFor(model => model.Event.Status)
+        }
 
 
         <div class="form-group">

@@ -8,10 +8,6 @@ using System.Web.Mvc;
 
 namespace TransformationTimelineTool.Models
 {
-    public enum Status
-    {
-        Created, Pending, Approved
-    }
     public class Edit
     {
         public int ID { get; set; }
