@@ -29,7 +29,7 @@ namespace TransformationTimelineTool.Models
             }
         }
 
-        public virtual User Approver { get; set; 
+        public virtual User Approver { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
 
