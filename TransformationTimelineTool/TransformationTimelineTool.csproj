@@ -1226,6 +1226,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\font-awesome-4.5.0\" />
+    <Folder Include="Scripts\DataTables\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

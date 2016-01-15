@@ -6,78 +6,144 @@
 
 @section Styles {
     <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/font-awesome-4.5.0/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
 }
+<script type="text/javascript" src="/scripts/DataTables/datatables.min.js"></script>
 
 <h2>Activities</h2>
 
 <div id="legend">
-    <img src="~/Images/circle.png" />Milestone <br />
-    <img src="~/Images/book.png" />Training <br />
     <span class="green-box image-pretender"></span>Approved <br />
-    <span class="yellow-box image-pretender"></span>Pending <br />
-    <span class="red-box image-pretender"></span>Created <br />
+    <span class="yellow-box image-pretender"></span>Pending
+    <img src="~/Images/circle.png" />Milestone <br />
+    <span class="red-box image-pretender"></span>Created
+    <img src="~/Images/book.png" />Training <br />
 </div>
 
 <p>
     @Html.ActionLink(Resources.Create, "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Resources.Initiative
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoverE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegionsList)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BranchesList)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LatestEdit.Status)
-        </th>
-        <th class="control-group"></th>
-    </tr>
 
-@foreach (var item in Model) {
-  
-    <tr> 
-        <td>
-            @Html.DisplayFor(modelItem => item.Initiative.Name)
-        </td>
-        <td>
-            <img src="@(item.Type == 0 ? "/Images/circle.png" : "/Images/book.png")" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hover)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegionsList)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BranchesList)
-        </td>
-        <td>
-            <span class="image-pretender
+<div id="dataTableContainer">
+    <table class="table hover" id="eventTable">
+        <thead>
+            <tr>
+                <th>
+                    @Resources.Initiative
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoverE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegionsList)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BranchesList)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LatestEdit.Status)
+                </th>
+                <th class="control-group"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Initiative.Name)
+                    </td>
+                    <td>
+                        <img src="@(item.Type == 0 ? "/Images/circle.png" : "/Images/book.png")" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hover)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegionsList)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BranchesList)
+                    </td>
+                    <td>
+                        <span class="image-pretender
                   @((int) item.LatestEdit.Status == 0 ? "red-box" : (int) item.LatestEdit.Status == 1 ? "yellow-box" : "green-box")"></span>
-        </td>
-        <td>
-            @Html.ActionLink(Resources.Edit, "Edit", new { id=item.ID }) |
-            @Html.ActionLink(Resources.Details, "Details", new { id=item.ID }) |
-            @Html.ActionLink(Resources.Delete, "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+                    </td>
+                    <td>
+                        <a class="no-link-style" href="Events/Edit/@(item.ID.ToString())">
+                            <i class="fa fa-pencil-square-o fa-2x"></i>
+                        </a>
+                        <a class="no-link-style"  href="Events/Details/@(item.ID.ToString())">
+                            <i class="fa fa-folder-open fa-2x"></i>
+                        </a>
+                        <a class="no-link-style"  href="Events/Delete/@(item.ID.ToString())">
+                            <i class="fa fa-times fa-2x"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-</table>
+<script>
+    // DataTables plugin initialize and setup
+    $(document).ready(function () {
+        // Set Type & Status column to be searchable
+        $("#eventTable img").each(function () {
+            var mapper = {
+                "circle.png": ["milestone", 0],
+                "book.png": ["training", 1]
+            }
+            for (key in mapper) {
+                if ($(this).attr("src").indexOf(key) > -1) {
+                    $(this).parent().attr("data-search", mapper[key][0]);
+                    $(this).parent().attr("data-order", mapper[key][1]);
+                }
+            }
+        });
+        $("[class*='-box']").each(function () {
+            var mapper = {
+                "red-box": ["created", 0],
+                "yellow-box": ["pending", 1],
+                "green-box": ["approved", 2]
+            }
+            for (key in mapper) {
+                if ($(this).hasClass(key)) {
+                    $(this).parent().attr("data-search", mapper[key][0]);
+                    $(this).parent().attr("data-order", mapper[key][1]);
+                }
+            }
+        });
+
+        // Initialize the DataTable plugin
+        var table = $("#eventTable").DataTable({
+            "paging": false,
+            "aaSorting": [],
+            "columnDefs": [
+                { "orderable": false, "targets": [3, 4, 5, 7] }
+            ]
+        });
+
+        // Replace the word search with glyphicon
+        var searchLabel = $("#eventTable_filter").children("label");
+        if (!searchLabel.hasClass("glyphicon")) {
+            searchLabel.contents().filter(function () {
+                return this.nodeType === 3;
+            }).remove();
+            searchLabel.addClass("fa fa-search fa-lg");
+            searchLabel.children("input").css("margin-left", 5);
+        }
+        
+    });
+</script>
