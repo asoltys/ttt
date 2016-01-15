@@ -3,7 +3,7 @@
     and (min-device-width: 1024px)
     and (max-width: 1199px) {
     label {
-        width: 140px;
+        width: 80px;
         display: inline-block;
     }
 
@@ -97,4 +97,9 @@ a.accordion-section-title:active {
 
 a.accordion-section-title:hover {
 	background: #dddddd;
+}
+
+.center-span {
+    display: block;
+    margin: 0 auto;
 }

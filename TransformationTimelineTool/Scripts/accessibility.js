@@ -96,7 +96,8 @@ function getJSON(url, successCallback) {
 			type: "GET",
 			url: url,
 			success: function(data) {
-				successCallback(JSON.stringify(data));
+			    successCallback(JSON.stringify(data));
+			    initCenterSpan();
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				log(cons2, JSON.stringify(jqXHR) + ", " + textStatus);
@@ -109,7 +110,8 @@ function getJSON(url, successCallback) {
 			dataType: "json",
 			timeout: 5000,
 			success: function(data) {
-				successCallback(JSON.stringify(data));
+			    successCallback(JSON.stringify(data));
+			    initCenterSpan();
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				log(cons2, JSON.stringify(jqXHR) + ", " + textStatus);
@@ -133,14 +135,14 @@ function populateControllers() {
 		}
 	});
 	
-	getJSON(branchesURL, function(data) {
-		branches = JSON.parse(data);
-		for (var k in branches) {
-			if (branches[k].NameE == "All") showAllBranchKey = branches[k].ID;
-			var option = "<option id=" + branches[k].ID + ">" + branches[k].NameE + "</option>";
-			branchController.append(option);
-		}
-	})
+	getJSON(branchesURL, function (data) {
+	    branches = JSON.parse(data);
+	    for (var k in branches) {
+	        if (branches[k].NameE == "All") showAllBranchKey = branches[k].ID;
+	        var option = "<option id=" + branches[k].ID + ">" + branches[k].NameE + "</option>";
+	        branchController.append(option);
+	    }
+	});
 }
 
 function getInitiatives() {
@@ -348,3 +350,21 @@ $(window).on("load", function() {
 	}
 	main();
 });
+
+
+// Initialize center-span class (calculate children width and set span width)
+function initCenterSpan() {
+    var elems = $(".center-span");
+    if (elems.length > 0) {
+        elems.each(function () {
+            var children = $(this).children();
+            if (children.length > 0) {
+                var childrenWidth = 0;
+                children.each(function () {
+                    childrenWidth += $(this).outerWidth(true);
+                });
+            }
+            $(this).outerWidth(Math.ceil(childrenWidth / 100) * 100);
+        });
+    }
+}
