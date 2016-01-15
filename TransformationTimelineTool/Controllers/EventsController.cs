@@ -108,6 +108,11 @@ namespace TransformationTimelineTool.Controllers
                     eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
                     eventViewModel.Edit.Date = DateTime.Now;
 
+                    if (eventToCreate.Status == Status.Approved)
+                    {
+                        eventViewModel.Edit.Published = true;
+                    }
+
                     eventToCreate.Edits.Add(eventViewModel.Edit);
 
                     db.Events.Add(eventToCreate);
