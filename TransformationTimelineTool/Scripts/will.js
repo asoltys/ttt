@@ -77,15 +77,27 @@ timeLine = {
             success: function (regions) {
                 var html = '';
                 html += "<select id='areaSelect'><option value=''>" + timeLine.utility.translate("area") + "</option>";
-                timeLine.regions = regions.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
+                if (lang == 'e') {
+                    timeLine.regions = regions.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
+                } else {
+                    timeLine.regions = regions.sort(function (a, b) { return a.NameF.localeCompare(b.NameF); });
+                };
                 $.each(timeLine.regions, function (key, value) {
-                    if (timeLine.regions[key].NameE == 'All') {
-                        html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                    if (timeLine.regions[key].ID == 1) {
+                        if (lang == 'e') {
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                        } else {
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
+                        };
                     };
                 });
                 $.each(timeLine.regions, function (key, value) {
-                    if (timeLine.regions[key].NameE != 'All') {
-                        html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                    if (timeLine.regions[key].ID != 1) {
+                        if (lang == 'e') {
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                        } else {
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
+                        };
                     };
                 });
                 html += "</select>";
@@ -104,13 +116,21 @@ timeLine = {
                 html += "<select id='branchSelect'><option value=''>" + timeLine.utility.translate("branch") + "</option>";
                 timeLine.branches = branches.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
                 $.each(timeLine.branches, function (key, value) {
-                    if (timeLine.branches[key].NameE == 'All') {
-                        html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                    if (timeLine.branches[key].ID == 1) {
+                        if (lang == 'e') {
+                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                        } else {
+                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
+                        };
                     };
                 });
                 $.each(timeLine.branches, function (key, value) {
-                    if (timeLine.branches[key].NameE != 'All') {
-                        html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                    if (timeLine.branches[key].ID != 1) {
+                        if (lang == 'e') {
+                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                        } else {
+                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
+                        };
                     };
                 });
                 html += "</select>";
@@ -127,13 +147,13 @@ timeLine = {
         var html = '';
         html += "<div id='projectContainer'>";
         html += "<div class='projectSpace'></div>";
-        html += "<div class='projectGroupRow' id='pg3'>There will be significant changes to the way that an employee does their work. <a href='#' style='color:#ffffff;' id='hide3' class='hide'>Hide</a><a href='#' style='color:#ffffff;' id='show3' class='show'>Show</a></div>";
-        html += "<div class='projectGroupRow' id='pg2'>There will be some changes to the way that an employee does their work. <a href='#' style='color:#000000;' id='hide2' class='hide'>Hide</a><a href='#' style='color:#000000;' id='show2' class='show'>Show</a></div>";
-        html += "<div class='projectGroupRow' id='pg1'>There will be minimal changes to the way that an employee does their work. <a href='#' style='color:#ffffff;' id='hide1' class='hide'>Hide</a><a href='#' style='color:#ffffff;' id='show1' class='show'>Show</a></div>";
-        html += "<div class='projectGroupRow' id='pg0'>There will be no changes to the way that an employee does their work. <a href='#' style='color:#ffffff;' id='hide0' class='hide'>Hide</a><a href='#' style='color:#ffffff;' id='show0' class='show'>Show</a></div>";
+        html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show3' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg2'>" + timeLine.utility.translate("medImDesc") + " <a href='#' style='color:#000000;' id='hide2' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#000000;' id='show2' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg1'>" + timeLine.utility.translate("lowImDesc") + " <a href='#' style='color:#ffffff;' id='hide1' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
             timeLine.countTimeLine = timeLine.countTimeLine + 1;
-            html += "<div class='projectRow' id='p" + timeLine.initiatives[key].ID + "'>" + eval("timeLine.initiatives[key].Name".concat(lang.toUpperCase())) + "</div>";
+            html += "<div class='projectRow' id='p" + timeLine.initiatives[key].ID + "'><a href='#' onClick='timeLine.dialogCustom(\"" + eval("timeLine.initiatives[key].Description".concat(lang.toUpperCase())) + "\")'>" + eval("timeLine.initiatives[key].Name".concat(lang.toUpperCase())) + "</a></div>";
             //html += "<img src='img/white.gif' class='projectRowBackground' />";
         });
         html += "</div>";
@@ -228,7 +248,7 @@ timeLine = {
             html += "<div class='timeLineRow' id = 't" + value.ID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
             html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(barStartDate) + "px; width:" + timeLine.getRight(barStartDate, value.EndDate) + "px;'>"
             $.each(value.Events, function (key, value) {
-                if (/*$.inArray(1, value.Branches) >= 0 && $.inArray(1, value.Regions) >= 0 && */value.Show) {
+                if (value.Show) {
                     mergeDates.push(value.Date);
                 };
             });
@@ -270,7 +290,7 @@ timeLine = {
                         } else {
                             hover = hover + " - ";
                         };
-                        hover = hover + value.HoverE;
+                        hover = hover + eval("value.Hover".concat(lang.toUpperCase()));
                     };
                 });
             });
@@ -298,8 +318,8 @@ timeLine = {
                             text = text + "<hr />";
                             title = title + " - ";
                         };
-                        text = text + value.TextE;
-                        title = title + value.HoverE;
+                        text = text + eval("value.Text".concat(lang.toUpperCase()));
+                        title = title + eval("value.Hover".concat(lang.toUpperCase()));
                     };
                 });
             });
@@ -311,6 +331,7 @@ timeLine = {
     dialogCustom: function (x) {
         $("#dialog").dialog("open");
         $("#dialog").html(x);
+        $("#ui-id-1").html("&nbsp;");
     },
     getLeft: function (date) {
         var date = date.split("/");
@@ -501,7 +522,7 @@ timeLine = {
     },
     footer: function () {
         var html = '';
-        html += "<div id='timeLineFooter'><a href='' id='clearResults'>Clear Results</a></div>"
+        html += "<div id='timeLineFooter'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
         return html;
     },
     clearResults: function () {
