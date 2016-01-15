@@ -29,7 +29,7 @@ namespace TransformationTimelineTool.Migrations
             AddRole(RoleManager, opi);
             AddRole(RoleManager, editor);
 
-            AddUser(UserManager, admin, admin);
+            AddUser(UserManager, admin, admin, "PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca");
             AddUser(UserManager, "wongrm", admin);
             AddUser(UserManager, "ttt_opi", opi);
             AddUser(UserManager, "ttt_editor", editor);
@@ -112,12 +112,12 @@ namespace TransformationTimelineTool.Migrations
             */
         }
 
-        void AddUser(UserManager<User> userManager, string name, string role)
+        void AddUser(UserManager<User> userManager, string name, string role, string email = "mathieu.wong-rose@pwgsc.gc.ca")
         {
 
             var user = new User();
             user.UserName = name;
-            user.Email = "mathieu.wong-rose@pwgsc.gc.ca";
+            user.Email = email;
 
             var addResult = userManager.Create(user, "123456");
 

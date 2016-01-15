@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201601141919221_StatusFromEditToEvent_EditPushlishedProperty.Designer.cs">
       <DependentUpon>201601141919221_StatusFromEditToEvent_EditPushlishedProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601150023027_UserApprover.cs" />
+    <Compile Include="Migrations\201601150023027_UserApprover.Designer.cs">
+      <DependentUpon>201601150023027_UserApprover.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Edit.cs" />
@@ -269,6 +273,7 @@
     <Compile Include="ViewModels\RegionsData.cs" />
     <Compile Include="ViewModels\InitiativeIndexData.cs" />
     <Compile Include="ViewModels\RolesData.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="boew-wet\Licence-fra.txt" />
@@ -1313,6 +1318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601141919221_StatusFromEditToEvent_EditPushlishedProperty.resx">
       <DependentUpon>201601141919221_StatusFromEditToEvent_EditPushlishedProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601150023027_UserApprover.resx">
+      <DependentUpon>201601150023027_UserApprover.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

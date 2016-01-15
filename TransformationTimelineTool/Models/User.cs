@@ -12,6 +12,7 @@ namespace TransformationTimelineTool.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public override string Email { get; set; }
+        public string ApproverID { get; set; }
         public string BranchesList
         {
             get
@@ -28,6 +29,7 @@ namespace TransformationTimelineTool.Models
             }
         }
 
+        public virtual User Approver { get; set; 
         public virtual ICollection<Region> Regions { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
 

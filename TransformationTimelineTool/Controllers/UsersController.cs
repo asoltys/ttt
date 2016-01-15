@@ -53,11 +53,14 @@ namespace TransformationTimelineTool.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.Branches = db.Branches.ToList<Branch>();
-            ViewBag.Regions = db.Regions.ToList<Region>();
-            ViewBag.Roles = db.Roles.ToList<IdentityRole>();
+            var userViewModel = new UserViewModel();
 
-            return View();
+            userViewModel.Branches = db.Branches.ToList<Branch>();
+            userViewModel.Regions = db.Regions.ToList<Region>();
+            userViewModel.Roles = db.Roles.ToList<IdentityRole>();
+            userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
+
+            return View(userViewModel);
         }
 
         // POST: Users/Create
@@ -65,12 +68,12 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user,
+        public ActionResult Create(UserViewModel userViewModel,
             string[] selectedBranches,
             string[] selectedRegions,
             string[] selectedRoles)
         {
-            string username = Utils.GetUsernameFromEmail(user.Email);
+            string username = Utils.GetUsernameFromEmail(userViewModel.User.Email);
             var userToAdd = new User();
 
             userToAdd.Branches = new List<Branch>();
@@ -97,7 +100,8 @@ namespace TransformationTimelineTool.Controllers
             if (username != "")
             {
                 userToAdd.UserName = username;
-                userToAdd.Email = user.Email;
+                userToAdd.Email = userViewModel.User.Email;
+                userToAdd.ApproverID = userViewModel.User.ApproverID;
 
                 var myResult = userManager.Create(userToAdd, "password");
 
@@ -113,7 +117,7 @@ namespace TransformationTimelineTool.Controllers
             PopulateUserBranchesData(userToAdd);
             PopulateUserRolesData(userToAdd);
 
-            return View(user);
+            return View(userViewModel);
         }
 
         // GET: Users/Edit/5
@@ -124,16 +128,21 @@ namespace TransformationTimelineTool.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            var userViewModel = new UserViewModel();
+
             User user = db.Users.Find(id);
-            PopulateUserRegionsData(user);
-            PopulateUserBranchesData(user);
-            PopulateUserRolesData(user);
-            
+
+            userViewModel.User = user;
+            userViewModel.PopulatedBranches = PopulateUserBranchesData(user);
+            userViewModel.PopulatedRegions = PopulateUserRegionsData(user);
+            userViewModel.PopulatedRoles = PopulateUserRolesData(user);
+            userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
+
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(userViewModel);
         }
 
         // POST: Users/Edit/5
@@ -141,27 +150,28 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User user,
+        public ActionResult Edit(UserViewModel userViewModel,
             string[] selectedRegions,
             string[] selectedBranches,
             string[] selectedRoles)
         {
 
-            if (user == null)
+            if (userViewModel == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var userToUpdate = db.Users
-            .Where(u => u.Id == user.Id)
+            .Where(u => u.Id == userViewModel.User.Id)
             .Single();
 
             //string username = Utils.GetUsernameFromEmail(user.Email);
 
             if (ModelState.IsValid)
             {
-                userToUpdate.UserName = user.UserName;
-                userToUpdate.Email = user.Email;
+                userToUpdate.UserName = userViewModel.User.UserName;
+                userToUpdate.Email = userViewModel.User.Email;
+                userToUpdate.ApproverID = userViewModel.User.ApproverID;
 
                 UpdateUserRegions(selectedRegions, userToUpdate);
                 UpdateUserBranches(selectedBranches, userToUpdate);
@@ -172,7 +182,7 @@ namespace TransformationTimelineTool.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(userViewModel);
         }
 
         // GET: Users/Delete/5
@@ -210,7 +220,7 @@ namespace TransformationTimelineTool.Controllers
             base.Dispose(disposing);
         }
 
-        private void PopulateUserRegionsData(User user)
+        private List<RegionsData> PopulateUserRegionsData(User user)
         {
             var allRegions = db.Regions;
             var userRegions = new HashSet<int>(user.Regions.Select(r => r.ID));
@@ -226,10 +236,11 @@ namespace TransformationTimelineTool.Controllers
                     Flag = userRegions.Contains(region.ID)
                 });
             }
-            ViewBag.Regions = viewModel;
+
+            return viewModel;
         }
 
-        private void PopulateUserBranchesData(User user)
+        private List<BranchesData> PopulateUserBranchesData(User user)
         {
             var allBranches = db.Branches;
             var userBranches = new HashSet<int>(user.Branches.Select(b => b.ID));
@@ -245,10 +256,10 @@ namespace TransformationTimelineTool.Controllers
                     Flag = userBranches.Contains(branch.ID)
                 });
             }
-            ViewBag.Branches = viewModel;
+            return viewModel;
         }
 
-        private void PopulateUserRolesData(User user)
+        private List<RolesData> PopulateUserRolesData(User user)
         {
             var allRoles = db.Roles;
             var userRoles = new HashSet<string>(user.Roles.Select(r => r.RoleId));
@@ -263,7 +274,8 @@ namespace TransformationTimelineTool.Controllers
                     Flag = userRoles.Contains(role.Id)
                 });
             }
-            ViewBag.Roles = viewModel;
+
+            return viewModel;
         }
 
         private void UpdateUserBranches(string[] selectedBranches, User userToUpdate)

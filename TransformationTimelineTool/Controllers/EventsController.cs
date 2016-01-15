@@ -6,7 +6,9 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Helpers;
@@ -37,8 +39,6 @@ namespace TransformationTimelineTool.Controllers
             var eventViewModel = new EventViewModel();
             eventViewModel.Event = db.Events.Find(id);
             eventViewModel.Edit = eventViewModel.GetLatestEdit();
-
-
 
             if (eventViewModel.Event == null)
             {
@@ -182,6 +182,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 try
                 {
+
                     eventToUpdate.InitiativeID = eventViewModel.Event.InitiativeID;
                     eventToUpdate.Date = eventViewModel.Event.Date;
                     eventToUpdate.Type = eventViewModel.Event.Type;
@@ -190,18 +191,26 @@ namespace TransformationTimelineTool.Controllers
                     UpdateEventRegions(selectedRegions, eventToUpdate);
                     UpdateEventBranches(selectedBranches, eventToUpdate);
 
-
+                    var edit = eventViewModel.Edit;
                     var currentUser = Utils.GetCurrentUser();
-                    eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
-                    eventViewModel.Edit.Date = DateTime.Now;
 
-                    if (eventViewModel.Event.Status == Status.Approved)
+                    edit.Editor = db.Users.Find(currentUser.Id);
+                    edit.Date = DateTime.Now;
+
+                    if (eventToUpdate.Status == Status.Approved)
                     {
                         eventToUpdate.PublishedEdit.Published = false;
-                        eventViewModel.Edit.Published = true;
+                        edit.Published = true;
+                    }
+                    else if (eventToUpdate.Status == Status.Pending)
+                    {
+                        using (var smtp = new SmtpClient())
+                        {
+                            smtp.Send(PrepareMessage(eventToUpdate));
+                        }
                     }
 
-                    eventToUpdate.Edits.Add(eventViewModel.Edit);
+                    eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -336,6 +345,32 @@ namespace TransformationTimelineTool.Controllers
                     }
                 }
             }
+        }
+
+        private MailMessage PrepareMessage(Event @event)
+        {
+            var body = @"<p>Hello {0}, you have an activity awaiting approval.</p>
+                         <p>The ID of the Activity is {1}</p>
+                         <p>Please click <a href='{2}/en/events/edit/{1}'>here</a> to review the item.</p>";
+            var message = new MailMessage();
+            var to = "";
+            var currentUser = Utils.GetCurrentUser();
+
+            if (currentUser.Approver == null)
+            {
+                to = WebConfigurationManager.AppSettings["adminEmail"];
+            }
+            else
+            {
+                to = currentUser.Approver.Email;
+            }
+            message.To.Add(new MailAddress(to));
+            message.From = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
+            message.Subject = "New items ready for approval";
+            message.Body = String.Format(body, currentUser.UserName, @event.ID, WebConfigurationManager.AppSettings["serverURL"]);
+            message.IsBodyHtml = true;
+
+            return message;
         }
 
         private void UpdateEventRegions(string[] selectedRegions, Event eventToUpdate)
