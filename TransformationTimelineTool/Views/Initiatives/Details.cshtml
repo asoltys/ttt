@@ -20,77 +20,26 @@
 <h4>@Resources.End</h4>
 <p>@Html.DisplayFor(model => model.EndDate)</p>
 
-<h4>Executives/Editors</h4>
+<h4>@Resources.Activities</h4>
+<p>@Html.ActionLink("Create Activity", "Create", "Events", new { ID = Model.ID }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
-        <th>Region</th>
-        <th>Executive</th>
-        <th>Editor</th>
-                </tr>
-                <tr>
-        <td>NCA</td>
-                    <td>@Html.ActionLink(Model.NCAExec.UserName, "Edit", "Users", new { id = Model.NCAExecID }, null)</td>
-        <td>@if (Model.NCAEditorID != null)
-        { @Html.ActionLink(Model.NCAEditor.UserName, "Edit", "Users", new { ID = Model.NCAEditorID }, null);
-        }</td>
-                </tr>
-                <tr>
-        <td>Pacific</td>
-                    <td>@Html.ActionLink(Model.PacExec.UserName, "Edit", "Users", new { id = Model.PacExecID }, null)</td>
-        <td>@if (Model.PacEditorID != null)
-        { @Html.ActionLink(Model.PacEditor.UserName, "Edit", "Users", new { ID = Model.PacEditorID }, null);
-        }</td>
-                </tr>
-                <tr>
-        <td>Western</td>
-                    <td>@Html.ActionLink(Model.WstExec.UserName, "Edit", "Users", new { id = Model.WstExecID }, null)</td>
-        <td>@if (Model.WstEditorID != null)
-        { @Html.ActionLink(Model.WstEditor.UserName, "Edit", "Users", new { ID = Model.WstEditorID }, null);
-        }</td>
-                </tr>
-                <tr>
-        <td>Ontario</td>
-                    <td>@Html.ActionLink(Model.OntExec.UserName, "Edit", "Users", new { id = Model.OntExecID }, null)</td>
-        <td>@if (Model.OntEditorID != null)
-        { @Html.ActionLink(Model.OntEditor.UserName, "Edit", "Users", new { ID = Model.OntEditorID }, null);
-        }</td>
-                </tr>
-                <tr>
-        <td>Quebec</td>
-                    <td>@Html.ActionLink(Model.QueExec.UserName, "Edit", "Users", new { id = Model.QueExecID }, null)</td>
-        <td>@if (Model.QueEditorID != null)
-        { @Html.ActionLink(Model.QueEditor.UserName, "Edit", "Users", new { ID = Model.QueEditorID }, null);
-        }</td>
-                </tr>
-                <tr>
-        <td>Atlantic</td>
-                    <td>@Html.ActionLink(Model.AtlExec.UserName, "Edit", "Users", new { id = Model.AtlExecID }, null)</td>
-        <td>@if (Model.AtlEditorID != null)
-        { @Html.ActionLink(Model.AtlEditor.UserName, "Edit", "Users", new { ID = Model.AtlEditorID }, null);
-        }</td>
-                </tr>
-            </table>
-
-<h4>Activities</h4>
-<p>@Html.ActionLink("Create Event", "Create", "Events", new { ID = Model.ID }, null)</p>
-            <table class="table table-condensed table-striped">
-                <tr>
-        <th class="col-md-2">Date</th>
+                    <th class="col-md-2">@Resources.Date</th>
                     <th class="">Hover</th>
                     <th class="col-md-2">Action</th>
                 </tr>
-    @foreach (var item in Model.Events)
+                @foreach (var item in Model.Events)
                 {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.HoverE)
+                            @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
-                @Html.ActionLink("View", "Details", "Events", new { ID = item.ID }, null) |
-                @Html.ActionLink("Edit", "Edit", "Events", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Events", new { ID = item.ID }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Events", new { ID = item.ID }, null)
                         </td>
                     </tr>
                 }
@@ -119,36 +68,14 @@
                             @String.Join(" - ", item.Regions.Select(b => b.NameShort))
                         </td>
                         <td>
-                @Html.ActionLink("View", "Details", "Impacts", new { ID = item.ID }, null) |
-                @Html.ActionLink("Edit", "Edit", "Impacts", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Impacts", new { ID = item.ID }, null) |
+                            @Html.ActionLink(Resources.Edit, "Impacts", new { ID = item.ID }, null)
                         </td>
                     </tr>
                 }
             </table>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID }) |
+    @Html.ActionLink(Resources.BackToList, "Index")
 </p>
-
-
-
-<!-- <input name="btnGetMovies" id="btnGetMovies" type="submit" value="Get Movies">-->
-<ul id="movieList"></ul>
-
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script type="text/javascript">
-    $("#btnGetMovies").click(function () {
-        var actionUrl = '@Url.Action("Data")';
-        alert("hello world!");
-        $.getJSON(actionUrl, displayData);
-    });
-
-    function displayData(response) {
-        if (response != null) {
-            for (var i = 0; i < response.length; i++) {
-                $("#movieList").append("<li>" + response[i].Title + " " + response[i].Genre + " " + response[i].Year + "</li>")
-            }
-        }
-    }
-</script>

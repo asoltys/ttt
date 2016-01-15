@@ -186,7 +186,7 @@ namespace TransformationTimelineTool.Controllers
                 Include(i => i.Impacts).ToList();
 
             return Json(
-                initiatives.Select( i => new
+                initiatives.Select(i => new
                 {
                     ID = i.ID,
                     NameE = i.NameE,
@@ -195,19 +195,7 @@ namespace TransformationTimelineTool.Controllers
                     DescriptionF = i.DescriptionF,
                     StartDate = i.StartDate.ToShortDateString(),
                     EndDate = i.EndDate.ToShortDateString(),
-                    Events = i.Events.Select( e => new
-                    {
-                        ID = e.ID,
-                        Type = e.Type.ToString(),
-                        Date = e.Date.ToShortDateString(),
-                        Branches = e.Branches.Select(b => b.ID),
-                        Regions = e.Regions.Select(r => r.ID),
-                        TextE = e.TextE,
-                        HoverE = e.HoverE,
-                        TextF = e.TextF,
-                        HoverF = e.HoverF,
-                        Show = e.Show
-                    }),
+                    Events = i.Events.Select(e => new EventJSON(e.ID)),
                     Impacts = i.Impacts.Select( imp => new
                     {
                         Level = imp.Level,

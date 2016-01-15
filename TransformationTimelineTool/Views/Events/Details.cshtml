@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.Models.Event
+﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -15,11 +15,11 @@
         </dt>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Initiative.NameE)
+            @Html.DisplayNameFor(model => model.Event.Initiative.NameE)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Initiative.NameE)
+            @Html.DisplayFor(model => model.Event.Initiative.NameE)
         </dd>
 
         <dt>
@@ -27,7 +27,7 @@
         </dt>
 
         <dd>
-            @Model.BranchesList
+            @Model.Event.BranchesList
         </dd>
 
         <dt>
@@ -35,55 +35,55 @@
         </dt>
 
         <dd> 
-           @Model.RegionsList
+           @Model.Event.RegionsList
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.Event.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Type)
+            @Html.DisplayFor(model => model.Event.Type)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Event.Date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Html.DisplayFor(model => model.Event.Date)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TextE)
+            @Html.DisplayNameFor(model => model.Edit.TextE)
         </dt>
 
         <dd>
-            @Html.Raw(Model.TextE)
+            @Html.Raw(Model.Edit.TextE)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TextF)
+            @Html.DisplayNameFor(model => model.Edit.TextF)
         </dt>
 
         <dd>
-            @Html.Raw(Model.TextF)
+            @Html.Raw(Model.Edit.TextF)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HoverE)
+            @Html.DisplayNameFor(model => model.Edit.HoverE)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HoverE)
+            @Html.DisplayFor(model => model.Edit.HoverE)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HoverF)
+            @Html.DisplayNameFor(model => model.Edit.HoverF)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HoverF)
+            @Html.DisplayFor(model => model.Edit.HoverF)
         </dd>
 
         <dt>
@@ -91,7 +91,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LatestEdit.Date)
+            @Html.DisplayFor(model => model.Edit.Date)
         </dd>
 
         <dt>
@@ -99,20 +99,20 @@
         </dt>
 
         <dd>
-            @Html.ActionLink(Model.LatestEdit.Editor.UserName, "Details", "Users", new { ID = Model.LatestEdit.EditorID }, null)
+            @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID }, null)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LatestEdit.Status)
+            @Html.DisplayNameFor(model => model.Event.Status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LatestEdit.Status)
+            @Html.DisplayFor(model => model.Event.Status)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.Event.ID }) |
+    @Html.ActionLink(Resources.BackToList, "Index")
 </p>

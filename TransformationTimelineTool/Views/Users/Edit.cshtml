@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.Models.User
+﻿@model TransformationTimelineTool.ViewModels.UserViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -15,34 +15,33 @@
         <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.User.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Branches</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Branches</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
                         @{
                             int cnt = 0;
-                            List<TransformationTimelineTool.ViewModels.BranchesData> branches = ViewBag.Branches;
 
-                            foreach (var branch in branches)
+                            foreach (var branch in Model.PopulatedBranches)
                             {
                                 if (cnt++ % 3 == 0)
                                 {
@@ -64,7 +63,7 @@
                                    name="selectAllBranches"
                                    id="selectAllBranches"
                                    value="allBranches" />
-                            Deselect/Select All
+                            @Resources.Deselect/@Resources.SelectAll
                         </td>
                     </tr>
                 </table>
@@ -72,15 +71,14 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Regions</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Regions</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
                         @{
                             int cnt2 = 0;
-                            List<TransformationTimelineTool.ViewModels.RegionsData> regions = ViewBag.Regions;
 
-                            foreach (var region in regions)
+                            foreach (var region in Model.PopulatedRegions)
                             {
                                 if (cnt2++ % 3 == 0)
                                 {
@@ -102,7 +100,7 @@
                                    name="selectAllRegions"
                                    id="selectAllRegions"
                                    value="allRegions" />
-                            Deselect/Select All
+                            @Resources.Deselect/@Resources.SelectAll
                         </td>
                     </tr>
                 </table>
@@ -116,9 +114,8 @@
                     <tr>
                         @{
                             int cnt3 = 0;
-                            List<TransformationTimelineTool.ViewModels.RolesData> roles = ViewBag.Roles;
 
-                            foreach (var role in roles)
+                            foreach (var role in Model.PopulatedRoles)
                             {
                                 if (cnt3++ % 3 == 0)
                                 {
@@ -135,6 +132,14 @@
                         }
                     </tr>
                 </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.User.ApproverID, "ApproverID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(model => model.User.ApproverID, Model.ApproverSelect, "")
+                @Html.ValidationMessageFor(model => model.User.ApproverID, "", new { @class = "text-danger" })
             </div>
         </div>
 

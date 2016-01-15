@@ -13,11 +13,15 @@
 <h2>Activities</h2>
 
 <div id="legend">
-    <span class="green-box image-pretender"></span>Approved <br />
-    <span class="yellow-box image-pretender"></span>Pending
-    <img src="~/Images/circle.png" />Milestone <br />
-    <span class="red-box image-pretender"></span>Created
-    <img src="~/Images/book.png" />Training <br />
+    <div style="float: left;">
+        <img src="~/Images/circle.png" />Milestone <br />
+        <img src="~/Images/book.png" />Training
+    </div>
+    <div style="float: right;">
+        <span class="green-box image-pretender"></span>Approved <br />
+        <span class="yellow-box image-pretender"></span>Pending <br />
+        <span class="red-box image-pretender"></span>Draft
+    </div>
 </div>
 
 <p>
@@ -38,7 +42,7 @@
                     @Html.DisplayNameFor(model => model.Date)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HoverE)
+                    @Html.DisplayNameFor(model => model.LatestEdit.Hover)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.RegionsList)
@@ -47,7 +51,7 @@
                     @Html.DisplayNameFor(model => model.BranchesList)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LatestEdit.Status)
+                    @Html.DisplayNameFor(model => model.Status)
                 </th>
                 <th class="control-group"></th>
             </tr>
@@ -55,8 +59,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-
-                <tr>
+                <tr> 
                     <td>
                         @Html.DisplayFor(modelItem => item.Initiative.Name)
                     </td>
@@ -67,7 +70,7 @@
                         @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Hover)
+                        @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.RegionsList)
@@ -77,7 +80,7 @@
                     </td>
                     <td>
                         <span class="image-pretender
-                  @((int) item.LatestEdit.Status == 0 ? "red-box" : (int) item.LatestEdit.Status == 1 ? "yellow-box" : "green-box")"></span>
+                              @((int) item.Status == 0 ? "red-box" : (int) item.Status == 1 ? "yellow-box" : "green-box")"></span>
                     </td>
                     <td>
                         <a class="no-link-style" href="Events/Edit/@(item.ID.ToString())">

@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Web;
-using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 
 namespace TransformationTimelineTool.Models
@@ -13,12 +12,17 @@ namespace TransformationTimelineTool.Models
     {
         Milestone, Training
     }
+    public enum Status
+    {
+        Draft, Pending, Approved
+    }
     public class Event
     {
 
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
         public int InitiativeID { get; set; }
+
         [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
         public Type Type { get; set; }
 
@@ -26,20 +30,9 @@ namespace TransformationTimelineTool.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
         public DateTime Date { get; set; }
+        public Status Status { get; set; }
 
-        [AllowHtml]
-        [Display(Name = "EventEngText", ResourceType = typeof(Resources.Resources))]
-        public String TextE { get; set; }
 
-        [AllowHtml]
-        [Display(Name = "EventFraText", ResourceType = typeof(Resources.Resources))]
-        public String TextF { get; set; }
-
-        [Display(Name = "EventEngHover", ResourceType = typeof(Resources.Resources))]
-        public String HoverE { get; set; }
-
-        [Display(Name = "EventFraHover", ResourceType = typeof(Resources.Resources))]
-        public String HoverF { get; set; }
         [Display(Name = "Branches", ResourceType = typeof(Resources.Resources))]
         public string BranchesList
         {
@@ -60,40 +53,50 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                if (LatestEdit.Status == Status.Approved)
+                if (Edits == null)
+                {
+                    return false;
+                }
+                var temp = Edits.Any(e => e.Published);
+                if (temp)
                 {
                     return true;
                 }
                 else
                 {
                     return false;
+                }                
+            }
+        }
+        
+        public Edit PublishedEdit
+        {
+            get
+            {
+                var temp = Edits.Any(e => e.Published);
+                if (!temp)
+                {
+                    return new Edit();
                 }
+
+                return Edits.Single(e => e.Published == true);
+
             }
         }
 
-        public Edit LatestEdit { get
+        public Edit LatestEdit
+        {
+            get
             {
                 if (Edits == null || Edits.Count == 0)
                 {
                     return new Edit();
                 }
-
-                return Edits.OrderByDescending(e => e.Date).First();
-            }
-        }
-
-        public string Hover
-        {
-            get
-            {
-                if (Thread.CurrentThread.CurrentCulture.Name == "fr")
-                {
-                    return HoverF;
-                }
                 else
                 {
-                    return HoverE;
+                    return Edits.OrderByDescending(e => e.Date).First();
                 }
+
             }
         }
 

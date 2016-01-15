@@ -53,6 +53,7 @@
 	z-index: 5;
 }
 .projectGroupRow{
+	display: none;
 	float:left;
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
@@ -79,7 +80,7 @@
 	z-index: 0;
 }
 .timeLineGroupRow{
-	
+	display: none;
 	float:left;
 	border-bottom: 1px dotted #cccccc;
 	height: 19px;
@@ -113,16 +114,9 @@
 .ui-dialog, .ui-icon, .ui-button{
 	background-color:#ffffff !important;
 }
-.ui-button{
-	border: 0px !important;
-	background: none !important;
-	background-color:#ffffff !important;
+.show{
+	display: none;
 }
-
-
-
-
-
 #pg0, #tHeader0{
 	background-color:#666666;
 	color: #ffffff;
@@ -138,4 +132,10 @@
 #pg3, #tHeader3{
 	background-color:#226655;
 	color: #ffffff;
+}
+#timeLineFooter{
+	float:right;
+}
+#icon3_4{
+	display:none;
 }

@@ -19,6 +19,24 @@ namespace TransformationTimelineTool.Helpers
             return name[1];
         }
 
+        public static List<User> GetOPIs()
+        {
+            TimelineContext db = new TimelineContext();
+            UserManager<User> userManager;
+
+            userManager = new UserManager<User>(new UserStore<User>(db));
+            var opis = new List<User>();
+            foreach (var user in db.Users.ToList<User>())
+            {
+                if (userManager.IsInRole(user.Id, "OPI"))
+                {
+                    opis.Add(user);
+                }
+            }
+
+            return opis;
+        }
+
         public static User GetCurrentUser()
         {
             TimelineContext db = new TimelineContext();

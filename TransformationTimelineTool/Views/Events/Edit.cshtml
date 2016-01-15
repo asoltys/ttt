@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.Models.Event
+﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -16,13 +16,13 @@
         <h4>@Resources.Activity</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Event.ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InitiativeID, "Initiative", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.InitiativeID, "InitiativeID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("InitiativeID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.InitiativeID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Event.InitiativeID, Model.InitiativeSelect)
+                @Html.ValidationMessageFor(model => model.Event.InitiativeID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -103,89 +103,87 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.Event.Type, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Event.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Event.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Event.Date, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TextE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.TextE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.TextE, new { @class = "form-control ckeditor" } )
-                @Html.ValidationMessageFor(model => model.TextE, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.Edit.TextE, new { @class = "form-control ckeditor" } )
+                @Html.ValidationMessageFor(model => model.Edit.TextE, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TextF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.TextF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.TextF, new { @class = "form-control ckeditor" })
-                @Html.ValidationMessageFor(model => model.TextF, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.Edit.TextF, new { @class = "form-control ckeditor" })
+                @Html.ValidationMessageFor(model => model.Edit.TextF, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoverE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.HoverE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoverE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HoverE, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Edit.HoverE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Edit.HoverE, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HoverF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.HoverF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoverF, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HoverF, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Edit.HoverF, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Edit.HoverF, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Last Updated</label>
             <div class="col-md-10">
-               @Html.DisplayFor(model => model.LatestEdit.Date)
+               @Html.DisplayFor(model => model.Edit.Date)
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Last Edited by</label>
             <div class="col-md-10">
-                @Html.ActionLink(Model.LatestEdit.Editor.UserName, "Details", "Users", new { ID = Model.LatestEdit.EditorID }, null)
+                @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID }, null)
             </div>
         </div>
        
         <div class="form-group">
-             @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
-             {
-                <label class="control-label col-md-2">Approved</label>
-                <div class="col-md-10">
-                    <select class="form-control"
-                            id="statusSelector"
-                            name="statusSelector">
-                        <option value="0">Created</option>
-                        <option value="1">Pending</option>
-                        <option value="2">Approved</option>
-                    </select>
-                </div>
+            <div class="col-md-10">
+                @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
+                {
 
-             }
-            
-            @{
-                var status = Model.LatestEdit.Status;
-                var statusInt = (int)status;
-            }
-            <input type="hidden" id="status" name="status" value="@statusInt" />
+                    @Html.EnumDropDownListFor(model => model.Event.Status)
+                    @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
+
+                }
+                else
+                {
+                    //Model.Event.Status = TransformationTimelineTool.Models.Status.Pending;
+                    //@Html.HiddenFor(model => model.Event.Status)
+                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft) @:Draft
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Pending) @:Pending
+                }
+            </div>
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -204,13 +202,5 @@
     <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
     <script src="~/Scripts/toggleRegionsBranches.js" type="text/javascript"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#statusSelector').val($('#status').val());
-
-            $('#statusSelector').change(function () {
-                $('#status').val(($(this).val()));
-            });
-        });     
-    </script>
+   
 }
