@@ -13,13 +13,13 @@ timeLine = {
     utility: timeLine.utility,
     render: '',
     initiatives: '',
-    initiativesURL: '/en/initiatives/data',
+    initiativesURL : '/en/initiatives/data',
     //initiativesURL : 'json/initiatives.json',
     branches: '',
-    branchesURL: '/en/branches/data',
+    branchesURL : '/en/branches/data',
     //branchesURL : 'json/branches.json',
     regions: '',
-    regionsURL: '/en/regions/data',
+    regionsURL : '/en/regions/data',
     //regionsURL : 'json/regions.json',
     startMonth: 1,
     startYear: 2012,
@@ -56,10 +56,10 @@ timeLine = {
                 timeLine.render += timeLine.projectContainer();
                 timeLine.render += timeLine.dragContainer(initiatives);
                 timeLine.render += timeLine.footer();
-                $("#render").append(timeLine.render);
+				$("#render").append(timeLine.render);
                 $("#dragContainer").draggable({ axis: "x" });
-                timeLine.toggleIcons();
-                timeLine.css();
+				timeLine.toggleIcons();
+				timeLine.css();
             }
         });
     },
@@ -77,15 +77,27 @@ timeLine = {
             success: function (regions) {
                 var html = '';
                 html += "<select id='areaSelect'><option value=''>" + timeLine.utility.translate("area") + "</option>";
-                timeLine.regions = regions.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
+                if(lang == 'e'){
+					timeLine.regions = regions.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
+				} else {
+					timeLine.regions = regions.sort(function (a, b) { return a.NameF.localeCompare(b.NameF); });
+				};
                 $.each(timeLine.regions, function (key, value) {
-                    if (timeLine.regions[key].NameE == 'All') {
-                        html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                    if (timeLine.regions[key].ID == 1) {
+                        if(lang == 'e'){
+							html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+						} else {
+							html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
+						};
                     };
                 });
                 $.each(timeLine.regions, function (key, value) {
-                    if (timeLine.regions[key].NameE != 'All') {
-                        html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                    if (timeLine.regions[key].ID != 1) {
+						if(lang == 'e'){
+							html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+						} else {
+							html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
+						};
                     };
                 });
                 html += "</select>";
@@ -104,13 +116,21 @@ timeLine = {
                 html += "<select id='branchSelect'><option value=''>" + timeLine.utility.translate("branch") + "</option>";
                 timeLine.branches = branches.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
                 $.each(timeLine.branches, function (key, value) {
-                    if (timeLine.branches[key].NameE == 'All') {
-                        html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                    if (timeLine.branches[key].ID == 1) {
+						if(lang == 'e'){
+							html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+						} else {
+							html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
+						};
                     };
                 });
                 $.each(timeLine.branches, function (key, value) {
-                    if (timeLine.branches[key].NameE != 'All') {
-                        html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                    if (timeLine.branches[key].ID != 1) {
+						if(lang == 'e'){
+							html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+						} else {
+							html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
+						};
                     };
                 });
                 html += "</select>";
@@ -127,13 +147,13 @@ timeLine = {
         var html = '';
         html += "<div id='projectContainer'>";
         html += "<div class='projectSpace'></div>";
-        html += "<div class='projectGroupRow' id='pg3'>There will be significant changes to the way that an employee does their work. <a href='#' style='color:#ffffff;' id='hide3' class='hide'>Hide</a><a href='#' style='color:#ffffff;' id='show3' class='show'>Show</a></div>";
-        html += "<div class='projectGroupRow' id='pg2'>There will be some changes to the way that an employee does their work. <a href='#' style='color:#000000;' id='hide2' class='hide'>Hide</a><a href='#' style='color:#000000;' id='show2' class='show'>Show</a></div>";
-        html += "<div class='projectGroupRow' id='pg1'>There will be minimal changes to the way that an employee does their work. <a href='#' style='color:#ffffff;' id='hide1' class='hide'>Hide</a><a href='#' style='color:#ffffff;' id='show1' class='show'>Show</a></div>";
-        html += "<div class='projectGroupRow' id='pg0'>There will be no changes to the way that an employee does their work. <a href='#' style='color:#ffffff;' id='hide0' class='hide'>Hide</a><a href='#' style='color:#ffffff;' id='show0' class='show'>Show</a></div>";
+        html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show3' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg2'>" + timeLine.utility.translate("medImDesc") + " <a href='#' style='color:#000000;' id='hide2' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#000000;' id='show2' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg1'>" + timeLine.utility.translate("lowImDesc") + " <a href='#' style='color:#ffffff;' id='hide1' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
-            timeLine.countTimeLine = timeLine.countTimeLine + 1;
-            html += "<div class='projectRow' id='p" + timeLine.initiatives[key].ID + "'>" + eval("timeLine.initiatives[key].Name".concat(lang.toUpperCase())) + "</div>";
+            timeLine.countTimeLine = timeLine.countTimeLine + 1;			
+            html += "<div class='projectRow' id='p" + timeLine.initiatives[key].ID + "'><a href='#' onClick='timeLine.dialogCustom(\"" + eval("timeLine.initiatives[key].Description".concat(lang.toUpperCase())) + "\")'>" + eval("timeLine.initiatives[key].Name".concat(lang.toUpperCase())) + "</a></div>";
             //html += "<img src='img/white.gif' class='projectRowBackground' />";
         });
         html += "</div>";
@@ -216,101 +236,102 @@ timeLine = {
     timeLineContainer: function () {
         var html = '';
         var barStartDate = '';
-        var mergeDates = [];
+		var mergeDates = [];
         html += "<div id='timeLineContainer'>";
         html += "<div class='timeLineGroupRow' id='tg3' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         html += "<div class='timeLineGroupRow' id='tg2' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         html += "<div class='timeLineGroupRow' id='tg1' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         html += "<div class='timeLineGroupRow' id='tg0' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         $(timeLine.initiatives).each(function (key, value) {
-            mergeDates = [];
+			mergeDates = [];
             barStartDate = value.StartDate;
             html += "<div class='timeLineRow' id = 't" + value.ID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
             html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(barStartDate) + "px; width:" + timeLine.getRight(barStartDate, value.EndDate) + "px;'>"
-            $.each(value.Events, function (key, value) {
-                if (/*$.inArray(1, value.Branches) >= 0 && $.inArray(1, value.Regions) >= 0 && */value.Show) {
-                    mergeDates.push(value.Date);
-                };
+			$.each(value.Events, function (key, value) {
+				if(value.Show){
+					mergeDates.push(value.Date);
+				};
             });
             mergeDates = jQuery.unique(mergeDates);
-            $.each(mergeDates, function (index, dates) {
-                var image = '';
+            $.each(mergeDates, function(index, dates) {
+				var image = '';
                 var mergedDate = '';
                 var id = [];
-                $.each(value.Events, function (key, value) {
-                    if (value.Show && dates == value.Date) {
-                        if (value.Type == 'Milestone') {
-                            image = 'circle.png'
-                        } else if (value.Type == 'Training') {
-                            image = 'book.png'
-                        };
-                        mergedDate = dates;
-                        id.push(value.ID);
-                    }
-                });
-                idString = toString(id);
-                html += "<img id='icon" + id[0] + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(mergedDate, barStartDate) + "px; position:absolute;' />";
-            });
-            html += "</div></div>";
-        });
-        html += "</div>";
-        return html;
+				$.each(value.Events, function (key, value) {
+                if (value.Show && dates == value.Date){
+					if (value.Type == 'Milestone') {
+						image = 'circle.png'
+					} else if (value.Type == 'Training') {
+						image = 'book.png'
+					};
+					mergedDate = dates;
+					id.push(value.ID);
+				}
+				});
+				idString = toString(id);
+				html += "<img id='icon" + id[0] + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(mergedDate, barStartDate) + "px; position:absolute;' />";
+			});
+			html += "</div></div>";
+		});
+		html += "</div>";
+		return html;
     },
-    hover: function (x) {
-        var hover = '';
-        var check = '';
-        var firstRun = 0;
-        $.each(x, function (index, value) {
-            check = value;
-            $(timeLine.initiatives).each(function (key, value) {
-                $.each(value.Events, function (key, value) {
-                    if (check == value.ID) {
-                        if (firstRun == 0) {
-                            firstRun = 1;
-                        } else {
-                            hover = hover + " - ";
-                        };
-                        hover = hover + value.HoverE;
-                    };
-                });
-            });
-        });
-        hover = hover.replace("'", "&#39;");
-        hover = hover.replace("\"", "&#34;");
-        return hover;
-    },
+	hover: function(x){
+		var hover = '';
+		var check = '';
+		var firstRun = 0;
+		$.each(x, function(index,value) {
+			check = value;
+			$(timeLine.initiatives).each(function (key, value) {
+				$.each(value.Events, function (key, value) {
+					if (check == value.ID) {
+						if (firstRun == 0){
+							firstRun = 1;
+						} else {
+							hover = hover + " - ";
+						};
+						hover = hover + eval("value.Hover".concat(lang.toUpperCase()));
+					};
+				});
+			});
+		});
+		hover = hover.replace("'", "&#39;");
+		hover = hover.replace("\"", "&#34;");
+		return hover;
+	},
     dialog: function (x) {
-        if (x.length > 0) {
-            x = x.split(",");
-        };
-        var text = '';
-        var title = '';
-        var check = '';
-        var firstRun = 0;
-        $.each(x, function (index, value) {
-            check = value;
-            $(timeLine.initiatives).each(function (key, value) {
-                $.each(value.Events, function (key, value) {
-                    if (check == value.ID) {
-                        if (firstRun == 0) {
-                            firstRun = 1;
-                        } else {
-                            text = text + "<hr />";
-                            title = title + " - ";
-                        };
-                        text = text + value.TextE;
-                        title = title + value.HoverE;
-                    };
-                });
-            });
-        });
-        $("#dialog").dialog("open");
-        $("#dialog").html(text);
-        $("#ui-id-1").html(title);
+		if (x.length > 0) {
+			x = x.split(",");
+		};
+		var text = '';
+		var title = '';
+		var check = '';
+		var firstRun = 0;
+		$.each(x, function(index,value) {
+			check = value;
+			$(timeLine.initiatives).each(function (key, value) {
+				$.each(value.Events, function (key, value) {
+					if (check == value.ID) {
+						if (firstRun == 0){
+							firstRun = 1;
+						} else {
+							text = text + "<hr />";
+							title = title + " - ";
+						};
+						text = text + eval("value.Text".concat(lang.toUpperCase()));
+						title = title + eval("value.Hover".concat(lang.toUpperCase()));
+					};
+				});
+			});
+		});
+		$("#dialog").dialog("open");
+		$("#dialog").html(text);
+		$("#ui-id-1").html(title);
     },
-    dialogCustom: function (x) {
+	dialogCustom: function (x) {
         $("#dialog").dialog("open");
         $("#dialog").html(x);
+		$("#ui-id-1").html("&nbsp;");
     },
     getLeft: function (date) {
         var date = date.split("/");
@@ -372,181 +393,198 @@ timeLine = {
                 var currentLevel2 = 0;
                 var currentLevel3 = 0;
                 var rowsHidden = 0;
-                $("#pg0").css("display", "none");
+				$("#pg0").css("display", "none");
                 $("#tg0").css("display", "none");
-                $("#pg1").css("display", "none");
+				$("#pg1").css("display", "none");
                 $("#tg1").css("display", "none");
-                $("#pg2").css("display", "none");
+				$("#pg2").css("display", "none");
                 $("#tg2").css("display", "none");
-                $("#pg3").css("display", "none");
+				$("#pg3").css("display", "none");
                 $("#tg3").css("display", "none");
-                if (rSelected != "" && bSelected != "") {
-                    if (timeLine.runOnce == 0) {
-                        timeLine.dialogCustom(timeLine.utility.translate("splash"));
-                        timeLine.runOnce = 1;
-                    };
-                    $.each(timeLine.initiatives, function (key, value) {
-                        var id = timeLine.initiatives[key].ID;
-                        currentLevel0 = 1;
-                        $.each(value.Impacts, function (key, value) {
-                            currentLevel = value.Level;
-                            regions = value.Regions;
-                            branches = value.Branches;
-                            if ($.inArray(parseInt(bSelected), branches) >= 0 && $.inArray(parseInt(rSelected), regions) >= 0) {
-                                currentLevel0 = 0;
-                                if (currentLevel == 1) {
-                                    if (timeLine.hide1 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel1 = 1;
-                                    $("#p" + id).css("background-color", "#f0caeb");
-                                    $("#t" + id).css("background-color", "#f0caeb");
-                                };
-                                if (currentLevel == 2) {
-                                    if (timeLine.hide2 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel2 = 1;
-                                    $("#p" + id).css("background-color", "#ebf2b1");
-                                    $("#t" + id).css("background-color", "#ebf2b1");
-                                };
-                                if (currentLevel == 3) {
-                                    if (timeLine.hide3 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel3 = 1;
-                                    $("#p" + id).css("background-color", "#abdbcf");
-                                    $("#t" + id).css("background-color", "#abdbcf");
-                                };
-                                $("#pg" + currentLevel).css("display", "inline");
-                                $("#tg" + currentLevel).css("display", "inline");
-                                $("#p" + id).insertAfter("#pg" + currentLevel);
-                                $("#t" + id).insertAfter("#tg" + currentLevel);
-                            };
-                        });
-                        if (currentLevel0 == 1) {
-                            if (timeLine.hide0 == 1) {
-                                $("#hide0").css("display", "none");
-                                $("#show0").css("display", "inline");
-                                $("#p" + id).css("display", "none");
-                                $("#t" + id).css("display", "none");
-                                rowsHidden = rowsHidden + 1;
-                            } else {
-                                $("#hide0").css("display", "inline");
-                                $("#show0").css("display", "none");
-                                $("#p" + id).css("display", "inline");
-                                $("#t" + id).css("display", "inline");
-                            };
-                            setLevel0 = 1;
-                            $("#pg0").css("display", "inline");
-                            $("#tg0").css("display", "inline");
-                            $("#p" + id).insertAfter("#pg0");
-                            $("#t" + id).insertAfter("#tg0");
-                            $("#p" + id).css("background-color", "#dbdbdb");
-                            $("#t" + id).css("background-color", "#dbdbdb");
-                            $(".timeLineBar").css("background-color", "#ffffff");
-                        }
-                    });
-                } else {
-                    timeLine.reset();
-                };
-                timeLine.toggleIcons();
-                var top = timeLine.heightQuarter + timeLine.heightMonth;
-                var levelSum = setLevel0 + setLevel1 + setLevel2 + setLevel3;
-                $("#today").css("height", (timeLine.countTimeLine - rowsHidden) * timeLine.timeLineHeight + (timeLine.heightGroup * levelSum));
-                $("#dragContainer").css("margin-top", (((timeLine.countTimeLine - rowsHidden) * timeLine.timeLineHeight) + top) * -1 - (timeLine.heightGroup * levelSum));
+					if(rSelected != "" && bSelected != "" ){
+					if(timeLine.runOnce == 0){
+						timeLine.dialogCustom(timeLine.utility.translate("splash"));
+						timeLine.runOnce = 1;
+					};
+					$.each(timeLine.initiatives, function (key, value) {
+						var id = timeLine.initiatives[key].ID;
+						currentLevel0 = 1;
+						$.each(value.Impacts, function (key, value) {
+							currentLevel = value.Level;
+							regions = value.Regions;
+							branches = value.Branches;
+							if ($.inArray(parseInt(bSelected), branches) > -1 && $.inArray(parseInt(rSelected), regions) > -1) {
+								currentLevel0 = 0;
+								if(currentLevel == 0){
+									if(timeLine.hide0 == 1){
+										$("#hide" + currentLevel).css("display", "none");
+										$("#show" + currentLevel).css("display", "inline");
+										$("#p" + id).css("display", "none");
+										$("#t" + id).css("display","none");
+										rowsHidden = rowsHidden + 1;
+									} else {
+										$("#hide" + currentLevel).css("display", "inline");
+										$("#show" + currentLevel).css("display", "none");
+										$("#p" + id).css("display", "inline");
+										$("#t" + id).css("display","inline");
+									};
+									setLevel0 = 1;
+									$("#p" + id).css("background-color", "#dbdbdb");
+									$("#t" + id).css("background-color","#dbdbdb");
+								};
+								if(currentLevel == 1){
+									if(timeLine.hide1 == 1){
+										$("#hide" + currentLevel).css("display", "none");
+										$("#show" + currentLevel).css("display", "inline");
+										$("#p" + id).css("display", "none");
+										$("#t" + id).css("display","none");
+										rowsHidden = rowsHidden + 1;
+									} else {
+										$("#hide" + currentLevel).css("display", "inline");
+										$("#show" + currentLevel).css("display", "none");
+										$("#p" + id).css("display", "inline");
+										$("#t" + id).css("display","inline");
+									};
+									setLevel1 = 1;
+									$("#p" + id).css("background-color", "#f0caeb");
+									$("#t" + id).css("background-color","#f0caeb");
+								};
+								if(currentLevel == 2){
+									if(timeLine.hide2 == 1){
+										$("#hide" + currentLevel).css("display", "none");
+										$("#show" + currentLevel).css("display", "inline");
+										$("#p" + id).css("display", "none");
+										$("#t" + id).css("display","none");
+										rowsHidden = rowsHidden + 1;
+									} else {
+										$("#hide" + currentLevel).css("display", "inline");
+										$("#show" + currentLevel).css("display", "none");
+										$("#p" + id).css("display", "inline");
+										$("#t" + id).css("display","inline");
+									};
+									setLevel2 = 1;
+									$("#p" + id).css("background-color", "#ebf2b1");
+									$("#t" + id).css("background-color","#ebf2b1");
+								};
+								if(currentLevel == 3){
+									if(timeLine.hide3 == 1){
+										$("#hide" + currentLevel).css("display", "none");
+										$("#show" + currentLevel).css("display", "inline");
+										$("#p" + id).css("display", "none");
+										$("#t" + id).css("display","none");
+										rowsHidden = rowsHidden + 1;
+									} else {
+										$("#hide" + currentLevel).css("display", "inline");
+										$("#show" + currentLevel).css("display", "none");
+										$("#p" + id).css("display", "inline");
+										$("#t" + id).css("display","inline");
+									};
+									setLevel3 = 1;
+									$("#p" + id).css("background-color", "#abdbcf");
+									$("#t" + id).css("background-color","#abdbcf");
+								};
+								$("#pg" + currentLevel).css("display", "inline");
+								$("#tg" + currentLevel).css("display", "inline");
+								$("#p" + id).insertAfter("#pg" + currentLevel);
+								$("#t" + id).insertAfter("#tg" + currentLevel);
+							};
+						});
+					if(currentLevel0 == 1){
+						if(timeLine.hide0 == 1){
+							$("#hide0").css("display", "none");
+							$("#show0").css("display", "inline");
+							$("#p" + id).css("display", "none");
+							$("#t" + id).css("display","none");
+							rowsHidden = rowsHidden + 1;
+						} else {
+							$("#hide0").css("display", "inline");
+							$("#show0").css("display", "none");
+							$("#p" + id).css("display", "inline");
+							$("#t" + id).css("display","inline");
+						};
+						setLevel0 = 1;
+						$("#pg0").css("display", "inline");
+						$("#tg0").css("display", "inline");
+						$("#p" + id).insertAfter("#pg0");
+						$("#t" + id).insertAfter("#tg0");
+						$("#p" + id).css("background-color", "#dbdbdb");
+						$("#t" + id).css("background-color","#dbdbdb");
+						$(".timeLineBar").css("background-color","#ffffff");
+					}
+					});
+				} else {
+					timeLine.reset();
+				};
+			timeLine.toggleIcons();
+			var top = timeLine.heightQuarter + timeLine.heightMonth;
+			var levelSum = setLevel0 + setLevel1 + setLevel2 + setLevel3;
+			$("#today").css("height", (timeLine.countTimeLine - rowsHidden) * timeLine.timeLineHeight + (timeLine.heightGroup * levelSum));
+			$("#dragContainer").css("margin-top", (((timeLine.countTimeLine - rowsHidden) * timeLine.timeLineHeight) + top) * -1 - (timeLine.heightGroup * levelSum));
             }
         });
     },
-    reset: function () {
-        $(".projectRow").css("display", "inline");
-        $(".timeLineRow").css("display", "inline");
-        $(".timeLineBar").css("background-color", "#eeeeee");
-        $(".projectRow").css("background-color", "#ffffff");
-        $(".timeLineRow").css("background-color", "#ffffff");
-        var top = timeLine.heightQuarter + timeLine.heightMonth;
-        $("#today").css("height", timeLine.countTimeLine * timeLine.timeLineHeight);
-        $("#dragContainer").css("margin-top", ((timeLine.countTimeLine * timeLine.timeLineHeight) + top) * -1);
-        timeLine.hide0 = 0;
-        timeLine.hide1 = 0;
-        timeLine.hide2 = 0;
-        timeLine.hide3 = 0;
-    },
-    footer: function () {
-        var html = '';
-        html += "<div id='timeLineFooter'><a href='' id='clearResults'>Clear Results</a></div>"
-        return html;
-    },
-    clearResults: function () {
-        $("#areaSelect").val('');
-        $("#branchSelect").val('');
-        timeLine.filter();
-    },
-    toggleIcons: function (x, y) {
-        var rSelected = $('#areaSelect').val();
+	reset: function () {
+		$(".projectRow").css("display", "inline");
+		$(".timeLineRow").css("display","inline");
+		$(".timeLineBar").css("background-color","#eeeeee");
+		$(".projectRow").css("background-color", "#ffffff");
+		$(".timeLineRow").css("background-color","#ffffff");
+		var top = timeLine.heightQuarter + timeLine.heightMonth;
+		$("#today").css("height", timeLine.countTimeLine * timeLine.timeLineHeight);
+		$("#dragContainer").css("margin-top", ((timeLine.countTimeLine * timeLine.timeLineHeight) + top) * -1);
+		timeLine.hide0 = 0;
+		timeLine.hide1 = 0;
+		timeLine.hide2 = 0;
+		timeLine.hide3 = 0;
+	},
+	footer: function () {
+		 var html = '';
+		 html += "<div id='timeLineFooter'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
+		 return html;
+	},
+	clearResults: function () {
+		$("#areaSelect").val('');
+		$("#branchSelect").val('');
+		timeLine.filter();
+	},
+	toggleIcons: function (x,y){
+		var rSelected = $('#areaSelect').val();
         var bSelected = $('#branchSelect').val();
-        var mergeDates = [];
+		var mergeDates = [];
         $(timeLine.initiatives).each(function (key, value) {
-            mergeDates = [];
+			mergeDates = [];
             $.each(value.Events, function (key, value) {
-                if (value.Show) {
-                    mergeDates.push(value.Date);
-                };
+				if(value.Show){
+					mergeDates.push(value.Date);
+				};
             });
             mergeDates = jQuery.unique(mergeDates);
-            $.each(mergeDates, function (index, dates) {
+            $.each(mergeDates, function(index, dates) {
                 var mergedDate = '';
                 var id = [];
-                $.each(value.Events, function (key, value) {
-                    if (value.Show && dates == value.Date) {
-                        mergedDate = dates;
-                        id.push(value.ID);
-                        var b = parseInt($('#branchSelect').val());
-                        var r = parseInt($('#areaSelect').val());
-                        if (isNaN(b)) {
-                            var b = 1;
-                        };
-                        if (isNaN(r)) {
-                            var r = 1;
-                        };
-                        if ($.inArray(b, value.Branches) > -1 && $.inArray(r, value.Regions) > -1) {
-                            $("#icon" + id[0]).css("display", "inline");
-                        } else {
-                            $("#icon" + id[0]).css("display", "none");
-                        };
-                    }
-                });
-            });
+				$.each(value.Events, function (key, value) {
+					if (value.Show && dates == value.Date){
+						mergedDate = dates;
+						id.push(value.ID);
+						var b = parseInt($('#branchSelect').val());
+						var r = parseInt($('#areaSelect').val());
+						if(isNaN(b)){
+							var b = 1;
+						};
+						if(isNaN(r)){
+							var r = 1;
+						};
+						if($.inArray(b, value.Branches) > -1 && $.inArray(r, value.Regions) > -1){
+							$("#icon"+id[0]).css("display", "inline");
+						} else {
+							$("#icon"+id[0]).css("display", "none");
+						};
+					}
+				});
+			});
         });
-    },
-    css: function () {
+	},
+	 css: function () {
         var top = timeLine.heightQuarter + timeLine.heightMonth;
         $(".projectRow").css("height", timeLine.timeLineHeight - 1 - 10);
         $(".projectRowBackground").css("height", timeLine.timeLineHeight);
@@ -566,16 +604,16 @@ $(document).ready(function () {
     $('body').on("click", "#rightButton", timeLine.goRight);
     $('body').on("change", "#areaSelect", timeLine.areaSelect);
     $('body').on("change", "#branchSelect", timeLine.branchSelect);
-    $('body').on("click", "#hide0", function () { timeLine.hide0 = 1; timeLine.filter() });
-    $('body').on("click", "#hide1", function () { timeLine.hide1 = 1; timeLine.filter() });
-    $('body').on("click", "#hide2", function () { timeLine.hide2 = 1; timeLine.filter() });
-    $('body').on("click", "#hide3", function () { timeLine.hide3 = 1; timeLine.filter() });
-    $('body').on("click", "#show0", function () { timeLine.hide0 = 0; timeLine.filter() });
-    $('body').on("click", "#show1", function () { timeLine.hide1 = 0; timeLine.filter() });
-    $('body').on("click", "#show2", function () { timeLine.hide2 = 0; timeLine.filter() });
-    $('body').on("click", "#show3", function () { timeLine.hide3 = 0; timeLine.filter() });
-    $('body').on("click", "#clearResults", timeLine.clearResults);
-    $("#dialog").dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
+	$('body').on("click", "#hide0", function(){timeLine.hide0 = 1; timeLine.filter()});
+	$('body').on("click", "#hide1", function(){timeLine.hide1 = 1; timeLine.filter()});
+	$('body').on("click", "#hide2", function(){timeLine.hide2 = 1; timeLine.filter()});
+	$('body').on("click", "#hide3", function(){timeLine.hide3 = 1; timeLine.filter()});
+	$('body').on("click", "#show0", function(){timeLine.hide0 = 0; timeLine.filter()});
+	$('body').on("click", "#show1", function(){timeLine.hide1 = 0; timeLine.filter()});
+	$('body').on("click", "#show2", function(){timeLine.hide2 = 0; timeLine.filter()});
+	$('body').on("click", "#show3", function(){timeLine.hide3 = 0; timeLine.filter()});
+	$('body').on("click", "#clearResults", timeLine.clearResults);
+    $("#dialog").dialog({ autoOpen: false,width: "50%", maxWidth: "768px" });
     $(document).tooltip({ items: ':not(.ui-button)' });
 });
 
