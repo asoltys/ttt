@@ -324,6 +324,12 @@ timeLine = {
 				});
 			});
 		});
+        // Since the text is hard-coded string object, in order to add in more
+        // falsy values in the future, check against the falsyValues array
+		var falsyValues = ["null"];
+		for (var i = 0; i < falsyValues.length; i++) {
+		    if (text === falsyValues[i]) return;
+		}
 		$("#dialog").dialog("open");
 		$("#dialog").html(text);
 		$("#ui-id-1").html(title);
