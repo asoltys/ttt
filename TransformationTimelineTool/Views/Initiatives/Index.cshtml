@@ -14,9 +14,11 @@
 
 @if (ViewBag.isAdmin)
 {
-    <p>
-        @Html.ActionLink(Resources.Create, "Create")
-    </p>
+    <span class="create-new">
+        <a class="no-link-style" href='@Url.Action("Create", "Initiatives")'>
+            <i title="Create" class="fa fa-plus fa-2x"></i>
+        </a>
+    </span>
 }
 <table class="table">
     <tr>
@@ -67,3 +69,11 @@
     }
 
 </table>
+@if (ViewBag.isAdmin)
+{
+    <span class="create-new">
+        <a class="no-link-style" href='@Url.Action("Create", "Initiatives")'>
+            <i title="Create" class="fa fa-plus fa-2x"></i>
+        </a>
+    </span>
+}

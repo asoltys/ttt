@@ -100,7 +100,7 @@
         // Set Type & Status column to be searchable
         $("#eventTable img").each(function () {
             var mapper = {
-                "circle.png": ["milestone", 0],
+                "circle.png": ["milestone" , 0],
                 "book.png": ["training", 1]
             }
             for (key in mapper) {
@@ -130,6 +130,7 @@
             "aaSorting": [],
             "columnDefs": [
                 { "orderable": false, "targets": [3, 4, 5, 7] }
+                //{ "visible": false, "targets": [4, 5] }
             ],
             "dom": '<"create-new">frtl<"absolute-center" p><"create-new">',
             "language": {
