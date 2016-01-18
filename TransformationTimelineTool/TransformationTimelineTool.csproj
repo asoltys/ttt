@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201601150023027_UserApprover.Designer.cs">
       <DependentUpon>201601150023027_UserApprover.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601182051098_EventCreator.cs" />
+    <Compile Include="Migrations\201601182051098_EventCreator.Designer.cs">
+      <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Edit.cs" />
@@ -267,6 +271,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BranchesData.cs" />
+    <Compile Include="ViewModels\EventData.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\EventJSON.cs" />
     <Compile Include="ViewModels\InitiativeViewModel.cs" />
@@ -703,6 +708,25 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom.css" />
+    <Content Include="Content\font-awesome-4.5.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.5.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\old_ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\old_ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\master.css" />
     <Content Include="Content\print.css" />
@@ -728,6 +752,37 @@
     <Content Include="boew-wet\.travis.yml" />
     <Content Include="boew-wet\CONTRIBUTING.md" />
     <Content Include="boew-wet\README.md" />
+    <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome-4.5.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.5.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_animated.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.5.0\scss\_variables.scss" />
+    <Content Include="Content\font-awesome-4.5.0\less\animated.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -1286,7 +1341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\font-awesome-4.5.0\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -1371,6 +1425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601150023027_UserApprover.resx">
       <DependentUpon>201601150023027_UserApprover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601182051098_EventCreator.resx">
+      <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1458,7 +1515,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1803</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

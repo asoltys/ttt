@@ -22,6 +22,8 @@ namespace TransformationTimelineTool.Models
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
         public int InitiativeID { get; set; }
+        
+        public string CreatorID { get; set; }
 
         [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
         public Type Type { get; set; }
@@ -101,6 +103,7 @@ namespace TransformationTimelineTool.Models
         }
 
         public virtual Initiative Initiative { get; set; }
+        public virtual User Creator { get; set; }
         public virtual ICollection<Edit> Edits { get; set; }
         public virtual ICollection<Branch> Branches { get; set; }
         public virtual ICollection<Region> Regions { get; set; }
