@@ -39,9 +39,15 @@
             @Html.DisplayFor(modelItem => item.NameF)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <a class="no-link-style" href="@Url.Action("Edit", "Regions", new { id = item.ID })">
+                <i class="fa fa-pencil-square-o fa-2x"></i>
+            </a>
+            <a class="no-link-style" href="@Url.Action("Details", "Regions", new { id = item.ID })">
+                <i class="fa fa-folder-open fa-2x"></i>
+            </a>
+            <a class="no-link-style" href="@Url.Action("Delete", "Regions", new { id = item.ID })">
+                <i class="fa fa-times fa-2x"></i>
+            </a>
         </td>
     </tr>
 }

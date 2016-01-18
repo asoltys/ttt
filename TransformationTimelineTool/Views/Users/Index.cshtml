@@ -41,14 +41,21 @@
         <td>
             @if (ViewBag.isAdmin)
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @:|
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) @:|
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-
+                <a class="no-link-style" href="@Url.Action("Edit", "Users", new { id = item.Id })">
+                    <i class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
+                    <i class="fa fa-folder-open fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Delete", "Users", new { id = item.Id })">
+                    <i class="fa fa-times fa-2x"></i>
+                </a>
             }
             else
             {
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
+                    <i class="fa fa-folder-open fa-2x"></i>
+                </a>
             }
         </td>
     </tr>

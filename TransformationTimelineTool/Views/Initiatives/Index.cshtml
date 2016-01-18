@@ -46,13 +46,21 @@
             <td>
                 @if (ViewBag.isAdmin)
                 {
-                    @Html.ActionLink(Resources.Edit, "Edit", new { id = item.ID }) @:|
-                    @Html.ActionLink(Resources.Details, "Details", new { id = item.ID }) @:|
-                    @Html.ActionLink(Resources.Delete, "Delete", new { id = item.ID })
+                    <a class="no-link-style" href="@Url.Action("Edit", "Initiatives", new { id = item.ID })">
+                        <i class="fa fa-pencil-square-o fa-2x"></i>
+                    </a>
+                    <a class="no-link-style" href="@Url.Action("Details", "Initiatives", new { id = item.ID })">
+                        <i class="fa fa-folder-open fa-2x"></i>
+                    </a>
+                    <a class="no-link-style" href="@Url.Action("Delete", "Initiatives", new { id = item.ID })">
+                        <i class="fa fa-times fa-2x"></i>
+                    </a>
                 }
                 else
                 {
-                    @Html.ActionLink(Resources.Details, "Details", new { id = item.ID })
+                    <a class="no-link-style" href="@Url.Action("Details", "Initiatives", new { id = item.ID })">
+                        <i class="fa fa-folder-open fa-2x"></i>
+                    </a>
                 }
             </td>
         </tr>
