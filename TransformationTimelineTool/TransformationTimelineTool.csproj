@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201601150023027_UserApprover.Designer.cs">
       <DependentUpon>201601150023027_UserApprover.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601182017398_EventCreator.cs" />
+    <Compile Include="Migrations\201601182017398_EventCreator.Designer.cs">
+      <DependentUpon>201601182017398_EventCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Edit.cs" />
@@ -267,6 +271,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BranchesData.cs" />
+    <Compile Include="ViewModels\EventData.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\EventJSON.cs" />
     <Compile Include="ViewModels\InitiativeViewModel.cs" />
@@ -1420,6 +1425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601150023027_UserApprover.resx">
       <DependentUpon>201601150023027_UserApprover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601182017398_EventCreator.resx">
+      <DependentUpon>201601182017398_EventCreator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

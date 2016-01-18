@@ -82,6 +82,9 @@ namespace TransformationTimelineTool.Controllers
             {
                 try
                 {
+                    var currentUser = Utils.GetCurrentUser();
+
+                    eventToCreate.CreatorID = currentUser.Id;
                     eventToCreate.Branches = new List<Branch>();
                     eventToCreate.Regions = new List<Region>();
                     eventToCreate.Edits = new List<Edit>();
@@ -104,7 +107,6 @@ namespace TransformationTimelineTool.Controllers
                         }
                     }
 
-                    var currentUser = Utils.GetCurrentUser();
                     eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
                     eventViewModel.Edit.Date = DateTime.Now;
 
@@ -131,9 +133,7 @@ namespace TransformationTimelineTool.Controllers
 
             eventViewModel.Regions = new List<Region>();
             eventViewModel.Branches = new List<Branch>();
-
-            PopulateEventRegionsData(eventViewModel.Event);
-            PopulateEventBranchesData(eventViewModel.Event);
+            
             return View(eventViewModel);
         }
 
