@@ -10,6 +10,14 @@
     width: 90px;
 }
 
+#dataTableContainer table {
+    margin-bottom: 5px;
+}
+
+#dataTableContainer input {
+    margin-bottom: 0;
+}
+
 #dataTableContainer table th {
     background-color: #eee !important;
 }
@@ -28,6 +36,37 @@
 
 #dataTableContainer table .control-group {
     width: 90px !important;
+}
+
+#dataTableContainer .create-new {
+    float: right;
+    vertical-align: middle;
+    margin-right: 45px;
+    margin-top: 5px;
+}
+
+#dataTableContainer .paginate_button.current {
+    background-color: white;
+}
+
+.absolute-center {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.dataTables_filter {
+    float: left;
+    text-align: left;
+}
+
+.dataTables_info {
+    margin-top: 5px;
+}
+
+.dataTables_paginate {
+    float: left;
+    margin-top: 5px;
 }
 
 .sorting_disabled {

@@ -23,10 +23,6 @@
     </div>
 </div>
 
-<p>
-    @Html.ActionLink(Resources.Create, "Create")
-</p>
-
 <div id="dataTableContainer">
     <table class="table hover" id="eventTable">
         <thead>
@@ -83,13 +79,13 @@
                     </td>
                     <td>
                         <a class="no-link-style" href="@Url.Action("Edit", "Events", new { id = item.ID })">
-                            <i class="fa fa-pencil-square-o fa-2x"></i>
+                            <i title="Edit" class="fa fa-pencil-square-o fa-2x"></i>
                         </a>
                         <a class="no-link-style" href="@Url.Action("Details", "Events", new { id = item.ID })">
-                            <i class="fa fa-folder-open fa-2x"></i>
+                            <i title="Details" class="fa fa-folder-open fa-2x"></i>
                         </a>
                         <a class="no-link-style" href="@Url.Action("Delete", "Events", new { id = item.ID })">
-                            <i class="fa fa-times fa-2x"></i>
+                            <i title="Delete" class="fa fa-times fa-2x"></i>
                         </a>
                     </td>
                 </tr>
@@ -98,7 +94,7 @@
     </table>
 </div>
 
-<script>
+<script type="text/javascript">
     // DataTables plugin initialize and setup
     $(document).ready(function () {
         // Set Type & Status column to be searchable
@@ -127,15 +123,29 @@
                 }
             }
         });
-
         // Initialize the DataTable plugin
         var table = $("#eventTable").DataTable({
-            "paging": false,
+            "paging": true,
+            "pagingType": "full_numbers",
             "aaSorting": [],
             "columnDefs": [
                 { "orderable": false, "targets": [3, 4, 5, 7] }
-            ]
+            ],
+            "dom": '<"create-new">frtl<"absolute-center" p><"create-new">',
+            "language": {
+                "paginate": {
+                    "first": '<i class="fa fa-angle-double-left fa-lg" title="First">',
+                    "previous": '<i class="fa fa-angle-left fa-lg" title="Previous">',
+                    "next": '<i class="fa fa-angle-right fa-lg" title="Next">',
+                    "last": '<i class="fa fa-angle-double-right fa-lg" title="Last">'
+                }
+            }
         });
+
+        var createNewButton = "<a class='no-link-style' href='@Url.Action("Create", "Events")'>";
+        createNewButton += "<i title='Create' class = 'fa fa-plus fa-2x'></i></a>"
+        $("div.top-toolbar").html(createNewButton);
+        $("div.create-new").html(createNewButton);
 
         // Replace the word search with glyphicon
         var searchLabel = $("#eventTable_filter").children("label");
@@ -144,8 +154,8 @@
                 return this.nodeType === 3;
             }).remove();
             searchLabel.addClass("fa fa-search fa-lg");
+            searchLabel.attr("title", "Search");
             searchLabel.children("input").css("margin-left", 5);
         }
-        
     });
 </script>
