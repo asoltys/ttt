@@ -133,6 +133,7 @@
             ],
             "dom": '<"create-new">frtl<"absolute-center" p><"create-new">',
             "language": {
+                "search": '<i class="fa fa-search fa-lg" title="Search">&nbsp;',
                 "paginate": {
                     "first": '<i class="fa fa-angle-double-left fa-lg" title="First">',
                     "previous": '<i class="fa fa-angle-left fa-lg" title="Previous">',
@@ -146,16 +147,5 @@
         createNewButton += "<i title='Create' class = 'fa fa-plus fa-2x'></i></a>"
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
-
-        // Replace the word search with glyphicon
-        var searchLabel = $("#eventTable_filter").children("label");
-        if (!searchLabel.hasClass("glyphicon")) {
-            searchLabel.contents().filter(function () {
-                return this.nodeType === 3;
-            }).remove();
-            searchLabel.addClass("fa fa-search fa-lg");
-            searchLabel.attr("title", "Search");
-            searchLabel.children("input").css("margin-left", 5);
-        }
     });
 </script>
