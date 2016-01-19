@@ -207,14 +207,8 @@ namespace TransformationTimelineTool.Controllers
                         eventToUpdate.PublishedEdit.Published = false;
                         edit.Published = true;
                     }
-                    else if (eventToUpdate.Status == Status.Pending)
-                    {
-                        using (var smtp = new SmtpClient())
-                        {
-                            smtp.Send(PrepareMessage(eventToUpdate));
-                        }
-                    }
 
+                    SendMail(eventToUpdate);
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -228,6 +222,49 @@ namespace TransformationTimelineTool.Controllers
 
             PopulateEventRegionsData(eventToUpdate);
             return View(eventToUpdate);
+        }
+
+        public bool SendMail(Event @event)
+        {
+            var Creator = db.Users.Find(@event.CreatorID);
+            var SendTo = "";
+            var MailSubject = "";
+            var MailBody = "";
+            var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
+            var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
+            var CopyList = new List<string>();
+            if (@event.Status == Status.Approved)
+            {
+                SendTo = Creator.Email;
+                MailSubject = Resources.Resources.ApprovedMailSubject;
+                MailBody = Resources.Resources.ApprovedMailBody;
+                // Resources {0}:server domain, {1}:eventID, {2}: Admin Email
+                MailBody = String.Format(MailBody, ServerDomain, @event.ID, AdminEmail);
+                if (Creator.Approver != null)
+                    CopyList.Add(Creator.Approver.Email);
+            }
+            else if (@event.Status == Status.Pending)
+            {
+                if (Creator.Approver != null)
+                {
+                    SendTo = Creator.Approver.Email;
+                }
+                else
+                {
+                    // Send to an admin if no approver exists
+                    SendTo = AdminEmail;
+                }
+                MailSubject = Resources.Resources.PendingMailSubject;
+                MailBody = Resources.Resources.PendingMailBody;
+                MailBody = String.Format(MailBody, ServerDomain, @event.ID, AdminEmail);
+                CopyList.Add(Creator.Email);
+            } else if (@event.Status == Status.Draft)
+            {
+                return true;
+            }
+            CopyList.Add(AdminEmail);
+            if (!Utils.SendMail(Creator.Email, MailSubject, MailBody, CopyList)) return false;
+            return true;
         }
 
         public ActionResult Data(string branch, string region)

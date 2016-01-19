@@ -88,6 +88,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;Your &lt;a href=&apos;{0}/en/events/edit/{1}&apos;&gt;item&lt;/a&gt; has been approved in the National Transformation Timeline Tool.&lt;br/&gt;If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;The National Transformation Timeline Tool can be found &lt;a href=&quot;http://transformation.intranet.pwgsgc-tpsgc.gc.ca&quot;&gt;here&lt;/a&gt;.
+        /// </summary>
+        public static string ApprovedMailBody {
+            get {
+                return ResourceManager.GetString("ApprovedMailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your item has been approved.
+        /// </summary>
+        public static string ApprovedMailSubject {
+            get {
+                return ResourceManager.GetString("ApprovedMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Atlanta.
         /// </summary>
         public static string Atlanta {
@@ -381,6 +399,24 @@ namespace Resources {
         public static string Pacific {
             get {
                 return ResourceManager.GetString("Pacific", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is an automated message. &lt;br/&gt;An &lt;a href=&apos;{0}/en/events/edit/{1}&apos;&gt;item&lt;/a&gt; in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;. The National Transformation Timeline Tool can be found &lt;a href=&apos;http://transformation.intranet.pwgsgc-tpsgc.gc.ca&apos;&gt;here&lt;/a&gt;.
+        /// </summary>
+        public static string PendingMailBody {
+            get {
+                return ResourceManager.GetString("PendingMailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New items ready for approval.
+        /// </summary>
+        public static string PendingMailSubject {
+            get {
+                return ResourceManager.GetString("PendingMailSubject", resourceCulture);
             }
         }
         

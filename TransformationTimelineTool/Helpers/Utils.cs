@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
@@ -110,6 +111,55 @@ namespace TransformationTimelineTool.Helpers
             //jsonData["Verified"] = true;
             return username;
 
+        }
+
+        public static string GetNameFromEmail(string email)
+        {
+            DirectoryEntry root = new DirectoryEntry(
+               "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+               "pacweb",
+               "god!power");
+
+            DirectorySearcher searcher = new DirectorySearcher(
+                root,
+                "(mail=" + email + ")");
+
+            string name = "";
+            SearchResult person;
+            try
+            {
+                person = searcher.FindOne();
+                name = person.Properties["givenName"][0].ToString() + 
+                    person.Properties["sn"][0].ToString();
+            }
+            catch
+            {
+                name = "";
+            }
+            return name;
+        }
+
+        public static bool SendMail(String Recipient, String Subject, String Message, List<String> CC = null)
+        {
+            CC = CC ?? new List<String>();
+            MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
+            MailAddress RecipientAddress = new MailAddress(Recipient, GetNameFromEmail(Recipient));
+            MailMessage Mail = new MailMessage(FromAddress, RecipientAddress);
+            Mail.Subject = Subject;
+            Mail.IsBodyHtml = true;
+            Mail.Body = Message;
+            if (CC.Count() > 0)
+                CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress, GetNameFromEmail(CopyAddress))));
+            SmtpClient client = new SmtpClient();
+            try
+            {
+                client.Send(Mail);
+                return true;
+            } catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                return false;
+            }
         }
     }
 }
