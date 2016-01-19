@@ -712,6 +712,7 @@
     <Content Include="Content\font-awesome-4.5.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.5.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\form.css" />
     <Content Include="Content\images\old_ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\images\old_ui-icons_ef8c08_256x240.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />

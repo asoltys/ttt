@@ -1,0 +1,6 @@
+﻿.text-danger * {
+    padding: 4px;
+    color: red;
+    border: 1px solid;
+    border-radius: 3px;
+}
