@@ -161,5 +161,10 @@ namespace TransformationTimelineTool.Helpers
                 return false;
             }
         }
+
+        public static void log(String Message)
+        {
+            System.Diagnostics.Debug.WriteLineIf(Message.Length > 0, Message);
+        }
     }
 }

@@ -88,7 +88,14 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;Your &lt;a href=&apos;{0}/en/events/edit/{1}&apos;&gt;item&lt;/a&gt; has been approved in the National Transformation Timeline Tool.&lt;br/&gt;If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;The National Transformation Timeline Tool can be found &lt;a href=&quot;http://transformation.intranet.pwgsgc-tpsgc.gc.ca&quot;&gt;here&lt;/a&gt;.
+        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
+        ///Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
+        ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
+        ///If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
+        ///&lt;hr&gt;&lt;br/&gt;
+        ///Ceci c’est un message automatique.&lt;br/&gt;
+        ///Votre poste était approuvé  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ApprovedMailBody {
             get {
@@ -403,7 +410,14 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is an automated message. &lt;br/&gt;An &lt;a href=&apos;{0}/en/events/edit/{1}&apos;&gt;item&lt;/a&gt; in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;. The National Transformation Timeline Tool can be found &lt;a href=&apos;http://transformation.intranet.pwgsgc-tpsgc.gc.ca&apos;&gt;here&lt;/a&gt;.
+        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
+        ///An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
+        ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
+        ///If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
+        ///&lt;hr&gt;&lt;br/&gt;
+        ///Ceci c’est un message automatique.&lt;br/&gt;
+        ///Votre approbation est re [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PendingMailBody {
             get {

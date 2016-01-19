@@ -262,13 +262,41 @@
     <value>Description</value>
   </data>
   <data name="ApprovedMailBody" xml:space="preserve">
-    <value>This is an automated message.&lt;br/&gt;Your &lt;a href='{0}/en/events/edit/{1}'&gt;item&lt;/a&gt; has been approved in the National Transformation Timeline Tool.&lt;br/&gt;If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;The National Transformation Timeline Tool can be found &lt;a href="http://transformation.intranet.pwgsgc-tpsgc.gc.ca"&gt;here&lt;/a&gt;</value>
+    <value>This is an automated message.&lt;br/&gt;
+Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
+To access the system please use &lt;a href='{0}/en/events/details/{1}'&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{3}'&gt;here&lt;/a&gt;.&lt;br/&gt;
+&lt;hr&gt;&lt;br/&gt;
+Ceci c’est un message automatique.&lt;br/&gt;
+Votre poste était approuvé dans le Calendrier national des transformations.&lt;br/&gt;
+Veuillez utiliser &lt;a href='{0}/fr/events/details/{1}'&gt;{0}/fr/events/details/{1}&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter l’administration &lt;mailto:{2}&gt;.&lt;br/&gt;
+Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;/a&gt;.</value>
+    <comment>{0} -&gt; Server name
+{1} -&gt; Event ID
+{2} -&gt; Admin email
+{3} -&gt; Timeline Tool URL</comment>
   </data>
   <data name="ApprovedMailSubject" xml:space="preserve">
     <value>Your item has been approved</value>
   </data>
   <data name="PendingMailBody" xml:space="preserve">
-    <value>This is an automated message. &lt;br/&gt;An &lt;a href='{0}/en/events/edit/{1}'&gt;item&lt;/a&gt; in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;. The National Transformation Timeline Tool can be found &lt;a href='http://transformation.intranet.pwgsgc-tpsgc.gc.ca'&gt;here&lt;/a&gt;</value>
+    <value>This is an automated message.&lt;br/&gt;
+An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
+To access the system please use &lt;a href='{0}/en/events/details/{1}'&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{3}'&gt;here&lt;/a&gt;.&lt;br/&gt;
+&lt;hr&gt;&lt;br/&gt;
+Ceci c’est un message automatique.&lt;br/&gt;
+Votre approbation est requise pour une poste dans le Calendrier national des transformations.&lt;br/&gt;
+Veuillez utiliser &lt;a href='{0}/fr/events/details/{1}'&gt;{0}/fr/events/details/{1}&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter l’administration &lt;mailto:{2}&gt;.&lt;br/&gt;
+Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;/a&gt;.</value>
+    <comment>{0} -&gt; Server name
+{1} -&gt; Event ID
+{2} -&gt; Admin email
+{3} -&gt; Timeline Tool URL</comment>
   </data>
   <data name="PendingMailSubject" xml:space="preserve">
     <value>New items ready for approval</value>

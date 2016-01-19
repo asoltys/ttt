@@ -257,13 +257,14 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.PendingMailSubject;
                 MailBody = Resources.Resources.PendingMailBody;
                 MailBody = String.Format(MailBody, ServerDomain, @event.ID, AdminEmail);
+                Utils.log(Creator.Email);
                 CopyList.Add(Creator.Email);
             } else if (@event.Status == Status.Draft)
             {
                 return true;
             }
             CopyList.Add(AdminEmail);
-            if (!Utils.SendMail(Creator.Email, MailSubject, MailBody, CopyList)) return false;
+            if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList)) return false;
             return true;
         }
 
