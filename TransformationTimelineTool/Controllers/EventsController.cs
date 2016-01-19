@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
+using TransformationTimelineTool.Exceptions;
 using TransformationTimelineTool.Helpers;
 using TransformationTimelineTool.Models;
 using TransformationTimelineTool.ViewModels;
@@ -214,7 +215,7 @@ namespace TransformationTimelineTool.Controllers
                     //Log the error (uncomment dex variable name and add a line here to write a log.
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 }
-                catch (UnauthorizedAccessException ex)
+                catch (SendMailException ex)
                 {
                     ModelState.AddModelError("SendMail", ex.Message);
                 }
@@ -229,7 +230,7 @@ namespace TransformationTimelineTool.Controllers
             var CurrentUser = Utils.GetCurrentUser();
             var Creator = db.Users.Find(@event.CreatorID);
             if (Creator.Id == null || Creator.ApproverID == null)
-                throw new UnauthorizedAccessException("Either Creator Id is NULL or Approver Id is NULL");
+                throw new SendMailException("Either Creator Id is NULL or Approver Id is NULL");
             var SendTo = "";
             var MailSubject = "";
             var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email, {3}->Timeline Tool URL
@@ -276,7 +277,8 @@ namespace TransformationTimelineTool.Controllers
                 return false;
             }
             CopyList.Add(AdminEmail);
-            if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList)) return false;
+            if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList))
+                throw new SendMailException("Please check your server settings. SMTP client has failed to send the emails");
             return true;
         }
 
