@@ -11,12 +11,12 @@ namespace TransformationTimelineTool.Exceptions
         {
 
         }
-        public SendMailException(string message)
+        public SendMailException(string message) : base(message)
         {
 
         }
 
-        public SendMailException(string message, Exception inner)
+        public SendMailException(string message, Exception inner) : base(message, inner)
         {
 
         }
