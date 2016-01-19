@@ -157,6 +157,7 @@
     <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\TimelineContext.cs" />
+    <Compile Include="Exceptions\SendMailException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
