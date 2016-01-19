@@ -265,13 +265,13 @@
     <value>This is an automated message.&lt;br/&gt;
 Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
 To access the system please use &lt;a href='{0}/en/events/details/{1}'&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
-If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
 The National Transformation Timeline Tool can be found &lt;a href='{3}'&gt;here&lt;/a&gt;.&lt;br/&gt;
 &lt;hr&gt;&lt;br/&gt;
 Ceci c’est un message automatique.&lt;br/&gt;
 Votre poste était approuvé dans le Calendrier national des transformations.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/fr/events/details/{1}'&gt;{0}/fr/events/details/{1}&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
-Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter l’administration &lt;mailto:{2}&gt;.&lt;br/&gt;
+Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
 Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;/a&gt;.</value>
     <comment>{0} -&gt; Server name
 {1} -&gt; Event ID
@@ -279,19 +279,19 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
 {3} -&gt; Timeline Tool URL</comment>
   </data>
   <data name="ApprovedMailSubject" xml:space="preserve">
-    <value>Your item has been approved</value>
+    <value>Your item has been approved || FRENCH TBA</value>
   </data>
   <data name="PendingMailBody" xml:space="preserve">
     <value>This is an automated message.&lt;br/&gt;
 An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
 To access the system please use &lt;a href='{0}/en/events/details/{1}'&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
-If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
 The National Transformation Timeline Tool can be found &lt;a href='{3}'&gt;here&lt;/a&gt;.&lt;br/&gt;
 &lt;hr&gt;&lt;br/&gt;
 Ceci c’est un message automatique.&lt;br/&gt;
 Votre approbation est requise pour une poste dans le Calendrier national des transformations.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/fr/events/details/{1}'&gt;{0}/fr/events/details/{1}&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
-Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter l’administration &lt;mailto:{2}&gt;.&lt;br/&gt;
+Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
 Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;/a&gt;.</value>
     <comment>{0} -&gt; Server name
 {1} -&gt; Event ID
@@ -299,6 +299,29 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
 {3} -&gt; Timeline Tool URL</comment>
   </data>
   <data name="PendingMailSubject" xml:space="preserve">
-    <value>New items ready for approval</value>
+    <value>New items ready for approval || FRENCH TBA</value>
+  </data>
+  <data name="ApplicationHomeURL" xml:space="preserve">
+    <value>/en/Home</value>
+  </data>
+  <data name="RejectMailBody" xml:space="preserve">
+    <value>This is an automated message.&lt;br/&gt;
+An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
+To access the system please use &lt;a href='{0}/en/events/details/{1}'&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{3}'&gt;here&lt;/a&gt;.&lt;br/&gt;
+&lt;hr&gt;&lt;br/&gt;
+Ceci c’est un message automatique.&lt;br/&gt;
+Un poste dans le Calendrier national des transformations n’était pas approuver. S’il vous plaît, contactez votre Approbateur.&lt;br/&gt;
+Veuillez utiliser &lt;a href='{0}/fr/events/details/{1}'&gt;{0}/fr/events/details/{1}&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
+Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;/a&gt;.</value>
+    <comment>{0}-&gt;Server name
+{1}-&gt;Event ID
+{2}-&gt;Admin email
+{3}-&gt;Timeline Tool URL</comment>
+  </data>
+  <data name="RejectMailSubject" xml:space="preserve">
+    <value>Your item has been set to review || FRENCH TBA</value>
   </data>
 </root>

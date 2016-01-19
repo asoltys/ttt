@@ -88,14 +88,23 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /en/Home.
+        /// </summary>
+        public static string ApplicationHomeURL {
+            get {
+                return ResourceManager.GetString("ApplicationHomeURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
         ///Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
-        ///If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+        ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
         ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/&gt;
         ///Ceci c’est un message automatique.&lt;br/&gt;
-        ///Votre poste était approuvé  [rest of string was truncated]&quot;;.
+        ///Votre poste éta [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ApprovedMailBody {
             get {
@@ -104,7 +113,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your item has been approved.
+        ///   Looks up a localized string similar to Your item has been approved || FRENCH TBA.
         /// </summary>
         public static string ApprovedMailSubject {
             get {
@@ -413,11 +422,11 @@ namespace Resources {
         ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
         ///An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
-        ///If you have questions or believe you have received this message in error, please contact the Administrator&lt;mailto: {2}&gt;.&lt;br/&gt;
+        ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
         ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/&gt;
         ///Ceci c’est un message automatique.&lt;br/&gt;
-        ///Votre approbation est re [rest of string was truncated]&quot;;.
+        ///Votre approb [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PendingMailBody {
             get {
@@ -426,7 +435,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New items ready for approval.
+        ///   Looks up a localized string similar to New items ready for approval || FRENCH TBA.
         /// </summary>
         public static string PendingMailSubject {
             get {
@@ -458,6 +467,30 @@ namespace Resources {
         public static string Regions {
             get {
                 return ResourceManager.GetString("Regions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
+        ///An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
+        ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
+        ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
+        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
+        ///&lt;hr&gt;&lt;br/&gt;
+        ///Ceci c’est un message automat [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RejectMailBody {
+            get {
+                return ResourceManager.GetString("RejectMailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your item has been set to review || FRENCH TBA.
+        /// </summary>
+        public static string RejectMailSubject {
+            get {
+                return ResourceManager.GetString("RejectMailSubject", resourceCulture);
             }
         }
         

@@ -114,11 +114,11 @@ namespace TransformationTimelineTool.Controllers
                     {
                         eventViewModel.Edit.Published = true;
                     }
-
                     eventToCreate.Edits.Add(eventViewModel.Edit);
 
                     db.Events.Add(eventToCreate);
                     db.SaveChanges();
+                    SendMail(eventToCreate);
 
                     //@event.Edit = edit;;
 
@@ -207,10 +207,9 @@ namespace TransformationTimelineTool.Controllers
                         eventToUpdate.PublishedEdit.Published = false;
                         edit.Published = true;
                     }
-
-                    SendMail(eventToUpdate);
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
+                    SendMail(eventToUpdate);
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -226,39 +225,51 @@ namespace TransformationTimelineTool.Controllers
 
         public bool SendMail(Event @event)
         {
+            var CurrentUser = Utils.GetCurrentUser();
             var Creator = db.Users.Find(@event.CreatorID);
             var SendTo = "";
             var MailSubject = "";
             var MailBody = "";
             var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
             var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
+            var TimelineToolURL = Resources.Resources.ApplicationHomeURL;
             var CopyList = new List<string>();
             if (@event.Status == Status.Approved)
             {
                 SendTo = Creator.Email;
                 MailSubject = Resources.Resources.ApprovedMailSubject;
                 MailBody = Resources.Resources.ApprovedMailBody;
-                // Resources {0}:server domain, {1}:eventID, {2}: Admin Email
-                MailBody = String.Format(MailBody, ServerDomain, @event.ID, AdminEmail);
+                // {0}->Server name, {1}->Event ID, {2}->Admin email, {3}->Timeline Tool URL
+                MailBody = String.Format(MailBody,
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
                 if (Creator.Approver != null)
                     CopyList.Add(Creator.Approver.Email);
             }
             else if (@event.Status == Status.Pending)
             {
-                if (Creator.Approver != null)
+                if (CurrentUser.Id == Creator.ApproverID)
                 {
+                    // If CurrentUser who left it pending has Approver ID, means it is rejected
+                    // and need to send a mail to Creator with Approver & Admin on CC
+                    SendTo = Creator.Email;
+                    MailSubject = Resources.Resources.RejectMailSubject;
+                    MailBody = Resources.Resources.RejectMailBody;
+                    if (Creator.Approver != null)
+                        CopyList.Add(Creator.Approver.Email);
+                } else if (Creator.Approver != null)
+                {
+                    // If CurrentUser is not the approver, and Creator's Approval ID exists,
+                    // then it means the Creator has submitted a new event
+                    // This assumes that the Creator cannot change the status of the event from
+                    // Approved to Pending
+                    // Send a mail to Approver with Creator & Admin on CC
                     SendTo = Creator.Approver.Email;
+                    MailSubject = Resources.Resources.PendingMailSubject;
+                    MailBody = Resources.Resources.PendingMailBody;
+                    CopyList.Add(Creator.Email);
                 }
-                else
-                {
-                    // Send to an admin if no approver exists
-                    SendTo = AdminEmail;
-                }
-                MailSubject = Resources.Resources.PendingMailSubject;
-                MailBody = Resources.Resources.PendingMailBody;
-                MailBody = String.Format(MailBody, ServerDomain, @event.ID, AdminEmail);
-                Utils.log(Creator.Email);
-                CopyList.Add(Creator.Email);
+                MailBody = String.Format(MailBody,
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
             } else if (@event.Status == Status.Draft)
             {
                 return true;
