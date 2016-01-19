@@ -157,7 +157,7 @@ namespace TransformationTimelineTool.Helpers
                 return true;
             } catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Utils\\SendMail() Error: " + ex.ToString());
                 return false;
             }
         }
