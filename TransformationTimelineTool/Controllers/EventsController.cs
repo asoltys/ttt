@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -227,52 +224,52 @@ namespace TransformationTimelineTool.Controllers
         {
             var CurrentUser = Utils.GetCurrentUser();
             var Creator = db.Users.Find(@event.CreatorID);
+            if (Creator.Id == null || Creator.ApproverID == null)
+                throw new UnauthorizedAccessException("Either Creator Id is NULL or Approver Id is NULL");
             var SendTo = "";
             var MailSubject = "";
-            var MailBody = "";
+            var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email, {3}->Timeline Tool URL
             var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
             var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
             var TimelineToolURL = Resources.Resources.ApplicationHomeURL;
             var CopyList = new List<string>();
-            if (@event.Status == Status.Approved)
+
+            if (CurrentUser.Id == Creator.Id && @event.Status == Status.Draft)
             {
+                // Logic: Creator has saved a draft of an event
+                // Action: ???
+                return false;
+            } else if (CurrentUser.Id == Creator.Id && @event.Status == Status.Pending)
+            {
+                // Logic: Creator just submitted the event to be approved by an approver
+                // Action: Send a mail to the Approver, CC Creator & Admin
+                SendTo = Creator.Approver.Email;
+                MailSubject = Resources.Resources.PendingMailSubject;
+                MailBody = Resources.Resources.PendingMailBody;
+                CopyList.Add(Creator.Email);
+            } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Draft)
+            {
+                // Logic: Approver has rejected the event creation
+                // Action: Send a mail to the Creator, CC Approver & Admin
+                SendTo = Creator.Email;
+                MailSubject = Resources.Resources.RejectMailSubject;
+                MailBody = Resources.Resources.RejectMailBody;
+                CopyList.Add(Creator.Approver.Email);
+            } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Approved)
+            {
+                // Logic: Approver has approved the event creation / edit
+                // Action: Send a mail to the Creator, CC Approver & Admin
                 SendTo = Creator.Email;
                 MailSubject = Resources.Resources.ApprovedMailSubject;
                 MailBody = Resources.Resources.ApprovedMailBody;
-                // {0}->Server name, {1}->Event ID, {2}->Admin email, {3}->Timeline Tool URL
                 MailBody = String.Format(MailBody,
                     ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
-                if (Creator.Approver != null)
-                    CopyList.Add(Creator.Approver.Email);
-            }
-            else if (@event.Status == Status.Pending)
+                CopyList.Add(Creator.Approver.Email);
+            } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Pending)
             {
-                if (CurrentUser.Id == Creator.ApproverID)
-                {
-                    // If CurrentUser who left it pending has Approver ID, means it is rejected
-                    // and need to send a mail to Creator with Approver & Admin on CC
-                    SendTo = Creator.Email;
-                    MailSubject = Resources.Resources.RejectMailSubject;
-                    MailBody = Resources.Resources.RejectMailBody;
-                    if (Creator.Approver != null)
-                        CopyList.Add(Creator.Approver.Email);
-                } else if (Creator.Approver != null)
-                {
-                    // If CurrentUser is not the approver, and Creator's Approval ID exists,
-                    // then it means the Creator has submitted a new event
-                    // This assumes that the Creator cannot change the status of the event from
-                    // Approved to Pending
-                    // Send a mail to Approver with Creator & Admin on CC
-                    SendTo = Creator.Approver.Email;
-                    MailSubject = Resources.Resources.PendingMailSubject;
-                    MailBody = Resources.Resources.PendingMailBody;
-                    CopyList.Add(Creator.Email);
-                }
-                MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
-            } else if (@event.Status == Status.Draft)
-            {
-                return true;
+                // Logic: Approver has set the event state to pending
+                // Action: ???
+                return false;
             }
             CopyList.Add(AdminEmail);
             if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList)) return false;
