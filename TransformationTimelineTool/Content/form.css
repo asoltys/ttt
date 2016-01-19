@@ -1,6 +1,9 @@
 ﻿.text-danger * {
+    background-color: #FFCFCF;
+    border: 1px solid #FF0000;
+    font-weight: bold;
     padding: 4px;
-    color: red;
-    border: 1px solid;
     border-radius: 3px;
+    text-align: center;
+    width: 100%;
 }
