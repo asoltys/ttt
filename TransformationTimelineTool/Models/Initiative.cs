@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using System.Threading;
 using Resources;
-using Foolproof;
 
 namespace TransformationTimelineTool.Models
 {
@@ -28,11 +27,9 @@ namespace TransformationTimelineTool.Models
         public string AtlEditorID { get; set; }
 
         [Display(Name = "InitEnglishName", ResourceType = typeof(Resources.Resources))]
-        [RequiredIfNotEmpty("NameF")]
         public string NameE { get; set; }
 
         [Display(Name = "InitFrenchName", ResourceType = typeof(Resources.Resources))]
-        [RequiredIfNotEmpty("NameE")]
         public string NameF { get; set; }
 
         [Display(Name = "InitEnglishDesc", ResourceType = typeof(Resources.Resources))]

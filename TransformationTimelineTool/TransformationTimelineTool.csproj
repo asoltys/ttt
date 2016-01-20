@@ -76,10 +76,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MVC Foolproof Validation, Version=0.9.4517.16477, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\foolproof.0.9.4517\lib\MVC Foolproof Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
@@ -265,10 +261,6 @@
     <Compile Include="Migrations\201601182051098_EventCreator.cs" />
     <Compile Include="Migrations\201601182051098_EventCreator.Designer.cs">
       <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601201633232_RevertRequiredProperty.cs" />
-    <Compile Include="Migrations\201601201633232_RevertRequiredProperty.Designer.cs">
-      <DependentUpon>201601201633232_RevertRequiredProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -1102,9 +1094,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\accessibility.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\mvcfoolproof.unobtrusive.min.js" />
-    <Content Include="Scripts\MvcFoolproofJQueryValidation.min.js" />
-    <Content Include="Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\server_settings.js" />
@@ -1442,9 +1431,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601182051098_EventCreator.resx">
       <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601201633232_RevertRequiredProperty.resx">
-      <DependentUpon>201601201633232_RevertRequiredProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
