@@ -1192,6 +1192,7 @@
     <Content Include="site\wet3.1\theme-tp-pw-intranet\images\loupe3.jpg" />
     <Content Include="site\wet3.1\theme-tp-pw-intranet\images\loupes.png" />
     <Content Include="site\wet3.1\version.txt" />
+    <Content Include="Static\NotAuthorized.html" />
     <Content Include="timeline\css\images\old_ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="timeline\css\images\old_ui-icons_ef8c08_256x240.png" />
     <Content Include="timeline\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />

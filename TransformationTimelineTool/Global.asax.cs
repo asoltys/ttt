@@ -33,5 +33,15 @@ namespace TransformationTimelineTool
             GenericPrincipal principal = new GenericPrincipal(user, Utils.GetUserRoles(user.Name));
             Thread.CurrentPrincipal = HttpContext.Current.User = principal;
         }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            if (Response.StatusCode == 401)
+            {
+                Response.ClearContent();
+                Response.WriteFile("~/Static/NotAuthorized.html");
+                Response.ContentType = "text/html";
+            }
+        }
     }
 }
