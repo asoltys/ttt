@@ -25,13 +25,6 @@ namespace TransformationTimelineTool.Models
         
         public string CreatorID { get; set; }
 
-        [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
-        public Type Type { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
-        public DateTime Date { get; set; }
         public Status Status { get; set; }
 
 

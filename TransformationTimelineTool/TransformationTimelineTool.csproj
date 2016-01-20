@@ -262,6 +262,10 @@
     <Compile Include="Migrations\201601182051098_EventCreator.Designer.cs">
       <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601202023039_EventDateAndTypeToEdit.cs" />
+    <Compile Include="Migrations\201601202023039_EventDateAndTypeToEdit.Designer.cs">
+      <DependentUpon>201601202023039_EventDateAndTypeToEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Edit.cs" />
@@ -1432,6 +1436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601182051098_EventCreator.resx">
       <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601202023039_EventDateAndTypeToEdit.resx">
+      <DependentUpon>201601202023039_EventDateAndTypeToEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -187,8 +187,6 @@ namespace TransformationTimelineTool.Controllers
                 {
 
                     eventToUpdate.InitiativeID = eventViewModel.Event.InitiativeID;
-                    eventToUpdate.Date = eventViewModel.Event.Date;
-                    eventToUpdate.Type = eventViewModel.Event.Type;
                     eventToUpdate.Status = eventViewModel.Event.Status;
 
                     UpdateEventRegions(selectedRegions, eventToUpdate);
@@ -197,6 +195,8 @@ namespace TransformationTimelineTool.Controllers
                     var edit = eventViewModel.Edit;
                     var currentUser = Utils.GetCurrentUser();
 
+                    edit.DisplayDate = eventViewModel.Edit.DisplayDate;
+                    edit.Type = eventViewModel.Edit.Type;
                     edit.Editor = db.Users.Find(currentUser.Id);
                     edit.Date = DateTime.Now;
 
@@ -275,6 +275,13 @@ namespace TransformationTimelineTool.Controllers
                 // Logic: Approver has set the event state to pending
                 // Action: ???
                 return false;
+            } else
+            {
+                SendTo = AdminEmail;
+                MailSubject = Resources.Resources.ApprovedMailSubject;
+                MailBody = Resources.Resources.ApprovedMailBody;
+                MailBody = String.Format(MailBody,
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
             }
             CopyList.Add(AdminEmail);
             if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList))
@@ -292,7 +299,7 @@ namespace TransformationTimelineTool.Controllers
                 events.Select(e => new
                 {
                     ID = e.ID,
-                    Date = e.Date.ToShortDateString(),
+                    //Date = e.Date.ToShortDateString(),
                     //TextE = e.TextE,
                     //TextF = e.TextF,
                     //HoverE = e.HoverE,

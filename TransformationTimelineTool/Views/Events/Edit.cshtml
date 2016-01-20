@@ -102,18 +102,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Event.Type, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Event.Type, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.Edit.Type, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Edit.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.DisplayDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Event.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Event.Date, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Edit.DisplayDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Edit.DisplayDate, "", new { @class = "text-danger" })
             </div>
         </div>
 

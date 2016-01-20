@@ -35,8 +35,8 @@ namespace TransformationTimelineTool.ViewModels
             }
 
             ID = @event.ID;
-            Type = @event.Type.ToString();
-            Date = @event.Date.ToShortDateString();
+            Type = publishedEdit.Type.ToString();
+            Date = publishedEdit.DisplayDate.ToShortDateString();
             TextE = publishedEdit.TextE;
             HoverE = publishedEdit.HoverE;
             TextF = publishedEdit.TextF;

@@ -37,10 +37,10 @@
                     @Resources.Initiative
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Type)
+                    @Html.DisplayNameFor(model => model.LatestEdit.Type)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Date)
+                    @Html.DisplayNameFor(model => model.LatestEdit.DisplayDate)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.LatestEdit.Hover)
@@ -65,10 +65,10 @@
                         @Html.DisplayFor(modelItem => item.Initiative.Name)
                     </td>
                     <td>
-                        <img src="@(item.Type == 0 ? "/Images/circle.png" : "/Images/book.png")" />
+                        <img src="@(item.LatestEdit.Type == 0 ? "/Images/circle.png" : "/Images/book.png")" />
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Date)
+                        @Html.DisplayFor(modelItem => item.LatestEdit.DisplayDate)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
