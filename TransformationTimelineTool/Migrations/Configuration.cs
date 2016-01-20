@@ -54,7 +54,7 @@ namespace TransformationTimelineTool.Migrations
                 new Branch {NameShort = "all", NameE = "All", NameF = "Tout" },
                 new Branch {NameShort = "rp", NameE = "Real Property", NameF = "Biens immobiliers" },
                 new Branch {NameShort = "abc", NameE = "Accounting, Banking and Compensation", NameF = "Comptabilité, gestion bancaire et rémunération " },
-                new Branch {NameShort = "acqcomp", NameE = "Real Property", NameF = "Approvisionnements" },
+                new Branch {NameShort = "acqcomp", NameE = "Acquisitions", NameF = "Approvisionnements" },
                 new Branch {NameShort = "ciob", NameE = "Chief Information Officer Branch", NameF = "Direction générale du dirigeant principal de l’information" },
                 new Branch {NameShort = "do", NameE = "Departmental Oversight", NameF = "Surveillance" },
                 new Branch {NameShort = "fab", NameE = "Finance and Administration Branch", NameF = "Finances et administration" },
