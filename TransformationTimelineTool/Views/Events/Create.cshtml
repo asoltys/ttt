@@ -39,7 +39,8 @@
                                 @:<td>
                                     <input type="checkbox"
                                            name="selectedBranches"
-                                           value="@branch.ID" />
+                                           value="@branch.ID"
+                                           @(branch.ID == 1 ? "checked" : "") />
                                         @branch.Name
                                         @:</td>
                             }
@@ -76,7 +77,8 @@
                                 @:<td>
                                     <input type="checkbox"
                                            name="selectedRegions"
-                                           value="@region.ID" />
+                                           value="@region.ID"
+                                           @(region.ID == 1 ? "checked" : "")  />
                                         @region.Name
                                      @:</td>
                            }
