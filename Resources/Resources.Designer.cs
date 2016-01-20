@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
         ///Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
@@ -217,6 +226,15 @@ namespace Resources {
         public static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draft.
+        /// </summary>
+        public static string Draft {
+            get {
+                return ResourceManager.GetString("Draft", resourceCulture);
             }
         }
         
@@ -383,6 +401,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Milestone.
+        /// </summary>
+        public static string Milestone {
+            get {
+                return ResourceManager.GetString("Milestone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -419,6 +446,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string Pending {
+            get {
+                return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
         ///An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
@@ -449,6 +485,15 @@ namespace Resources {
         public static string Quebec {
             get {
                 return ResourceManager.GetString("Quebec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to records.
+        /// </summary>
+        public static string Records {
+            get {
+                return ResourceManager.GetString("Records", resourceCulture);
             }
         }
         
@@ -522,6 +567,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        public static string Show {
+            get {
+                return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {
@@ -545,6 +599,15 @@ namespace Resources {
         public static string Text {
             get {
                 return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Training.
+        /// </summary>
+        public static string Training {
+            get {
+                return ResourceManager.GetString("Training", resourceCulture);
             }
         }
         

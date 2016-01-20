@@ -11,7 +11,7 @@
 }
 <script type="text/javascript" src="/scripts/DataTables/datatables.min.js"></script>
 
-<h2>Activities</h2>
+<h2>@Resources.Activities</h2>
 
 <div id="legend">
     <div style="float: left;">
@@ -38,22 +38,22 @@ Status.Draft)
                     @Resources.Initiative
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LatestEdit.Type)
+                    @Resources.Type
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LatestEdit.DisplayDate)
+                    @Resources.Date
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.LatestEdit.Hover)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.RegionsList)
+                    @Resources.Regions
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.BranchesList)
+                    @Resources.Branches
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Status)
+                    @Resources.Status
                 </th>
                 <th class="control-group"></th>
             </tr>
@@ -155,6 +155,7 @@ Status.Draft)
             ],
             "dom": '<"create-new">frtl<"absolute-center" p><"create-new">',
             "language": {
+                "lengthMenu": '@Resources.Show _MENU_ @Resources.Records',
                 "search": '<i class="fa fa-search fa-lg" title="Search">&nbsp;',
                 "searchPlaceholder": '@Resources.Search',
                 "paginate": {

@@ -327,4 +327,25 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="Search" xml:space="preserve">
     <value>Recherche</value>
   </data>
+  <data name="Approved" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Milestone" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>tba</value>
+  </data>
 </root>
