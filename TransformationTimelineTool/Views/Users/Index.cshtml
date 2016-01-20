@@ -15,7 +15,7 @@
 {
     <span class="create-new">
         <a class="no-link-style" href='@Url.Action("Create", "Users")'>
-            <i title="Create" class="fa fa-plus fa-2x"></i>
+            <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
         </a>
     </span>
 }
@@ -44,19 +44,19 @@
             @if (ViewBag.isAdmin)
             {
                 <a class="no-link-style" href="@Url.Action("Edit", "Users", new { id = item.Id })">
-                    <i class="fa fa-pencil-square-o fa-2x"></i>
+                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                 </a>
                 <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
-                    <i class="fa fa-folder-open fa-2x"></i>
+                    <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
                 </a>
                 <a class="no-link-style" href="@Url.Action("Delete", "Users", new { id = item.Id })">
-                    <i class="fa fa-times fa-2x"></i>
+                    <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
                 </a>
             }
             else
             {
                 <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
-                    <i class="fa fa-folder-open fa-2x"></i>
+                    <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
                 </a>
             }
         </td>
@@ -68,7 +68,7 @@
 {
     <span class="create-new">
         <a class="no-link-style" href='@Url.Action("Create", "Users")'>
-            <i title="Create" class="fa fa-plus fa-2x"></i>
+            <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
         </a>
     </span>
 }

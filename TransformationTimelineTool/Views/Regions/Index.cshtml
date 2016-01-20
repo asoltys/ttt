@@ -12,7 +12,7 @@
 
 <span class="create-new">
     <a class="no-link-style" href='@Url.Action("Create", "Regions")'>
-        <i title="Create" class="fa fa-plus fa-2x"></i>
+        <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
     </a>
 </span>
 <table class="table">
@@ -42,13 +42,13 @@
         </td>
         <td>
             <a class="no-link-style" href="@Url.Action("Edit", "Regions", new { id = item.ID })">
-                <i class="fa fa-pencil-square-o fa-2x"></i>
+                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
             </a>
             <a class="no-link-style" href="@Url.Action("Details", "Regions", new { id = item.ID })">
-                <i class="fa fa-folder-open fa-2x"></i>
+                <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
             </a>
             <a class="no-link-style" href="@Url.Action("Delete", "Regions", new { id = item.ID })">
-                <i class="fa fa-times fa-2x"></i>
+                <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
             </a>
         </td>
     </tr>
@@ -57,6 +57,6 @@
 </table>
 <span class="create-new">
     <a class="no-link-style" href='@Url.Action("Create", "Regions")'>
-        <i title="Create" class="fa fa-plus fa-2x"></i>
+        <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
     </a>
 </span>

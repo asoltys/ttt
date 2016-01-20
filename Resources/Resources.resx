@@ -324,4 +324,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="RejectMailSubject" xml:space="preserve">
     <value>Your item has been set to review || FRENCH TBA</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

@@ -97,13 +97,13 @@ Status.Draft)
                     </td>
                     <td>
                         <a class="no-link-style" href="@Url.Action("Edit", "Events", new { id = item.ID })">
-                            <i title="Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                            <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                         </a>
                         <a class="no-link-style" href="@Url.Action("Details", "Events", new { id = item.ID })">
-                            <i title="Details" class="fa fa-folder-open fa-2x"></i>
+                            <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
                         </a>
                         <a class="no-link-style" href="@Url.Action("Delete", "Events", new { id = item.ID })">
-                            <i title="Delete" class="fa fa-times fa-2x"></i>
+                            <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
                         </a>
                     </td>
                 </tr>
@@ -156,7 +156,7 @@ Status.Draft)
             "dom": '<"create-new">frtl<"absolute-center" p><"create-new">',
             "language": {
                 "search": '<i class="fa fa-search fa-lg" title="Search">&nbsp;',
-                "searchPlaceholder": 'Search / Recherche',
+                "searchPlaceholder": '@Resources.Search',
                 "paginate": {
                     "first": '<i class="fa fa-angle-double-left fa-lg" title="First">',
                     "previous": '<i class="fa fa-angle-left fa-lg" title="Previous">',
@@ -167,7 +167,7 @@ Status.Draft)
         });
 
         var createNewButton = "<a class='no-link-style' href='@Url.Action("Create", "Events")'>";
-        createNewButton += "<i title='Create' class = 'fa fa-plus fa-2x'></i></a>"
+        createNewButton += "<i title='@Resources.Create' class = 'fa fa-plus fa-2x'></i></a>"
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
     });
