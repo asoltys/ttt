@@ -1,4 +1,5 @@
 ﻿@using TransformationTimelineTool.Models;
+@using TransformationTimelineTool.Helpers;
 @model IEnumerable<TransformationTimelineTool.Models.Event>
 
 @{
@@ -15,17 +16,17 @@
 <div id="legend">
     <div style="float: left;">
         <img src="~/Images/circle.png" />@Enum.GetName(typeof(TransformationTimelineTool.Models.Type),
-                               TransformationTimelineTool.Models.Type.Milestone) <br />
+TransformationTimelineTool.Models.Type.Milestone) <br />
         <img src="~/Images/book.png" />@Enum.GetName(typeof(TransformationTimelineTool.Models.Type),
-                               TransformationTimelineTool.Models.Type.Training)
+TransformationTimelineTool.Models.Type.Training)
     </div>
     <div style="float: right;">
         <span class="green-box image-pretender"></span>@Enum.GetName(typeof(Status),
-                               Status.Approved) <br />
+Status.Approved) <br />
         <span class="yellow-box image-pretender"></span>@Enum.GetName(typeof(Status),
-                               Status.Pending) <br />
+Status.Pending) <br />
         <span class="red-box image-pretender"></span>@Enum.GetName(typeof(Status),
-                               Status.Draft)
+Status.Draft)
     </div>
 </div>
 
@@ -58,8 +59,19 @@
             </tr>
         </thead>
         <tbody>
+            @{ User CurrentUser = Utils.GetCurrentUser(); }
             @foreach (var item in Model)
             {
+                if (!HttpContext.Current.User.IsInRole("Admin"))
+                {
+                    if (item.Creator.ApproverID != CurrentUser.Id)
+                    {
+                        if (item.CreatorID != CurrentUser.Id)
+                        {
+                            continue;
+                        }
+                    }
+                }
                 <tr> 
                     <td>
                         @Html.DisplayFor(modelItem => item.Initiative.Name)
