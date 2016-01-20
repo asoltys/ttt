@@ -227,6 +227,7 @@ namespace TransformationTimelineTool.Controllers
 
         public bool SendMail(Event @event)
         {
+            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return false;
             var CurrentUser = Utils.GetCurrentUser();
             var Creator = db.Users.Find(@event.CreatorID);
             if (Creator.Id == null || Creator.ApproverID == null)
