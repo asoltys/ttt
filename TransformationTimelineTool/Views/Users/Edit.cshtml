@@ -33,90 +33,43 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>@Resources.Branches</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Initiatives</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
                         @{
                             int cnt = 0;
 
-                            foreach (var branch in Model.PopulatedBranches)
+                            foreach (var initiative in Model.PopulatedInitiatives)
                             {
                                 if (cnt++ % 3 == 0)
-                                {
-                                    @:</tr><tr>
-                                }
-                                @:<td>
-                                    <input type="checkbox"
-                                           name="selectedBranches"
-                                           value="@branch.ID"
-                                           @(Html.Raw(branch.Flag ? "checked=\"checked\"" : "")) />
-                                        @branch.Name
-                                        @:</td>
-                            }
-                        }
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox"
-                                   name="selectAllBranches"
-                                   id="selectAllBranches"
-                                   value="allBranches" />
-                            @Resources.Deselect/@Resources.SelectAll
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-2 text-right"><strong>@Resources.Regions</strong></div>
-            <div class="col-md-offset-2 col-md-10">
-                <table>
-                    <tr>
-                        @{
-                            int cnt2 = 0;
-
-                            foreach (var region in Model.PopulatedRegions)
-                            {
-                                if (cnt2++ % 3 == 0)
                                 {
                                     @:</tr><tr>
                                }
                                 @:<td>
                                     <input type="checkbox"
-                                           name="selectedRegions"
-                                           value="@region.ID"
-                                           @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
-                                        @region.Name
+                                           name="selectedInitiatives"
+                                           value="@initiative.ID"
+                                           @(Html.Raw(initiative.Flag ? "checked=\"checked\"" : "")) />
+                                        @initiative.Name
                                         @:</td>
                            }
                         }
                     </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox"
-                                   name="selectAllRegions"
-                                   id="selectAllRegions"
-                                   value="allRegions" />
-                            @Resources.Deselect/@Resources.SelectAll
-                        </td>
-                    </tr>
                 </table>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-2 text-right"><strong>Roles</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
                         @{
-                            int cnt3 = 0;
+                            int cnt2 = 0;
 
                             foreach (var role in Model.PopulatedRoles)
                             {
-                                if (cnt3++ % 3 == 0)
+                                if (cnt2++ % 3 == 0)
                                 {
                                     @:</tr><tr>
                                }

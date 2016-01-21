@@ -55,8 +55,7 @@ namespace TransformationTimelineTool.Controllers
         {
             var userViewModel = new UserViewModel();
 
-            userViewModel.Branches = db.Branches.ToList<Branch>();
-            userViewModel.Regions = db.Regions.ToList<Region>();
+            userViewModel.Initiatives = db.Initiatives.ToList<Initiative>();
             userViewModel.Roles = db.Roles.ToList<IdentityRole>();
             userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
 
@@ -69,31 +68,20 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserViewModel userViewModel,
-            string[] selectedBranches,
-            string[] selectedRegions,
+            string[] selectedInitiatives,
             string[] selectedRoles)
         {
             string username = Utils.GetUsernameFromEmail(userViewModel.User.Email);
             var userToAdd = new User();
 
-            userToAdd.Branches = new List<Branch>();
-            userToAdd.Regions = new List<Region>();
+            userToAdd.Initiatives = new List<Initiative>();
 
-            var selectedBranchesHS = new HashSet<string>(selectedBranches);
-            foreach (var branch in db.Branches)
+            var selectedInitiativeHS = new HashSet<string>(selectedInitiatives);
+            foreach (var initiative in db.Initiatives)
             {
-                if (selectedBranches.Contains(branch.ID.ToString()))
+                if (selectedInitiativeHS.Contains(initiative.ID.ToString()))
                 {
-                    userToAdd.Branches.Add(branch);
-                }
-            }
-
-            var selectedRegionsHS = new HashSet<string>(selectedRegions);
-            foreach (var region in db.Regions)
-            {
-                if (selectedRegions.Contains(region.ID.ToString()))
-                {
-                    userToAdd.Regions.Add(region);
+                    userToAdd.Initiatives.Add(initiative);
                 }
             }
 
@@ -113,8 +101,6 @@ namespace TransformationTimelineTool.Controllers
                 return RedirectToAction("Index");
             }
 
-            PopulateUserRegionsData(userToAdd);
-            PopulateUserBranchesData(userToAdd);
             PopulateUserRolesData(userToAdd);
 
             return View(userViewModel);
@@ -133,9 +119,8 @@ namespace TransformationTimelineTool.Controllers
             User user = db.Users.Find(id);
 
             userViewModel.User = user;
-            userViewModel.PopulatedBranches = PopulateUserBranchesData(user);
-            userViewModel.PopulatedRegions = PopulateUserRegionsData(user);
             userViewModel.PopulatedRoles = PopulateUserRolesData(user);
+            userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(user);
             userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
 
             if (user == null)
@@ -151,8 +136,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UserViewModel userViewModel,
-            string[] selectedRegions,
-            string[] selectedBranches,
+            string[] selectedInitiatives,
             string[] selectedRoles)
         {
 
@@ -173,8 +157,7 @@ namespace TransformationTimelineTool.Controllers
                 userToUpdate.Email = userViewModel.User.Email;
                 userToUpdate.ApproverID = userViewModel.User.ApproverID;
 
-                UpdateUserRegions(selectedRegions, userToUpdate);
-                UpdateUserBranches(selectedBranches, userToUpdate);
+                UpdateUserInitiatives(selectedInitiatives, userToUpdate);
                 UpdateUserRoles(selectedRoles, userToUpdate);
 
                 var myResult = userManager.Update(userToUpdate);
@@ -220,42 +203,24 @@ namespace TransformationTimelineTool.Controllers
             base.Dispose(disposing);
         }
 
-        private List<RegionsData> PopulateUserRegionsData(User user)
+        private List<InitiativeData> PopulateUserInitiativesData(User user)
         {
-            var allRegions = db.Regions;
-            var userRegions = new HashSet<int>(user.Regions.Select(r => r.ID));
-            var viewModel = new List<RegionsData>();
+            var allInitiatives = db.Initiatives;
+            var userInitiatives = new HashSet<int>(user.Initiatives.Select(i => i.ID));
+            var viewModel = new List<InitiativeData>();
 
-            foreach (var region in allRegions)
+            foreach (var initiative in allInitiatives)
             {
-                viewModel.Add(new RegionsData
+                viewModel.Add(new InitiativeData
+
                 {
-                    ID = region.ID,
-                    NameE = region.NameE,
-                    NameF = region.NameF,
-                    Flag = userRegions.Contains(region.ID)
+                    ID = initiative.ID,
+                    NameE = initiative.NameE,
+                    NameF = initiative.NameF,
+                    Flag = userInitiatives.Contains(initiative.ID)
                 });
             }
 
-            return viewModel;
-        }
-
-        private List<BranchesData> PopulateUserBranchesData(User user)
-        {
-            var allBranches = db.Branches;
-            var userBranches = new HashSet<int>(user.Branches.Select(b => b.ID));
-            var viewModel = new List<BranchesData>();
-
-            foreach (var branch in allBranches)
-            {
-                viewModel.Add(new BranchesData
-                {
-                    ID = branch.ID,
-                    NameE = branch.NameE,
-                    NameF = branch.NameF,
-                    Flag = userBranches.Contains(branch.ID)
-                });
-            }
             return viewModel;
         }
 
@@ -278,72 +243,41 @@ namespace TransformationTimelineTool.Controllers
             return viewModel;
         }
 
-        private void UpdateUserBranches(string[] selectedBranches, User userToUpdate)
-        {
-            if (selectedBranches == null)
-            {
-                userToUpdate.Branches = new List<Branch>();
-                return;
-            }
-
-            var selectedBranchesHS = new HashSet<string>(selectedBranches);
-            var userBranches = new HashSet<int>(userToUpdate.Branches.Select(e => e.ID));
-
-            foreach (var branch in db.Branches)
-            {
-                if (selectedBranches.Contains(branch.ID.ToString()))
-                {
-                    if (!userBranches.Contains(branch.ID))
-                    {
-                        userToUpdate.Branches.Add(branch);
-                    }
-                }
-                else
-                {
-                    if (userBranches.Contains(branch.ID))
-                    {
-                        userToUpdate.Branches.Remove(branch);
-                    }
-                }
-            }
-        }
-
-        private void UpdateUserRegions(string[] selectedRegions, User userToUpdate)
-        {
-            if (selectedRegions == null)
-            {
-                userToUpdate.Regions = new List<Region>();
-                return;
-            }
-
-            var selectedRegionHS = new HashSet<string>(selectedRegions);
-            var userRegions = new HashSet<int>(userToUpdate.Regions.Select(e => e.ID));
-
-            foreach (var region in db.Regions)
-            {
-                if (selectedRegionHS.Contains(region.ID.ToString()))
-                {
-                    if (!userRegions.Contains(region.ID))
-                    {
-                        userToUpdate.Regions.Add(region);
-                    }
-                }
-                else
-                {
-                    if (userRegions.Contains(region.ID))
-                    {
-                        userToUpdate.Regions.Remove(region);
-                    }
-                }
-            }
-        }
-
         private void UpdateUserRoles(string[] selectedRoles, User userToUpdate)
         {
             userManager.RemoveFromRoles(userToUpdate.Id, userManager.GetRoles(userToUpdate.Id).ToArray());
             if (selectedRoles != null)
             {
                 userManager.AddToRoles(userToUpdate.Id, selectedRoles);
+            }
+        }
+        private void UpdateUserInitiatives(string[] selectedInitiatives, User userToUpdate)
+        {
+            if (selectedInitiatives == null)
+            {
+                userToUpdate.Initiatives = new List<Initiative>();
+                return;
+            }
+
+            var selectedInitiativesHS = new HashSet<string>(selectedInitiatives);
+            var userInitiatives = new HashSet<int>(userToUpdate.Initiatives.Select(e => e.ID));
+
+            foreach (var initiative in db.Initiatives)
+            {
+                if (selectedInitiativesHS.Contains(initiative.ID.ToString()))
+                {
+                    if (!userInitiatives.Contains(initiative.ID))
+                    {
+                        userToUpdate.Initiatives.Add(initiative);
+                    }
+                }
+                else
+                {
+                    if (userInitiatives.Contains(initiative.ID))
+                    {
+                        userToUpdate.Initiatives.Remove(initiative);
+                    }
+                }
             }
         }
     }

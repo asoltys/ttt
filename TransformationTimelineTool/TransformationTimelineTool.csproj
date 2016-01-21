@@ -266,6 +266,14 @@
     <Compile Include="Migrations\201601202023039_EventDateAndTypeToEdit.Designer.cs">
       <DependentUpon>201601202023039_EventDateAndTypeToEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601211837035_RemoveUserRegionsBranches.cs" />
+    <Compile Include="Migrations\201601211837035_RemoveUserRegionsBranches.Designer.cs">
+      <DependentUpon>201601211837035_RemoveUserRegionsBranches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601212030226_InitaitvesUsersManyToMany.cs" />
+    <Compile Include="Migrations\201601212030226_InitaitvesUsersManyToMany.Designer.cs">
+      <DependentUpon>201601212030226_InitaitvesUsersManyToMany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Edit.cs" />
@@ -279,6 +287,7 @@
     <Compile Include="ViewModels\EventData.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\EventJSON.cs" />
+    <Compile Include="ViewModels\InitiativeData.cs" />
     <Compile Include="ViewModels\InitiativeViewModel.cs" />
     <Compile Include="ViewModels\RegionsData.cs" />
     <Compile Include="ViewModels\InitiativeIndexData.cs" />
@@ -744,7 +753,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
-    <Content Include="report.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\config.js" />
@@ -754,7 +762,6 @@
     <Content Include="Scripts\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
-    <Content Include="ClassDiagram1.cd" />
     <Content Include="boew-wet\.travis.yml" />
     <Content Include="boew-wet\CONTRIBUTING.md" />
     <Content Include="boew-wet\README.md" />
@@ -789,7 +796,6 @@
     <Content Include="Content\font-awesome-4.5.0\less\rotated-flipped.less" />
     <Content Include="Content\font-awesome-4.5.0\less\stacked.less" />
     <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
-    <Content Include="ClassDiagram2.cd" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -1439,6 +1445,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601202023039_EventDateAndTypeToEdit.resx">
       <DependentUpon>201601202023039_EventDateAndTypeToEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601211837035_RemoveUserRegionsBranches.resx">
+      <DependentUpon>201601211837035_RemoveUserRegionsBranches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601212030226_InitaitvesUsersManyToMany.resx">
+      <DependentUpon>201601212030226_InitaitvesUsersManyToMany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

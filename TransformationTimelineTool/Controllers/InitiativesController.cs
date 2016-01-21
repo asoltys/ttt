@@ -41,7 +41,7 @@ namespace TransformationTimelineTool.Controllers
             if (id != null)
             {
                 ViewBag.InitiativeID = id.Value;
-                viewModel.Events = currentUser.Events.Where(e => e.InitiativeID == id.Value);
+                viewModel.Events = db.Events.Where(e => e.CreatorID == currentUser.Id);
                 viewModel.Impacts = viewModel.Initiatives.Where(
                     i => i.ID == id.Value).Single().Impacts;
             }
