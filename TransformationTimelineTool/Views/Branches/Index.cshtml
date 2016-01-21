@@ -12,19 +12,19 @@
 
 <span class="create-new">
     <a class="no-link-style" href='@Url.Action("Create", "Branches")'>
-        <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
+        <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
     </a>
 </span>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NameShort)
+            @Resources.ShortName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NameE)
+            @Resources.EnglishName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NameF)
+            @Resources.FrenchName
         </th>
         <th class="control-group"></th>
     </tr>
@@ -57,6 +57,6 @@
 </table>
 <span class="create-new">
     <a class="no-link-style" href='@Url.Action("Create", "Branches")'>
-        <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
+        <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
     </a>
 </span>

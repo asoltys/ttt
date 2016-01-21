@@ -138,7 +138,7 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="Create" xml:space="preserve">
+  <data name="CreateNew" xml:space="preserve">
     <value>Créer nouveau</value>
   </data>
   <data name="Date" xml:space="preserve">
@@ -352,6 +352,33 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>tba</value>
   </data>
   <data name="Users" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="FrenchName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Impact" xml:space="preserve">
     <value>tba</value>
   </data>
 </root>

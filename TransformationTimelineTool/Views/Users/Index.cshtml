@@ -9,13 +9,13 @@
     <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
 }
 
-<h2>Users</h2>
+<h2>@Resources.Users</h2>
 
 @if (ViewBag.isAdmin)
 {
     <span class="create-new">
         <a class="no-link-style" href='@Url.Action("Create", "Users")'>
-            <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
+            <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
         </a>
     </span>
 }
@@ -23,10 +23,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Resources.UserName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Resources.Email
         </th>
         <th class="control-group"></th>
     </tr>
@@ -68,7 +68,7 @@
 {
     <span class="create-new">
         <a class="no-link-style" href='@Url.Action("Create", "Users")'>
-            <i title="@Resources.Create" class="fa fa-plus fa-2x"></i>
+            <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
         </a>
     </span>
 }

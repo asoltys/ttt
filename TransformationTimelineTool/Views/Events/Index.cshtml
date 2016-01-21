@@ -15,18 +15,13 @@
 
 <div id="legend">
     <div style="float: left;">
-        <img src="~/Images/circle.png" />@Enum.GetName(typeof(TransformationTimelineTool.Models.Type),
-TransformationTimelineTool.Models.Type.Milestone) <br />
-        <img src="~/Images/book.png" />@Enum.GetName(typeof(TransformationTimelineTool.Models.Type),
-TransformationTimelineTool.Models.Type.Training)
+        <img src="~/Images/circle.png" />@Resources.Milestone<br />
+        <img src="~/Images/book.png" />@Resources.Training
     </div>
     <div style="float: right;">
-        <span class="green-box image-pretender"></span>@Enum.GetName(typeof(Status),
-Status.Approved) <br />
-        <span class="yellow-box image-pretender"></span>@Enum.GetName(typeof(Status),
-Status.Pending) <br />
-        <span class="red-box image-pretender"></span>@Enum.GetName(typeof(Status),
-Status.Draft)
+        <span class="green-box image-pretender"></span>@Resources.Approved<br />
+        <span class="yellow-box image-pretender"></span>@Resources.Pending<br />
+        <span class="red-box image-pretender"></span>@Resources.Draft
     </div>
 </div>
 
@@ -119,10 +114,8 @@ Status.Draft)
         // Set Type & Status column to be searchable
         $("#eventTable img").each(function () {
             var mapper = {
-                "circle.png": ['@Enum.GetName(typeof(TransformationTimelineTool.Models.Type),
-                               TransformationTimelineTool.Models.Type.Milestone)' , 0],
-                "book.png": ['@Enum.GetName(typeof(TransformationTimelineTool.Models.Type),
-                               TransformationTimelineTool.Models.Type.Training)', 1]
+                "circle.png": ['@Resources.Milestone' , 0],
+                "book.png": ['@Resources.Training', 1]
             }
             for (key in mapper) {
                 if ($(this).attr("src").indexOf(key) > -1) {
@@ -133,9 +126,9 @@ Status.Draft)
         });
         $("[class*='-box']").each(function () {
             var mapper = {
-                "red-box": ['@Enum.GetName(typeof(Status), Status.Draft)', 0],
-                "yellow-box": ['@Enum.GetName(typeof(Status), Status.Pending)', 1],
-                "green-box": ['@Enum.GetName(typeof(Status), Status.Approved)', 2]
+                "red-box": ['@Resources.Draft', 0],
+                "yellow-box": ['@Resources.Pending', 1],
+                "green-box": ['@Resources.Approved', 2]
             }
             for (key in mapper) {
                 if ($(this).hasClass(key)) {
@@ -168,7 +161,7 @@ Status.Draft)
         });
 
         var createNewButton = "<a class='no-link-style' href='@Url.Action("Create", "Events")'>";
-        createNewButton += "<i title='@Resources.Create' class = 'fa fa-plus fa-2x'></i></a>"
+        createNewButton += "<i title='@Resources.CreateNew' class = 'fa fa-plus fa-2x'></i></a>"
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
     });
