@@ -55,6 +55,7 @@ namespace TransformationTimelineTool.Controllers
         {
             var userViewModel = new UserViewModel();
 
+            userViewModel.Initiatives = db.Initiatives.ToList<Initiative>();
             userViewModel.Roles = db.Roles.ToList<IdentityRole>();
             userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
 
@@ -67,12 +68,22 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserViewModel userViewModel,
-            string[] selectedBranches,
-            string[] selectedRegions,
+            string[] selectedInitiatives,
             string[] selectedRoles)
         {
             string username = Utils.GetUsernameFromEmail(userViewModel.User.Email);
             var userToAdd = new User();
+
+            userToAdd.Initiatives = new List<Initiative>();
+
+            var selectedInitiativeHS = new HashSet<string>(selectedInitiatives);
+            foreach (var initiative in db.Initiatives)
+            {
+                if (selectedInitiativeHS.Contains(initiative.ID.ToString()))
+                {
+                    userToAdd.Initiatives.Add(initiative);
+                }
+            }
 
             if (username != "")
             {
@@ -109,6 +120,7 @@ namespace TransformationTimelineTool.Controllers
 
             userViewModel.User = user;
             userViewModel.PopulatedRoles = PopulateUserRolesData(user);
+            userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(user);
             userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
 
             if (user == null)
@@ -124,8 +136,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UserViewModel userViewModel,
-            string[] selectedRegions,
-            string[] selectedBranches,
+            string[] selectedInitiatives,
             string[] selectedRoles)
         {
 
@@ -146,6 +157,7 @@ namespace TransformationTimelineTool.Controllers
                 userToUpdate.Email = userViewModel.User.Email;
                 userToUpdate.ApproverID = userViewModel.User.ApproverID;
 
+                UpdateUserInitiatives(selectedInitiatives, userToUpdate);
                 UpdateUserRoles(selectedRoles, userToUpdate);
 
                 var myResult = userManager.Update(userToUpdate);
@@ -191,6 +203,27 @@ namespace TransformationTimelineTool.Controllers
             base.Dispose(disposing);
         }
 
+        private List<InitiativeData> PopulateUserInitiativesData(User user)
+        {
+            var allInitiatives = db.Initiatives;
+            var userInitiatives = new HashSet<int>(user.Initiatives.Select(i => i.ID));
+            var viewModel = new List<InitiativeData>();
+
+            foreach (var initiative in allInitiatives)
+            {
+                viewModel.Add(new InitiativeData
+
+                {
+                    ID = initiative.ID,
+                    NameE = initiative.NameE,
+                    NameF = initiative.NameF,
+                    Flag = userInitiatives.Contains(initiative.ID)
+                });
+            }
+
+            return viewModel;
+        }
+
         private List<RolesData> PopulateUserRolesData(User user)
         {
             var allRoles = db.Roles;
@@ -216,6 +249,35 @@ namespace TransformationTimelineTool.Controllers
             if (selectedRoles != null)
             {
                 userManager.AddToRoles(userToUpdate.Id, selectedRoles);
+            }
+        }
+        private void UpdateUserInitiatives(string[] selectedInitiatives, User userToUpdate)
+        {
+            if (selectedInitiatives == null)
+            {
+                userToUpdate.Initiatives = new List<Initiative>();
+                return;
+            }
+
+            var selectedInitiativesHS = new HashSet<string>(selectedInitiatives);
+            var userInitiatives = new HashSet<int>(userToUpdate.Initiatives.Select(e => e.ID));
+
+            foreach (var initiative in db.Initiatives)
+            {
+                if (selectedInitiativesHS.Contains(initiative.ID.ToString()))
+                {
+                    if (!userInitiatives.Contains(initiative.ID))
+                    {
+                        userToUpdate.Initiatives.Add(initiative);
+                    }
+                }
+                else
+                {
+                    if (userInitiatives.Contains(initiative.ID))
+                    {
+                        userToUpdate.Initiatives.Remove(initiative);
+                    }
+                }
             }
         }
     }

@@ -23,18 +23,43 @@
                 @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            <div class="col-md-2 text-right"><strong>Initiatives</strong></div>
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
 
+                            foreach (var initiative in Model.Initiatives)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                               }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedInitiatives"
+                                           value="@initiative.ID" />
+                                        @initiative.Name
+                                        @:</td>
+                           }
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-2 text-right"><strong>Roles</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
                         @{
-                            int cnt3 = 0;
+                            int cnt2 = 0;
 
                             foreach (var role in Model.Roles)
                             {
-                                if (cnt3++ % 3 == 0)
+                                if (cnt2++ % 3 == 0)
                                 {
                                     @:</tr><tr>
                                }

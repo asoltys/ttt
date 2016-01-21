@@ -12,6 +12,8 @@ namespace TransformationTimelineTool.ViewModels
     {
         public IEnumerable<IdentityRole> Roles { get; set; }
         public IEnumerable<RolesData> PopulatedRoles{ get; set; }
+        public IEnumerable<Initiative> Initiatives { get; set; }
+        public IEnumerable<InitiativeData> PopulatedInitiatives { get; set; }
         public SelectList ApproverSelect { get; set; }
         public User User { get; set; }
 
