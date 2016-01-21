@@ -401,6 +401,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Initiatives.
+        /// </summary>
+        public static string Initiatives {
+            get {
+                return ResourceManager.GetString("Initiatives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Milestone.
         /// </summary>
         public static string Milestone {
@@ -626,6 +635,15 @@ namespace Resources {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
             }
         }
         

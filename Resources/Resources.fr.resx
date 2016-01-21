@@ -121,16 +121,16 @@
     <value>À propos</value>
   </data>
   <data name="Activity" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Atlanta" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="BackToList" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Branch" xml:space="preserve">
-    <value>Branch-fra</value>
+    <value>tba</value>
   </data>
   <data name="Branches" xml:space="preserve">
     <value>Direction Générales</value>
@@ -142,13 +142,13 @@
     <value>Créer nouveau</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Date [fra]</value>
+    <value>tba</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Effacer</value>
   </data>
   <data name="Deselect" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Détails</value>
@@ -157,73 +157,73 @@
     <value>Modifier</value>
   </data>
   <data name="Editor" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Editors" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>Fin</value>
   </data>
   <data name="EventEngHover" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="EventEngText" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="EventFraHover" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="EventFraText" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Événements</value>
   </data>
   <data name="Executive" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Executives" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
   </data>
   <data name="Impacts" xml:space="preserve">
-    <value>Impacts [fra]</value>
+    <value>tba</value>
   </data>
   <data name="InitEnglishDesc" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="InitEnglishName" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="InitFrenchDesc" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="InitFrenchName" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Initiative" xml:space="preserve">
-    <value>Initiative [fra]</value>
+    <value>tba</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="NCA" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Ontario" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Pacific" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Quebec" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Region" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Regions" xml:space="preserve">
     <value>Régions</value>
@@ -232,13 +232,13 @@
     <value>Sélectionner</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Démarrer</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Envoyer des textos</value>
@@ -247,19 +247,19 @@
     <value>Calendrier national des transformations</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Vue</value>
   </data>
   <data name="Western" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Activities" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>fra tba</value>
+    <value>tba</value>
   </data>
   <data name="ApprovedMailBody" xml:space="preserve">
     <value>This is an automated message.&lt;br/&gt;
@@ -333,6 +333,9 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="Draft" xml:space="preserve">
     <value>tba</value>
   </data>
+  <data name="Initiatives" xml:space="preserve">
+    <value>tba</value>
+  </data>
   <data name="Milestone" xml:space="preserve">
     <value>tba</value>
   </data>
@@ -346,6 +349,9 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>tba</value>
   </data>
   <data name="Training" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Users" xml:space="preserve">
     <value>tba</value>
   </data>
 </root>

@@ -333,6 +333,9 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="Draft" xml:space="preserve">
     <value>Draft</value>
   </data>
+  <data name="Initiatives" xml:space="preserve">
+    <value>Initiatives</value>
+  </data>
   <data name="Milestone" xml:space="preserve">
     <value>Milestone</value>
   </data>
@@ -347,5 +350,8 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   </data>
   <data name="Training" xml:space="preserve">
     <value>Training</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
   </data>
 </root>
