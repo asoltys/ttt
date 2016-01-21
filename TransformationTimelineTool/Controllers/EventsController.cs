@@ -23,7 +23,8 @@ namespace TransformationTimelineTool.Controllers
         public ActionResult Index()
         {
             var currentUser = Utils.GetCurrentUser();
-            return View(db.Events.ToList());
+            var events = currentUser.Initiatives.SelectMany(i => i.Events).ToList<Event>();
+            return View(events);
         }
 
         // GET: Events/Details/5
