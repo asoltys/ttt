@@ -57,11 +57,11 @@ namespace TransformationTimelineTool.Controllers
 
             if (id != null)
             {
-                viewModel.InitiativeSelect = new SelectList(db.Initiatives.ToList<Initiative>(), "id", "NameE", id);
+                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList<Initiative>(), "id", "NameE", id);
             }
             else
             {
-                viewModel.InitiativeSelect = new SelectList(db.Initiatives.ToList<Initiative>(), "id", "NameE");
+                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList<Initiative>(), "id", "NameE");
             }
             return View(viewModel);
         }
@@ -154,7 +154,7 @@ namespace TransformationTimelineTool.Controllers
                 .Single();
 
             eventViewModel.Edit = eventViewModel.GetLatestEdit();
-            eventViewModel.InitiativeSelect = new SelectList(db.Initiatives.ToList<Initiative>(), "id", "NameE");
+            eventViewModel.InitiativeSelect = new SelectList(Utils.GetCurrentUser().Initiatives.ToList<Initiative>(), "id", "NameE");
 
             PopulateEventRegionsData(eventViewModel.Event);
             PopulateEventBranchesData(eventViewModel.Event);
@@ -164,7 +164,7 @@ namespace TransformationTimelineTool.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", eventViewModel.Event.InitiativeID);
+            ViewBag.InitiativeID = new SelectList(Utils.GetCurrentUser().Initiatives, "ID", "NameE", eventViewModel.Event.InitiativeID);
             return View(eventViewModel);
         }
 

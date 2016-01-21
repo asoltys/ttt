@@ -753,7 +753,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
-    <Content Include="report.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\config.js" />
@@ -763,7 +762,6 @@
     <Content Include="Scripts\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
-    <Content Include="ClassDiagram1.cd" />
     <Content Include="boew-wet\.travis.yml" />
     <Content Include="boew-wet\CONTRIBUTING.md" />
     <Content Include="boew-wet\README.md" />
@@ -798,8 +796,6 @@
     <Content Include="Content\font-awesome-4.5.0\less\rotated-flipped.less" />
     <Content Include="Content\font-awesome-4.5.0\less\stacked.less" />
     <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
-    <Content Include="ClassDiagram2.cd" />
-    <Content Include="ClassDiagram3.cd" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
