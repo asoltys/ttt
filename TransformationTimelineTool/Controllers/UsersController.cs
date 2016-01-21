@@ -55,8 +55,6 @@ namespace TransformationTimelineTool.Controllers
         {
             var userViewModel = new UserViewModel();
 
-            userViewModel.Branches = db.Branches.ToList<Branch>();
-            userViewModel.Regions = db.Regions.ToList<Region>();
             userViewModel.Roles = db.Roles.ToList<IdentityRole>();
             userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
 
@@ -76,27 +74,6 @@ namespace TransformationTimelineTool.Controllers
             string username = Utils.GetUsernameFromEmail(userViewModel.User.Email);
             var userToAdd = new User();
 
-            userToAdd.Branches = new List<Branch>();
-            userToAdd.Regions = new List<Region>();
-
-            var selectedBranchesHS = new HashSet<string>(selectedBranches);
-            foreach (var branch in db.Branches)
-            {
-                if (selectedBranches.Contains(branch.ID.ToString()))
-                {
-                    userToAdd.Branches.Add(branch);
-                }
-            }
-
-            var selectedRegionsHS = new HashSet<string>(selectedRegions);
-            foreach (var region in db.Regions)
-            {
-                if (selectedRegions.Contains(region.ID.ToString()))
-                {
-                    userToAdd.Regions.Add(region);
-                }
-            }
-
             if (username != "")
             {
                 userToAdd.UserName = username;
@@ -113,8 +90,6 @@ namespace TransformationTimelineTool.Controllers
                 return RedirectToAction("Index");
             }
 
-            PopulateUserRegionsData(userToAdd);
-            PopulateUserBranchesData(userToAdd);
             PopulateUserRolesData(userToAdd);
 
             return View(userViewModel);
@@ -133,8 +108,6 @@ namespace TransformationTimelineTool.Controllers
             User user = db.Users.Find(id);
 
             userViewModel.User = user;
-            userViewModel.PopulatedBranches = PopulateUserBranchesData(user);
-            userViewModel.PopulatedRegions = PopulateUserRegionsData(user);
             userViewModel.PopulatedRoles = PopulateUserRolesData(user);
             userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
 
@@ -173,8 +146,6 @@ namespace TransformationTimelineTool.Controllers
                 userToUpdate.Email = userViewModel.User.Email;
                 userToUpdate.ApproverID = userViewModel.User.ApproverID;
 
-                UpdateUserRegions(selectedRegions, userToUpdate);
-                UpdateUserBranches(selectedBranches, userToUpdate);
                 UpdateUserRoles(selectedRoles, userToUpdate);
 
                 var myResult = userManager.Update(userToUpdate);
@@ -220,45 +191,6 @@ namespace TransformationTimelineTool.Controllers
             base.Dispose(disposing);
         }
 
-        private List<RegionsData> PopulateUserRegionsData(User user)
-        {
-            var allRegions = db.Regions;
-            var userRegions = new HashSet<int>(user.Regions.Select(r => r.ID));
-            var viewModel = new List<RegionsData>();
-
-            foreach (var region in allRegions)
-            {
-                viewModel.Add(new RegionsData
-                {
-                    ID = region.ID,
-                    NameE = region.NameE,
-                    NameF = region.NameF,
-                    Flag = userRegions.Contains(region.ID)
-                });
-            }
-
-            return viewModel;
-        }
-
-        private List<BranchesData> PopulateUserBranchesData(User user)
-        {
-            var allBranches = db.Branches;
-            var userBranches = new HashSet<int>(user.Branches.Select(b => b.ID));
-            var viewModel = new List<BranchesData>();
-
-            foreach (var branch in allBranches)
-            {
-                viewModel.Add(new BranchesData
-                {
-                    ID = branch.ID,
-                    NameE = branch.NameE,
-                    NameF = branch.NameF,
-                    Flag = userBranches.Contains(branch.ID)
-                });
-            }
-            return viewModel;
-        }
-
         private List<RolesData> PopulateUserRolesData(User user)
         {
             var allRoles = db.Roles;
@@ -276,66 +208,6 @@ namespace TransformationTimelineTool.Controllers
             }
 
             return viewModel;
-        }
-
-        private void UpdateUserBranches(string[] selectedBranches, User userToUpdate)
-        {
-            if (selectedBranches == null)
-            {
-                userToUpdate.Branches = new List<Branch>();
-                return;
-            }
-
-            var selectedBranchesHS = new HashSet<string>(selectedBranches);
-            var userBranches = new HashSet<int>(userToUpdate.Branches.Select(e => e.ID));
-
-            foreach (var branch in db.Branches)
-            {
-                if (selectedBranches.Contains(branch.ID.ToString()))
-                {
-                    if (!userBranches.Contains(branch.ID))
-                    {
-                        userToUpdate.Branches.Add(branch);
-                    }
-                }
-                else
-                {
-                    if (userBranches.Contains(branch.ID))
-                    {
-                        userToUpdate.Branches.Remove(branch);
-                    }
-                }
-            }
-        }
-
-        private void UpdateUserRegions(string[] selectedRegions, User userToUpdate)
-        {
-            if (selectedRegions == null)
-            {
-                userToUpdate.Regions = new List<Region>();
-                return;
-            }
-
-            var selectedRegionHS = new HashSet<string>(selectedRegions);
-            var userRegions = new HashSet<int>(userToUpdate.Regions.Select(e => e.ID));
-
-            foreach (var region in db.Regions)
-            {
-                if (selectedRegionHS.Contains(region.ID.ToString()))
-                {
-                    if (!userRegions.Contains(region.ID))
-                    {
-                        userToUpdate.Regions.Add(region);
-                    }
-                }
-                else
-                {
-                    if (userRegions.Contains(region.ID))
-                    {
-                        userToUpdate.Regions.Remove(region);
-                    }
-                }
-            }
         }
 
         private void UpdateUserRoles(string[] selectedRoles, User userToUpdate)

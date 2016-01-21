@@ -262,9 +262,9 @@
     <Compile Include="Migrations\201601182051098_EventCreator.Designer.cs">
       <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601202023039_EventDateAndTypeToEdit.cs" />
-    <Compile Include="Migrations\201601202023039_EventDateAndTypeToEdit.Designer.cs">
-      <DependentUpon>201601202023039_EventDateAndTypeToEdit.cs</DependentUpon>
+    <Compile Include="Migrations\201601211837035_RemoveUserRegionsBranches.cs" />
+    <Compile Include="Migrations\201601211837035_RemoveUserRegionsBranches.Designer.cs">
+      <DependentUpon>201601211837035_RemoveUserRegionsBranches.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -1437,8 +1437,8 @@
     <EmbeddedResource Include="Migrations\201601182051098_EventCreator.resx">
       <DependentUpon>201601182051098_EventCreator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601202023039_EventDateAndTypeToEdit.resx">
-      <DependentUpon>201601202023039_EventDateAndTypeToEdit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601211837035_RemoveUserRegionsBranches.resx">
+      <DependentUpon>201601211837035_RemoveUserRegionsBranches.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
