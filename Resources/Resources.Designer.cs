@@ -266,11 +266,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End.
         /// </summary>
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English Name.
+        /// </summary>
+        public static string EnglishName {
+            get {
+                return ResourceManager.GetString("EnglishName", resourceCulture);
             }
         }
         
@@ -334,6 +352,15 @@ namespace Resources {
         public static string Executives {
             get {
                 return ResourceManager.GetString("Executives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French Name.
+        /// </summary>
+        public static string FrenchName {
+            get {
+                return ResourceManager.GetString("FrenchName", resourceCulture);
             }
         }
         
@@ -406,6 +433,15 @@ namespace Resources {
         public static string Initiatives {
             get {
                 return ResourceManager.GetString("Initiatives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string Level {
+            get {
+                return ResourceManager.GetString("Level", resourceCulture);
             }
         }
         
@@ -576,6 +612,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Short Name.
+        /// </summary>
+        public static string ShortName {
+            get {
+                return ResourceManager.GetString("ShortName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show.
         /// </summary>
         public static string Show {
@@ -635,6 +680,15 @@ namespace Resources {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Name.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

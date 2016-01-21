@@ -354,4 +354,22 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="Users" xml:space="preserve">
     <value>tba</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="FrenchName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>tba</value>
+  </data>
 </root>
