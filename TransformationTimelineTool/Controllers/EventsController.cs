@@ -116,7 +116,7 @@ namespace TransformationTimelineTool.Controllers
 
                     db.Events.Add(eventToCreate);
                     db.SaveChanges();
-                    SendMail(eventToCreate);
+                    if (!SendMail(eventToCreate)) throw new SendMailException("Something unexpected happened.");
 
                     //@event.Edit = edit;;
 
@@ -126,6 +126,9 @@ namespace TransformationTimelineTool.Controllers
                 {
                     //Log the error (uncomment dex variable name and add a line here to write a log.
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                } catch (SendMailException ex)
+                {
+                    ModelState.AddModelError("SendMail", ex.Message);
                 }
             }
 
@@ -207,7 +210,7 @@ namespace TransformationTimelineTool.Controllers
                     }
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
-                    SendMail(eventToUpdate);
+                    if (!SendMail(eventToUpdate)) throw new SendMailException("Something unexpected happened.");
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -227,7 +230,7 @@ namespace TransformationTimelineTool.Controllers
 
         public bool SendMail(Event @event)
         {
-            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return false;
+            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return true;
             var CurrentUser = Utils.GetCurrentUser();
             var Creator = db.Users.Find(@event.CreatorID);
             if (Creator.Id == null || Creator.ApproverID == null)
@@ -243,8 +246,8 @@ namespace TransformationTimelineTool.Controllers
             if (CurrentUser.Id == Creator.Id && @event.Status == Status.Draft)
             {
                 // Logic: Creator has saved a draft of an event
-                // Action: ???
-                return false;
+                // Action: Do not send any notification
+                return true;
             } else if (CurrentUser.Id == Creator.Id && @event.Status == Status.Pending)
             {
                 // Logic: Creator just submitted the event to be approved by an approver
@@ -253,6 +256,7 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.PendingMailSubject;
                 MailBody = Resources.Resources.PendingMailBody;
                 CopyList.Add(Creator.Email);
+                CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Draft)
             {
                 // Logic: Approver has rejected the event creation
@@ -261,8 +265,10 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.RejectMailSubject;
                 MailBody = Resources.Resources.RejectMailBody;
                 CopyList.Add(Creator.Approver.Email);
+                CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Approved)
             {
+                // TODO: Test this case where Approver is the Creator and accepts the change right away
                 // Logic: Approver has approved the event creation / edit
                 // Action: Send a mail to the Creator, CC Approver & Admin
                 SendTo = Creator.Email;
@@ -271,20 +277,20 @@ namespace TransformationTimelineTool.Controllers
                 MailBody = String.Format(MailBody,
                     ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
                 CopyList.Add(Creator.Approver.Email);
+                CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Pending)
             {
                 // Logic: Approver has set the event state to pending
-                // Action: ???
-                return false;
+                // Action: Do not send any notification
+                return true;
             } else
             {
                 SendTo = AdminEmail;
-                MailSubject = Resources.Resources.ApprovedMailSubject;
+                MailSubject = "Something unexpected happened with an event";
                 MailBody = Resources.Resources.ApprovedMailBody;
                 MailBody = String.Format(MailBody,
                     ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
             }
-            CopyList.Add(AdminEmail);
             if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList))
                 throw new SendMailException("Please check your server settings. SMTP client has failed to send the emails");
             return true;
