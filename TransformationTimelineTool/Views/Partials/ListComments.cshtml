@@ -23,7 +23,7 @@
 
     function displayComments($response) {
         $("#commentBox").empty();
-        $.each($response, function (idx, val) {
+        $.each($response.reverse(), function (idx, val) {
             addRow(val);
         });
     }
