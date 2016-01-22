@@ -57,11 +57,11 @@ namespace TransformationTimelineTool.Controllers
 
             if (id != null)
             {
-                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList<Initiative>(), "id", "NameE", id);
+                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList(), "id", "NameE", id);
             }
             else
             {
-                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList<Initiative>(), "id", "NameE");
+                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList(), "id", "NameE");
             }
             return View(viewModel);
         }
