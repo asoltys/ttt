@@ -34,7 +34,7 @@ namespace TransformationTimelineTool
             Thread.CurrentPrincipal = HttpContext.Current.User = principal;
         }
 
-        protected void Application_EndRequest(object sender, EventArgs e)
+        /*protected void Application_EndRequest(object sender, EventArgs e)
         {
             if (Response.StatusCode == 401)
             {
@@ -42,6 +42,6 @@ namespace TransformationTimelineTool
                 Response.WriteFile("~/Static/NotAuthorized.html");
                 Response.ContentType = "text/html";
             }
-        }
+        }*/
     }
 }
