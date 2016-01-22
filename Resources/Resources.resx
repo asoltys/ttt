@@ -384,4 +384,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
 </root>
