@@ -11,6 +11,7 @@ using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BranchesController : BaseController
     {
         private TimelineContext db = new TimelineContext();

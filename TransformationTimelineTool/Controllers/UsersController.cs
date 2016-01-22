@@ -15,6 +15,7 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [Authorize(Roles = "Admin,OPI,Editor")]
     public class UsersController : Controller
     {
         private TimelineContext db = new TimelineContext();
@@ -51,6 +52,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Users/Create
+        [Authorize(Roles = "Admin,")]
         public ActionResult Create()
         {
             var userViewModel = new UserViewModel();
@@ -67,6 +69,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,")]
         public ActionResult Create(UserViewModel userViewModel,
             string[] selectedInitiatives,
             string[] selectedRoles)
@@ -169,6 +172,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Users/Delete/5
+        [Authorize(Roles = "Admin,")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -186,6 +190,7 @@ namespace TransformationTimelineTool.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,")]
         public ActionResult DeleteConfirmed(string id)
         {
             User user = db.Users.Find(id);

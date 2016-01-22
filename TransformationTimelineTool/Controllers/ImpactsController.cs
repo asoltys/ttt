@@ -13,6 +13,7 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [Authorize(Roles = "Admin,OPI,Editor")]
     public class ImpactsController : BaseController
     {
         private TimelineContext db = new TimelineContext();
@@ -44,6 +45,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Impacts/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(int? id)
         {
             ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
@@ -66,6 +68,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,InitiativeID,BranchID,Justification,Level")] Impact impact, string[] selectedBranches, string[] selectedRegions)
         {
             if (ModelState.IsValid)
@@ -99,6 +102,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Impacts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -167,6 +171,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Impact impact, string[] selectedRegions, string[] selectedBranches)
         {
 
@@ -267,6 +272,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Impacts/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -284,6 +290,7 @@ namespace TransformationTimelineTool.Controllers
         // POST: Impacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Impact impact = db.Impacts.Find(id);

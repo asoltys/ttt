@@ -17,6 +17,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [Authorize(Roles = "Admin,OPI,Editor")]
     public class InitiativesController : BaseController
     {
         private TimelineContext db = new TimelineContext();

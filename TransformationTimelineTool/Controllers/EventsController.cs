@@ -15,6 +15,7 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [Authorize(Roles = "Admin,OPI,Editor")]
     public class EventsController : BaseController
     {
         private TimelineContext db = new TimelineContext();
@@ -47,7 +48,6 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Create
-        [Authorize(Roles = "Admin,OPI,Editor")]
         public ActionResult Create(int? id)
         {
             var currentUser = Utils.GetCurrentUser();

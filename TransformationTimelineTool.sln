@@ -17,6 +17,8 @@ Global
 		Release|x64 = Release|x64
 		Ryan|Any CPU = Ryan|Any CPU
 		Ryan|x64 = Ryan|x64
+		Test|Any CPU = Test|Any CPU
+		Test|x64 = Test|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Ryan|Any CPU.Build.0 = Ryan|Any CPU
 		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Ryan|x64.ActiveCfg = Ryan|x64
 		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Ryan|x64.Build.0 = Ryan|x64
+		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Test|Any CPU.Build.0 = Test|Any CPU
+		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Test|x64.ActiveCfg = Test|x64
+		{35028D06-1CB6-48B3-89A4-EF8E510D1369}.Test|x64.Build.0 = Test|x64
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -51,6 +57,10 @@ Global
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Ryan|Any CPU.Build.0 = Debug|Any CPU
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Ryan|x64.ActiveCfg = Release|Any CPU
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Ryan|x64.Build.0 = Release|Any CPU
+		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|Any CPU.Build.0 = Test|Any CPU
+		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|x64.ActiveCfg = Test|Any CPU
+		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|x64.Build.0 = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
