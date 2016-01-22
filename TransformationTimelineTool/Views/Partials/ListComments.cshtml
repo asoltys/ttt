@@ -1,30 +1,121 @@
 ﻿@model IEnumerable<TransformationTimelineTool.Models.Comment>
 
 <style>
-    #commentBox {
-        width: 1180px;
+    #commentContainer {
+        margin: 10px;
     }
-    #commentBox tr td:first-child, td:last-child{
-        width: 10%;
+
+    .comment-cell {
+        margin: 0 auto !important;
+        border: 1px solid #d4d4d4;
+        padding: 5.6px;
+    }
+
+    .clearfix:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+
+    .clearfix {
+        display: inline-block;
+    }
+
+    html[xmlns] .clearfix {
+        display: block;
+    }
+
+    * html .clearfix {
+        height: 1%;
+    }
+
+    .author {
+        font-weight: bold;
+    }
+
+    .content {
+        font-weight: 200;
+    }
+
+    .date {
     }
 </style>
 
 <h4>@Resources.Comment</h4>
 
-<table id="commentBox">
-</table>
+<div id="commentContainer" class="clearfix">
+</div>
 
 <script type="text/javascript">
-    function addRow(comment) {
-        var commentTable = $("#commentBox");
-        commentTable.append("<tr><td>" + comment.Author +
-            "</td><td>" + comment.Content + "</td><td>" + comment.Date + "</td></tr>");
-    }
+    var commentModule = (function () {
+        var commentObject = {
+            row: "",
+            author: "",
+            content: "",
+            date: "",
+        };
+        var $commentObject = {
+            row: null,
+            author: null,
+            content: null,
+            date: null,
+        };
+        var $commentContainer = $("#commentContainer");
+
+        function closeTag(obj) {
+            return obj.indexOf("div") > -1 ? "</div>" : "</span>";
+        }
+
+        function closeTags() {
+            for (prop in commentObject) {
+                commentObject[prop] += closeTag(commentObject[prop]);
+            }
+        }
+
+        function resetVariables() {
+            commentObject = {
+                row: "<div class='comment-row'>",
+                author: "<span class='span-1 comment-cell author'>",
+                content: "<span class='span-6 comment-cell content'>",
+                date: "<span class='span-1 comment-cell date'>",
+            };
+            $commentObject = {
+                row: null,
+                author: null,
+                content: null,
+                date: null,
+            };
+        }
+
+        function makeHTML() {
+            for (prop in commentObject) {
+                $commentObject[prop] = $($.parseHTML(commentObject[prop]));
+            }
+            $commentObject.row.append($commentObject.author,
+                $commentObject.content,
+                $commentObject.date);
+            $commentContainer.append($commentObject.row);
+        }
+
+        return {
+            makeARow: function (comment) {
+                resetVariables();
+                commentObject.author += comment.Author;
+                commentObject.content += comment.Content;
+                commentObject.date += comment.Date;
+                closeTags();
+                makeHTML();
+            }
+        }
+    })();
 
     function displayComments($response) {
-        $("#commentBox").empty();
+        $("#commentContainer").empty();
         $.each($response.reverse(), function (idx, val) {
-            addRow(val);
+            commentModule.makeARow(val);
         });
     }
     function grabComments() {
