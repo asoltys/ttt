@@ -44,7 +44,7 @@ timeLine = {
             type: "GET",
             url: timeLine.initiativesURL,
             dataType: "json",
-            timeout: 15000,
+            timeout: 6000,
             success: function (initiatives) {
                 timeLine.initiatives = initiatives;
                 $("#about").append(timeLine.about);
@@ -621,7 +621,6 @@ timeLine = {
 }
 
 $(document).ready(function () {
-    setUpLoadingAnimation();
     timeLine.content();
     $('body').on("click", "#leftButton", timeLine.goLeft);
     $('body').on("click", "#rightButton", timeLine.goRight);
@@ -640,20 +639,3 @@ $(document).ready(function () {
     $(document).tooltip({ items: ':not(.ui-button)' });
 });
 
-function setUpLoadingAnimation() {
-    var $loading = $("#timelineLoading");
-    $loading.css({
-        "position": "absolute",
-        "left": "50%",
-        "transform": "translate(-50%)"
-    });
-    var $loadingIcon = $($.parseHTML("<i title='Loading' class='fa fa-spinner fa-spin fa-5x'>"));
-    $.ajaxSetup({
-        beforeSend: function () {
-            $loadingIcon.appendTo($loading);
-        },
-        complete: function () {
-            $loading.empty();
-        }
-    });
-}
