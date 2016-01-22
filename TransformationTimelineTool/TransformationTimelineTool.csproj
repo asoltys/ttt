@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImpactsController.cs" />
@@ -274,8 +275,21 @@
     <Compile Include="Migrations\201601212030226_InitaitvesUsersManyToMany.Designer.cs">
       <DependentUpon>201601212030226_InitaitvesUsersManyToMany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601212217097_addComment.cs" />
+    <Compile Include="Migrations\201601212217097_addComment.Designer.cs">
+      <DependentUpon>201601212217097_addComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601212250268_AddAuthorName.cs" />
+    <Compile Include="Migrations\201601212250268_AddAuthorName.Designer.cs">
+      <DependentUpon>201601212250268_AddAuthorName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601212302442_DropAuthorID.cs" />
+    <Compile Include="Migrations\201601212302442_DropAuthorID.Designer.cs">
+      <DependentUpon>201601212302442_DropAuthorID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Edit.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Impact.cs" />
@@ -1345,17 +1359,17 @@
     <Content Include="Views\Home\Accessibility.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2Col.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
+    <Content Include="Views\Partials\AddComment.cshtml" />
+    <Content Include="Views\Partials\ListComments.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Web.Ryan.config">
-      <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1451,6 +1465,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601212030226_InitaitvesUsersManyToMany.resx">
       <DependentUpon>201601212030226_InitaitvesUsersManyToMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601212217097_addComment.resx">
+      <DependentUpon>201601212217097_addComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601212250268_AddAuthorName.resx">
+      <DependentUpon>201601212250268_AddAuthorName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601212302442_DropAuthorID.resx">
+      <DependentUpon>201601212302442_DropAuthorID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

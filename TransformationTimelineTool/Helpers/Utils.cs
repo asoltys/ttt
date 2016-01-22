@@ -113,43 +113,63 @@ namespace TransformationTimelineTool.Helpers
 
         }
 
-        public static string GetNameFromEmail(string email)
+        public static string GetFullName()
         {
+            var UserName = Utils.GetUserName(HttpContext.Current.User.Identity.Name);
             DirectoryEntry root = new DirectoryEntry(
                "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
                "pacweb",
                "god!power");
 
-            DirectorySearcher searcher = new DirectorySearcher(
-                root,
-                "(mail=" + email + ")");
+            DirectorySearcher adSearcher = new DirectorySearcher(root);
+            adSearcher.Filter = "(MAILNICKNAME=" + UserName + ")";
+            SearchResult userObject = adSearcher.FindOne();
+            var FullName = "";
+            if (userObject != null)
+            {
+                string[] props = new string[] { "givenName", "SN" };
+                foreach (string prop in props)
+                {
+                    FullName += userObject.Properties[prop][0] + " ";
+                }
+            }
+            return FullName;
+        }
 
-            string name = "";
-            SearchResult person;
-            try
+        public static string GetNameFromEmail(string mail)
+        {
+            DirectoryEntry root = new DirectoryEntry(
+               "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+               "pacweb",
+               "god!power");
+            
+            DirectorySearcher adSearcher = new DirectorySearcher(root);
+            adSearcher.Filter = "(mail=" + mail + ")";
+            SearchResult userObject = adSearcher.FindOne();
+            var FullName = "";
+            if (userObject != null)
             {
-                person = searcher.FindOne();
-                name = person.Properties["givenName"][0].ToString() + 
-                    person.Properties["sn"][0].ToString();
+                string[] props = new string[] { "givenName", "SN" };
+                foreach (string prop in props)
+                {
+                    FullName = String.Format("{0} : {1}", prop, userObject.Properties[prop][0]);
+                    Utils.log(FullName);
+                }
             }
-            catch
-            {
-                name = "";
-            }
-            return name;
+            return FullName;
         }
 
         public static bool SendMail(String Recipient, String Subject, String Message, List<String> CC = null)
         {
             CC = CC ?? new List<String>();
             MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
-            MailAddress RecipientAddress = new MailAddress(Recipient, GetNameFromEmail(Recipient));
+            MailAddress RecipientAddress = new MailAddress(Recipient);
             MailMessage Mail = new MailMessage(FromAddress, RecipientAddress);
             Mail.Subject = Subject;
             Mail.IsBodyHtml = true;
             Mail.Body = Message;
             if (CC.Count() > 0)
-                CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress, GetNameFromEmail(CopyAddress))));
+                CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
             SmtpClient client = new SmtpClient();
             try
             {

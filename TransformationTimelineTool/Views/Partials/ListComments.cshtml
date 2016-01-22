@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TransformationTimelineTool.Models.Comment>
+
+<style>
+    #commentBox {
+        width: 1180px;
+    }
+    #commentBox tr td:first-child, td:last-child{
+        width: 10%;
+    }
+</style>
+
+<h4>@Resources.Comment</h4>
+
+<table id="commentBox">
+</table>
+
+<script type="text/javascript">
+    function addRow(comment) {
+        var commentTable = $("#commentBox");
+        commentTable.append("<tr><td>" + comment.Author +
+            "</td><td>" + comment.Content + "</td><td>" + comment.Date + "</td></tr>");
+    }
+
+    function displayComments($response) {
+        $("#commentBox").empty();
+        $.each($response, function (idx, val) {
+            addRow(val);
+        });
+    }
+    function grabComments() {
+        $.ajax({
+            type: "POST",
+            url: "/en/Comments/GetComments",
+            dataType: "json",
+            success: function (response) {
+                displayComments(response);
+            }, error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+    grabComments();
+</script>

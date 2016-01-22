@@ -1,0 +1,44 @@
+﻿@model TransformationTimelineTool.Models.Comment
+
+<style>
+    #commentTextInput {
+        width: 1100px;
+        float: left;
+        margin: 10px;
+    }
+</style>
+
+@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @id = "commentTextInput" } })
+@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+<input id="addComment" type="button" value="Add" class="btn btn-default" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $("#addComment").on("click", function () {
+        submitComment($("#commentTextInput").val());
+    });
+
+    function clearField() {
+        $("#commentTextInput").val("");
+    }
+
+    function submitComment(comment) {
+        var temp = JSON.stringify({ comment: comment });
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/en/Comments/AddComment",
+            data: temp,
+            cache: false,
+            success: function (response) {
+                clearField();
+                grabComments();
+            }, error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+</script>
