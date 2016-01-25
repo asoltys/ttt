@@ -1,8 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_IntraLayout.cshtml";
+    if(Culture == "fr")
+    {
+        Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
+        ViewBag.Title = "Calendrier national des transformations";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_IntraLayout.cshtml";
+        ViewBag.Title = "National Transformation Timeline Tool";
+    }
 }
-<h1 id="wb-cont">National Transformation Timeline Tool</h1>
+<h1 id="wb-cont">@ViewBag.Title</h1>
 <div id="about" class="span-7"></div>
 <div id="legend" class="span-1"></div>
 

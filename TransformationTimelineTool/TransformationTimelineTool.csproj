@@ -1353,6 +1353,7 @@
     <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
     <Content Include="Views\Partials\AddComment.cshtml" />
     <Content Include="Views\Partials\ListComments.cshtml" />
+    <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
