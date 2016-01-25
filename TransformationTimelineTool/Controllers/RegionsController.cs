@@ -90,6 +90,7 @@ namespace TransformationTimelineTool.Controllers
             }
             return View(region);
         }
+        [AllowAnonymous]
         public ActionResult Data()
         {
             var jsonRegions = new List<object>();

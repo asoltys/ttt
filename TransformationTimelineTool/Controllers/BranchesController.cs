@@ -90,6 +90,7 @@ namespace TransformationTimelineTool.Controllers
             }
             return View(branch);
         }
+        [AllowAnonymous]
         public ActionResult Data()
         {
             var jsonBranches = new List<object>();

@@ -180,6 +180,7 @@ namespace TransformationTimelineTool.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [AllowAnonymous]
         public ActionResult Data()
         {
             List<Initiative> initiatives = db.Initiatives.
