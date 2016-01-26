@@ -1,15 +1,17 @@
-// data URLs
-var enInitiativesURL = "/en/initiatives/datauni";
-var frInitiativesURL = "/fr/initiatives/datauni";
-var regionsURL 		= "/en/regions/data";
-var branchesURL     = "/en/branches/data";
-
 // data variables
 var initiatives;
 var regionKey = 0;
 var branchKey = 0;
 var showAllRegionKey;
 var showAllBranchKey;
+var regionName;
+var branchName;
+var currentCulture = window.location.href.indexOf("fr") > -1 ? "fr" : "en";
+
+// data URLs
+var initiativesURL = currentCulture == "en" ? "/en/initiatives/datauni" : "/fr/initiatives/datauni";
+var regionsURL = "/en/regions/data";
+var branchesURL = "/en/branches/data";
 
 // HTML variables
 var regionController;
@@ -41,8 +43,9 @@ function populateControllers() {
 	getJSON(regionsURL, function(data) {
 		regions = JSON.parse(data);
 		for (var k in regions) {
-			if (regions[k].Name == "All") showAllRegionKey = regions[k].ID;
-			var option = "<option id=" + regions[k].ID + ">" + regions[k].Name + "</option>";
+		    if (regions[k].NameShort == "all") showAllRegionKey = regions[k].ID;
+		    regionName = currentCulture == "en" ? regions[k].NameE : regions[k].NameF;
+		    var option = "<option id=" + regions[k].ID + ">" + regionName + "</option>";
 			regionController.append(option);
 		}
 	});
@@ -50,8 +53,9 @@ function populateControllers() {
 	getJSON(branchesURL, function (data) {
 	    branches = JSON.parse(data);
 	    for (var k in branches) {
-	        if (branches[k].Name == "All") showAllBranchKey = branches[k].ID;
-	        var option = "<option id=" + branches[k].ID + ">" + branches[k].Name + "</option>";
+	        if (branches[k].NameShort == "all") showAllBranchKey = branches[k].ID;
+	        branchName = currentCulture == "en" ? branches[k].NameE : branches[k].NameF;
+	        var option = "<option id=" + branches[k].ID + ">" + branchName + "</option>";
 	        branchController.append(option);
 	    }
 	});
@@ -59,7 +63,7 @@ function populateControllers() {
 
 function getInitiatives() {
 	lock = new $.Deferred();
-	getJSON(enInitiativesURL, function(data) {
+	getJSON(initiativesURL, function(data) {
 		initiatives = JSON.parse(data);
 		lock.resolve();
 	});
@@ -132,8 +136,27 @@ function getControlKey(key1, key2) {
 }
 
 function formatDate(format, date) {
-	try {
-		return $.datepicker.formatDate(format, new Date(date));
+    try {
+        var monthObj = {
+            1: { en: "January", fr: "janvier" },
+            2: { en: "February", fr: "février" },
+            3: { en: "March", fr: "mars" },
+            4: { en: "April", fr: "avril" },
+            5: { en: "May", fr: "mai" },
+            6: { en: "June", fr: "juin" },
+            7: { en: "July", fr: "juillet" },
+            8: { en: "August", fr: "août" },
+            9: { en: "September", fr: "septembre" },
+            10: { en: "October", fr: "octobre" },
+            11: { en: "November", fr: "novembre" },
+            12: { en: "December", fr: "décembre" }
+        };
+        console.log(date);
+        var date = date.split("/");
+        var day = date[0];
+        var month = date[1];
+        var year = date[2];
+        return monthObj[parseInt(month)][currentCulture] + " " + day + ", " + year;
 	} catch (e) {
 		throw {
 			name: "Dateformat Error",
@@ -160,6 +183,7 @@ function createContent(initiativeParam) {
 		}
 	}
 	var timespan = formatDate('MM, yy', startDate) + " - " + formatDate('MM, yy', endDate);
+	console.log(endDate);
 	
 	// Create milestones & training
 	var milestones 		= "<ul>";
@@ -195,7 +219,7 @@ function createContent(initiativeParam) {
 	training 	 = trainingCount == 0 ? "" : training;
 
 	// Create description
-	var description = initiativeParam["Description"];
+	var description = "<p>" + initiativeParam["Description"] + "</p>";
 
 	// Create last minute format changes and overall content 
 	timespan = "<p>" + timespan + "</p>";
@@ -233,7 +257,6 @@ function toggleAccordion(elem) {
 
 $(window).on("load", function() {
 	function main() {
-		if (debug) $("body").scrollTop(textAreaHeight);
 		try {
 			// Initial setup
 			populateControllers();
