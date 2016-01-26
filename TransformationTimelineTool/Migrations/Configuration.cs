@@ -74,6 +74,7 @@ namespace TransformationTimelineTool.Migrations
             base.Seed(context);
 
            
+ /*
             var initiatives = new List<Initiative>
             {
                 new Initiative {NameE = "Defense Procurement Strategy", DescriptionE = "Descp 1", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
@@ -84,7 +85,6 @@ namespace TransformationTimelineTool.Migrations
 
             initiatives.ForEach(i => context.Initiatives.AddOrUpdate(p => p.NameE, i));
             context.SaveChanges();
- /*
             var events = new List<Event>
             {
                new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,

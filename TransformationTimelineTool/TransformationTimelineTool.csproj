@@ -727,6 +727,7 @@
     <Content Include="Content\font-awesome-4.5.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.5.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.5.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome-4.5.0\less\fixed-width.less" />
     <Content Include="Content\form.css" />
     <Content Include="Content\images\old_ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\images\old_ui-icons_ef8c08_256x240.png" />
@@ -788,7 +789,6 @@
     <Content Include="Content\font-awesome-4.5.0\less\animated.less" />
     <Content Include="Content\font-awesome-4.5.0\less\bordered-pulled.less" />
     <Content Include="Content\font-awesome-4.5.0\less\core.less" />
-    <Content Include="Content\font-awesome-4.5.0\less\fixed-width.less" />
     <Content Include="Content\font-awesome-4.5.0\less\font-awesome.less" />
     <Content Include="Content\font-awesome-4.5.0\less\icons.less" />
     <Content Include="Content\font-awesome-4.5.0\less\larger.less" />
@@ -1323,7 +1323,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Initiatives\Create.cshtml" />
@@ -1341,13 +1340,11 @@
     <Content Include="Views\Impacts\Details.cshtml" />
     <Content Include="Views\Impacts\Edit.cshtml" />
     <Content Include="Views\Impacts\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Home\Accessibility.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2Col.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
