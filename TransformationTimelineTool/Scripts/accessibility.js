@@ -24,6 +24,7 @@ function getJSON(url, successCallback) {
 	$.ajax({
 		type: "GET",
 		url: url,
+        cache: true,
 		success: function(data) {
 			successCallback(JSON.stringify(data));
 			initCenterSpan();
@@ -182,7 +183,6 @@ function createContent(initiativeParam) {
 		}
 	}
 	var timespan = formatDate('MM, yy', startDate) + " - " + formatDate('MM, yy', endDate);
-	console.log(endDate);
 	
 	// Create milestones & training
 	var milestones 		= "<ul>";
