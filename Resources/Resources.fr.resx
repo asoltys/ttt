@@ -133,7 +133,7 @@
     <value>tba</value>
   </data>
   <data name="Branches" xml:space="preserve">
-    <value>Direction Générales</value>
+    <value>Direction générales</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -190,7 +190,7 @@
     <value>Accueil</value>
   </data>
   <data name="Impacts" xml:space="preserve">
-    <value>tba</value>
+    <value>Répercussions</value>
   </data>
   <data name="InitEnglishDesc" xml:space="preserve">
     <value>tba</value>
@@ -205,7 +205,7 @@
     <value>tba</value>
   </data>
   <data name="Initiative" xml:space="preserve">
-    <value>tba</value>
+    <value>Initiative</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
@@ -244,7 +244,7 @@
     <value>Envoyer des textos</value>
   </data>
   <data name="TransformationTimelineTool" xml:space="preserve">
-    <value>Calendrier national des transformations</value>
+    <value>Calendrier des transformations</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>tba</value>
@@ -256,7 +256,7 @@
     <value>tba</value>
   </data>
   <data name="Activities" xml:space="preserve">
-    <value>tba</value>
+    <value>Activités</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>tba</value>
@@ -334,7 +334,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>tba</value>
   </data>
   <data name="Initiatives" xml:space="preserve">
-    <value>tba</value>
+    <value>Initiatives</value>
   </data>
   <data name="Milestone" xml:space="preserve">
     <value>tba</value>
@@ -352,7 +352,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>tba</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>tba</value>
+    <value>Utilisateurs</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
@@ -379,7 +379,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>tba</value>
   </data>
   <data name="Impact" xml:space="preserve">
-    <value>tba</value>
+    <value>Répercussion</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>tba</value>
