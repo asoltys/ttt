@@ -68,13 +68,11 @@ function log(DOMid, str) {
 var cons1 = "textarea_0";
 var cons2 = "textarea_1";
 
-// data URL local vs remote
-var local = true;
-
 // data URLs
-var initiativesURL  = local ? "/en/initiatives/data" : "http://win-atl-v001.ncr.pwgsc.gc.ca:8200/en/initiatives/Data";
-var regionsURL 		= local ? "/en/regions/data" 	: "http://win-atl-v001.ncr.pwgsc.gc.ca:8200/en/regions/Data"; 
-var branchesURL		= local ? "/en/branches/data" 	: "http://win-atl-v001.ncr.pwgsc.gc.ca:8200/en/branches/Data";
+var enInitiativesURL = "/en/initiatives/datauni";
+var frInitiativesURL = "/fr/initiatives/datauni";
+var regionsURL 		= "/en/regions/data";
+var branchesURL     = "/en/branches/data";
 
 // data variables
 var initiatives;
@@ -91,33 +89,17 @@ var branchController;
 var lock;
 
 function getJSON(url, successCallback) {
-	if (local) {
-		$.ajax({
-			type: "GET",
-			url: url,
-			success: function(data) {
-			    successCallback(JSON.stringify(data));
-			    initCenterSpan();
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				log(cons2, JSON.stringify(jqXHR) + ", " + textStatus);
-			}
-		});
-	} else {
-		$.ajax({
-			type: "GET",
-			url: url,
-			dataType: "json",
-			timeout: 5000,
-			success: function(data) {
-			    successCallback(JSON.stringify(data));
-			    initCenterSpan();
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				log(cons2, JSON.stringify(jqXHR) + ", " + textStatus);
-			}
-		});
-	}
+	$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data) {
+			successCallback(JSON.stringify(data));
+			initCenterSpan();
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			log(cons2, JSON.stringify(jqXHR) + ", " + textStatus);
+		}
+	});
 }
 
 function populateControllers() {
@@ -129,8 +111,8 @@ function populateControllers() {
 	getJSON(regionsURL, function(data) {
 		regions = JSON.parse(data);
 		for (var k in regions) {
-			if (regions[k].NameE == "All") showAllRegionKey = regions[k].ID;
-			var option = "<option id=" + regions[k].ID + ">" + regions[k].NameE + "</option>";
+			if (regions[k].Name == "All") showAllRegionKey = regions[k].ID;
+			var option = "<option id=" + regions[k].ID + ">" + regions[k].Name + "</option>";
 			regionController.append(option);
 		}
 	});
@@ -138,8 +120,8 @@ function populateControllers() {
 	getJSON(branchesURL, function (data) {
 	    branches = JSON.parse(data);
 	    for (var k in branches) {
-	        if (branches[k].NameE == "All") showAllBranchKey = branches[k].ID;
-	        var option = "<option id=" + branches[k].ID + ">" + branches[k].NameE + "</option>";
+	        if (branches[k].Name == "All") showAllBranchKey = branches[k].ID;
+	        var option = "<option id=" + branches[k].ID + ">" + branches[k].Name + "</option>";
 	        branchController.append(option);
 	    }
 	});
@@ -147,7 +129,7 @@ function populateControllers() {
 
 function getInitiatives() {
 	lock = new $.Deferred();
-	getJSON(initiativesURL, function(data) {
+	getJSON(enInitiativesURL, function(data) {
 		initiatives = JSON.parse(data);
 		lock.resolve();
 	});
@@ -263,12 +245,12 @@ function createContent(initiativeParam) {
 					var dateStr	  = formatDate('MM dd, yy', eventParam["Date"]);
 					var eventTime = isDate(dateStr) ? dateStr : eventParam["Date"];
 					if ((/milestone/gi).test(eventParam["Type"])) {
-						var text 	= eventParam["TextE"] == null ? "" : eventParam["TextE"];
+						var text 	= eventParam["Text"] == null ? "" : eventParam["Text"];
 						milestones += "<li>" + eventTime + ": " + text + "</li>";
 						milstoneCount++
 					} else if (false) {
 					} else {
-						var text 	= eventParam["TextE"] == null ? "" : eventParam["TextE"];
+						var text 	= eventParam["Text"] == null ? "" : eventParam["Text"];
 						training += "<li>" + eventTime + ": " + text + "</li>";
 						trainingCount++;
 					}
@@ -283,7 +265,7 @@ function createContent(initiativeParam) {
 	training 	 = trainingCount == 0 ? "" : training;
 
 	// Create description
-	var description = initiativeParam["DescriptionE"];
+	var description = initiativeParam["Description"];
 
 	// Create last minute format changes and overall content 
 	timespan = "<p>" + timespan + "</p>";
@@ -303,7 +285,7 @@ function filterData() {
                 for (var i = 0; i < control.length; i++) {
                     if (control[i] == getControlKey(regionKey, branchKey)) {
                         var content = createContent(initiativeParam);
-                        addAccordion(initiativeParam["NameE"], content);
+                        addAccordion(initiativeParam["Name"], content);
                         break;
                     }
                 }

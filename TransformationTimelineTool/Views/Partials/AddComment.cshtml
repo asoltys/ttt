@@ -28,7 +28,14 @@
 
 <script type="text/javascript">
     $("#addComment").on("click", function () {
-        submitComment($("#commentTextInput").val());
+        var $input = $("#commentTextInput");
+        if ($input.val().length == 0 || $input.val().length > 200) {
+            alert("Comment needs to be greater than 0 character and less than 200 characters");
+            var end = $input.val().length > 200 ? 200 : $input.val().length;
+            $input.val($input.val().substring(0, end));
+            return;
+        }
+        submitComment($input.val());
     });
 
     function clearField() {
