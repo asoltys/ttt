@@ -211,19 +211,19 @@
     <value>Nom</value>
   </data>
   <data name="NCA" xml:space="preserve">
-    <value>tba</value>
+    <value>SCN</value>
   </data>
   <data name="Ontario" xml:space="preserve">
-    <value>tba</value>
+    <value>Ontario</value>
   </data>
   <data name="Pacific" xml:space="preserve">
-    <value>tba</value>
+    <value>Pacifique</value>
   </data>
   <data name="Quebec" xml:space="preserve">
-    <value>tba</value>
+    <value>Québec</value>
   </data>
   <data name="Region" xml:space="preserve">
-    <value>tba</value>
+    <value>Région</value>
   </data>
   <data name="Regions" xml:space="preserve">
     <value>Régions</value>
@@ -253,7 +253,7 @@
     <value>Vue</value>
   </data>
   <data name="Western" xml:space="preserve">
-    <value>tba</value>
+    <value>Ouest</value>
   </data>
   <data name="Activities" xml:space="preserve">
     <value>Activités</value>
@@ -337,7 +337,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>Initiatives</value>
   </data>
   <data name="Milestone" xml:space="preserve">
-    <value>tba</value>
+    <value>Étape</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>tba</value>
@@ -349,7 +349,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
     <value>tba</value>
   </data>
   <data name="Training" xml:space="preserve">
-    <value>tba</value>
+    <value>Formation</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Utilisateurs</value>
@@ -386,5 +386,62 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   </data>
   <data name="Add" xml:space="preserve">
     <value>tba</value>
+  </data>
+  <data name="NationalTransformationTimelineTool" xml:space="preserve">
+    <value>Calendrier nationale des transformations</value>
+  </data>
+  <data name="SelectYourArea" xml:space="preserve">
+    <value>Sélectionnez votre région</value>
+  </data>
+  <data name="SelectYourBranch" xml:space="preserve">
+    <value>Sélectionnez votre direction générale</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>Trimestre</value>
+  </data>
+  <data name="MonthJan" xml:space="preserve">
+    <value>Janv.</value>
+  </data>
+  <data name="MonthFeb" xml:space="preserve">
+    <value>Févr.</value>
+  </data>
+  <data name="MonthMar" xml:space="preserve">
+    <value>Mars</value>
+  </data>
+  <data name="MonthApr" xml:space="preserve">
+    <value>Avr.</value>
+  </data>
+  <data name="MonthMay" xml:space="preserve">
+    <value>Mai</value>
+  </data>
+  <data name="MonthJun" xml:space="preserve">
+    <value>Juin</value>
+  </data>
+  <data name="MonthJul" xml:space="preserve">
+    <value>Juill.</value>
+  </data>
+  <data name="MonthAug" xml:space="preserve">
+    <value>Août</value>
+  </data>
+  <data name="MonthSep" xml:space="preserve">
+    <value>Sept.</value>
+  </data>
+  <data name="MonthOct" xml:space="preserve">
+    <value>Oct.</value>
+  </data>
+  <data name="MonthNov" xml:space="preserve">
+    <value>Nov.</value>
+  </data>
+  <data name="MonthDec" xml:space="preserve">
+    <value>Déc.</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Cacher</value>
+  </data>
+  <data name="Atlantic" xml:space="preserve">
+    <value>Atlantique</value>
+  </data>
+  <data name="ClearResults" xml:space="preserve">
+    <value>Résultats clairs</value>
   </data>
 </root>

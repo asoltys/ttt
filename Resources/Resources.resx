@@ -387,4 +387,61 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="NationalTransformationTimelineTool" xml:space="preserve">
+    <value>National Transformation Timeline Tool</value>
+  </data>
+  <data name="SelectYourArea" xml:space="preserve">
+    <value>Select your area</value>
+  </data>
+  <data name="SelectYourBranch" xml:space="preserve">
+    <value>Select your branch</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>Quarter</value>
+  </data>
+  <data name="MonthJan" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="MonthFeb" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="MonthMar" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="MonthApr" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="MonthMay" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="MonthJun" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="MonthJul" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="MonthAug" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="MonthSep" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="MonthOct" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="MonthNov" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="MonthDec" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="Atlantic" xml:space="preserve">
+    <value>Atlantic</value>
+  </data>
+  <data name="ClearResults" xml:space="preserve">
+    <value>Clear results</value>
+  </data>
 </root>
