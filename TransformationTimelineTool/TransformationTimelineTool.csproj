@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201601212302442_DropAuthorID.Designer.cs">
       <DependentUpon>201601212302442_DropAuthorID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601261948599_InitiativeRequiredAttr.cs" />
+    <Compile Include="Migrations\201601261948599_InitiativeRequiredAttr.Designer.cs">
+      <DependentUpon>201601261948599_InitiativeRequiredAttr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1461,6 +1465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601212302442_DropAuthorID.resx">
       <DependentUpon>201601212302442_DropAuthorID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601261948599_InitiativeRequiredAttr.resx">
+      <DependentUpon>201601261948599_InitiativeRequiredAttr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

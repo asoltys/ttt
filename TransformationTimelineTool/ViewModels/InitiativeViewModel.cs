@@ -14,27 +14,33 @@ namespace TransformationTimelineTool.ViewModels
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
 
+        [Required]
         [Display(Name = "InitEnglishName", ResourceType = typeof(Resources.Resources))]
         public string NameE { get; set; }
 
+        [Required]
         [Display(Name = "InitFrenchName", ResourceType = typeof(Resources.Resources))]
         public string NameF { get; set; }
 
+        [Required]
         [Display(Name = "InitEnglishDesc", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string DescriptionE { get; set; }
 
+        [Required]
         [Display(Name = "InitFrenchDesc", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string DescriptionF { get; set; }
 
+        [Required]
         [Display(Name = "Start", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
+        [Required]
         [Display(Name = "End", ResourceType = typeof(Resources.Resources))]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
