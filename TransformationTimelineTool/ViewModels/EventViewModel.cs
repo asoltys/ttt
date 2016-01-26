@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,6 +18,7 @@ namespace TransformationTimelineTool.ViewModels
         public Edit Edit { get; set; }
         public IEnumerable<Branch> Branches { get; set; }
         public IEnumerable<Region> Regions { get; set; }
+        [Required]
         public SelectList InitiativeSelect { get; set; }
 
         public Edit GetLatestEdit()

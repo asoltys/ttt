@@ -21,15 +21,19 @@ namespace TransformationTimelineTool.Models
         [Display(Name = "EventFraText", ResourceType = typeof(Resources.Resources))]
         public String TextF { get; set; }
 
+        [Required]
         [Display(Name = "EventEngHover", ResourceType = typeof(Resources.Resources))]
         public String HoverE { get; set; }
 
+        [Required]
         [Display(Name = "EventFraHover", ResourceType = typeof(Resources.Resources))]
         public String HoverF { get; set; }
 
+        [Required]
         [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
         public Type Type { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]

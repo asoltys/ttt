@@ -279,6 +279,10 @@
     <Compile Include="Migrations\201601261948599_InitiativeRequiredAttr.Designer.cs">
       <DependentUpon>201601261948599_InitiativeRequiredAttr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601262057255_EditRequiredAttr.cs" />
+    <Compile Include="Migrations\201601262057255_EditRequiredAttr.Designer.cs">
+      <DependentUpon>201601262057255_EditRequiredAttr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1468,6 +1472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601261948599_InitiativeRequiredAttr.resx">
       <DependentUpon>201601261948599_InitiativeRequiredAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601262057255_EditRequiredAttr.resx">
+      <DependentUpon>201601262057255_EditRequiredAttr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
