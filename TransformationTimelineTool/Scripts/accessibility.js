@@ -1,73 +1,3 @@
-// ############################################################################
-// Debug area at the top setting
-// ############################################################################
-var debug = false;
-var textAreaHeight = 300;
-
-if (debug) {
-	$("#wb-body").css("margin-top", textAreaHeight);
-	createTextAreaContainers(2);
-}
-
-function createTextAreaContainers(debugTextAreaCount) {
-	for (var i = 0; i < debugTextAreaCount; i++) {
-		var domContainerID = "textarea_container_" + i;
-		var domContainer = "<div id='" + domContainerID + "'></div>";
-		if (i > 1) {
-			var previousDOMContainerID = "textarea_container_" + (i - 1);
-			$("#" + previousDOMContainerID).after(domContainer);
-		} else {
-			$("body").prepend(domContainer);
-		}
-
-		var width = Math.round(100 / debugTextAreaCount);
-
-		var div = $("#" + domContainerID);
-		div.css("position", "absolute");
-		div.css("width", width + "%");
-		div.css("left", width * i + "%");
-		div.css("height", textAreaHeight);
-		$("body").css("top", textAreaHeight);
-		div.css("border", "1px solid black");
-
-		var textarea = "<textarea id=textarea_" + i + " readonly></textarea>";
-		div.prepend(textarea);
-
-		textarea = $("#textarea_" + i);
-		textarea.css("padding", 0);
-		textarea.css("width", "100%");
-		textarea.css("height", "100%");
-		textarea.css("overflow-y", "scroll");
-		textarea.css("resize", "none");
-	}
-}
-
-function log(DOMid, str) {
-	if (!debug) {
-		if (typeof(DOMid) === 'object'
-		 || !!document.getElementById(DOMid)) console.log(DOMid);
-		else console.log(str);
-		return false
-	};
-	if (document.getElementById(DOMid)) var dom = $("#" + DOMid);
-	else return false;
-	var text = dom.text();
-	var newLineCount = text.match(/\n/gi) !== null ?
-		text.match(/\n/gi).length : 0;
-	str = typeof(str) === 'object' ? JSON.stringify(str) : str;
-	if (text.length > 0) text += "\n" + (newLineCount + 1) + " → " + str;
-	else text = newLineCount + " → " + str;
-	dom.text(text);
-}
-
-// ############################################################################
-// Main area
-// ############################################################################
-
-// debug area variables
-var cons1 = "textarea_0";
-var cons2 = "textarea_1";
-
 // data URLs
 var enInitiativesURL = "/en/initiatives/datauni";
 var frInitiativesURL = "/fr/initiatives/datauni";
@@ -97,7 +27,7 @@ function getJSON(url, successCallback) {
 			initCenterSpan();
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
-			log(cons2, JSON.stringify(jqXHR) + ", " + textStatus);
+			console.log(JSON.stringify(jqXHR) + ", " + textStatus);
 		}
 	});
 }
@@ -291,7 +221,7 @@ function filterData() {
                 }
             });
         } catch (e) {
-            log(cons1, e.name + ": " + e.message);
+            console.log(e.name + ": " + e.message);
         }
     }
 }
@@ -327,7 +257,7 @@ $(window).on("load", function() {
 				toggleAccordion($(this));
 			});
 		} catch (e) {
-			log(cons1, e.name + ": " + e.message);
+			console.log(e.name + ": " + e.message);
 		}
 	}
 	main();
