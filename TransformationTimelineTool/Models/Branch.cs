@@ -10,10 +10,15 @@ namespace TransformationTimelineTool.Models
     public class Branch
     {
         public int ID { get; set; }
+        [Required]
         public string NameShort { get; set; }
         [Display(Name = "English Name")]
+
+        [Required]
         public string NameE { get; set; }
         [Display(Name = "French Name")]
+
+        [Required]
         public string NameF { get; set; }
 
         public string Name
