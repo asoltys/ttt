@@ -261,7 +261,8 @@ namespace TransformationTimelineTool.Controllers
         {
             if (selectedInitiatives == null)
             {
-                userToUpdate.Initiatives = new List<Initiative>();
+                if (userToUpdate.Initiatives != null || userToUpdate.Initiatives.Count() > 0)
+                    userToUpdate.Initiatives.Clear();
                 return;
             }
 
