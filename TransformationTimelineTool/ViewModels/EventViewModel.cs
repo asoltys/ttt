@@ -18,9 +18,10 @@ namespace TransformationTimelineTool.ViewModels
         public Edit Edit { get; set; }
         public IEnumerable<Branch> Branches { get; set; }
         public IEnumerable<Region> Regions { get; set; }
-        [Required]
-        public SelectList InitiativeSelect { get; set; }
 
+        public SelectList InitiativeSelect { get; set; }
+        [Required]
+        public int InitiativeID { get; set; }
         public Edit GetLatestEdit()
         {
             if (Event == null)
