@@ -14,6 +14,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TransformationTimelineTool.Helpers;
 using System.Data.Entity.Infrastructure;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -180,11 +182,13 @@ namespace TransformationTimelineTool.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult Data()
+
+        [AllowAnonymous]
+        public async Task<ActionResult> Data()
         {
-            List<Initiative> initiatives = db.Initiatives.
+            List<Initiative> initiatives = await db.Initiatives.
                 Include(e => e.Events).
-                Include(i => i.Impacts).ToList();
+                Include(i => i.Impacts).ToListAsync();
 
             return Json(
                 initiatives.Select(i => new
@@ -197,14 +201,117 @@ namespace TransformationTimelineTool.Controllers
                     StartDate = i.StartDate.ToShortDateString(),
                     EndDate = i.EndDate.ToShortDateString(),
                     Events = i.Events.Select(e => new EventJSON(e.ID)),
-                    Impacts = i.Impacts.Select( imp => new
+                    Impacts = i.Impacts.Select(imp => new
                     {
                         Level = imp.Level,
                         Branches = imp.Branches.Select(b => b.ID),
                         Regions = imp.Regions.Select(r => r.ID)
 
                     })
-                }) , JsonRequestBehavior.AllowGet);
+                }), JsonRequestBehavior.AllowGet);
+        }
+
+
+        [AllowAnonymous]
+        public async Task<ActionResult> DataUni()
+        {
+            var viewModel = new List<object>();
+            var jsonInitiatives = new List<object>();
+
+            List<Initiative> initiatives = await db.Initiatives.ToListAsync();
+
+            if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+            {
+                foreach (var init in initiatives)
+                {
+                    var jsonEvents = new List<object>();
+                    var jsonImpacts = new List<object>();
+
+                    foreach (var e in init.Events)
+                    {
+                        jsonEvents.Add(new
+                        {
+                            ID = e.ID,
+                            Type = e.PublishedEdit.Type.ToString(),
+                            Date = e.PublishedEdit.DisplayDate.ToShortDateString(),
+                            Branches = e.Branches.Select(b => b.ID),
+                            Regions = e.Regions.Select(r => r.ID),
+                            Text = e.PublishedEdit.TextF,
+                            Hover = e.PublishedEdit.HoverF,
+                            Show = e.Show
+                        });
+                    }
+
+                    foreach (var impact in init.Impacts)
+                    {
+                        jsonImpacts.Add(new
+                        {
+                            Level = impact.Level,
+                            Branches = impact.Branches.Select(b => b.ID),
+                            Regions = impact.Regions.Select(r => r.ID)
+                        });
+                    }
+
+                    jsonInitiatives.Add(new
+                    {
+                        ID = init.ID,
+                        Name = init.NameF,
+                        Description = init.DescriptionF,
+                        StartDate = init.StartDate.ToShortDateString(),
+                        EndDate = init.EndDate.ToShortDateString(),
+                        Impacts = jsonImpacts,
+                        Events = jsonEvents
+                    });
+                }
+            }
+            else
+            {
+                foreach (var init in initiatives)
+                {
+                    var jsonEvents = new List<object>();
+                    var jsonImpacts = new List<object>();
+
+                    foreach (var e in init.Events)
+                    {
+                        jsonEvents.Add(new
+                        {
+                            ID = e.ID,
+                            Type = e.PublishedEdit.Type.ToString(),
+                            Date = e.PublishedEdit.DisplayDate.ToShortDateString(),
+                            Branches = e.Branches.Select(b => b.ID),
+                            Regions = e.Regions.Select(r => r.ID),
+                            Text = e.PublishedEdit.TextE,
+                            Hover = e.PublishedEdit.HoverE,
+                            Show = e.Show
+                        });
+                    }
+
+                    foreach (var impact in init.Impacts)
+                    {
+                        jsonImpacts.Add(new
+                        {
+                            Level = impact.Level,
+                            Branches = impact.Branches.Select(b => b.ID),
+                            Regions = impact.Regions.Select(r => r.ID)
+                        });
+                    }
+
+                    jsonInitiatives.Add(new
+                    {
+                        ID = init.ID,
+                        Name = init.NameE,
+                        Description = init.DescriptionE,
+                        StartDate = init.StartDate.ToShortDateString(),
+                        EndDate = init.EndDate.ToShortDateString(),
+                        Impacts = jsonImpacts,
+                        Events = jsonEvents
+                    });
+                }
+
+            }
+
+
+            return Json(jsonInitiatives, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

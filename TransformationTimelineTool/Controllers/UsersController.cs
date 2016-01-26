@@ -15,7 +15,6 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
-    [Authorize(Roles = "Admin,OPI,Editor")]
     public class UsersController : Controller
     {
         private TimelineContext db = new TimelineContext();
@@ -204,6 +203,8 @@ namespace TransformationTimelineTool.Controllers
             if (disposing)
             {
                 db.Dispose();
+                roleManager.Dispose();
+                userManager.Dispose();
             }
             base.Dispose(disposing);
         }

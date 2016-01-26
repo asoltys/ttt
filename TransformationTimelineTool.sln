@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformationTimelineTool", "TransformationTimelineTool\TransformationTimelineTool.csproj", "{35028D06-1CB6-48B3-89A4-EF8E510D1369}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4693A856-DDE0-4219-ADFB-6EF985631A07} = {4693A856-DDE0-4219-ADFB-6EF985631A07}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{4693A856-DDE0-4219-ADFB-6EF985631A07}"
 EndProject

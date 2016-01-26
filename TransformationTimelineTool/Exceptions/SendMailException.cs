@@ -5,6 +5,7 @@ using System.Web;
 
 namespace TransformationTimelineTool.Exceptions
 {
+    [Serializable()]
     public class SendMailException: Exception
     {
         public SendMailException()

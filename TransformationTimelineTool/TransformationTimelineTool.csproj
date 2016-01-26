@@ -235,18 +235,6 @@
     <Compile Include="Migrations\201601072340292_UserEmailAttributeRestrictions.Designer.cs">
       <DependentUpon>201601072340292_UserEmailAttributeRestrictions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601111720521_InitiativeUsers.cs" />
-    <Compile Include="Migrations\201601111720521_InitiativeUsers.Designer.cs">
-      <DependentUpon>201601111720521_InitiativeUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601111903415_InitiativeUsersIDs.cs" />
-    <Compile Include="Migrations\201601111903415_InitiativeUsersIDs.Designer.cs">
-      <DependentUpon>201601111903415_InitiativeUsersIDs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601111929437_InitiativeUsersIDsII.cs" />
-    <Compile Include="Migrations\201601111929437_InitiativeUsersIDsII.Designer.cs">
-      <DependentUpon>201601111929437_InitiativeUsersIDsII.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201601132025392_MoveEventTextToEdit.cs" />
     <Compile Include="Migrations\201601132025392_MoveEventTextToEdit.Designer.cs">
       <DependentUpon>201601132025392_MoveEventTextToEdit.cs</DependentUpon>
@@ -1365,6 +1353,7 @@
     <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
     <Content Include="Views\Partials\AddComment.cshtml" />
     <Content Include="Views\Partials\ListComments.cshtml" />
+    <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1445,15 +1434,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601072340292_UserEmailAttributeRestrictions.resx">
       <DependentUpon>201601072340292_UserEmailAttributeRestrictions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601111720521_InitiativeUsers.resx">
-      <DependentUpon>201601111720521_InitiativeUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601111903415_InitiativeUsersIDs.resx">
-      <DependentUpon>201601111903415_InitiativeUsersIDs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601111929437_InitiativeUsersIDsII.resx">
-      <DependentUpon>201601111929437_InitiativeUsersIDsII.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601132025392_MoveEventTextToEdit.resx">
       <DependentUpon>201601132025392_MoveEventTextToEdit.cs</DependentUpon>
