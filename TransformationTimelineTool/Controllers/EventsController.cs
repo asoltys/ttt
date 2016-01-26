@@ -256,6 +256,8 @@ namespace TransformationTimelineTool.Controllers
                 SendTo = Creator.Approver.Email;
                 MailSubject = Resources.Resources.PendingMailSubject;
                 MailBody = Resources.Resources.PendingMailBody;
+                MailBody = String.Format(MailBody,
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
                 CopyList.Add(Creator.Email);
                 CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Draft)
@@ -265,6 +267,8 @@ namespace TransformationTimelineTool.Controllers
                 SendTo = Creator.Email;
                 MailSubject = Resources.Resources.RejectMailSubject;
                 MailBody = Resources.Resources.RejectMailBody;
+                MailBody = String.Format(MailBody,
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
                 CopyList.Add(Creator.Approver.Email);
                 CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Approved)
