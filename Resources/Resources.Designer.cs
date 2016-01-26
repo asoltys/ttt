@@ -131,7 +131,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your item has been approved || FRENCH TBA.
+        ///   Looks up a localized string similar to Transformation Timeline Tool: Your item has been approved || Calendrier des transformations: Votre poste était approuvé.
         /// </summary>
         public static string ApprovedMailSubject {
             get {
@@ -561,7 +561,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New items ready for approval || FRENCH TBA.
+        ///   Looks up a localized string similar to Transformation Timeline Tool:  New items for your approval || Calendrier des transformations: Nouvelles postes pour votre approbation.
         /// </summary>
         public static string PendingMailSubject {
             get {
@@ -621,7 +621,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your item has been set to review || FRENCH TBA.
+        ///   Looks up a localized string similar to Transformation Timeline Tool: Your item has been returned for revision || Calendrier des transformations: Votre poste était retourner pour révision.
         /// </summary>
         public static string RejectMailSubject {
             get {

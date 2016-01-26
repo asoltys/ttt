@@ -279,7 +279,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
 {3} -&gt; Timeline Tool URL</comment>
   </data>
   <data name="ApprovedMailSubject" xml:space="preserve">
-    <value>Your item has been approved</value>
+    <value>Transformation Timeline Tool: Your item has been approved || Calendrier des transformations: Votre poste était approuvé</value>
   </data>
   <data name="PendingMailBody" xml:space="preserve">
     <value>This is an automated message.&lt;br/&gt;
@@ -299,7 +299,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
 {3} -&gt; Timeline Tool URL</comment>
   </data>
   <data name="PendingMailSubject" xml:space="preserve">
-    <value>New items ready for approval (FRATBA)</value>
+    <value>Transformation Timeline Tool:  New items for your approval || Calendrier des transformations: Nouvelles postes pour votre approbation</value>
   </data>
   <data name="ApplicationHomeURL" xml:space="preserve">
     <value>/fr/Home</value>
@@ -322,7 +322,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
 {3}-&gt;Timeline Tool URL</comment>
   </data>
   <data name="RejectMailSubject" xml:space="preserve">
-    <value>Your item has been set to review || FRENCH TBA</value>
+    <value>Transformation Timeline Tool: Your item has been returned for revision || Calendrier des transformations: Votre poste était retourner pour révision</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Recherche</value>
