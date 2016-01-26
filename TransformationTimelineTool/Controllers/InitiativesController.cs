@@ -184,6 +184,9 @@ namespace TransformationTimelineTool.Controllers
         }
 
         [AllowAnonymous]
+        [OutputCache(Duration = 3600,
+            Location = System.Web.UI.OutputCacheLocation.Server,
+            VaryByParam = "*")]
         public async Task<ActionResult> Data()
         {
             List<Initiative> initiatives = await db.Initiatives.
