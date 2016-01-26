@@ -151,10 +151,9 @@ function formatDate(format, date) {
             11: { en: "November", fr: "novembre" },
             12: { en: "December", fr: "décembre" }
         };
-        console.log(date);
         var date = date.split("/");
-        var day = date[0];
-        var month = date[1];
+        var day = currentCulture == "en" ? date[1] : date[0];
+        var month = currentCulture == "en" ? date[0] : date[1];;
         var year = date[2];
         return monthObj[parseInt(month)][currentCulture] + " " + day + ", " + year;
 	} catch (e) {
