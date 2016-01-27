@@ -153,7 +153,13 @@ timeLine = {
         html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
             timeLine.countTimeLine = timeLine.countTimeLine + 1;
-            html += "<div class='projectRow' id='p" + timeLine.initiatives[key].ID + "'><a href='#' onClick='timeLine.dialogCustom(\"" + timeLine.cleanSpecialCharacters(eval("timeLine.initiatives[key].Description".concat(lang.toUpperCase()))) + "\")'>" + eval("timeLine.initiatives[key].Name".concat(lang.toUpperCase())) + "</a></div>";
+            html += "<div class='projectRow' id='p";
+            html += timeLine.initiatives[key].ID;
+            html += "'><a href='#' onClick='timeLine.dialogCustom(\"";
+            html += timeLine.cleanSpecialCharacters(timeLine.initiatives[key].Description);
+            html += "\")'>";
+            html += timeLine.initiatives[key].Name;
+            html += "</a></div>";
             //html += "<img src='img/white.gif' class='projectRowBackground' />";
         });
         html += "</div>";
@@ -290,7 +296,7 @@ timeLine = {
                         } else {
                             hover = hover + " - ";
                         };
-                        hover = hover + eval("value.Hover".concat(lang.toUpperCase()));
+                        hover = hover + value.Hover;
                     };
                 });
             });
@@ -311,15 +317,17 @@ timeLine = {
             $(timeLine.initiatives).each(function (key, value) {
                 $.each(value.Events, function (key, value) {
                     if (check == value.ID) {
+                        //if(timeLine.iconFilter(value.Branches,value.Regions) == 1){
                         if (firstRun == 0) {
                             firstRun = 1;
                         } else {
                             text = text + "<hr />";
                             title = title + " - ";
                         };
-                        text = text + eval("value.Text".concat(lang.toUpperCase()));
-                        title = title + eval("value.Hover".concat(lang.toUpperCase()));
+                        text = text + eval("value.Text");
+                        title = title + eval("value.Hover");
                     };
+                    //};
                 });
             });
         });
@@ -384,11 +392,16 @@ timeLine = {
             timeout: 6000,
             success: function (initiatives) {
                 var id = '';
+                var level = 0;
                 var currentLevel = '';
                 var rSelected = $('#areaSelect').val();
                 var bSelected = $('#branchSelect').val();
                 var branches = '';
                 var regions = '';
+                var color0 = "#dbdbdb";
+                var color1 = "#dbdbdb";
+                var color2 = "#dbdbdb";
+                var color3 = "#dbdbdb";
                 var setLevel0 = 0;
                 var setLevel1 = 0;
                 var setLevel2 = 0;
@@ -413,111 +426,49 @@ timeLine = {
                     };
                     $.each(timeLine.initiatives, function (key, value) {
                         var id = timeLine.initiatives[key].ID;
-                        currentLevel0 = 1;
+                        level = 0;
                         $.each(value.Impacts, function (key, value) {
                             currentLevel = value.Level;
                             regions = value.Regions;
                             branches = value.Branches;
                             // if impacts are populated, check if it's level 0, 1, 2 or 3.
                             if ($.inArray(parseInt(bSelected), branches) > -1 && $.inArray(parseInt(rSelected), regions) > -1) {
-                                currentLevel0 = 0;
-                                if (currentLevel == 0) {
-                                    if (timeLine.hide0 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel0 = 1;
-                                    $("#p" + id).css("background-color", "#dbdbdb");
-                                    $("#t" + id).css("background-color", "#dbdbdb");
+                                if (currentLevel == 0 && level < currentLevel) {
+                                    level = 0;
                                 };
-                                if (currentLevel == 1) {
-                                    if (timeLine.hide1 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel1 = 1;
-                                    $("#p" + id).css("background-color", "#f0caeb");
-                                    $("#t" + id).css("background-color", "#f0caeb");
+                                if (currentLevel == 1 && level < currentLevel) {
+                                    level = 1;
                                 };
-                                if (currentLevel == 2) {
-                                    if (timeLine.hide2 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel2 = 1;
-                                    $("#p" + id).css("background-color", "#ebf2b1");
-                                    $("#t" + id).css("background-color", "#ebf2b1");
+                                if (currentLevel == 2 && level < currentLevel) {
+                                    level = 2;
                                 };
-                                if (currentLevel == 3) {
-                                    if (timeLine.hide3 == 1) {
-                                        $("#hide" + currentLevel).css("display", "none");
-                                        $("#show" + currentLevel).css("display", "inline");
-                                        $("#p" + id).css("display", "none");
-                                        $("#t" + id).css("display", "none");
-                                        rowsHidden = rowsHidden + 1;
-                                    } else {
-                                        $("#hide" + currentLevel).css("display", "inline");
-                                        $("#show" + currentLevel).css("display", "none");
-                                        $("#p" + id).css("display", "inline");
-                                        $("#t" + id).css("display", "inline");
-                                    };
-                                    setLevel3 = 1;
-                                    $("#p" + id).css("background-color", "#abdbcf");
-                                    $("#t" + id).css("background-color", "#abdbcf");
+                                if (currentLevel == 3 && level < currentLevel) {
+                                    level = 3;
                                 };
-                                $("#pg" + currentLevel).css("display", "inline");
-                                $("#tg" + currentLevel).css("display", "inline");
-                                $("#p" + id).insertAfter("#pg" + currentLevel);
-                                $("#t" + id).insertAfter("#tg" + currentLevel);
                             };
                         });
-                        // if impacts not defined, default it to 0.
-                        if (currentLevel0 == 1) {
-                            if (timeLine.hide0 == 1) {
-                                $("#hide0").css("display", "none");
-                                $("#show0").css("display", "inline");
-                                $("#p" + id).css("display", "none");
-                                $("#t" + id).css("display", "none");
-                                rowsHidden = rowsHidden + 1;
-                            } else {
-                                $("#hide0").css("display", "inline");
-                                $("#show0").css("display", "none");
-                                $("#p" + id).css("display", "inline");
-                                $("#t" + id).css("display", "inline");
-                            };
-                            setLevel0 = 1;
-                            $("#pg0").css("display", "inline");
-                            $("#tg0").css("display", "inline");
-                            $("#p" + id).insertAfter("#pg0");
-                            $("#t" + id).insertAfter("#tg0");
-                            $("#p" + id).css("background-color", "#dbdbdb");
-                            $("#t" + id).css("background-color", "#dbdbdb");
-                            $(".timeLineBar").css("background-color", "#ffffff");
-                        }
+                        if (eval("timeLine.hide".concat(level)) == 1) {
+                            $("#hide" + currentLevel).css("display", "none");
+                            $("#show" + currentLevel).css("display", "inline");
+                            $("#p" + id).css("display", "none");
+                            $("#t" + id).css("display", "none");
+                            rowsHidden = rowsHidden + 1;
+                        } else {
+                            $("#hide" + currentLevel).css("display", "inline");
+                            $("#show" + currentLevel).css("display", "none");
+                            $("#p" + id).css("display", "inline");
+                            $("#t" + id).css("display", "inline");
+                        };
+                        $("#p" + id).css("background-color", eval("color".concat(level)));
+                        $("#t" + id).css("background-color", eval("color".concat(level)));
+                        $("#pg" + level).css("display", "inline");
+                        $("#tg" + level).css("display", "inline");
+                        $("#p" + id).insertAfter("#pg" + level);
+                        $("#t" + id).insertAfter("#tg" + level);
+                        if (level == 0) { setLevel0 = 1; };
+                        if (level == 1) { setLevel1 = 1; };
+                        if (level == 2) { setLevel2 = 1; };
+                        if (level == 3) { setLevel3 = 1; };
                     });
                 } else {
                     timeLine.reset();
@@ -554,42 +505,49 @@ timeLine = {
         $("#branchSelect").val('');
         timeLine.filter();
     },
-    toggleIcons: function (x, y) {
-        var rSelected = $('#areaSelect').val();
-        var bSelected = $('#branchSelect').val();
-        var mergeDates = [];
+    // toggleIcons checks the dropdowns and display/hides icons. It will also merge icons with the same date.
+    toggleIcons: function () {
         $(timeLine.initiatives).each(function (key, value) {
-            mergeDates = [];
             $.each(value.Events, function (key, value) {
                 if (value.Show) {
-                    mergeDates.push(value.Date);
+                    if (timeLine.iconFilter(value.Branches, value.Regions) == 1) {
+                        $("#icon" + value.ID).css("display", "inline");
+                    } else {
+                        $("#icon" + value.ID).css("display", "none");
+                    };
                 };
             });
-            mergeDates = jQuery.unique(mergeDates);
-            $.each(mergeDates, function (index, dates) {
-                var mergedDate = '';
-                var id = [];
-                $.each(value.Events, function (key, value) {
-                    if (value.Show && dates == value.Date) {
-                        mergedDate = dates;
-                        id.push(value.ID);
-                        var b = parseInt($('#branchSelect').val());
-                        var r = parseInt($('#areaSelect').val());
-                        if (isNaN(b)) {
-                            var b = 1;
-                        };
-                        if (isNaN(r)) {
-                            var r = 1;
-                        };
-                        if ($.inArray(b, value.Branches) > -1 && $.inArray(r, value.Regions) > -1) {
-                            $("#icon" + id[0]).css("display", "inline");
-                        } else {
-                            $("#icon" + id[0]).css("display", "none");
-                        };
-                    }
-                });
-            });
         });
+    },
+    // grabs dropdown info and returns display
+    iconFilter: function (branches, regions) {
+        console.log(branches + " " + regions);
+        var display = 0;
+        var b = parseInt($('#branchSelect').val());
+        var r = parseInt($('#areaSelect').val());
+        if (isNaN(b)) { b = 1; };
+        if (isNaN(r)) { r = 1; };
+        display = 0;
+        if (r == 1 && b == 1) {
+            display = 1;
+        };
+        if (r == 1 && $.inArray(b, branches) > -1) {
+            display = 1;
+        };
+        if (r == 1 && $.inArray(1, branches) > -1) {
+            display = 1;
+        };
+        if (b == 1 && $.inArray(r, regions) > -1) {
+            display = 1;
+        };
+        if (b == 1 && $.inArray(1, regions) > -1) {
+            display = 1;
+        };
+        if ($.inArray(b, branches) > -1 && $.inArray(r, regions) > -1) {
+            display = 1;
+        };
+        console.log(display);
+        return display;
     },
     cleanSpecialCharacters: function (x) {
         function escapeRegExp(str) {
