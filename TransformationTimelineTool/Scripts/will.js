@@ -459,8 +459,8 @@ timeLine = {
                             $("#p" + id).css("display", "inline");
                             $("#t" + id).css("display", "inline");
                         };
-                        $("#p" + id).css("background-color", "#dbdbdb");
-                        $("#t" + id).css("background-color", "#dbdbdb");
+                        $("#p" + id).css("background-color", eval("color".concat(level)));
+                        $("#t" + id).css("background-color", eval("color".concat(level)));
                         $("#pg" + level).css("display", "inline");
                         $("#tg" + level).css("display", "inline");
                         $("#p" + id).insertAfter("#pg" + level);

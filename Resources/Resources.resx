@@ -247,7 +247,7 @@
     <value>Transformation Timeline Tool</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>Select the type of activity you are creating.</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
@@ -443,5 +443,11 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   </data>
   <data name="ClearResults" xml:space="preserve">
     <value>Clear results</value>
+  </data>
+  <data name="InitiativeSelectLabel" xml:space="preserve">
+    <value>Choose one Initiative from the drop-down menu.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>
