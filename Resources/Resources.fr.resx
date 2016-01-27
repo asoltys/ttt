@@ -142,7 +142,7 @@
     <value>Créer nouveau</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>tba</value>
+    <value>Date</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Effacer</value>
@@ -247,7 +247,7 @@
     <value>Calendrier des transformations</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>tba</value>
+    <value>Choisissez le type d’activité que vous voulez créer</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Vue</value>
@@ -443,5 +443,8 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   </data>
   <data name="ClearResults" xml:space="preserve">
     <value>Résultats clairs</value>
+  </data>
+  <data name="InitiativeSelectLabel" xml:space="preserve">
+    <value>Choisissez une initiative du menu déroulant</value>
   </data>
 </root>

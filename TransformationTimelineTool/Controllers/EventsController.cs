@@ -76,12 +76,12 @@ namespace TransformationTimelineTool.Controllers
             string[] selectedRegions)
         {
             var eventToCreate = eventViewModel.Event;
+            var currentUser = Utils.GetCurrentUser();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var currentUser = Utils.GetCurrentUser();
 
                     eventToCreate.CreatorID = currentUser.Id;
                     eventToCreate.Branches = new List<Branch>();
@@ -129,12 +129,13 @@ namespace TransformationTimelineTool.Controllers
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
                 } catch (SendMailException ex)
                 {
-                    ModelState.AddModelError("SendMail", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
-            eventViewModel.Regions = new List<Region>();
-            eventViewModel.Branches = new List<Branch>();
+            eventViewModel.Branches= db.Branches.ToList();
+            eventViewModel.Regions = db.Regions.ToList();
+            eventViewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList(), "id", "NameE", eventViewModel.InitiativeID);
             
             return View(eventViewModel);
         }

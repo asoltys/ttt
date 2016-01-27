@@ -62,10 +62,10 @@
                             @Html.DisplayFor(modelItem => item.Level)
                         </td>
                         <td>
-                            @String.Join(" - ", item.Branches.Select(b => b.NameShort))
+                            @Html.Raw(item.BranchesList)
                         </td>
                         <td>
-                            @String.Join(" - ", item.Regions.Select(b => b.NameShort))
+                            @Html.Raw(item.RegionsList)
                         </td>
                         <td>
                             @Html.ActionLink(Resources.View, "Details", "Impacts", new { ID = item.ID }, null) |
