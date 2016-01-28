@@ -61,11 +61,56 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test.
+        ///   Looks up a localized string similar to The English Description field is required..
         /// </summary>
-        public static string HoverEnglish {
+        public static string InitiativeRequiredDescriptionEnglish {
             get {
-                return ResourceManager.GetString("HoverEnglish", resourceCulture);
+                return ResourceManager.GetString("InitiativeRequiredDescriptionEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The French Description field is required..
+        /// </summary>
+        public static string InitiativeRequiredDescriptionFrench {
+            get {
+                return ResourceManager.GetString("InitiativeRequiredDescriptionFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The End Date field is required..
+        /// </summary>
+        public static string InitiativeRequiredEndDate {
+            get {
+                return ResourceManager.GetString("InitiativeRequiredEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The English Name field is required..
+        /// </summary>
+        public static string InitiativeRequiredNameEnglish {
+            get {
+                return ResourceManager.GetString("InitiativeRequiredNameEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The French Name field is required..
+        /// </summary>
+        public static string InitiativeRequiredNameFrench {
+            get {
+                return ResourceManager.GetString("InitiativeRequiredNameFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Start Date field is required..
+        /// </summary>
+        public static string InitiativeRequiredStartDate {
+            get {
+                return ResourceManager.GetString("InitiativeRequiredStartDate", resourceCulture);
             }
         }
     }

@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HoverEnglish" xml:space="preserve">
-    <value>Error Message Test</value>
+  <data name="InitiativeRequiredNameEnglish" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="InitiativeRequiredNameFrench" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="InitiativeRequiredDescriptionEnglish" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="InitiativeRequiredDescriptionFrench" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="InitiativeRequiredStartDate" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="InitiativeRequiredEndDate" xml:space="preserve">
+    <value>tba</value>
   </data>
 </root>
