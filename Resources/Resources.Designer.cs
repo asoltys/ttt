@@ -347,6 +347,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose an actual or estimate date for this activity.  The date selected will determine the location of the activity icon along the transformation timeline. The date itself will not be displayed to users of the Transformation Timeline Tool. If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;the administrator&lt;/a&gt;..
+        /// </summary>
+        public static string EventDateInstr {
+            get {
+                return ResourceManager.GetString("EventDateInstr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English Hover.
         /// </summary>
         public static string EventEngHover {
@@ -392,6 +401,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Description in English which is displayed when the user clicks on the icon for this activity. (optional field).
+        /// </summary>
+        public static string EventTextEng {
+            get {
+                return ResourceManager.GetString("EventTextEng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Description in French which is displayed when the user clicks on the icon for this activity. (optional field).
+        /// </summary>
+        public static string EventTextFra {
+            get {
+                return ResourceManager.GetString("EventTextFra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executive.
         /// </summary>
         public static string Executive {
@@ -433,6 +460,38 @@ namespace Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short Description of the Activity in English (Required field).
+        /// </summary>
+        public static string HoverDescEng {
+            get {
+                return ResourceManager.GetString("HoverDescEng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short Description of the Activity in French (Required field).
+        /// </summary>
+        public static string HoverDescFra {
+            get {
+                return ResourceManager.GetString("HoverDescFra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Write a short description in &lt;strong&gt;English&lt;/strong&gt; of the activitity that will be visible when users move their mouse pointer over the icon on the timeline. &lt;/p&gt;
+        ///&lt;p&gt;If you will be providing in-depth information in the Full Description field below, please also include one of these phrases here: &lt;/p&gt;
+        ///&lt;ul&gt;&lt;li&gt;Milestone activities use: (Click on the Red Dot icon to read more)&lt;/li&gt;
+        ///&lt;li&gt;Training activities use: (Click on the Book icon to read more)&lt;/li&gt;&lt;/ul&gt;
+        ///
+        ///&lt;p&gt;Note:  You must complete the content in  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HoverInstrEng {
+            get {
+                return ResourceManager.GetString("HoverInstrEng", resourceCulture);
             }
         }
         
@@ -869,15 +928,6 @@ namespace Resources {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

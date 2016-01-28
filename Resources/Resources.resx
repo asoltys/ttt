@@ -444,10 +444,30 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   <data name="ClearResults" xml:space="preserve">
     <value>Clear results</value>
   </data>
+  <data name="EventDateInstr" xml:space="preserve">
+    <value>Choose an actual or estimate date for this activity.  The date selected will determine the location of the activity icon along the transformation timeline. The date itself will not be displayed to users of the Transformation Timeline Tool. If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;the administrator&lt;/a&gt;.</value>
+  </data>
+  <data name="EventTextEng" xml:space="preserve">
+    <value>Full Description in English which is displayed when the user clicks on the icon for this activity. (optional field)</value>
+  </data>
+  <data name="EventTextFra" xml:space="preserve">
+    <value>Full Description in French which is displayed when the user clicks on the icon for this activity. (optional field)</value>
+  </data>
+  <data name="HoverDescEng" xml:space="preserve">
+    <value>Short Description of the Activity in English (Required field)</value>
+  </data>
+  <data name="HoverDescFra" xml:space="preserve">
+    <value>Short Description of the Activity in French (Required field)</value>
+  </data>
+  <data name="HoverInstrEng" xml:space="preserve">
+    <value>&lt;p&gt;Write a short description in &lt;strong&gt;English&lt;/strong&gt; of the activitity that will be visible when users move their mouse pointer over the icon on the timeline. &lt;/p&gt;
+&lt;p&gt;If you will be providing in-depth information in the Full Description field below, please also include one of these phrases here: &lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Milestone activities use: (Click on the Red Dot icon to read more)&lt;/li&gt;
+&lt;li&gt;Training activities use: (Click on the Book icon to read more)&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;Note:  You must complete the content in both English and French to submit this activity for approval.&lt;/p&gt;</value>
+  </data>
   <data name="InitiativeSelectLabel" xml:space="preserve">
     <value>Choose one Initiative from the drop-down menu.</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
 </root>
