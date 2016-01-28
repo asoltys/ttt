@@ -136,4 +136,13 @@
   <data name="InitiativeRequiredEndDate" xml:space="preserve">
     <value>The End Date field is required.</value>
   </data>
+  <data name="EventRequiredDescriptionEnglish" xml:space="preserve">
+    <value>The English Description field is required.</value>
+  </data>
+  <data name="EventRequiredDescriptionFrench" xml:space="preserve">
+    <value>The French Description field is required.</value>
+  </data>
+  <data name="EventRequiredDate" xml:space="preserve">
+    <value>The Date field is required.</value>
+  </data>
 </root>

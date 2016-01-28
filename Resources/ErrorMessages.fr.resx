@@ -135,4 +135,13 @@
   <data name="InitiativeRequiredEndDate" xml:space="preserve">
     <value>tba</value>
   </data>
+  <data name="EventRequiredDescriptionEnglish" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="EventRequiredDescriptionFrench" xml:space="preserve">
+    <value>tba</value>
+  </data>
+  <data name="EventRequiredDate" xml:space="preserve">
+    <value>tba</value>
+  </data>
 </root>

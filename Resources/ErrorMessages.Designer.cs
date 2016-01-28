@@ -61,6 +61,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Date field is required..
+        /// </summary>
+        public static string EventRequiredDate {
+            get {
+                return ResourceManager.GetString("EventRequiredDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The English Description field is required..
+        /// </summary>
+        public static string EventRequiredDescriptionEnglish {
+            get {
+                return ResourceManager.GetString("EventRequiredDescriptionEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The French Description field is required..
+        /// </summary>
+        public static string EventRequiredDescriptionFrench {
+            get {
+                return ResourceManager.GetString("EventRequiredDescriptionFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The English Description field is required..
         /// </summary>
         public static string InitiativeRequiredDescriptionEnglish {
