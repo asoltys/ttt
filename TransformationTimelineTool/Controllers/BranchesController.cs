@@ -11,18 +11,19 @@ using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class BranchesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 
         // GET: Branches
+        [Authorize(Roles = "Admin,OPI,Editor")]
         public ActionResult Index()
         {
             return View(db.Branches.ToList());
         }
 
         // GET: Branches/Details/5
+        [Authorize(Roles = "Admin,OPI,Editor")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +39,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Branches/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -48,6 +50,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,NameShort,NameE,NameF")] Branch branch)
         {
             if (ModelState.IsValid)
@@ -61,6 +64,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Branches/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +84,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,NameShort,NameE,NameF")] Branch branch)
         {
             if (ModelState.IsValid)
@@ -112,6 +117,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Branches/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,6 +135,7 @@ namespace TransformationTimelineTool.Controllers
         // POST: Branches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Branch branch = db.Branches.Find(id);

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
 @section Styles {
@@ -10,11 +11,14 @@
 
 <h2>@Resources.Branches</h2>
 
-<span class="create-new">
-    <a class="no-link-style" href='@Url.Action("Create", "Branches")'>
-        <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
-    </a>
-</span>
+@if (ViewBag.isAdmin)
+{
+    <span class="create-new">
+        <a class="no-link-style" href='@Url.Action("Create", "Branches")'>
+            <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
+        </a>
+    </span>
+}
 <table class="table">
     <tr>
         <th>
@@ -41,22 +45,34 @@
             @Html.DisplayFor(modelItem => item.NameF)
         </td>
         <td>
-            <a class="no-link-style" href="@Url.Action("Edit", "Branches", new { id = item.ID })">
-                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-            </a>
-            <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
-                <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
-            </a>
-            <a class="no-link-style" href="@Url.Action("Delete", "Branches", new { id = item.ID })">
-                <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-            </a>
+            @if (ViewBag.isAdmin)
+            {
+                <a class="no-link-style" href="@Url.Action("Edit", "Branches", new { id = item.ID })">
+                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
+                    <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Delete", "Branches", new { id = item.ID })">
+                    <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                </a>
+            }
+            else
+            {
+                <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
+                    <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
+                </a>
+            }
         </td>
     </tr>
 }
 
 </table>
-<span class="create-new">
-    <a class="no-link-style" href='@Url.Action("Create", "Branches")'>
-        <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
-    </a>
-</span>
+@if (ViewBag.isAdmin)
+{
+    <span class="create-new">
+        <a class="no-link-style" href='@Url.Action("Create", "Branches")'>
+            <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
+        </a>
+    </span>
+}

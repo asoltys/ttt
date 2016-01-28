@@ -186,6 +186,8 @@ namespace TransformationTimelineTool.Controllers
                .Where(i => i.ID == eventViewModel.Event.ID)
                .Single();
 
+            var currentUser = Utils.GetCurrentUser();
+
             if (ModelState.IsValid)
             {
                 try
@@ -198,7 +200,6 @@ namespace TransformationTimelineTool.Controllers
                     UpdateEventBranches(selectedBranches, eventToUpdate);
 
                     var edit = eventViewModel.Edit;
-                    var currentUser = Utils.GetCurrentUser();
 
                     edit.DisplayDate = eventViewModel.Edit.DisplayDate;
                     edit.Type = eventViewModel.Edit.Type;
@@ -222,12 +223,14 @@ namespace TransformationTimelineTool.Controllers
                 }
                 catch (SendMailException ex)
                 {
-                    ModelState.AddModelError("SendMail", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
             PopulateEventRegionsData(eventToUpdate);
-            return View(eventToUpdate);
+            PopulateEventBranchesData(eventToUpdate);
+            eventViewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList(), "id", "NameE", eventViewModel.InitiativeID);
+            return View(eventViewModel);
         }
 
         public bool SendMail(Event @event)

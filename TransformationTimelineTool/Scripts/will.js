@@ -3,7 +3,7 @@
 var lang = 'e';
 
 // if url has -fra in it change it to french
-if (window.location.href.indexOf("-fra") > 0) {
+if (window.location.href.indexOf("fr") > 0) {
     var lang = 'f'
 };
 
@@ -13,8 +13,8 @@ timeLine = {
     utility: timeLine.utility,
     render: '',
     initiatives: '',
-    initiativesURLe : '/fr/initiatives/datauni',
-    initiativesURLf : '/en/initiatives/datauni',
+    initiativesURLe : '/en/initiatives/datauni',
+    initiativesURLf : '/fr/initiatives/datauni',
     //initiativesURLe: 'json/initiatives.json',
     //initiativesURLf: 'json/initiatxives.json',
     branches: '',

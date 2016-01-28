@@ -154,6 +154,21 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
+    <!-- Add a # before the word include below to enable the sign in button. See other include lines for an example -->
+    <!--include virtual="/site/wet3.1/html5/includes/os-si-eng.html" -->
+    @if (HttpContext.Current.User.IsInRole("Admin") ||
+        HttpContext.Current.User.IsInRole("OPI") ||
+        HttpContext.Current.User.IsInRole("Editor") )
+    {
+        <!-- Start of os-si-fra.html / Début de os-si-fra.html -->
+        <div id="wb-session"><aside>
+        <h2 class="wb-invisible">Admin</h2>
+        <ul class="button-group">
+        <li class="session">@Html.ActionLink(Resources.Initiatives, "Index", "Initiatives", null, new { @class = "button" })</li>
+        </ul>
+        </aside></div>
+        <!-- End of os-si-fra.html / Fin de os-si-fra.html -->
+    }
 <!-- MainContentStart -->
     @RenderBody()
 <!-- EndEditableContent -->
