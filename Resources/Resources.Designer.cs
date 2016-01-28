@@ -959,11 +959,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the type of activity you are creating..
+        ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the type of activity you are creating..
+        /// </summary>
+        public static string TypeSelectList {
+            get {
+                return ResourceManager.GetString("TypeSelectList", resourceCulture);
             }
         }
         

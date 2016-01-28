@@ -247,7 +247,7 @@
     <value>Calendrier des transformations</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Choisissez le type d’activité que vous voulez créer</value>
+    <value>Type</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Vue</value>
@@ -472,5 +472,8 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   </data>
   <data name="InitiativeSelectLabel" xml:space="preserve">
     <value>Choisissez une initiative du menu déroulant</value>
+  </data>
+  <data name="TypeSelectList" xml:space="preserve">
+    <value>Choisissez le type d’activité que vous voulez créer</value>
   </data>
 </root>
