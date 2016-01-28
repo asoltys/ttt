@@ -13,16 +13,17 @@ timeLine = {
     utility: timeLine.utility,
     render: '',
     initiatives: '',
-    initiativesURLe : '/fr/initiatives/datauni',
-    initiativesURLf : '/en/initiatives/datauni',
+    initiativesURLe: '/en/initiatives/datauni',
+    initiativesURLf: '/fr/initiatives/datauni',
     //initiativesURLe: 'json/initiatives.json',
-    //initiativesURLf: 'json/initiatxives.json',
+    //initiativesURLf: 'json/initiatives.json',
     branches: '',
-    branchesURL : '/en/branches/data',
+    branchesURL: '/en/branches/data',
     //branchesURL: 'json/branches.json',
     regions: '',
-    regionsURL : '/en/regions/data',
+    regionsURL: '/en/regions/data',
     //regionsURL: 'json/regions.json',
+    regionsURL: 'json/regions.json',
     startMonth: 1,
     startYear: 2012,
     endMonth: 12,
@@ -547,6 +548,12 @@ timeLine = {
         };
         if ($.inArray(b, branches) > -1 && $.inArray(r, regions) > -1) {
             display = 1;
+        };
+        if (branches == 1) {
+            display = 1
+        };
+        if (regions == 1) {
+            display = 1
         };
         return display;
     },
