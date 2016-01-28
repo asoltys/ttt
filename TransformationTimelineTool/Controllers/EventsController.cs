@@ -289,8 +289,17 @@ namespace TransformationTimelineTool.Controllers
                 // Logic: Approver has set the event state to pending
                 // Action: Do not send any notification
                 return true;
-            } else
+            } else if (CurrentUser.Id == Creator.Id && @event.Status == Status.Approved)
             {
+                // Logic: Creator has approved the event - probably an admin or exec
+                // Action: Send a mail to the Creator, CC Admin
+                SendTo = Creator.Email;
+                MailSubject = Resources.Resources.ApprovedMailSubject;
+                MailBody = Resources.Resources.ApprovedMailBody;
+                MailBody = String.Format(MailBody,
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
+                CopyList.Add(AdminEmail);
+            } else {
                 SendTo = AdminEmail;
                 MailSubject = "Something unexpected happened with an event";
                 MailBody = Resources.Resources.ApprovedMailBody;
