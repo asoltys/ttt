@@ -140,5 +140,32 @@ namespace Resources {
                 return ResourceManager.GetString("InitiativeRequiredStartDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The English Name field is required..
+        /// </summary>
+        public static string RegionBranchRequiredNameEnglish {
+            get {
+                return ResourceManager.GetString("RegionBranchRequiredNameEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The French Name field is required..
+        /// </summary>
+        public static string RegionBranchRequiredNameFrench {
+            get {
+                return ResourceManager.GetString("RegionBranchRequiredNameFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Short Name field is required..
+        /// </summary>
+        public static string RegionBranchRequiredShortName {
+            get {
+                return ResourceManager.GetString("RegionBranchRequiredShortName", resourceCulture);
+            }
+        }
     }
 }
