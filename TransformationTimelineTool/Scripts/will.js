@@ -13,8 +13,10 @@ timeLine = {
     utility: timeLine.utility,
     render: '',
     initiatives: '',
-    initiativesURL : '/en/initiatives/data',
-    //initiativesURL: 'json/initiatives.json',
+    initiativesURLe : '/fr/initiatives/datauni',
+    initiativesURLf : '/en/initiatives/datauni',
+    //initiativesURLe: 'json/initiatives.json',
+    //initiativesURLf: 'json/initiatxives.json',
     branches: '',
     branchesURL : '/en/branches/data',
     //branchesURL: 'json/branches.json',
@@ -42,7 +44,8 @@ timeLine = {
     content: function () {
         $.ajax({
             type: "GET",
-            url: timeLine.initiativesURL,
+
+            url: eval("timeLine.initiativesURL".concat(lang)),
             dataType: "json",
             timeout: 6000,
             success: function (initiatives) {
@@ -399,9 +402,9 @@ timeLine = {
                 var branches = '';
                 var regions = '';
                 var color0 = "#dbdbdb";
-                var color1 = "#dbdbdb";
-                var color2 = "#dbdbdb";
-                var color3 = "#dbdbdb";
+                var color1 = "#f0caeb";
+                var color2 = "#ebf2b1";
+                var color3 = "#abdbcf";
                 var setLevel0 = 0;
                 var setLevel1 = 0;
                 var setLevel2 = 0;
@@ -521,7 +524,6 @@ timeLine = {
     },
     // grabs dropdown info and returns display
     iconFilter: function (branches, regions) {
-        console.log(branches + " " + regions);
         var display = 0;
         var b = parseInt($('#branchSelect').val());
         var r = parseInt($('#areaSelect').val());
@@ -546,7 +548,6 @@ timeLine = {
         if ($.inArray(b, branches) > -1 && $.inArray(r, regions) > -1) {
             display = 1;
         };
-        console.log(display);
         return display;
     },
     cleanSpecialCharacters: function (x) {
