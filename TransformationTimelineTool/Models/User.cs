@@ -9,7 +9,8 @@ namespace TransformationTimelineTool.Models
 {
     public class User : IdentityUser
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
+           ErrorMessageResourceName = "UserRequiredEmail")]
         [DataType(DataType.EmailAddress)]
         public override string Email { get; set; }
         public string ApproverID { get; set; }

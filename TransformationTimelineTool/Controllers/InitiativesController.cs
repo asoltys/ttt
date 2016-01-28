@@ -218,7 +218,7 @@ namespace TransformationTimelineTool.Controllers
         [AllowAnonymous]
         [OutputCache(Duration = 3600,
             Location = System.Web.UI.OutputCacheLocation.Server,
-            SqlDependency = "[pac-tt]:[Initiatives];[pac-tt]:[Events];[pac-tt]:[Impacts];")]
+            SqlDependency = "CommandNotification")]
         public async Task<ActionResult> DataCache()
         {
             List<Initiative> initiatives = await db.Initiatives.

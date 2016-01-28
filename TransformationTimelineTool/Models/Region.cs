@@ -11,15 +11,18 @@ namespace TransformationTimelineTool.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
+            ErrorMessageResourceName = "RegionBranchRequiredShortName")]
         public string NameShort { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
+            ErrorMessageResourceName = "RegionBranchRequiredNameEnglish")]
         [Display(Name = "English Name")]
-
-        [Required]
         public string NameE { get; set; }
-        [Display(Name = "French Name")]
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
+           ErrorMessageResourceName = "RegionBranchRequiredNameFrench")]
+        [Display(Name = "French Name")]
         public string NameF { get; set; }
 
         public string Name

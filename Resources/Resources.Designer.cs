@@ -119,10 +119,10 @@ namespace Resources {
         ///Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
         ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
+        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/en/Home&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/&gt;
         ///Ceci c’est un message automatique.&lt;br/&gt;
-        ///Votre poste éta [rest of string was truncated]&quot;;.
+        ///Votre p [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ApprovedMailBody {
             get {
@@ -761,10 +761,10 @@ namespace Resources {
         ///An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
         ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
+        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/en/Home&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/&gt;
         ///Ceci c’est un message automatique.&lt;br/&gt;
-        ///Votre approb [rest of string was truncated]&quot;;.
+        ///Votr [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PendingMailBody {
             get {
@@ -831,9 +831,9 @@ namespace Resources {
         ///An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
         ///To access the system please use &lt;a href=&apos;{0}/en/events/details/{1}&apos;&gt;{0}/en/events/details/{1}&lt;/a&gt;.&lt;br/&gt;
         ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{3}&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
+        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/en/Home&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/&gt;
-        ///Ceci c’est un message automat [rest of string was truncated]&quot;;.
+        ///Ceci c’est un message [rest of string was truncated]&quot;;.
         /// </summary>
         public static string RejectMailBody {
             get {
