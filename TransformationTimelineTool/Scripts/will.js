@@ -16,7 +16,7 @@ timeLine = {
     initiativesURLe : '/en/initiatives/datauni',
     initiativesURLf : '/fr/initiatives/datauni',
     //initiativesURLe: 'json/initiatives.json',
-    //initiativesURLf: 'json/initiatxives.json',
+    //initiativesURLf: 'json/initiatives.json',
     branches: '',
     branchesURL : '/en/branches/data',
     //branchesURL: 'json/branches.json',
