@@ -154,4 +154,7 @@
   <data name="RegionBranchRequiredNameFrench" xml:space="preserve">
     <value>The French Name field is required.</value>
   </data>
+  <data name="UserRequiredEmail" xml:space="preserve">
+    <value>The Email field is required.</value>
+  </data>
 </root>

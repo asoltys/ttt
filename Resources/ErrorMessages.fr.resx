@@ -153,4 +153,7 @@
   <data name="RegionBranchRequiredNameFrench" xml:space="preserve">
     <value>tba</value>
   </data>
+  <data name="UserRequiredEmail" xml:space="preserve">
+    <value>tba</value>
+  </data>
 </root>

@@ -167,5 +167,14 @@ namespace Resources {
                 return ResourceManager.GetString("RegionBranchRequiredShortName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Email field is required..
+        /// </summary>
+        public static string UserRequiredEmail {
+            get {
+                return ResourceManager.GetString("UserRequiredEmail", resourceCulture);
+            }
+        }
     }
 }
