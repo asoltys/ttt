@@ -121,7 +121,7 @@
     <value>À propos</value>
   </data>
   <data name="Activity" xml:space="preserve">
-    <value>tba</value>
+    <value>L'activité</value>
   </data>
   <data name="Atlanta" xml:space="preserve">
     <value>tba</value>
@@ -148,7 +148,7 @@
     <value>Effacer</value>
   </data>
   <data name="Deselect" xml:space="preserve">
-    <value>tba</value>
+    <value>Désélectionner</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Détails</value>
@@ -232,13 +232,13 @@
     <value>Sélectionner</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
-    <value>tba</value>
+    <value>Sélectionner tous</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Démarrer</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>tba</value>
+    <value>État</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Envoyer des textos</value>
@@ -443,6 +443,32 @@ Le Calendrier national des transformations se trouve &lt;a href='{3}'&gt;ici&lt;
   </data>
   <data name="ClearResults" xml:space="preserve">
     <value>Résultats clairs</value>
+  </data>
+  <data name="EventDateInstr" xml:space="preserve">
+    <value>Choisissez une date actuelle ou éstimée pour cette activité. La selection de la date determinerait ou l’activité serait mise sur l'échéancier. La date lui-même ne serait pas visible aux utilisateurs du Calendrier des transformations.  Veuillez contacter &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;l’administrateur&lt;/a&gt; si vous avez besoin de l’aide.</value>
+  </data>
+  <data name="EventTextEng" xml:space="preserve">
+    <value>Description complète en Anglaise que deviendrait visible quand l’utilisateur clique sur l’icône pour cette activité. (champ facultatif)</value>
+  </data>
+  <data name="EventTextFra" xml:space="preserve">
+    <value>Description complète en française qui deviendrait visible quand l’utilisateur clique sur l’icône pour cette activité. (champ facultatif)</value>
+  </data>
+  <data name="HoverDescEng" xml:space="preserve">
+    <value>Une courte description de l’activité en anglais (Champ obligatoire)</value>
+  </data>
+  <data name="HoverDescFra" xml:space="preserve">
+    <value>Une courte description de l’activité en Français (Champ obligatoire)</value>
+  </data>
+  <data name="HoverInstrEng" xml:space="preserve">
+    <value>&lt;p&gt;Écrivez une courte description en &lt;strong&gt;anglaise&lt;/strong&gt; de l’activité qui serait visible quand les utilisateurs déplaceront leur pointeurs de la souris sur une icône dans l'échéancier.&lt;/p&gt;
+
+&lt;p&gt;Si vous aller fournir des renseignements plus détaillés dans le champ de Description complète au dessous, veuillez ajouter aussi une de ces phrases-ci:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Les activités des étapes:  (Click on the Red Dot icon to read more)&lt;/li&gt;&lt;li&gt;Les activité des formations: (Click on the Book icon to read more)&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;À noter: Il faut complèter les informations dans les deux langues, Francais et Anglais, pour soumettre cette activité pour l’approbation.&lt;/p&gt;</value>
+  </data>
+  <data name="HoverInstrFra" xml:space="preserve">
+    <value />
   </data>
   <data name="InitiativeSelectLabel" xml:space="preserve">
     <value>Choisissez une initiative du menu déroulant</value>

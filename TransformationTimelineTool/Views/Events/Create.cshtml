@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="">
-        <h4>Activity</h4>
+        <h4>@Resources.Activity</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Event.InitiativeID, Resources.InitiativeSelectLabel, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -36,6 +36,7 @@
                 @Html.EditorFor(model => model.Edit.DisplayDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Edit.DisplayDate, "", new { @class = "text-danger" })
             </div>
+            <p>@Html.Raw(Resources.EventDateInstr)</p>
         </div>
 
         <div class="form-group">
@@ -69,7 +70,7 @@
                                    id="selectAllBranches"
                                    value="allBranches"
                                    checked="checked"/>
-                            Deselect/Select All
+                            @Resources.Deselect/@Resources.SelectAll
                         </td>
                     </tr>
                 </table>
@@ -115,7 +116,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.HoverE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.HoverE, Resources.HoverDescEng, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Edit.HoverE, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Edit.HoverE, "", new { @class = "text-danger" })
@@ -123,7 +124,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.HoverF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.HoverF, Resources.HoverDescFra, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Edit.HoverF, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Edit.HoverF, "", new { @class = "text-danger" })
