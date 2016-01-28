@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
@@ -239,12 +241,19 @@ namespace TransformationTimelineTool.Controllers
                 throw new SendMailException("Either Creator Id is NULL or Approver Id is NULL");
             var SendTo = "";
             var MailSubject = "";
-            var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email, {3}->Timeline Tool URL
+            var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email
             var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
             var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
-            var TimelineToolURL = Resources.Resources.ApplicationHomeURL;
             var CopyList = new List<string>();
 
+            var AdminID = db.Roles.Where(x => x.Name == "admin").Single();
+            var IsAdmin = CurrentUser.Roles.Where(x => x.RoleId == AdminID.Id).Count();
+
+            if (IsAdmin == 1) 
+            {
+                // Current user is an admin...
+                return true;
+            }
             if (CurrentUser.Id == Creator.Id && @event.Status == Status.Draft)
             {
                 // Logic: Creator has saved a draft of an event
@@ -258,7 +267,7 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.PendingMailSubject;
                 MailBody = Resources.Resources.PendingMailBody;
                 MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
                 CopyList.Add(Creator.Email);
                 CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Draft)
@@ -269,7 +278,7 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.RejectMailSubject;
                 MailBody = Resources.Resources.RejectMailBody;
                 MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
                 CopyList.Add(Creator.Approver.Email);
                 CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Approved)
@@ -281,7 +290,7 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.ApprovedMailSubject;
                 MailBody = Resources.Resources.ApprovedMailBody;
                 MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
                 CopyList.Add(Creator.Approver.Email);
                 CopyList.Add(AdminEmail);
             } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Pending)
@@ -297,14 +306,14 @@ namespace TransformationTimelineTool.Controllers
                 MailSubject = Resources.Resources.ApprovedMailSubject;
                 MailBody = Resources.Resources.ApprovedMailBody;
                 MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
                 CopyList.Add(AdminEmail);
             } else {
                 SendTo = AdminEmail;
                 MailSubject = "Something unexpected happened with an event";
                 MailBody = Resources.Resources.ApprovedMailBody;
                 MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain + TimelineToolURL);
+                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
             }
             if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList))
                 throw new SendMailException("Please check your server settings. SMTP client has failed to send the emails");
