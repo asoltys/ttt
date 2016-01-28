@@ -13,6 +13,8 @@ using System.Web.Routing;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 using TransformationTimelineTool.Helpers;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace TransformationTimelineTool
 {
@@ -25,6 +27,7 @@ namespace TransformationTimelineTool
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //SqlDependency.Start(ConfigurationManager.ConnectionStrings["TimelineContext"].ConnectionString);
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)
