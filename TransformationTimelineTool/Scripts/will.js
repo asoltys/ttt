@@ -116,7 +116,7 @@ timeLine = {
             timeout: 6000,
             success: function (branches) {
                 var html = '';
-                html += "<select id='branchSelect'><option value=''>" + timeLine.utility.translate("branch") + "</option>";
+                html += "<select id='branchSelect' disabled><option value=''>" + timeLine.utility.translate("branch") + "</option>";
                 timeLine.branches = branches.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
                 $.each(timeLine.branches, function (key, value) {
                     if (timeLine.branches[key].ID == 1) {
@@ -150,13 +150,14 @@ timeLine = {
         var html = '';
         html += "<div id='projectContainer'>";
         html += "<div class='projectSpace'></div>";
-        html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
+        var pat = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
         html += "<a href='#' style='color:#ffffff;' id='show3' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg2'>" + timeLine.utility.translate("medImDesc") + " <a href='#' style='color:#000000;' id='hide2' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
+        html += "<div class='projectGroupRow' id='pg2'>" + timeLine.utility.translate("medImDesc") + pat + " <a href='#' style='color:#000000;' id='hide2' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
         html += "<a href='#' style='color:#000000;' id='show2' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg1'>" + timeLine.utility.translate("lowImDesc") + " <a href='#' style='color:#ffffff;' id='hide1' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
+        html += "<div class='projectGroupRow' id='pg1'>" + timeLine.utility.translate("lowImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide1' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
         html += "<a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
+        html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
         html += "<a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
             timeLine.countTimeLine = timeLine.countTimeLine + 1;
