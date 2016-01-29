@@ -428,7 +428,6 @@ timeLine = {
                 $("#tg3").css("display", "none");
                 if (rSelected != "") {
                     $("#branchSelect").prop("disabled", false);
-                    $("#branchSelect").val('');
                 } else {
                     $("#branchSelect").prop("disabled", true);
                 };
