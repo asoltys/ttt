@@ -376,10 +376,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Répercussion</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>tba</value>
+    <value>Commentaires</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>tba</value>
+    <value>Ajouter</value>
   </data>
   <data name="NationalTransformationTimelineTool" xml:space="preserve">
     <value>Calendrier nationale des transformations</value>

@@ -271,7 +271,7 @@
                 case 'Users':
                     validatorArray.push(roleCheckboxValidator);
                     break;
-                case 'Events':
+                case 'Activities':
                     validatorArray.push(editorValidator);
                     validatorArray.push(branchRegionCheckboxValidator);
                     break;
