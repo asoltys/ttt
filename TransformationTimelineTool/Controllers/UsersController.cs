@@ -15,7 +15,7 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private TimelineContext db = new TimelineContext();
         private UserManager<User> userManager;

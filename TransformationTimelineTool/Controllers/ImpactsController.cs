@@ -53,11 +53,11 @@ namespace TransformationTimelineTool.Controllers
 
             if (id != null)
             {
-                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", id);
+                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", id);
             }
             else
             {
-                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE");
+                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name");
             }
 
             return View();
@@ -124,7 +124,7 @@ namespace TransformationTimelineTool.Controllers
                 return HttpNotFound();
             }
             //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", impact.InitiativeID);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", impact.InitiativeID);
             return View(impact);
         }
 

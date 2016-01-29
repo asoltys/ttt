@@ -16,6 +16,7 @@ using TransformationTimelineTool.Helpers;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Globalization;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -256,6 +257,9 @@ namespace TransformationTimelineTool.Controllers
 
             if (Thread.CurrentThread.CurrentCulture.Name == "fr")
             {
+                DateTimeFormatInfo dtfi = CultureInfo.CreateSpecificCulture("en-fr").DateTimeFormat;
+                dtfi.ShortDatePattern = @"M/d/yyyy";
+
                 foreach (var init in initiatives)
                 {
                     var jsonEvents = new List<object>();
@@ -267,7 +271,7 @@ namespace TransformationTimelineTool.Controllers
                         {
                             ID = e.ID,
                             Type = e.PublishedEdit.Type.ToString(),
-                            Date = e.PublishedEdit.DisplayDate.ToShortDateString(),
+                            Date = e.PublishedEdit.DisplayDate.ToString("d",dtfi),
                             Branches = e.Branches.Select(b => b.ID),
                             Regions = e.Regions.Select(r => r.ID),
                             Text = e.PublishedEdit.TextF,
@@ -291,8 +295,8 @@ namespace TransformationTimelineTool.Controllers
                         ID = init.ID,
                         Name = init.NameF,
                         Description = init.DescriptionF,
-                        StartDate = init.StartDate.ToShortDateString(),
-                        EndDate = init.EndDate.ToShortDateString(),
+                        StartDate = init.StartDate.ToString("d", dtfi),
+                        EndDate = init.EndDate.ToString("d",dtfi),
                         Impacts = jsonImpacts,
                         Events = jsonEvents
                     });

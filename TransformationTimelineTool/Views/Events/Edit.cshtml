@@ -167,6 +167,7 @@
             <div class="col-md-10">
                 @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
                 {
+                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.EnumDropDownListFor(model => model.Event.Status)
                     @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })

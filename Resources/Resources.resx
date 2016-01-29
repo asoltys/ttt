@@ -469,4 +469,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   <data name="InitiativeSelectLabel" xml:space="preserve">
     <value>Choose one Initiative from the drop-down menu.</value>
   </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
 </root>

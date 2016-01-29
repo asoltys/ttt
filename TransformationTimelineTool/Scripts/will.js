@@ -23,7 +23,6 @@ timeLine = {
     regions: '',
     regionsURL: '/en/regions/data',
     //regionsURL: 'json/regions.json',
-    regionsURL: 'json/regions.json',
     startMonth: 1,
     startYear: 2012,
     endMonth: 12,
