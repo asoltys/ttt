@@ -301,6 +301,7 @@
     <Compile Include="ViewModels\EventData.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\EventJSON.cs" />
+    <Compile Include="ViewModels\ImpactViewModel.cs" />
     <Compile Include="ViewModels\InitiativeData.cs" />
     <Compile Include="ViewModels\InitiativeViewModel.cs" />
     <Compile Include="ViewModels\RegionsData.cs" />

@@ -1,41 +1,33 @@
 ﻿@model TransformationTimelineTool.Models.Impact
-
+@using TransformationTimelineTool.Helpers
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.Details;
 }
 
-<h2>Details</h2>
+<h2>@Resources.Details</h2>
 
 <div>
-    <h4>Impact</h4>
+    <h4>@Resources.Impact</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Initiative
+            @Resources.Initiative
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Initiative.NameE)
+            @Html.DisplayFor(model => model.Initiative.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Level)
+            @Resources.Level
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Level)
+            @Utils.GetTranslation(Html.DisplayFor(model => model.Level).ToString())
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Justification)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.Justification)
-        </dd>
-
-        <dt>
-            Branches
+            @Resources.Branches
         </dt>
 
         <dd>
@@ -43,7 +35,7 @@
         </dd>
 
         <dt>
-            Regions
+            @Resources.Regions
         </dt>
 
         <dd>
@@ -52,6 +44,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID }) |
+    @Html.ActionLink(Resources.BackToList, "Index")
 </p>

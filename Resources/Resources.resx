@@ -505,4 +505,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   <data name="DeleteConfirm" xml:space="preserve">
     <value>Are you sure you want to delete this</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Short Description</value>
+  </data>
 </root>

@@ -1,5 +1,5 @@
 ﻿@model TransformationTimelineTool.Models.Initiative
-
+@using TransformationTimelineTool.Helpers
 
 @{
     ViewBag.Title = Resources.InitiativeDescription;
@@ -27,8 +27,8 @@
             <table class="table table-condensed table-striped">
                 <tr>
                     <th class="col-md-2">@Resources.Date</th>
-                    <th class="">Hover</th>
-                    <th class="col-md-2">Action</th>
+                    <th class="">@Resources.ShortDescription</th>
+                    <th class="col-md-2">@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Events)
                 {
@@ -55,13 +55,13 @@
                     <th>@Resources.Level</th>
                     <th>@Resources.Branch</th>
                     <th>@Resources.Region</th>
-                    <th></th>
+                    <th>@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Impacts)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Level)
+                            @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
                         </td>
                         <td>
                             @Html.Raw(item.BranchesList)
@@ -82,7 +82,7 @@
                 <tr>
                     <th>@Resources.UserName</th>
                     <th>@Resources.Email</th>
-                    <th></th>
+                    <th>@Resources.Actions</th>
                 </tr>
                 @foreach (var user in Model.Users)
                 {

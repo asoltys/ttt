@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TransformationTimelineTool.Models.Impact>
-
+@using TransformationTimelineTool.Helpers
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Resources.Impacts;
 }
 
 @section Styles {
@@ -23,16 +23,17 @@
         <th class="fix-6em">
             @Resources.Level
         </th>
-        <th class="control-group"></th>
+        <th class="control-group">@Resources.Actions</th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Initiative.NameE)
+            @Html.DisplayFor(modelItem => item.Initiative.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Level)
+            @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
         </td>
         <td>
             <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { id = item.ID })">

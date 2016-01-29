@@ -506,4 +506,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   <data name="InitFrenchName" xml:space="preserve">
     <value>Nom en français</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Déscription courte</value>
+  </data>
 </root>
