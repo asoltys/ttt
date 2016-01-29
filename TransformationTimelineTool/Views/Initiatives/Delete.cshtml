@@ -1,12 +1,12 @@
 ﻿@model TransformationTimelineTool.Models.Initiative
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = Resources.Delete;
 }
 
-<h2>Delete</h2>
+<h2>@Resources.Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>@(Resources.DeleteConfirm + Resources.Initiative + '?')</h3>
 <div>
     <h4>Initiative</h4>
     <dl class="dl-horizontal">
@@ -98,7 +98,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Impacts)
+            @Resources.Impacts
         </dt>
 
         <dd>

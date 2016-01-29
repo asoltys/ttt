@@ -2,7 +2,7 @@
 @model TransformationTimelineTool.ViewModels.InitiativeIndexData
 
 @{
-    ViewBag.Title = Resources.Initiative;
+    ViewBag.Title = Resources.Initiatives;
     ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
@@ -25,7 +25,7 @@
         <th>@Resources.Name</th>
         <th class="fix-6em">@Resources.Start</th>
         <th class="fix-6em">@Resources.End</th>
-        <th class="control-group"></th>
+        <th class="control-group">@Resources.Actions</th>
     </tr>
 
     @foreach (var item in Model.Initiatives)

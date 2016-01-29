@@ -121,16 +121,16 @@
     <value>À propos</value>
   </data>
   <data name="Activity" xml:space="preserve">
-    <value>L'activité</value>
+    <value>Activité</value>
   </data>
   <data name="Atlanta" xml:space="preserve">
     <value>tba</value>
   </data>
   <data name="BackToList" xml:space="preserve">
-    <value>tba</value>
+    <value>Retourner à la liste</value>
   </data>
   <data name="Branch" xml:space="preserve">
-    <value>tba</value>
+    <value>Direction générale</value>
   </data>
   <data name="Branches" xml:space="preserve">
     <value>Direction générales</value>
@@ -145,7 +145,7 @@
     <value>Date</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Effacer</value>
+    <value>Supprimer</value>
   </data>
   <data name="Deselect" xml:space="preserve">
     <value>Désélectionner</value>
@@ -193,16 +193,13 @@
     <value>Répercussions</value>
   </data>
   <data name="InitEnglishDesc" xml:space="preserve">
-    <value>tba</value>
+    <value>Déscription de l'initiative en anglais</value>
   </data>
   <data name="InitEnglishName" xml:space="preserve">
-    <value>tba</value>
+    <value>Nom en anglais</value>
   </data>
   <data name="InitFrenchDesc" xml:space="preserve">
-    <value>tba</value>
-  </data>
-  <data name="InitFrenchName" xml:space="preserve">
-    <value>tba</value>
+    <value>Déscription de l'initiative en français</value>
   </data>
   <data name="Initiative" xml:space="preserve">
     <value>Initiative</value>
@@ -235,7 +232,7 @@
     <value>Sélectionner tous</value>
   </data>
   <data name="Start" xml:space="preserve">
-    <value>Démarrer</value>
+    <value>Début</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>État</value>
@@ -250,16 +247,13 @@
     <value>Type</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>Vue</value>
-  </data>
-  <data name="Western" xml:space="preserve">
-    <value>Ouest</value>
+    <value>Voir</value>
   </data>
   <data name="Activities" xml:space="preserve">
     <value>Activités</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>tba</value>
+    <value>Déscription</value>
   </data>
   <data name="ApprovedMailBody" xml:space="preserve">
     <value>This is an automated message.&lt;br/&gt;
@@ -355,7 +349,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Utilisateurs</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
+    <value>Courriel</value>
   </data>
   <data name="EnglishName" xml:space="preserve">
     <value>tba</value>
@@ -364,13 +358,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>tba</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>tba</value>
+    <value>Niveau</value>
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>tba</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>tba</value>
+    <value>Nom de l'utilisateur</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>tba</value>
@@ -475,5 +469,41 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   </data>
   <data name="TypeSelectList" xml:space="preserve">
     <value>Choisissez le type d’activité que vous voulez créer</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
+  <data name="CreateActivity" xml:space="preserve">
+    <value>Créer une activité</value>
+  </data>
+  <data name="InitiativeDescription" xml:space="preserve">
+    <value>Déscription de l'initiative</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="AssignImpact" xml:space="preserve">
+    <value>Attribuer une répercussion</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Aucune</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Faibles</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Moyennes</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>Élevées</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer cette </value>
+  </data>
+  <data name="InitFrenchName" xml:space="preserve">
+    <value>Nom en français</value>
   </data>
 </root>

@@ -1,7 +1,8 @@
 ﻿@model TransformationTimelineTool.Models.Initiative
 
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.InitiativeDescription;
 }
 
 @section Styles {
@@ -11,9 +12,10 @@
 
 <h2>@Html.DisplayFor(model => model.Name) </h2>
     <hr />
-<h4>@Resources.Description</h4>
-@Html.Raw(Model.Description)
-
+<h4>@Resources.InitiativeDescription</h4>
+<p>
+    @Html.Raw(Model.Description)
+</p>
 <h4>@Resources.Start</h4>
 <p>@Html.DisplayFor(model => model.StartDate)</p>
 
@@ -21,7 +23,7 @@
 <p>@Html.DisplayFor(model => model.EndDate)</p>
 
 <h4>@Resources.Activities</h4>
-<p>@Html.ActionLink(Resources.Create + " " + Resources.Activity, "Create", "Events", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.CreateActivity, "Create", "Events", new { ID = Model.ID }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th class="col-md-2">@Resources.Date</th>
@@ -47,7 +49,7 @@
             </table>
 
 <h4>@Html.DisplayNameFor(Model => Model.Impacts)</h4>
-<p>@Html.ActionLink(Resources.Create + " " + Resources.Impact, "Create", "Impacts", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th>@Resources.Level</th>
@@ -75,7 +77,7 @@
                 }
             </table>
 
-<h4>@Html.DisplayNameFor(Model => Model.Users)</h4>
+<h4>@Resources.Users</h4>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th>@Resources.UserName</th>
