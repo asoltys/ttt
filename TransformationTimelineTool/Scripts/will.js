@@ -430,6 +430,7 @@ timeLine = {
                     $("#branchSelect").prop("disabled", false);
                 } else {
                     $("#branchSelect").prop("disabled", true);
+                    $("#branchSelect").val('');
                 };
                 if (rSelected != "" && bSelected != "") {
                     if (timeLine.runOnce == 0) {
