@@ -106,6 +106,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detailed English Description.
+        /// </summary>
+        public static string ActivityDetailedDescEng {
+            get {
+                return ResourceManager.GetString("ActivityDetailedDescEng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detailed French Description.
+        /// </summary>
+        public static string ActivityDetailedDescFra {
+            get {
+                return ResourceManager.GetString("ActivityDetailedDescFra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -383,6 +401,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to entries.
+        /// </summary>
+        public static string entries {
+            get {
+                return ResourceManager.GetString("entries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event.
         /// </summary>
         public static string Event {
@@ -518,7 +545,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short Description of the Activity in English (Required field).
+        ///   Looks up a localized string similar to English Short Description (Required field).
         /// </summary>
         public static string HoverDescEng {
             get {
@@ -527,7 +554,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short Description of the Activity in French (Required field).
+        ///   Looks up a localized string similar to French Short Description (Required Field).
         /// </summary>
         public static string HoverDescFra {
             get {
@@ -636,6 +663,24 @@ namespace Resources {
         public static string InitiativeSelectLabel {
             get {
                 return ResourceManager.GetString("InitiativeSelectLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last edited by.
+        /// </summary>
+        public static string LastEditedBy {
+            get {
+                return ResourceManager.GetString("LastEditedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last updated.
+        /// </summary>
+        public static string LastUpdated {
+            get {
+                return ResourceManager.GetString("LastUpdated", resourceCulture);
             }
         }
         
@@ -816,6 +861,15 @@ namespace Resources {
         public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        public static string of {
+            get {
+                return ResourceManager.GetString("of", resourceCulture);
             }
         }
         
@@ -1013,6 +1067,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Showing.
+        /// </summary>
+        public static string Showing {
+            get {
+                return ResourceManager.GetString("Showing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {
@@ -1049,6 +1112,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to to.
+        /// </summary>
+        public static string to {
+            get {
+                return ResourceManager.GetString("to", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Training.
         /// </summary>
         public static string Training {
@@ -1072,6 +1144,15 @@ namespace Resources {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the Type of Activity you are creating.
+        /// </summary>
+        public static string TypeSelectLabel {
+            get {
+                return ResourceManager.GetString("TypeSelectLabel", resourceCulture);
             }
         }
         

@@ -453,10 +453,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Full Description in French which is displayed when the user clicks on the icon for this activity. (optional field)</value>
   </data>
   <data name="HoverDescEng" xml:space="preserve">
-    <value>Short Description of the Activity in English (Required field)</value>
+    <value>English Short Description (Required field)</value>
   </data>
   <data name="HoverDescFra" xml:space="preserve">
-    <value>Short Description of the Activity in French (Required field)</value>
+    <value>French Short Description (Required Field)</value>
   </data>
   <data name="HoverInstrEng" xml:space="preserve">
     <value>&lt;p&gt;Write a short description in &lt;strong&gt;English&lt;/strong&gt; of the activitity that will be visible when users move their mouse pointer over the icon on the timeline. &lt;/p&gt;
@@ -510,5 +510,32 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>Short Description</value>
+  </data>
+  <data name="TypeSelectLabel" xml:space="preserve">
+    <value>Select the Type of Activity you are creating</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>Showing</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="entries" xml:space="preserve">
+    <value>entries</value>
+  </data>
+  <data name="ActivityDetailedDescEng" xml:space="preserve">
+    <value>Detailed English Description</value>
+  </data>
+  <data name="ActivityDetailedDescFra" xml:space="preserve">
+    <value>Detailed French Description</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last updated</value>
+  </data>
+  <data name="LastEditedBy" xml:space="preserve">
+    <value>Last edited by</value>
   </data>
 </root>

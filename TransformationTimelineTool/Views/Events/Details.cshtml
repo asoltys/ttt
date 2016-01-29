@@ -1,4 +1,5 @@
 ﻿@model TransformationTimelineTool.ViewModels.EventViewModel
+@using TransformationTimelineTool.Helpers
 
 @{
     ViewBag.Title = "Details";
@@ -11,19 +12,15 @@
     <hr />
     <dl class="">
         <dt>
-           Initiative
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Event.Initiative.NameE)
+           @Resources.Initiative
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Event.Initiative.NameE)
+            @Html.DisplayFor(model => model.Event.Initiative.Name)
         </dd>
 
         <dt>
-            Branches
+            @Resources.Branches
         </dt>
 
         <dd>
@@ -31,7 +28,7 @@
         </dd>
 
         <dt>
-            Regions
+            @Resources.Regions
         </dt>
 
         <dd> 
@@ -39,15 +36,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Event.LatestEdit.Type)
+            @Resources.Type
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Event.LatestEdit.Type)
+            @Utils.GetTranslation(Html.DisplayFor(model => model.Event.LatestEdit.Type).ToString())
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Event.LatestEdit.DisplayDate)
+            @Resources.Date
         </dt>
 
         <dd>
@@ -55,23 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Edit.TextE)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.Edit.TextE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Edit.TextF)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.Edit.TextF)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Edit.HoverE)
+            @Resources.HoverDescEng
         </dt>
 
         <dd>
@@ -79,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Edit.HoverF)
+            @Resources.HoverDescFra
         </dt>
 
         <dd>
@@ -87,7 +68,23 @@
         </dd>
 
         <dt>
-           Last Edited
+            @Resources.ActivityDetailedDescEng
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Edit.TextE)
+        </dd>
+
+        <dt>
+            @Resources.ActivityDetailedDescFra
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Edit.TextF)
+        </dd>
+
+        <dt>
+           @Resources.LastUpdated
         </dt>
 
         <dd>
@@ -95,7 +92,7 @@
         </dd>
 
         <dt>
-            Editor
+            @Resources.LastEditedBy
         </dt>
 
         <dd>
@@ -103,11 +100,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Event.Status)
+            @Resources.Status
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Event.Status)
+            @Utils.GetTranslation(Html.DisplayFor(model => model.Event.Status).ToString())
         </dd>
 
     </dl>

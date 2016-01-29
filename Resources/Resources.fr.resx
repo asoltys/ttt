@@ -133,7 +133,7 @@
     <value>Direction générale</value>
   </data>
   <data name="Branches" xml:space="preserve">
-    <value>Direction générales</value>
+    <value>Directions générales</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -322,10 +322,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Recherche</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value>tba</value>
+    <value>Approuvé</value>
   </data>
   <data name="Draft" xml:space="preserve">
-    <value>tba</value>
+    <value>Ébauche</value>
   </data>
   <data name="Initiatives" xml:space="preserve">
     <value>Initiatives</value>
@@ -334,13 +334,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Étape</value>
   </data>
   <data name="Pending" xml:space="preserve">
-    <value>tba</value>
+    <value>En attente</value>
   </data>
   <data name="Records" xml:space="preserve">
-    <value>tba</value>
+    <value>postes</value>
   </data>
   <data name="Show" xml:space="preserve">
-    <value>tba</value>
+    <value>Indiquer</value>
   </data>
   <data name="Training" xml:space="preserve">
     <value>Formation</value>
@@ -448,10 +448,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Description complète en française qui deviendrait visible quand l’utilisateur clique sur l’icône pour cette activité. (champ facultatif)</value>
   </data>
   <data name="HoverDescEng" xml:space="preserve">
-    <value>Une courte description de l’activité en anglais (Champ obligatoire)</value>
+    <value>Description courte en anglais (champ obligatoire)</value>
   </data>
   <data name="HoverDescFra" xml:space="preserve">
-    <value>Une courte description de l’activité en Français (Champ obligatoire)</value>
+    <value>Description courte en français (champ obligatoire)</value>
   </data>
   <data name="HoverInstrEng" xml:space="preserve">
     <value>&lt;p&gt;Écrivez une courte description en &lt;strong&gt;anglaise&lt;/strong&gt; de l’activité qui serait visible quand les utilisateurs déplaceront leur pointeurs de la souris sur une icône dans l'échéancier.&lt;/p&gt;
@@ -511,5 +511,35 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>Déscription courte</value>
+  </data>
+  <data name="TypeSelectLabel" xml:space="preserve">
+    <value>Choisissez le type d’activité que vous voulez créer</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>Montrant</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>à</value>
+  </data>
+  <data name="Western" xml:space="preserve">
+    <value>Ouest</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>de</value>
+  </data>
+  <data name="entries" xml:space="preserve">
+    <value>postes</value>
+  </data>
+  <data name="ActivityDetailedDescEng" xml:space="preserve">
+    <value>Description détaillée en anglais</value>
+  </data>
+  <data name="ActivityDetailedDescFra" xml:space="preserve">
+    <value>Description détaillée en français</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Dernière mise à jour </value>
+  </data>
+  <data name="LastEditedBy" xml:space="preserve">
+    <value>Dernière édition par </value>
   </data>
 </root>
