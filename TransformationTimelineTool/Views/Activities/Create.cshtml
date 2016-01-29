@@ -1,24 +1,21 @@
 ﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     var currentUser = HttpContext.Current.User;
 }
 
-<h2>Edit</h2>
+<h2>@Resources.CreateNew</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="">
         <h4>@Resources.Activity</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Event.ID)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Event.InitiativeID, "InitiativeID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Event.InitiativeID, Resources.InitiativeSelectLabel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Event.InitiativeID, Model.InitiativeSelect)
                 @Html.ValidationMessageFor(model => model.Event.InitiativeID, "", new { @class = "text-danger" })
@@ -39,6 +36,7 @@
                 @Html.EditorFor(model => model.Edit.DisplayDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Edit.DisplayDate, "", new { @class = "text-danger" })
             </div>
+            <p>@Html.Raw(Resources.EventDateInstr)</p>
         </div>
 
         <div class="form-group">
@@ -48,11 +46,10 @@
                     <tr>
                         @{
                             int cnt = 0;
-                            List<TransformationTimelineTool.ViewModels.BranchesData> branches = ViewBag.Branches;
 
-                            foreach (var branch in branches)
+                            foreach (var branch in Model.Branches)
                             {
-                                if(cnt++ % 3 == 0)
+                                if (cnt++ % 3 == 0)
                                 {
                                     @:</tr><tr>
                                 }
@@ -60,9 +57,9 @@
                                     <input type="checkbox"
                                            name="selectedBranches"
                                            value="@branch.ID"
-                                           @(Html.Raw(branch.Flag ? "checked=\"checked\"" : "")) />
+                                           @(branch.ID == 1 ? "checked" : "") />
                                         @branch.Name
-                                @:</td>
+                                        @:</td>
                             }
                         }
                     </tr>
@@ -70,8 +67,9 @@
                         <td>
                             <input type="checkbox"
                                    name="selectAllBranches"
-                                  id="selectAllBranches"
-                                   value="allBranches" />
+                                   id="selectAllBranches"
+                                   value="allBranches"
+                                   checked="checked"/>
                             @Resources.Deselect/@Resources.SelectAll
                         </td>
                     </tr>
@@ -80,53 +78,53 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Regions</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Regions</strong></div>
             <div class="col-md-offset-2 col-md-10">
-               <table>
-                   <tr>
-                       @{ 
-                           int cnt2 = 0;
-                           List<TransformationTimelineTool.ViewModels.RegionsData> regions = ViewBag.Regions;
+                <table>
+                    <tr>
+                        @{
+                            int cnt2 = 0;
 
-                           foreach(var region in regions)
-                           {
-                               if(cnt2++ % 3 == 0)
-                               {
-                                   @:</tr><tr>
+                            foreach (var region in Model.Regions)
+                            {
+                                if (cnt2++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
                                }
-                               @:<td>
+                                @:<td>
                                     <input type="checkbox"
                                            name="selectedRegions"
                                            value="@region.ID"
-                                           @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
-                                           @region.Name
-                               @:</td>
+                                           @(region.ID == 1 ? "checked" : "")  />
+                                        @region.Name
+                                     @:</td>
                            }
-                       }
-                   </tr>
-                   <tr>
-                       <td>
-                           <input type="checkbox"
-                                  name="selectAllRegions"
-                                  id="selectAllRegions"
-                                  value="allRegions" />
-                           @Resources.Deselect/@Resources.SelectAll
-                       </td>
-                   </tr>
-               </table>
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   name="selectAllRegions"
+                                   id="selectAllRegions"
+                                   value="allRegions"
+                                   checked="checked" />
+                            @Resources.Deselect/@Resources.SelectAll
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.HoverE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.HoverE, Resources.HoverDescEng, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Edit.HoverE, new { @class = "form-control", @cols= "50", @rows="5" })
+                @Html.TextAreaFor(model => model.Edit.HoverE, new { @class = "form-control", @cols = "50", @rows = "5" })
                 @Html.ValidationMessageFor(model => model.Edit.HoverE, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.HoverF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.HoverF, Resources.HoverDescFra, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.HoverF, new { @class = "form-control", @cols = "50", @rows = "5" })
                 @Html.ValidationMessageFor(model => model.Edit.HoverF, "", new { @class = "text-danger" })
@@ -136,7 +134,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Edit.TextE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Edit.TextE, new { @class = "form-control ckeditor" } )
+                @Html.TextAreaFor(model => model.Edit.TextE, new { @class = "form-control ckeditor" })
                 @Html.ValidationMessageFor(model => model.Edit.TextE, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -149,45 +147,25 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Last Updated</label>
-            <div class="col-md-10">
-               @Html.DisplayFor(model => model.Edit.Date)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Last Edited by</label>
-            <div class="col-md-10">
-                @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID }, null)
-            </div>
-        </div>
-       
-        <div class="form-group">
-            <div class="col-md-10">
-                @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("OPI"))
-                {
-                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-
+        @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("Approver"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
                     @Html.EnumDropDownListFor(model => model.Event.Status)
                     @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
-
-                }
-                else
-                {
-                    //Model.Event.Status = TransformationTimelineTool.Models.Status.Pending;
-                    //@Html.HiddenFor(model => model.Event.Status)
-                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft) @:Draft
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Pending) @:Pending
-                }
+                </div>
             </div>
-        </div>
 
+        }
+        else
+        {
+            Html.HiddenFor(model => model.Event.Status, new { Value = TransformationTimelineTool.Models.Status.Draft });
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="@Resources.Create" class="btn btn-default" />
             </div>
         </div>
     </div>

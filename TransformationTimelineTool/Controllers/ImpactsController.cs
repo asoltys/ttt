@@ -13,7 +13,7 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
-    [Authorize(Roles = "Admin,OPI,Editor")]
+    [Authorize(Roles = "Admin,Approver,Editor")]
     public class ImpactsController : BaseController
     {
         private TimelineContext db = new TimelineContext();

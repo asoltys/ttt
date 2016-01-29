@@ -20,7 +20,7 @@ namespace TransformationTimelineTool.Helpers
             return name[1];
         }
 
-        public static List<User> GetOPIs()
+        public static List<User> GetApprover()
         {
             TimelineContext db = new TimelineContext();
             UserManager<User> userManager;
@@ -29,7 +29,7 @@ namespace TransformationTimelineTool.Helpers
             var opis = new List<User>();
             foreach (var user in db.Users.ToList<User>())
             {
-                if (userManager.IsInRole(user.Id, "OPI"))
+                if (userManager.IsInRole(user.Id, "Approver"))
                 {
                     opis.Add(user);
                 }

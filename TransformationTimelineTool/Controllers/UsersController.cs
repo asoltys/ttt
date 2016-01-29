@@ -58,7 +58,7 @@ namespace TransformationTimelineTool.Controllers
 
             userViewModel.Initiatives = db.Initiatives.ToList<Initiative>();
             userViewModel.Roles = db.Roles.ToList<IdentityRole>();
-            userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
+            userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
 
             return View(userViewModel);
         }
@@ -123,7 +123,7 @@ namespace TransformationTimelineTool.Controllers
             userViewModel.User = user;
             userViewModel.PopulatedRoles = PopulateUserRolesData(user);
             userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(user);
-            userViewModel.ApproverSelect = new SelectList(Utils.GetOPIs(), "Id", "UserName");
+            userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
 
             if (user == null)
             {

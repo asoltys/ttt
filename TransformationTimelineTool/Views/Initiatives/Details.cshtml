@@ -21,7 +21,7 @@
 <p>@Html.DisplayFor(model => model.EndDate)</p>
 
 <h4>@Resources.Activities</h4>
-<p>@Html.ActionLink(Resources.Create + " " + Resources.Activity, "Create", "Events", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.Create + " " + Resources.Activity, "Create", "Activities", new { ID = Model.ID }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th class="col-md-2">@Resources.Date</th>
@@ -38,8 +38,8 @@
                             @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Events", new { ID = item.ID }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Events", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID }, null)
                         </td>
                     </tr>
                 }

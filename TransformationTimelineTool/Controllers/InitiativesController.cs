@@ -20,7 +20,7 @@ using System.Globalization;
 
 namespace TransformationTimelineTool.Controllers
 {
-    [Authorize(Roles = "Admin,OPI,Editor")]
+    [Authorize(Roles = "Admin,Approver,Editor")]
     public class InitiativesController : BaseController
     {
         private TimelineContext db = new TimelineContext();

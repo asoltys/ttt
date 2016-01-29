@@ -91,13 +91,13 @@
                               @((int) item.Status == 0 ? "red-box" : (int) item.Status == 1 ? "yellow-box" : "green-box")"></span>
                     </td>
                     <td>
-                        <a class="no-link-style" href="@Url.Action("Edit", "Events", new { id = item.ID })">
+                        <a class="no-link-style" href="@Url.Action("Edit", new { id = item.ID })">
                             <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                         </a>
-                        <a class="no-link-style" href="@Url.Action("Details", "Events", new { id = item.ID })">
+                        <a class="no-link-style" href="@Url.Action("Details", new { id = item.ID })">
                             <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
                         </a>
-                        <a class="no-link-style" href="@Url.Action("Delete", "Events", new { id = item.ID })">
+                        <a class="no-link-style" href="@Url.Action("Delete", new { id = item.ID })">
                             <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
                         </a>
                     </td>
@@ -160,8 +160,7 @@
             }
         });
 
-        var createNewButton = "<a class='no-link-style' href='@Url.Action("Create", "Events")'>";
-        createNewButton += "<i title='@Resources.CreateNew' class = 'fa fa-plus fa-2x'></i></a>"
+        var createNewButton = "<a class='' href='@Url.Action("Create")'>@Resources.CreateNew</a>";
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
     });

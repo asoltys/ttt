@@ -17,8 +17,8 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
-    [Authorize(Roles = "Admin,OPI,Editor")]
-    public class EventsController : BaseController
+    [Authorize(Roles = "Admin,Approver,Editor")]
+    public class ActivitiesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 
@@ -449,7 +449,7 @@ namespace TransformationTimelineTool.Controllers
         {
             var body = @"<p>Hello {0}, you have an activity awaiting approval.</p>
                          <p>The ID of the Activity is {1}</p>
-                         <p>Please click <a href='{2}/en/events/edit/{1}'>here</a> to review the item.</p>";
+                         <p>Please click <a href='{2}/en/activities/edit/{1}'>here</a> to review the item.</p>";
             var message = new MailMessage();
             var to = "";
             var currentUser = Utils.GetCurrentUser();

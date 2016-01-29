@@ -16,14 +16,14 @@ namespace TransformationTimelineTool.Controllers
         private TimelineContext db = new TimelineContext();
 
         // GET: Regions
-        [Authorize(Roles = "Admin,OPI,Editor")]
+        [Authorize(Roles = "Admin,Approver,Editor")]
         public ActionResult Index()
         {
             return View(db.Regions.ToList());
         }
 
         // GET: Regions/Details/5
-        [Authorize(Roles = "Admin,OPI,Editor")]
+        [Authorize(Roles = "Admin,Approver,Editor")]
         public ActionResult Details(int? id)
         {
             if (id == null)
