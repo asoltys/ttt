@@ -14,9 +14,7 @@
 @if (ViewBag.isAdmin)
 {
     <span class="create-new">
-        <a class="no-link-style" href='@Url.Action("Create", "Users")'>
-            <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
-        </a>
+        <a class="" href='@Url.Action("Create", "Users")'>@Resources.CreateNew</a>
     </span>
 }
 
@@ -47,7 +45,7 @@
                     <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                 </a>
                 <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
-                    <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
+                    <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
                 </a>
                 <a class="no-link-style" href="@Url.Action("Delete", "Users", new { id = item.Id })">
                     <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
@@ -56,7 +54,7 @@
             else
             {
                 <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
-                    <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
+                    <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
                 </a>
             }
         </td>
@@ -67,8 +65,6 @@
 @if (ViewBag.isAdmin)
 {
     <span class="create-new">
-        <a class="no-link-style" href='@Url.Action("Create", "Users")'>
-            <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
-        </a>
+        <a class="" href='@Url.Action("Create", "Users")'>@Resources.CreateNew</a>
     </span>
 }

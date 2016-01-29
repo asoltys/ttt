@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Edit.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Edit.Type, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Edit.Type, Model.TypeSelect)
                 @Html.ValidationMessageFor(model => model.Edit.Type, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -152,7 +152,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EnumDropDownListFor(model => model.Event.Status)
+                    @Html.DropDownListFor(model => model.Event.Status, Model.StatusSelect)
                     @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
                 </div>
             </div>

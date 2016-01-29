@@ -12,6 +12,23 @@ namespace TransformationTimelineTool.ViewModels
 {
     public class EventViewModel
     {
+        public EventViewModel()
+        {
+            TypeSelect = new SelectList(new[] {
+                Resources.Resources.Milestone,
+                Resources.Resources.Training
+            });
+            StatusSelect = new SelectList(new[]
+            {
+                Resources.Resources.Draft,
+                Resources.Resources.Pending,
+                Resources.Resources.Approved
+            });
+        }
+        public SelectList InitiativeSelect { get; set; }
+        public SelectList TypeSelect { get; set; }
+        public SelectList StatusSelect { get; set; }
+
         private TimelineContext db = new TimelineContext();
 
         public Event Event { get; set; }
@@ -19,7 +36,6 @@ namespace TransformationTimelineTool.ViewModels
         public IEnumerable<Branch> Branches { get; set; }
         public IEnumerable<Region> Regions { get; set; }
 
-        public SelectList InitiativeSelect { get; set; }
         [Required]
         public int InitiativeID { get; set; }
         public Edit GetLatestEdit()

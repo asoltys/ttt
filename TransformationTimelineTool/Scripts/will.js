@@ -88,9 +88,9 @@ timeLine = {
                 $.each(timeLine.regions, function (key, value) {
                     if (timeLine.regions[key].ID == 1) {
                         if (lang == 'e') {
-                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                            //html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
                         } else {
-                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
+                            //html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
                         };
                     };
                 });
@@ -116,14 +116,14 @@ timeLine = {
             timeout: 6000,
             success: function (branches) {
                 var html = '';
-                html += "<select id='branchSelect'><option value=''>" + timeLine.utility.translate("branch") + "</option>";
+                html += "<select id='branchSelect' disabled><option value=''>" + timeLine.utility.translate("branch") + "</option>";
                 timeLine.branches = branches.sort(function (a, b) { return a.NameE.localeCompare(b.NameE); });
                 $.each(timeLine.branches, function (key, value) {
                     if (timeLine.branches[key].ID == 1) {
                         if (lang == 'e') {
-                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                            //html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
                         } else {
-                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
+                            //html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
                         };
                     };
                 });
@@ -150,10 +150,15 @@ timeLine = {
         var html = '';
         html += "<div id='projectContainer'>";
         html += "<div class='projectSpace'></div>";
-        html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show3' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg2'>" + timeLine.utility.translate("medImDesc") + " <a href='#' style='color:#000000;' id='hide2' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#000000;' id='show2' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg1'>" + timeLine.utility.translate("lowImDesc") + " <a href='#' style='color:#ffffff;' id='hide1' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a><a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        var pat = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
+        html += "<a href='#' style='color:#ffffff;' id='show3' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg2'>" + timeLine.utility.translate("medImDesc") + pat + " <a href='#' style='color:#000000;' id='hide2' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
+        html += "<a href='#' style='color:#000000;' id='show2' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg1'>" + timeLine.utility.translate("lowImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide1' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
+        html += "<a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
+        html += "<a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
             timeLine.countTimeLine = timeLine.countTimeLine + 1;
             html += "<div class='projectRow' id='p";
@@ -422,6 +427,12 @@ timeLine = {
                 $("#tg2").css("display", "none");
                 $("#pg3").css("display", "none");
                 $("#tg3").css("display", "none");
+                if (rSelected != "") {
+                    $("#branchSelect").prop("disabled", false);
+                } else {
+                    $("#branchSelect").prop("disabled", true);
+                    $("#branchSelect").val('');
+                };
                 if (rSelected != "" && bSelected != "") {
                     if (timeLine.runOnce == 0) {
                         timeLine.dialogCustom(timeLine.utility.translate("splash"));
@@ -451,14 +462,14 @@ timeLine = {
                             };
                         });
                         if (eval("timeLine.hide".concat(level)) == 1) {
-                            $("#hide" + currentLevel).css("display", "none");
-                            $("#show" + currentLevel).css("display", "inline");
+                            $("#hide" + level).css("display", "none");
+                            $("#show" + level).css("display", "inline");
                             $("#p" + id).css("display", "none");
                             $("#t" + id).css("display", "none");
                             rowsHidden = rowsHidden + 1;
                         } else {
-                            $("#hide" + currentLevel).css("display", "inline");
-                            $("#show" + currentLevel).css("display", "none");
+                            $("#hide" + level).css("display", "inline");
+                            $("#show" + level).css("display", "none");
                             $("#p" + id).css("display", "inline");
                             $("#t" + id).css("display", "inline");
                         };
@@ -500,7 +511,15 @@ timeLine = {
     },
     footer: function () {
         var html = '';
-        html += "<div id='timeLineFooter'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
+        html += "<div id='timeLineFooter'>"
+        html += "<div id='iAmLegend'>"
+        html += "<div class='box' style='background-color:#226655'></div> " + timeLine.utility.translate("highIm") + "<br />"
+        html += "<div class='box' style='background-color:#CCDD44'></div> " + timeLine.utility.translate("medIm") + "<br />"
+        html += "<div class='box' style='background-color:#551155'></div> " + timeLine.utility.translate("lowIm") + "<br />"
+        html += "<div class='box' style='background-color:#666666'></div> " + timeLine.utility.translate("noIm") + "<br />"
+        html += "</div>"
+        html += "<div id='clear'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
+        html += "</div>"
         return html;
     },
     clearResults: function () {
@@ -591,14 +610,14 @@ $(document).ready(function () {
     $('body').on("click", "#rightButton", timeLine.goRight);
     $('body').on("change", "#areaSelect", timeLine.areaSelect);
     $('body').on("change", "#branchSelect", timeLine.branchSelect);
-    $('body').on("click", "#hide0", function () { timeLine.hide0 = 1; timeLine.filter() });
-    $('body').on("click", "#hide1", function () { timeLine.hide1 = 1; timeLine.filter() });
-    $('body').on("click", "#hide2", function () { timeLine.hide2 = 1; timeLine.filter() });
-    $('body').on("click", "#hide3", function () { timeLine.hide3 = 1; timeLine.filter() });
-    $('body').on("click", "#show0", function () { timeLine.hide0 = 0; timeLine.filter() });
-    $('body').on("click", "#show1", function () { timeLine.hide1 = 0; timeLine.filter() });
-    $('body').on("click", "#show2", function () { timeLine.hide2 = 0; timeLine.filter() });
-    $('body').on("click", "#show3", function () { timeLine.hide3 = 0; timeLine.filter() });
+    $('body').on("click", "#hide0", function () { timeLine.hide0 = 1; timeLine.filter(); });
+    $('body').on("click", "#hide1", function () { timeLine.hide1 = 1; timeLine.filter(); });
+    $('body').on("click", "#hide2", function () { timeLine.hide2 = 1; timeLine.filter(); });
+    $('body').on("click", "#hide3", function () { timeLine.hide3 = 1; timeLine.filter(); });
+    $('body').on("click", "#show0", function () { timeLine.hide0 = 0; timeLine.filter(); });
+    $('body').on("click", "#show1", function () { timeLine.hide1 = 0; timeLine.filter(); });
+    $('body').on("click", "#show2", function () { timeLine.hide2 = 0; timeLine.filter(); });
+    $('body').on("click", "#show3", function () { timeLine.hide3 = 0; timeLine.filter(); });
     $('body').on("click", "#clearResults", timeLine.clearResults);
     $("#dialog").dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
     $(document).tooltip({ items: ':not(.ui-button)' });

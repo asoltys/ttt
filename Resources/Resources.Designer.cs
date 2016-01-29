@@ -130,7 +130,8 @@ namespace Resources {
         ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
         ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/en/Home&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/&gt;
-        ///Ceci c’est un message automatique.&lt;br/&gt;        /// [rest of string was truncated]&quot;;.
+        ///Ceci c’est un message automatique.&lt;br/&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ApprovedMailBody {
             get {
@@ -966,11 +967,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the type of activity you are creating..
+        ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the type of activity you are creating..
+        /// </summary>
+        public static string TypeSelectList {
+            get {
+                return ResourceManager.GetString("TypeSelectList", resourceCulture);
             }
         }
         

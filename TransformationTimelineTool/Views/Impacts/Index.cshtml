@@ -11,9 +11,7 @@
 <h2>@Resources.Impacts</h2>
 
 <span class="create-new">
-    <a class="no-link-style" href='@Url.Action("Create", "Impacts")'>
-        <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
-    </a>
+    <a class="" href='@Url.Action("Create", "Impacts")'>@Resources.CreateNew</a>
 </span>
 <table class="table">
     <tr>
@@ -39,7 +37,7 @@
                 <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
             </a>
             <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { id = item.ID })">
-                <i title="@Resources.Details" class="fa fa-folder-open fa-2x"></i>
+                <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
             </a>
             <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { id = item.ID })">
                 <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
@@ -50,7 +48,5 @@
 
 </table>
 <span class="create-new">
-    <a class="no-link-style" href='@Url.Action("Create", "Impacts")'>
-        <i title="@Resources.CreateNew" class="fa fa-plus fa-2x"></i>
-    </a>
+    <a class="" href='@Url.Action("Create", "Impacts")'>@Resources.CreateNew</a>
 </span>
