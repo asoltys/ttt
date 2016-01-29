@@ -135,6 +135,20 @@
 	background-color:#226655;
 	color: #ffffff;
 }
-#timeLineFooter{
-	float:right;
+
+#iAmLegend{
+	float:left;
+    line-height:30px;
+    margin-top: 10px;
+}
+#clear {
+    float: right;
+}
+.box{
+	width:10px;
+	height:10px;
+	border: 1px solid #000000;
+	margin-right: 5px;
+    margin-top: 8px;
+	float:left;
 }

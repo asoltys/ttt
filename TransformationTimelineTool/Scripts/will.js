@@ -3,7 +3,7 @@
 var lang = 'e';
 
 // if url has -fra in it change it to french
-if (window.location.href.indexOf("-fra") > 0) {
+if (window.location.href.indexOf("fr") > 0) {
     var lang = 'f'
 };
 
@@ -504,7 +504,15 @@ timeLine = {
     },
     footer: function () {
         var html = '';
-        html += "<div id='timeLineFooter'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
+        html += "<div id='timeLineFooter'>"
+        html += "<div id='iAmLegend'>"
+        html += "<div class='box' style='background-color:#226655'></div> " + timeLine.utility.translate("highIm") + "<br />"
+        html += "<div class='box' style='background-color:#CCDD44'></div> " + timeLine.utility.translate("medIm") + "<br />"
+        html += "<div class='box' style='background-color:#551155'></div> " + timeLine.utility.translate("lowIm") + "<br />"
+        html += "<div class='box' style='background-color:#666666'></div> " + timeLine.utility.translate("noIm") + "<br />"
+        html += "</div>"
+        html += "<div id='clear'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
+        html += "</div>"
         return html;
     },
     clearResults: function () {
