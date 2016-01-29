@@ -1,12 +1,12 @@
 ﻿@model TransformationTimelineTool.Models.Initiative
-
+@using TransformationTimelineTool.Helpers
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = Resources.Delete;
 }
 
-<h2>Delete</h2>
+<h2>@Resources.Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>@(Resources.DeleteConfirm + Resources.Initiative + '?')</h3>
 <div>
     <h4>Initiative</h4>
     <dl class="dl-horizontal">
@@ -70,9 +70,9 @@
         <dd>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th class="col-md-2">Date</th>
-                    <th class="">Hover</th>
-                    <th class="col-md-2">Action</th>
+                    <th class="col-md-2">@Resources.Date</th>
+                    <th class="">@Resources.ShortDescription</th>
+                    <th class="col-md-2">@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Events)
                 {
@@ -98,22 +98,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Model => Model.Impacts)
+            @Resources.Impacts
         </dt>
 
         <dd>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th>Level</th>
+                    <th>@Resources.Delete</th>
                     <th>@Resources.Branch</th>
                     <th>@Resources.Region</th>
-                    <th></th>
+                    <th>@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Impacts)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Level)
+                            @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
                         </td>
                         <td>
                             @String.Join(" - ", item.Branches.Select(b => b.NameShort))
@@ -141,7 +141,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
             @Html.ActionLink(Resources.BackToList, "Index")
         </div>
     }

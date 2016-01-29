@@ -60,6 +60,12 @@ namespace TransformationTimelineTool.Controllers
                 ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name");
             }
 
+            List<SelectListItem> LevelItems = new List<SelectListItem>();
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.None, Value = "0", Selected = true });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.Low, Value = "1" });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.Medium, Value = "2" });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.High, Value = "3" });
+            ViewBag.Level = LevelItems;
             return View();
         }
 
@@ -97,7 +103,7 @@ namespace TransformationTimelineTool.Controllers
             }
 
             //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "NameE", impact.InitiativeID);
+            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", impact.InitiativeID);
             return View(impact);
         }
 
@@ -125,6 +131,21 @@ namespace TransformationTimelineTool.Controllers
             }
             //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", impact.InitiativeID);
+            List<SelectListItem> LevelItems = new List<SelectListItem>();
+            Helpers.Utils.log(impact.Level.ToString());
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.None, Value = "0",
+                Selected = impact.Level.ToString() == "None" ? true : false
+            });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.Low, Value = "1",
+                Selected = impact.Level.ToString() == "Low" ? true : false
+            });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.Medium, Value = "2",
+                Selected = impact.Level.ToString() == "Medium" ? true : false
+            });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.High, Value = "3",
+                Selected = impact.Level.ToString() == "High" ? true : false
+            });
+            ViewBag.Level = LevelItems;
             return View(impact);
         }
 

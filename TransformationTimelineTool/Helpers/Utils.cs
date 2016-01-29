@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Mail;
+using System.Reflection;
+using System.Resources;
 using System.Web;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
@@ -185,6 +188,17 @@ namespace TransformationTimelineTool.Helpers
         public static void log(String Message)
         {
             System.Diagnostics.Debug.WriteLineIf(Message.Length > 0, Message);
+        }
+        
+        public static string GetTranslation(String value)
+        {
+            try
+            {
+                return Resources.Resources.ResourceManager.GetString(value);
+            } catch (Exception)
+            {
+                return "Resource Not Found";
+            }
         }
     }
 }

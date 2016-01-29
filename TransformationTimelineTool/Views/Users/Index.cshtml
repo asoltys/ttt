@@ -45,7 +45,7 @@
                     <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                 </a>
                 <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
-                    <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                 </a>
                 <a class="no-link-style" href="@Url.Action("Delete", "Users", new { id = item.Id })">
                     <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
@@ -54,7 +54,7 @@
             else
             {
                 <a class="no-link-style" href="@Url.Action("Details", "Users", new { id = item.Id })">
-                    <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                 </a>
             }
         </td>

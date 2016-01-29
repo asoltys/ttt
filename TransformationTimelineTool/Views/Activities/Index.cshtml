@@ -39,18 +39,14 @@
                     @Resources.Date
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LatestEdit.Hover)
-                </th>
-                <th>
-                    @Resources.Regions
-                </th>
-                <th>
-                    @Resources.Branches
+                    @Resources.ShortDescription
                 </th>
                 <th>
                     @Resources.Status
                 </th>
-                <th class="control-group"></th>
+                <th class="control-group">
+                    @Resources.Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -81,12 +77,6 @@
                         @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                     </td>
                     <td>
-                        @Html.Raw(item.RegionsList)
-                    </td>
-                    <td>
-                        @Html.Raw(item.BranchesList)
-                    </td>
-                    <td>
                         <span class="image-pretender
                               @((int) item.Status == 0 ? "red-box" : (int) item.Status == 1 ? "yellow-box" : "green-box")"></span>
                     </td>
@@ -95,7 +85,7 @@
                             <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                         </a>
                         <a class="no-link-style" href="@Url.Action("Details", new { id = item.ID })">
-                            <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
+                            <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                         </a>
                         <a class="no-link-style" href="@Url.Action("Delete", new { id = item.ID })">
                             <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
@@ -143,14 +133,15 @@
             "pagingType": "full_numbers",
             "aaSorting": [],
             "columnDefs": [
-                { "orderable": false, "targets": [3, 4, 5, 7] }
+                { "orderable": false, "targets": [3, 4] }
                 //{ "visible": false, "targets": [4, 5] }
             ],
-            "dom": '<"create-new">frtl<"absolute-center" p><"create-new">i',
+            "dom": '<"create-new">frtl<"absolute-center" p>i',
             "language": {
                 "lengthMenu": '@Resources.Show _MENU_ @Resources.Records',
                 "search": '<i class="fa fa-search fa-lg" title="Search">&nbsp;',
                 "searchPlaceholder": '@Resources.Search',
+                "info": '@Resources.Showing _START_ @Resources.to _END_ @Resources.of _TOTAL_ @Resources.entries',
                 "paginate": {
                     "first": '<i class="fa fa-angle-double-left fa-lg" title="First">',
                     "previous": '<i class="fa fa-angle-left fa-lg" title="Previous">',
@@ -160,7 +151,8 @@
             }
         });
 
-        var createNewButton = "<a class='' href='@Url.Action("Create")'>@Resources.CreateNew</a>";
+        var createNewButton = "<a href='@Url.Action("Create")'>";
+        createNewButton += "@Resources.CreateActivity</a>"
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
     });

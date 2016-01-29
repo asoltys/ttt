@@ -1,7 +1,8 @@
 ﻿@model TransformationTimelineTool.Models.Initiative
+@using TransformationTimelineTool.Helpers
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.InitiativeDescription;
 }
 
 @section Styles {
@@ -11,9 +12,10 @@
 
 <h2>@Html.DisplayFor(model => model.Name) </h2>
     <hr />
-<h4>@Resources.Description</h4>
+<h4>@Resources.InitiativeDescription</h4>
+<p>
 @Html.Raw(Model.Description)
-
+</p>
 <h4>@Resources.Start</h4>
 <p>@Html.DisplayFor(model => model.StartDate)</p>
 
@@ -21,12 +23,12 @@
 <p>@Html.DisplayFor(model => model.EndDate)</p>
 
 <h4>@Resources.Activities</h4>
-<p>@Html.ActionLink(Resources.Create + " " + Resources.Activity, "Create", "Activities", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.CreateActivity, "Create", new { ID = Model.ID }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th class="col-md-2">@Resources.Date</th>
-                    <th class="">Hover</th>
-                    <th class="col-md-2">Action</th>
+                    <th class="">@Resources.ShortDescription</th>
+                    <th class="col-md-2">@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Events)
                 {
@@ -47,19 +49,19 @@
             </table>
 
 <h4>@Html.DisplayNameFor(Model => Model.Impacts)</h4>
-<p>@Html.ActionLink(Resources.Create + " " + Resources.Impact, "Create", "Impacts", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th>@Resources.Level</th>
                     <th>@Resources.Branch</th>
                     <th>@Resources.Region</th>
-                    <th></th>
+                    <th>@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Impacts)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Level)
+                            @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
                         </td>
                         <td>
                             @Html.Raw(item.BranchesList)
@@ -75,12 +77,12 @@
                 }
             </table>
 
-<h4>@Html.DisplayNameFor(Model => Model.Users)</h4>
+<h4>@Resources.Users</h4>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th>@Resources.UserName</th>
                     <th>@Resources.Email</th>
-                    <th></th>
+                    <th>@Resources.Actions</th>
                 </tr>
                 @foreach (var user in Model.Users)
                 {

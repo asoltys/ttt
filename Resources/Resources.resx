@@ -193,13 +193,13 @@
     <value>Impacts</value>
   </data>
   <data name="InitEnglishDesc" xml:space="preserve">
-    <value>English Description</value>
+    <value>English Initiative Description</value>
   </data>
   <data name="InitEnglishName" xml:space="preserve">
     <value>English Name</value>
   </data>
   <data name="InitFrenchDesc" xml:space="preserve">
-    <value>French Description</value>
+    <value>French Initiative Description</value>
   </data>
   <data name="InitFrenchName" xml:space="preserve">
     <value>French Name</value>
@@ -453,10 +453,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Full Description in French which is displayed when the user clicks on the icon for this activity. (optional field)</value>
   </data>
   <data name="HoverDescEng" xml:space="preserve">
-    <value>Short Description of the Activity in English (Required field)</value>
+    <value>English Short Description (Required field)</value>
   </data>
   <data name="HoverDescFra" xml:space="preserve">
-    <value>Short Description of the Activity in French (Required field)</value>
+    <value>French Short Description (Required Field)</value>
   </data>
   <data name="HoverInstrEng" xml:space="preserve">
     <value>&lt;p&gt;Write a short description in &lt;strong&gt;English&lt;/strong&gt; of the activitity that will be visible when users move their mouse pointer over the icon on the timeline. &lt;/p&gt;
@@ -474,5 +474,71 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   </data>
   <data name="TypeSelectList" xml:space="preserve">
     <value>Select the type of activity you are creating.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="CreateActivity" xml:space="preserve">
+    <value>Create Activity</value>
+  </data>
+  <data name="InitiativeDescription" xml:space="preserve">
+    <value>Initiative Description</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="AssignImpact" xml:space="preserve">
+    <value>Assign Impact</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete this</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="ShortDescription" xml:space="preserve">
+    <value>Short Description</value>
+  </data>
+  <data name="TypeSelectLabel" xml:space="preserve">
+    <value>Select the Type of Activity you are creating</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>Showing</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="entries" xml:space="preserve">
+    <value>entries</value>
+  </data>
+  <data name="ActivityDetailedDescEng" xml:space="preserve">
+    <value>Detailed English Description</value>
+  </data>
+  <data name="ActivityDetailedDescFra" xml:space="preserve">
+    <value>Detailed French Description</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last updated</value>
+  </data>
+  <data name="LastEditedBy" xml:space="preserve">
+    <value>Last edited by</value>
   </data>
 </root>

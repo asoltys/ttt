@@ -13,9 +13,9 @@
 
 @if (ViewBag.isAdmin)
 {
-    <span class="create-new">
+<span class="create-new">
         <a class="" href='@Url.Action("Create", "Branches")'>@Resources.CreateNew</a>
-    </span>
+</span>
 }
 <table class="table">
     <tr>
@@ -39,20 +39,20 @@
         <td>
             @if (ViewBag.isAdmin)
             {
-                <a class="no-link-style" href="@Url.Action("Edit", "Branches", new { id = item.ID })">
-                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-                </a>
-                <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
-                    <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
-                </a>
-                <a class="no-link-style" href="@Url.Action("Delete", "Branches", new { id = item.ID })">
-                    <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-                </a>
+            <a class="no-link-style" href="@Url.Action("Edit", "Branches", new { id = item.ID })">
+                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+            </a>
+            <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
+                <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+            </a>
+            <a class="no-link-style" href="@Url.Action("Delete", "Branches", new { id = item.ID })">
+                <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+            </a>
             }
             else
             {
                 <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
-                    <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                 </a>
             }
         </td>
@@ -62,7 +62,7 @@
 </table>
 @if (ViewBag.isAdmin)
 {
-    <span class="create-new">
+<span class="create-new">
         <a class="" href='@Url.Action("Create", "Branches")'>@Resources.CreateNew</a>
-    </span>
+</span>
 }

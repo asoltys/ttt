@@ -23,15 +23,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.Type, Resources.Type, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Edit.Type, Model.TypeSelect)
+                @Html.EnumDropDownListFor(model => model.Edit.Type, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Edit.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.DisplayDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.DisplayDate, Resources.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Edit.DisplayDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Edit.DisplayDate, "", new { @class = "text-danger" })
@@ -132,7 +132,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.TextE, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.TextE, Resources.ActivityDetailedDescEng, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.TextE, new { @class = "form-control ckeditor" })
                 @Html.ValidationMessageFor(model => model.Edit.TextE, "", new { @class = "text-danger" })
@@ -140,7 +140,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edit.TextF, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edit.TextF, Resources.ActivityDetailedDescFra, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.TextF, new { @class = "form-control ckeditor" })
                 @Html.ValidationMessageFor(model => model.Edit.TextF, "", new { @class = "text-danger" })
@@ -150,9 +150,9 @@
         @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("Approver"))
         {
             <div class="form-group">
-                @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Event.Status, Resources.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Event.Status, Model.StatusSelect)
+                    @Html.EnumDropDownListFor(model => model.Event.Status, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -165,15 +165,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@Resources.Create" class="btn btn-default" />
+                <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
+                @Html.ActionLink(Resources.BackToList, "Index")
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink(Resources.BackToList, "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

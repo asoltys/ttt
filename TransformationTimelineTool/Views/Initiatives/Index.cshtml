@@ -2,7 +2,7 @@
 @model TransformationTimelineTool.ViewModels.InitiativeIndexData
 
 @{
-    ViewBag.Title = Resources.Initiative;
+    ViewBag.Title = Resources.Initiatives;
     ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
@@ -23,7 +23,7 @@
         <th>@Resources.Name</th>
         <th class="fix-6em">@Resources.Start</th>
         <th class="fix-6em">@Resources.End</th>
-        <th class="control-group"></th>
+        <th class="control-group">@Resources.Actions</th>
     </tr>
 
     @foreach (var item in Model.Initiatives)
@@ -50,7 +50,7 @@
                         <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
                     </a>
                     <a class="no-link-style" href="@Url.Action("Details", "Initiatives", new { id = item.ID })">
-                        <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
+                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                     </a>
                     <a class="no-link-style" href="@Url.Action("Delete", "Initiatives", new { id = item.ID })">
                         <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
@@ -59,7 +59,7 @@
                 else
                 {
                     <a class="no-link-style" href="@Url.Action("Details", "Initiatives", new { id = item.ID })">
-                        <i title="@Resources.Details" class="fa fa-eye fa-2x"></i>
+                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                     </a>
                 }
             </td>
