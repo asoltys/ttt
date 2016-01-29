@@ -352,10 +352,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
     <value>Courriel</value>
   </data>
   <data name="EnglishName" xml:space="preserve">
-    <value>tba</value>
+    <value>Nom en anglais</value>
   </data>
   <data name="FrenchName" xml:space="preserve">
-    <value>tba</value>
+    <value>Nom en français</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Niveau</value>
