@@ -426,6 +426,12 @@ timeLine = {
                 $("#tg2").css("display", "none");
                 $("#pg3").css("display", "none");
                 $("#tg3").css("display", "none");
+                if (rSelected != "") {
+                    $("#branchSelect").prop("disabled", false);
+                    $("#branchSelect").val('');
+                } else {
+                    $("#branchSelect").prop("disabled", true);
+                };
                 if (rSelected != "" && bSelected != "") {
                     if (timeLine.runOnce == 0) {
                         timeLine.dialogCustom(timeLine.utility.translate("splash"));
