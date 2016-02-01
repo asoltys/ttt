@@ -1,11 +1,11 @@
 ﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Resources.Edit;
     var currentUser = HttpContext.Current.User;
 }
 
-<h2>Edit</h2>
+<h2>@Resources.Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -181,19 +181,14 @@
             </div>
         </div>
 
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-
                 @Html.ActionLink(Resources.BackToList, "Index")
             </div>
         </div>
     </div>
 }
-
-<div>
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

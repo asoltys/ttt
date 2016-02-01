@@ -1,23 +1,22 @@
 ﻿@model TransformationTimelineTool.ViewModels.UserViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Resources.Edit;
 }
 
-<h2>Edit</h2>
+<h2>@Resources.Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="">
-        <h4>User</h4>
+        <h4>@Resources.User</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.User.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.User.UserName, Resources.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
@@ -25,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.User.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.User.Email, Resources.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
@@ -60,7 +59,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-2 text-right"><strong>Roles</strong></div>
+            <div class="col-md-2 text-right"><strong>@Resources.Roles</strong></div>
             <div class="col-md-offset-2 col-md-10">
                 <table>
                     <tr>
@@ -89,23 +88,19 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.LabelFor(model => model.User.ApproverID, "ApproverID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.User.ApproverID, Resources.AssignApprover, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.DropDownListFor(model => model.User.ApproverID, Model.ApproverSelect, "")
                 @Html.ValidationMessageFor(model => model.User.ApproverID, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
+            @Html.ActionLink(Resources.BackToList, "Index")
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink(Resources.BackToList, "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
