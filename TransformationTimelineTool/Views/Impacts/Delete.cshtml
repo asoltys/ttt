@@ -6,13 +6,13 @@
 
 <h2>@Resources.Delete</h2>
 
-<h3>@(Resources.DeleteConfirm + Resources.Impact + '?')</h3>
+<h3>@(Resources.DeleteConfirm + " " + Resources.Impact.ToLower() + '?')</h3>
 <div>
     <h4>@Resources.Impact</h4>
     <dl class="">
 
         <dt>
-            @Html.DisplayNameFor(model => model.Initiative.Name)
+            @Resources.Initiative
         </dt>
 
         <dd>

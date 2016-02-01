@@ -6,12 +6,12 @@
 
 <h2>@Resources.Delete</h2>
 
-<h3>@(Resources.DeleteConfirm + Resources.Initiative + '?')</h3>
+<h3>@(Resources.DeleteConfirm + " " +Resources.Initiative.ToLower() + '?')</h3>
 <div>
-    <h4>Initiative</h4>
+    <h4>@Resources.Initiative</h4>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NameE)
+            @Resources.EnglishName
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NameF)
+            @Resources.FrenchName
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DescriptionE)
+            @Resources.InitEnglishDesc
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.DescriptionF)
+            @Resources.InitFrenchDesc
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Resources.Start
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
+            @Resources.End
         </dt>
 
         <dd>
@@ -70,9 +70,9 @@
         <dd>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th class="col-md-2">@Resources.Date</th>
-                    <th class="">@Resources.ShortDescription</th>
-                    <th class="col-md-2">@Resources.Actions</th>
+                    <th>@Resources.Date</th>
+                    <th>Resources.ShortDescription</th>
+                    <th>@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Events)
                 {
@@ -84,14 +84,14 @@
                             @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
-                            @Html.ActionLink("View", "Details", "Activities", new { ID = item.ID }, null) |
-                            @Html.ActionLink("Edit", "Edit", "Activities", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID }, null)
                         </td>
                     </tr>
                 }
                 <tr>
                     <td>
-                        @Html.ActionLink(Resources.Create + " " + Resources.Activity, "Create", "Activities", new { ID = Model.ID }, null)
+                        @Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID }, null)
                     </td>
                 </tr>
             </table>
@@ -129,7 +129,7 @@
                 }
                 <tr>
                     <td>
-                        @Html.ActionLink(Resources.Create + " " + Resources.Impact, "Create", "Impacts", new { ID = Model.ID }, null)
+                        @Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID }, null)
                     </td>
                 </tr>
             </table>

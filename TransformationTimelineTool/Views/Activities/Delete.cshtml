@@ -6,7 +6,7 @@
 
 <h2>@Resources.Delete</h2>
 
-<h3>@(Resources.DeleteConfirm + Resources.Activity + '?')</h3>
+<h3>@(Resources.DeleteConfirm + " " + Resources.Activity.ToLower() + '?')</h3>
 <div>
     <h4>@Resources.Activity</h4>
     <dl class="dl-horizontal">
@@ -49,44 +49,11 @@
         <dd>
             @Html.DisplayFor(model => model.RegionsList)
         </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.TextE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TextE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TextF)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TextF)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HoverE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoverE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HoverF)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoverF)
-        </dd>*@
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
             <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
             @Html.ActionLink(Resources.BackToList, "Index")
