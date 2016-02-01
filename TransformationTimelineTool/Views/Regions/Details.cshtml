@@ -1,23 +1,15 @@
 ﻿@model TransformationTimelineTool.Models.Region
 
 @{
-    ViewBag.Title = Resources.Region;
+    ViewBag.Title = Resources.Details;
 }
 
-<h2>Details</h2>
+<h2>@Resources.Details</h2>
 
 <div>
     <h4>@Resources.Region</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NameShort)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NameShort)
-        </dd>
-
         <dt>
             @Resources.EnglishName
         </dt>

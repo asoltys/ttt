@@ -1,22 +1,22 @@
 ﻿@model TransformationTimelineTool.Models.User
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.Details;
 }
 
 <h2>@Html.DisplayFor(model => model.UserName)</h2>
 <hr />
 
-<h4>@Html.DisplayNameFor(model => model.Email)</h4>
+<h4>@Resources.Email</h4>
 <p>@Html.DisplayFor(model => model.Email)</p>
-<h4>Roles</h4>
+<h4>@Resources.Roles</h4>
 <p>@ViewBag.Roles</p>
 
 <p>
     @if (HttpContext.Current.User.IsInRole("Admin"))
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.Id }) @:|
 
     }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.BackToList, "Index")
 </p>
