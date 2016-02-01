@@ -545,4 +545,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   <data name="Administration" xml:space="preserve">
     <value>Administration</value>
   </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Créer un utilisateur</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="AssignApprover" xml:space="preserve">
+    <value>Désignez l’approbateur</value>
+  </data>
 </root>

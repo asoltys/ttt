@@ -240,8 +240,6 @@ namespace TransformationTimelineTool.Controllers
             if (WebConfigurationManager.AppSettings["SendMail"] == "false") return true;
             var CurrentUser = Utils.GetCurrentUser();
             var Creator = db.Users.Find(@event.CreatorID);
-            if (Creator.Id == null || Creator.ApproverID == null)
-                throw new SendMailException("Either Creator Id is NULL or Approver Id is NULL");
             var SendTo = "";
             var MailSubject = "";
             var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email
@@ -251,7 +249,8 @@ namespace TransformationTimelineTool.Controllers
 
             var AdminID = db.Roles.Where(x => x.Name == "admin").Single();
             var IsAdmin = CurrentUser.Roles.Where(x => x.RoleId == AdminID.Id).Count();
-
+            if (Creator.Id == null)
+                throw new SendMailException("The system could not fetch the Creator ID");
             if (IsAdmin == 1) 
             {
                 // Current user is an admin...

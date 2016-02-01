@@ -10,8 +10,6 @@ namespace TransformationTimelineTool.Models
     public class Branch
     {
         public int ID { get; set; }
-        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
-            ErrorMessageResourceName = "RegionBranchRequiredShortName")]
         public string NameShort { get; set; }
         
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),

@@ -15,7 +15,7 @@
         <h4>@Resources.Initiative</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.NameE, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(model => model.NameE, Resources.EnglishName, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.NameE, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NameE, "", new { @class = "text-danger" })
@@ -23,7 +23,7 @@
         </div>
 
         <div class="">
-            @Html.LabelFor(model => model.NameF, htmlAttributes: new { @class = "" })
+            @Html.LabelFor(model => model.NameF, Resources.FrenchName, htmlAttributes: new { @class = "" })
             <div class="">
                 @Html.EditorFor(model => model.NameF, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.NameF, "", new { @class = "text-danger" })
@@ -31,23 +31,23 @@
         </div>
 
         <div class="">
-            @Html.LabelFor(model => model.DescriptionE, htmlAttributes: new { @class = "" })
+            @Html.LabelFor(model => model.DescriptionE, Resources.InitEnglishDesc, htmlAttributes: new { @class = "" })
             <div class="">
                 @Html.TextAreaFor(model => model.DescriptionE, new { @class = "ckeditor" })
                 @Html.ValidationMessageFor(model => model.DescriptionE, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br/>
         <div class="">
-            @Html.LabelFor(model => model.DescriptionF, htmlAttributes: new { @class = "" })
+            @Html.LabelFor(model => model.DescriptionF, Resources.InitFrenchDesc, htmlAttributes: new { @class = "" })
             <div class="">
                 @Html.TextAreaFor(model => model.DescriptionF, new { @class = "ckeditor" })
                 @Html.ValidationMessageFor(model => model.DescriptionF, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br/>
         <div class="">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "" })
+            @Html.LabelFor(model => model.StartDate, Resources.Start, htmlAttributes: new { @class = "" })
             <div class="">
                 @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
@@ -55,24 +55,19 @@
         </div>
 
         <div class="">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "" })
+            @Html.LabelFor(model => model.EndDate, Resources.End, htmlAttributes: new { @class = "" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="">
-            <div class="">
-                <input type="submit" value="@Resources.Submit" class="btn btn-default" />
-            </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
+            @Html.ActionLink(Resources.BackToList, "Index")
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

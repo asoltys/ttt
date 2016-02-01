@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201601262116390_BranchAndRegionRequiredAttr.Designer.cs">
       <DependentUpon>201601262116390_BranchAndRegionRequiredAttr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602011833128_MakeShortNameNotRequired.cs" />
+    <Compile Include="Migrations\201602011833128_MakeShortNameNotRequired.Designer.cs">
+      <DependentUpon>201602011833128_MakeShortNameNotRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1485,6 +1489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601262116390_BranchAndRegionRequiredAttr.resx">
       <DependentUpon>201601262116390_BranchAndRegionRequiredAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602011833128_MakeShortNameNotRequired.resx">
+      <DependentUpon>201602011833128_MakeShortNameNotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

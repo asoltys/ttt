@@ -1,7 +1,7 @@
 ﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = Resources.CreateNew;
     var currentUser = HttpContext.Current.User;
 }
 
@@ -163,11 +163,9 @@
             Html.HiddenFor(model => model.Event.Status, new { Value = TransformationTimelineTool.Models.Status.Draft });
         }
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-                @Html.ActionLink(Resources.BackToList, "Index")
-            </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
+            @Html.ActionLink(Resources.BackToList, "Index")
         </div>
     </div>
 }

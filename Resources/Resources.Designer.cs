@@ -184,6 +184,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign an Approver.
+        /// </summary>
+        public static string AssignApprover {
+            get {
+                return ResourceManager.GetString("AssignApprover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assign Impact.
         /// </summary>
         public static string AssignImpact {
@@ -288,6 +297,15 @@ namespace Resources {
         public static string CreateNew {
             get {
                 return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create User.
+        /// </summary>
+        public static string CreateUser {
+            get {
+                return ResourceManager.GetString("CreateUser", resourceCulture);
             }
         }
         
@@ -998,6 +1016,15 @@ namespace Resources {
         public static string RejectMailSubject {
             get {
                 return ResourceManager.GetString("RejectMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string Roles {
+            get {
+                return ResourceManager.GetString("Roles", resourceCulture);
             }
         }
         
