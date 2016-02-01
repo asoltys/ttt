@@ -25,6 +25,7 @@ namespace TransformationTimelineTool.Controllers
             return Json(
             Comments.Select(e => new
             {
+                Id = e.Id,
                 Content = e.Content,
                 Author = e.AuthorName,
                 Date = e.Date.ToShortDateString()
@@ -45,6 +46,17 @@ namespace TransformationTimelineTool.Controllers
             await db.SaveChangesAsync();
 
             return Json(ajaxComment);
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> DeleteComment(string id)
+        {
+            Utils.log(id);
+            var CommentId = Int32.Parse(id);
+            Comment comment = await db.Comments.FindAsync(CommentId);
+            db.Comments.Remove(comment);
+            await db.SaveChangesAsync();
+            return Json(comment);
         }
 
         // GET: Comments/Edit/5
@@ -78,23 +90,8 @@ namespace TransformationTimelineTool.Controllers
             return View(comment);
         }
 
-        // GET: Comments/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = await db.Comments.FindAsync(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
-
         // POST: Comments/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete2")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
