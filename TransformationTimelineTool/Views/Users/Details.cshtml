@@ -10,7 +10,7 @@
 <h4>@Resources.Email</h4>
 <p>@Html.DisplayFor(model => model.Email)</p>
 <h4>@Resources.Roles</h4>
-<p>@ViewBag.Roles</p>
+<p class="roleContainer">@ViewBag.Roles</p>
 
 <p>
     @if (HttpContext.Current.User.IsInRole("Admin"))
@@ -20,3 +20,14 @@
     }
     @Html.ActionLink(Resources.BackToList, "Index")
 </p>
+<script>
+$(document).ready(function () {
+    if (window.location.href.indexOf('fr') > -1) {
+        var roles = $(".roleContainer");
+        var result = roles.text().replace('Editor', '@Resources.Editor');
+        result = result.replace('Admin', '@Resources.Admin');
+        result = result.replace('Approver', '@Resources.Approver');
+        roles.html(result);
+    }
+});
+</script>

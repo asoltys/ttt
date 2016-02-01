@@ -62,7 +62,7 @@
                                 {
                                     @:</tr><tr>
                                }
-                                @:<td>
+                                @:<td class="roleContainer">
                                     <input type="checkbox"
                                            name="selectedRoles"
                                            value="@role.Name" />
@@ -111,6 +111,27 @@
                     $('input[name="selectedBranches"]').prop("checked", true);
                 }
             });
+
+            if (window.location.href.indexOf('fr') > -1) {
+                var roles = $(".roleContainer");
+                $.each(roles, function (index, dom) {
+                    var $dom = $(dom);
+                    var role = $dom.text().trim();
+                    switch (role) {
+                        case 'Admin':
+                            $dom.contents().last().replaceWith('@Resources.Admin');
+                            break;
+                        case 'Approver':
+                            $dom.contents().last().replaceWith('@Resources.Approver');
+                            break;
+                        case 'Editor':
+                            $dom.contents().last().replaceWith('@Resources.Editor');
+                            break;
+                        default:
+                            break;
+                    }
+                })
+            }
         });
     </script>
 }

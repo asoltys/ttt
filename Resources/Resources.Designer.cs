@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administration.
         /// </summary>
         public static string Administration {
@@ -184,6 +193,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approver.
+        /// </summary>
+        public static string Approver {
+            get {
+                return ResourceManager.GetString("Approver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assign an Approver.
         /// </summary>
         public static string AssignApprover {
@@ -198,15 +216,6 @@ namespace Resources {
         public static string AssignImpact {
             get {
                 return ResourceManager.GetString("AssignImpact", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Atlanta.
-        /// </summary>
-        public static string Atlanta {
-            get {
-                return ResourceManager.GetString("Atlanta", resourceCulture);
             }
         }
         

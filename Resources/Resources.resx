@@ -123,9 +123,6 @@
   <data name="Activity" xml:space="preserve">
     <value>Activity</value>
   </data>
-  <data name="Atlanta" xml:space="preserve">
-    <value>Atlanta</value>
-  </data>
   <data name="BackToList" xml:space="preserve">
     <value>Back to List</value>
   </data>
@@ -549,5 +546,11 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
   </data>
   <data name="AssignApprover" xml:space="preserve">
     <value>Assign an Approver</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Approver" xml:space="preserve">
+    <value>Approver</value>
   </data>
 </root>
