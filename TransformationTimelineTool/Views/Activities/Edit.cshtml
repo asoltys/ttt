@@ -195,4 +195,15 @@
     <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
     <script src="~/Scripts/toggleRegionsBranches.js" type="text/javascript"></script>
     <script src="~/Scripts/front-end-custom-validation.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            if (window.location.href.indexOf('fr') > -1) {
+                $('select option:contains("Milestone")').html('@Resources.Milestone');
+                $('select option:contains("Training")').html('@Resources.Training');
+                $('select option:contains("Draft")').html('@Resources.Draft');
+                $('select option:contains("Pending")').html('@Resources.Pending');
+                $('select option:contains("Approved")').html('@Resources.Approved');
+            }
+        });
+    </script>
 }
