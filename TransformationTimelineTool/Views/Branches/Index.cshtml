@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TransformationTimelineTool.Models.Branch>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Resources.Branches;
     ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
@@ -60,9 +60,3 @@
 }
 
 </table>
-@if (ViewBag.isAdmin)
-{
-<span class="create-new">
-        <a class="" href='@Url.Action("Create", "Branches")'>@Resources.CreateNew</a>
-</span>
-}
