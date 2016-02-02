@@ -314,8 +314,6 @@ timeLine = {
         var title = '';
         var OGDate = '';
         var firstRunNull = 1;
-        //var rSelected = $('#areaSelect').val();
-        //var bSelected = $('#branchSelect').val();
         $(timeLine.initiatives).each(function (key, value) {
             $.each(value.Events, function (key, value) {
                 if (OGID == value.ID) {
