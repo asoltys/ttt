@@ -161,7 +161,7 @@ else
             }
         });
 
-        var createNewButton = "<a href='@Url.Action("Create")'>";
+        var createNewButton = "<a href='@Url.Action("Create", new { lang = ViewBag.lang })'>";
         createNewButton += "@Resources.CreateActivity</a>"
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
