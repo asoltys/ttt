@@ -18,7 +18,7 @@ timeLine = {
     //initiativesURLe: 'json/initiatives.json',
     //initiativesURLf: 'json/initiatives.json',
     branches: '',
-    branchesURL: '/branches/data?lang=eng',
+    branchesURL: '/Directions-Generales-Branches/data?lang=eng',
     //branchesURL: 'json/branches.json',
     regions: '',
     regionsURL: '/regions/data?lang=eng',

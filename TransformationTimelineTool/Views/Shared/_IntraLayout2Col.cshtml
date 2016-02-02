@@ -100,7 +100,7 @@ else
                                             <li id="gcwu-gcnb2"><a href="http://www.tpsgc-pwgsc.gc.ca/comm/index-eng.html">Internet</a></li>
                                             <li id="gcwu-gcnb3"><a href="http://gcintranet.tpsgc-pwgsc.gc.ca/gc/index-eng.html">GCintranet</a></li>
                                             <li id="gcwu-gcnb4"><a href="http://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/index-eng.html">Pay and Pension</a></li>
-                                            <li id="gcwu-gcnb-lang">@Html.ActionLink("Français", "SetCulture", "Home", new { culture = "fr" }, null)</li>
+                                            <li id="gcwu-gcnb-lang">@Html.ActionLink("Français", "SetCulture", "Home", new { lang = "fra" }, null)</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@ else
                             <div class="wb-sec-def">
                                 <!-- SecNavStart -->
                                 <section>
-                                    <h3><a href="/en/home">@Resources.TransformationTimelineTool</a></h3>
+                                    <h3><a href="/Home?lang=eng">@Resources.TransformationTimelineTool</a></h3>
                                     <ul>
                                         <li style="display:inline">@Html.ActionLink(Resources.Initiatives, "Index", "Initiatives", new {  lang =  ViewBag.lang}, null)</li>
                                         <li style="display:inline">@Html.ActionLink(Resources.Impacts, "Index", "Impacts", new {  lang =  ViewBag.lang}, null)</li>

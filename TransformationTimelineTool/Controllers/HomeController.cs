@@ -57,9 +57,8 @@ namespace TransformationTimelineTool.Controllers
             }
         }
 
-        public ActionResult SetCulture(string culture)
+        public ActionResult SetCulture(string lang)
         {
-            RouteData.Values["culture"] = culture;
             string Referrer = Request.UrlReferrer.ToString();
 
             var request = new HttpRequest(null, Referrer, null);
@@ -69,7 +68,8 @@ namespace TransformationTimelineTool.Controllers
             var values = routeData.Values;
 
             string PreviousController = values["controller"].ToString();
-            return RedirectToAction("Index", PreviousController);
+            Utils.log(PreviousController);
+            return RedirectToAction("Index", PreviousController, new { lang = lang });
         }
     }
 }

@@ -46,6 +46,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 <!-- CustomCSSStart -->
 <link rel="stylesheet" href="/site/wet3.1/theme-tp-pw-intranet/css/theme-tp-pw-intranet.css" />
+    <link href="@Url.Content("~/Content/font-awesome-4.5.0/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
 <!-- CustomCSSEnd -->
 
 <!-- End of tete-head.html / Fin de tete-head.html -->
@@ -83,7 +84,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb2"><a href="http://www.tpsgc-pwgsc.gc.ca/comm/index-fra.html">Internet</a></li>
 <li id="gcwu-gcnb3"><a href="http://gcintranet.tpsgc-pwgsc.gc.ca/gc/index-fra.html">GCintranet</a></li>
 <li id="gcwu-gcnb4"><a href="http://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/index-fra.html">Paye et pension</a></li>
-<li id="gcwu-gcnb-lang"><a href="~/en">English</a></li>
+<li id="gcwu-gcnb-lang">@Html.ActionLink("English", "SetCulture", "Home", new { lang = "eng" }, null)</li>
 </ul>
 </div></div>
 <div id="gcwu-gcnb-fip">

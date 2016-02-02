@@ -20,6 +20,12 @@ namespace TransformationTimelineTool
                 url: "{culture}/{controller}/{action}/{id}",
                 defaults: new { culture = "en", controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Home Page",
+                url: "Home",
+                defaults: new { culture = "en", controller = "Home", action = "index" }
+            );
         }
     }
 }
