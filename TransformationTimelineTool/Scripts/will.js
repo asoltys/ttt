@@ -293,7 +293,11 @@ timeLine = {
                 }
             });
         });
-        hover = timeLine.cleanSpecialCharacters(hover);
+        if (hover != null) {
+            hover = timeLine.cleanSpecialCharacters(hover);
+        } else {
+            return '';
+        };
         return hover;
     },
     dialog: function (x) {
