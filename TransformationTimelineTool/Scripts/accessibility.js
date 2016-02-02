@@ -9,9 +9,9 @@ var branchName;
 var currentCulture = window.location.href.indexOf("fr") > -1 ? "fr" : "en";
 
 // data URLs
-var initiativesURL = currentCulture == "en" ? "/en/initiatives/datauni" : "/fr/initiatives/datauni";
-var regionsURL = "/en/regions/data";
-var branchesURL = "/en/branches/data";
+var initiativesURL = currentCulture == "en" ? "/initiatives/datauni?lang=eng" : "/initiatives/datauni?lang=fra";
+var regionsURL = "/regions/data?lang=eng";
+var branchesURL = "/Directions-Generales-Branches/data?lang=eng";
 
 // HTML variables
 var regionController;
@@ -46,7 +46,7 @@ function populateControllers() {
 		for (var k in regions) {
 		    if (regions[k].NameShort == "all") showAllRegionKey = regions[k].ID;
 		    regionName = currentCulture == "en" ? regions[k].NameE : regions[k].NameF;
-		    var option = "<option id=" + regions[k].ID + ">" + regionName + "</option>";
+		    var option = "<option id=" + regions[k].ID + " value=" + regions[k].ID + ">" + regionName + "</option>";
 			regionController.append(option);
 		}
 	});
@@ -266,7 +266,11 @@ $(window).on("load", function() {
 			});
 
 			// Event listeners
-			$("#branch_controller, #region_controller").on("change", function() {
+			$("#branch_controller, #region_controller").on("change", function () {
+			    if ($("#region_controller option:selected").val() > 0)
+			        $("#branch_controller").prop("disabled", false);
+			    else
+			        $("#branch_controller").prop("disabled", true);
 				$("#timeline_accordion").empty();
 				var selected = $(this).find("option:selected").attr("id");
 				regionKey = $(this).attr("id") == "region_controller" ? selected : regionKey;
