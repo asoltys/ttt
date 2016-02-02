@@ -1,5 +1,15 @@
 ﻿@model IEnumerable<TransformationTimelineTool.Models.Branch>
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 @{
     ViewBag.Title = Resources.Branches;
     ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
@@ -39,19 +49,19 @@
         <td>
             @if (ViewBag.isAdmin)
             {
-            <a class="no-link-style" href="@Url.Action("Edit", "Branches", new { id = item.ID })">
+            <a class="no-link-style" href="@Url.Action("Edit", "Branches", new { id = item.ID, lang = ViewBag.lang })">
                 <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
             </a>
-            <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
+            <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID, lang = ViewBag.lang })">
                 <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
             </a>
-            <a class="no-link-style" href="@Url.Action("Delete", "Branches", new { id = item.ID })">
+            <a class="no-link-style" href="@Url.Action("Delete", "Branches", new { id = item.ID, lang = ViewBag.lang })">
                 <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
             </a>
             }
             else
             {
-                <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID })">
+                <a class="no-link-style" href="@Url.Action("Details", "Branches", new { id = item.ID, lang = ViewBag.lang })">
                     <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                 </a>
             }

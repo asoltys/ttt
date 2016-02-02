@@ -1,5 +1,15 @@
 ﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 @{
     ViewBag.Title = Resources.Edit;
     var currentUser = HttpContext.Current.User;
@@ -159,7 +169,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">@Resources.LastEditedBy</label>
             <div class="col-md-10">
-                @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID }, null)
+                @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID, lang = ViewBag.Lang}, null)
             </div>
         </div>
        
@@ -184,7 +194,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-                @Html.ActionLink(Resources.BackToList, "Index")
+                @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
             </div>
         </div>
     </div>

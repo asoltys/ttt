@@ -21,6 +21,8 @@ using System.Globalization;
 namespace TransformationTimelineTool.Controllers
 {
     [Authorize(Roles = "Admin,Approver,Editor")]
+    [RoutePrefix("Initiatives")]
+    [Route("{action=index}")]
     public class InitiativesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
@@ -69,6 +71,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Initiatives/Create
         [Authorize(Roles = "Admin")]
+        [Route("Creer-Create")]
         public ActionResult Create()
         {
             return View();
@@ -79,6 +82,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Creer-Create")]
         public ActionResult Create([Bind(Include = "NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate")] Initiative initiative)
         {
             try
@@ -104,6 +108,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Initiatives/Edit/5
         [Authorize(Roles = "Admin")]
+        [Route("Modifier-Edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -126,6 +131,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
+        [Route("Modifier-Edit")]
         public ActionResult Edit(InitiativeViewModel initiativeViewModel)
         {
             if (initiativeViewModel == null)
@@ -158,6 +164,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Initiatives/Delete/5
         [Authorize(Roles = "Admin")]
+        [Route("Supprimer-Delete")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -174,6 +181,7 @@ namespace TransformationTimelineTool.Controllers
 
         // POST: Initiatives/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Route("Supprimer-Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)

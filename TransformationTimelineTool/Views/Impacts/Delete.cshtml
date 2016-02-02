@@ -4,6 +4,16 @@
     ViewBag.Title = Resources.Delete;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 <h2>@Resources.Delete</h2>
 
 <h3>@(Resources.DeleteConfirm + " " + Resources.Impact.ToLower() + '?')</h3>
@@ -32,7 +42,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BranchesList)
+            @Html.Raw(Model.BranchesList)
         </dd>
 
         <dt>
@@ -40,7 +50,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RegionsList)
+            @Html.Raw(Model.RegionsList)
         </dd>
 
     </dl>
@@ -49,7 +59,7 @@
         @Html.AntiForgeryToken()
         <div class="form-actions no-color">
             <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-            @Html.ActionLink(Resources.BackToList, "Index")
+            @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
         </div>
     }
 </div>

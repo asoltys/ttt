@@ -4,6 +4,16 @@
     ViewBag.Title = Resources.CreateNew;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 <h2>@Resources.CreateNew</h2>
 
 
@@ -34,7 +44,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-                @Html.ActionLink(Resources.BackToList, "Index")
+                @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
             </div>
         </div>
     </div>

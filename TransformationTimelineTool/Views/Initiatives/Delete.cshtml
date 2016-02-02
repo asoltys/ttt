@@ -4,6 +4,16 @@
     ViewBag.Title = Resources.Delete;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 <h2>@Resources.Delete</h2>
 
 <h3>@(Resources.DeleteConfirm + " " +Resources.Initiative.ToLower() + '?')</h3>
@@ -84,8 +94,8 @@
                             @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID, ViewBag.lang }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID, ViewBag.lang }, null)
                         </td>
                     </tr>
                 }

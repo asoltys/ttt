@@ -15,6 +15,8 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [RoutePrefix("Utilisateurs-Users")]
+    [Route("{action=index}")]
     public class UsersController : BaseController
     {
         private TimelineContext db = new TimelineContext();
@@ -52,6 +54,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Users/Create
         [Authorize(Roles = "Admin,")]
+        [Route("Creer-Create")]
         public ActionResult Create()
         {
             var userViewModel = new UserViewModel();
@@ -69,6 +72,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,")]
+        [Route("Creer-Create")]
         public ActionResult Create(UserViewModel userViewModel,
             string[] selectedInitiatives,
             string[] selectedRoles)
@@ -109,6 +113,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Users/Edit/5
+        [Route("Modifier-Edit")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -137,6 +142,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Modifier-Edit")]
         public ActionResult Edit(UserViewModel userViewModel,
             string[] selectedInitiatives,
             string[] selectedRoles)
@@ -172,6 +178,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Users/Delete/5
         [Authorize(Roles = "Admin,")]
+        [Route("Supprimer-Delete")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -190,6 +197,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,")]
+        [Route("Supprimer-Delete")]
         public ActionResult DeleteConfirmed(string id)
         {
             User user = db.Users.Find(id);

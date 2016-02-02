@@ -4,6 +4,16 @@
 @{
     ViewBag.Title = Resources.InitiativeDescription;
 }
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 
 @section Styles {
     <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
@@ -23,7 +33,7 @@
 <p>@Html.DisplayFor(model => model.EndDate)</p>
 
 <h4>@Resources.Activities</h4>
-<p>@Html.ActionLink(Resources.CreateActivity, "Create", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID, ViewBag.lang }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th class="col-md-2">@Resources.Date</th>
@@ -40,8 +50,8 @@
                             @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID, ViewBag.lang }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID, ViewBag.lang }, null)
                         </td>
                     </tr>
                 }
@@ -49,7 +59,7 @@
             </table>
 
 <h4>@Resources.Impacts</h4>
-<p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID }, null)</p>
+<p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID, ViewBag.lang }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
                     <th>@Resources.Level</th>
@@ -70,8 +80,8 @@
                             @Html.Raw(item.RegionsList)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Impacts", new { ID = item.ID }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Impacts", new { ID = item.ID }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Impacts", new { ID = item.ID, lang = ViewBag.lang }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Impacts", new { ID = item.ID, lang = ViewBag.lang }, null)
                         </td>
                     </tr>
                 }
@@ -94,8 +104,8 @@
                             @Html.DisplayFor(modelItem => user.Email)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Users", new { ID = user.Id }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Users", new { ID = user.Id }, null)
+                            @Html.ActionLink(Resources.View, "Details", "Users", new { ID = user.Id, lang = ViewBag.lang }, null) |
+                            @Html.ActionLink(Resources.Edit, "Edit", "Users", new { ID = user.Id, lang = ViewBag.lang }, null)
                         </td>
                     </tr>
                 }
@@ -104,7 +114,7 @@
 <p>
     @if(HttpContext.Current.User.IsInRole("Admin"))
     {
-        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID }) @:|
+        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID, lang = ViewBag.lang }) @:|
     }
     @Html.ActionLink(Resources.BackToList, "Index")
 </p>

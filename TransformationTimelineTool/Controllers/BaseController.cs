@@ -12,6 +12,14 @@ namespace TransformationTimelineTool.Controllers
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
             string cultureName = RouteData.Values["culture"] as string;
+            if(Request.QueryString["lang"] == "fra")
+            {
+                cultureName = "fr";
+            }
+            else
+            {
+                cultureName = "en";
+            }
 
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;

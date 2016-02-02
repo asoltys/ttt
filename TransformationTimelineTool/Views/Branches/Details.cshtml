@@ -1,5 +1,15 @@
 ﻿@model TransformationTimelineTool.Models.Branch
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 @{
     ViewBag.Title = Resources.Details;
 }
@@ -31,7 +41,7 @@
 <p>
     @if (HttpContext.Current.User.IsInRole("Admin"))
     {
-        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID }) @:|
+        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID, lang = ViewBag.lang }) @:|
     }
-    @Html.ActionLink(Resources.BackToList, "Index")
+    @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
 </p>

@@ -4,6 +4,16 @@
     ViewBag.Title = Resources.Impacts;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 @section Styles {
     <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
 }
@@ -11,7 +21,7 @@
 <h2>@Resources.Impacts</h2>
 
 <span class="create-new">
-    <a class="" href='@Url.Action("Create", "Impacts")'>@Resources.CreateNew</a>
+    <a class="" href='@Url.Action("Create", "Impacts", new {  lang =  ViewBag.lang}, null)'>@Resources.CreateNew</a>
 </span>
 <table class="table">
     <tr>
@@ -34,13 +44,13 @@
             @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
         </td>
         <td>
-            <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { id = item.ID })">
+            <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
                 <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
             </a>
-            <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { id = item.ID })">
+            <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
                 <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
             </a>
-            <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { id = item.ID })">
+            <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
                 <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
             </a>
         </td>

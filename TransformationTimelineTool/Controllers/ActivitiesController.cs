@@ -18,6 +18,8 @@ using TransformationTimelineTool.ViewModels;
 namespace TransformationTimelineTool.Controllers
 {
     [Authorize(Roles = "Admin,Approver,Editor")]
+    [RoutePrefix("Activites-Activities")]
+    [Route("{action=index}")]
     public class ActivitiesController : BaseController
     {
         private TimelineContext db = new TimelineContext();
@@ -50,6 +52,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Create
+        [Route("Creer-Create")]
         public ActionResult Create(int? id)
         {
             var currentUser = Utils.GetCurrentUser();
@@ -73,6 +76,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Creer-Create")]
         public ActionResult Create(EventViewModel eventViewModel,
             string[] selectedBranches,
             string[] selectedRegions)
@@ -143,6 +147,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Edit/5
+        [Route("Modifier-Edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -176,6 +181,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Modifier-Edit")]
         public ActionResult Edit(EventViewModel eventViewModel, string[] selectedRegions, string[] selectedBranches)
         {
 
@@ -342,6 +348,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Events/Delete/5
+        [Route("Supprimer-Delete")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -358,6 +365,7 @@ namespace TransformationTimelineTool.Controllers
 
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Route("Supprimer-Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

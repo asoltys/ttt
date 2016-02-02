@@ -1,6 +1,16 @@
 ﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 @using TransformationTimelineTool.Helpers
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 @{
     ViewBag.Title = Resources.Details;
 }
@@ -24,7 +34,7 @@
         </dt>
 
         <dd>
-            @Model.Event.BranchesList
+            @Html.Raw(Model.Event.BranchesList)
         </dd>
 
         <dt>
@@ -32,7 +42,7 @@
         </dt>
 
         <dd> 
-           @Model.Event.RegionsList
+           @Html.Raw(Model.Event.RegionsList)
         </dd>
 
         <dt>
@@ -96,7 +106,7 @@
         </dt>
 
         <dd>
-            @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID }, null)
+            @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID, lang = ViewBag.lang }, null)
         </dd>
 
         <dt>
@@ -110,6 +120,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.Event.ID }) |
-    @Html.ActionLink(Resources.BackToList, "Index")
+    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.Event.ID, lang = ViewBag.lang }) |
+    @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
 </p>

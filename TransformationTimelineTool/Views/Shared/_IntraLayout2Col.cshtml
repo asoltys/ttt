@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+<!DOCTYPE html>
 <!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
 <!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
@@ -212,12 +221,12 @@
                                 <section>
                                     <h3><a href="/en/home">@Resources.TransformationTimelineTool</a></h3>
                                     <ul>
-                                        <li style="display:inline">@Html.ActionLink(Resources.Initiatives, "Index", "Initiatives")</li>
-                                        <li style="display:inline">@Html.ActionLink(Resources.Impacts, "Index", "Impacts")</li>
-                                        <li style="display:inline">@Html.ActionLink(Resources.Activities, "Index", "Activities")</li>
-                                        <li style="display:inline">@Html.ActionLink(Resources.Regions, "Index", "Regions")</li>
-                                        <li style="display:inline">@Html.ActionLink(Resources.Branches, "Index", "Branches")</li>
-                                        <li style="display:inline">@Html.ActionLink(Resources.Users, "Index", "Users")</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Initiatives, "Index", "Initiatives", new {  lang =  ViewBag.lang}, null)</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Impacts, "Index", "Impacts", new {  lang =  ViewBag.lang}, null)</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Activities, "Index", "Activities", new {  lang =  ViewBag.lang}, null)</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Regions, "Index", "Regions", new {  lang =  ViewBag.lang}, null)</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Branches, "Index", "Branches", new {  lang =  ViewBag.lang}, null)</li>
+                                        <li style="display:inline">@Html.ActionLink(Resources.Users, "Index", "Users", new {  lang =  ViewBag.lang}, null)</li>
                                     </ul>
                                 </section>
                                 <!-- SecNavEnd -->

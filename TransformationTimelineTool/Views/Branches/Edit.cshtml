@@ -1,5 +1,15 @@
 ﻿@model TransformationTimelineTool.Models.Branch
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 @{
     ViewBag.Title = Resources.Edit;
 }
@@ -35,7 +45,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-                @Html.ActionLink(Resources.BackToList, "Index")
+                @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
             </div>
         </div>
     </div>

@@ -4,6 +4,16 @@
     ViewBag.Title = Resources.Details;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
 <h2>@Resources.Details</h2>
 
 <div>
@@ -44,6 +54,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID }) |
-    @Html.ActionLink(Resources.BackToList, "Index")
+    @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID, lang = ViewBag.lang }) |
+    @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
 </p>

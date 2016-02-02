@@ -11,6 +11,8 @@ using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [RoutePrefix("Regions")]
+    [Route("{action=index}")]
     public class RegionsController : BaseController
     {
         private TimelineContext db = new TimelineContext();
@@ -40,6 +42,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Regions/Create
         [Authorize(Roles = "Admin")]
+        [Route("Creer-Create")]
         public ActionResult Create()
         {
             return View();
@@ -51,6 +54,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
+        [Route("Creer-Create")]
         public ActionResult Create([Bind(Include = "ID,NameShort,NameE,NameF")] Region region)
         {
             if (ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Regions/Edit/5
         [Authorize(Roles = "Admin")]
+        [Route("Modifier-Edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
+        [Route("Modifier-Edit")]
         public ActionResult Edit([Bind(Include = "ID,NameShort,NameE,NameF")] Region region)
         {
             if (ModelState.IsValid)
@@ -118,6 +124,7 @@ namespace TransformationTimelineTool.Controllers
 
         // GET: Regions/Delete/5
         [Authorize(Roles = "Admin")]
+        [Route("Supprimer-Delete")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,6 +143,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
+        [Route("Supprimer-Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             Region region = db.Regions.Find(id);
