@@ -279,30 +279,6 @@ timeLine = {
                 idString = toString(id);
                 html += "<img id='icon" + id + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "," + rowID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(date, barStartDate) + "px; position:absolute;' />";
             });
-            /*$.each(value.Events, function (key, value) {
-                if (value.Show) {
-                    mergeDates.push(value.Date);
-                };
-            });
-            mergeDates = jQuery.unique(mergeDates);
-            $.each(mergeDates, function (index, dates) {
-                var image = '';
-                var mergedDate = '';
-                var id = [];
-                $.each(value.Events, function (key, value) {
-                    if (value.Show && dates == value.Date) {
-                        if (value.Type == 'Milestone') {
-                            image = 'circle.png'
-                        } else if (value.Type == 'Training') {
-                            image = 'book.png'
-                        };
-                        mergedDate = dates;
-                        id.push(value.ID);
-                    }
-                });
-                idString = toString(id);
-                html += "<img id='icon" + id[0] + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(mergedDate, barStartDate) + "px; position:absolute;' />";
-            });*/
             html += "</div></div>";
         });
         html += "</div>";
@@ -338,11 +314,13 @@ timeLine = {
         var title = '';
         var OGDate = '';
         var firstRunNull = 1;
+        //var rSelected = $('#areaSelect').val();
+        //var bSelected = $('#branchSelect').val();
         $(timeLine.initiatives).each(function (key, value) {
             $.each(value.Events, function (key, value) {
                 if (OGID == value.ID) {
                     OGDate = value.Date;
-                    if (value.Text != null) {
+                    if (value.Text != null && timeLine.iconFilter(value.Branches, value.Regions) == 1) {
                         text = text + value.Text;
                         title = title + value.Hover;
                         firstRunNull = 0;
@@ -353,18 +331,16 @@ timeLine = {
         $(timeLine.initiatives).each(function (key, value) {
             if (value.ID == rowID) {
                 $.each(value.Events, function (key, value) {
-                    if (value.Show && OGDate == value.Date && OGID != value.ID) {
-                        if (value.Text != null) {
-                            if (firstRunNull != 1) {
-                                text = text + "<hr />";
-                            };
-                            text = text + value.Text;
-                            if (firstRunNull != 1) {
-                                title = title + " - ";
-                                firstRunNull = 0;
-                            };
-                            title = title + value.Hover;
+                    if (value.Show && OGDate == value.Date && OGID != value.ID && value.Text != null && timeLine.iconFilter(value.Branches, value.Regions) == 1) {
+                        if (firstRunNull != 1) {
+                            text = text + "<hr />";
                         };
+                        text = text + value.Text;
+                        if (firstRunNull != 1) {
+                            title = title + " - ";
+                            firstRunNull = 0;
+                        };
+                        title = title + value.Hover;
                     };
                 });
             }
@@ -553,7 +529,7 @@ timeLine = {
         $("#branchSelect").val('');
         timeLine.filter();
     },
-    // toggleIcons checks the dropdowns and display/hides icons. It will also merge icons with the same date.
+    // toggleIcons checks the dropdowns and display/hides icons. 
     toggleIcons: function () {
         $(timeLine.initiatives).each(function (key, value) {
             $.each(value.Events, function (key, value) {
