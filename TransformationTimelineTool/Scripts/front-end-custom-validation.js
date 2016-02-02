@@ -1,11 +1,11 @@
 ﻿$(document).ready(function () {
     var editorValidationError = {
-        en: "English Text and French Text fields both need to be filled out.",
-        fr: "English Text and French Text fields both need to be filled out."
+        eng: "English Text and French Text fields both need to be filled out.",
+        fra: "English Text and French Text fields both need to be filled out."
     };
     var checkboxValidationError = {
-        en: "At least one option needs to be selected.",
-        fr: "At least one option needs to be selected."
+        eng: "At least one option needs to be selected.",
+        fra: "At least one option needs to be selected."
     };
 
     var editorValidator = (function () {
@@ -261,21 +261,29 @@
             var parser = document.createElement('a');
             parser.href = window.location.href;
             var pathname = parser.pathname.split('/');
-            culture = pathname[1];
-            controller = pathname[2];
+            controller = pathname[1];
+            
+            if (window.location.href.indexOf('?') > -1) {
+                var temp = window.location.href.split('?');
+                if (temp.length > 1) {
+                    culture = temp[1].substring(5);
+                }
+            } else {
+                culture = "eng";
+            }
         }
 
         function mapValidators() {
             validatorArray = [];
             switch (controller) {
-                case 'Users':
+                case 'Utilisateurs-Users':
                     validatorArray.push(roleCheckboxValidator);
                     break;
-                case 'Activities':
+                case 'Activites-Activities':
                     validatorArray.push(editorValidator);
                     validatorArray.push(branchRegionCheckboxValidator);
                     break;
-                case 'Impacts':
+                case 'Repercussions-Impacts':
                     validatorArray.push(branchRegionCheckboxValidator);
                     break;
                 default:
