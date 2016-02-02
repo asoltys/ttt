@@ -13,8 +13,6 @@ else
     ViewBag.lang = "eng";
 }
 
-
-
 @section Styles {
     <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
 }
@@ -36,9 +34,9 @@ else
 <p>@Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID, ViewBag.lang }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th class="col-md-2">@Resources.Date</th>
-                    <th class="">@Resources.ShortDescription</th>
-                    <th class="col-md-2">@Resources.Actions</th>
+                    <th class="fix-6em">@Resources.Date</th>
+                    <th>@Resources.ShortDescription</th>
+                    <th class="control-group">@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Events)
                 {
@@ -50,8 +48,12 @@ else
                             @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Activities", new { ID = item.ID, ViewBag.lang }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Activities", new { ID = item.ID, ViewBag.lang }, null)
+                            <a class="no-link-style" href="@Url.Action("Edit", "Activities", new {lang = ViewBag.lang, id = item.ID })">
+                                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                            </a>
+                            <a class="no-link-style" href="@Url.Action("Details", "Activities", new {  lang=ViewBag.lang, id = item.ID })">
+                                <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                            </a>
                         </td>
                     </tr>
                 }
@@ -62,10 +64,10 @@ else
 <p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID, ViewBag.lang }, null)</p>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th>@Resources.Level</th>
+                    <th class="fix-6em">@Resources.Level</th>
                     <th>@Resources.Branch</th>
                     <th>@Resources.Region</th>
-                    <th>@Resources.Actions</th>
+                    <th class="control-group">@Resources.Actions</th>
                 </tr>
                 @foreach (var item in Model.Impacts)
                 {
@@ -80,8 +82,12 @@ else
                             @Html.Raw(item.RegionsList)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Impacts", new { ID = item.ID, lang = ViewBag.lang }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Impacts", new { ID = item.ID, lang = ViewBag.lang }, null)
+                            <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { lang = ViewBag.lang, id = item.ID })">
+                                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                            </a>
+                            <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
+                                <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                            </a>
                         </td>
                     </tr>
                 }
@@ -90,9 +96,9 @@ else
 <h4>@Resources.Users</h4>
             <table class="table table-condensed table-striped">
                 <tr>
-                    <th>@Resources.UserName</th>
+                    <th class="fix-6em">@Resources.UserName</th>
                     <th>@Resources.Email</th>
-                    <th>@Resources.Actions</th>
+                    <th class="control-group">@Resources.Actions</th>
                 </tr>
                 @foreach (var user in Model.Users)
                 {
@@ -104,8 +110,12 @@ else
                             @Html.DisplayFor(modelItem => user.Email)
                         </td>
                         <td>
-                            @Html.ActionLink(Resources.View, "Details", "Users", new { ID = user.Id, lang = ViewBag.lang }, null) |
-                            @Html.ActionLink(Resources.Edit, "Edit", "Users", new { ID = user.Id, lang = ViewBag.lang }, null)
+                            <a class="no-link-style" href="@Url.Action("Edit", "Users", new { lang = ViewBag.lang, id = user.Id })">
+                                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                            </a>
+                            <a class="no-link-style" href="@Url.Action("Details", "Users", new { lang = ViewBag.lang, id = user.Id })">
+                                <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                            </a>
                         </td>
                     </tr>
                 }

@@ -55,17 +55,20 @@
 
 <script type="text/javascript">
     var commentModule = (function () {
+        var actions = "";
         var commentObject = {
             row: "",
             author: "",
             content: "",
             date: "",
+            actions: "",
         };
         var $commentObject = {
             row: null,
             author: null,
             content: null,
             date: null,
+            actions: null
         };
         var $commentContainer = $("#commentContainer");
 
@@ -83,24 +86,51 @@
             commentObject = {
                 row: "<div class='comment-row'>",
                 author: "<span class='span-1 comment-cell author'>",
-                content: "<span class='span-6 comment-cell content'>",
+                content: "<span class='span-5 comment-cell content'>",
                 date: "<span class='span-1 comment-cell date'>",
+                actions: "<span class='span-1 comment-cell action'>"
             };
             $commentObject = {
                 row: null,
                 author: null,
                 content: null,
                 date: null,
+                actions: null
             };
         }
 
-        function makeHTML() {
+        function createActions(id) {
+            actions = '<a class="no-link-style" href="#"';
+            actions += 'onclick="commentModule.deleteComment(\'' + id + '\'); return false;">';
+            actions += '<i title="@Resources.Delete" class="fa fa-times fa-2x"></i></a>';
+            return actions;
+        }
+
+        function deleteComment(id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/en/Comments/DeleteComment",
+                data: JSON.stringify({ id: parseInt(id, 10) }),
+                cache: false,
+                success: function (response) {
+                    grabComments();
+                }, error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function makeHTML(id) {
             for (prop in commentObject) {
                 $commentObject[prop] = $($.parseHTML(commentObject[prop]));
             }
-            $commentObject.row.append($commentObject.author,
+            $commentObject.row.attr('id', id);
+            $commentObject.row.append(
+                $commentObject.author,
                 $commentObject.content,
-                $commentObject.date);
+                $commentObject.date,
+                $commentObject.actions);
             $commentContainer.append($commentObject.row);
         }
 
@@ -110,8 +140,12 @@
                 commentObject.author += comment.Author;
                 commentObject.content += comment.Content;
                 commentObject.date += comment.Date;
+                commentObject.actions += createActions(comment.Id);
                 closeTags();
-                makeHTML();
+                makeHTML(comment.Id);
+            },
+            deleteComment: function (id) {
+                deleteComment(id);
             }
         }
     })();
