@@ -251,6 +251,7 @@ timeLine = {
         var html = '';
         var barStartDate = '';
         var mergeDates = [];
+        var rowID = '';
         html += "<div id='timeLineContainer'>";
         html += "<div class='timeLineGroupRow' id='tg3' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         html += "<div class='timeLineGroupRow' id='tg2' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
@@ -259,9 +260,26 @@ timeLine = {
         $(timeLine.initiatives).each(function (key, value) {
             mergeDates = [];
             barStartDate = value.StartDate;
-            html += "<div class='timeLineRow' id = 't" + value.ID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+            rowID = value.ID;
+            html += "<div class='timeLineRow' id = 't" + rowID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
             html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(barStartDate) + "px; width:" + timeLine.getRight(barStartDate, value.EndDate) + "px;'>"
             $.each(value.Events, function (key, value) {
+                var image = '';
+                var date = '';
+                var id = '';
+                if (value.Show) {
+                    if (value.Type == 'Milestone') {
+                        image = 'circle.png'
+                    } else if (value.Type == 'Training') {
+                        image = 'book.png'
+                    };
+                    date = value.Date;
+                    id = value.ID;
+                }
+                idString = toString(id);
+                html += "<img id='icon" + id + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "," + rowID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(date, barStartDate) + "px; position:absolute;' />";
+            });
+            /*$.each(value.Events, function (key, value) {
                 if (value.Show) {
                     mergeDates.push(value.Date);
                 };
@@ -284,7 +302,7 @@ timeLine = {
                 });
                 idString = toString(id);
                 html += "<img id='icon" + id[0] + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(mergedDate, barStartDate) + "px; position:absolute;' />";
-            });
+            });*/
             html += "</div></div>";
         });
         html += "</div>";
@@ -313,41 +331,49 @@ timeLine = {
         return hover;
     },
     dialog: function (x) {
-        if (x.length > 0) {
-            x = x.split(",");
-        };
+        var x = x.split(",");
+        var OGID = x[0];
+        var rowID = x[1];
         var text = '';
         var title = '';
-        var check = '';
-        var firstRun = 0;
-        $.each(x, function (index, value) {
-            check = value;
-            $(timeLine.initiatives).each(function (key, value) {
-                $.each(value.Events, function (key, value) {
-                    if (check == value.ID) {
-                        //if(timeLine.iconFilter(value.Branches,value.Regions) == 1){
-                        if (firstRun == 0) {
-                            firstRun = 1;
-                        } else {
-                            text = text + "<hr />";
-                            title = title + " - ";
-                        };
-                        text = text + eval("value.Text");
-                        title = title + eval("value.Hover");
+        var OGDate = '';
+        var firstRunNull = 1;
+        $(timeLine.initiatives).each(function (key, value) {
+            $.each(value.Events, function (key, value) {
+                if (OGID == value.ID) {
+                    OGDate = value.Date;
+                    if (value.Text != null) {
+                        text = text + value.Text;
+                        title = title + value.Hover;
+                        firstRunNull = 0;
                     };
-                    //};
-                });
+                };
             });
         });
-        // Since the text is hard-coded string object, in order to add in more
-        // falsy values in the future, check against the falsyValues array
-        var falsyValues = ["null"];
-        for (var i = 0; i < falsyValues.length; i++) {
-            if (text === falsyValues[i]) return;
+        $(timeLine.initiatives).each(function (key, value) {
+            if (value.ID == rowID) {
+                $.each(value.Events, function (key, value) {
+                    if (value.Show && OGDate == value.Date && OGID != value.ID) {
+                        if (value.Text != null) {
+                            if (firstRunNull != 1) {
+                                text = text + "<hr />";
+                            };
+                            text = text + value.Text;
+                            if (firstRunNull != 1) {
+                                title = title + " - ";
+                                firstRunNull = 0;
+                            };
+                            title = title + value.Hover;
+                        };
+                    };
+                });
+            }
+        });
+        if (text != '') {
+            $("#dialog").dialog("open");
+            $("#dialog").html(text);
+            $("#ui-id-1").html(title);
         }
-        $("#dialog").dialog("open");
-        $("#dialog").html(text);
-        $("#ui-id-1").html(title);
     },
     dialogCustom: function (x) {
         $("#dialog").dialog("open");
