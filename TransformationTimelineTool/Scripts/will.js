@@ -286,21 +286,11 @@ timeLine = {
     },
     hover: function (x) {
         var hover = '';
-        var check = '';
-        var firstRun = 0;
-        $.each(x, function (index, value) {
-            check = value;
-            $(timeLine.initiatives).each(function (key, value) {
-                $.each(value.Events, function (key, value) {
-                    if (check == value.ID) {
-                        if (firstRun == 0) {
-                            firstRun = 1;
-                        } else {
-                            hover = hover + " - ";
-                        };
-                        hover = hover + value.Hover;
-                    };
-                });
+        $(timeLine.initiatives).each(function (key, value) {
+            $.each(value.Events, function (key, value) {
+                if (x == value.ID) {
+                    hover = value.Hover;
+                }
             });
         });
         hover = timeLine.cleanSpecialCharacters(hover);
