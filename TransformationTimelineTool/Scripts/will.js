@@ -323,16 +323,18 @@ timeLine = {
         $(timeLine.initiatives).each(function (key, value) {
             if (value.ID == rowID) {
                 $.each(value.Events, function (key, value) {
-                    if (value.Show && OGDate == value.Date && OGID != value.ID && value.Text != null && timeLine.iconFilter(value.Branches, value.Regions) == 1) {
-                        if (firstRunNull != 1) {
-                            text = text + "<hr />";
+                    if (timeLine.fuzzyDate(OGDate, value.Date) == 1) {
+                        if (value.Show && OGID != value.ID && value.Text != null && timeLine.iconFilter(value.Branches, value.Regions) == 1) {
+                            if (firstRunNull != 1) {
+                                text = text + "<hr />";
+                            };
+                            text = text + value.Text;
+                            if (firstRunNull != 1) {
+                                title = title + " - ";
+                                firstRunNull = 0;
+                            };
+                            title = title + value.Hover;
                         };
-                        text = text + value.Text;
-                        if (firstRunNull != 1) {
-                            title = title + " - ";
-                            firstRunNull = 0;
-                        };
-                        title = title + value.Hover;
                     };
                 });
             }
@@ -347,6 +349,11 @@ timeLine = {
         $("#dialog").dialog("open");
         $("#dialog").html(x);
         $("#ui-id-1").html("&nbsp;");
+    },
+    fuzzyDate: function (x, y) {
+        if (x == y) {
+            return 1;
+        };
     },
     getLeft: function (date) {
         var date = date.split("/");
@@ -570,6 +577,9 @@ timeLine = {
         return display;
     },
     cleanSpecialCharacters: function (x) {
+        var y = document.createElement("div");
+        y.innerText = y.textContent = x;
+        x = y.innerHTML;
         function escapeRegExp(str) {
             return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
         }
@@ -578,10 +588,6 @@ timeLine = {
         }
         x = replaceAll(x, "'", "&#92;&#39;");
         x = replaceAll(x, "\"", "&#92;&#34;");
-        x = replaceAll(x, "(", "&#40;");
-        x = replaceAll(x, ")", "&#41;");
-        x = replaceAll(x, "<", "&#60;");
-        x = replaceAll(x, ">", "&#62;");
         return x;
     },
     css: function () {
