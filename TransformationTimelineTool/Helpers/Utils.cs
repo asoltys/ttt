@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Reflection;
 using System.Resources;
 using System.Web;
+using System.Web.Configuration;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 
@@ -164,6 +165,7 @@ namespace TransformationTimelineTool.Helpers
 
         public static bool SendMail(String Recipient, String Subject, String Message, List<String> CC = null)
         {
+            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return true;
             CC = CC ?? new List<String>();
             MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
             MailAddress RecipientAddress = new MailAddress(Recipient);
@@ -182,6 +184,29 @@ namespace TransformationTimelineTool.Helpers
             {
                 System.Diagnostics.Debug.WriteLine("Utils\\SendMail() Error: " + ex.ToString());
                 return false;
+            }
+        }
+
+        public static List<String> GetCurrentUserRoles()
+        {
+            TimelineContext db = new TimelineContext();
+            RoleManager<IdentityRole> RoleManager;
+            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            List<string> UserRoles = new List<string>();
+            User CurrentUser = GetCurrentUser();
+
+            if (CurrentUser == null)
+            {
+                return UserRoles;
+            } else
+            {
+                foreach (var Role in CurrentUser.Roles)
+                {
+                    var MyRole = RoleManager.FindById(Role.RoleId);
+                    UserRoles.Add(MyRole.Name);
+                }
+                return UserRoles;
             }
         }
 

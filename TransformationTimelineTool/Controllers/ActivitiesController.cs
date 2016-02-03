@@ -88,7 +88,8 @@ namespace TransformationTimelineTool.Controllers
             {
                 try
                 {
-
+                    var StatusStates = Tuple.Create(Status.Draft, eventViewModel.Event.Status);
+                    var NotificationAction = DetermineNotificationAction(StatusStates);
                     eventToCreate.CreatorID = currentUser.Id;
                     eventToCreate.Branches = new List<Branch>();
                     eventToCreate.Regions = new List<Region>();
@@ -123,19 +124,13 @@ namespace TransformationTimelineTool.Controllers
 
                     db.Events.Add(eventToCreate);
                     db.SaveChanges();
-                    if (!SendMail(eventToCreate)) throw new SendMailException("Something unexpected happened.");
-
-                    //@event.Edit = edit;;
-
+                    HandleNotification(NotificationAction, eventToCreate.Edits);
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
                     //Log the error (uncomment dex variable name and add a line here to write a log.
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                } catch (SendMailException ex)
-                {
-                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
@@ -200,7 +195,8 @@ namespace TransformationTimelineTool.Controllers
             {
                 try
                 {
-
+                    var StatusStates = Tuple.Create(eventToUpdate.Status, eventViewModel.Event.Status);
+                    var NotificationAction = DetermineNotificationAction(StatusStates);
                     eventToUpdate.InitiativeID = eventViewModel.Event.InitiativeID;
                     eventToUpdate.Status = eventViewModel.Event.Status;
 
@@ -221,17 +217,13 @@ namespace TransformationTimelineTool.Controllers
                     }
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
-                    if (!SendMail(eventToUpdate)) throw new SendMailException("Something unexpected happened.");
+                    HandleNotification(NotificationAction, eventToUpdate.Edits);
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
                     //Log the error (uncomment dex variable name and add a line here to write a log.
                     ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-                catch (SendMailException ex)
-                {
-                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
@@ -241,93 +233,145 @@ namespace TransformationTimelineTool.Controllers
             return View(eventViewModel);
         }
 
-        public bool SendMail(Event @event)
+        public bool HandleNotification(string Action, ICollection<Edit> @edits, bool Debug = false)
         {
-            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return true;
-            var CurrentUser = Utils.GetCurrentUser();
-            var Creator = db.Users.Find(@event.CreatorID);
-            var SendTo = "";
-            var MailSubject = "";
-            var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email
-            var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
-            var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
-            var CopyList = new List<string>();
+            var NumberOfEdits = @edits.Count();
+            if (NumberOfEdits <= 1)
+            {
+                // An Activity has been created...
+                Utils.log("No previous edit found");
+                return true;
+            } else
+            {
+                // We can now fetch previous Editor ID
+                var PreviousEdit = @edits.OrderByDescending(e => e.Date).Skip(1).First();
+                var PreviousEditor = PreviousEdit.Editor;
+                var CurrentUser = Utils.GetCurrentUser();
+                if (Debug) Utils.log("Previous Edit ID: " + PreviousEdit.ID + ", Previous Editor: " + PreviousEdit.Editor.Email);
 
-            var AdminID = db.Roles.Where(x => x.Name == "admin").Single();
-            var IsAdmin = CurrentUser.Roles.Where(x => x.RoleId == AdminID.Id).Count();
-            if (Creator.Id == null)
-                throw new SendMailException("The system could not fetch the Creator ID");
-            if (IsAdmin == 1) 
-            {
-                // Current user is an admin...
-                return true;
+                var SendTo = "";
+                var MailSubject = "";
+                var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email
+                var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
+                var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
+                var CopyList = new List<string>();
+                switch (Action)
+                {
+                    case "None":
+                        return true;
+                    case "Pending":
+                        SendTo = CurrentUser.Approver != null ? CurrentUser.Approver.Email : AdminEmail;
+                        MailSubject = Resources.Resources.PendingMailSubject;
+                        MailBody = Resources.Resources.PendingMailBody;
+                        if (CurrentUser.Approver != null) CopyList.Add(AdminEmail);
+                        CopyList.Add(CurrentUser.Email);
+                        break;
+                    case "Approve":
+                        SendTo = PreviousEditor.Email;
+                        MailSubject = Resources.Resources.ApprovedMailSubject;
+                        MailBody = Resources.Resources.ApprovedMailBody;
+                        if (PreviousEditor.Approver != null) CopyList.Add(PreviousEditor.Approver.Email);
+                        CopyList.Add(AdminEmail);
+                        break;
+                    case "Reject":
+                        SendTo = PreviousEditor.Email;
+                        MailSubject = Resources.Resources.RejectMailSubject;
+                        MailBody = Resources.Resources.RejectMailBody;
+                        if (PreviousEditor.Approver != null) CopyList.Add(PreviousEditor.Approver.Email);
+                        CopyList.Add(AdminEmail);
+                        break;
+                    default:
+                        throw new SendMailException("SendMail could not recognize the action");
+                }
+                MailBody = String.Format(MailBody, ServerDomain, PreviousEdit.ID, AdminEmail, ServerDomain);
+                if (Debug)
+                {
+                    Utils.log("To: " + SendTo);
+                    Utils.log("Subject: " + MailSubject);
+                    Utils.log("Body" + MailBody);
+                }
+                return Utils.SendMail(SendTo, MailSubject, MailBody, CopyList);
             }
-            if (CurrentUser.Id == Creator.Id && @event.Status == Status.Draft)
-            {
-                // Logic: Creator has saved a draft of an event
-                // Action: Do not send any notification
-                return true;
-            } else if (CurrentUser.Id == Creator.Id && @event.Status == Status.Pending)
-            {
-                // Logic: Creator just submitted the event to be approved by an approver
-                // Action: Send a mail to the Approver, CC Creator & Admin
-                SendTo = Creator.Approver.Email;
-                MailSubject = Resources.Resources.PendingMailSubject;
-                MailBody = Resources.Resources.PendingMailBody;
-                MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
-                CopyList.Add(Creator.Email);
-                CopyList.Add(AdminEmail);
-            } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Draft)
-            {
-                // Logic: Approver has rejected the event creation
-                // Action: Send a mail to the Creator, CC Approver & Admin
-                SendTo = Creator.Email;
-                MailSubject = Resources.Resources.RejectMailSubject;
-                MailBody = Resources.Resources.RejectMailBody;
-                MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
-                CopyList.Add(Creator.Approver.Email);
-                CopyList.Add(AdminEmail);
-            } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Approved)
-            {
-                // TODO: Test this case where Approver is the Creator and accepts the change right away
-                // Logic: Approver has approved the event creation / edit
-                // Action: Send a mail to the Creator, CC Approver & Admin
-                SendTo = Creator.Email;
-                MailSubject = Resources.Resources.ApprovedMailSubject;
-                MailBody = Resources.Resources.ApprovedMailBody;
-                MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
-                CopyList.Add(Creator.Approver.Email);
-                CopyList.Add(AdminEmail);
-            } else if (CurrentUser.Id == Creator.ApproverID && @event.Status == Status.Pending)
-            {
-                // Logic: Approver has set the event state to pending
-                // Action: Do not send any notification
-                return true;
-            } else if (CurrentUser.Id == Creator.Id && @event.Status == Status.Approved)
-            {
-                // Logic: Creator has approved the event - probably an admin or exec
-                // Action: Send a mail to the Creator, CC Admin
-                SendTo = Creator.Email;
-                MailSubject = Resources.Resources.ApprovedMailSubject;
-                MailBody = Resources.Resources.ApprovedMailBody;
-                MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
-                CopyList.Add(AdminEmail);
-            } else {
-                SendTo = AdminEmail;
-                MailSubject = "Something unexpected happened with an event";
-                MailBody = Resources.Resources.ApprovedMailBody;
-                MailBody = String.Format(MailBody,
-                    ServerDomain, @event.ID, AdminEmail, ServerDomain);
-            }
-            if (!Utils.SendMail(SendTo, MailSubject, MailBody, CopyList))
-                throw new SendMailException("Please check your server settings. SMTP client has failed to send the emails");
-            return true;
         }
 
+        public string DetermineNotificationAction(Tuple<Status, Status> EventStatus, bool Debug = false)
+        {
+            string PreviousStatus = EventStatus.Item1.ToString();
+            string NewStatus = EventStatus.Item2.ToString();
+            List<string> CurrentUserRoles = Utils.GetCurrentUserRoles();
+            bool IsAdmin = CurrentUserRoles.Contains("Admin");
+            bool IsApprover = IsAdmin == true ? false : CurrentUserRoles.Contains("Approver");
+            bool IsEditor = IsAdmin == true || IsApprover == true ? false : CurrentUserRoles.Contains("Editor");
+            if (Debug)
+            {
+                Utils.log(PreviousStatus + " -> " + NewStatus);
+                Utils.log("Admin: " + IsAdmin.ToString() + ", Editor: " + IsEditor.ToString() + ", Approver:" + IsApprover.ToString());
+            }
+            string None = "None";
+            string Pending = "Pending";
+            string Approve = "Approve";
+            string Reject = "Reject";
+            if (IsAdmin) return None;
+            switch (PreviousStatus)
+            {
+                case "Draft":
+                    switch (NewStatus)
+                    {
+                        case "Draft":
+                            return None;
+                        case "Pending":
+                            if (IsEditor)
+                            {
+                                return Pending;
+                            }
+                            return None;
+                        case "Approved":
+                            // Editors cannot reach this block
+                            return None;
+                        default:
+                            return None;
+                    }
+                case "Pending":
+                    switch (NewStatus)
+                    {
+                        case "Draft":
+                            if (IsApprover)
+                            {
+                                return Reject;
+                            }
+                            return None;
+                        case "Pending":
+                            return None;
+                        case "Approved":
+                            if (IsApprover)
+                            {
+                                return Approve;
+                            }
+                            return None;
+                        default:
+                            return None;
+                    }
+                case "Approved":
+                    switch (NewStatus)
+                    {
+                        case "Draft":
+                            return None;
+                        case "Pending":
+                            if (IsEditor)
+                            {
+                                return Pending;
+                            }
+                            return None;
+                        case "Approved":
+                            return None;
+                        default:
+                            return None;
+                    }
+                default:
+                    return None;
+            }
+        }
+        
         public ActionResult Data(string branch, string region)
         {
             var regions = db.Regions.Where(r => r.NameShort == region).SelectMany(r => r.Events).ToList();
