@@ -7,6 +7,13 @@ namespace TransformationTimelineTool.Migrations
     {
         public override void Up()
         {
+            var updateValue = "'[Temp value - needs updating]'";
+
+            Sql("UPDATE dbo.Initiatives SET NameE = " + updateValue + " WHERE NameE IS NULL");
+            Sql("UPDATE dbo.Initiatives SET NameF = " + updateValue + " WHERE NameF IS NULL");
+            Sql("UPDATE dbo.Initiatives SET DescriptionE = " + updateValue + " WHERE DescriptionE IS NULL");
+            Sql("UPDATE dbo.Initiatives SET DescriptionF = " + updateValue + " WHERE DescriptionF IS NULL");
+
             AlterColumn("dbo.Initiatives", "NameE", c => c.String(nullable: false));
             AlterColumn("dbo.Initiatives", "NameF", c => c.String(nullable: false));
             AlterColumn("dbo.Initiatives", "DescriptionE", c => c.String(nullable: false));

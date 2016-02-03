@@ -13,6 +13,11 @@ namespace TransformationTimelineTool.Migrations
         
         public override void Down()
         {
+            var updateValue = "'[Temp value - needs updating]'";
+
+            Sql("UPDATE dbo.Branches SET NameShort = " + updateValue + " WHERE NameShort IS NULL");
+            Sql("UPDATE dbo.Regions SET NameShort = " + updateValue + " WHERE NameShort IS NULL");
+
             AlterColumn("dbo.Regions", "NameShort", c => c.String(nullable: false));
             AlterColumn("dbo.Branches", "NameShort", c => c.String(nullable: false));
         }
