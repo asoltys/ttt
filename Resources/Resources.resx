@@ -263,13 +263,13 @@
 Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
 To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
 If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-The National Transformation Timeline Tool can be found &lt;a href='{0}/en/Home'&gt;here&lt;/a&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
 &lt;hr&gt;&lt;br/&gt;
 Ceci c’est un message automatique.&lt;br/&gt;
 Votre poste était approuvé dans le Calendrier national des transformations.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
 Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt;ici&lt;/a&gt;.</value>
+Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.</value>
     <comment>{0} -&gt; Server name
 {1} -&gt; Event ID
 {2} -&gt; Admin email</comment>
@@ -282,13 +282,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
 An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
 To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt;.&lt;br/&gt;
 If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-The National Transformation Timeline Tool can be found &lt;a href='{0}/en/Home'&gt;here&lt;/a&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
 &lt;hr&gt;&lt;br/&gt;
 Ceci c’est un message automatique.&lt;br/&gt;
 Votre approbation est requise pour une poste dans le Calendrier national des transformations.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
 Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt;ici&lt;/a&gt;.</value>
+Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.</value>
     <comment>{0} -&gt; Server name
 {1} -&gt; Event ID
 {2} -&gt; Admin email</comment>
@@ -304,13 +304,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt
 An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
 To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
 If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-The National Transformation Timeline Tool can be found &lt;a href='{0}/en/Home'&gt;here&lt;/a&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
 &lt;hr&gt;&lt;br/&gt;
 Ceci c’est un message automatique.&lt;br/&gt;
 Un poste dans le Calendrier national des transformations n’était pas approuver. S’il vous plaît, contactez votre Approbateur.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
 Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-Le Calendrier national des transformations se trouve &lt;a href='{0}/fr/Home'&gt;ici&lt;/a&gt;.</value>
+Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.</value>
     <comment>{0}-&gt;Server name
 {1}-&gt;Event ID
 {2}-&gt;Admin email</comment>

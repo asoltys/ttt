@@ -175,12 +175,18 @@ else
        
         <div class="form-group">
             <div class="col-md-10">
-                @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("Approver"))
+                @if (currentUser.IsInRole("Admin"))
                 {
                     @Html.LabelFor(model => model.Event.Status, Resources.Status, htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.EnumDropDownListFor(model => model.Event.Status)
                     @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
+                }
+                else if (currentUser.IsInRole("Approver"))
+                {
+                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft) @:Reject
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Approved) @:Approve
                 }
                 else
                 {
