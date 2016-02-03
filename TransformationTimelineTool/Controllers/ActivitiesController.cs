@@ -283,7 +283,7 @@ namespace TransformationTimelineTool.Controllers
                     default:
                         throw new SendMailException("SendMail could not recognize the action");
                 }
-                MailBody = String.Format(MailBody, ServerDomain, PreviousEdit.ID, AdminEmail, ServerDomain);
+                MailBody = String.Format(MailBody, ServerDomain, PreviousEdit.EventID, AdminEmail, ServerDomain);
                 if (Debug)
                 {
                     Utils.log("To: " + SendTo);
