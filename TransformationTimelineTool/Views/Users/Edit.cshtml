@@ -4,6 +4,15 @@
     ViewBag.Title = Resources.Edit;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
 <h2>@Resources.Edit</h2>
 
 
@@ -26,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.User.Email, Resources.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", style = "width:25em"  } })
                 @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,7 +106,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-            @Html.ActionLink(Resources.BackToList, "Index")
+            @Html.ActionLink(Resources.BackToList, "Index", new { lang = ViewBag.lang })
         </div>
     </div>
 }
