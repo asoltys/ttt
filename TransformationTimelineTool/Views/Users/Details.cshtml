@@ -4,21 +4,34 @@
     ViewBag.Title = Resources.Details;
 }
 
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
 <h2>@Html.DisplayFor(model => model.UserName)</h2>
 <hr />
 
 <h4>@Resources.Email</h4>
 <p>@Html.DisplayFor(model => model.Email)</p>
+<h4>@Resources.Initiatives</h4>
+<p>
+    @Html.Raw(String.Join("<br />", Model.Initiatives.Select(init => init.Name)))
+</p>
 <h4>@Resources.Roles</h4>
 <p class="roleContainer">@ViewBag.Roles</p>
 
 <p>
     @if (HttpContext.Current.User.IsInRole("Admin"))
     {
-        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.Id }) @:|
+        @Html.ActionLink(Resources.Edit, "Edit", new {lang = ViewBag.lang, id = Model.Id }) @:|
 
     }
-    @Html.ActionLink(Resources.BackToList, "Index")
+    @Html.ActionLink(Resources.BackToList, "Index", new {lang = ViewBag.lang})
 </p>
 <script>
 $(document).ready(function () {

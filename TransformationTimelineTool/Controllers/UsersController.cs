@@ -59,8 +59,8 @@ namespace TransformationTimelineTool.Controllers
         {
             var userViewModel = new UserViewModel();
 
-            userViewModel.Initiatives = db.Initiatives.ToList<Initiative>();
-            userViewModel.Roles = db.Roles.ToList<IdentityRole>();
+            userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(new User());
+            userViewModel.PopulatedRoles = PopulateUserRolesData(new User());
             userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
 
             return View(userViewModel);
@@ -106,8 +106,14 @@ namespace TransformationTimelineTool.Controllers
                 
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ModelState.AddModelError("", "Unable to find user");
+            }
 
-            PopulateUserRolesData(userToAdd);
+            userViewModel.PopulatedRoles = PopulateUserRolesData(userToAdd);
+            userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(userToAdd);
+            userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
 
             return View(userViewModel);
         }
@@ -220,7 +226,16 @@ namespace TransformationTimelineTool.Controllers
         private List<InitiativeData> PopulateUserInitiativesData(User user)
         {
             var allInitiatives = db.Initiatives;
-            var userInitiatives = new HashSet<int>(user.Initiatives.Select(i => i.ID));
+            HashSet<int> userInitiatives;
+
+            if(user.Initiatives == null)
+            {
+                userInitiatives = new HashSet<int>();
+            }
+            else
+            {
+                userInitiatives = new HashSet<int>(user.Initiatives.Select(i => i.ID));
+            }
             var viewModel = new List<InitiativeData>();
 
             foreach (var initiative in allInitiatives)

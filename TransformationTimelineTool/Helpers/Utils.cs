@@ -89,6 +89,31 @@ namespace TransformationTimelineTool.Helpers
         }
         public static string GetUsernameFromEmail(string email)
         {
+            var mailAddress = new MailAddress(email);
+
+            var pwEmailAliases = new List<string>
+            {
+                "pwgsc-tpsgc.gc.ca",
+                "tpsgc-pwgsc.gc.ca",
+                "pwgsc.gc.ca",
+                "tpsgc.gc.ca",
+            };
+
+            var searchString = "";
+
+            if (!pwEmailAliases.Contains(mailAddress.Host))
+            {
+                searchString = String.Format("(mail={0}@{1})", mailAddress.User, mailAddress.Host);
+            }
+            else
+            {
+                searchString = String.Format("(|(mail={0}@{1})(mail={0}@{2})(mail={0}@{3})(mail={0}@{4}))",
+                                                mailAddress.User,
+                                                "pwgsc-tpsgc.gc.ca",
+                                                "tpsgc-pwgsc.gc.ca",
+                                                "pwgsc.gc.ca",
+                                                "tpsgc.gc.ca");
+            }
 
             DirectoryEntry root = new DirectoryEntry(
                 "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
@@ -97,7 +122,7 @@ namespace TransformationTimelineTool.Helpers
 
             DirectorySearcher searcher = new DirectorySearcher(
                 root,
-                "(mail=" + email + ")");
+                searchString);
 
             string username = "";
             SearchResult person;
@@ -112,9 +137,7 @@ namespace TransformationTimelineTool.Helpers
                 username = "";
             }
 
-            //jsonData["Verified"] = true;
             return username;
-
         }
 
         public static string GetFullName()
