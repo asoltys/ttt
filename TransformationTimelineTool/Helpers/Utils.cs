@@ -163,9 +163,10 @@ namespace TransformationTimelineTool.Helpers
             return FullName;
         }
 
-        public static bool SendMail(String Recipient, String Subject, String Message, List<String> CC = null)
+        public static void SendMail(String Recipient, String Subject, String Message, List<String> CC = null)
         {
-            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return true;
+            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return;
+            log("SendMail was called");
             CC = CC ?? new List<String>();
             MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
             MailAddress RecipientAddress = new MailAddress(Recipient);
@@ -176,14 +177,16 @@ namespace TransformationTimelineTool.Helpers
             if (CC.Count() > 0)
                 CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
             SmtpClient client = new SmtpClient();
+            client.Timeout = 200000;
             try
             {
                 client.Send(Mail);
-                return true;
             } catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Utils\\SendMail() Error: " + ex.ToString());
-                return false;
+            } finally
+            {
+                Mail.Dispose();
             }
         }
 

@@ -290,7 +290,8 @@ namespace TransformationTimelineTool.Controllers
                     Utils.log("Subject: " + MailSubject);
                     Utils.log("Body" + MailBody);
                 }
-                return Utils.SendMail(SendTo, MailSubject, MailBody, CopyList);
+                Utils.SendMail(SendTo, MailSubject, MailBody, CopyList);
+                return true;
             }
         }
 
