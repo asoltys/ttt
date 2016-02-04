@@ -21,10 +21,10 @@ dictionary = {
                           "Cliquez ici pour envoyer un courriel</a>.</p>"
     },
     "legend": {
-        "e": "<img src=\"http://pacific.pwgsc.gc.ca/misc/timeline/img/book.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Training<br />" +
-        "<img src=\"http://pacific.pwgsc.gc.ca/misc/timeline/img/circle.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Milestone",
-        "f": "<img src=\"http://pacific.pwgsc.gc.ca/misc/timeline/img/book.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Formation<br />" +
-        "<img src=\"http://pacific.pwgsc.gc.ca/misc/timeline/img/circle.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Étape"
+        "e": "<img src=\"../Images/book.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Training<br />" +
+        "<img src=\"../Images/circle.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Milestone",
+        "f": "<img src=\"../Images/book.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Formation<br />" +
+        "<img src=\"../Images/circle.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Étape"
     },
     "training": { "e": "Training", "f": "Formation" },
     "hide": { "e": "Hide", "f": "Cacher" },
