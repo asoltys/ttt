@@ -7,6 +7,7 @@ if (window.location.href.indexOf("fr") > 0) {
     var lang = 'f'
 };
 
+
 timeLine = {
     about: timeLine.utility.translate("about"),
     legend: timeLine.utility.translate("legend"),
