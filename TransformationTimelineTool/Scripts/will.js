@@ -1,3 +1,4 @@
+/* start params */
 // set default lang to english (this is a catch all)
 var lang = 'e';
 
@@ -7,22 +8,21 @@ if (window.location.href.indexOf("fr") > 0) {
 };
 
 timeLine = {
-    // params
     about: timeLine.utility.translate("about"),
     legend: timeLine.utility.translate("legend"),
     utility: timeLine.utility,
     render: '',
     initiatives: '',
-    initiativesURLe: '/en/initiatives/datauni',
-    initiativesURLf: '/fr/initiatives/datauni',
-    branchesURL: '/en/branches/data',
-    regionsURL: '/en/regions/data',
-    //initiativesURLe: 'json/initiatives-e.json',
-    //initiativesURLf: 'json/initiatives-f.json',
-    //branchesURL: 'json/branches.json',
-    //regionsURL: 'json/regions.json',
+    initiativesURLe: '/initiatives/datauni?lang=eng',
+    initiativesURLf: '/initiatives/datauni?lang=fra',
+    //initiativesURLe: 'json/initiatives.json',
+    //initiativesURLf: 'json/initiatives.json',
     branches: '',
+    branchesURL: '/Directions-Generales-Branches/data?lang=eng',
+    //branchesURL: 'json/branches.json',
     regions: '',
+    regionsURL: '/regions/data?lang=eng',
+    //regionsURL: 'json/regions.json',
     startMonth: 1,
     startYear: 2012,
     endMonth: 12,
@@ -41,10 +41,10 @@ timeLine = {
     heightQuarter: 18,
     heightMonth: 18,
     heightGroup: 20,
-    // populate with content
     content: function () {
         $.ajax({
             type: "GET",
+
             url: eval("timeLine.initiativesURL".concat(lang)),
             dataType: "json",
             timeout: 6000,
@@ -66,13 +66,11 @@ timeLine = {
             }
         });
     },
-    // set left arrow
     leftNav: function () {
         var html = '';
         html = "<img src='/timeline/img/arrow_left.png' style='width:30px; height:30px;' class='scrollButton' id='leftButton' />";
         return html;
     },
-    // set region dropdown
     areaNav: function () {
         $.ajax({
             type: "GET",
@@ -110,7 +108,6 @@ timeLine = {
             }
         });
     },
-    // set branch dropdown
     branchNav: function () {
         $.ajax({
             type: "GET",
@@ -144,13 +141,11 @@ timeLine = {
             }
         });
     },
-    // set right arrow
     rightNav: function () {
         var html = '';
         html += "<img src='/timeline/img/arrow_right.png' style='width:30px; height:30px;' class='scrollButton' id='rightButton' />";
         return html;
     },
-    // set left side initiative list
     projectContainer: function () {
         var html = '';
         html += "<div id='projectContainer'>";
@@ -178,7 +173,6 @@ timeLine = {
         html += "</div>";
         return html;
     },
-    // set everything draggable
     dragContainer: function () {
         var html = '';
         html += "<div id='dragContainer'>";
@@ -188,7 +182,6 @@ timeLine = {
         html += "</div>";
         return html;
     },
-    // set quarter/month container
     quarterMonthContainer: function () {
         var html = '';
         html += "<div id='quarterMonthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
@@ -197,7 +190,6 @@ timeLine = {
         html += "</div>";
         return html;
     },
-    // set quarters
     quarterContainer: function () {
         var html = '';
         var quarter = '';
@@ -228,7 +220,6 @@ timeLine = {
         html += "</div>";
         return html;
     },
-    // set months
     monthContainer: function () {
         var html = '';
         var month = timeLine.startMonth;
@@ -251,13 +242,11 @@ timeLine = {
         html += "</div>";
         return html;
     },
-    // set red today indicator
     today: function () {
         var now = new Date();
         var today = Number(now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
         return "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + timeLine.getLeft(today) + "px' />";
     },
-    // set timeline container
     timeLineContainer: function () {
         var html = '';
         var barStartDate = '';
@@ -295,7 +284,6 @@ timeLine = {
         html += "</div>";
         return html;
     },
-    // hover script
     hover: function (x) {
         var hover = '';
         $(timeLine.initiatives).each(function (key, value) {
@@ -312,7 +300,6 @@ timeLine = {
         };
         return hover;
     },
-    // popup script for icons
     dialog: function (x) {
         var x = x.split(",");
         var OGID = x[0];
@@ -358,19 +345,16 @@ timeLine = {
             $("#ui-id-1").html(title);
         }
     },
-    // popup script for initiatives
     dialogCustom: function (x) {
         $("#dialog").dialog("open");
         $("#dialog").html(x);
         $("#ui-id-1").html("&nbsp;");
     },
-    // currently does nothing. will use this later if we wanted to have fuzzy dates (ex: jan5 opens jan4 and jan6 because they're overlapping)
     fuzzyDate: function (x, y) {
         if (x == y) {
             return 1;
         };
     },
-    // function to push timeline bar based on date
     getLeft: function (date) {
         var date = date.split("/");
         var month = ((Number(date[2]) * 12) + Number(date[0]));
@@ -379,7 +363,6 @@ timeLine = {
         var z = ((month - startMonth) * timeLine.widthMonth) + day;
         return z;
     },
-    // function to push icon based on date and bar start date
     getEvent: function (date, date2) {
         var date = date.split("/");
         var startDate = date2.split("/");
@@ -390,7 +373,6 @@ timeLine = {
         var z = z - 14;
         return z;
     },
-    // function to get width of bar
     getRight: function (s, e) {
         var start = s.split("/");
         var end = e.split("/");
@@ -399,23 +381,18 @@ timeLine = {
         var x = ((((end[2] - start[2]) * 12) + (end[0] - start[0])) * timeLine.widthMonth) - offsetDay + addDay;
         return x;
     },
-    // moves timeline left
     goLeft: function () {
         $("#dragContainer").css('left', "+=" + timeLine.widthMonth * 2);
     },
-    // moves timeline right
     goRight: function () {
         $("#dragContainer").css('left', "-=" + timeLine.widthMonth * 2);
     },
-    // runs filter when dropdown changes
     areaSelect: function () {
         timeLine.filter();
     },
-    // runs filter when dropdown changes
     branchSelect: function () {
         timeLine.filter();
     },
-    // this is where the magic happens
     filter: function () {
         $.ajax({
             type: "GET",
@@ -519,7 +496,6 @@ timeLine = {
             }
         });
     },
-    // resets filter
     reset: function () {
         $(".projectRow").css("display", "inline");
         $(".timeLineRow").css("display", "inline");
@@ -534,7 +510,6 @@ timeLine = {
         timeLine.hide2 = 0;
         timeLine.hide3 = 0;
     },
-    // stuff that goes under the timeline
     footer: function () {
         var html = '';
         html += "<div id='timeLineFooter'>"
@@ -548,13 +523,12 @@ timeLine = {
         html += "</div>"
         return html;
     },
-    // resets dropdowns
     clearResults: function () {
         $("#areaSelect").val('');
         $("#branchSelect").val('');
         timeLine.filter();
     },
-    // display or hide icon based on dropdown selections
+    // toggleIcons checks the dropdowns and display/hides icons. 
     toggleIcons: function () {
         $(timeLine.initiatives).each(function (key, value) {
             $.each(value.Events, function (key, value) {
@@ -568,7 +542,7 @@ timeLine = {
             });
         });
     },
-    // sub function of toggleicons seperated so we can re-use it
+    // grabs dropdown info and returns display
     iconFilter: function (branches, regions) {
         var display = 0;
         var b = parseInt($('#branchSelect').val());
@@ -602,7 +576,6 @@ timeLine = {
         };
         return display;
     },
-    // removes funky chars @#$%
     cleanSpecialCharacters: function (x) {
         var y = document.createElement("div");
         y.innerText = y.textContent = x;
@@ -617,7 +590,6 @@ timeLine = {
         x = replaceAll(x, "\"", "&#92;&#34;");
         return x;
     },
-    // css stuff
     css: function () {
         var top = timeLine.heightQuarter + timeLine.heightMonth;
         $(".projectRow").css("height", timeLine.timeLineHeight - 1 - 10);
@@ -632,7 +604,6 @@ timeLine = {
     }
 }
 
-// skeleton
 $(document).ready(function () {
     timeLine.content();
     $('body').on("click", "#leftButton", timeLine.goLeft);
