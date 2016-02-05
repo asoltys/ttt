@@ -192,71 +192,9 @@ namespace TransformationTimelineTool.Controllers
             return RedirectToAction("Index");
         }
 
+        
         [AllowAnonymous]
-        [OutputCache(Duration = 3600,
-            Location = System.Web.UI.OutputCacheLocation.Server,
-            VaryByParam = "*")]
         public async Task<ActionResult> Data()
-        {
-            List<Initiative> initiatives = await db.Initiatives.
-                Include(e => e.Events).
-                Include(i => i.Impacts).ToListAsync();
-
-            return Json(
-                initiatives.Select(i => new
-                {
-                    ID = i.ID,
-                    NameE = i.NameE,
-                    NameF = i.NameF,
-                    DescriptionE = i.DescriptionE,
-                    DescriptionF = i.DescriptionF,
-                    StartDate = i.StartDate.ToShortDateString(),
-                    EndDate = i.EndDate.ToShortDateString(),
-                    Events = i.Events.Select(e => new EventJSON(e.ID)),
-                    Impacts = i.Impacts.Select(imp => new
-                    {
-                        Level = imp.Level,
-                        Branches = imp.Branches.Select(b => b.ID),
-                        Regions = imp.Regions.Select(r => r.ID)
-
-                    })
-                }), JsonRequestBehavior.AllowGet);
-        }
-
-
-        [AllowAnonymous]
-        [OutputCache(Duration = 3600,
-            Location = System.Web.UI.OutputCacheLocation.Server,
-            SqlDependency = "CommandNotification")]
-        public async Task<ActionResult> DataCache()
-        {
-            List<Initiative> initiatives = await db.Initiatives.
-                Include(e => e.Events).
-                Include(i => i.Impacts).ToListAsync();
-
-            return Json(
-                initiatives.Select(i => new
-                {
-                    ID = i.ID,
-                    NameE = i.NameE,
-                    NameF = i.NameF,
-                    DescriptionE = i.DescriptionE,
-                    DescriptionF = i.DescriptionF,
-                    StartDate = i.StartDate.ToShortDateString(),
-                    EndDate = i.EndDate.ToShortDateString(),
-                    Events = i.Events.Select(e => new EventJSON(e.ID)),
-                    Impacts = i.Impacts.Select(imp => new
-                    {
-                        Level = imp.Level,
-                        Branches = imp.Branches.Select(b => b.ID),
-                        Regions = imp.Regions.Select(r => r.ID)
-
-                    })
-                }), JsonRequestBehavior.AllowGet);
-        }
-
-        [AllowAnonymous]
-        public async Task<ActionResult> DataUni()
         {
             var viewModel = new List<object>();
             var jsonInitiatives = new List<object>();
