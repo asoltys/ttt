@@ -43,7 +43,7 @@ namespace TransformationTimelineTool.ViewModels
             HoverF = publishedEdit.HoverF;
             Branches = @event.Branches.Select(b => b.ID);
             Regions = @event.Regions.Select(r => r.ID);
-            Show = @event.Show;
+            Show = true;
         }
 
         public bool Show { get; set; }

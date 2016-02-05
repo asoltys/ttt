@@ -12,43 +12,20 @@ namespace TransformationTimelineTool.ViewModels
     {
         private TimelineContext db = new TimelineContext();
         public int ID { get; set; }
-        public int InitiativeID { get; set; }
 
-        [Display(Name = "Type", ResourceType = typeof(Resources.Resources))]
         public Models.Type Type { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Date", ResourceType = typeof(Resources.Resources))]
         public DateTime Date { get; set; }
-        public Status Status { get; set; }
 
-
-        [Display(Name = "Branches", ResourceType = typeof(Resources.Resources))]
-        public string BranchesList
-        {
-            get
-            {
-                return string.Join(" - ", Branches.Select(b => b.NameShort));
-            }
-        }
-        [Display(Name = "Regions", ResourceType = typeof(Resources.Resources))]
-        public string RegionsList
-        {
-            get
-            {
-                return string.Join(" - ", Regions.Select(r => r.NameShort));
-            }
-        }
         public bool Show
         {
             get
             {
-                if (Edits == null)
-                {
-                    return false;
-                }
+                if (Edits == null) { return false; }
+
+                //TODO Replace with return Edits.Any(e => e.Published);
                 var temp = Edits.Any(e => e.Published);
+
                 if (temp)
                 {
                     return true;
