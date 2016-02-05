@@ -291,6 +291,22 @@
     <Compile Include="Migrations\201602011833128_MakeShortNameNotRequired.Designer.cs">
       <DependentUpon>201602011833128_MakeShortNameNotRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602042215402_ReplyToinComment.cs" />
+    <Compile Include="Migrations\201602042215402_ReplyToinComment.Designer.cs">
+      <DependentUpon>201602042215402_ReplyToinComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051705048_CommentAddReplyLevel.cs" />
+    <Compile Include="Migrations\201602051705048_CommentAddReplyLevel.Designer.cs">
+      <DependentUpon>201602051705048_CommentAddReplyLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051923110_CommentChangeName.cs" />
+    <Compile Include="Migrations\201602051923110_CommentChangeName.Designer.cs">
+      <DependentUpon>201602051923110_CommentChangeName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602052117544_AddDepthAndChangeColName.cs" />
+    <Compile Include="Migrations\201602052117544_AddDepthAndChangeColName.Designer.cs">
+      <DependentUpon>201602052117544_AddDepthAndChangeColName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1366,8 +1382,7 @@
     <Content Include="Views\Home\Accessibility.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2Col.cshtml" />
     <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
-    <Content Include="Views\Partials\AddComment.cshtml" />
-    <Content Include="Views\Partials\ListComments.cshtml" />
+    <Content Include="Views\Partials\Comments.cshtml" />
     <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1492,6 +1507,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602011833128_MakeShortNameNotRequired.resx">
       <DependentUpon>201602011833128_MakeShortNameNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602042215402_ReplyToinComment.resx">
+      <DependentUpon>201602042215402_ReplyToinComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051705048_CommentAddReplyLevel.resx">
+      <DependentUpon>201602051705048_CommentAddReplyLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051923110_CommentChangeName.resx">
+      <DependentUpon>201602051923110_CommentChangeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602052117544_AddDepthAndChangeColName.resx">
+      <DependentUpon>201602052117544_AddDepthAndChangeColName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

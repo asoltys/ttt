@@ -1,0 +1,369 @@
+﻿@model TransformationTimelineTool.Models.Comment
+
+<style>
+    #commentTextInput {
+        float: left;
+        margin: 10px;
+        border: 1px solid #d4d4d4;
+    }
+
+    #addComment {
+        margin-top: 10px;
+    }
+
+    .comment-row {
+        border-top: 1px solid #cccccc;
+        margin: 0px !important;
+        margin-bottom: 10px !important;
+        float: right;
+    }
+
+    .comment-cell {
+        margin: 0 auto !important;
+        padding: 5.6px;
+        display: block;
+        float: none;
+    }
+
+    .comment-other {
+        margin: 0 auto !important;
+        padding: 5.6px;
+        float: none;
+    }
+
+    .clearfix:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+
+    .clearfix {
+        display: inline-block;
+    }
+
+    html[xmlns] .clearfix {
+        display: block;
+    }
+
+    * html .clearfix {
+        height: 1%;
+    }
+
+    .author {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .content {
+        font-size: 1.2em;
+    }
+
+    .date {
+        font-size: 0.9em !important;
+        color: #cccccc;
+    }
+
+    .action {
+        float: right !important;
+    }
+
+    .comment-row:hover .comment-other, .comment-row:hover .comment-other .action-link {
+        color: black !important;
+    }
+
+    .action-link {
+        margin-left: 2em;
+    }
+
+    .action-link, .action-link:link, .action-link:visited, .action-link:active {
+        color: #cccccc !important;
+    }
+
+    .action-link:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #replyContainer {
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+        padding: 5.6px;
+    }
+
+    .reply-box {
+        float: left;
+        margin-right: 5px;
+        width: 90%;
+    }
+
+    .reply-button {
+        float: left;
+        width: 8%;
+    }
+</style>
+
+<h4><span id="commentCount"></span>@Resources.Comment</h4>
+@Html.EditorFor(model => model.Content,
+    new
+    {
+        htmlAttributes = new
+        {
+            @class = "form-control span-7",
+            @id = "commentTextInput",
+            @accesskey = "c",
+            @tabindex = "1"
+        }
+    })
+@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+<input id="addComment" type="button" value="@Resources.Add" class="btn btn-default span-1" tabindex="2" />
+
+<div id="commentContainer" class="span-8 clearfix">
+</div>
+
+<script type="text/javascript">
+    $("#addComment").on("click", function () {
+        var $input = $("#commentTextInput");
+        if ($input.val().length == 0 || $input.val().length > 200) {
+            alert("Comment needs to be greater than 0 character and less than 200 characters");
+            var end = $input.val().length > 200 ? 200 : $input.val().length;
+            $input.val($input.val().substring(0, end));
+            return;
+        }
+        submitComment($input.val());
+    });
+
+    function clearField() {
+        $("#commentTextInput").val("");
+    }
+
+    function submitComment(comment) {
+        var temp = JSON.stringify({ comment: comment });
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/en/Comments/AddComment",
+            data: temp,
+            cache: false,
+            success: function (response) {
+                clearField();
+                grabComments();
+            }, error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+    var commentModule = (function () {
+        var actions = "";
+        var commentObject = {
+            row: "",
+            author: "",
+            content: "",
+            date: "",
+            actions: "",
+            depth: ""
+        };
+        var $commentObject = {
+            row: null,
+            author: null,
+            content: null,
+            date: null,
+            actions: null,
+            depth: null
+        };
+        var $commentContainer = $("#commentContainer");
+
+        function closeTag(obj) {
+            return obj.indexOf("div") > -1 ? "</div>" : "</span>";
+        }
+
+        function closeTags() {
+            for (prop in commentObject) {
+                if (prop.indexOf("depth") > -1) continue;
+                commentObject[prop] += closeTag(commentObject[prop]);
+            }
+        }
+
+        function resetVariables() {
+            commentObject = {
+                row: "<div class='span-8 comment-row'>",
+                author: "<span class='comment-cell author'>",
+                content: "<span class='comment-cell content'>",
+                date: "<span class='comment-other date'>",
+                actions: "<span class='comment-other action'>",
+                depth: "",
+            };
+            $commentObject = {
+                row: null,
+                author: null,
+                content: null,
+                date: null,
+                actions: null,
+                depth: null,
+            };
+        }
+
+        function createActions(id) {
+            actions = '<a class="action-link"';
+            actions += 'onclick="commentModule.replyBox(\'' + id + '\'); return false;">';
+            actions += 'Reply</a>';
+            actions += '<a class="action-link"';
+            actions += 'onclick="commentModule.deleteComment(\'' + id + '\'); return false;">';
+            actions += '@Resources.Delete</a>';
+            return actions;
+        }
+
+        function replyBox(id) {
+            var $parentComment = $('#comment_module_' + id);
+            if ($('#replyContainer').length > 0) $('#replyContainer').remove();
+            $('<div id="replyContainer"></div>').appendTo($parentComment);
+            $('<input type="text" id="replyBox" class="reply-box" size="200" />').appendTo('#replyContainer');
+            $('<input id="replySubmit" type="button" value="@Resources.Add" class="btn btn-default reply-button" />').appendTo('#replyContainer');
+
+            $("#replySubmit").on("click", function () {
+                var $input = $("#replyBox");
+                if ($input.val().length == 0 || $input.val().length > 200) {
+                    alert("Comment needs to be greater than 0 character and less than 200 characters");
+                    var end = $input.val().length > 200 ? 200 : $input.val().length;
+                    $input.val($input.val().substring(0, end));
+                    return;
+                }
+                replyToComment($input.val(), id);
+            });
+        }
+
+        function replyToComment(comment, id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/en/Comments/AddComment",
+                data: JSON.stringify({ comment: comment, replyTo: parseInt(id, 10) }),
+                cache: false,
+                success: function (response) {
+                    grabComments();
+                }, error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function deleteComment(id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/en/Comments/DeleteComment",
+                data: JSON.stringify({ id: parseInt(id, 10) }),
+                cache: false,
+                success: function (response) {
+                    grabComments();
+                }, error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function createPostedTime(datetime) {
+            var postUTCms = datetime;
+            var nowUTCms = new Date().getTime();
+            var diffUTCsec = Math.floor((nowUTCms - postUTCms) / 1000);
+            var postTimeString = "TBA";
+            if (diffUTCsec < 60) {
+                postTimeString = "Just now";
+            } else if (diffUTCsec < 3600) {
+                if (diffUTCsec < 120)
+                    postTimeString = Math.floor(diffUTCsec / 60) + " minute ago";
+                else
+                    postTimeString = Math.floor(diffUTCsec / 60) + " minutes ago";
+            } else if (diffUTCsec < 86400) {
+                if (diffUTCsec < 7200)
+                    postTimeString = Math.floor(diffUTCsec / 60 / 60) + " hour ago";
+                else
+                    postTimeString = Math.floor(diffUTCsec / 60 / 60) + " hours ago";
+            } else if (diffUTCsec < 172800) {
+                postTimeString = Math.floor(diffUTCsec / 60 / 60 / 24) + " day ago";
+            } else {
+                postTimeString = Math.floor(diffUTCsec / 60 / 60 / 24) + " days ago";
+            }
+            return postTimeString;
+        }
+
+        function makeHTML(id) {
+            for (prop in commentObject) {
+                $commentObject[prop] = $($.parseHTML(commentObject[prop]));
+            }
+            $commentObject.row.attr('id', 'comment_module_' + id);
+            var depth = parseInt($commentObject.depth.text(), 10);
+            var leftMargin = 1 - depth / 20;
+            $commentObject.row.attr('data-depth', depth);
+            $commentObject.row.append(
+                $commentObject.author,
+                $commentObject.content,
+                $commentObject.date,
+                $commentObject.actions);
+            $commentContainer.append($commentObject.row);
+            $commentObject.row.width($commentObject.row.width() * leftMargin);
+        }
+
+        return {
+            makeARow: function (comment) {
+                resetVariables();
+                commentObject.author += comment.Author;
+                commentObject.content += comment.Content;
+                commentObject.date += createPostedTime(comment.Date);
+                commentObject.actions += createActions(comment.Id);
+                commentObject.depth += comment.Depth;
+                closeTags();
+                makeHTML(comment.Id);
+            },
+            deleteComment: function (id) {
+                deleteComment(id);
+            },
+            replyBox: function (id) {
+                replyBox(id);
+            }
+        }
+    })();
+
+    function displayComments($response) {
+        $("#commentContainer").empty();
+        $.each($response, function (idx, val) {
+            commentModule.makeARow(val);
+        });
+        $("#commentCount").text($response.length + " ");
+    }
+    function grabComments() {
+        $.ajax({
+            type: "POST",
+            url: "/en/Comments/GetComments",
+            dataType: "json",
+            success: function (response) {
+                displayComments(response);
+            }, error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+    grabComments();
+
+    $(window).resize(function () {
+        recalculateWidth();
+    });
+    var recalculate = 0;
+    function recalculateWidth() {
+        $rows = $(".comment-row");
+        $.each($rows, function (idx, val) {
+            var $row = $(val);
+            var depth = $row.data("depth");
+            var leftMargin = 1 - depth / 20;
+            $row.removeAttr("style");
+            $row.width($row.width() * leftMargin);
+        });
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

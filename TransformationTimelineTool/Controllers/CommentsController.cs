@@ -17,6 +17,33 @@ namespace TransformationTimelineTool.Controllers
     {
         private TimelineContext db = new TimelineContext();
 
+        private async Task<List<Comment>> GetParents()
+        {
+            return await db.Comments.Where(c => (c.ReplyTo == 0)).ToListAsync();
+        }
+
+        private async Task<List<Comment>> GetChildren(int ParentId)
+        {
+            return await db.Comments.Where(c => (c.ReplyTo == ParentId)).ToListAsync();
+        }
+
+        private async Task<Comment> GetComment(int Id)
+        {
+            return await db.Comments.Where(c => (c.Id == Id)).SingleAsync();
+        }
+
+        private async Task<List<Comment>> GetComments(int order)
+        {
+            return await db.Comments.Where(c => (c.Order == order)).ToListAsync();
+        }
+
+        private async Task<int> GetMaxOrder()
+        {
+            if (db.Comments.Count() > 0)
+                return await db.Comments.MaxAsync(c => c.Order);
+            return 0;
+        }
+
         // POST: Comments
         [HttpPost]
         public async Task<ActionResult> GetComments()
@@ -28,24 +55,35 @@ namespace TransformationTimelineTool.Controllers
                 Id = e.Id,
                 Content = e.Content,
                 Author = e.AuthorName,
-                Date = e.Date.ToShortDateString()
-            }));
+                Date = new TimeSpan(e.Date.ToUniversalTime().Ticks - new DateTime(1970, 1, 1).Ticks).TotalMilliseconds,
+                ReplyTo = e.ReplyTo,
+                Order = e.Order,
+                Depth = e.Depth
+            }).OrderBy(c => c.Order));
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddComment(string comment)
+        public async Task<ActionResult> AddComment(string comment, int replyto = 0)
         {
             var currentUser = Utils.GetFullName();
-            Utils.log(currentUser);
-
-            Comment ajaxComment = new Comment();
-            ajaxComment.AuthorName = currentUser;
-            ajaxComment.Date = DateTime.Now;
-            ajaxComment.Content = comment;
-            db.Comments.Add(ajaxComment);
+            Comment Comment = new Comment();
+            Comment.AuthorName = currentUser;
+            Comment.Date = DateTime.Now;
+            Comment.Content = comment;
+            Comment.ReplyTo = replyto;
+            if (replyto > 0)
+            {
+                var Parent = await GetComment(replyto);
+                Comment.Order = Parent.Order;
+                Comment.Depth = Parent.Depth + 1;
+            } else
+            {
+                Comment.Order = await GetMaxOrder() + 1;
+            }
+            db.Comments.Add(Comment);
             await db.SaveChangesAsync();
 
-            return Json(ajaxComment);
+            return Json(Comment);
         }
         
         [HttpPost]
