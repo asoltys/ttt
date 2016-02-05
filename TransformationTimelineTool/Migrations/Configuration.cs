@@ -74,42 +74,86 @@ namespace TransformationTimelineTool.Migrations
             base.Seed(context);
 
            
- /*
             var initiatives = new List<Initiative>
             {
-                new Initiative {NameE = "Defense Procurement Strategy", DescriptionE = "Descp 1", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
-                new Initiative {NameE = "Case and Client Relationship Management", DescriptionE = "Descp 2", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") },
-                new Initiative {NameE = "Holidays", DescriptionE = "Canadian Holidays", StartDate = DateTime.Parse("2013-12-1"), EndDate = DateTime.Parse("2020-3-31") }
-
+                new Initiative {
+                    NameE = "Defense Procurement Strategy",
+                    NameF = "Defense Procurement Strategy",
+                    DescriptionE = "Descp 1",
+                    DescriptionF = "Descp 1",
+                    StartDate = DateTime.Parse("2013-12-1"),
+                    EndDate = DateTime.Parse("2020-3-31") },
+                new Initiative {
+                    NameE = "Case and Client Relationship Management",
+                    NameF = "Case and Client Relationship Management",
+                    DescriptionE = "Descp 2",
+                    DescriptionF = "Descp 2",
+                    StartDate = DateTime.Parse("2013-12-1"),
+                    EndDate = DateTime.Parse("2020-3-31") },
+                new Initiative {
+                    NameE = "Holidays",
+                    NameF = "Holidays",
+                    DescriptionE = "Canadian Holidays",
+                    DescriptionF = "Canadian Holidays",
+                    StartDate = DateTime.Parse("2013-12-1"),
+                    EndDate = DateTime.Parse("2020-3-31") }
             };
 
             initiatives.ForEach(i => context.Initiatives.AddOrUpdate(p => p.NameE, i));
             context.SaveChanges();
+
+            var eventCreator = UserManager.FindByName("ttt_opi");
+            var eventCreator2 = UserManager.FindByName("ttt_editor");
+
             var events = new List<Event>
             {
-               new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,
-                   Date = DateTime.Parse("2015-07-31"),
-                   BranchID = branches.Single(b => b.NameShort == "rp").ID,
-                   RegionID = regions.Single(r => r.NameShort == "pac").ID,
-                   TextE = "Launch of SMART Procurement",
-                   HoverE = "Launch of SMART Procurement" },
-               new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,
-                   Date = DateTime.Parse("2015-06-30"),
-                   BranchID = branches.Single(b => b.NameShort == "ciob").ID,
-                   RegionID = regions.Single(r => r.NameShort == "pac").ID,
-                   TextE = "Launch of SMART Procurement Lean",
-                   HoverE = "Launch of SMART Procurement Lean" },
-               new Event {InitiativeID = initiatives.Single(i => i.DescriptionE == "Descp 1").ID,
-                   Date = DateTime.Parse("2015-08-15"),
-                   BranchID = branches.Single(b => b.NameShort == "rp").ID,
-                   RegionID = regions.Single(r => r.NameShort == "wst").ID,
-                   TextE = "Matty's 31st birthday",
-                   HoverE = "Matty's 31st birthday" }
+               new Event {
+                   InitiativeID = initiatives.Single(i => i.NameE == "Holidays").ID,
+                   Branches = context.Branches.Where(b => b.ID < 5).ToList(),
+                   Regions = context.Regions.Where(r => r.ID == 5).ToList(),
+                   Edits = new List<Edit>
+                   {
+                      new Edit
+                      {
+                          HoverE = "Christmas",
+                          HoverF = "Noel",
+                          TextE = "Happy Christmas!",
+                          TextF = "Joyeaux Noel",
+                          Date = new DateTime(2015,12,25),
+                          DisplayDate = new DateTime(2015,12,25),
+                          Published = true,
+                          Type = Models.Type.Milestone,
+                          EditorID = eventCreator.Id
+                      }
+                   },
+                   CreatorID = eventCreator.Id,
+                   Status = Status.Approved
+               },
+               new Event {
+                   InitiativeID = initiatives.Single(i => i.NameE == "Holidays").ID,
+                   Branches = context.Branches.Where(b => b.ID == 5).ToList(),
+                   Regions = context.Regions.Where(r => r.ID <= 5).ToList(),
+                   Edits = new List<Edit>
+                   {
+                      new Edit
+                      {
+                          HoverE = "Valentine's Day",
+                          HoverF = "le jour de la Saint-Valentin",
+                          Date = new DateTime(2016,2,14),
+                          DisplayDate = new DateTime(2016,2,14),
+                          Published = true,
+                          Type = Models.Type.Training,
+                          EditorID = eventCreator2.Id
+                      }
+                   },
+                   CreatorID = eventCreator2.Id,
+                   Status = Status.Approved
+               }
             };
 
-            events.ForEach(e => context.Events.Add(e));
+            //events.ForEach(e => context.Events.Add(e));
+            events.ForEach(e => context.Events.AddOrUpdate(p => p.CreatorID, e));
             context.SaveChanges();
-            */
         }
 
         void AddUser(UserManager<User> userManager, string name, string role, string email = "mathieu.wong-rose@pwgsc.gc.ca")

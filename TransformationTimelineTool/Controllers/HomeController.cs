@@ -7,12 +7,16 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Helpers;
+using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
 {
     public class HomeController : BaseController
     {
+        private TimelineContext db = new TimelineContext();
+
         public ActionResult Index()
         {
             return View();
@@ -70,6 +74,38 @@ namespace TransformationTimelineTool.Controllers
             string PreviousController = values["controller"].ToString();
             Utils.log(PreviousController);
             return RedirectToAction("Index", PreviousController, new { lang = lang });
+        }
+
+        public ActionResult Playground()
+        {
+            var currentUser = Utils.GetCurrentUser();
+            
+            var eve = new Event
+            {
+                CreatorID = currentUser.Id,
+                InitiativeID = 2,
+                Status = Status.Approved,
+                Branches = db.Branches.Where(b => b.ID == 5).ToList(),
+                Regions = db.Regions.Where(r => r.ID <= 5).ToList()
+            };
+
+            var edit = new Edit
+            {
+                Date = DateTime.Now,
+                DisplayDate = DateTime.Now,
+                HoverE = "Add through events.add(edit)",
+                HoverF = "Test",
+                Published = true,
+                Type = Models.Type.Milestone,
+                EditorID = currentUser.Id
+            };
+
+            eve.Edits = new List<Edit>();
+            eve.Edits.Add(edit);
+            db.Events.Add(eve);
+            //db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

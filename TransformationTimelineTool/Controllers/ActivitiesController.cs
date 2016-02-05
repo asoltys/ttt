@@ -91,11 +91,8 @@ namespace TransformationTimelineTool.Controllers
                     var StatusStates = Tuple.Create(Status.Draft, eventViewModel.Event.Status);
                     var NotificationAction = DetermineNotificationAction(StatusStates);
                     eventToCreate.CreatorID = currentUser.Id;
-                    eventToCreate.Branches = new List<Branch>();
-                    eventToCreate.Regions = new List<Region>();
-                    eventToCreate.Edits = new List<Edit>();
 
-                    var selectedBranchesHS = new HashSet<string>(selectedBranches);
+                    eventToCreate.Branches = new List<Branch>();
                     foreach (var branch in db.Branches)
                     {
                         if (selectedBranches.Contains(branch.ID.ToString()))
@@ -104,7 +101,7 @@ namespace TransformationTimelineTool.Controllers
                         }
                     }
 
-                    var selectedRegionsHS = new HashSet<string>(selectedRegions);
+                    eventToCreate.Regions = new List<Region>();
                     foreach (var region in db.Regions)
                     {
                         if (selectedRegions.Contains(region.ID.ToString()))
@@ -113,14 +110,18 @@ namespace TransformationTimelineTool.Controllers
                         }
                     }
 
-                    eventViewModel.Edit.Editor = db.Users.Find(currentUser.Id);
-                    eventViewModel.Edit.Date = DateTime.Now;
+                    var edit = eventViewModel.Edit;
+
+                    edit.EditorID = currentUser.Id;
+                    edit.Date = DateTime.Now;
 
                     if (eventToCreate.Status == Status.Approved)
                     {
-                        eventViewModel.Edit.Published = true;
+                        edit.Published = true;
                     }
-                    eventToCreate.Edits.Add(eventViewModel.Edit);
+
+                    eventToCreate.Edits = new List<Edit>();
+                    eventToCreate.Edits.Add(edit);
 
                     db.Events.Add(eventToCreate);
                     db.SaveChanges();
