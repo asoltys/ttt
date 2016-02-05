@@ -23,5 +23,11 @@ namespace TransformationTimelineTool.Models
         public DateTime Date { get; set; }
 
         public String AuthorName { get; set; }
+
+        public int ReplyTo { get; set; }
+
+        public int Order { get; set; }
+
+        public int Depth { get; set; }
     }
 }
