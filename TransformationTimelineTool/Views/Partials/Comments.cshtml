@@ -296,7 +296,7 @@
             }
             $commentObject.row.attr('id', 'comment_module_' + id);
             var depth = parseInt($commentObject.depth.text(), 10);
-            var leftMargin = 1 - depth / 20;
+            var leftMargin = 1 - depth / 25;
             $commentObject.row.attr('data-depth', depth);
             $commentObject.row.append(
                 $commentObject.author,
@@ -304,6 +304,7 @@
                 $commentObject.date,
                 $commentObject.actions);
             $commentContainer.append($commentObject.row);
+            $commentContainer.append('<br />');
             $commentObject.row.width($commentObject.row.width() * leftMargin);
         }
 
@@ -357,7 +358,7 @@
         $.each($rows, function (idx, val) {
             var $row = $(val);
             var depth = $row.data("depth");
-            var leftMargin = 1 - depth / 20;
+            var leftMargin = 1 - depth / 25;
             $row.removeAttr("style");
             $row.width($row.width() * leftMargin);
         });
