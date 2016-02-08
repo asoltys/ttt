@@ -27,9 +27,14 @@ namespace TransformationTimelineTool.Controllers
             return await db.Comments.Where(c => (c.ReplyTo == ParentId)).ToListAsync();
         }
 
-        private async Task<Comment> GetComment(int Id)
+        private async Task<Comment> GetCommentAsync(int Id)
         {
             return await db.Comments.Where(c => (c.Id == Id)).SingleAsync();
+        }
+
+        private Comment GetComment(int Id)
+        {
+            return db.Comments.Where(c => (c.Id == Id)).Single();
         }
 
         private async Task<List<Comment>> GetComments(int order)
@@ -44,13 +49,73 @@ namespace TransformationTimelineTool.Controllers
             return 0;
         }
 
+        private LinkedList<Comment> SortComments(List<Comment> all)
+        {
+            HashSet<Comment> HashComments = new HashSet<Comment>(all);
+            return SortCommentEx(HashComments, new LinkedList<Comment>(), all.Count());
+        }
+
+        private LinkedList<Comment> SortCommentEx(HashSet<Comment> All, LinkedList<Comment> Result, int Count)
+        {
+            try
+            {
+                if (Count == Result.Count()) return Result;
+                Comment CurrentComment = All.First();
+                if (CurrentComment.ReplyTo == 0)
+                {
+                    Result.AddLast(All.First());
+                    All.Remove(CurrentComment);
+                }
+                else
+                {
+                    LinkedListNode<Comment> ParentNode = Result.Find(GetComment(CurrentComment.ReplyTo));
+                    List<Comment> Children = All.Where(c => c.ReplyTo == CurrentComment.ReplyTo).ToList();
+                    Children.Reverse();
+                    foreach (Comment child in Children)
+                    {
+                        Result.AddAfter(ParentNode, child);
+                        All.Remove(child);
+                    }
+                }
+                return SortCommentEx(All, Result, Count);
+            } catch (Exception ex)
+            {
+                Utils.log(ex.ToString());
+            }
+            return null;
+        }
+        
+
+        private static void PrintCommentList(LinkedList<Comment> list)
+        {
+            foreach (var c in list)
+            {
+                Utils.log("(" + c.Id + ") " + c.AuthorName + ": " + c.Content + " @ " + c.Date);
+            }
+        }
+        private static void PrintCommentList(List<Comment> list)
+        {
+            foreach (var c in list)
+            {
+                Utils.log("(" + c.Id + ") " + c.AuthorName + ": " + c.Content + " @ " + c.Date);
+            }
+        }
+
+        private static void PrintCommentList(HashSet<Comment> list)
+        {
+            foreach (var c in list)
+            {
+                Utils.log("(" + c.Id + ") " + c.AuthorName + ": " + c.Content + " @ " + c.Date);
+            }
+        }
+
         // POST: Comments
         [HttpPost]
         public async Task<ActionResult> GetComments()
         {
             var Comments = await db.Comments.ToListAsync();
             return Json(
-            Comments.Select(e => new
+            SortComments(Comments).Select(e => new
             {
                 Id = e.Id,
                 Content = e.Content,
@@ -73,7 +138,7 @@ namespace TransformationTimelineTool.Controllers
             Comment.ReplyTo = replyto;
             if (replyto > 0)
             {
-                var Parent = await GetComment(replyto);
+                var Parent = await GetCommentAsync(replyto);
                 Comment.Order = Parent.Order;
                 Comment.Depth = Parent.Depth + 1;
             } else
@@ -89,10 +154,9 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         public async Task<ActionResult> DeleteComment(string id)
         {
-            Utils.log(id);
-            var CommentId = Int32.Parse(id);
+            int CommentId = Int32.Parse(id);
             Comment comment = await db.Comments.FindAsync(CommentId);
-            db.Comments.Remove(comment);
+            comment.Content = "Deleted";
             await db.SaveChangesAsync();
             return Json(comment);
         }
