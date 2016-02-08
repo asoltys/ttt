@@ -14,12 +14,13 @@ namespace TransformationTimelineTool.Models
     {
         public int ID { get; set; }
 
-
+        [AllowHtml]
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
             ErrorMessageResourceName = "InitiativeRequiredNameEnglish")]
         [Display(Name = "InitEnglishName", ResourceType = typeof(Resources.Resources))]
         public string NameE { get; set; }
 
+        [AllowHtml]
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
             ErrorMessageResourceName = "InitiativeRequiredNameFrench")]
         [Display(Name = "InitFrenchName", ResourceType = typeof(Resources.Resources))]
