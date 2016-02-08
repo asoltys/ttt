@@ -20,12 +20,14 @@ namespace TransformationTimelineTool.Models
         [AllowHtml]
         [Display(Name = "EventFraText", ResourceType = typeof(Resources.Resources))]
         public String TextF { get; set; }
-        
+
+        [AllowHtml]
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
             ErrorMessageResourceName = "EventRequiredDescriptionEnglish")]
         [Display(Name = "EventEngHover", ResourceType = typeof(Resources.Resources))]
         public String HoverE { get; set; }
 
+        [AllowHtml]
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
             ErrorMessageResourceName = "EventRequiredDescriptionFrench")]
         [Display(Name = "EventFraHover", ResourceType = typeof(Resources.Resources))]
