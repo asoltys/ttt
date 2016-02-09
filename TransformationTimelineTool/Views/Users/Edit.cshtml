@@ -21,7 +21,6 @@ else
     @Html.AntiForgeryToken()
     <div class="">
         <h4>@Resources.User</h4>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.User.Id)
 
         <div class="form-group">
