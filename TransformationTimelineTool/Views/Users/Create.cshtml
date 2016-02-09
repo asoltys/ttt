@@ -47,13 +47,20 @@ else
                                }
                                 @:<td>
                                     <input type="checkbox"
+                                           id="select_initiative_@initiative.ID"
                                            name="selectedInitiatives"
                                            value="@initiative.ID"
                                            @(Html.Raw(initiative.Flag ? "checked=\"checked\"" : "")) />
-                                        @initiative.Name
+                                    <label for="select_initiative_@initiative.ID">@initiative.Name</label>
                                         @:</td>
                            }
                         }
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="select_all_initiatives" name="selectAllInitiatives" />
+                            <label for="select_all_initiatives">Select/Deselct All</label>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -74,10 +81,11 @@ else
                                }
                                 @:<td class="roleContainer">
                                     <input type="checkbox"
+                                           id="select_user_role_@role.ID"
                                            name="selectedRoles"
                                            value="@role.Name"
                                            @(Html.Raw(role.Flag ? "checked=\"checked\"" : "")) />
-                                        @role.Name
+                                        <label for="select_user_role_@role.ID">@role.Name</label>
                                         @:</td>
                            }
                         }
@@ -107,19 +115,12 @@ else
 
     <script>
         $(document).ready(function () {
-            $('#selectAllRegions').click(function () {
-                if ($(this).prop("checked")) {
-                    $('input[name="selectedRegions"]').prop("checked", false);
-                } else {
-                    $('input[name="selectedRegions"]').prop("checked", true);
-                }
-            });
 
-            $('#selectAllBranches').click(function () {
+            $('#select_all_initiatives').click(function () {
                 if ($(this).prop("checked")) {
-                    $('input[name="selectedBranches"]').prop("checked", false);
+                    $('input[name="selectedInitiatives"]').prop("checked", true);
                 } else {
-                    $('input[name="selectedBranches"]').prop("checked", true);
+                    $('input[name="selectedInitiatives"]').prop("checked", false);
                 }
             });
 
