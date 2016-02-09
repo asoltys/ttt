@@ -125,37 +125,6 @@
 </div>
 
 <script type="text/javascript">
-    $("#addComment").on("click", function () {
-        var $input = $("#commentTextInput");
-        if ($input.val().length == 0 || $input.val().length > 200) {
-            alert("Comment needs to be greater than 0 character and less than 200 characters");
-            var end = $input.val().length > 200 ? 200 : $input.val().length;
-            $input.val($input.val().substring(0, end));
-            return;
-        }
-        submitComment($input.val());
-    });
-
-    function clearField() {
-        $("#commentTextInput").val("");
-    }
-
-    function submitComment(comment) {
-        var temp = JSON.stringify({ comment: comment });
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/en/Comments/AddComment",
-            data: temp,
-            cache: false,
-            success: function (response) {
-                clearField();
-                grabComments();
-            }, error: function (response) {
-                console.log(response);
-            }
-        });
-    }
     var commentModule = (function () {
         var actions = "";
         var commentObject = {
@@ -265,6 +234,44 @@
             });
         }
 
+        function submitComment(comment) {
+            var temp = JSON.stringify({ comment: comment });
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/en/Comments/AddComment",
+                data: temp,
+                cache: false,
+                success: function (response) {
+                    clearField();
+                    grabComments();
+                }, error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function grabComments() {
+            $.ajax({
+                type: "POST",
+                url: "/en/Comments/GetComments",
+                dataType: "json",
+                success: function (response) {
+                    displayComments(response);
+                }, error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+
+        function displayComments($response) {
+            $("#commentContainer").empty();
+            $.each($response, function (idx, val) {
+                commentModule.makeARow(val);
+            });
+            $("#commentCount").text($response.length + " ");
+        }
+
         function createPostedTime(datetime) {
             var postUTCms = datetime;
             var nowUTCms = new Date().getTime();
@@ -308,6 +315,38 @@
             $commentObject.row.width($commentObject.row.width() * leftMargin);
         }
 
+        function recalculateWidth() {
+            $rows = $(".comment-row");
+            $.each($rows, function (idx, val) {
+                var $row = $(val);
+                var depth = $row.data("depth");
+                var leftMargin = 1 - depth / 25;
+                $row.removeAttr("style");
+                $row.width($row.width() * leftMargin);
+            });
+        }
+        
+        function clearField() {
+            $("#commentTextInput").val("");
+        }
+
+        function addEventListeners() {
+            $(window).resize(function () {
+                recalculateWidth();
+            });
+
+            $("#addComment").on("click", function () {
+                var $input = $("#commentTextInput");
+                if ($input.val().length == 0 || $input.val().length > 200) {
+                    alert("Comment needs to be greater than 0 character and less than 200 characters");
+                    var end = $input.val().length > 200 ? 200 : $input.val().length;
+                    $input.val($input.val().substring(0, end));
+                    return;
+                }
+                submitComment($input.val());
+            });
+        }
+
         return {
             makeARow: function (comment) {
                 resetVariables();
@@ -324,45 +363,18 @@
             },
             replyBox: function (id) {
                 replyBox(id);
+            },
+            addEventListeners: function () {
+                addEventListeners();
+            },
+            grabComments: function () {
+                grabComments();
             }
         }
     })();
+    commentModule.addEventListeners();
+    commentModule.grabComments();
 
-    function displayComments($response) {
-        $("#commentContainer").empty();
-        $.each($response, function (idx, val) {
-            commentModule.makeARow(val);
-        });
-        $("#commentCount").text($response.length + " ");
-    }
-    function grabComments() {
-        $.ajax({
-            type: "POST",
-            url: "/en/Comments/GetComments",
-            dataType: "json",
-            success: function (response) {
-                displayComments(response);
-            }, error: function (response) {
-                console.log(response);
-            }
-        });
-    }
-    grabComments();
-
-    $(window).resize(function () {
-        recalculateWidth();
-    });
-    var recalculate = 0;
-    function recalculateWidth() {
-        $rows = $(".comment-row");
-        $.each($rows, function (idx, val) {
-            var $row = $(val);
-            var depth = $row.data("depth");
-            var leftMargin = 1 - depth / 25;
-            $row.removeAttr("style");
-            $row.width($row.width() * leftMargin);
-        });
-    }
 </script>
 
 @section Scripts {
