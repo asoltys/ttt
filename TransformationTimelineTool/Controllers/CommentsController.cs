@@ -85,23 +85,7 @@ namespace TransformationTimelineTool.Controllers
             return null;
         }
         
-
-        private static void PrintCommentList(LinkedList<Comment> list)
-        {
-            foreach (var c in list)
-            {
-                Utils.log("(" + c.Id + ") " + c.AuthorName + ": " + c.Content + " @ " + c.Date);
-            }
-        }
-        private static void PrintCommentList(List<Comment> list)
-        {
-            foreach (var c in list)
-            {
-                Utils.log("(" + c.Id + ") " + c.AuthorName + ": " + c.Content + " @ " + c.Date);
-            }
-        }
-
-        private static void PrintCommentList(HashSet<Comment> list)
+        private static void PrintCommentList(ICollection<Comment> list)
         {
             foreach (var c in list)
             {
