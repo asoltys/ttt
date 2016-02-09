@@ -11,3 +11,7 @@ dt {
     padding-top:1.5em;
 }
 
+.no-style {
+    font-weight: normal !important;
+    margin: 0px;
+}

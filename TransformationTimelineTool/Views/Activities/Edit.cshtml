@@ -68,10 +68,11 @@ else
                                 }
                                 @:<td>
                                     <input type="checkbox"
+                                           id="select_branches_@branch.ID"
                                            name="selectedBranches"
                                            value="@branch.ID"
                                            @(Html.Raw(branch.Flag ? "checked=\"checked\"" : "")) />
-                                        @branch.Name
+                                        <label class="no-style" for="select_branches_@branch.ID">@branch.Name</label>
                                 @:</td>
                             }
                         }
@@ -80,9 +81,9 @@ else
                         <td>
                             <input type="checkbox"
                                    name="selectAllBranches"
-                                  id="selectAllBranches"
-                                   value="allBranches" />
-                            @Resources.Deselect/@Resources.SelectAll
+                                   id="selectAllBranches"
+                                   value="allBranches"/>
+                            <label class="no-style" for="selectAllBranches">@Resources.Deselect/@Resources.SelectAll</label>
                         </td>
                     </tr>
                 </table>
@@ -105,11 +106,12 @@ else
                                    @:</tr><tr>
                                }
                                @:<td>
-                                    <input type="checkbox"
-                                           name="selectedRegions"
-                                           value="@region.ID"
-                                           @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
-                                           @region.Name
+                                     <input type="checkbox"
+                                            id="select_region_@region.ID"
+                                            name="selectedRegions"
+                                            value="@region.ID"
+                                            @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
+                                        <label class="no-style" for="select_regions_@region.ID">@region.Name</label>
                                @:</td>
                            }
                        }
@@ -120,7 +122,7 @@ else
                                   name="selectAllRegions"
                                   id="selectAllRegions"
                                   value="allRegions" />
-                           @Resources.Deselect/@Resources.SelectAll
+                           <label class="no-style" for="selectAllRegions">@Resources.Deselect/@Resources.SelectAll</label>
                        </td>
                    </tr>
                </table>

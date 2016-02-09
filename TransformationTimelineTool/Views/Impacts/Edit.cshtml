@@ -59,10 +59,11 @@ else
                                 }
                                 @:<td>
                                     <input type="checkbox"
+                                           id="select_branches_@branch.ID"
                                            name="selectedBranches"
                                            value="@branch.ID"
                                            @(Html.Raw(branch.Flag ? "checked=\"checked\"" : "")) />
-                                        @branch.Name
+                                        <label class="no-style" for="select_branches_@branch.ID">@branch.Name</label>
                                         @:</td>
                             }
                         }
@@ -73,7 +74,7 @@ else
                                    name="selectAllBranches"
                                    id="selectAllBranches"
                                    value="allBranches" />
-                            Deselect/Select All
+                            <label class="no-style" for="selectAllBranches">@Resources.Deselect/@Resources.SelectAll</label>
                         </td>
                     </tr>
                 </table>
@@ -97,10 +98,11 @@ else
                                }
                                 @:<td>
                                     <input type="checkbox"
+                                           id="select_region_@region.ID"
                                            name="selectedRegions"
                                            value="@region.ID"
                                            @(Html.Raw(region.Flag ? "checked=\"checked\"" : "")) />
-                                        @region.Name
+                                        <label class="no-style" for="select_regions_@region.ID">@region.Name</label>
                                         @:</td>
                            }
                         }
@@ -111,7 +113,7 @@ else
                                    name="selectAllRegions"
                                    id="selectAllRegions"
                                    value="allRegions" />
-                            Deselect/Select All
+                            <label class="no-style" for="selectAllRegions">@Resources.Deselect/@Resources.SelectAll</label>
                         </td>
                     </tr>
                 </table>

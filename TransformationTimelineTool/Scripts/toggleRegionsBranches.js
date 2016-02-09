@@ -14,4 +14,12 @@
             $('input[name="selectedBranches"]').prop("checked", true);
         }
     });
+
+    $('#select_all_initiatives').click(function () {
+        if ($(this).prop("checked")) {
+            $('input[name="selectedInitiatives"]').prop("checked", false);
+        } else {
+            $('input[name="selectedInitiatives"]').prop("checked", true);
+        }
+    });
 });

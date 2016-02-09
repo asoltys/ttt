@@ -51,15 +51,15 @@ else
                                            name="selectedInitiatives"
                                            value="@initiative.ID"
                                            @(Html.Raw(initiative.Flag ? "checked=\"checked\"" : "")) />
-                                    <label for="select_initiative_@initiative.ID">@initiative.Name</label>
+                                    <label class="no-style" for="select_initiative_@initiative.ID">@initiative.Name</label>
                                         @:</td>
                            }
                         }
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="select_all_initiatives" name="selectAllInitiatives" />
-                            <label for="select_all_initiatives">Select/Deselct All</label>
+                            <input type="checkbox" id="select_all_initiatives" name="selectAllInitiatives" checked/>
+                            <label class="no-style" for="select_all_initiatives">@Resources.Deselect/@Resources.SelectAll</label>
                         </td>
                     </tr>
                 </table>
@@ -85,7 +85,7 @@ else
                                            name="selectedRoles"
                                            value="@role.Name"
                                            @(Html.Raw(role.Flag ? "checked=\"checked\"" : "")) />
-                                        <label for="select_user_role_@role.ID">@role.Name</label>
+                                        <label class="no-style" for="select_user_role_@role.ID">@role.Name</label>
                                         @:</td>
                            }
                         }
@@ -112,18 +112,10 @@ else
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/front-end-custom-validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/toggleRegionsBranches.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
-
-            $('#select_all_initiatives').click(function () {
-                if ($(this).prop("checked")) {
-                    $('input[name="selectedInitiatives"]').prop("checked", true);
-                } else {
-                    $('input[name="selectedInitiatives"]').prop("checked", false);
-                }
-            });
-
             if (window.location.href.indexOf('fr') > -1) {
                 var roles = $(".roleContainer");
                 $.each(roles, function (index, dom) {
