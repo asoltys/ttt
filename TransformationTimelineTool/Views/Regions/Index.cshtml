@@ -49,9 +49,6 @@ else
         <td>
             @if (ViewBag.isAdmin)
             {
-            <a class="no-link-style" href="@Url.Action("Edit", "Regions", new { lang = ViewBag.lang,  id = item.ID})">
-                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-            </a>
             <a class="no-link-style" href="@Url.Action("Details", "Regions", new { lang = ViewBag.lang, id = item.ID})">
                     <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
             </a>
