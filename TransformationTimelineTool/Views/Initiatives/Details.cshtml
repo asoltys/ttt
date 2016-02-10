@@ -54,6 +54,9 @@ else
                             <a class="no-link-style" href="@Url.Action("Details", "Activities", new {  lang=ViewBag.lang, id = item.ID })">
                                 <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                             </a>
+                            <a class="no-link-style" href="@Url.Action("Delete", "Activities", new {lang = ViewBag.lang, id = item.ID })">
+                                <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                            </a>
                         </td>
                     </tr>
                 }
@@ -87,6 +90,9 @@ else
                             </a>
                             <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
                                 <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                            </a>
+                            <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
+                                <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
                             </a>
                         </td>
                     </tr>
