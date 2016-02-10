@@ -160,8 +160,15 @@ namespace TransformationTimelineTool.Controllers
                 .Single();
 
             eventViewModel.Edit = eventViewModel.GetLatestEdit();
-            eventViewModel.InitiativeSelect = new SelectList(Utils.GetCurrentUser().Initiatives.ToList<Initiative>().OrderBy(i => i.Name), "id", "NameE");
-
+            var viewModel = new EventViewModel();
+            if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+            {
+                eventViewModel.InitiativeSelect = new SelectList(Utils.GetCurrentUser().Initiatives.ToList().OrderBy(i => i.NameF), "id", "Name", id);
+            }
+            else
+            {
+                eventViewModel.InitiativeSelect = new SelectList(Utils.GetCurrentUser().Initiatives.ToList().OrderBy(i => i.NameE), "id", "Name", id);
+            }
             PopulateEventRegionsData(eventViewModel.Event);
             PopulateEventBranchesData(eventViewModel.Event);
 
