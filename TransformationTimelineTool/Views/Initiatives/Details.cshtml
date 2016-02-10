@@ -61,11 +61,9 @@ else
     }
 </table>
 
-<h4>@Resources.Start</h4>
-<p>@Html.DisplayFor(model => model.StartDate)</p>
+<h4>@Resources.Start ~ @Resources.End</h4>
+<p>@Html.DisplayFor(model => model.StartDate) ~ @Html.DisplayFor(model => model.EndDate)</p>
 
-<h4>@Resources.End</h4>
-<p>@Html.DisplayFor(model => model.EndDate)</p>
 
 <h4>@Resources.Activities</h4>
 <p>@Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID, ViewBag.lang }, null)</p>
