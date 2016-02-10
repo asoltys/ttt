@@ -126,8 +126,8 @@ else
         });
         $("[class*='-box']").each(function () {
             var mapper = {
-                "red-box": ['@Resources.Draft', 0],
-                "yellow-box": ['@Resources.Pending', 1],
+                "red-box": ['@Resources.Draft', 1],
+                "yellow-box": ['@Resources.Pending', 0],
                 "green-box": ['@Resources.Approved', 2]
             }
             for (key in mapper) {
@@ -141,7 +141,7 @@ else
         var table = $("#eventTable").DataTable({
             "paging": true,
             "pagingType": "full_numbers",
-            "aaSorting": [],
+            "aaSorting": [4, 'asc'],
             "columnDefs": [
                 { "orderable": false, "targets": [3, 5] }
             ],
