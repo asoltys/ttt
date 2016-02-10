@@ -128,7 +128,7 @@ namespace TransformationTimelineTool.Controllers
                     db.Events.Add(eventToCreate);
                     db.SaveChanges();
                     HandleNotification(NotificationAction, eventToCreate.Edits);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
@@ -221,7 +221,7 @@ namespace TransformationTimelineTool.Controllers
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
                     HandleNotification(NotificationAction, eventToUpdate.Edits);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
@@ -420,7 +420,7 @@ namespace TransformationTimelineTool.Controllers
             Event @event = db.Events.Find(id);
             db.Events.Remove(@event);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 
         protected override void Dispose(bool disposing)

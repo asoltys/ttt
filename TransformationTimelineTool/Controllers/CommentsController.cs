@@ -176,17 +176,6 @@ namespace TransformationTimelineTool.Controllers
             return View(comment);
         }
 
-        // POST: Comments/Delete/5
-        [HttpPost, ActionName("Delete2")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Comment comment = await db.Comments.FindAsync(id);
-            db.Comments.Remove(comment);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

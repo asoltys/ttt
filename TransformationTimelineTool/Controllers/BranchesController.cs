@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -61,7 +62,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 db.Branches.Add(branch);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
             }
 
             return View(branch);
@@ -97,7 +98,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 db.Entry(branch).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
             }
             return View(branch);
         }
@@ -149,7 +150,7 @@ namespace TransformationTimelineTool.Controllers
             Branch branch = db.Branches.Find(id);
             db.Branches.Remove(branch);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 
         protected override void Dispose(bool disposing)

@@ -91,7 +91,7 @@ namespace TransformationTimelineTool.Controllers
                 {
                     db.Initiatives.Add(initiative);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
 
 
@@ -150,7 +150,7 @@ namespace TransformationTimelineTool.Controllers
                     initiativeViewModel.BindToModel(initiativeToUpdate);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
@@ -189,7 +189,7 @@ namespace TransformationTimelineTool.Controllers
             Initiative initiative = db.Initiatives.Find(id);
             db.Initiatives.Remove(initiative);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 
         

@@ -127,7 +127,8 @@ namespace TransformationTimelineTool.Controllers
                 }
                 db.Impacts.Add(impact);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
             }
             return View(impact);
         }
@@ -246,7 +247,7 @@ namespace TransformationTimelineTool.Controllers
 
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
@@ -347,7 +348,7 @@ namespace TransformationTimelineTool.Controllers
             Impact impact = db.Impacts.Find(id);
             db.Impacts.Remove(impact);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 
         protected override void Dispose(bool disposing)

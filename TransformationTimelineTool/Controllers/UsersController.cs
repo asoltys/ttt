@@ -12,6 +12,7 @@ using TransformationTimelineTool.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TransformationTimelineTool.ViewModels;
+using System.Threading;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -104,7 +105,7 @@ namespace TransformationTimelineTool.Controllers
                     var result = userManager.AddToRoles(userToAdd.Id, selectedRoles);
                 }
                 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
             }
             else
             {
@@ -177,7 +178,7 @@ namespace TransformationTimelineTool.Controllers
                 var myResult = userManager.Update(userToUpdate);
 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
             }
             return View(userViewModel);
         }
@@ -209,7 +210,7 @@ namespace TransformationTimelineTool.Controllers
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 
         protected override void Dispose(bool disposing)
