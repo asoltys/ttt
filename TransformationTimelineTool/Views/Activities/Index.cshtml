@@ -165,5 +165,8 @@ else
         createNewButton += "@Resources.CreateActivity</a>"
         $("div.top-toolbar").html(createNewButton);
         $("div.create-new").html(createNewButton);
+        
+        var filter = $("input[type='search']");
+        filter.attr('data-role', 'none');
     });
 </script>
