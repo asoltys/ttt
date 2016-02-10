@@ -1,5 +1,14 @@
 ﻿@model TransformationTimelineTool.Models.Impact
 
+@if (Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
 @{
     ViewBag.Title = Resources.CreateNew;
 }
@@ -85,7 +94,7 @@
                                }
                                 @:<td>
                                     <input type="checkbox"
-                                           id="select_region_@region.ID"
+                                           id="select_regions_@region.ID"
                                            name="selectedRegions"
                                            value="@region.ID" />
                                         <label class="no-style" for="select_regions_@region.ID">@region.Name</label>

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -23,11 +24,23 @@ namespace TransformationTimelineTool.Controllers
         // GET: Impacts
         public ActionResult Index()
         {
-            var impacts = db.Impacts.
-                Include(i => i.Branches).
-                Include(i => i.Regions).
-                Include(i => i.Initiative).
-                OrderBy(i => i.Initiative.NameE);
+            IOrderedQueryable<Impact> impacts;
+            if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+            {
+                impacts = db.Impacts.
+                    Include(i => i.Branches).
+                    Include(i => i.Regions).
+                    Include(i => i.Initiative).
+                    OrderBy(i => i.Initiative.NameE);
+            }
+            else
+            {
+                impacts = db.Impacts.
+                    Include(i => i.Branches).
+                    Include(i => i.Regions).
+                    Include(i => i.Initiative).
+                    OrderBy(i => i.Initiative.NameE);
+            }
             return View(impacts.ToList());
         }
 
@@ -51,16 +64,27 @@ namespace TransformationTimelineTool.Controllers
         [Route("Creer-Create")]
         public ActionResult Create(int? id)
         {
-            ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
-            ViewBag.Regions = db.Regions.OrderBy(r => r.NameE).ToList<Region>();
-
+            
+            List<Initiative> initiatives;
+            if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+            {
+                ViewBag.Branches = db.Branches.OrderBy(b => b.NameF).ToList<Branch>();
+                ViewBag.Regions = db.Regions.OrderBy(r => r.NameF).ToList<Region>();
+                initiatives = db.Initiatives.OrderBy(b => b.NameF).ToList<Initiative>();
+            } else
+            {
+                ViewBag.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
+                ViewBag.Regions = db.Regions.OrderBy(r => r.NameE).ToList<Region>();
+                initiatives = db.Initiatives.OrderBy(b => b.NameE).ToList<Initiative>();
+            }
+                
             if (id != null)
             {
-                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", id);
+                ViewBag.InitiativeID = new SelectList(initiatives, "ID", "Name", id);
             }
             else
             {
-                ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name");
+                ViewBag.InitiativeID = new SelectList(initiatives, "ID", "Name");
             }
 
             List<SelectListItem> LevelItems = new List<SelectListItem>();
@@ -105,9 +129,6 @@ namespace TransformationTimelineTool.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
-            ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", impact.InitiativeID);
             return View(impact);
         }
 
@@ -134,7 +155,6 @@ namespace TransformationTimelineTool.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.BranchID = new SelectList(db.Branches, "ID", "NameE", impact.BranchID);
             ViewBag.InitiativeID = new SelectList(db.Initiatives, "ID", "Name", impact.InitiativeID);
             List<SelectListItem> LevelItems = new List<SelectListItem>();
             Helpers.Utils.log(impact.Level.ToString());
