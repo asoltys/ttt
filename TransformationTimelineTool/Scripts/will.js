@@ -303,6 +303,7 @@ timeLine = {
         });
         if (hover != null) {
             hover = timeLine.cleanSpecialCharacters(hover);
+            console.log(hover);
         } else {
             return '';
         };
@@ -609,8 +610,8 @@ timeLine = {
         function replaceAll(str, find, replace) {
             return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
         }
-        x = replaceAll(x, "'", "&#92;&#39;");
-        x = replaceAll(x, "\"", "&#92;&#34;");
+        x = replaceAll(x, "'", "&#39;");
+        x = replaceAll(x, "\"", "&#34;");
         return x;
     },
     // css stuff
