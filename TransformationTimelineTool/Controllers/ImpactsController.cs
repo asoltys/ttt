@@ -176,7 +176,8 @@ namespace TransformationTimelineTool.Controllers
 
         private void PopulateEventRegionsData(Impact impact)
         {
-            var allRegions = db.Regions;
+            string Culture = Thread.CurrentThread.CurrentCulture.Name;
+            var allRegions = Culture == "fr" ? db.Regions.OrderBy(r => r.NameF) : db.Regions.OrderBy(r => r.NameE);
             var impactRegions = new HashSet<int>(impact.Regions.Select(r => r.ID));
             var viewModel = new List<RegionsData>();
 
@@ -195,7 +196,8 @@ namespace TransformationTimelineTool.Controllers
 
         private void PopulateEventBranchesData(Impact impact)
         {
-            var allBranches = db.Branches;
+            string Culture = Thread.CurrentThread.CurrentCulture.Name;
+            var allBranches = Culture == "fr" ? db.Branches.OrderBy(b => b.NameF) : db.Branches.OrderBy(b => b.NameE);
             var impactBranches = new HashSet<int>(impact.Branches.Select(b => b.ID));
             var viewModel = new List<BranchesData>();
 

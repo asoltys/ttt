@@ -33,7 +33,7 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                return string.Join("<br />", Branches.Select(b => b.Name));
+                return string.Join("<br />", Branches.Select(b => b.Name).OrderBy(s => s));
             }
         }
         [Display(Name = "Regions", ResourceType = typeof(Resources.Resources))]
@@ -41,7 +41,7 @@ namespace TransformationTimelineTool.Models
         {
             get
             {
-                return string.Join("<br />", Regions.Select(r => r.Name));
+                return string.Join("<br />", Regions.Select(r => r.Name).OrderBy(s => s));
             }
         }
         public bool Show

@@ -7,6 +7,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Threading;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -57,16 +58,17 @@ namespace TransformationTimelineTool.Controllers
         {
             var currentUser = Utils.GetCurrentUser();
             var viewModel = new EventViewModel();
-            viewModel.Branches= db.Branches.ToList<Branch>();
-            viewModel.Regions = db.Regions.ToList<Region>();
-
-            if (id != null)
+            if (Thread.CurrentThread.CurrentCulture.Name == "fr")
             {
-                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList(), "id", "Name", id);
+                viewModel.Branches = db.Branches.OrderBy(b => b.NameF).ToList<Branch>();
+                viewModel.Regions = db.Regions.OrderBy(r => r.NameF).ToList<Region>();
+                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList().OrderBy(i => i.NameF), "id", "Name", id);
             }
             else
             {
-                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList(), "id", "Name");
+                viewModel.Branches = db.Branches.OrderBy(b => b.NameE).ToList<Branch>();
+                viewModel.Regions = db.Regions.OrderBy(r => r.NameE).ToList<Region>();
+                viewModel.InitiativeSelect = new SelectList(currentUser.Initiatives.ToList().OrderBy(i => i.NameE), "id", "Name", id);
             }
             return View(viewModel);
         }
@@ -158,7 +160,7 @@ namespace TransformationTimelineTool.Controllers
                 .Single();
 
             eventViewModel.Edit = eventViewModel.GetLatestEdit();
-            eventViewModel.InitiativeSelect = new SelectList(Utils.GetCurrentUser().Initiatives.ToList<Initiative>(), "id", "NameE");
+            eventViewModel.InitiativeSelect = new SelectList(Utils.GetCurrentUser().Initiatives.ToList<Initiative>().OrderBy(i => i.Name), "id", "NameE");
 
             PopulateEventRegionsData(eventViewModel.Event);
             PopulateEventBranchesData(eventViewModel.Event);
@@ -432,7 +434,8 @@ namespace TransformationTimelineTool.Controllers
 
         private void PopulateEventRegionsData(Event @event)
         {
-            var allRegions = db.Regions;
+            string Culture = Thread.CurrentThread.CurrentCulture.Name;
+            var allRegions = Culture == "fr" ? db.Regions.OrderBy(r => r.NameF) : db.Regions.OrderBy(r => r.NameE);
             var eventRegions = new HashSet<int>(@event.Regions.Select(r => r.ID));
             var viewModel = new List<RegionsData>();
 
@@ -451,7 +454,8 @@ namespace TransformationTimelineTool.Controllers
 
         private void PopulateEventBranchesData(Event @event)
         {
-            var allBranches = db.Branches;
+            string Culture = Thread.CurrentThread.CurrentCulture.Name;
+            var allBranches = Culture == "fr" ? db.Branches.OrderBy(b => b.NameF) : db.Branches.OrderBy(b => b.NameE);
             var eventBranches = new HashSet<int>(@event.Branches.Select(b => b.ID));
             var viewModel = new List<BranchesData>();
 
