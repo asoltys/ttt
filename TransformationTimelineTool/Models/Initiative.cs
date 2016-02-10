@@ -54,6 +54,12 @@ namespace TransformationTimelineTool.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
+            ErrorMessageResourceName = "InitiativeTimelineRequired")]
+        [AllowHtml]
+        [Display(Name="Timeline", ResourceType =typeof(Resources.Resources))]
+        public string Timeline { get; set; }
+
         public string Name
         {
             get

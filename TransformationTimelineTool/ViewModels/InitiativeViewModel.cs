@@ -45,6 +45,13 @@ namespace TransformationTimelineTool.ViewModels
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
+            ErrorMessageResourceName = "InitiativeTimelineRequired")]
+        [AllowHtml]
+        [Display(Name = "Timeline", ResourceType = typeof(Resources.Resources))]
+        public string Timeline { get; set; }
+
         public IEnumerable<User> Users { get; set; }
 
         public InitiativeViewModel(int? id) : base()
@@ -58,6 +65,7 @@ namespace TransformationTimelineTool.ViewModels
             DescriptionF = initiative.DescriptionF;
             StartDate = initiative.StartDate;
             EndDate = initiative.EndDate;
+            Timeline = initiative.Timeline;
             Users = db.Users.ToList<User>();
         }
         public InitiativeViewModel() : base()
@@ -74,7 +82,7 @@ namespace TransformationTimelineTool.ViewModels
             initiativeToUpdate.DescriptionF = DescriptionF;
             initiativeToUpdate.StartDate = StartDate;
             initiativeToUpdate.EndDate = EndDate;
-
+            initiativeToUpdate.Timeline = Timeline;
             return initiativeToUpdate;
 
         }

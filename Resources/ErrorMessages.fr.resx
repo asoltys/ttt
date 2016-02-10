@@ -162,4 +162,7 @@
   <data name="CommentLengthInvalid" xml:space="preserve">
     <value>La commentaire doit être supérieure à 0 caractère et inferieure à 200 caractères</value>
   </data>
+  <data name="InitiativeTimelineRequired" xml:space="preserve">
+    <value>tba</value>
+  </data>
 </root>

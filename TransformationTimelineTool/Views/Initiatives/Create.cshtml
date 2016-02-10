@@ -23,6 +23,15 @@ else
     
     <div class="">
         <h4>@Resources.Initiative</h4>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Timeline, Resources.Timeline, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Timeline, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Timeline, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.NameE, Resources.InitEnglishName, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">

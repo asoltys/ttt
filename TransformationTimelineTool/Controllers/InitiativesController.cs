@@ -83,7 +83,7 @@ namespace TransformationTimelineTool.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Creer-Create")]
-        public ActionResult Create([Bind(Include = "NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate")] Initiative initiative)
+        public ActionResult Create([Bind(Include = "NameE,NameF,DescriptionE,DescriptionF,StartDate,EndDate,Timeline")] Initiative initiative)
         {
             try
             {
@@ -244,7 +244,8 @@ namespace TransformationTimelineTool.Controllers
                         StartDate = init.StartDate.ToString("d", dtfi),
                         EndDate = init.EndDate.ToString("d",dtfi),
                         Impacts = jsonImpacts,
-                        Events = jsonEvents
+                        Events = jsonEvents,
+                        Timeline = init.Timeline
                     });
                 }
             }

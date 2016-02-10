@@ -1215,6 +1215,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeline.
+        /// </summary>
+        public static string Timeline {
+            get {
+                return ResourceManager.GetString("Timeline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to.
         /// </summary>
         public static string to {

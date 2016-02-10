@@ -30,6 +30,7 @@ else
 }
 <table class="table">
     <tr>
+        <th>@Resources.Timeline</th>
         <th>@Resources.Name</th>
         <th class="fix-6em">@Resources.Start</th>
         <th class="fix-6em">@Resources.End</th>
@@ -44,6 +45,9 @@ else
             selectedRow = "success";
         }
         <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Timeline)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

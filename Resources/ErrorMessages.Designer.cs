@@ -169,7 +169,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The name of the region must be provided in both English and French. .
+        ///   Looks up a localized string similar to The Timeline field is required..
+        /// </summary>
+        public static string InitiativeTimelineRequired {
+            get {
+                return ResourceManager.GetString("InitiativeTimelineRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The English Name field is required..
+        /// </summary>
+        public static string RegionBranchRequiredNameEnglish {
+            get {
+                return ResourceManager.GetString("RegionBranchRequiredNameEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The French Name field is required..
         /// </summary>
         public static string RegionRequiredNameEnglish {
             get {

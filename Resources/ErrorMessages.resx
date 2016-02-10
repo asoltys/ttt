@@ -162,4 +162,7 @@
   <data name="CommentLengthInvalid" xml:space="preserve">
     <value>Comment needs to be greater than 0 character and less than 200 characters</value>
   </data>
+  <data name="InitiativeTimelineRequired" xml:space="preserve">
+    <value>The Timeline field is required.</value>
+  </data>
 </root>
