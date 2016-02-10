@@ -289,7 +289,8 @@ namespace TransformationTimelineTool.Controllers
                         StartDate = init.StartDate.ToShortDateString(),
                         EndDate = init.EndDate.ToShortDateString(),
                         Impacts = jsonImpacts,
-                        Events = jsonEvents
+                        Events = jsonEvents,
+                        Timeline = init.Timeline
                     });
                 }
 
