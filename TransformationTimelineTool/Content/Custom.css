@@ -15,3 +15,7 @@ dt {
     font-weight: normal !important;
     margin: 0px;
 }
+
+.wide-50 {
+    width: 50%;
+}
