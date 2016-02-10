@@ -8,7 +8,7 @@ namespace TransformationTimelineTool.Models
 {
     public enum Level
     {
-        None, Low, Medium, High
+        None, Low, Medium, High, BP2020
     }
     public class Impact
     {

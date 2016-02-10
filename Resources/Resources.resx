@@ -570,4 +570,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="CommentLengthInvalid" xml:space="preserve">
     <value>Comment needs to be greater than 0 character and less than 200 characters</value>
   </data>
+  <data name="BP2020" xml:space="preserve">
+    <value>BP2020</value>
+  </data>
 </root>

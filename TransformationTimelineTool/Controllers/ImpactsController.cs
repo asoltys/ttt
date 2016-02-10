@@ -92,6 +92,7 @@ namespace TransformationTimelineTool.Controllers
             LevelItems.Add(new SelectListItem { Text = Resources.Resources.Low, Value = "1" });
             LevelItems.Add(new SelectListItem { Text = Resources.Resources.Medium, Value = "2" });
             LevelItems.Add(new SelectListItem { Text = Resources.Resources.High, Value = "3" });
+            LevelItems.Add(new SelectListItem { Text = Resources.Resources.BP2020, Value = "4" });
             ViewBag.Level = LevelItems;
             return View();
         }
@@ -170,6 +171,12 @@ namespace TransformationTimelineTool.Controllers
             });
             LevelItems.Add(new SelectListItem { Text = Resources.Resources.High, Value = "3",
                 Selected = impact.Level.ToString() == "High" ? true : false
+            });
+            LevelItems.Add(new SelectListItem
+            {
+                Text = Resources.Resources.BP2020,
+                Value = "4",
+                Selected = impact.Level.ToString() == "BP2020" ? true : false
             });
             ViewBag.Level = LevelItems;
             return View(impact);

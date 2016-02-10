@@ -572,4 +572,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="CommentLengthInvalid" xml:space="preserve">
     <value>La commentaire doit être supérieure à 0 caractère et inferieure à 200 caractères</value>
   </data>
+  <data name="BP2020" xml:space="preserve">
+    <value>BP2020</value>
+  </data>
 </root>

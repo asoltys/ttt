@@ -236,6 +236,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BP2020.
+        /// </summary>
+        public static string BP2020 {
+            get {
+                return ResourceManager.GetString("BP2020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Branch.
         /// </summary>
         public static string Branch {
