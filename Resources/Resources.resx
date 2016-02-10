@@ -551,4 +551,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   <data name="Approver" xml:space="preserve">
     <value>Approver</value>
   </data>
+  <data name="ContactAdminToAddInit" xml:space="preserve">
+    <value>&lt;p&gt;Please contact the &lt;a href="mailto:teresa.martin@pwgsc-tpsgc.gc.ca"&gt;administrator&lt;/a&gt; if you would like to add, change or remove an initiative or its information.&lt;/p&gt;</value>
+  </data>
 </root>

@@ -283,6 +283,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Please contact the &lt;a href=&quot;mailto:teresa.martin@pwgsc-tpsgc.gc.ca&quot;&gt;administrator&lt;/a&gt; if you would like to add, change or remove an initiative or its information.&lt;/p&gt;.
+        /// </summary>
+        public static string ContactAdminToAddInit {
+            get {
+                return ResourceManager.GetString("ContactAdminToAddInit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string Create {
