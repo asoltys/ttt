@@ -70,7 +70,12 @@ namespace TransformationTimelineTool.Controllers
             var AbsolutePath = ReferrerRequest.Url.AbsolutePath;
             var ReferrerQuery = ReferrerRequest.Url.Query;
             var QueryPattern = @"(lang=)([A-z]{3})";
-            var NextQuery = Regex.Replace(ReferrerQuery, QueryPattern, "$1" + lang);
+            var MatchQuery = Regex.Match(ReferrerQuery, QueryPattern);
+            string NextQuery;
+            if (MatchQuery.Success)
+                NextQuery = Regex.Replace(ReferrerQuery, QueryPattern, "$1" + lang);
+            else
+                NextQuery = "?lang=fra";
             return Redirect(HostName + AbsolutePath + NextQuery);
         }
 
