@@ -16,6 +16,6 @@ dt {
     margin: 0px;
 }
 
-.wide-50 {
-    width: 50%;
+.fill-screen {
+    width: 98%;
 }
