@@ -24,9 +24,9 @@ else
 @Html.Raw(Resources.ContactAdminToAddInit)
 @if (ViewBag.isAdmin)
 {
-    <span class="create-new">
-        <a class="" href='@Url.Action("Create", "Initiatives", new {  lang =  ViewBag.lang}, null)'>@Resources.CreateNew</a>
-    </span>
+    <p>
+        @Html.ActionLink(Resources.CreateInitiative, "Create", new { lang = ViewBag.lang })
+    </p>
 }
 <table class="table">
     <tr>

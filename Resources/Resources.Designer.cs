@@ -310,11 +310,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Branch.
+        /// </summary>
+        public static string CreateBranch {
+            get {
+                return ResourceManager.GetString("CreateBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Initiative.
+        /// </summary>
+        public static string CreateInitiative {
+            get {
+                return ResourceManager.GetString("CreateInitiative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new.
         /// </summary>
         public static string CreateNew {
             get {
                 return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Region.
+        /// </summary>
+        public static string CreateRegion {
+            get {
+                return ResourceManager.GetString("CreateRegion", resourceCulture);
             }
         }
         

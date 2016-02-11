@@ -572,4 +572,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   <data name="OfUsers" xml:space="preserve">
     <value>of Users</value>
   </data>
+  <data name="CreateRegion" xml:space="preserve">
+    <value>Create Region</value>
+  </data>
+  <data name="CreateBranch" xml:space="preserve">
+    <value>Create Branch</value>
+  </data>
+  <data name="CreateInitiative" xml:space="preserve">
+    <value>Create Initiative</value>
+  </data>
 </root>

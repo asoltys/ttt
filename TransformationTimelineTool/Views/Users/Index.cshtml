@@ -22,9 +22,9 @@ else
 
 @if (ViewBag.isAdmin)
 {
-    <span class="create-new">
-        @Html.ActionLink(Resources.CreateNew, "Create", new { lang = ViewBag.lang })
-    </span>
+    <p>
+        @Html.ActionLink(Resources.CreateUser, "Create", new { lang = ViewBag.lang })
+    </p>
 }
 
 <table class="table">

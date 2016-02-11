@@ -22,7 +22,9 @@ else
 <script type="text/javascript" src="/scripts/DataTables/datatables.min.js"></script>
 
 <h2>@Resources.Activities</h2>
-
+<p>
+    @Html.ActionLink(Resources.CreateActivity, "Create", new { lang = ViewBag.lang })
+</p>
 <div id="legend">
     <div style="float: left;">
         <img src="~/Images/circle.png" />@Resources.Milestone<br />
@@ -145,7 +147,7 @@ else
             "columnDefs": [
                 { "orderable": false, "targets": [3, 5] }
             ],
-            "dom": '<"create-new">frtl<"absolute-center" p>i',
+            "dom": 'frtl<"absolute-center" p>i',
             "language": {
                 "lengthMenu": '@Resources.Show _MENU_ @Resources.Records',
                 "search": '<i class="fa fa-search fa-lg" title="Search">&nbsp;',
@@ -159,11 +161,6 @@ else
                 }
             }
         });
-
-        var createNewButton = "<a href='@Url.Action("Create", new { lang = ViewBag.lang })'>";
-        createNewButton += "@Resources.CreateActivity</a>"
-        $("div.top-toolbar").html(createNewButton);
-        $("div.create-new").html(createNewButton);
         
         var filter = $("input[type='search']");
         filter.attr('data-role', 'none');

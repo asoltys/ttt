@@ -20,9 +20,9 @@ else
 
 <h2>@Resources.Impacts</h2>
 
-<span class="create-new">
-    <a class="" href='@Url.Action("Create", "Impacts", new {  lang =  ViewBag.lang}, null)'>@Resources.CreateNew</a>
-</span>
+<p>
+    @Html.ActionLink(Resources.AssignImpact, "Create", new { lang = ViewBag.lang })
+</p>
 <table class="table">
     <tr>
         <th>

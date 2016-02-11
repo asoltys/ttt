@@ -23,9 +23,9 @@ else
 
 @if (ViewBag.isAdmin)
 {
-    <span class="create-new">
-        <a class="" href='@Url.Action("Create", "Regions", new {  lang =  ViewBag.lang})'>@Resources.CreateNew</a>
-    </span>
+    <p>
+        @Html.ActionLink(Resources.CreateRegion, "Create", new { lang = ViewBag.lang })
+    </p>
 }
 <table class="table">
     <tr>
