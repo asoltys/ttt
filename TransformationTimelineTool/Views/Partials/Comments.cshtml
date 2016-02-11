@@ -106,7 +106,7 @@
     }
 </style>
 
-<h4><span id="commentCount"></span>@Resources.Comment</h4>
+<h4><span id="commentCount"></span><span id="strComment">@Resources.Comment</span></h4>
 @Html.EditorFor(model => model.Content,
     new
     {
@@ -269,6 +269,17 @@
             $.each($response, function (idx, val) {
                 commentModule.makeARow(val);
             });
+            var $strComment = $("#strComment");
+            var strCommentDisplay;
+            if ($response.length <= 1) {
+                if ($strComment.text() == '@Resources.Comment')
+                    strCommentDisplay = $strComment.text().substring(0, $strComment.text().length - 1);
+                else
+                    strCommentDisplay = $strComment.text();
+            } else {
+                strCommentDisplay = '@Resources.Comment';
+            }
+            $strComment.text(strCommentDisplay);
             $("#commentCount").text($response.length + " ");
         }
 
