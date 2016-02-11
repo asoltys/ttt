@@ -31,7 +31,7 @@ else
         @Html.ActionLink(Resources.Edit, "Edit", new {lang = ViewBag.lang, id = Model.Id }) @:|
 
     }
-    @Html.ActionLink(Resources.BackToList, "Index", new {lang = ViewBag.lang})
+    @Html.ActionLink(Resources.BackToList + " " + Resources.OfUsers, "Index", new {lang = ViewBag.lang})
 </p>
 <script>
 $(document).ready(function () {

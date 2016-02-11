@@ -122,7 +122,7 @@ else
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-                @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
+                @Html.ActionLink(Resources.BackToList + " " + Resources.OfImpacts, "Index", new {  lang =  ViewBag.lang})
             </div>
         </div>
     </div>

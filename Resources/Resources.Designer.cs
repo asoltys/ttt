@@ -918,6 +918,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to of Activities.
+        /// </summary>
+        public static string OfActivities {
+            get {
+                return ResourceManager.GetString("OfActivities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of Branches.
+        /// </summary>
+        public static string OfBranches {
+            get {
+                return ResourceManager.GetString("OfBranches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of Impacts.
+        /// </summary>
+        public static string OfImpacts {
+            get {
+                return ResourceManager.GetString("OfImpacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of Initiatives.
+        /// </summary>
+        public static string OfInitiatives {
+            get {
+                return ResourceManager.GetString("OfInitiatives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of Regions.
+        /// </summary>
+        public static string OfRegions {
+            get {
+                return ResourceManager.GetString("OfRegions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of Users.
+        /// </summary>
+        public static string OfUsers {
+            get {
+                return ResourceManager.GetString("OfUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ontario.
         /// </summary>
         public static string Ontario {

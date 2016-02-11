@@ -121,5 +121,5 @@ else
 </div>
 <p>
     @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.Event.ID, lang = ViewBag.lang }) |
-    @Html.ActionLink(Resources.BackToList, "Index", new {  lang =  ViewBag.lang})
+    @Html.ActionLink(Resources.BackToList + " " + Resources.OfActivities, "Index", new {  lang =  ViewBag.lang})
 </p>

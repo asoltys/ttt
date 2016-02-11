@@ -557,4 +557,22 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   <data name="ContactAdminToAddInit" xml:space="preserve">
     <value>&lt;p&gt;Veuillez contacter &lt;a href="mailto:teresa.martin@pwgsc-tpsgc.gc.ca"&gt;l'administrateur&lt;/a&gt; si vous voulez ajouter, modifier ou supprimer une initiative ou ces informations.&lt;/p&gt;</value>
   </data>
+  <data name="OfInitiatives" xml:space="preserve">
+    <value>des initiatives</value>
+  </data>
+  <data name="OfImpacts" xml:space="preserve">
+    <value>des répercussions</value>
+  </data>
+  <data name="OfActivities" xml:space="preserve">
+    <value>des activités</value>
+  </data>
+  <data name="OfRegions" xml:space="preserve">
+    <value>des régions</value>
+  </data>
+  <data name="OfBranches" xml:space="preserve">
+    <value>des directions générales</value>
+  </data>
+  <data name="OfUsers" xml:space="preserve">
+    <value>des utilisateurs</value>
+  </data>
 </root>

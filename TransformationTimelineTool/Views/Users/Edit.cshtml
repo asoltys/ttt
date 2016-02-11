@@ -113,7 +113,7 @@ else
 
         <div class="form-actions no-color">
             <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-            @Html.ActionLink(Resources.BackToList, "Index", new { lang = ViewBag.lang })
+            @Html.ActionLink(Resources.BackToList + " " + Resources.OfUsers, "Index", new { lang = ViewBag.lang })
         </div>
     </div>
 }
