@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -63,17 +64,14 @@ namespace TransformationTimelineTool.Controllers
 
         public ActionResult SetCulture(string lang)
         {
-            string Referrer = Request.UrlReferrer.ToString();
-
-            var request = new HttpRequest(null, Referrer, null);
-            var response = new HttpResponse(new StringWriter());
-            var httpContext = new HttpContext(request, response);
-            var routeData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(httpContext));
-            var values = routeData.Values;
-
-            string PreviousController = values["controller"].ToString();
-            Utils.log(PreviousController);
-            return RedirectToAction("Index", PreviousController, new { lang = lang });
+            var Referrer = Request.UrlReferrer.ToString();
+            var ReferrerRequest = new HttpRequest(null, Referrer, null);
+            var HostName = ReferrerRequest.Url.GetLeftPart(UriPartial.Authority);
+            var AbsolutePath = ReferrerRequest.Url.AbsolutePath;
+            var ReferrerQuery = ReferrerRequest.Url.Query;
+            var QueryPattern = @"(lang=)([A-z]{3})";
+            var NextQuery = Regex.Replace(ReferrerQuery, QueryPattern, "$1" + lang);
+            return Redirect(HostName + AbsolutePath + NextQuery);
         }
 
         public ActionResult Playground()

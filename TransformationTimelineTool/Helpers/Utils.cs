@@ -240,6 +240,12 @@ namespace TransformationTimelineTool.Helpers
         {
             System.Diagnostics.Debug.WriteLineIf(Message.Length > 0, Message);
         }
+
+        public static void listLog(ICollection<Object> list)
+        {
+            foreach (var element in list)
+                log(element.ToString());
+        }
         
         public static string GetTranslation(String value)
         {
