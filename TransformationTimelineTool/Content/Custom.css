@@ -19,3 +19,37 @@ dt {
 .fill-screen {
     width: 98%;
 }
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+.no-margin {
+    margin: 0 auto;
+}
+
+.checkbox-label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+input[type=checkbox] {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
