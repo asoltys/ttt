@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 using TransformationTimelineTool.Helpers;
+using System.Web.Configuration;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -131,8 +132,20 @@ namespace TransformationTimelineTool.Controllers
             }
             db.Comments.Add(Comment);
             await db.SaveChangesAsync();
-
+            NotifyAdministrator(Comment);
             return Json(Comment);
+        }
+
+        private void NotifyAdministrator(Comment comment)
+        {
+            string SendTo = WebConfigurationManager.AppSettings["adminEmail"];
+            string ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
+            string MailSubject = "A new comment has been added";
+            string MailBody = "Author: " + comment.AuthorName + "<br />";
+            MailBody += "Comment: " + comment.Content + "<br />";
+            MailBody += "Added on: " + comment.Date.ToString("yyyy-MM-dd HH:mm") + "<br />";
+            MailBody += "Click <a href=" + ServerDomain + ">here</a> to go to the Timeline Tool";
+            Utils.SendMail(SendTo, MailSubject, MailBody);
         }
         
         [HttpPost]
