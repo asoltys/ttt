@@ -38,87 +38,49 @@ else
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-2 text-right"><strong>@Resources.Branches</strong></div>
-            <div class="col-md-offset-2 col-md-10">
-                <table>
-                    <tr>
-                        @{
-                            int cnt = 0;
-                            List<TransformationTimelineTool.Models.Branch> branches = ViewBag.Branches;
-
-                            foreach (var branch in branches)
-                            {
-                                if (cnt++ % 3 == 0)
-                                {
-                                    @:</tr><tr>
-                                }
-                                @:<td>
-                                    <input type="checkbox"
-                                           id="select_branches_@branch.ID"
-                                           name="selectedBranches"
-                                           value="@branch.ID" />
-                                        <label class="no-style" for="select_branches_@branch.ID">@branch.Name</label>
-                                        @:</td>
-                            }
-                        }
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox"
-                                   name="selectAllBranches"
-                                   id="selectAllBranches"
-                                   value="allBranches"
-                                   checked="checked" />
-                            <label class="no-style" for="selectAllBranches">@Resources.Deselect/@Resources.SelectAll</label>
-                        </td>
-                    </tr>
-                </table>
+        <div class="form-group clearfix">
+            <div class="no-margin">
+                <strong>@Resources.Branches</strong>
+                <br />
+                @{
+                    List<TransformationTimelineTool.Models.Branch> branches = ViewBag.Branches;
+                    foreach (var branch in branches)
+                    {
+                        <input type="checkbox" id="select_branches_@branch.ID" name="selectedBranches" value="@branch.ID" />
+                        <label class="no-style" for="select_branches_@branch.ID">@branch.Name</label>
+                        <br />
+                    }
+                    <input type="checkbox" name="selectAllBranches" id="selectAllBranches" value="allBranches" checked="checked" />
+                    <label class="no-style checkbox-label" for="selectAllBranches">@Resources.Deselect/@Resources.SelectAll</label>
+                }
+            </div>
+            <br />
+            <div class="no-margin">
+                <strong>@Resources.Regions</strong>
+                <br />
+                @{
+                    List<TransformationTimelineTool.Models.Region> regions = ViewBag.Regions;
+                    foreach (var region in regions)
+                    {
+                        <input type="checkbox" id="select_regions_@region.ID" name="selectedRegions" value="@region.ID" />
+                        <label class="no-style checkbox-label" for="select_regions_@region.ID">@region.Name</label>
+                        <br />
+                    }
+                }
+                <input type="checkbox"
+                       name="selectAllRegions"
+                       id="selectAllRegions"
+                       value="allRegions"
+                       checked="checked" />
+                <label class="no-style" for="selectAllRegions">@Resources.Deselect/@Resources.SelectAll</label>
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-2 text-right"><strong>@Resources.Regions</strong></div>
-            <div class="col-md-offset-2 col-md-10">
-                <table>
-                    <tr>
-                        @{
-                            int cnt2 = 0;
-                            List<TransformationTimelineTool.Models.Region> regions = ViewBag.Regions;
-
-                            foreach (var region in regions)
-                            {
-                                if (cnt2++ % 3 == 0)
-                                {
-                                    @:</tr><tr>
-                               }
-                                @:<td>
-                                    <input type="checkbox"
-                                           id="select_regions_@region.ID"
-                                           name="selectedRegions"
-                                           value="@region.ID" />
-                                        <label class="no-style" for="select_regions_@region.ID">@region.Name</label>
-                                        @:</td>
-                           }
-                        }
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox"
-                                   name="selectAllRegions"
-                                   id="selectAllRegions"
-                                   value="allRegions"
-                                   checked="checked" />
-                            <label class="no-style" for="selectAllRegions">@Resources.Deselect/@Resources.SelectAll</label>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
+    <div class="form-group">
         <div class="form-actions no-color">
             <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
-            @Html.ActionLink(Resources.BackToList + " " + Resources.OfImpacts, "Index", new {  lang =  ViewBag.lang})
+            @Html.ActionLink(Resources.BackToList + " " + Resources.OfImpacts, "Index", new { lang = ViewBag.lang })
         </div>
     </div>
 }
