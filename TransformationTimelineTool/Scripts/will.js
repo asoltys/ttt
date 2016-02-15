@@ -610,6 +610,7 @@ timeLine = {
         function replaceAll(str, find, replace) {
             return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
         }
+        x = replaceAll(x, "\"", "'");
         x = replaceAll(x, "'", "&#39;");
         x = replaceAll(x, "\"", "&#34;");
         return x;
