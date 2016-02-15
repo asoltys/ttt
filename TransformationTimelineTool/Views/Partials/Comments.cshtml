@@ -179,9 +179,13 @@
             actions = '<a class="action-link"';
             actions += 'onclick="commentModule.replyBox(\'' + id + '\'); return false;">';
             actions += 'Reply</a>';
-            actions += '<a class="action-link"';
-            actions += 'onclick="commentModule.deleteComment(\'' + id + '\'); return false;">';
-            actions += '@Resources.Delete</a>';
+            @if (HttpContext.Current.User.IsInRole("Admin")) {
+                <text>
+                    actions += '<a class="action-link"';
+                    actions += 'onclick="commentModule.deleteComment(\'' + id + '\'); return false;">';
+                    actions += '@Resources.Delete</a>';
+                </text>
+            }            
             return actions;
         }
 
