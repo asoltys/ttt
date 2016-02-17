@@ -91,13 +91,20 @@ timeLine = {
                             //html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
                         };
                     };
+                    if (timeLine.regions[key].ID == 5) {
+                        if (lang == 'e') {
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>";
+                        } else {
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>";
+                        };
+                    };
                 });
                 $.each(timeLine.regions, function (key, value) {
-                    if (timeLine.regions[key].ID != 1) {
+                    if (timeLine.regions[key].ID != 1 && timeLine.regions[key].ID != 5) {
                         if (lang == 'e') {
-                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>"
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameE + "</option>";
                         } else {
-                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>"
+                            html += "<option value='" + timeLine.regions[key].ID + "'>" + timeLine.regions[key].NameF + "</option>";
                         };
                     };
                 });
