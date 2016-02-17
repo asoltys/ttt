@@ -1,4 +1,14 @@
-﻿$(document).ready(function () {
+﻿if (!('console' in window)) {
+    var names = ['log', 'debug', 'info', 'warn', 'error', 'assert', 'dir', 'dirxml', 'group', 'groupEnd', 'time', 'timeEnd', 'count', 'trace', 'profile', 'profileEnd'];
+    window.console = {};
+    for (var i = 0; i < names.length; ++i) window.console[names[i]] = function () { };
+} else {
+    /*if it exists but doesn't contain all the same methods....silly ie*/
+    var names = ['log', 'debug', 'info', 'warn', 'error', 'assert', 'dir', 'dirxml', 'group', 'groupEnd', 'time', 'timeEnd', 'count', 'trace', 'profile', 'profileEnd'];
+    for (var i = 0; i < names.length; ++i) if (!window.console[names[i]]) window.console[names[i]] = function () { };
+};
+
+$(document).ready(function () {
     var editorValidationError = {
         eng: "English Text and French Text fields both need to be filled out.",
         fra: "English Text and French Text fields both need to be filled out."
@@ -16,7 +26,7 @@
         function checkParity() {
             if (editorObjects != null)
                 return objectLength(editorObjects) % 2 === 0;
-            console.log(parityError);
+            //console.log(parityError);
             return false;
         }
 
@@ -261,8 +271,11 @@
             var parser = document.createElement('a');
             parser.href = window.location.href;
             var pathname = parser.pathname.split('/');
-            controller = pathname[1];
-            
+            if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+                controller = pathname[1];
+            } else {
+                controller = pathname[0];
+            }
             if (window.location.href.indexOf('?') > -1) {
                 var temp = window.location.href.split('?');
                 if (temp.length > 1) {
@@ -297,20 +310,20 @@
                 validatorArray[i].init();
                 valid.push(validatorArray[i].validate());
             }
-            console.log("pageAdapter: Iterated all validator objects...");
+            //console.log("pageAdapter: Iterated all validator objects...");
             return valid.every(function (val) { return val == true });
         }
 
         return {
             init: function () {
                 if (initialized) return true;
-                console.log("pageAdapter: Initializing...");
+                //console.log("pageAdapter: Initializing...");
                 analyzeCurrentURL();
                 if (controller != undefined) {
                     mapValidators();
                 }
-                console.log("pageAdapter: Initialized...");
-                console.log("pageAdapter: Validators - " + validatorArray.join(", "));
+                //console.log("pageAdapter: Initialized...");
+                //console.log("pageAdapter: Validators - " + validatorArray.join(", "));
                 return true;
             },
             getCulture: function() {
