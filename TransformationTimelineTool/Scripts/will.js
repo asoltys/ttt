@@ -45,7 +45,7 @@ timeLine = {
             dataType: "json",
             timeout: 6000,
             success: function (initiatives) {
-                timeLine.initiatives = initiatives;
+                timeLine.initiatives = initiatives.sort(function (a, b) { return a.Name.localeCompare(b.Name); });
                 $("#about").append(timeLine.about);
                 $("#legend").append(timeLine.legend);
                 $("#leftNav").append(timeLine.leftNav());
