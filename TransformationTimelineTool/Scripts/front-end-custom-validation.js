@@ -17,6 +17,10 @@ $(document).ready(function () {
         eng: "At least one option needs to be selected.",
         fra: "At least one option needs to be selected."
     };
+    var approverValidationError = {
+        eng: "Approver needs to be assigned for an editor.",
+        fra: "Approver needs to be assigned for an editor."
+    };
 
     var editorValidator = (function () {
         var initialized = false;
@@ -26,7 +30,7 @@ $(document).ready(function () {
         function checkParity() {
             if (editorObjects != null)
                 return objectLength(editorObjects) % 2 === 0;
-            //console.log(parityError);
+            console.log(parityError);
             return false;
         }
 
@@ -183,6 +187,85 @@ $(document).ready(function () {
         }
     })();
 
+    var editorApproverValidator = (function () {
+        var initialized = false;
+        var rolesInputName = "selectedRoles";
+        var approverSelectBoxId = "User_ApproverID";
+        var $approverSelectBox;
+
+        function validateAll() {
+            deleteError($approverSelectBox);
+            return isValid($approverSelectBox);
+        }
+
+        function isValid($obj) {
+            var $selectedRoles = $(".roleContainer > input:checked");
+            var isEditorChecked = false;
+            $.each($selectedRoles, function () {
+                if ($(this).val().toLowerCase() == "editor") {
+                    isEditorChecked = true;
+                }
+            });
+            if (isEditorChecked) {
+                if ($obj.val() != "") {
+                    deleteError($obj);
+                    return true;
+                } else {
+                    showError($obj);
+                    return false;
+                }
+            } else {
+                deleteError($obj);
+                return true;
+            }
+            return false;
+        }
+
+        function showError($obj) {
+            var $headingDiv = $obj.prev();
+            console.log($headingDiv);
+            $headingDiv.append(
+                $('<span/>', {
+                    'class': 'text-danger',
+                    'style': 'margin: 5px'
+                }).append(
+                    $('<span/>', {
+                        'text': approverValidationError[pageAdapter.getCulture()]
+                    })
+                )
+            )
+        }
+
+        function deleteError($obj) {
+            var $headingDiv = $obj.prev();
+            if ($headingDiv.find('.text-danger').length) {
+                $headingDiv.find('.text-danger').remove();
+            }
+        }
+
+        function registerEvents() {
+            $approverSelectBox.on("change", function () {
+                isValid($approverSelectBox);
+            });
+        }
+
+        return {
+            init: function () {
+                if (initialized) return true;
+                initialized = true;
+                $approverSelectBox = $('#' + approverSelectBoxId);
+                registerEvents();
+                return true;
+            },
+            validate: function () {
+                return validateAll();
+            },
+            toString: function () {
+                return "editorApproverValidator";
+            }
+        }
+    })();
+
     var roleCheckboxValidator = (function () {
         var initialized = false;
         var rolesInputName = "selectedRoles";
@@ -277,10 +360,10 @@ $(document).ready(function () {
                 controller = pathname[0];
             }
             if (window.location.href.indexOf('?') > -1) {
-                var temp = window.location.href.split('?');
-                if (temp.length > 1) {
-                    culture = temp[1].substring(5);
-                }
+                var query = window.location.href.split('?')[1];
+                var pattern = /(lang=)([A-z]{3})/g;
+                var match = pattern.exec(query);
+                culture = match[2];
             } else {
                 culture = "eng";
             }
@@ -291,6 +374,7 @@ $(document).ready(function () {
             switch (controller) {
                 case 'Utilisateurs-Users':
                     validatorArray.push(roleCheckboxValidator);
+                    validatorArray.push(editorApproverValidator);
                     break;
                 case 'Activites-Activities':
                     validatorArray.push(editorValidator);
@@ -310,20 +394,20 @@ $(document).ready(function () {
                 validatorArray[i].init();
                 valid.push(validatorArray[i].validate());
             }
-            //console.log("pageAdapter: Iterated all validator objects...");
+            console.log("pageAdapter: Iterated all validator objects...");
             return valid.every(function (val) { return val == true });
         }
 
         return {
             init: function () {
                 if (initialized) return true;
-                //console.log("pageAdapter: Initializing...");
+                console.log("pageAdapter: Initializing...");
                 analyzeCurrentURL();
                 if (controller != undefined) {
                     mapValidators();
                 }
-                //console.log("pageAdapter: Initialized...");
-                //console.log("pageAdapter: Validators - " + validatorArray.join(", "));
+                console.log("pageAdapter: Initialized...");
+                console.log("pageAdapter: Validators - " + validatorArray.join(", "));
                 return true;
             },
             getCulture: function() {
