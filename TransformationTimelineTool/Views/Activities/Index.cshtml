@@ -65,16 +65,6 @@ else
             @{ User CurrentUser = Utils.GetCurrentUser(); }
             @foreach (var item in Model)
             {
-                if (!HttpContext.Current.User.IsInRole("Admin"))
-                {
-                    if (item.Creator.ApproverID != CurrentUser.Id)
-                    {
-                        if (item.CreatorID != CurrentUser.Id)
-                        {
-                            continue;
-                        }
-                    }
-                }
                 <tr> 
                     <td>
                         @Html.DisplayFor(modelItem => item.Initiative.Name)
