@@ -24,3 +24,27 @@ label:b.cssClasses,requiredContent:"a(cke-xyz)","default":"",id:"advCSSClasses",
 setup:h,commit:l}]}]}]}],onShow:function(){var a=this.getParentEditor(),b=a.getSelection(),c=null;(c=n.getSelectedLink(a))&&c.hasAttribute("href")?b.getSelectedElement()||b.selectElement(c):c=null;a=n.parseLinkAttributes(a,c);this._.selectedElement=c;this.setupContent(a)},onOk:function(){var a={};this.commitContent(a);var b=g.getSelection(),c=n.getLinkAttributes(g,a);if(this._.selectedElement){var e=this._.selectedElement,d=e.data("cke-saved-href"),f=e.getHtml();e.setAttributes(c.set);e.removeAttributes(c.removed);
 if(d==f||"email"==a.type&&-1!=f.indexOf("@"))e.setHtml("email"==a.type?a.email.address:c.set["data-cke-saved-href"]),b.selectElement(e);delete this._.selectedElement}else b=b.getRanges()[0],b.collapsed&&(a=new CKEDITOR.dom.text("email"==a.type?a.email.address:c.set["data-cke-saved-href"],g.document),b.insertNode(a),b.selectNodeContents(a)),c=new CKEDITOR.style({element:"a",attributes:c.set}),c.type=CKEDITOR.STYLE_INLINE,c.applyToRange(b,g),b.select()},onLoad:function(){g.config.linkShowAdvancedTab||
 this.hidePage("advanced");g.config.linkShowTargetTab||this.hidePage("target")},onFocus:function(){var a=this.getContentElement("info","linkType");a&&"url"==a.getValue()&&(a=this.getContentElement("info","url"),a.select())}}})})();
+/* Here we are latching on an event ... in this case, the dialog open event */
+
+CKEDITOR.on('dialogDefinition', function (ev) {
+    try {
+        /* this just gets the name of the dialog */
+        var dialogName = ev.data.name;
+        /* this just gets the contents of the opened dialog */
+        var dialogDefinition = ev.data.definition;
+        /* Make sure that the dialog opened is the link plugin ... otherwise do nothing */
+        if (dialogName == 'link') {
+            /* Getting the contents of the Target tab */
+            var informationTab = dialogDefinition.getContents('target');
+            /* Getting the contents of the dropdown field "Target" so we can set it */
+            var targetField = informationTab.get('linkTargetType');
+            /* Now that we have the field, we just set the default to _blank
+            A good modification would be to check the value of the URL field
+            and if the field does not start with "mailto:" or a relative path,
+            then set the value to "_blank" */
+            targetField['default'] = '_blank';
+        }
+    } catch (exception) {
+        alert('Error ' + ev.message);
+    }
+});
