@@ -124,8 +124,8 @@ $(document).ready(function () {
         }
 
         function showError($obj) {
-            var $headingDiv = $obj.parentsUntil('.form-group', '[class*="col-"]').siblings();
-            $headingDiv.append(
+            var $headingDiv = $obj.parent().children(':first-child');
+            $headingDiv.after(
                 $('<span/>', {
                     'class': 'text-danger',
                     'style': 'margin: 5px'
@@ -138,7 +138,7 @@ $(document).ready(function () {
         }
 
         function deleteError($obj) {
-            var $headingDiv = $obj.parentsUntil('.form-group', '[class*="col-"]').siblings();
+            var $headingDiv = $obj.parent();
             if ($headingDiv.find('.text-danger').length) {
                 $headingDiv.find('.text-danger').remove();
             }
