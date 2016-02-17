@@ -2,9 +2,10 @@
 @using TransformationTimelineTool.Helpers
 @{
     ViewBag.Title = Resources.Impacts;
+    ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 
-@if(Culture == "fr")
+@if (Culture == "fr")
 {
     ViewBag.lang = "fra";
 }
@@ -20,9 +21,12 @@ else
 
 <h2>@Resources.Impacts</h2>
 
-<p>
-    @Html.ActionLink(Resources.AssignImpact, "Create", new { lang = ViewBag.lang })
-</p>
+@if (ViewBag.isAdmin)
+{
+    <p>
+        @Html.ActionLink(Resources.AssignImpact, "Create", new { lang = ViewBag.lang })
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -44,15 +48,24 @@ else
             @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
         </td>
         <td>
-            <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
-                <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-            </a>
-            <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
-                <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
-            </a>
-            <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
-                <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-            </a>
+            @if (ViewBag.isAdmin)
+            {
+                <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
+                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
+                    <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                </a>
+            }
+            else
+            {
+                <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { id = item.ID, lang = ViewBag.lang })">
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                </a>
+            }
         </td>
     </tr>
 }
