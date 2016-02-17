@@ -303,7 +303,6 @@ timeLine = {
         });
         if (hover != null) {
             hover = timeLine.cleanSpecialCharacters(hover);
-            console.log(hover);
         } else {
             return '';
         };
@@ -601,6 +600,7 @@ timeLine = {
     },
     // removes funky chars @#$%
     cleanSpecialCharacters: function (x) {
+        x = x.replace(/(\r\n|\n|\r)/gm, "");
         var y = document.createElement("div");
         y.innerText = y.textContent = x;
         x = y.innerHTML;

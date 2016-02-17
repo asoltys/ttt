@@ -34,4 +34,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+    // disable adding empty paragraph blocks with nbsp
+	config.fillEmptyBlocks = false;
 };
