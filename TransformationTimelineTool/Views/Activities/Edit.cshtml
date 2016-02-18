@@ -134,27 +134,38 @@ else
             <div class="col-md-10">
                 @if (currentUser.IsInRole("Admin"))
                 {
-                    @Html.LabelFor(model => model.Event.Status, Resources.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                    @Html.EnumDropDownListFor(model => model.Event.Status)
-                    @Html.ValidationMessageFor(model => model.Event.Status, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft" })
+                    <label class="no-style checkbox-label" for="status_draft">@Resources.Draft</label>
+                    <br />
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Pending, new { id = "status_pending" })
+                    <label class="no-style checkbox-label" for="status_pending">@Resources.Pending</label>
+                    <br />
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Approved, new { id = "status_approved" })
+                    <label class="no-style checkbox-label" for="status_approved">@Resources.Approved</label>
                 }
                 else if (currentUser.IsInRole("Approver"))
                 {
                     @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft) @:Reject
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Approved) @:Approve
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft" })
+                    <label class="no-style checkbox-label" for="status_draft">@Resources.Draft</label>
+                    <br />
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Approved, new { id = "status_approved" })
+                    <label class="no-style checkbox-label" for="status_approved">@Resources.Approved</label>
                 }
                 else
                 {
                     @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft) @:Draft
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Pending) @:Pending
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft" })
+                    <label class="no-style checkbox-label" for="status_draft">@Resources.Draft</label>
+                    <br />
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Pending, new { id = "status_pending" })
+                    <label class="no-style checkbox-label" for="status_pending">@Resources.Pending</label>
                 }
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group top-margin-10">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
                 @Html.ActionLink(Resources.BackToList + " " + Resources.OfActivities, "Index", new {  lang =  ViewBag.lang})
