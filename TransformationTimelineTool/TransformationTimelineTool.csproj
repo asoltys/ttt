@@ -1001,9 +1001,7 @@
     <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
-    <None Include="Properties\PublishProfiles\ReleaseFileSystem.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
-    <None Include="Properties\PublishProfiles\TestFileSystem.pubxml" />
     <Content Include="Scripts\ckeditor-custom\plugins\scayt\CHANGELOG.md" />
     <Content Include="Scripts\ckeditor-custom\plugins\scayt\LICENSE.md" />
     <Content Include="Scripts\ckeditor-custom\plugins\scayt\README.md" />

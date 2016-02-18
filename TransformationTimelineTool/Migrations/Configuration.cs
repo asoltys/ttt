@@ -35,9 +35,10 @@ namespace TransformationTimelineTool.Migrations
             AddUser(UserManager, "ttt_editor", editor);
             AddUser(UserManager, "matty", admin);
             
+            /*
             var regions = new List<Region>
             {
-                new Region {NameShort = "all", NameE = "All", NameF = "Tout" },
+                //new Region {NameShort = "all", NameE = "All", NameF = "Tout" },
                 new Region {NameShort = "pac", NameE = "Pacific", NameF = "Pacifique" },
                 new Region {NameShort = "wst", NameE = "Western", NameF = "Ouest" },
                 new Region {NameShort = "ont", NameE = "Ontario", NameF = "Ontario" },
@@ -51,7 +52,7 @@ namespace TransformationTimelineTool.Migrations
 
             var branches = new List<Branch>
             {
-                new Branch {NameShort = "all", NameE = "All", NameF = "Tout" },
+                //new Branch {NameShort = "all", NameE = "All", NameF = "Tout" },
                 new Branch {NameShort = "rp", NameE = "Real Property", NameF = "Biens immobiliers" },
                 new Branch {NameShort = "abc", NameE = "Accounting, Banking and Compensation", NameF = "Comptabilité, gestion bancaire et rémunération " },
                 new Branch {NameShort = "acqcomp", NameE = "Acquisitions", NameF = "Approvisionnements" },
@@ -154,6 +155,7 @@ namespace TransformationTimelineTool.Migrations
             //events.ForEach(e => context.Events.Add(e));
             events.ForEach(e => context.Events.AddOrUpdate(p => p.CreatorID, e));
             context.SaveChanges();
+            */
         }
 
         void AddUser(UserManager<User> userManager, string name, string role, string email = "mathieu.wong-rose@pwgsc.gc.ca")
