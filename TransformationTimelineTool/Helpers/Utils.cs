@@ -8,8 +8,10 @@ using System.Linq.Expressions;
 using System.Net.Mail;
 using System.Reflection;
 using System.Resources;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 
@@ -186,30 +188,28 @@ namespace TransformationTimelineTool.Helpers
             return FullName;
         }
 
-        public static void SendMail(String Recipient, String Subject, String Message, List<String> CC = null)
+        public async static Task SendMailAsync(String Recipient, String Subject, String Message, List<String> CC = null)
         {
-            if (WebConfigurationManager.AppSettings["SendMail"] == "false") return;
-            log("SendMail was called");
+            Task completedTask = Task.FromResult(false);
+            if (WebConfigurationManager.AppSettings["SendMail"] == "false")
+                await completedTask;
+            //log("SendMail was called");
             CC = CC ?? new List<String>();
             MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
             MailAddress RecipientAddress = new MailAddress(Recipient);
-            MailMessage Mail = new MailMessage(FromAddress, RecipientAddress);
-            Mail.Subject = Subject;
-            Mail.IsBodyHtml = true;
-            Mail.Body = Message;
-            if (CC.Count() > 0)
-                CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
-            SmtpClient client = new SmtpClient();
-            client.Timeout = 200000;
-            try
+            using (MailMessage Mail = new MailMessage(FromAddress, RecipientAddress))
+            using (SmtpClient client = new SmtpClient())
             {
-                client.Send(Mail);
-            } catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Utils\\SendMail() Error: " + ex.ToString());
-            } finally
-            {
-                Mail.Dispose();
+                Mail.Subject = Subject;
+                Mail.IsBodyHtml = true;
+                Mail.Body = Message;
+                if (CC.Count() > 0)
+                    CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
+                client.Timeout = 20000;
+                HttpContext.Current.AllowAsyncDuringSyncStages = true;
+                await client.SendMailAsync(Mail);
+                HttpContext.Current.AllowAsyncDuringSyncStages = false;
+                //log("Mail Sent!");
             }
         }
 

@@ -145,7 +145,7 @@ namespace TransformationTimelineTool.Controllers
             MailBody += "Comment: " + comment.Content + "<br />";
             MailBody += "Added on: " + comment.Date.ToString("yyyy-MM-dd HH:mm") + "<br />";
             MailBody += "Click <a href=" + ServerDomain + ">here</a> to go to the Timeline Tool";
-            Utils.SendMail(SendTo, MailSubject, MailBody);
+            Utils.SendMailAsync(SendTo, MailSubject, MailBody);
         }
         
         [HttpPost]
