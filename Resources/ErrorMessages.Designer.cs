@@ -160,15 +160,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Short Name field is required..
-        /// </summary>
-        public static string RegionBranchRequiredShortName {
-            get {
-                return ResourceManager.GetString("RegionBranchRequiredShortName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The Email field is required..
         /// </summary>
         public static string UserRequiredEmail {

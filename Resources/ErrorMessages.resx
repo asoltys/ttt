@@ -145,9 +145,6 @@
   <data name="EventRequiredDate" xml:space="preserve">
     <value>The Date field is required.</value>
   </data>
-  <data name="RegionBranchRequiredShortName" xml:space="preserve">
-    <value>The Short Name field is required.</value>
-  </data>
   <data name="RegionBranchRequiredNameEnglish" xml:space="preserve">
     <value>The English Name field is required.</value>
   </data>

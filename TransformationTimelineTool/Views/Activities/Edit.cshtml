@@ -132,7 +132,7 @@ else
        
         <div class="form-group">
             <div class="col-md-10">
-                @if (currentUser.IsInRole("Admin"))
+                @if (currentUser.IsInRole("Admin") || currentUser.IsInRole("Approver"))
                 {
                     @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft" })
@@ -144,19 +144,10 @@ else
                     @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Approved, new { id = "status_approved" })
                     <label class="no-style checkbox-label" for="status_approved">@Resources.Approved</label>
                 }
-                else if (currentUser.IsInRole("Approver"))
-                {
-                    @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft" })
-                    <label class="no-style checkbox-label" for="status_draft">@Resources.Draft</label>
-                    <br />
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Approved, new { id = "status_approved" })
-                    <label class="no-style checkbox-label" for="status_approved">@Resources.Approved</label>
-                }
                 else
                 {
                     @Html.LabelFor(model => model.Event.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft" })
+                    @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Draft, new { id = "status_draft", @checked = true })
                     <label class="no-style checkbox-label" for="status_draft">@Resources.Draft</label>
                     <br />
                     @Html.RadioButtonFor(model => model.Event.Status, TransformationTimelineTool.Models.Status.Pending, new { id = "status_pending" })

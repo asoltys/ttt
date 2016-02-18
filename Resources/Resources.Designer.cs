@@ -292,15 +292,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create.
-        /// </summary>
-        public static string Create {
-            get {
-                return ResourceManager.GetString("Create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create Activity.
         /// </summary>
         public static string CreateActivity {
@@ -477,15 +468,6 @@ namespace Resources {
         public static string entries {
             get {
                 return ResourceManager.GetString("entries", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Event.
-        /// </summary>
-        public static string Event {
-            get {
-                return ResourceManager.GetString("Event", resourceCulture);
             }
         }
         
@@ -1028,7 +1010,7 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
         ///An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
-        ///To access the system please use &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt;.&lt;br/&gt;
+        ///To access the system please use &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
         ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
         ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/?lang=eng&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
         ///&lt;hr&gt;&lt;br/ [rest of string was truncated]&quot;;.

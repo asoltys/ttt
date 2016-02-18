@@ -144,9 +144,6 @@
   <data name="EventRequiredDate" xml:space="preserve">
     <value>tba</value>
   </data>
-  <data name="RegionBranchRequiredShortName" xml:space="preserve">
-    <value>tba</value>
-  </data>
   <data name="RegionBranchRequiredNameEnglish" xml:space="preserve">
     <value>tba</value>
   </data>

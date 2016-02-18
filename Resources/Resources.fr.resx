@@ -163,25 +163,25 @@
     <value>Fin</value>
   </data>
   <data name="EventEngHover" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Not In Use</value>
   </data>
   <data name="EventEngText" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Not In Use</value>
   </data>
   <data name="EventFraHover" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Not In Use</value>
   </data>
   <data name="EventFraText" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Not In Use</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Événements</value>
   </data>
   <data name="Executive" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Deleted</value>
   </data>
   <data name="Executives" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Deleted</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
@@ -274,7 +274,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   <data name="PendingMailBody" xml:space="preserve">
     <value>This is an automated message.&lt;br/&gt;
 An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
-To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt;.&lt;br/&gt;
+To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
 If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
 The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
 &lt;hr&gt;&lt;br/&gt;
@@ -355,16 +355,10 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
     <value>Niveau</value>
   </data>
   <data name="ShortName" xml:space="preserve">
-    <value>tba</value>
+    <value>Resource Deleted</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Nom de l'utilisateur</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>tba</value>
-  </data>
-  <data name="Event" xml:space="preserve">
-    <value>tba</value>
   </data>
   <data name="Impact" xml:space="preserve">
     <value>Répercussion</value>
@@ -456,7 +450,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
 &lt;p&gt;À noter: Il faut complèter les informations dans les deux langues, Francais et Anglais, pour soumettre cette activité pour l’approbation.&lt;/p&gt;</value>
   </data>
   <data name="HoverInstrFra" xml:space="preserve">
-    <value />
+    <value>Resource Deleted</value>
   </data>
   <data name="InitiativeSelectLabel" xml:space="preserve">
     <value>Choisissez une initiative du menu déroulant</value>
