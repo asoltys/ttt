@@ -246,63 +246,62 @@ namespace TransformationTimelineTool.Controllers
         public bool HandleNotification(string Action, ICollection<Edit> @edits, bool Debug = false)
         {
             var NumberOfEdits = @edits.Count();
+            // Fetch previous Editor ID
+            Edit PreviousEdit;
             if (NumberOfEdits <= 1)
             {
-                // An Activity has been created...
-                Utils.log("No previous edit found");
-                return true;
+                PreviousEdit = @edits.OrderByDescending(e => e.Date).First();
             } else
             {
-                // We can now fetch previous Editor ID
-                var PreviousEdit = @edits.OrderByDescending(e => e.Date).Skip(1).First();
-                var PreviousEditor = PreviousEdit.Editor;
-                var CurrentUser = Utils.GetCurrentUser();
-                if (Debug) Utils.log("Previous Edit ID: " + PreviousEdit.ID + ", Previous Editor: " + PreviousEdit.Editor.Email);
-
-                var SendTo = "";
-                var MailSubject = "";
-                var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email
-                var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
-                var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
-                var CopyList = new List<string>();
-                switch (Action)
-                {
-                    case "None":
-                        return true;
-                    case "Pending":
-                        SendTo = CurrentUser.Approver != null ? CurrentUser.Approver.Email : AdminEmail;
-                        MailSubject = Resources.Resources.PendingMailSubject;
-                        MailBody = Resources.Resources.PendingMailBody;
-                        if (CurrentUser.Approver != null) CopyList.Add(AdminEmail);
-                        CopyList.Add(CurrentUser.Email);
-                        break;
-                    case "Approve":
-                        SendTo = PreviousEditor.Email;
-                        MailSubject = Resources.Resources.ApprovedMailSubject;
-                        MailBody = Resources.Resources.ApprovedMailBody;
-                        if (PreviousEditor.Approver != null) CopyList.Add(PreviousEditor.Approver.Email);
-                        CopyList.Add(AdminEmail);
-                        break;
-                    case "Reject":
-                        SendTo = PreviousEditor.Email;
-                        MailSubject = Resources.Resources.RejectMailSubject;
-                        MailBody = Resources.Resources.RejectMailBody;
-                        if (PreviousEditor.Approver != null) CopyList.Add(PreviousEditor.Approver.Email);
-                        CopyList.Add(AdminEmail);
-                        break;
-                    default:
-                        throw new SendMailException("SendMail could not recognize the action");
-                }
-                MailBody = String.Format(MailBody, ServerDomain, PreviousEdit.EventID, AdminEmail, ServerDomain);
-                if (Debug)
-                {
-                    Utils.log("To: " + SendTo);
-                    Utils.log("Subject: " + MailSubject);
-                    Utils.log("Body" + MailBody);
-                }
-                Utils.SendMailAsync(SendTo, MailSubject, MailBody, CopyList);
-                return true;
+                PreviousEdit = @edits.OrderByDescending(e => e.Date).Skip(1).First();
             }
+            var PreviousEditor = PreviousEdit.Editor;
+            var CurrentUser = Utils.GetCurrentUser();
+            if (Debug) Utils.log("Previous Edit ID: " + PreviousEdit.ID + ", Previous Editor: " + PreviousEdit.Editor.Email);
+
+            var SendTo = "";
+            var MailSubject = "";
+            var MailBody = ""; // Format: {0}->Server name, {1}->Event ID, {2}->Admin email
+            var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
+            var AdminEmail = WebConfigurationManager.AppSettings["adminEmail"];
+            var CopyList = new List<string>();
+            switch (Action)
+            {
+                case "None":
+                    return true;
+                case "Pending":
+                    SendTo = CurrentUser.Approver != null ? CurrentUser.Approver.Email : AdminEmail;
+                    MailSubject = Resources.Resources.PendingMailSubject;
+                    MailBody = Resources.Resources.PendingMailBody;
+                    if (CurrentUser.Approver != null) CopyList.Add(AdminEmail);
+                    CopyList.Add(CurrentUser.Email);
+                    break;
+                case "Approve":
+                    SendTo = PreviousEditor.Email;
+                    MailSubject = Resources.Resources.ApprovedMailSubject;
+                    MailBody = Resources.Resources.ApprovedMailBody;
+                    if (PreviousEditor.Approver != null) CopyList.Add(PreviousEditor.Approver.Email);
+                    CopyList.Add(AdminEmail);
+                    break;
+                case "Reject":
+                    SendTo = PreviousEditor.Email;
+                    MailSubject = Resources.Resources.RejectMailSubject;
+                    MailBody = Resources.Resources.RejectMailBody;
+                    if (PreviousEditor.Approver != null) CopyList.Add(PreviousEditor.Approver.Email);
+                    CopyList.Add(AdminEmail);
+                    break;
+                default:
+                    throw new SendMailException("SendMail could not recognize the action");
+            }
+            MailBody = String.Format(MailBody, ServerDomain, PreviousEdit.EventID, AdminEmail, ServerDomain);
+            if (Debug)
+            {
+                Utils.log("To: " + SendTo);
+                Utils.log("Subject: " + MailSubject);
+                Utils.log("Body" + MailBody);
+            }
+            Utils.SendMailAsync(SendTo, MailSubject, MailBody, CopyList);
+            return true;
         }
 
         public string DetermineNotificationAction(Tuple<Status, Status> EventStatus, bool Debug = false)
