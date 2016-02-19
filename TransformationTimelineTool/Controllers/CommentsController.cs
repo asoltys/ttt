@@ -132,11 +132,11 @@ namespace TransformationTimelineTool.Controllers
             }
             db.Comments.Add(Comment);
             await db.SaveChangesAsync();
-            await NotifyAdministrator(Comment);
+            NotifyAdministrator(Comment);
             return Json(Comment);
         }
 
-        private async Task NotifyAdministrator(Comment comment)
+        private async void NotifyAdministrator(Comment comment)
         {
             string SendTo = WebConfigurationManager.AppSettings["adminEmail"];
             string ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
@@ -146,7 +146,7 @@ namespace TransformationTimelineTool.Controllers
             MailBody += "Comment: " + CommentContent + "<br />";
             MailBody += "Added on: " + comment.Date.ToString("yyyy-MM-dd HH:mm") + "<br />";
             MailBody += "Click <a href=" + ServerDomain + ">here</a> to go to the Timeline Tool";
-            await Utils.SendMailAsync(SendTo, MailSubject, MailBody);
+            Utils.SendMailAsync(SendTo, MailSubject, MailBody);
         }
         
         [HttpPost]
