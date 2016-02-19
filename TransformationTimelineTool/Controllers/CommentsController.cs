@@ -103,7 +103,7 @@ namespace TransformationTimelineTool.Controllers
             SortComments(Comments).Select(e => new
             {
                 Id = e.Id,
-                Content = e.Content,
+                Content = HttpUtility.HtmlEncode(e.Content),
                 Author = e.AuthorName,
                 Date = new TimeSpan(e.Date.ToUniversalTime().Ticks - new DateTime(1970, 1, 1).Ticks).TotalMilliseconds,
                 ReplyTo = e.ReplyTo,
@@ -119,7 +119,7 @@ namespace TransformationTimelineTool.Controllers
             Comment Comment = new Comment();
             Comment.AuthorName = currentUser;
             Comment.Date = DateTime.Now;
-            Comment.Content = HttpUtility.HtmlEncode(comment);
+            Comment.Content = comment;
             Comment.ReplyTo = replyto;
             if (replyto > 0)
             {
@@ -132,20 +132,21 @@ namespace TransformationTimelineTool.Controllers
             }
             db.Comments.Add(Comment);
             await db.SaveChangesAsync();
-            NotifyAdministrator(Comment);
+            await NotifyAdministrator(Comment);
             return Json(Comment);
         }
 
-        private void NotifyAdministrator(Comment comment)
+        private async Task NotifyAdministrator(Comment comment)
         {
             string SendTo = WebConfigurationManager.AppSettings["adminEmail"];
             string ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
             string MailSubject = "A new comment has been added";
+            string CommentContent = HttpUtility.HtmlEncode(comment.Content);
             string MailBody = "Author: " + comment.AuthorName + "<br />";
-            MailBody += "Comment: " + comment.Content + "<br />";
+            MailBody += "Comment: " + CommentContent + "<br />";
             MailBody += "Added on: " + comment.Date.ToString("yyyy-MM-dd HH:mm") + "<br />";
             MailBody += "Click <a href=" + ServerDomain + ">here</a> to go to the Timeline Tool";
-            Utils.SendMailAsync(SendTo, MailSubject, MailBody);
+            await Utils.SendMailAsync(SendTo, MailSubject, MailBody);
         }
         
         [HttpPost]
