@@ -119,7 +119,7 @@ namespace TransformationTimelineTool.Controllers
             Comment Comment = new Comment();
             Comment.AuthorName = currentUser;
             Comment.Date = DateTime.Now;
-            Comment.Content = comment;
+            Comment.Content = HttpUtility.HtmlEncode(comment);
             Comment.ReplyTo = replyto;
             if (replyto > 0)
             {
