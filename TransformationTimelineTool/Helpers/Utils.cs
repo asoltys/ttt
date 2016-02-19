@@ -205,7 +205,7 @@ namespace TransformationTimelineTool.Helpers
                 Mail.Body = Message;
                 if (CC.Count() > 0)
                     CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
-                client.Timeout = 20000;
+                client.Timeout = 10000;
                 HttpContext.Current.AllowAsyncDuringSyncStages = true;
                 await client.SendMailAsync(Mail);
                 HttpContext.Current.AllowAsyncDuringSyncStages = false;
