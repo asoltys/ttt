@@ -9,7 +9,7 @@ var branchName;
 var currentCulture = window.location.href.indexOf("fr") > -1 ? "fr" : "en";
 
 // data URLs
-var initiativesURL = currentCulture == "en" ? "/initiatives/datauni?lang=eng" : "/initiatives/datauni?lang=fra";
+var initiativesURL = currentCulture == "en" ? "/initiatives/data?lang=eng" : "/initiatives/data?lang=fra";
 var regionsURL = "/regions/data?lang=eng";
 var branchesURL = "/Directions-Generales-Branches/data?lang=eng";
 

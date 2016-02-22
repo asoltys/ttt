@@ -29,7 +29,7 @@ namespace TransformationTimelineTool.Controllers
 
             return View();
         }
-
+        [Route("Accessibility")]
         public ActionResult Accessibility()
         {
             ViewBag.Message = "Accessibility.";
