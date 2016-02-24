@@ -193,6 +193,7 @@ namespace TransformationTimelineTool.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
+            ViewBag.Roles = String.Join(" - ", userManager.GetRoles(user.Id));
             if (user == null)
             {
                 return HttpNotFound();

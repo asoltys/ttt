@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.Models.Event
+﻿@model TransformationTimelineTool.ViewModels.EventViewModel
 @using TransformationTimelineTool.Helpers
 @{
     ViewBag.Title = Resources.Delete;
@@ -25,23 +25,7 @@ else
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Initiative.Name)
-        </dd>
-
-        <dt>
-            @Resources.Type
-        </dt>
-
-        <dd>
-            @Utils.GetTranslation(Html.DisplayFor(model => model.LatestEdit.Type).ToString())
-        </dd>
-
-        <dt>
-            @Resources.Date
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LatestEdit.DisplayDate)
+            @Html.DisplayFor(model => model.Event.Initiative.Name)
         </dd>
 
         <dt>
@@ -49,7 +33,7 @@ else
         </dt>
 
         <dd>
-            @Html.Raw(Model.BranchesList)
+            @Html.Raw(Model.Event.BranchesList)
         </dd>
 
         <dt>
@@ -57,8 +41,82 @@ else
         </dt>
 
         <dd>
-            @Html.Raw(Model.RegionsList)
+            @Html.Raw(Model.Event.RegionsList)
         </dd>
+
+        <dt>
+            @Resources.Type
+        </dt>
+
+        <dd>
+            @Utils.GetTranslation(Html.DisplayFor(model => model.Event.LatestEdit.Type).ToString())
+        </dd>
+
+        <dt>
+            @Resources.Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.LatestEdit.DisplayDate)
+        </dd>
+
+        <dt>
+            @Resources.HoverDescEng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edit.HoverE)
+        </dd>
+
+        <dt>
+            @Resources.HoverDescFra
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edit.HoverF)
+        </dd>
+
+        <dt>
+            @Resources.ActivityDetailedDescEng
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Edit.TextE)
+        </dd>
+
+        <dt>
+            @Resources.ActivityDetailedDescFra
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Edit.TextF)
+        </dd>
+
+        <dt>
+           @Resources.LastUpdated
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edit.Date)
+        </dd>
+
+        <dt>
+            @Resources.LastEditedBy
+        </dt>
+
+        <dd>
+            @Html.ActionLink(Model.Edit.Editor.UserName, "Details", "Users", new { ID = Model.Edit.EditorID, lang = ViewBag.lang }, null)
+        </dd>
+
+        <dt>
+            @Resources.Status
+        </dt>
+
+        <dd>
+            @Utils.GetTranslation(Html.DisplayFor(model => model.Event.Status).ToString())
+        </dd>
+
+
     </dl>
 
     @using (Html.BeginForm())

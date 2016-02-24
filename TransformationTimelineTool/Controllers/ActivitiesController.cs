@@ -409,12 +409,15 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+
+            var eventViewModel = new EventViewModel();
+            eventViewModel.Event = db.Events.Find(id);
+            eventViewModel.Edit = eventViewModel.GetLatestEdit();
+            if (eventViewModel.Event == null)
             {
                 return HttpNotFound();
             }
-            return View(@event);
+            return View(eventViewModel);
         }
 
         // POST: Events/Delete/5
