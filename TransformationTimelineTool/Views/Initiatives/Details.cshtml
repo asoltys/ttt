@@ -20,127 +20,116 @@ else
 
 <h2>@Html.DisplayFor(model => model.Name) </h2>
     <hr />
+<h4>@Resources.InitiativeDescription</h4>
+<p>
+@Html.Raw(Model.Description)
+</p>
 
-<div class="print-box">
-    <h4>@Resources.InitiativeDescription</h4>
-    <p>
-        @Html.Raw(Model.Description)
-    </p>
-</div>
-
-<div class="print-box">
-    <h4>@Resources.Impacts</h4>
-    <p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID, ViewBag.lang }, null)</p>
-    <table class="table table-condensed table-striped">
+<h4>@Resources.Impacts</h4>
+<p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID, ViewBag.lang }, null)</p>
+<table class="table table-condensed table-striped">
+    <tr>
+        <th class="fix-6em">@Resources.Level</th>
+        <th>@Resources.Branch</th>
+        <th>@Resources.Region</th>
+        <th class="control-group">@Resources.Actions</th>
+    </tr>
+    @foreach (var item in Model.Impacts)
+    {
         <tr>
-            <th class="fix-6em">@Resources.Level</th>
-            <th>@Resources.Branch</th>
-            <th>@Resources.Region</th>
-            <th class="control-group">@Resources.Actions</th>
+            <td>
+                @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
+            </td>
+            <td>
+                @Html.Raw(item.BranchesList)
+            </td>
+            <td>
+                @Html.Raw(item.RegionsList)
+            </td>
+            <td>
+                <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { lang = ViewBag.lang, id = item.ID })">
+                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
+                    <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                </a>
+            </td>
         </tr>
-        @foreach (var item in Model.Impacts)
-        {
-            <tr>
-                <td>
-                    @Utils.GetTranslation(Html.DisplayFor(modelItem => item.Level).ToString())
-                </td>
-                <td>
-                    @Html.Raw(item.BranchesList)
-                </td>
-                <td>
-                    @Html.Raw(item.RegionsList)
-                </td>
-                <td>
-                    <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { lang = ViewBag.lang, id = item.ID })">
-                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-                    </a>
-                    <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
-                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
-                    </a>
-                    <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
-                        <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </table>
-</div>
+    }
+</table>
 
-<div class="print-box">
-    <h4>@Resources.Start ~ @Resources.End</h4>
-    <p>@Html.DisplayFor(model => model.StartDate) ~ @Html.DisplayFor(model => model.EndDate)</p>
-</div>
+<h4>@Resources.Start ~ @Resources.End</h4>
+<p>@Html.DisplayFor(model => model.StartDate) ~ @Html.DisplayFor(model => model.EndDate)</p>
 
-<div class="print-box">
-    <h4>@Resources.Activities</h4>
-    <p>@Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID, ViewBag.lang }, null)</p>
-    <table class="table table-condensed table-striped">
+
+<h4>@Resources.Activities</h4>
+<p>@Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID, ViewBag.lang }, null)</p>
+<table class="table table-condensed table-striped">
+    <tr>
+        <th class="fix-6em">@Resources.Date</th>
+        <th>@Resources.ShortDescription</th>
+        <th class="control-group">@Resources.Actions</th>
+    </tr>
+    @foreach (var item in Model.Events.OrderBy(e => e.LatestEdit.DisplayDate))
+    {
         <tr>
-            <th class="fix-6em">@Resources.Date</th>
-            <th>@Resources.ShortDescription</th>
-            <th class="control-group">@Resources.Actions</th>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatestEdit.DisplayDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
+            </td>
+            <td>
+                <a class="no-link-style" href="@Url.Action("Edit", "Activities", new {lang = ViewBag.lang, id = item.ID })">
+                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Details", "Activities", new {  lang=ViewBag.lang, id = item.ID })">
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Delete", "Activities", new {lang = ViewBag.lang, id = item.ID })">
+                    <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                </a>
+            </td>
         </tr>
-        @foreach (var item in Model.Events.OrderBy(e => e.LatestEdit.DisplayDate))
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LatestEdit.DisplayDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LatestEdit.Hover)
-                </td>
-                <td>
-                    <a class="no-link-style" href="@Url.Action("Edit", "Activities", new {lang = ViewBag.lang, id = item.ID })">
-                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-                    </a>
-                    <a class="no-link-style" href="@Url.Action("Details", "Activities", new {  lang=ViewBag.lang, id = item.ID })">
-                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
-                    </a>
-                    <a class="no-link-style" href="@Url.Action("Delete", "Activities", new {lang = ViewBag.lang, id = item.ID })">
-                        <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-        <tr>
-    </table>
-</div>
+    }
+    <tr>
+</table>
 
-<div class="print-box">
-    <h4>@Resources.Users</h4>
-    <table class="table table-condensed table-striped">
+<h4>@Resources.Users</h4>
+<table class="table table-condensed table-striped">
+    <tr>
+        <th class="fix-6em">@Resources.UserName</th>
+        <th>@Resources.Email</th>
+        <th class="control-group">@Resources.Actions</th>
+    </tr>
+    @foreach (var user in Model.Users)
+    {
         <tr>
-            <th class="fix-6em">@Resources.UserName</th>
-            <th>@Resources.Email</th>
-            <th class="control-group">@Resources.Actions</th>
+            <td>
+                @Html.DisplayFor(modelItem => user.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Email)
+            </td>
+            <td>
+                <a class="no-link-style" href="@Url.Action("Edit", "Users", new { lang = ViewBag.lang, id = user.Id })">
+                    <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                </a>
+                <a class="no-link-style" href="@Url.Action("Details", "Users", new { lang = ViewBag.lang, id = user.Id })">
+                    <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                </a>
+            </td>
         </tr>
-        @foreach (var user in Model.Users)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => user.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => user.Email)
-                </td>
-                <td>
-                    <a class="no-link-style" href="@Url.Action("Edit", "Users", new { lang = ViewBag.lang, id = user.Id })">
-                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-                    </a>
-                    <a class="no-link-style" href="@Url.Action("Details", "Users", new { lang = ViewBag.lang, id = user.Id })">
-                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </table>
-</div>
-<div class="no-print">
-    <p>
-        @if (HttpContext.Current.User.IsInRole("Admin"))
-        {
-            @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID, lang = ViewBag.lang }) @:|
-        }
-        @Html.ActionLink(Resources.BackToList + " " + Resources.OfInitiatives, "Index", new { lang = ViewBag.lang })
-    </p>
-</div>
+    }
+</table>
+
+<p>
+    @if(HttpContext.Current.User.IsInRole("Admin"))
+    {
+        @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID, lang = ViewBag.lang }) @:|
+    }
+    @Html.ActionLink(Resources.BackToList + " " + Resources.OfInitiatives, "Index", new { lang = ViewBag.lang })
+</p>
