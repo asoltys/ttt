@@ -99,11 +99,6 @@ else
                         </td>
                     </tr>
                 }
-                <tr>
-                    <td>
-                        @Html.ActionLink(Resources.CreateActivity, "Create", "Activities", new { ID = Model.ID }, null)
-                    </td>
-                </tr>
             </table>
         </dd>
 
@@ -137,14 +132,8 @@ else
                         </td>
                     </tr>
                 }
-                <tr>
-                    <td>
-                        @Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID }, null)
-                    </td>
-                </tr>
             </table>
         </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {

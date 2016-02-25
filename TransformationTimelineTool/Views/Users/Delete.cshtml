@@ -33,6 +33,31 @@ else
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+
+        <dt>
+            @Resources.Initiatives
+        </dt>
+
+        <dd>
+            @Html.Raw(String.Join("<br />", Model.Initiatives.Select(init => init.Name)))
+        </dd>
+
+        <dt>
+            @Resources.Roles
+        </dt>
+
+        <dd>
+            @ViewBag.Roles
+        </dd>
+
+        <dt>
+            @Resources.Approver
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approver.UserName)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm())
