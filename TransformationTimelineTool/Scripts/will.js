@@ -655,12 +655,5 @@ $(document).ready(function () {
     $('body').on("click", "#clearResults", timeLine.clearResults);
     $("#dialog").dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
     $(document).tooltip({ items: ':not(.ui-button)' });
-    $("body").bind("click", function (e) {
-        if ($("#dialog").dialog("isOpen")
-            && !$(e.target).is("img, a")
-            && !$(e.target).closest('.ui-dialog').length) {
-            $("#dialog").dialog("close");
-        }
-    });
 });
 
