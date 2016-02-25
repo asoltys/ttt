@@ -44,6 +44,7 @@ else
 
         <div class="form-group">
             @Html.LabelFor(model => model.Edit.DisplayDate, Resources.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>@Html.Raw(Resources.EventDateInstr)</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Edit.DisplayDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Edit.DisplayDate, "", new { @class = "text-danger" })
@@ -51,7 +52,7 @@ else
         </div>
 
         <div class="form-group clearfix">
-            <div class="no-margin">
+            <div id="branch_checkbox_container" class="no-margin">
                 <strong>@Resources.Branches</strong>
                 <br />
                 @{
@@ -67,7 +68,7 @@ else
                 }
             </div>
             <br />
-            <div class="no-margin">
+            <div id="region_checkbox_container" class="no-margin">
                 <strong>@Resources.Regions</strong>
                 <br />
                 @{
@@ -102,6 +103,7 @@ else
 
         <div class="form-group">
             @Html.LabelFor(model => model.Edit.TextE, Resources.ActivityDetailedDescEng, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>@Html.Raw(Resources.EventTextEng)</p>
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.TextE, new { @class = "form-control ckeditor" } )
                 @Html.ValidationMessageFor(model => model.Edit.TextE, "", new { @class = "text-danger" })
@@ -110,6 +112,7 @@ else
 
         <div class="form-group">
             @Html.LabelFor(model => model.Edit.TextF, Resources.ActivityDetailedDescFra, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>@Html.Raw(Resources.EventTextFra)</p>
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.TextF, new { @class = "form-control ckeditor" })
                 @Html.ValidationMessageFor(model => model.Edit.TextF, "", new { @class = "text-danger" })

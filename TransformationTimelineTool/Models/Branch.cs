@@ -13,13 +13,11 @@ namespace TransformationTimelineTool.Models
         public string NameShort { get; set; }
         
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
-            ErrorMessageResourceName = "RegionBranchRequiredNameEnglish")]
-        [Display(Name = "English Name")]
+            ErrorMessageResourceName = "BranchRequiredNameEnglish")]
         public string NameE { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.ErrorMessages),
-           ErrorMessageResourceName = "RegionBranchRequiredNameFrench")]
-        [Display(Name = "French Name")]
+           ErrorMessageResourceName = "BranchRequiredNameFrench")]
         public string NameF { get; set; }
 
         public string Name

@@ -10,16 +10,24 @@
 
 $(document).ready(function () {
     var editorValidationError = {
-        eng: "English Text and French Text fields both need to be filled out.",
-        fra: "English Text and French Text fields both need to be filled out."
+        eng: "The detailed description must be provided in both English and French.",
+        fra: "La description détaillée doit être fourni en français et en anglais."
     };
-    var checkboxValidationError = {
-        eng: "At least one option needs to be selected.",
-        fra: "At least one option needs to be selected."
+    var branchCheckboxValidationError = {
+        eng: "At least one branch must be selected.",
+        fra: "Selectionner au moins une direction générale."
+    };
+    var regionCheckboxValidationError = {
+        eng: "At least one region must be selected.",
+        fra: "Selectionner au moins une région."
+    };
+    var roleCheckboxValidationError = {
+        eng: "Select the required user role.",
+        fra: "Sélectionner le rôle utilisateur requis."
     };
     var approverValidationError = {
-        eng: "Approver needs to be assigned for an editor.",
-        fra: "Approver needs to be assigned for an editor."
+        eng: "An Approver must be assigned to create an editor.",
+        fra: "Un approbateur est requis pour créer un éditeur."
     };
 
     var editorValidator = (function () {
@@ -129,13 +137,16 @@ $(document).ready(function () {
 
         function showError($obj) {
             var $headingDiv = $obj.parent().children(':first-child');
+            var isBranchContainer = $obj.parent().attr("id") == "branch_checkbox_container";
+            var errorMessage = isBranchContainer ?
+                branchCheckboxValidationError[pageAdapter.getCulture()] : regionCheckboxValidationError[pageAdapter.getCulture()];
             $headingDiv.after(
                 $('<span/>', {
                     'class': 'text-danger',
                     'style': 'margin: 5px'
                 }).append(
                     $('<span/>', {
-                        'text': checkboxValidationError[pageAdapter.getCulture()]
+                        'text': errorMessage
                     })
                 )
             )
@@ -296,7 +307,7 @@ $(document).ready(function () {
                     'style': 'margin: 5px'
                 }).append(
                     $('<span/>', {
-                        'text': checkboxValidationError[pageAdapter.getCulture()]
+                        'text': roleCheckboxValidationError[pageAdapter.getCulture()]
                     })
                 )
             )

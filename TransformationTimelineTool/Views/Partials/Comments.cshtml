@@ -119,7 +119,7 @@
         }
     })
 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-<input id="addComment" type="button" value="@Resources.Add" class="btn btn-default span-1" tabindex="2" />
+<input id="addComment" type="button" value="@Resources.Submit" class="btn btn-default span-1" tabindex="2" />
 
 <div id="commentContainer" class="span-8 clearfix">
 </div>
@@ -178,14 +178,14 @@
         function createActions(id) {
             actions = '<a class="action-link"';
             actions += 'onclick="commentModule.replyBox(\'' + id + '\'); return false;">';
-            actions += 'Reply</a>';
+            actions += '@Resources.CommentReply</a>';
             @if (HttpContext.Current.User.IsInRole("Admin")) {
                 <text>
-                    actions += '<a class="action-link"';
-                    actions += 'onclick="commentModule.deleteComment(\'' + id + '\'); return false;">';
-                    actions += '@Resources.Delete</a>';
-                </text>
-            }            
+            actions += '<a class="action-link"';
+            actions += 'onclick="commentModule.deleteComment(\'' + id + '\'); return false;">';
+            actions += '@Resources.Delete</a>';
+            </text>
+            }
             return actions;
         }
 
@@ -194,12 +194,12 @@
             if ($('#replyContainer').length > 0) $('#replyContainer').remove();
             $('<div id="replyContainer"></div>').appendTo($parentComment);
             $('<input type="text" id="replyBox" class="reply-box" size="200" />').appendTo('#replyContainer');
-            $('<input id="replySubmit" type="button" value="@Resources.Add" class="btn btn-default reply-button" />').appendTo('#replyContainer');
+            $('<input id="replySubmit" type="button" value="@Resources.Submit" class="btn btn-default reply-button" />').appendTo('#replyContainer');
 
             $("#replySubmit").on("click", function () {
                 var $input = $("#replyBox");
                 if ($input.val().length == 0 || $input.val().length > 200) {
-                    alert("Comment needs to be greater than 0 character and less than 200 characters");
+                    alert($("<div/>").html("@Resources.CommentLengthInvalid").text());
                     var end = $input.val().length > 200 ? 200 : $input.val().length;
                     $input.val($input.val().substring(0, end));
                     return;
@@ -291,23 +291,32 @@
             var postUTCms = datetime;
             var nowUTCms = new Date().getTime();
             var diffUTCsec = Math.floor((nowUTCms - postUTCms) / 1000);
-            var postTimeString = "TBA";
+            var postTime = 0;
+            var postTimeString = "";
             if (diffUTCsec < 60) {
-                postTimeString = "Just now";
+                postTimeString = "@Resources.CommentJustNow";
             } else if (diffUTCsec < 3600) {
-                if (diffUTCsec < 120)
-                    postTimeString = Math.floor(diffUTCsec / 60) + " minute ago";
-                else
-                    postTimeString = Math.floor(diffUTCsec / 60) + " minutes ago";
+                if (diffUTCsec < 120) {
+                    postTimeString = "@Resources.CommentMinuteAgo";
+                } else {
+                    postTime = Math.floor(diffUTCsec / 60);
+                    postTimeString = "@String.Format(Resources.CommentMinutesAgo, "POST_TIME")";
+                    postTimeString = postTimeString.replace("POST_TIME", postTime);
+                }
             } else if (diffUTCsec < 86400) {
-                if (diffUTCsec < 7200)
-                    postTimeString = Math.floor(diffUTCsec / 60 / 60) + " hour ago";
-                else
-                    postTimeString = Math.floor(diffUTCsec / 60 / 60) + " hours ago";
+                if (diffUTCsec < 7200) {
+                    postTimeString = "@Resources.CommentHourAgo";
+                } else {
+                    postTime = Math.floor(diffUTCsec / 60 / 60);
+                    postTimeString = "@String.Format(Resources.CommentHoursAgo, "POST_TIME")";
+                    postTimeString = postTimeString.replace("POST_TIME", postTime);
+                }
             } else if (diffUTCsec < 172800) {
-                postTimeString = Math.floor(diffUTCsec / 60 / 60 / 24) + " day ago";
+                postTimeString = "@Resources.CommentDayAgo";
             } else {
-                postTimeString = Math.floor(diffUTCsec / 60 / 60 / 24) + " days ago";
+                postTime = Math.floor(diffUTCsec / 60 / 60 / 24);
+                postTimeString = "@String.Format(Resources.CommentDaysAgo, "POST_TIME")";
+                postTimeString = postTimeString.replace("POST_TIME", postTime);
             }
             return postTimeString;
         }
@@ -326,7 +335,6 @@
                 $commentObject.date,
                 $commentObject.actions);
             $commentContainer.append($commentObject.row);
-            $commentContainer.append('<br />');
             $commentObject.row.width($commentObject.row.width() * leftMargin);
         }
 
@@ -340,7 +348,7 @@
                 $row.width($row.width() * leftMargin);
             });
         }
-        
+
         function clearField() {
             $("#commentTextInput").val("");
         }
@@ -353,7 +361,7 @@
             $("#addComment").on("click", function () {
                 var $input = $("#commentTextInput");
                 if ($input.val().length == 0 || $input.val().length > 200) {
-                    alert("Comment needs to be greater than 0 character and less than 200 characters");
+                    alert($("<div/>").html("@Resources.CommentLengthInvalid").text());
                     var end = $input.val().length > 200 ? 200 : $input.val().length;
                     $input.val($input.val().substring(0, end));
                     return;

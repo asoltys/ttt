@@ -24,7 +24,7 @@ else
     <div class="">
         <h4>@Resources.Initiative</h4>
         <div class="form-group">
-            @Html.LabelFor(model => model.NameE, Resources.EnglishName, htmlAttributes: new { @class = "col-sm-2 control-label" })
+            @Html.LabelFor(model => model.NameE, Resources.InitEnglishName, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.NameE, new { htmlAttributes = new { @class = "form-control fill-screen" } })
                 @Html.ValidationMessageFor(model => model.NameE, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@ else
         </div>
 
         <div class="">
-            @Html.LabelFor(model => model.NameF, Resources.FrenchName, htmlAttributes: new { @class = "" })
+            @Html.LabelFor(model => model.NameF, Resources.InitFrenchName, htmlAttributes: new { @class = "" })
             <div class="">
                 @Html.EditorFor(model => model.NameF, new { htmlAttributes = new { @class = "form-control fill-screen" } })
                 @Html.ValidationMessageFor(model => model.NameF, "", new { @class = "text-danger" })

@@ -118,40 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="InitiativeRequiredNameEnglish" xml:space="preserve">
-    <value>The English Name field is required.</value>
-    <comment>Test</comment>
+    <value>The name of the initiative must be provided in both English and French.</value>
   </data>
   <data name="InitiativeRequiredNameFrench" xml:space="preserve">
-    <value>The French Name field is required.</value>
+    <value>The name of the initiative must be provided in both English and French.</value>
   </data>
   <data name="InitiativeRequiredDescriptionEnglish" xml:space="preserve">
-    <value>The English Description field is required.</value>
+    <value>A description of the initiative in English is required.</value>
   </data>
   <data name="InitiativeRequiredDescriptionFrench" xml:space="preserve">
-    <value>The French Description field is required.</value>
+    <value>A description of the initiative in French is required.</value>
   </data>
   <data name="InitiativeRequiredStartDate" xml:space="preserve">
-    <value>The Start Date field is required.</value>
+    <value>A start date for the initiative is required.</value>
   </data>
   <data name="InitiativeRequiredEndDate" xml:space="preserve">
-    <value>The End Date field is required.</value>
+    <value>An end date for the initiative is required.</value>
   </data>
   <data name="EventRequiredDescriptionEnglish" xml:space="preserve">
-    <value>The English Description field is required.</value>
+    <value>The short description must be provided in both English and French.</value>
   </data>
   <data name="EventRequiredDescriptionFrench" xml:space="preserve">
-    <value>The French Description field is required.</value>
+    <value>The short description must be provided in both English and French.</value>
   </data>
   <data name="EventRequiredDate" xml:space="preserve">
-    <value>The Date field is required.</value>
-  </data>
-  <data name="RegionBranchRequiredNameEnglish" xml:space="preserve">
-    <value>The English Name field is required.</value>
-  </data>
-  <data name="RegionBranchRequiredNameFrench" xml:space="preserve">
-    <value>The French Name field is required.</value>
+    <value>A date for the activity is required.</value>
   </data>
   <data name="UserRequiredEmail" xml:space="preserve">
-    <value>The Email field is required.</value>
+    <value>An email address is required to create a user.</value>
+  </data>
+  <data name="RegionRequiredNameEnglish" xml:space="preserve">
+    <value>The name of the region must be provided in both English and French. </value>
+  </data>
+  <data name="RegionRequiredNameFrench" xml:space="preserve">
+    <value>The name of the region must be provided in both English and French. </value>
+  </data>
+  <data name="BranchRequiredNameEnglish" xml:space="preserve">
+    <value>The name of the branch must be provided in both English and French. </value>
+  </data>
+  <data name="BranchRequiredNameFrench" xml:space="preserve">
+    <value>The name of the branch must be provided in both English and French.</value>
+  </data>
+  <data name="CommentLengthInvalid" xml:space="preserve">
+    <value>Comment needs to be greater than 0 character and less than 200 characters</value>
   </data>
 </root>

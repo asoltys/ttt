@@ -132,9 +132,6 @@
   <data name="Branches" xml:space="preserve">
     <value>Branches</value>
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contact</value>
-  </data>
   <data name="CreateNew" xml:space="preserve">
     <value>Create new</value>
   </data>
@@ -162,27 +159,6 @@
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
-  <data name="EventEngHover" xml:space="preserve">
-    <value>English Hover</value>
-  </data>
-  <data name="EventEngText" xml:space="preserve">
-    <value>English Text</value>
-  </data>
-  <data name="EventFraHover" xml:space="preserve">
-    <value>French Hover</value>
-  </data>
-  <data name="EventFraText" xml:space="preserve">
-    <value>French Text</value>
-  </data>
-  <data name="Events" xml:space="preserve">
-    <value>Events</value>
-  </data>
-  <data name="Executive" xml:space="preserve">
-    <value>Executive</value>
-  </data>
-  <data name="Executives" xml:space="preserve">
-    <value>Executives</value>
-  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -190,16 +166,16 @@
     <value>Impacts</value>
   </data>
   <data name="InitEnglishDesc" xml:space="preserve">
-    <value>English Initiative Description</value>
+    <value>Description of Initiative in English</value>
   </data>
   <data name="InitEnglishName" xml:space="preserve">
-    <value>English Name</value>
+    <value>Name of Initiative in English</value>
   </data>
   <data name="InitFrenchDesc" xml:space="preserve">
-    <value>French Initiative Description</value>
+    <value>Description of Initiative in French</value>
   </data>
   <data name="InitFrenchName" xml:space="preserve">
-    <value>French Name</value>
+    <value>Name of Initiative in French</value>
   </data>
   <data name="Initiative" xml:space="preserve">
     <value>Initiative</value>
@@ -237,9 +213,6 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="Text" xml:space="preserve">
-    <value>Text</value>
-  </data>
   <data name="TransformationTimelineTool" xml:space="preserve">
     <value>Transformation Timeline Tool</value>
   </data>
@@ -259,64 +232,65 @@
     <value>Description</value>
   </data>
   <data name="ApprovedMailBody" xml:space="preserve">
-    <value>This is an automated message.&lt;br/&gt;
+    <value>Ceci c’est un message automatique.&lt;br/&gt;
+Votre poste a été approuver dans le Calendrier national G4des transformations.&lt;br/&gt;
+Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
+Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.&lt;br/&gt;
+&lt;hr&gt;&lt;br/&gt;
+This is an automated message.&lt;br/&gt;
 Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
 To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
 If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
-&lt;hr&gt;&lt;br/&gt;
-Ceci c’est un message automatique.&lt;br/&gt;
-Votre poste était approuvé dans le Calendrier national des transformations.&lt;br/&gt;
-Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
-Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.</value>
+The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.</value>
     <comment>{0} -&gt; Server name
 {1} -&gt; Event ID
 {2} -&gt; Admin email</comment>
   </data>
   <data name="ApprovedMailSubject" xml:space="preserve">
-    <value>Transformation Timeline Tool: Your item has been approved || Calendrier des transformations: Votre poste était approuvé</value>
+    <value>Calendrier des transformations: Votre poste a été approuver || Transformation Timeline Tool: Your item has been approved </value>
   </data>
   <data name="PendingMailBody" xml:space="preserve">
-    <value>This is an automated message.&lt;br/&gt;
-An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
-To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
-If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
-&lt;hr&gt;&lt;br/&gt;
-Ceci c’est un message automatique.&lt;br/&gt;
+    <value>Ceci c’est un message automatique.&lt;br/&gt;
 Votre approbation est requise pour une poste dans le Calendrier national des transformations.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
 Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.</value>
+Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.&lt;br/&gt;
+&lt;hr&gt;&lt;br/&gt;
+This is an automated message.&lt;br/&gt;
+An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
+To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.
+</value>
     <comment>{0} -&gt; Server name
 {1} -&gt; Event ID
 {2} -&gt; Admin email</comment>
   </data>
   <data name="PendingMailSubject" xml:space="preserve">
-    <value>Transformation Timeline Tool:  New items for your approval || Calendrier des transformations: Nouvelles postes pour votre approbation</value>
+    <value>Calendrier des transformations: Nouvelles postes pour votre approbation  || Transformation Timeline Tool:  New items for your approval</value>
   </data>
   <data name="ApplicationHomeURL" xml:space="preserve">
     <value>/en/Home</value>
   </data>
   <data name="RejectMailBody" xml:space="preserve">
-    <value>This is an automated message.&lt;br/&gt;
-An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
-To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
-If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.&lt;br/&gt;
-&lt;hr&gt;&lt;br/&gt;
-Ceci c’est un message automatique.&lt;br/&gt;
+    <value>Ceci c’est un message automatique.&lt;br/&gt;
 Un poste dans le Calendrier national des transformations n’était pas approuver. S’il vous plaît, contactez votre Approbateur.&lt;br/&gt;
 Veuillez utiliser &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=fra'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
 Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href='mailto:{2}'&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.</value>
+Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&gt;ici&lt;/a&gt;.&lt;br/&gt;
+&lt;hr&gt;&lt;br/&gt;
+This is an automated message.&lt;br/&gt;
+An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
+To access the system please use &lt;a href='{0}/Activites-Activities/Details?id={1}&amp;lang=eng'&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
+If you have questions or believe you have received this message in error, please contact the &lt;a href='mailto:{2}'&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
+The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng'&gt;here&lt;/a&gt;.</value>
     <comment>{0}-&gt;Server name
 {1}-&gt;Event ID
 {2}-&gt;Admin email</comment>
   </data>
   <data name="RejectMailSubject" xml:space="preserve">
-    <value>Transformation Timeline Tool: Your item has been returned for revision || Calendrier des transformations: Votre poste était retourner pour révision</value>
+    <value>Calendrier des transformations: Votre poste était retourner pour révision  || Transformation Timeline Tool: Your item has been returned for revision</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -359,9 +333,6 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
-  </data>
-  <data name="ShortName" xml:space="preserve">
-    <value>Short Name</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>User Name</value>
@@ -429,17 +400,17 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   <data name="Atlantic" xml:space="preserve">
     <value>Atlantic</value>
   </data>
-  <data name="ClearResults" xml:space="preserve">
-    <value>Clear results</value>
-  </data>
   <data name="EventDateInstr" xml:space="preserve">
-    <value>Choose an actual or estimate date for this activity.  The date selected will determine the location of the activity icon along the transformation timeline. The date itself will not be displayed to users of the Transformation Timeline Tool. If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;the administrator&lt;/a&gt;.</value>
+    <value>&lt;ul&gt;&lt;li&gt;Choose an actual or estimate date for this activity.&lt;/li&gt;
+&lt;li&gt;The date selected will determine the placement of the activity icon along the transformation timeline.&lt;/li&gt;
+&lt;li&gt;The date itself will not be displayed to users of the Transformation Timeline Tool.&lt;/li&gt;&lt;/ul&gt;
+If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;the administrator&lt;/a&gt;.</value>
   </data>
   <data name="EventTextEng" xml:space="preserve">
     <value>Full Description in English which is displayed when the user clicks on the icon for this activity. (optional field)</value>
   </data>
   <data name="EventTextFra" xml:space="preserve">
-    <value>Full Description in French which is displayed when the user clicks on the icon for this activity. (optional field)</value>
+    <value>Detailed description in French which is displayed when the user clicks on the icon for this activity. (optional field)</value>
   </data>
   <data name="HoverDescEng" xml:space="preserve">
     <value>English Short Description (Required field)</value>
@@ -461,9 +432,6 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   <data name="Administration" xml:space="preserve">
     <value>Administration</value>
   </data>
-  <data name="TypeSelectList" xml:space="preserve">
-    <value>Select the type of activity you are creating.</value>
-  </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
   </data>
@@ -471,7 +439,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
     <value>Create Activity</value>
   </data>
   <data name="InitiativeDescription" xml:space="preserve">
-    <value>Initiative Description</value>
+    <value>Description of the Initiative</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Action</value>
@@ -495,16 +463,13 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
     <value>Actions</value>
   </data>
   <data name="DeleteConfirm" xml:space="preserve">
-    <value>Are you sure you want to delete this</value>
+    <value>Are you sure you want to delete this item?</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>Short Description</value>
-  </data>
-  <data name="TypeSelectLabel" xml:space="preserve">
-    <value>Select the Type of Activity you are creating</value>
   </data>
   <data name="Showing" xml:space="preserve">
     <value>Showing</value>
@@ -540,7 +505,7 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
     <value>Assign an Approver</value>
   </data>
   <data name="Admin" xml:space="preserve">
-    <value>Admin</value>
+    <value>Administrator</value>
   </data>
   <data name="Approver" xml:space="preserve">
     <value>Approver</value>
@@ -574,5 +539,35 @@ Le Calendrier national des transformations se trouve &lt;a href='{0}/?lang=fra'&
   </data>
   <data name="CreateInitiative" xml:space="preserve">
     <value>Create Initiative</value>
+  </data>
+  <data name="CommentReply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="CommentJustNow" xml:space="preserve">
+    <value>Just now</value>
+  </data>
+  <data name="CommentMinuteAgo" xml:space="preserve">
+    <value>1 minute ago</value>
+  </data>
+  <data name="CommentMinutesAgo" xml:space="preserve">
+    <value>{0} minutes ago</value>
+  </data>
+  <data name="CommentHourAgo" xml:space="preserve">
+    <value>1 hour ago</value>
+  </data>
+  <data name="CommentHoursAgo" xml:space="preserve">
+    <value>{0} hours ago</value>
+  </data>
+  <data name="CommentDayAgo" xml:space="preserve">
+    <value>1 day ago</value>
+  </data>
+  <data name="CommentDaysAgo" xml:space="preserve">
+    <value>{0} days ago</value>
+  </data>
+  <data name="CommentAdd" xml:space="preserve">
+    <value>Add a comment</value>
+  </data>
+  <data name="CommentLengthInvalid" xml:space="preserve">
+    <value>Comment needs to be greater than 0 character and less than 200 characters</value>
   </data>
 </root>

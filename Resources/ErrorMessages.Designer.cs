@@ -61,7 +61,34 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Date field is required..
+        ///   Looks up a localized string similar to The name of the branch must be provided in both English and French. .
+        /// </summary>
+        public static string BranchRequiredNameEnglish {
+            get {
+                return ResourceManager.GetString("BranchRequiredNameEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the branch must be provided in both English and French..
+        /// </summary>
+        public static string BranchRequiredNameFrench {
+            get {
+                return ResourceManager.GetString("BranchRequiredNameFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment needs to be greater than 0 character and less than 200 characters.
+        /// </summary>
+        public static string CommentLengthInvalid {
+            get {
+                return ResourceManager.GetString("CommentLengthInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A date for the activity is required..
         /// </summary>
         public static string EventRequiredDate {
             get {
@@ -70,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The English Description field is required..
+        ///   Looks up a localized string similar to The short description must be provided in both English and French..
         /// </summary>
         public static string EventRequiredDescriptionEnglish {
             get {
@@ -79,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The French Description field is required..
+        ///   Looks up a localized string similar to The short description must be provided in both English and French..
         /// </summary>
         public static string EventRequiredDescriptionFrench {
             get {
@@ -88,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The English Description field is required..
+        ///   Looks up a localized string similar to A description of the initiative in English is required..
         /// </summary>
         public static string InitiativeRequiredDescriptionEnglish {
             get {
@@ -97,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The French Description field is required..
+        ///   Looks up a localized string similar to A description of the initiative in French is required..
         /// </summary>
         public static string InitiativeRequiredDescriptionFrench {
             get {
@@ -106,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The End Date field is required..
+        ///   Looks up a localized string similar to An end date for the initiative is required..
         /// </summary>
         public static string InitiativeRequiredEndDate {
             get {
@@ -115,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The English Name field is required..
+        ///   Looks up a localized string similar to The name of the initiative must be provided in both English and French..
         /// </summary>
         public static string InitiativeRequiredNameEnglish {
             get {
@@ -124,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The French Name field is required..
+        ///   Looks up a localized string similar to The name of the initiative must be provided in both English and French..
         /// </summary>
         public static string InitiativeRequiredNameFrench {
             get {
@@ -133,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Start Date field is required..
+        ///   Looks up a localized string similar to A start date for the initiative is required..
         /// </summary>
         public static string InitiativeRequiredStartDate {
             get {
@@ -142,25 +169,25 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The English Name field is required..
+        ///   Looks up a localized string similar to The name of the region must be provided in both English and French. .
         /// </summary>
-        public static string RegionBranchRequiredNameEnglish {
+        public static string RegionRequiredNameEnglish {
             get {
-                return ResourceManager.GetString("RegionBranchRequiredNameEnglish", resourceCulture);
+                return ResourceManager.GetString("RegionRequiredNameEnglish", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The French Name field is required..
+        ///   Looks up a localized string similar to The name of the region must be provided in both English and French. .
         /// </summary>
-        public static string RegionBranchRequiredNameFrench {
+        public static string RegionRequiredNameFrench {
             get {
-                return ResourceManager.GetString("RegionBranchRequiredNameFrench", resourceCulture);
+                return ResourceManager.GetString("RegionRequiredNameFrench", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Email field is required..
+        ///   Looks up a localized string similar to An email address is required to create a user..
         /// </summary>
         public static string UserRequiredEmail {
             get {

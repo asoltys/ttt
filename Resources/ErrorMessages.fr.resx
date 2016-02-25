@@ -118,39 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="InitiativeRequiredNameEnglish" xml:space="preserve">
-    <value>tba</value>
+    <value>Le nom de l'initiative doit être fourni en français et en anglais.</value>
   </data>
   <data name="InitiativeRequiredNameFrench" xml:space="preserve">
-    <value>tba</value>
+    <value>Le nom de l'initiative doit être fourni en français et en anglais.</value>
   </data>
   <data name="InitiativeRequiredDescriptionEnglish" xml:space="preserve">
-    <value>tba</value>
+    <value>Une description de l'initiative en anglais est obligatoire.</value>
   </data>
   <data name="InitiativeRequiredDescriptionFrench" xml:space="preserve">
-    <value>tba</value>
+    <value>Une description de l'initiative en français est obligatoire.</value>
   </data>
   <data name="InitiativeRequiredStartDate" xml:space="preserve">
-    <value>tba</value>
+    <value>La date du début de l'initiative est obligatoire.</value>
   </data>
   <data name="InitiativeRequiredEndDate" xml:space="preserve">
-    <value>tba</value>
+    <value>La date du fin de l'initiative est obligatoire.</value>
   </data>
   <data name="EventRequiredDescriptionEnglish" xml:space="preserve">
-    <value>tba</value>
+    <value>La description courte doit être fourni en français et en anglais.</value>
   </data>
   <data name="EventRequiredDescriptionFrench" xml:space="preserve">
-    <value>tba</value>
+    <value>La description courte doit être fourni en français et en anglais.</value>
   </data>
   <data name="EventRequiredDate" xml:space="preserve">
-    <value>tba</value>
-  </data>
-  <data name="RegionBranchRequiredNameEnglish" xml:space="preserve">
-    <value>tba</value>
-  </data>
-  <data name="RegionBranchRequiredNameFrench" xml:space="preserve">
-    <value>tba</value>
+    <value>Une date de l'activité est obligatoire.</value>
   </data>
   <data name="UserRequiredEmail" xml:space="preserve">
-    <value>tba</value>
+    <value>Une addresse de courriel est obligatoire pour créer un utilisateur.</value>
+  </data>
+  <data name="BranchRequiredNameEnglish" xml:space="preserve">
+    <value>Le nom de la direction générale doit être fourni en français et en anglais.</value>
+  </data>
+  <data name="BranchRequiredNameFrench" xml:space="preserve">
+    <value>Le nom de la direction générale doit être fourni en français et en anglais.</value>
+  </data>
+  <data name="RegionRequiredNameEnglish" xml:space="preserve">
+    <value>Le nom de la région doit être fourni en français et en anglais.</value>
+  </data>
+  <data name="RegionRequiredNameFrench" xml:space="preserve">
+    <value>Le nom de la région doit être fourni en français et en anglais.</value>
+  </data>
+  <data name="CommentLengthInvalid" xml:space="preserve">
+    <value>La commentaire doit être supérieure à 0 caractère et inferieure à 200 caractères</value>
   </data>
 </root>

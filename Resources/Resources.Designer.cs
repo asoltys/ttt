@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Admin.
+        ///   Looks up a localized string similar to Administrator.
         /// </summary>
         public static string Admin {
             get {
@@ -169,13 +169,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
-        ///Your item has been approved in the National Transformation Timeline Tool.&lt;br/&gt;
-        ///To access the system please use &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
-        ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/?lang=eng&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
-        ///&lt;hr&gt;&lt;br/&gt;
-        /// [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Ceci c’est un message automatique.&lt;br/&gt;
+        ///Votre poste a été approuver dans le Calendrier national G4des transformations.&lt;br/&gt;
+        ///Veuillez utiliser &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+        ///Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href=&apos;mailto:{2}&apos;&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
+        ///Le Calendrier national des transformations se trouve &lt;a href=&apos;{0}/?lang=fra&apos;&gt; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ApprovedMailBody {
             get {
@@ -184,7 +182,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transformation Timeline Tool: Your item has been approved || Calendrier des transformations: Votre poste était approuvé.
+        ///   Looks up a localized string similar to Calendrier des transformations: Votre poste a été approuver || Transformation Timeline Tool: Your item has been approved .
         /// </summary>
         public static string ApprovedMailSubject {
             get {
@@ -256,15 +254,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear results.
-        /// </summary>
-        public static string ClearResults {
-            get {
-                return ResourceManager.GetString("ClearResults", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Comments.
         /// </summary>
         public static string Comment {
@@ -274,11 +263,92 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact.
+        ///   Looks up a localized string similar to Add a comment.
         /// </summary>
-        public static string Contact {
+        public static string CommentAdd {
             get {
-                return ResourceManager.GetString("Contact", resourceCulture);
+                return ResourceManager.GetString("CommentAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 day ago.
+        /// </summary>
+        public static string CommentDayAgo {
+            get {
+                return ResourceManager.GetString("CommentDayAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days ago.
+        /// </summary>
+        public static string CommentDaysAgo {
+            get {
+                return ResourceManager.GetString("CommentDaysAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 hour ago.
+        /// </summary>
+        public static string CommentHourAgo {
+            get {
+                return ResourceManager.GetString("CommentHourAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} hours ago.
+        /// </summary>
+        public static string CommentHoursAgo {
+            get {
+                return ResourceManager.GetString("CommentHoursAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Just now.
+        /// </summary>
+        public static string CommentJustNow {
+            get {
+                return ResourceManager.GetString("CommentJustNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment needs to be greater than 0 character and less than 200 characters.
+        /// </summary>
+        public static string CommentLengthInvalid {
+            get {
+                return ResourceManager.GetString("CommentLengthInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 minute ago.
+        /// </summary>
+        public static string CommentMinuteAgo {
+            get {
+                return ResourceManager.GetString("CommentMinuteAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} minutes ago.
+        /// </summary>
+        public static string CommentMinutesAgo {
+            get {
+                return ResourceManager.GetString("CommentMinutesAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reply.
+        /// </summary>
+        public static string CommentReply {
+            get {
+                return ResourceManager.GetString("CommentReply", resourceCulture);
             }
         }
         
@@ -364,7 +434,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete this.
+        ///   Looks up a localized string similar to Are you sure you want to delete this item?.
         /// </summary>
         public static string DeleteConfirm {
             get {
@@ -472,56 +542,14 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose an actual or estimate date for this activity.  The date selected will determine the location of the activity icon along the transformation timeline. The date itself will not be displayed to users of the Transformation Timeline Tool. If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;the administrator&lt;/a&gt;..
+        ///   Looks up a localized string similar to &lt;ul&gt;&lt;li&gt;Choose an actual or estimate date for this activity.&lt;/li&gt;
+        ///&lt;li&gt;The date selected will determine the placement of the activity icon along the transformation timeline.&lt;/li&gt;
+        ///&lt;li&gt;The date itself will not be displayed to users of the Transformation Timeline Tool.&lt;/li&gt;&lt;/ul&gt;
+        ///If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tpsgc.gc.ca&gt;the administrator&lt;/a&gt;..
         /// </summary>
         public static string EventDateInstr {
             get {
                 return ResourceManager.GetString("EventDateInstr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English Hover.
-        /// </summary>
-        public static string EventEngHover {
-            get {
-                return ResourceManager.GetString("EventEngHover", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English Text.
-        /// </summary>
-        public static string EventEngText {
-            get {
-                return ResourceManager.GetString("EventEngText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to French Hover.
-        /// </summary>
-        public static string EventFraHover {
-            get {
-                return ResourceManager.GetString("EventFraHover", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to French Text.
-        /// </summary>
-        public static string EventFraText {
-            get {
-                return ResourceManager.GetString("EventFraText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Events.
-        /// </summary>
-        public static string Events {
-            get {
-                return ResourceManager.GetString("Events", resourceCulture);
             }
         }
         
@@ -535,29 +563,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Full Description in French which is displayed when the user clicks on the icon for this activity. (optional field).
+        ///   Looks up a localized string similar to Detailed description in French which is displayed when the user clicks on the icon for this activity. (optional field).
         /// </summary>
         public static string EventTextFra {
             get {
                 return ResourceManager.GetString("EventTextFra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executive.
-        /// </summary>
-        public static string Executive {
-            get {
-                return ResourceManager.GetString("Executive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executives.
-        /// </summary>
-        public static string Executives {
-            get {
-                return ResourceManager.GetString("Executives", resourceCulture);
             }
         }
         
@@ -648,7 +658,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English Initiative Description.
+        ///   Looks up a localized string similar to Description of Initiative in English.
         /// </summary>
         public static string InitEnglishDesc {
             get {
@@ -657,7 +667,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English Name.
+        ///   Looks up a localized string similar to Name of Initiative in English.
         /// </summary>
         public static string InitEnglishName {
             get {
@@ -666,7 +676,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to French Initiative Description.
+        ///   Looks up a localized string similar to Description of Initiative in French.
         /// </summary>
         public static string InitFrenchDesc {
             get {
@@ -675,7 +685,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to French Name.
+        ///   Looks up a localized string similar to Name of Initiative in French.
         /// </summary>
         public static string InitFrenchName {
             get {
@@ -693,7 +703,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initiative Description.
+        ///   Looks up a localized string similar to Description of the Initiative.
         /// </summary>
         public static string InitiativeDescription {
             get {
@@ -1008,12 +1018,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
-        ///An item in the National Transformation Timeline Tool requires your approval.&lt;br/&gt;
-        ///To access the system please use &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
-        ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/?lang=eng&apos;&gt;here&lt;/a&gt;.&lt;br/&gt;
-        ///&lt;hr&gt;&lt;br/ [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Ceci c’est un message automatique.&lt;br/&gt;
+        ///Votre approbation est requise pour une poste dans le Calendrier national des transformations.&lt;br/&gt;
+        ///Veuillez utiliser &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+        ///Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href=&apos;mailto:{2}&apos;&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
+        ///Le Calendrier national des transformations se trouve &lt;a href=&apos; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PendingMailBody {
             get {
@@ -1022,7 +1031,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transformation Timeline Tool:  New items for your approval || Calendrier des transformations: Nouvelles postes pour votre approbation.
+        ///   Looks up a localized string similar to Calendrier des transformations: Nouvelles postes pour votre approbation  || Transformation Timeline Tool:  New items for your approval.
         /// </summary>
         public static string PendingMailSubject {
             get {
@@ -1076,11 +1085,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is an automated message.&lt;br/&gt;
-        ///An item in the National Transformation Timeline Tool was not approved. Please contact your Approver.&lt;br/&gt;
-        ///To access the system please use &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=eng&lt;/a&gt;.&lt;br/&gt;
-        ///If you have questions or believe you have received this message in error, please contact the &lt;a href=&apos;mailto:{2}&apos;&gt;Administrator&lt;/a&gt;.&lt;br/&gt;
-        ///The National Transformation Timeline Tool can be found &lt;a href=&apos;{0}/?lang=eng&apos;&gt; [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Ceci c’est un message automatique.&lt;br/&gt;
+        ///Un poste dans le Calendrier national des transformations n’était pas approuver. S’il vous plaît, contactez votre Approbateur.&lt;br/&gt;
+        ///Veuillez utiliser &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
+        ///Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href=&apos;mailto:{2}&apos;&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
+        ///Le Calendrier national des tra [rest of string was truncated]&quot;;.
         /// </summary>
         public static string RejectMailBody {
             get {
@@ -1089,7 +1098,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transformation Timeline Tool: Your item has been returned for revision || Calendrier des transformations: Votre poste était retourner pour révision.
+        ///   Looks up a localized string similar to Calendrier des transformations: Votre poste était retourner pour révision  || Transformation Timeline Tool: Your item has been returned for revision.
         /// </summary>
         public static string RejectMailSubject {
             get {
@@ -1161,15 +1170,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short Name.
-        /// </summary>
-        public static string ShortName {
-            get {
-                return ResourceManager.GetString("ShortName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show.
         /// </summary>
         public static string Show {
@@ -1215,15 +1215,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text.
-        /// </summary>
-        public static string Text {
-            get {
-                return ResourceManager.GetString("Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to to.
         /// </summary>
         public static string to {
@@ -1256,24 +1247,6 @@ namespace Resources {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select the Type of Activity you are creating.
-        /// </summary>
-        public static string TypeSelectLabel {
-            get {
-                return ResourceManager.GetString("TypeSelectLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select the type of activity you are creating..
-        /// </summary>
-        public static string TypeSelectList {
-            get {
-                return ResourceManager.GetString("TypeSelectList", resourceCulture);
             }
         }
         
