@@ -89,6 +89,7 @@ else
             @Html.LabelFor(model => model.Edit.HoverE, Resources.HoverDescEng, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.HoverE, new { @class = "form-control", @cols= "50", @rows="5" })
+                <br />
                 @Html.ValidationMessageFor(model => model.Edit.HoverE, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,6 +98,7 @@ else
             @Html.LabelFor(model => model.Edit.HoverF, Resources.HoverDescFra, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Edit.HoverF, new { @class = "form-control", @cols = "50", @rows = "5" })
+                <br />
                 @Html.ValidationMessageFor(model => model.Edit.HoverF, "", new { @class = "text-danger" })
             </div>
         </div>
