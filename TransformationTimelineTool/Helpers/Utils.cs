@@ -207,9 +207,14 @@ namespace TransformationTimelineTool.Helpers
                     CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
                 client.Timeout = 10000;
                 HttpContext.Current.AllowAsyncDuringSyncStages = true;
-                await client.SendMailAsync(Mail);
+                try
+                {
+                    await client.SendMailAsync(Mail);
+                } catch (Exception ex)
+                {
+                    Utils.log(ex.StackTrace);
+                }
                 HttpContext.Current.AllowAsyncDuringSyncStages = false;
-                //log("Mail Sent!");
             }
         }
 
