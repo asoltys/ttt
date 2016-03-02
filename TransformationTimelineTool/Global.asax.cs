@@ -35,6 +35,17 @@ namespace TransformationTimelineTool
             ISchedulerFactory ScheduleFactory = new StdSchedulerFactory();
             IScheduler Schedule = ScheduleFactory.GetScheduler();
             Schedule.Start();
+
+            // Define the job and tie it to ChangeNotify class
+            IJobDetail Job = JobBuilder.Create<ChangeNotify>()
+                .WithIdentity("ChangeNotification", "Group")
+                .Build();
+
+            // Trigger the job to run now for testing
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithIdentity("ChangeNotificationTrigger", "Group")
+                .StartNow()
+                .Build();
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)
