@@ -248,7 +248,7 @@ namespace TransformationTimelineTool.Controllers
                     impactToUpdate.InitiativeID = impact.InitiativeID;
                     impactToUpdate.Level = impact.Level;
                     impactToUpdate.Justification = impact.Justification;
-
+                    impactToUpdate.Edited = true;
                     UpdateImpactRegions(selectedRegions, impactToUpdate);
                     UpdateImpactBranches(selectedBranches, impactToUpdate);
 
