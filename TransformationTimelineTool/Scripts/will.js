@@ -37,9 +37,6 @@ timeLine = {
     heightQuarter: 18,
     heightMonth: 18,
     heightGroup: 20,
-    rowOffset: 0,
-    frozenRowHeight: 0,
-    footerOffset: 0,
     // populate with content
     content: function () {
         $.ajax({
@@ -62,9 +59,6 @@ timeLine = {
                 $("#dragContainer").draggable({ axis: "x" });
                 timeLine.toggleIcons();
                 timeLine.css();
-                timeLine.rowOffset = $('#quarterMonthContainer').offset().top;
-                timeLine.frozenRowHeight = $('#quarterMonthContainer').outerHeight();
-                timeLine.footerOffset = $('#iAmLegend').offset().top;
             }
         });
     },
