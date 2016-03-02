@@ -320,6 +320,10 @@
     <Compile Include="Migrations\201603021756412_ImpactEdited.Designer.cs">
       <DependentUpon>201603021756412_ImpactEdited.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603021803422_ActivityEdited.cs" />
+    <Compile Include="Migrations\201603021803422_ActivityEdited.Designer.cs">
+      <DependentUpon>201603021803422_ActivityEdited.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1717,6 +1721,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603021756412_ImpactEdited.resx">
       <DependentUpon>201603021756412_ImpactEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603021803422_ActivityEdited.resx">
+      <DependentUpon>201603021803422_ActivityEdited.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

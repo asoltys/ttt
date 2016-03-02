@@ -224,6 +224,7 @@ namespace TransformationTimelineTool.Controllers
                     {
                         eventToUpdate.PublishedEdit.Published = false;
                         edit.Published = true;
+                        edit.Edited = true;
                     }
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
