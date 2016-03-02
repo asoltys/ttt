@@ -15,6 +15,8 @@ using TransformationTimelineTool.Models;
 using TransformationTimelineTool.Helpers;
 using System.Configuration;
 using System.Data.SqlClient;
+using Quartz;
+using Quartz.Impl;
 
 namespace TransformationTimelineTool
 {
@@ -28,6 +30,11 @@ namespace TransformationTimelineTool
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //SqlDependency.Start(ConfigurationManager.ConnectionStrings["TimelineContext"].ConnectionString);
+
+            // Construct a scheduler factory & get a scheduler
+            ISchedulerFactory ScheduleFactory = new StdSchedulerFactory();
+            IScheduler Schedule = ScheduleFactory.GetScheduler();
+            Schedule.Start();
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)
