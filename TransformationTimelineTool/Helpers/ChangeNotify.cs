@@ -20,19 +20,8 @@ namespace TransformationTimelineTool.Helpers
             var edits = db.Edits.Where(e => e.Edited == true).ToList();
             var impacts = db.Impacts.Where(i => i.Edited == true).ToList();
             var initiatives = db.Initiatives.Where(i => i.Edited == true).ToList();
-            print(edits);
+            Utils.log(edits);
         }
 
-        private static void print<T>(List<T> list)
-        {
-            var props = typeof(T).GetProperties();
-            foreach (var element in list)
-            {
-                foreach (var prop in props)
-                {
-                    Utils.log(prop.Name + ": " + prop.GetValue(element, null));
-                }
-            }
-        }
     }
 }
