@@ -241,6 +241,14 @@ namespace TransformationTimelineTool.Helpers
             System.Diagnostics.Debug.WriteLineIf(Message.Length > 0, Message);
         }
 
+        public static void log(List<string> list)
+        {
+            foreach (var element in list)
+            {
+                log(element);
+            }
+        }
+
         public static void log<T>(List<T> list)
         {
             var props = typeof(T).GetProperties();
