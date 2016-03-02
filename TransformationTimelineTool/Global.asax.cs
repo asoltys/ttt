@@ -45,9 +45,6 @@ namespace TransformationTimelineTool
             ITrigger Trigger = TriggerBuilder.Create()
                 .WithIdentity("ChangeNotificationTrigger", "Group")
                 .StartNow()
-                .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(10)
-                    .RepeatForever())
                 .Build();
 
             Schedule.ScheduleJob(Job, Trigger);
