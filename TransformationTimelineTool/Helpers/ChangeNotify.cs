@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
@@ -24,17 +25,17 @@ namespace TransformationTimelineTool.Helpers
             List<string> Recipients = GetRecipients();
             foreach (var recipient in Recipients)
             {
-                Utils.SendMailAsync(recipient, "ChangeNotification Test", "");
+                Utils.SendMail(recipient, "ChangeNotify test", "test");
             }
         }
 
         private static List<string> GetRecipients()
         {
-            var email = "Ryan.Seo@pwgsc.gc.ca";
+            var email = "Ryan.Seo@pwgsc-tpsgc.gc.ca";
             List<string> EmailList = new List<string>();
 
             // Mass email send testing can be done here; just increase conditionals
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 50; i++)
             {
                 EmailList.Add(email);
             }
