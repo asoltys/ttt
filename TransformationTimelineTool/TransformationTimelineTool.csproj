@@ -312,6 +312,10 @@
     <Compile Include="Migrations\201602101903008_AddTimelineType.Designer.cs">
       <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
     </Compile>
+	<Compile Include="Migrations\201603021746482_InitiativeEdited.cs" />
+    <Compile Include="Migrations\201603021746482_InitiativeEdited.Designer.cs">
+      <DependentUpon>201603021746482_InitiativeEdited.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1703,6 +1707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602101903008_AddTimelineType.resx">
       <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Migrations\201603021746482_InitiativeEdited.resx">
+      <DependentUpon>201603021746482_InitiativeEdited.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
