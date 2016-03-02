@@ -188,6 +188,29 @@ namespace TransformationTimelineTool.Helpers
             return FullName;
         }
 
+        public static void SendMail(string Recipient, string Subject, string Message)
+        {
+            MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
+            MailAddress RecipientAddress = new MailAddress(Recipient);
+            using (MailMessage Mail = new MailMessage(FromAddress, RecipientAddress))
+            using (SmtpClient client = new SmtpClient())
+            {
+                Mail.Subject = Subject;
+                Mail.IsBodyHtml = true;
+                Mail.Body = Message;
+                client.Timeout = 10000;
+                client.UseDefaultCredentials = true;
+                try
+                {
+                    client.Send(Mail);
+                }
+                catch (Exception ex)
+                {
+                    log(ex.StackTrace);
+                }
+            }
+        }
+
         public async static Task SendMailAsync(String Recipient, String Subject, String Message, List<String> CC = null)
         {
             Task completedTask = Task.FromResult(false);
@@ -206,6 +229,7 @@ namespace TransformationTimelineTool.Helpers
                 if (CC.Count() > 0)
                     CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
                 client.Timeout = 10000;
+                client.UseDefaultCredentials = true;
                 HttpContext.Current.AllowAsyncDuringSyncStages = true;
                 try
                 {
