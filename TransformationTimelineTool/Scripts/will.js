@@ -187,6 +187,7 @@ timeLine = {
         html += "<div id='dragContainer'>";
         html += timeLine.today(timeLine.initiatives);
         html += timeLine.quarterMonthContainer();
+        html += "<div class='projectSpace'></div>";
         html += timeLine.timeLineContainer(timeLine.initiatives);
         html += "</div>";
         return html;
@@ -194,7 +195,7 @@ timeLine = {
     // set quarter/month container
     quarterMonthContainer: function () {
         var html = '';
-        html += "<div id='quarterMonthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+        html += "<div id='quarterMonthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px; position: absolute;'>";
         html += timeLine.quarterContainer();
         html += timeLine.monthContainer();
         html += "</div>";
@@ -662,5 +663,26 @@ $(document).ready(function () {
             $("#dialog").dialog("close");
         }
     });
+    $(window).on('scroll', function (e) {
+        setFixedHeader();
+    })
 });
 
+var setFixedHeader = function () {
+    if (typeof($('#dragContainer').offset()) === 'undefined') return;
+    var newPosition = ($(window).scrollTop() - $('#dragContainer').offset().top) / $('#dragContainer').height() * 100;
+    if (newPosition < 0 || newPosition > 85) {
+        newPosition = 0;
+    }
+    newPosition += "%";
+    $('#quarterMonthContainer').animate({
+        top: newPosition
+    }, {
+        duration: 'fast',
+        queue: false
+    });
+}
+
+$.fn.scrollBottom = function () {
+    return $(document).height() - this.scrollTop() - this.height();
+}
