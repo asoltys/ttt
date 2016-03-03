@@ -1,10 +1,18 @@
-﻿<div id="share_form_dialog" title="Share to an employee">
+﻿<style>
+    .text-danger {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
+<div id="share_form_dialog" title="Share to an employee">
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
     {
         @Html.AntiForgeryToken()
         <label>Email</label>
         <input id="email" style="width: 70%;" name="email" type="text">
-        <input id="submit" type="submit" value="Submit">
+        <input id="submit" type="submit" value="Submit"><br />
+        <span id="share_form_error" class="text-danger"></span>
     }
 </div>
 
@@ -23,8 +31,10 @@
             success: function (response) {
                 switch (response[0]) {
                     case 'MailAddressInvalid':
+                        $('#share_form_error').text("Email address is invalid");
                         break;
                     case 'MailAddressEmpty':
+                        $('#share_form_error').text("Email field cannot be empty");
                         break;
                     case 'MailSent':
                         dialogShareForm.dialog('close');
@@ -32,7 +42,6 @@
                     default:
                         break;
                 }
-                console.log(response);
             },
             error: function (response) {
                 dialogShareForm.dialog('close');
