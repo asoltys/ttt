@@ -37,7 +37,7 @@ namespace TransformationTimelineTool.Controllers
             }
             try
             {
-                if (Regex.IsMatch(To, @"(\w+.\w+@)(?:pwgsc.gc.ca|pwgsc-tpsgc.gc.ca)"))
+                if (Regex.IsMatch(To, @"(\w+.\w+@)(?:pwgsc.gc.ca|pwgsc-tpsgc.gc.ca|canada.ca|tpsgc.gc.ca|tpsgc-pwgsc.gc.ca)"))
                 {
                     await Utils.SendMailAsync(To, "Share Notification Test", "Share Notification Test");
                     ReturnValue.Add("MailSent");
