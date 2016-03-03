@@ -156,6 +156,7 @@
     <Compile Include="Controllers\ImpactsController.cs" />
     <Compile Include="Controllers\InitiativesController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\TimelineContext.cs" />
     <Compile Include="Exceptions\SendMailException.cs" />
@@ -1556,6 +1557,8 @@
     <Content Include="Views\Shared\_IntraLayout2ColFra.cshtml" />
     <Content Include="Views\Partials\Comments.cshtml" />
     <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
+    <Content Include="Views\Partials\Share.cshtml" />
+    <Content Include="Views\Partials\ShareForm.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1572,6 +1575,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comments\" />
     <Folder Include="Views\Mail\" />
+    <Folder Include="Views\Share\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

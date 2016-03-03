@@ -1,0 +1,20 @@
+﻿<div id="share_form_space"></div>
+<input id="share_button" type="button" value="Share" class="btn btn-default span-1" />
+<script>
+    $('#share_button').on('click', function (e) {
+        getShareForm();
+    });
+    var getShareForm = function () {
+        $.ajax({
+            type: "GET",
+            url: "/share/partial-form",
+            cache: false,
+            success: function (response) {
+                var form = $($.parseHTML(response, document, true));
+                $("#share_form_space").append(form);
+            }, error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+</script>

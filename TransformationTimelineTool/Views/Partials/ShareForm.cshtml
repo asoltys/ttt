@@ -1,0 +1,50 @@
+﻿<div id="share_form_dialog" title="Share to an employee">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <label>Email</label>
+        <input id="email" style="width: 70%;" name="email" type="text">
+        <input id="submit" type="submit" value="Submit">
+    }
+</div>
+
+<script>
+    $('form').submit(function (e) {
+        var form = $('#__AjaxAntiForgeryForm');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+        e.preventDefault();
+        $.ajax({
+            url: '/share/submit-form',
+            type: 'POST',
+            data: {
+                __RequestVerificationToken: token,
+                email: $('#email').val()
+            },
+            success: function (response) {
+                switch (response[0]) {
+                    case 'MailAddressInvalid':
+                        break;
+                    case 'MailAddressEmpty':
+                        break;
+                    case 'MailSent':
+                        dialogShareForm.dialog('close');
+                        break;
+                    default:
+                        break;
+                }
+                console.log(response);
+            },
+            error: function (response) {
+                dialogShareForm.dialog('close');
+            }
+        });
+    });
+    var dialogShareForm = $("#share_form_dialog").dialog({
+        modal: true,
+        autoOpen: true,
+        width: 400,
+        close: function(event, ui) {
+            $(this).dialog('destroy').remove();
+        }
+    });
+</script>
