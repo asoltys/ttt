@@ -34,7 +34,7 @@ namespace TransformationTimelineTool.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.Users.ToList().OrderBy(u => u.UserName));
         }
 
         // GET: Users/Details/5
