@@ -60,13 +60,18 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            UserViewModel VMUser = new UserViewModel(db.Users.Find(id), userManager);
+            if (userManager.IsInRole(id, "Approver"))
+            {
+                VMUser.Editors = db.Users.Where(u => u.ApproverID == id).ToList<User>();
+            }
             User user = db.Users.Find(id);
             ViewBag.Roles = String.Join(" - ", userManager.GetRoles(user.Id));
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(VMUser);
         }
 
         // GET: Users/Create
