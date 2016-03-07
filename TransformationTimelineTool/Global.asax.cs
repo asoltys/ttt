@@ -44,9 +44,13 @@ namespace TransformationTimelineTool
             // Trigger the job to run now for testing
             ITrigger Trigger = TriggerBuilder.Create()
                 .WithIdentity("ChangeNotificationTrigger", "Group")
+                .Build();
+            /*
+            ITrigger Trigger = TriggerBuilder.Create()
+                .WithIdentity("ChangeNotificationTrigger", "Group")
                 .StartNow()
                 .Build();
-
+                */
             Schedule.ScheduleJob(Job, Trigger);
         }
 
