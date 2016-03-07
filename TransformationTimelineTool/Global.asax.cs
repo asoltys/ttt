@@ -51,7 +51,7 @@ namespace TransformationTimelineTool
                 .StartNow()
                 .Build();
                 */
-            Schedule.ScheduleJob(Job, Trigger);
+            //Schedule.ScheduleJob(Job, Trigger);
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)
