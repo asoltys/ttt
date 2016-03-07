@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TransformationTimelineTool.Models.User>
+﻿@model TransformationTimelineTool.ViewModels.UserViewModel
 
 @if(Culture == "fr")
 {
@@ -27,7 +27,8 @@ else
     </p>
 }
 
-<table class="table">
+<h4>@Resources.Admin</h4>
+<table class="table users">
     <tr>
         <th>
             @Resources.UserName
@@ -40,7 +41,7 @@ else
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Admins) {
     <tr>
 
         <td>
@@ -71,5 +72,100 @@ else
         </td>
     </tr>
 }
+</table>
 
+<h4>@Resources.Approver</h4>
+<table class="table users">
+    <tr>
+        <th>
+            @Resources.UserName
+        </th>
+        <th>
+            @Resources.Email
+        </th>
+        <th class="control-group">
+            @Resources.Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Approvers)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if (ViewBag.isAdmin)
+                {
+                    <a class="no-link-style" href="@Url.Action("Edit", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                    </a>
+                    <a class="no-link-style" href="@Url.Action("Details", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                    </a>
+                    <a class="no-link-style" href="@Url.Action("Delete", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                    </a>
+                }
+                else
+                {
+                    <a class="no-link-style" href="@Url.Action("Details", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<h4>@Resources.Editor</h4>
+<table class="table users">
+    <tr>
+        <th>
+            @Resources.UserName
+        </th>
+        <th>
+            @Resources.Email
+        </th>
+        <th class="control-group">
+            @Resources.Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Editors)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if (ViewBag.isAdmin)
+                {
+                    <a class="no-link-style" href="@Url.Action("Edit", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                    </a>
+                    <a class="no-link-style" href="@Url.Action("Details", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                    </a>
+                    <a class="no-link-style" href="@Url.Action("Delete", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                    </a>
+                }
+                else
+                {
+                    <a class="no-link-style" href="@Url.Action("Details", "Users", new {lang = ViewBag.lang, id = item.Id })">
+                        <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
 </table>

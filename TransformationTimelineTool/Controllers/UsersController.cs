@@ -34,7 +34,23 @@ namespace TransformationTimelineTool.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList().OrderBy(u => u.UserName));
+            UserViewModel VMUser = new UserViewModel();
+            VMUser.Admins = new List<User>();
+            VMUser.Approvers = new List<User>();
+            VMUser.Editors = new List<User>();
+            foreach (var user in db.Users.ToList<User>())
+            {
+                if (userManager.IsInRole(user.Id, "Admin"))
+                    VMUser.Admins.Add(user);
+                if (userManager.IsInRole(user.Id, "Approver"))
+                    VMUser.Approvers.Add(user);
+                if (userManager.IsInRole(user.Id, "Editor"))
+                    VMUser.Editors.Add(user);
+            }
+            VMUser.Admins = VMUser.Admins.OrderBy(u => u.UserName).ToList<User>();
+            VMUser.Approvers = VMUser.Approvers.OrderBy(u => u.UserName).ToList<User>();
+            VMUser.Editors = VMUser.Editors.OrderBy(u => u.UserName).ToList<User>();
+            return View(VMUser);
         }
 
         // GET: Users/Details/5

@@ -17,5 +17,8 @@ namespace TransformationTimelineTool.ViewModels
         public SelectList ApproverSelect { get; set; }
         public User User { get; set; }
 
+        public List<User> Admins { get; set; }
+        public List<User> Approvers { get; set; }
+        public List<User> Editors { get; set; }
     }
 }
