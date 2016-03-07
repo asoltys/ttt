@@ -41,7 +41,7 @@ namespace TransformationTimelineTool.Helpers
                 }
             }
 
-            return opis;
+            return opis.OrderBy(o => o.UserName).ToList<User>();
         }
 
         public static User GetCurrentUser()
