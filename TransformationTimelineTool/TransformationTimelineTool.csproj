@@ -321,11 +321,7 @@
     <Compile Include="Migrations\201602052117544_AddDepthAndChangeColName.Designer.cs">
       <DependentUpon>201602052117544_AddDepthAndChangeColName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602101903008_AddTimelineType.cs" />
-    <Compile Include="Migrations\201602101903008_AddTimelineType.Designer.cs">
-      <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
-    </Compile>
-	<Compile Include="Migrations\201603021746482_InitiativeEdited.cs" />
+    <Compile Include="Migrations\201603021746482_InitiativeEdited.cs" />
     <Compile Include="Migrations\201603021746482_InitiativeEdited.Designer.cs">
       <DependentUpon>201603021746482_InitiativeEdited.cs</DependentUpon>
     </Compile>
@@ -336,6 +332,10 @@
     <Compile Include="Migrations\201603021803422_ActivityEdited.cs" />
     <Compile Include="Migrations\201603021803422_ActivityEdited.Designer.cs">
       <DependentUpon>201603021803422_ActivityEdited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603072141245_AddTimelineType1.cs" />
+    <Compile Include="Migrations\201603072141245_AddTimelineType1.Designer.cs">
+      <DependentUpon>201603072141245_AddTimelineType1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -1729,10 +1729,7 @@
     <EmbeddedResource Include="Migrations\201602052117544_AddDepthAndChangeColName.resx">
       <DependentUpon>201602052117544_AddDepthAndChangeColName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602101903008_AddTimelineType.resx">
-      <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
-    </EmbeddedResource>
-	<EmbeddedResource Include="Migrations\201603021746482_InitiativeEdited.resx">
+    <EmbeddedResource Include="Migrations\201603021746482_InitiativeEdited.resx">
       <DependentUpon>201603021746482_InitiativeEdited.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603021756412_ImpactEdited.resx">
@@ -1740,6 +1737,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603021803422_ActivityEdited.resx">
       <DependentUpon>201603021803422_ActivityEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603072141245_AddTimelineType1.resx">
+      <DependentUpon>201603072141245_AddTimelineType1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
