@@ -31,6 +31,7 @@ namespace TransformationTimelineTool.Migrations
 
             AddUser(UserManager, admin, admin, "PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca");
             AddUser(UserManager, "wongrm", admin);
+            AddUser(UserManager, "seor", admin);
             AddUser(UserManager, "ttt_opi", opi);
             AddUser(UserManager, "ttt_editor", editor);
             AddUser(UserManager, "matty", admin);
@@ -83,21 +84,24 @@ namespace TransformationTimelineTool.Migrations
                     DescriptionE = "Descp 1",
                     DescriptionF = "Descp 1",
                     StartDate = DateTime.Parse("2013-12-1"),
-                    EndDate = DateTime.Parse("2020-3-31") },
+                    EndDate = DateTime.Parse("2020-3-31"),
+                    Timeline = "TransformationTimeline"},
                 new Initiative {
                     NameE = "Case and Client Relationship Management",
                     NameF = "Case and Client Relationship Management",
                     DescriptionE = "Descp 2",
                     DescriptionF = "Descp 2",
                     StartDate = DateTime.Parse("2013-12-1"),
-                    EndDate = DateTime.Parse("2020-3-31") },
+                    EndDate = DateTime.Parse("2020-3-31"),
+                    Timeline = "TransformationTimeline"},
                 new Initiative {
                     NameE = "Holidays",
                     NameF = "Holidays",
                     DescriptionE = "Canadian Holidays",
                     DescriptionF = "Canadian Holidays",
                     StartDate = DateTime.Parse("2013-12-1"),
-                    EndDate = DateTime.Parse("2020-3-31") }
+                    EndDate = DateTime.Parse("2020-3-31"),
+                    Timeline = "TransformationTimeline"}
             };
 
             initiatives.ForEach(i => context.Initiatives.AddOrUpdate(p => p.NameE, i));
