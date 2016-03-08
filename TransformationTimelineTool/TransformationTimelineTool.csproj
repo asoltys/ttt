@@ -1004,6 +1004,8 @@
     <Content Include="Content\font-awesome-4.5.0\less\rotated-flipped.less" />
     <Content Include="Content\font-awesome-4.5.0\less\stacked.less" />
     <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
+    <Content Include="MockData\data-eng.json" />
+    <Content Include="MockData\data-fra.json" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
