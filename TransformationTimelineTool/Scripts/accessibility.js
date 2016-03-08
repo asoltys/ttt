@@ -10,6 +10,7 @@ var currentCulture = window.location.href.indexOf("fr") > -1 ? "fr" : "en";
 
 // data URLs
 var initiativesURL = currentCulture == "en" ? "/initiatives/data?lang=eng" : "/initiatives/data?lang=fra";
+initiativesURL = currentCulture == "en" ? "/data/initiative-eng" : "/data/initiative-fra";
 var regionsURL = "/regions/data?lang=eng";
 var branchesURL = "/Directions-Generales-Branches/data?lang=eng";
 
