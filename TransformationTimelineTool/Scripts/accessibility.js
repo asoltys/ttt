@@ -10,9 +10,11 @@ var currentCulture = window.location.href.indexOf("fr") > -1 ? "fr" : "en";
 
 // data URLs
 var initiativesURL = currentCulture == "en" ? "/initiatives/data?lang=eng" : "/initiatives/data?lang=fra";
-initiativesURL = currentCulture == "en" ? "/data/initiative-eng" : "/data/initiative-fra";
+initiativesURL = currentCulture == "en" ? "/data/initiatives-eng" : "/data/initiatives-fra";
 var regionsURL = "/regions/data?lang=eng";
+regionsURL = "/data/regions";
 var branchesURL = "/Directions-Generales-Branches/data?lang=eng";
+branchesURL = "/data/branches";
 
 // HTML variables
 var regionController;
@@ -66,7 +68,8 @@ function populateControllers() {
 function getInitiatives() {
 	lock = new $.Deferred();
 	getJSON(initiativesURL, function(data) {
-		initiatives = JSON.parse(data);
+	    initiatives = JSON.parse(data);
+	    dataModule.setupInitiatives(data);
 		lock.resolve();
 	});
 	return lock;
@@ -129,9 +132,38 @@ function createShowControl(index, initiativeParam) {
 
 function setupInitiatives() {
 	$.each(initiatives, function(idx, initiativeParam) {
-		createShowControl(idx, initiativeParam);
+	    createShowControl(idx, initiativeParam);
+	});
+	initiatives.sort(function (a, b) {
+	    var x = a.Name.toLowerCase();
+	    var y = b.Name.toLowerCase();
+	    return x < y ? -1 : x > y ? 1 : 0;
 	});
 }
+
+var dataModule = (function () {
+    var _initiatives;
+
+    var _sortByInitiativeNameComparator = function (a, b) {
+        var x = a.Name.toLowerCase();
+        var y = b.Name.toLowerCase();
+        return x < y ? -1 : x > y ? 1 : 0;
+    }
+
+    var _prepareDataset = function () {
+        console.log(_initiatives);
+        
+    }
+
+    return {
+        setupInitiatives: function (data) {
+            if (typeof data !== 'object') data = JSON.parse(data);
+            _initiatives = data;
+            _initiatives.sort(_sortByInitiativeNameComparator);
+            _prepareDataset();
+        }
+    }
+})();
 
 function getControlKey(key1, key2) {
 	return (key1 + "," + key2);
@@ -172,7 +204,7 @@ function isDate(date) {
 
 function createContent(initiativeParam) {
 	var content = [];
-	var heading = ["Timespan", "Key milestones", "Training", "Description"];
+	var heading = ["Description", "Timespan", "Key milestones", "Training"];
 
 	// Create timespan
 	var startDate 	= initiativeParam["StartDate"];
@@ -223,7 +255,7 @@ function createContent(initiativeParam) {
 
 	// Create last minute format changes and overall content 
 	timespan = "<p>" + timespan + "</p>";
-	content.push(timespan, milestones, training, description);
+	content.push(description, timespan, milestones, training);
 	for (var i = 0; i < content.length; i++) {
 		if (content[i].length == 0) continue;
 		content[i] = "<h3>" + heading[i] + "</h3>" + content[i];
@@ -231,17 +263,22 @@ function createContent(initiativeParam) {
 	return content.filter(function(n){ return n != ""}).join("");
 }
 
-function filterData() {
+function filterData(nofilter) {
     if (initiatives) {
         try {
             $.each(initiatives, function (idx, initiativeParam) {
-                var control = initiativeParam["showControl"];
-                for (var i = 0; i < control.length; i++) {
-                    if (control[i] == getControlKey(regionKey, branchKey)) {
-                        var content = createContent(initiativeParam);
-                        addAccordion(initiativeParam["Name"], content);
-                        break;
+                if (!nofilter) {
+                    var control = initiativeParam["showControl"];
+                    for (var i = 0; i < control.length; i++) {
+                        if (control[i] == getControlKey(regionKey, branchKey)) {
+                            var content = createContent(initiativeParam);
+                            addAccordion(initiativeParam["Name"], content);
+                            break;
+                        }
                     }
+                } else {
+                    var content = createContent(initiativeParam);
+                    addAccordion(initiativeParam["Name"], content);
                 }
             });
         } catch (e) {
@@ -263,7 +300,7 @@ $(window).on("load", function() {
 			getInitiatives();
 			$.when(lock).done(function () {
 				setupInitiatives();
-				filterData();
+				filterData(true);
 			});
 
 			// Event listeners
@@ -276,7 +313,7 @@ $(window).on("load", function() {
 				var selected = $(this).find("option:selected").attr("id");
 				regionKey = $(this).attr("id") == "region_controller" ? selected : regionKey;
 				branchKey = $(this).attr("id") == "branch_controller" ? selected : branchKey;
-				filterData();
+				filterData(false);
 			});
 
 			// Delegated Event listener to bind events to dynamic HTML contents
