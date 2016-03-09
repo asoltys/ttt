@@ -65,6 +65,10 @@ dictionary = {
         "e": "There will be no changes to the way that an employee does their work.",
         "f": "Aucun changement ne sera apporté à la façon dont un employé effectue son travail."
     },
+    "bpImDesc": {
+        "e": "Blueprint 2020.",
+        "f": ""
+    },
     "quarter": { "e": "Quarter", "f": "Trimestre" },
     "splash": {
         "e": "<p>This transformation timeline tool has been designed to provide " +
@@ -136,5 +140,17 @@ dictionary = {
     "m12": {
         "e": "Dec",
         "f": "Déc."
+    },
+    "viewAll": {
+        "e": "View All",
+        "f": ""
+    },
+    "viewBP": {
+        "e": "Blueprint 2020",
+        "f": ""
+    },
+    "viewTransformation": {
+        "e": "Transformation Timeline",
+        "f": ""
     }
 }

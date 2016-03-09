@@ -77,9 +77,9 @@ timeLine = {
     viewNav: function () {
         var html = '';
         html += "<select id='viewSelect'>";
-        html += "<option value=''>View All</option>";
-        html += "<option value='BP2020'>Blueprint 2020</option>";
-        html += "<option value='TransformationTimeline'>Transformation Timeline</option>";
+        html += "<option value=''>" + timeLine.utility.translate("viewAll") + "</option>";
+        html += "<option value='BP2020'>" + timeLine.utility.translate("viewBP") + "</option>";
+        html += "<option value='TransformationTimeline'>" +timeLine.utility.translate("viewTransformation") + "</option>";
         html += "</select>";
         $("#viewNav").append(html);
     },
@@ -192,7 +192,7 @@ timeLine = {
         html += "<a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
         html += "<a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
-        html += "<div class='projectGroupRow' id='pg4'>Blueprint 2020" + pat + " <a href='#' style='color:#000000;' id='hide4' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
+        html += "<div class='projectGroupRow' id='pg4'>" + timeLine.utility.translate("bpImDesc") + pat + " <a href='#' style='color:#000000;' id='hide4' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
         html += "<a href='#' style='color:#000000;' id='show4' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
             timeLine.countTimeLine = timeLine.countTimeLine + 1;
