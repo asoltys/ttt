@@ -312,6 +312,10 @@
     <Compile Include="Migrations\201602101903008_AddTimelineType.Designer.cs">
       <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603090031211_Subscriber.cs" />
+    <Compile Include="Migrations\201603090031211_Subscriber.Designer.cs">
+      <DependentUpon>201603090031211_Subscriber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -320,6 +324,7 @@
     <Compile Include="Models\Impact.cs" />
     <Compile Include="Models\Initiative.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\Subscriber.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BranchesData.cs" />
@@ -1563,6 +1568,7 @@
     <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
     <Content Include="Views\Partials\Share.cshtml" />
     <Content Include="Views\Partials\ShareForm.cshtml" />
+    <Content Include="Views\Home\Subscribe.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1703,6 +1709,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602101903008_AddTimelineType.resx">
       <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603090031211_Subscriber.resx">
+      <DependentUpon>201603090031211_Subscriber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
