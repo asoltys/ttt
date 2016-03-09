@@ -190,6 +190,10 @@
 
         var _prepareDataset = function () {
             _timelineFilterValue = 'View All';
+            console.log(_initiatives);
+            _initiatives.sort(function (a, b) {
+                return (sortComparator(b.Timeline, a.Timeline) || sortComparator(a.Name, b.Name));
+            });
             _initiatives.forEach(function (initiative, i) {
                 var tempControlObject;
                 initiative.Impacts.forEach(function (impact, j) {
@@ -251,9 +255,11 @@
                 _sortedInitiatives[i].Events = initiative.Events.filter(_controlExists);
             });
 
-            // Sort by weight then name
+            // Sort by timeline, weight then name
             _sortedInitiatives.sort(function (a, b) {
-                return (sortComparator(b.Weight, a.Weight) || sortComparator(a.Name, b.Name));
+                return (sortComparator(b.Timeline, a.Timeline) ||
+                        sortComparator(b.Weight, a.Weight) ||
+                        sortComparator(a.Name, b.Name));
             });
 
             // Filter by timeline selected
@@ -275,6 +281,10 @@
             return _sortedInitiatives;
         }
 
+        var _getTimelineFilter = function () {
+            return _timelineFilterValue;
+        }
+
         var _setTimelineFilter = function (optionValue) {
             if (typeof optionValue === 'string')
                 _timelineFilterValue = optionValue;
@@ -287,9 +297,6 @@
                 var start = Date.now();
                 if (typeof data !== 'object') data = JSON.parse(data);
                 _initiatives = data;
-                _initiatives.sort(function (a, b) {
-                    return sortComparator(a.Name, b.Name);
-                });
                 _prepareDataset();
                 var later = Date.now();
                 console.log("Took " + (later - start) + "ms to process data");
@@ -298,17 +305,18 @@
             sort: _sortAndFilterInitiatives,
             resetSort: _resetSortedInitiatives,
             getImpactSentence: _getResourceByWeight,
-            setTimelineFilter: _setTimelineFilter
+            setTimelineFilter: _setTimelineFilter,
+            getTimelineFilter: _getTimelineFilter
         }
     })();
 
     var gui = (function () {
         var _accordionCount = 0;
 
-        var addAccordion = function (title, content, weight) {
+        var addAccordion = function (title, content, timeline, weight) {
             weight = weight !== undefined ? weight : -1;
             _accordionCount++;
-            var accordion = "<div class='accordion-section' data-weight=" + weight + ">";
+            var accordion = "<div class='accordion-section' data-timeline = " + timeline + " data-weight=" + weight + ">";
             accordion += "<a class='accordion-section-title' href='#accordion-" + _accordionCount + "'><span></span>&nbsp;" + title + "</a>";
             accordion += "<div id='accordion-" + _accordionCount + "' class='accordion-section-content closed'>";
             accordion += content;
@@ -320,25 +328,42 @@
             $("#timeline_accordion").empty();
             initiatives.forEach(function (initiative, i) {
                 var content = _createContent(initiative);
+                console.log();
                 if (initiative.Weight === undefined) {
-                    addAccordion(initiative.Name, content);
+                    addAccordion(initiative.Name, content, initiative.Timeline);
                 } else {
-                    addAccordion(initiative.Name, content, initiative.Weight);
+                    addAccordion(initiative.Name, content, initiative.Timeline, initiative.Weight);
                 }
             });
         }
 
         var _categorize = function () {
+            var initialScreen;
+            if (dataset.getTimelineFilter().indexOf('View All') > -1 && (regionKey == 0 || branchKey == 0))
+                initialScreen = true;
+            else
+                initialScreen = false;
             var $accordions = $(".accordion-section");
+            var previousTimeline;
             var previousWeight;
             $.each($accordions, function () {
+                var timeline = $(this).data('timeline');
                 var weight = $(this).data('weight');
-                if (weight == -1)
-                    return false; // exit each loop
-                if (weight == previousWeight)
-                    return true; // skip to next iteration
-                $("<h4>" + dataset.getImpactSentence(weight) + "</h4>").insertBefore($(this));
-                previousWeight = weight;
+                if (weight == -1) {
+                    if (!initialScreen) {
+                        return false; // must be an error, exit each loop 
+                    } else {
+                        if (timeline == previousTimeline)
+                            return true; // skip to next iteration
+                        $("<h4>" + timeline + "</h4>").insertBefore($(this));
+                        previousTimeline = timeline;
+                    }
+                } else {
+                    if (weight == previousWeight)
+                        return true; // skip to next iteration
+                    $("<h4>" + dataset.getImpactSentence(weight) + "</h4>").insertBefore($(this));
+                    previousWeight = weight;
+                }
             });
         }
 
