@@ -15,6 +15,8 @@ timeLine = {
     initiatives: '',
     initiativesURLe: '/initiatives/data?lang=eng',
     initiativesURLf: '/initiatives/data?lang=fra',
+    //initiativesURLe: '/data/initiatives-eng',
+    //initiativesURLf: '/data/initiatives-fra',
     branchesURL: '/directions-generales-branches/data?lang=eng',
     regionsURL: '/regions/data?lang=eng',
     branches: '',
@@ -30,6 +32,7 @@ timeLine = {
     hide1: 0,
     hide2: 0,
     hide3: 0,
+    hide4: 0,
     runOnce: 0,
     countTimeLine: 0,
     timeLineHeight: 50,
@@ -45,10 +48,11 @@ timeLine = {
             dataType: "json",
             timeout: 6000,
             success: function (initiatives) {
-                timeLine.initiatives = initiatives.sort(function (a, b) { return a.Name.localeCompare(b.Name); });
+                timeLine.initiatives = initiatives.sort(function (a, b) { return b.Timeline.localeCompare(a.Timeline); });
                 $("#about").append(timeLine.about);
                 $("#legend").append(timeLine.legend);
                 $("#leftNav").append(timeLine.leftNav());
+                timeLine.viewNav();
                 timeLine.areaNav();
                 timeLine.branchNav();
                 $("#rightNav").append(timeLine.rightNav());
@@ -59,6 +63,7 @@ timeLine = {
                 $("#dragContainer").draggable({ axis: "x" });
                 timeLine.toggleIcons();
                 timeLine.css();
+                timeLine.orderRows();
             }
         });
     },
@@ -67,6 +72,16 @@ timeLine = {
         var html = '';
         html = "<img src='/timeline/img/arrow_left.png' style='width:30px; height:30px;' class='scrollButton' id='leftButton' />";
         return html;
+    },
+    // set region dropdown
+    viewNav: function () {
+        var html = '';
+        html += "<select id='viewSelect'>";
+        html += "<option value=''>View All</option>";
+        html += "<option value='BP2020'>Blueprint 2020</option>";
+        html += "<option value='TransformationTimeline'>Transformation Timeline</option>";
+        html += "</select>";
+        $("#viewNav").append(html);
     },
     // set region dropdown
     areaNav: function () {
@@ -136,9 +151,19 @@ timeLine = {
                 $.each(timeLine.branches, function (key, value) {
                     if (timeLine.branches[key].ID != 1) {
                         if (lang == 'e') {
-                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameE + "</option>"
+                            var tempName = timeLine.branches[key].NameE.substring(0, 44);
+                            var tempTrim = "";
+                            if (timeLine.branches[key].NameE.length > 44) {
+                                tempTrim = "...";
+                            };
+                            html += "<option value='" + timeLine.branches[key].ID + "'>" + tempName + tempTrim + "</option>"
                         } else {
-                            html += "<option value='" + timeLine.branches[key].ID + "'>" + timeLine.branches[key].NameF + "</option>"
+                            var tempName = timeLine.branches[key].NameF.substring(0, 44);
+                            var tempTrim = "";
+                            if (timeLine.branches[key].NameF.length > 44) {
+                                tempTrim = "...";
+                            };
+                            html += "<option value='" + timeLine.branches[key].ID + "'>" + tempName + tempTrim + "</option>"
                         };
                     };
                 });
@@ -167,9 +192,11 @@ timeLine = {
         html += "<a href='#' style='color:#ffffff;' id='show1' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         html += "<div class='projectGroupRow' id='pg0'>" + timeLine.utility.translate("noImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide0' class='hide'>" + timeLine.utility.translate("hide") + "</a>"
         html += "<a href='#' style='color:#ffffff;' id='show0' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
+        html += "<div class='projectGroupRow' id='pg4'>Blueprint 2020" + pat + " <a href='#' style='color:#000000;' id='hide4' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
+        html += "<a href='#' style='color:#000000;' id='show4' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
         $.each(timeLine.initiatives, function (key, value) {
             timeLine.countTimeLine = timeLine.countTimeLine + 1;
-            html += "<div class='projectRow' id='p";
+            html += "<div class='projectRow p" + timeLine.initiatives[key].Timeline + "' id='p";
             html += timeLine.initiatives[key].ID;
             html += "'><a href='#' onClick='timeLine.dialogCustom(\"";
             html += timeLine.cleanSpecialCharacters(timeLine.initiatives[key].Description);
@@ -272,11 +299,12 @@ timeLine = {
         html += "<div class='timeLineGroupRow' id='tg2' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         html += "<div class='timeLineGroupRow' id='tg1' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         html += "<div class='timeLineGroupRow' id='tg0' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
+        html += "<div class='timeLineGroupRow' id='tg4' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'></div>";
         $(timeLine.initiatives).each(function (key, value) {
             mergeDates = [];
             barStartDate = value.StartDate;
             rowID = value.ID;
-            html += "<div class='timeLineRow' id = 't" + rowID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
+            html += "<div class='timeLineRow t" + timeLine.initiatives[key].Timeline + "' id = 't" + rowID + "' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
             html += "<div class='timeLineBar' style='margin-left:" + timeLine.getLeft(barStartDate) + "px; width:" + timeLine.getRight(barStartDate, value.EndDate) + "px;'>"
             $.each(value.Events, function (key, value) {
                 var image = '';
@@ -412,6 +440,10 @@ timeLine = {
         $("#dragContainer").css('left', "-=" + timeLine.widthMonth * 2);
     },
     // runs filter when dropdown changes
+    viewSelect: function () {
+        timeLine.filter();
+    },
+    // runs filter when dropdown changes
     areaSelect: function () {
         timeLine.filter();
     },
@@ -419,124 +451,128 @@ timeLine = {
     branchSelect: function () {
         timeLine.filter();
     },
+    orderRows: function () {
+        var getAll = [];
+        var getBP2020 = [];
+        var getTransformationTimeline = [];
+        $.each(timeLine.initiatives, function (key, value) {
+            getAll.push({ id: timeLine.initiatives[key].ID, name: timeLine.initiatives[key].Name, view: timeLine.initiatives[key].Timeline, impact: timeLine.initiatives[key].Impacts });
+            $("#p" + timeLine.initiatives[key].ID).css("display", "inline");
+            $("#t" + timeLine.initiatives[key].ID).css("display", "inline");
+        });
+        getTransformationTimeline = $.grep(getAll, function (elem, idx) {
+            return elem.view == "TransformationTimeline";
+        });
+        getBP2020 = $.grep(getAll, function (elem, idx) {
+            return elem.view == "BP2020";
+        });
+        getTransformationTimeline = getTransformationTimeline.sort(function (a, b) { return b.name.localeCompare(a.name); });
+        getBP2020 = getBP2020.sort(function (a, b) { return b.name.localeCompare(a.name); });
+        for (var i = 0; i < getBP2020.length; i++) {
+            $("#p" + getBP2020[i].id).insertAfter("#pg0");
+            $("#t" + getBP2020[i].id).insertAfter("#tg0");
+        }
+        for (var i = 0; i < getTransformationTimeline.length; i++) {
+            $("#p" + getTransformationTimeline[i].id).insertAfter("#pg0");
+            $("#t" + getTransformationTimeline[i].id).insertAfter("#tg0");
+        }
+    },
     // this is where the magic happens
     filter: function () {
-        $.ajax({
-            type: "GET",
-            url: timeLine.branchesURL,
-            dataType: "json",
-            timeout: 6000,
-            success: function (initiatives) {
-                var id = '';
-                var level = 0;
-                var currentLevel = '';
-                var rSelected = $('#areaSelect').val();
-                var bSelected = $('#branchSelect').val();
-                var branches = '';
-                var regions = '';
-                var color0 = "#dbdbdb";
-                var color1 = "#f0caeb";
-                var color2 = "#ebf2b1";
-                var color3 = "#abdbcf";
-                var setLevel0 = 0;
-                var setLevel1 = 0;
-                var setLevel2 = 0;
-                var setLevel3 = 0;
-                var currentLevel0 = 0;
-                var currentLevel1 = 0;
-                var currentLevel2 = 0;
-                var currentLevel3 = 0;
-                var rowsHidden = 0;
-                $("#pg0").css("display", "none");
-                $("#tg0").css("display", "none");
-                $("#pg1").css("display", "none");
-                $("#tg1").css("display", "none");
-                $("#pg2").css("display", "none");
-                $("#tg2").css("display", "none");
-                $("#pg3").css("display", "none");
-                $("#tg3").css("display", "none");
-                if (rSelected != "") {
-                    $("#branchSelect").prop("disabled", false);
-                } else {
-                    $("#branchSelect").prop("disabled", true);
-                    $("#branchSelect").val('');
-                };
-                if (rSelected != "" && bSelected != "") {
-                    if (timeLine.runOnce == 0) {
-                        timeLine.dialogCustom(timeLine.utility.translate("splash"));
-                        timeLine.runOnce = 1;
-                    };
-                    $.each(timeLine.initiatives, function (key, value) {
-                        var id = timeLine.initiatives[key].ID;
-                        level = 0;
-                        $.each(value.Impacts, function (key, value) {
-                            currentLevel = value.Level;
-                            regions = value.Regions;
-                            branches = value.Branches;
-                            // if impacts are populated, check if it's level 0, 1, 2 or 3.
-                            if ($.inArray(parseInt(bSelected), branches) > -1 && $.inArray(parseInt(rSelected), regions) > -1) {
-                                if (currentLevel == 0 && level < currentLevel) {
-                                    level = 0;
-                                };
-                                if (currentLevel == 1 && level < currentLevel) {
-                                    level = 1;
-                                };
-                                if (currentLevel == 2 && level < currentLevel) {
-                                    level = 2;
-                                };
-                                if (currentLevel == 3 && level < currentLevel) {
-                                    level = 3;
-                                };
-                            };
-                        });
-                        if (eval("timeLine.hide".concat(level)) == 1) {
-                            $("#hide" + level).css("display", "none");
-                            $("#show" + level).css("display", "inline");
-                            $("#p" + id).css("display", "none");
-                            $("#t" + id).css("display", "none");
-                            rowsHidden = rowsHidden + 1;
-                        } else {
-                            $("#hide" + level).css("display", "inline");
-                            $("#show" + level).css("display", "none");
-                            $("#p" + id).css("display", "inline");
-                            $("#t" + id).css("display", "inline");
-                        };
-                        $("#p" + id).css("background-color", eval("color".concat(level)));
-                        $("#t" + id).css("background-color", eval("color".concat(level)));
-                        $("#pg" + level).css("display", "inline");
-                        $("#tg" + level).css("display", "inline");
-                        $("#p" + id).insertAfter("#pg" + level);
-                        $("#t" + id).insertAfter("#tg" + level);
-                        if (level == 0) { setLevel0 = 1; };
-                        if (level == 1) { setLevel1 = 1; };
-                        if (level == 2) { setLevel2 = 1; };
-                        if (level == 3) { setLevel3 = 1; };
-                    });
-                } else {
-                    timeLine.reset();
-                };
-                timeLine.toggleIcons();
-                var top = timeLine.heightQuarter + timeLine.heightMonth;
-                var levelSum = setLevel0 + setLevel1 + setLevel2 + setLevel3;
-                $("#today").css("height", (timeLine.countTimeLine - rowsHidden) * timeLine.timeLineHeight + (timeLine.heightGroup * levelSum));
-                $("#dragContainer").css("margin-top", (((timeLine.countTimeLine - rowsHidden) * timeLine.timeLineHeight) + top) * -1 - (timeLine.heightGroup * levelSum));
-            }
+        var rSelected = $('#areaSelect').val();
+        var bSelected = $('#branchSelect').val();
+        var vSelected = $('#viewSelect').val();
+        var getAll = [];
+        var color = ["#dbdbdb", "#f0caeb", "#ebf2b1", "#abdbcf", "#D1E8FF"];
+        var rowsActive = timeLine.countTimeLine;
+        var levelCount = [];
+        // first run popup
+        if (timeLine.runOnce == 0) {
+            //timeLine.dialogCustom(timeLine.utility.translate("splash"));
+            timeLine.runOnce = 1;
+        };
+        // store all initiatives in object
+        $.each(timeLine.initiatives, function (key, value) {
+            getAll.push({ id: timeLine.initiatives[key].ID, name: timeLine.initiatives[key].Name, view: timeLine.initiatives[key].Timeline, impact: timeLine.initiatives[key].Impacts });
+            $("#p" + timeLine.initiatives[key].ID).css("display", "inline");
+            $("#t" + timeLine.initiatives[key].ID).css("display", "inline");
         });
-    },
-    // resets filter
-    reset: function () {
-        $(".projectRow").css("display", "inline");
-        $(".timeLineRow").css("display", "inline");
-        $(".timeLineBar").css("background-color", "#eeeeee");
-        $(".projectRow").css("background-color", "#ffffff");
-        $(".timeLineRow").css("background-color", "#ffffff");
+        getTransformationTimeline = $.grep(getAll, function (elem, idx) {
+            return elem.view == "TransformationTimeline";
+        });
+        getBP2020 = $.grep(getAll, function (elem, idx) {
+            return elem.view == "BP2020";
+        });
+        // if view is selected hide all and display view
+        if (vSelected != "") {
+            for (var i = 0; i < getAll.length; i++) {
+                $("#p" + getAll[i].id).css("display", "none");
+                $("#t" + getAll[i].id).css("display", "none");
+            }
+            getAll = eval("get".concat(vSelected));
+            rowsActive = 0;
+            for (var i = 0; i < getAll.length; i++) {
+                $("#p" + getAll[i].id).css("display", "inline");
+                $("#t" + getAll[i].id).css("display", "inline");
+                rowsActive = rowsActive + 1;
+            }
+        }
+        // if region is selected, unlock branches
+        if (rSelected != "") {
+            $("#branchSelect").prop("disabled", false);
+        } else {
+            $("#branchSelect").prop("disabled", true);
+            $("#branchSelect").val('');
+        };
+        //reset
+        $(".projectGroupRow").css("display", "none");
+        $(".timeLineGroupRow").css("display", "none");
+        // if region/branch is selected, filter
+        if (rSelected != "" && bSelected != "") {
+            getAll = getAll.sort(function (a, b) { return b.name.localeCompare(a.name); });
+            for (var i = 0; i < getAll.length; i++) {
+                var level = 0;
+                var impact = getAll[i].impact;
+                for (var j in impact) {
+                    var branches = impact[j].Branches;
+                    var regions = impact[j].Regions;
+                    // reset to zero
+                    $("#p" + getAll[i].id).insertAfter("#pg0");
+                    $("#t" + getAll[i].id).insertAfter("#tg0");
+                    if ($.inArray(parseInt(bSelected), branches) > -1 && $.inArray(parseInt(rSelected), regions) > -1) {
+                        level = impact[j].Level;
+                        levelCount.push(level);
+                    };
+                }
+                $("#pg" + level).css("display", "inline");
+                $("#tg" + level).css("display", "inline");
+                if (eval("timeLine.hide".concat(level)) == 1) {
+                    $("#hide" + level).css("display", "none");
+                    $("#show" + level).css("display", "inline");
+                    $("#p" + getAll[i].id).css("display", "none");
+                    $("#t" + getAll[i].id).css("display", "none");
+                    rowsActive = rowsActive - 1;
+                } else {
+                    $("#hide" + level).css("display", "inline");
+                    $("#show" + level).css("display", "none");
+                    $("#p" + getAll[i].id).css("display", "inline");
+                    $("#t" + getAll[i].id).css("display", "inline");
+                }
+                $("#p" + getAll[i].id).insertAfter("#pg" + level);
+                $("#t" + getAll[i].id).insertAfter("#tg" + level);
+                $("#p" + getAll[i].id).css("background-color", color[level]);
+                $("#t" + getAll[i].id).css("background-color", color[level]);
+            };
+        }
+        timeLine.toggleIcons();
         var top = timeLine.heightQuarter + timeLine.heightMonth;
-        $("#today").css("height", timeLine.countTimeLine * timeLine.timeLineHeight);
-        $("#dragContainer").css("margin-top", ((timeLine.countTimeLine * timeLine.timeLineHeight) + top) * -1);
-        timeLine.hide0 = 0;
-        timeLine.hide1 = 0;
-        timeLine.hide2 = 0;
-        timeLine.hide3 = 0;
+        var uniqueLevelCount = [];
+        $.each(levelCount, function (i, el) {
+            if ($.inArray(el, uniqueLevelCount) === -1) uniqueLevelCount.push(el);
+        });
+        var levelSum = uniqueLevelCount.length;
+        $("#today").css("height", (rowsActive) * timeLine.timeLineHeight + (timeLine.heightGroup * levelSum));
+        $("#dragContainer").css("margin-top", (((rowsActive) * timeLine.timeLineHeight) + top) * -1 - (timeLine.heightGroup * levelSum));
     },
     // stuff that goes under the timeline
     footer: function () {
@@ -554,9 +590,30 @@ timeLine = {
     },
     // resets dropdowns
     clearResults: function () {
+        $("#viewSelect").val('');
         $("#areaSelect").val('');
         $("#branchSelect").val('');
+        timeLine.reset();
+        timeLine.orderRows();
         timeLine.filter();
+    },
+    // resets filter
+    reset: function () {
+        $(".projectRow").css("display", "inline");
+        $(".timeLineRow").css("display", "inline");
+        $(".timeLineBar").css("background-color", "#eeeeee");
+        $(".projectRow").css("background-color", "#ffffff");
+        $(".timeLineRow").css("background-color", "#ffffff");
+        $(".tBP2020").css("background-color", "#D1E8FF");
+        $(".pBP2020").css("background-color", "#D1E8FF");
+        var top = timeLine.heightQuarter + timeLine.heightMonth;
+        $("#today").css("height", timeLine.countTimeLine * timeLine.timeLineHeight);
+        $("#dragContainer").css("margin-top", ((timeLine.countTimeLine * timeLine.timeLineHeight) + top) * -1);
+        timeLine.hide0 = 0;
+        timeLine.hide1 = 0;
+        timeLine.hide2 = 0;
+        timeLine.hide3 = 0;
+        timeLine.hide4 = 0;
     },
     // display or hide icon based on dropdown selections
     toggleIcons: function () {
@@ -643,16 +700,19 @@ $(document).ready(function () {
     timeLine.content();
     $('body').on("click", "#leftButton", timeLine.goLeft);
     $('body').on("click", "#rightButton", timeLine.goRight);
+    $('body').on("change", "#viewSelect", timeLine.viewSelect);
     $('body').on("change", "#areaSelect", timeLine.areaSelect);
     $('body').on("change", "#branchSelect", timeLine.branchSelect);
     $('body').on("click", "#hide0", function () { timeLine.hide0 = 1; timeLine.filter(); });
     $('body').on("click", "#hide1", function () { timeLine.hide1 = 1; timeLine.filter(); });
     $('body').on("click", "#hide2", function () { timeLine.hide2 = 1; timeLine.filter(); });
     $('body').on("click", "#hide3", function () { timeLine.hide3 = 1; timeLine.filter(); });
+    $('body').on("click", "#hide4", function () { timeLine.hide4 = 1; timeLine.filter(); });
     $('body').on("click", "#show0", function () { timeLine.hide0 = 0; timeLine.filter(); });
     $('body').on("click", "#show1", function () { timeLine.hide1 = 0; timeLine.filter(); });
     $('body').on("click", "#show2", function () { timeLine.hide2 = 0; timeLine.filter(); });
     $('body').on("click", "#show3", function () { timeLine.hide3 = 0; timeLine.filter(); });
+    $('body').on("click", "#show4", function () { timeLine.hide4 = 0; timeLine.filter(); });
     $('body').on("click", "#clearResults", timeLine.clearResults);
     $("#dialog").dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
     $(document).tooltip({ items: ':not(.ui-button)' });
