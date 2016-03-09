@@ -249,10 +249,12 @@
                 if (_sortedInitiatives[i].control[controlKey] !== undefined)
                     _sortedInitiatives[i].Weight = _sortedInitiatives[i].control[controlKey];
                 else {
-                    if (regionKey > 0 && branchKey > 0)
+                    if (regionKey > 0 && branchKey > 0) {
                         _sortedInitiatives[i].Weight = _impactWeight(0);
+                    }
                 }
-                _sortedInitiatives[i].Events = initiative.Events.filter(_controlExists);
+                if (regionKey > 0 && branchKey > 0)
+                    _sortedInitiatives[i].Events = initiative.Events.filter(_controlExists);
             });
 
             // Sort by timeline, weight then name
