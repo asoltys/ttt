@@ -1224,20 +1224,56 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text.
-        /// </summary>
-        public static string Text {
-            get {
-                return ResourceManager.GetString("Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Timeline.
         /// </summary>
         public static string Timeline {
             get {
                 return ResourceManager.GetString("Timeline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There will be significant changes to the way that an employee does their work..
+        /// </summary>
+        public static string TimelineHighImpact {
+            get {
+                return ResourceManager.GetString("TimelineHighImpact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;To help you understand how various transformation initiatives impact you, select your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low or none). Hold your mouse over the displayed icons to find links to information about the milestones or training being offered. Data will be updated regularly. Questions? &lt;a href=&apos;mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool&apos;&gt; Click here to send an email&lt;/a&gt;.&lt;/p&gt;.
+        /// </summary>
+        public static string TimelineIntroduction {
+            get {
+                return ResourceManager.GetString("TimelineIntroduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There will be minimal changes to the way that an employee does their work..
+        /// </summary>
+        public static string TimelineLowImpact {
+            get {
+                return ResourceManager.GetString("TimelineLowImpact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There will be some changes to the way that an employee does their work..
+        /// </summary>
+        public static string TimelineMediumImpact {
+            get {
+                return ResourceManager.GetString("TimelineMediumImpact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There will be no changes to the way that an employee does their work..
+        /// </summary>
+        public static string TimelineNoImpact {
+            get {
+                return ResourceManager.GetString("TimelineNoImpact", resourceCulture);
             }
         }
         

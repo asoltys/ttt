@@ -576,4 +576,19 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="Timeline" xml:space="preserve">
     <value>Timeline</value>
   </data>
+  <data name="TimelineIntroduction" xml:space="preserve">
+    <value>&lt;p&gt;To help you understand how various transformation initiatives impact you, select your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low or none). Hold your mouse over the displayed icons to find links to information about the milestones or training being offered. Data will be updated regularly. Questions? &lt;a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'&gt; Click here to send an email&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="TimelineHighImpact" xml:space="preserve">
+    <value>There will be significant changes to the way that an employee does their work.</value>
+  </data>
+  <data name="TimelineMediumImpact" xml:space="preserve">
+    <value>There will be some changes to the way that an employee does their work.</value>
+  </data>
+  <data name="TimelineLowImpact" xml:space="preserve">
+    <value>There will be minimal changes to the way that an employee does their work.</value>
+  </data>
+  <data name="TimelineNoImpact" xml:space="preserve">
+    <value>There will be no changes to the way that an employee does their work.</value>
+  </data>
 </root>

@@ -8,24 +8,28 @@
 <h1 id="wb-cont">@Resources.NationalTransformationTimelineTool</h1>
 
 
-<p>
-    Transformation initiatives are major projects that affect how we do work in the Department. Find current initiatives below, and select your region and branch from the menus to see which projects will affect you the most. The timeline shows you start and end dates for projects, as well as any major milestones and training opportunities. Contact <strong>add a link here</strong> if you have any questions.
-</p>
+@Html.Raw(Resources.TimelineIntroduction)
 
-<div id="timeline_controller">
-    <span class="center-span">
-        <span id="region_container">
-            <label for="region_controller">@Resources.SelectYourArea :</label>
-            <select id="region_controller"><option id="0"></option></select>
-        </span>
-        <span id="branch_container">
-            <label for="branch_controller">@Resources.SelectYourBranch :</label>
-            <select disabled id="branch_controller"><option id="0"></option></select>
-        </span>
-    </span>
+<div id="controller_container">
+    <div id="timeline_container">
+        <label for="timeline_controller">@Resources.Timeline:</label>
+        <select id="timeline_controller">
+            <option id="View All">View All</option>
+            <option value="BP2020">Blueprint 2020</option>
+            <option value="TransformationTimeline">Transformation Timeline</option>
+        </select>
+    </div>
+    <div id="region_container">
+        <label for="region_controller">@Resources.SelectYourArea :</label>
+        <select id="region_controller"><option id="0"></option></select>
+    </div>
+    <div id="branch_container">
+        <label for="branch_controller">@Resources.SelectYourBranch :</label>
+        <select disabled id="branch_controller"><option id="0"></option></select>
+    </div>
 </div>
 
-<div id="timeline_container">
+<div id="text_timeline_container ">
     <div id="timeline_accordion" class="accordion">
 
     </div>
@@ -35,23 +39,23 @@
 }
 
 <script>
+    var local = true;
+
     // data variables
     var initiatives;
     var regionKey = 0;
     var branchKey = 0;
-    var showAllRegionKey;
-    var showAllBranchKey;
     var regionName;
     var branchName;
     var currentCulture = window.location.href.indexOf("fr") > -1 ? "fr" : "en";
+    var cultureDateformat = currentCulture == "en" ? "dd-M-yy" : "yy-mm-dd";
 
     // data URLs
-    var initiativesURL = currentCulture == "en" ? "/initiatives/data?lang=eng" : "/initiatives/data?lang=fra";
-    initiativesURL = currentCulture == "en" ? "/data/initiatives-eng" : "/data/initiatives-fra";
-    var regionsURL = "/regions/data?lang=eng";
-    regionsURL = "/data/regions";
-    var branchesURL = "/Directions-Generales-Branches/data?lang=eng";
-    branchesURL = "/data/branches";
+    var initiativesURL = currentCulture == "en" ?
+        local ? "/data/initiatives-eng" : "/initiatives/data?lang=eng" :
+        local ? "/data/initiatives-fra" : "/initiatives/data?lang=fra";
+    var regionsURL = local ? "/data/regions" : "/regions/data?lang=eng";
+    var branchesURL = local ? "/data/branches": "/Directions-Generales-Branches/data?lang=eng";
 
     // HTML variables
     var regionController;
@@ -83,9 +87,19 @@
 
         getJSON(regionsURL, function (data) {
             regions = JSON.parse(data);
+            var propertyCulture = currentCulture == "en" ? "NameE" : "NameF";
+            regions = regions.sort(function (a, b) {
+                return sortComparator(a[propertyCulture], b[propertyCulture]);
+            });
+            var nca;
+            regions = regions.filter(function (object) {
+                if (object.NameShort == "nca")
+                    nca = object;
+                return object.NameShort != "nca"
+            });
+            regions.unshift(nca);
             for (var k in regions) {
-                if (regions[k].NameShort == "all") showAllRegionKey = regions[k].ID;
-                regionName = currentCulture == "en" ? regions[k].NameE : regions[k].NameF;
+                regionName = regions[k][propertyCulture];
                 var option = "<option id=" + regions[k].ID + " value=" + regions[k].ID + ">" + regionName + "</option>";
                 regionController.append(option);
             }
@@ -93,9 +107,12 @@
 
         getJSON(branchesURL, function (data) {
             branches = JSON.parse(data);
+            var propertyCulture = currentCulture == "en" ? "NameE" : "NameF";
+            branches = branches.sort(function (a, b) {
+                return sortComparator(a[propertyCulture], b[propertyCulture]);
+            });
             for (var k in branches) {
-                if (branches[k].NameShort == "all") showAllBranchKey = branches[k].ID;
-                branchName = currentCulture == "en" ? branches[k].NameE : branches[k].NameF;
+                branchName = branches[k][propertyCulture];
                 var option = "<option id=" + branches[k].ID + ">" + branchName + "</option>";
                 branchController.append(option);
             }
@@ -106,264 +123,21 @@
         lock = new $.Deferred();
         getJSON(initiativesURL, function (data) {
             initiatives = JSON.parse(data);
-            dataModule.setupInitiatives(data);
+            dataset.setupInitiatives(data);
             lock.resolve();
         });
         return lock;
     }
 
-    var accordionCount = 0;
-    function addAccordion(title, content) {
-        accordionCount++;
-        var accordion = "<div class='accordion-section'>";
-        accordion += "<a class='accordion-section-title' href='#accordion-" + accordionCount + "'>&#9654;&nbsp;" + title + "</a>";
-        accordion += "<div id='accordion-" + accordionCount + "' class='accordion-section-content closed'>";
-        accordion += content;
-        accordion += "</div></div>";
-        $("#timeline_accordion").append(accordion);
-    }
-
-    function createShowControl(index, initiativeParam) {
-        var level = 0;
-        var impacts = initiativeParam.Impacts;
-        var events = initiativeParam.Events;
-
-        // Serialize the IDs for each initiative
-        var controlArray = [];
-        $.each(impacts, function (idx, impact) {
-            $.each(impact.Regions, function (idx, region) {
-                $.each(impact.Branches, function (idx, branch) {
-                    controlArray.push(region + "," + branch);
-                });
-            });
-        });
-        controlArray = controlArray.length > 0 ? controlArray : ["0,0"];
-        initiatives[index]["showControl"] = controlArray;
-
-        // Serialize the IDs for each event
-        $.each(events, function (idx, eventParam) {
-            controlArray = [];
-            if (eventParam.Regions.length == 1) {
-                if (eventParam.Regions[0] == showAllRegionKey) {
-                    for (var i = 1; i <= showAllRegionKey; i++) {
-                        eventParam.Regions[i - 1] = i;
-                    }
-                }
-            }
-            if (eventParam.Branches.length == 1) {
-                if (eventParam.Branches[0] == showAllBranchKey) {
-                    for (var i = 1; i <= showAllBranchKey; i++) {
-                        eventParam.Branches[i - 1] = i;
-                    }
-                }
-            }
-            $.each(eventParam.Regions, function (idx, region) {
-                $.each(eventParam.Branches, function (idx, branch) {
-                    controlArray.push(region + "," + branch);
-                });
-            });
-            controlArray = controlArray.length > 0 ? controlArray : ["0,0"];
-            initiatives[index]["Events"][idx]["showControl"] = controlArray;
-        });
-    }
-
-    function setupInitiatives() {
-        $.each(initiatives, function (idx, initiativeParam) {
-            createShowControl(idx, initiativeParam);
-        });
-        initiatives.sort(function (a, b) {
-            var x = a.Name.toLowerCase();
-            var y = b.Name.toLowerCase();
-            return x < y ? -1 : x > y ? 1 : 0;
-        });
-    }
-
-    var dataModule = (function () {
-        var _initiatives;
-
-        var _sortByInitiativeNameComparator = function (a, b) {
-            var x = a.Name.toLowerCase();
-            var y = b.Name.toLowerCase();
-            return x < y ? -1 : x > y ? 1 : 0;
-        }
-
-        var _prepareDataset = function () {
-            console.log(_initiatives);
-
-        }
-
-        return {
-            setupInitiatives: function (data) {
-                if (typeof data !== 'object') data = JSON.parse(data);
-                _initiatives = data;
-                _initiatives.sort(_sortByInitiativeNameComparator);
-                _prepareDataset();
-            }
-        }
-    })();
-
     function getControlKey(key1, key2) {
         return (key1 + "," + key2);
     }
 
-    function formatDate(format, date) {
-        try {
-            var monthObj = {
-                1: { en: "January", fr: "janvier" },
-                2: { en: "February", fr: "février" },
-                3: { en: "March", fr: "mars" },
-                4: { en: "April", fr: "avril" },
-                5: { en: "May", fr: "mai" },
-                6: { en: "June", fr: "juin" },
-                7: { en: "July", fr: "juillet" },
-                8: { en: "August", fr: "août" },
-                9: { en: "September", fr: "septembre" },
-                10: { en: "October", fr: "octobre" },
-                11: { en: "November", fr: "novembre" },
-                12: { en: "December", fr: "décembre" }
-            };
-            var date = date.split("/");
-            var day = currentCulture == "en" ? date[1] : date[0];
-            var month = currentCulture == "en" ? date[0] : date[1];;
-            var year = date[2];
-            return monthObj[parseInt(month)][currentCulture] + " " + day + ", " + year;
-        } catch (e) {
-            throw {
-                name: "Dateformat Error",
-                message: "Date passed could not be formatted"
-            }
-        }
-    }
-
-    function isDate(date) {
-        return !(/NaN/g).test(date);
-    }
-
-    function createContent(initiativeParam) {
-        var content = [];
-        var heading = ["Description", "Timespan", "Key milestones", "Training"];
-
-        // Create timespan
-        var startDate = initiativeParam["StartDate"];
-        var endDate = initiativeParam["EndDate"];
-        if (startDate.length == 0 || endDate.length == 0) {
-            throw {
-                name: "JSON Parse Error",
-                message: "Dates could not be parsed correctly"
-            }
-        }
-        var timespan = formatDate('MM, yy', startDate) + " - " + formatDate('MM, yy', endDate);
-
-        // Create milestones & training
-        var milestones = "<ul>";
-        var training = "<ul>";
-        var events = initiativeParam["Events"];
-        var milstoneCount = 0;
-        var trainingCount = 0;
-        if (events.length > 0) {
-            $.each(events, function (idx, eventParam) {
-                var control = eventParam["showControl"];
-                for (var i = 0; i < control.length; i++) {
-                    if (control[i] == getControlKey(regionKey, branchKey)) {
-                        var dateStr = formatDate('MM dd, yy', eventParam["Date"]);
-                        var eventTime = isDate(dateStr) ? dateStr : eventParam["Date"];
-                        if ((/milestone/gi).test(eventParam["Type"])) {
-                            var text = eventParam["Text"] == null ? "" : eventParam["Text"];
-                            milestones += "<li>" + eventTime + ": " + text + "</li>";
-                            milstoneCount++
-                        } else if (false) {
-                        } else {
-                            var text = eventParam["Text"] == null ? "" : eventParam["Text"];
-                            training += "<li>" + eventTime + ": " + text + "</li>";
-                            trainingCount++;
-                        }
-                        break;
-                    }
-                }
-            })
-        }
-        milestones += "</ul>";
-        training += "</ul>";
-        milestones = milstoneCount == 0 ? "" : milestones;
-        training = trainingCount == 0 ? "" : training;
-
-        // Create description
-        var description = "<p>" + initiativeParam["Description"] + "</p>";
-
-        // Create last minute format changes and overall content 
-        timespan = "<p>" + timespan + "</p>";
-        content.push(description, timespan, milestones, training);
-        for (var i = 0; i < content.length; i++) {
-            if (content[i].length == 0) continue;
-            content[i] = "<h3>" + heading[i] + "</h3>" + content[i];
-        }
-        return content.filter(function (n) { return n != "" }).join("");
-    }
-
-    function filterData(nofilter) {
-        if (initiatives) {
-            try {
-                $.each(initiatives, function (idx, initiativeParam) {
-                    if (!nofilter) {
-                        var control = initiativeParam["showControl"];
-                        for (var i = 0; i < control.length; i++) {
-                            if (control[i] == getControlKey(regionKey, branchKey)) {
-                                var content = createContent(initiativeParam);
-                                addAccordion(initiativeParam["Name"], content);
-                                break;
-                            }
-                        }
-                    } else {
-                        var content = createContent(initiativeParam);
-                        addAccordion(initiativeParam["Name"], content);
-                    }
-                });
-            } catch (e) {
-                console.log(e.name + ": " + e.message);
-            }
-        }
-    }
-
     function toggleAccordion(elem) {
+        elem.toggleClass('toggle');
         var contentID = elem.attr("href");
         $(contentID).slideToggle();
     }
-
-    $(window).on("load", function () {
-        function main() {
-            try {
-                // Initial setup
-                populateControllers();
-                getInitiatives();
-                $.when(lock).done(function () {
-                    setupInitiatives();
-                    filterData(true);
-                });
-
-                // Event listeners
-                $("#branch_controller, #region_controller").on("change", function () {
-                    if ($("#region_controller option:selected").val() > 0)
-                        $("#branch_controller").prop("disabled", false);
-                    else
-                        $("#branch_controller").prop("disabled", true);
-                    $("#timeline_accordion").empty();
-                    var selected = $(this).find("option:selected").attr("id");
-                    regionKey = $(this).attr("id") == "region_controller" ? selected : regionKey;
-                    branchKey = $(this).attr("id") == "branch_controller" ? selected : branchKey;
-                    filterData(false);
-                });
-
-                // Delegated Event listener to bind events to dynamic HTML contents
-                $("#timeline_accordion").on("click", "a.accordion-section-title", function () {
-                    toggleAccordion($(this));
-                });
-            } catch (e) {
-                console.log(e.name + ": " + e.message);
-            }
-        }
-        main();
-    });
-
 
     // Initialize center-span class (calculate children width and set span width)
     function initCenterSpan() {
@@ -381,4 +155,319 @@
             });
         }
     }
+
+    var sortComparator = function (a, b) {
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+    };
+
+    var dataset = (function () {
+        var _initiatives;
+        var _sortedInitiatives;
+        var _timelineFilterValue;
+
+        var _impactWeight = function (level) {
+            switch (level) {
+                case 0: return 10; // None
+                case 1: return 20; // Low
+                case 2: return 30; // Medium
+                case 3: return 40; // High
+                case 4: return 0; // BP2020
+                default: return -1;
+            }
+        }
+
+        var _getResourceByWeight = function (weight) {
+            switch (weight) {
+                case 10: return '@Resources.TimelineNoImpact';
+                case 20: return '@Resources.TimelineLowImpact';
+                case 30: return '@Resources.TimelineMediumImpact';
+                case 40: return '@Resources.TimelineHighImpact';
+                case 0: return '@Resources.BP2020';
+            }
+        }
+
+        var _prepareDataset = function () {
+            _timelineFilterValue = 'View All';
+            _initiatives.forEach(function (initiative, i) {
+                var tempControlObject;
+                initiative.Impacts.forEach(function (impact, j) {
+                    tempControlObject = _mergeObjects(tempControlObject, _createControlObject(impact, 'impact'));
+                });
+                initiative.control = tempControlObject;
+                delete initiative.Impacts;
+
+                initiative.Events.forEach(function (event, j) {
+                    initiative.Events[j].control = _createControlObject(event, 'event');
+                    delete initiative.Events[j].Regions;
+                    delete initiative.Events[j].Branches;
+                });
+            });
+            _sortedInitiatives = JSON.parse(JSON.stringify(_initiatives));
+        }
+
+        var _createControlObject = function (object, type) {
+            /*  Control Object has key:value structure
+             *  key => [region,branch]
+             *  value => [impactWeight or -1]
+             */
+            var control = {};
+            object.Regions.forEach(function (region, i) {
+                object.Branches.forEach(function (branch, i) {
+                    var hashKey = region + "," + branch;
+                    if (type === 'impact') {
+                        control[hashKey] = _impactWeight(object.Level);
+                    } else {
+                        control[hashKey] = -1;
+                    }
+                });
+            });
+            return control;
+        }
+
+        var _controlExists = function (object) {
+            var controlKey = getControlKey(regionKey, branchKey);
+            return controlKey in object.control;
+        }
+
+        var _timelineFilter = function (object) {
+            if (_timelineFilterValue.indexOf("View All") > -1)
+                return true;
+            return object.Timeline == _timelineFilterValue;
+        }
+
+        var _sortAndFilterInitiatives = function () {
+            var controlKey = getControlKey(regionKey, branchKey);
+            // Deep copy initial dataset before sorting and filtering
+            _sortedInitiatives = JSON.parse(JSON.stringify(_initiatives));
+            _sortedInitiatives.forEach(function (initiative, i) {
+                if (_sortedInitiatives[i].control[controlKey] !== undefined)
+                    _sortedInitiatives[i].Weight = _sortedInitiatives[i].control[controlKey];
+                else {
+                    if (regionKey > 0 && branchKey > 0)
+                        _sortedInitiatives[i].Weight = _impactWeight(0);
+                }
+                _sortedInitiatives[i].Events = initiative.Events.filter(_controlExists);
+            });
+
+            // Sort by weight then name
+            _sortedInitiatives.sort(function (a, b) {
+                return (sortComparator(b.Weight, a.Weight) || sortComparator(a.Name, b.Name));
+            });
+
+            // Filter by timeline selected
+            _sortedInitiatives = _sortedInitiatives.filter(_timelineFilter);
+        }
+
+        var _resetSortedInitiatives = function () {
+            _sortedInitiatives = null;
+        }
+
+        var _mergeObjects = function (obj1, obj2) {
+            var temp = {};
+            for (var attrname in obj1) { temp[attrname] = obj1[attrname]; }
+            for (var attrname in obj2) { temp[attrname] = obj2[attrname]; }
+            return temp;
+        }
+
+        var _getInitiatives = function () {
+            return _sortedInitiatives;
+        }
+
+        var _setTimelineFilter = function (optionValue) {
+            if (typeof optionValue === 'string')
+                _timelineFilterValue = optionValue;
+            else
+                _timelineFilterValue = 'View All';
+        }
+
+        return {
+            setupInitiatives: function (data) {
+                var start = Date.now();
+                if (typeof data !== 'object') data = JSON.parse(data);
+                _initiatives = data;
+                _initiatives.sort(function (a, b) {
+                    return sortComparator(a.Name, b.Name);
+                });
+                _prepareDataset();
+                var later = Date.now();
+                console.log("Took " + (later - start) + "ms to process data");
+            },
+            getInitiatives: _getInitiatives,
+            sort: _sortAndFilterInitiatives,
+            resetSort: _resetSortedInitiatives,
+            getImpactSentence: _getResourceByWeight,
+            setTimelineFilter: _setTimelineFilter
+        }
+    })();
+
+    var gui = (function () {
+        var _accordionCount = 0;
+
+        var addAccordion = function (title, content, weight) {
+            weight = weight !== undefined ? weight : -1;
+            _accordionCount++;
+            var accordion = "<div class='accordion-section' data-weight=" + weight + ">";
+            accordion += "<a class='accordion-section-title' href='#accordion-" + _accordionCount + "'><span></span>&nbsp;" + title + "</a>";
+            accordion += "<div id='accordion-" + _accordionCount + "' class='accordion-section-content closed'>";
+            accordion += content;
+            accordion += "</div></div>";
+            $("#timeline_accordion").append(accordion);
+        }
+
+        var _render = function (initiatives) {
+            $("#timeline_accordion").empty();
+            initiatives.forEach(function (initiative, i) {
+                var content = _createContent(initiative);
+                if (initiative.Weight === undefined) {
+                    addAccordion(initiative.Name, content);
+                } else {
+                    addAccordion(initiative.Name, content, initiative.Weight);
+                }
+            });
+        }
+
+        var _categorize = function () {
+            var $accordions = $(".accordion-section");
+            var previousWeight;
+            $.each($accordions, function () {
+                var weight = $(this).data('weight');
+                if (weight == -1)
+                    return false; // exit each loop
+                if (weight == previousWeight)
+                    return true; // skip to next iteration
+                $("<h4>" + dataset.getImpactSentence(weight) + "</h4>").insertBefore($(this));
+                previousWeight = weight;
+            });
+        }
+
+        var _getMonthNumber = function (dateString) {
+            var month = dateString.split('-')[1];
+            if (isNaN(parseInt(month))) {
+                switch (month) {
+                    case 'Jan': return 1; case 'Feb': return 2; case 'Mar': return 3;
+                    case 'Apr': return 4; case 'May': return 5; case 'Jun': return 6;
+                    case 'Jul': return 7; case 'Aug': return 8; case 'Sep': return 9;
+                    case 'Oct': return 10; case 'Nov': return 11; case 'Dec': return 12;
+                    default: return 0;
+                }
+            } else {
+                return parseInt(month);
+            }
+        }
+
+        var _getYearNumber = function (dateString) {
+            var yearIndex = currentCulture == 'en' ? 2 : 0;
+            return dateString.split('-')[yearIndex];
+        }
+
+        var _getQuarter = function (month, year) {
+            if (month >= 1 && month <= 3) return 'Q4 ' + year;
+            if (month >= 4 && month <= 6) return 'Q1 ' + year;
+            if (month >= 7 && month <= 9) return 'Q2 ' + year;
+            if (month >= 10 && month <= 12) return 'Q3 ' + year;
+            return 'error';
+        }
+
+        var _createContent = function (initiative) {
+            var content = [];
+            var heading = ["Description", "Timespan", "Key milestones", "Training"];
+
+            // Create description
+            var description = "<p>" + initiative["Description"] + "</p>";
+
+            // Create timespan
+            var startDate = $.datepicker.formatDate(cultureDateformat, new Date(initiative["StartDate"]));
+            startDate = _getQuarter(_getMonthNumber(startDate), _getYearNumber(startDate));
+            var endDate = $.datepicker.formatDate(cultureDateformat, new Date(initiative["EndDate"]));
+            endDate = _getQuarter(_getMonthNumber(endDate), _getYearNumber(endDate))
+            var timespan = startDate + " ~ " + endDate;
+            timespan = "<p>" + timespan + "</p>";
+
+            // Create milestones & training
+            var milestones = "<ul>";
+            var training = "<ul>";
+            var events = initiative["Events"];
+            var milstoneCount = 0;
+            var trainingCount = 0;
+            if (events.length > 0) {
+                events.forEach(function (event, i) {
+                    var dateStr = $.datepicker.formatDate(cultureDateformat, new Date(event["Date"]));
+                    var hoverText = event["Hover"] == null ? "" : event["Hover"];
+                    var longText = event["Text"] == null ? "" : event["Text"];
+                    if ((/milestone/gi).test(event["Type"])) {
+                        milestones += "<li>" + dateStr + "<br>" + hoverText + longText + "</li>";
+                        milstoneCount++
+                    } else {
+                        training += "<li>" + dateStr + "<br>" + hoverText + longText + "</li>";
+                        trainingCount++;
+                    }
+                });
+            }
+            milestones += "</ul>";
+            training += "</ul>";
+            milestones = milstoneCount == 0 ? "" : milestones;
+            training = trainingCount == 0 ? "" : training;
+
+            // Create overall content 
+            content.push(description, timespan, milestones, training);
+            for (var i = 0; i < content.length; i++) {
+                if (content[i].length == 0) continue;
+                content[i] = "<h3>" + heading[i] + "</h3>" + content[i];
+            }
+            return content.filter(function (n) { return n != "" }).join("");
+        }
+
+        return {
+            draw: function (data) {
+                var start = Date.now();
+                _render(data);
+                _categorize();
+                var later = Date.now();
+                console.log("Took " + (later - start) + "ms to draw data");
+            }
+        }
+    })();
+
+    $(window).on("load", function () {
+        function main() {
+            try {
+                // Initial setup
+                $.datepicker.setDefaults($.datepicker.regional[currentCulture]);
+                populateControllers();
+                getInitiatives();
+                $.when(lock).done(function () {
+                    gui.draw(dataset.getInitiatives());
+                });
+
+                // Event listeners
+                $("#branch_controller, #region_controller, #timeline_controller").on("change", function () {
+                    
+                    var regionSelected = $("#region_controller option:selected").val() > 0;
+                    $("#branch_controller").prop("disabled", !regionSelected);
+                    if (!regionSelected) $("#branch_controller option:eq(0)").prop("selected", true);
+
+                    var selected = $(this).find("option:selected").attr("id");
+                    regionKey = $(this).attr("id") == "region_controller" ? selected : regionKey;
+                    branchKey = $(this).attr("id") == "branch_controller" ? selected : branchKey;
+
+                    if (regionKey == 0 || branchKey == 0) {
+                        dataset.resetSort();
+                    }
+                    dataset.setTimelineFilter($("#timeline_controller option:selected").val());
+                    dataset.sort();
+                    gui.draw(dataset.getInitiatives());
+                });
+
+                // Delegated Event listener to bind events to dynamic HTML contents
+                $("#timeline_accordion").on("click", "a.accordion-section-title", function () {
+                    toggleAccordion($(this));
+                });
+            } catch (e) {
+                console.log(e.name + ": " + e.message);
+            }
+        }
+        main();
+    });
 </script>

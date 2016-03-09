@@ -1,10 +1,11 @@
-#timeline_controller {
+#controller_container {
+    display: flex;
+    flex-direction: column;
 	width: 95%;
-	position: relative;
 	margin: 0 auto;
 }
 
-#timeline_container {
+#text_timeline_container {
 	clear: both;
 }
 
@@ -17,15 +18,9 @@ label {
     display: inline-block;
 }
 
-#region_container {
+#timeline_container, #region_container, #branch_container {
 	width: auto;
 	float: left;
-	margin-right: 15px;
-}
-
-#branch_container {
-    float: left;
-	width: auto;
     clear: both;
 }
 
@@ -36,6 +31,10 @@ label {
 
 .closed {
 	display: none;
+}
+
+.accordion {
+    margin-left: 0px;
 }
 
 .accordion-section {
@@ -62,7 +61,10 @@ a.accordion-section-title:hover {
 	background: #dddddd;
 }
 
-.center-span {
-    display: block;
-    margin: 0 auto;
+a.accordion-section-title span:after {
+    content: '\25BA';
+}
+
+a.accordion-section-title.toggle span:after {
+    content: '\25BC';
 }
