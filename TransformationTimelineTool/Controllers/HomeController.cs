@@ -5,19 +5,28 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Helpers;
 using TransformationTimelineTool.Models;
+using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
+    [RoutePrefix("Home")]
+    [Route("{action=index}")]
+        [AllowAnonymous]
     public class HomeController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 
+        [Route]
+        [Route("Index")]
+        [AllowAnonymous]
+        [Route("~/", Name = "HomeRoute")]
         public ActionResult Index()
         {
             return View();
@@ -29,12 +38,61 @@ namespace TransformationTimelineTool.Controllers
 
             return View();
         }
+
         [Route("Accessibility")]
         public ActionResult Accessibility()
         {
             ViewBag.Message = "Accessibility.";
 
             return View();
+        }
+
+        [Route("tba-Subscribe")]
+        public ActionResult Subscribe()
+        {
+            var userName = Utils.GetUserName();
+            var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
+            if(subscriber == null)
+            {
+                subscriber = new Subscriber();
+                subscriber.Initiatives = new List<Initiative>();
+            }
+
+            PopulateSubscriberInitiativeData(subscriber);
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("tba-Subscribe")]
+        public ActionResult Subscribe(string[] selectedInitiatives)
+        {
+            var userName = Utils.GetUserName();
+            var addSubscriber = false;
+            var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
+            if(subscriber == null)
+            {
+                subscriber = new Subscriber
+                {
+                    UserName = userName,
+                    Email = Utils.GetEmailFromUserName(userName)
+                };
+
+                subscriber.Initiatives = new List<Initiative>();
+                addSubscriber = true;
+            }
+
+            UpdateSubscriberInitiatives(selectedInitiatives, subscriber);
+
+            if (addSubscriber)
+            {
+                db.Subscribers.Add(subscriber);
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 
         public ActionResult Contact()
@@ -109,6 +167,56 @@ namespace TransformationTimelineTool.Controllers
             //db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+        private void PopulateSubscriberInitiativeData(Subscriber subscriber)
+        {
+            string Culture = Thread.CurrentThread.CurrentCulture.Name;
+            var allInitiatives = Culture == "fr" ? db.Initiatives.OrderBy(i => i.NameF) : db.Initiatives.OrderBy(r => r.NameE);
+            var subscriberInitiatives = new HashSet<int>(subscriber.Initiatives.Select(i => i.ID));
+            var viewModel = new List<InitiativeData>();
+
+            foreach (var init in allInitiatives)
+            {
+                viewModel.Add(new InitiativeData
+                {
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    Flag = subscriberInitiatives.Contains(init.ID)
+                });
+            }
+
+            ViewBag.Initiatives = viewModel;
+        }
+        private void UpdateSubscriberInitiatives(string[] selectedInitiatives, Subscriber subscriberToUpdate)
+        {
+            if (selectedInitiatives == null)
+            {
+                if (subscriberToUpdate.Initiatives != null || subscriberToUpdate.Initiatives.Count() > 0)
+                    subscriberToUpdate.Initiatives.Clear();
+                return;
+            }
+
+            var selectedInitiativesHS = new HashSet<string>(selectedInitiatives);
+            var subscriberInitiatives = new HashSet<int>(subscriberToUpdate.Initiatives.Select(i => i.ID));
+
+            foreach (var initiative in db.Initiatives)
+            {
+                if (selectedInitiativesHS.Contains(initiative.ID.ToString()))
+                {
+                    if (!subscriberInitiatives.Contains(initiative.ID))
+                    {
+                        subscriberToUpdate.Initiatives.Add(initiative);
+                    }
+                }
+                else
+                {
+                    if (subscriberInitiatives.Contains(initiative.ID))
+                    {
+                        subscriberToUpdate.Initiatives.Remove(initiative);
+                    }
+                }
+            }
         }
     }
 }

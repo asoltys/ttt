@@ -19,6 +19,18 @@ namespace TransformationTimelineTool.Helpers
 {
     public class Utils
     {
+        public static string GetUserName()
+        {
+            if(HttpContext.Current.User.Identity.Name == "DESKTOP-164KO4D\\matty")
+            {
+                return "Matty";
+            }
+
+            string[] name = HttpContext.Current.User.Identity.Name.Split('\\');
+
+            return name[1];
+        }
+
         public static string GetUserName(string FullIdentityName)
         {
             String[] name = FullIdentityName.Split('\\');
@@ -89,6 +101,35 @@ namespace TransformationTimelineTool.Helpers
 
             return userRoles.ToArray();
         }
+
+        public static string GetEmailFromUserName(string userName)
+        {
+            var searchString = "(mailNickname=" + userName + ")";
+            DirectoryEntry root = new DirectoryEntry(
+                "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+                "pacweb",
+                "god!power");
+
+            DirectorySearcher searcher = new DirectorySearcher(
+                root,
+                searchString);
+
+            string email = "";
+            SearchResult person;
+
+            try
+            {
+                person = searcher.FindOne();
+                email = person.Properties["mail"][0].ToString();
+            }
+            catch
+            {
+                email = "";
+            }
+
+            return email;
+        }
+
         public static string GetUsernameFromEmail(string email)
         {
             var mailAddress = new MailAddress(email);
