@@ -16,17 +16,10 @@ using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
-    [RoutePrefix("Home")]
-    [Route("{action=index}")]
-        [AllowAnonymous]
     public class HomeController : BaseController
     {
         private TimelineContext db = new TimelineContext();
 
-        [Route]
-        [Route("Index")]
-        [AllowAnonymous]
-        [Route("~/", Name = "HomeRoute")]
         public ActionResult Index()
         {
             return View();

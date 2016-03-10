@@ -13,7 +13,7 @@ namespace TransformationTimelineTool.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603090031211_Subscriber"; }
+            get { return "201603101756294_Subscriber"; }
         }
         
         string IMigrationMetadata.Source

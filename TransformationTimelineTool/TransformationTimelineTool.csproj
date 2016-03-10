@@ -337,9 +337,9 @@
     <Compile Include="Migrations\201603072141245_AddTimelineType1.Designer.cs">
       <DependentUpon>201603072141245_AddTimelineType1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603090031211_Subscriber.cs" />
-    <Compile Include="Migrations\201603090031211_Subscriber.Designer.cs">
-      <DependentUpon>201603090031211_Subscriber.cs</DependentUpon>
+    <Compile Include="Migrations\201603101756294_Subscriber.cs" />
+    <Compile Include="Migrations\201603101756294_Subscriber.Designer.cs">
+      <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -1747,8 +1747,8 @@
     <EmbeddedResource Include="Migrations\201603072141245_AddTimelineType1.resx">
       <DependentUpon>201603072141245_AddTimelineType1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603090031211_Subscriber.resx">
-      <DependentUpon>201603090031211_Subscriber.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603101756294_Subscriber.resx">
+      <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
