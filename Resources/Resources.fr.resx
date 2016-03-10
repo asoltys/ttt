@@ -578,4 +578,19 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="Timeline" xml:space="preserve">
     <value>Timeline</value>
   </data>
+  <data name="TimelineIntroduction" xml:space="preserve">
+    <value>&lt;p&gt;Pour vous aider à comprendre comment différentes initiatives de transformation vous touchent, sélectionnez votre région et votre direction générale ci-dessous pour produire une liste d'initiatives triées en fonction de leurs répercussions sur vous (répercussions élevées, moyennes, faibles ou aucune répercussion). Placez le curseur de la souris sur les icônes affichées pour trouver des liens vers des renseignements concernant les étapes importantes ou les formations offertes. Les données seront mises à jour régulièrement. Avez-vous des questions? &lt;a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'&gt; Cliquez ici pour envoyer un courriel&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="TimelineHighImpact" xml:space="preserve">
+    <value>Des changements importants seront apportés à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="TimelineMediumImpact" xml:space="preserve">
+    <value>Quelques changements seront apportés à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="TimelineLowImpact" xml:space="preserve">
+    <value>Des changements minimes seront apportés à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="TimelineNoImpact" xml:space="preserve">
+    <value>Aucun changement ne sera apporté à la façon dont un employé effectue son travail.</value>
+  </data>
 </root>

@@ -45,6 +45,9 @@
     overflow: hidden;
     line-height: 20px;
 }
+.pBP2020{
+	background-color: #D1E8FF;
+}
 .projectRowBackground{
 	float:left;
 	width:240px;
@@ -70,6 +73,9 @@
 .timeLineRow{
 	float:left;
 	border-bottom: 1px dotted #cccccc;
+}
+.tBP2020{
+	background-color: #D1E8FF;
 }
 .timeLineBar{
 	background-color:#eeeeee;
@@ -134,6 +140,10 @@
 #pg3, #tHeader3{
 	background-color:#226655;
 	color: #ffffff;
+}
+#pg4, #tHeader4{
+	background-color:#6FB6FC;
+	color: #000000;
 }
 
 #iAmLegend{

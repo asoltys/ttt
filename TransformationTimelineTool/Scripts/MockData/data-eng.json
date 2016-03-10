@@ -1,0 +1,1960 @@
+﻿[{
+	"ID": 1,
+	"Name": "Defense Procurement Strategy",
+	"Description": "<p>The Defense Procurement Strategy, announced on February 5, 2014, was created to improve defence procurement for the Government of Canada.&nbsp; The objectives are to deliver the right equipment to the Canadian Armed Forces and the Canadian Coast guard quickly and efficiently, leverage our purchases of defense equipment to create jobs and increase economic growth, and streamline defense procurement processes. The Defence Procurement Strategy will continue to look at all aspects of defence procurements and initiate additional transformation initiatives to ensure alignment between the departments.</p>\r\n<p><strong>This initiative will affect the way some employees in Acquisitions Branch do their work and will require some training.</strong></p>\r\n<p>Transformation Timeline Tool Lead: Michael Brunetti, Defense Procurement Strategy Secretariat.</p>\r\n<p><a href=\"http://www.tpsgc-pwgsc.gc.ca/app-acq/amd-dp/samd-dps/index-eng.html\" target=\"_blank\">Click here to read more</a><a href=\"http://www.tpsgc-pwgsc.gc.ca/app-acq/amd-dp/samd-dps/index-eng.html\" target=\"_blank\">.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 1,
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 76,
+		"Type": "Milestone",
+		"Date": "5/21/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>New governance processes are being developed and streamlined for Defence Procurements (above $20 million) and for certain Canadian Coast Guard procurements (Over $100 million in which a National Security Exception applies). Defense Procurement Strategy Secretariat (DPSS) will continue to provide the Contracting Community with support and guidance on the implementation of these new processes as required.</p>\r\n",
+		"Hover": "New governance processes and ongoing support for Defense Procurements (Click on the Red Dot icon to read more)",
+		"Show": true
+	}, {
+		"ID": 77,
+		"Type": "Training",
+		"Date": "4/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Online E-Learning courses will provide general awareness and information regarding the DPS and its impact on the work of Contracting Officers.",
+		"Show": true
+	}, {
+		"ID": 78,
+		"Type": "Training",
+		"Date": "4/8/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "In-class training for employees who work more directly with the implementation of the Defense Procurement Strategy. This training will have a more in-depth focus on several important elements such as the strategy’s application, governance and value proposition.",
+		"Show": true
+	}, {
+		"ID": 177,
+		"Type": "Milestone",
+		"Date": "2/2/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Since February 2015, the Defence Procurement Strategy Secretariat (DPSS) has welcomed new members with a wide range of experience ranging from Defence Program Management, Procurement and Policy Analysis. Given the interdepartmental focus of the Secretariat, several of these new members have been brought in from other government departments. DPSS will continue to add to its growing team of experts over the coming months.</p>\r\n",
+		"Hover": "We are welcoming new members to the Defence Procurement Strategy Secretariat (DPSS) (Click on the Red Dot icon to read more) ",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 2,
+	"Name": "Case and Client Relationship Management (PSPC)",
+	"Description": "<p>This initiative was created to provide a shared case management solution to branches and sectors within PWGSC. Aligned with the Government&rsquo;s IT strategy, this System allows the user to manage activities, tasks and workflow processes.</p>\r\n\r\n<p><strong>This initiative will affect the way employees do their work and will require training.</strong></p>\r\n\r\n<p>Transformation Timeline Tool Leads: Claude Kateb (Departmental Oversight Branch) and Kim Steel (Chief Information Office Branch</p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 2,
+		"Branches": [3, 6],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 43,
+		"Type": "Milestone",
+		"Date": "9/17/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "September 17, 2015: Project Approval for Case Management Solution for the Controlled Goods Program (CGP) in the Departmental Oversight Branch",
+		"Show": true
+	}, {
+		"ID": 44,
+		"Type": "Milestone",
+		"Date": "10/7/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "October 7, 2016: Controlled Goods Program (CGP) in the Departmental Oversight Branch complete user testing.",
+		"Show": true
+	}, {
+		"ID": 45,
+		"Type": "Milestone",
+		"Date": "11/21/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "November 21, 2016: Back-end of the Case Management Solution for the Controlled Goods Program (CGP) in the Departmental Oversight Branch goes live.",
+		"Show": true
+	}, {
+		"ID": 46,
+		"Type": "Training",
+		"Date": "10/17/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "October 17, 2016: Employees in the Controlled Goods Program (CGP) complete training on the Case Management Solution.",
+		"Show": true
+	}, {
+		"ID": 47,
+		"Type": "Milestone",
+		"Date": "1/8/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Web Application of the Case Management Solution for the Controlled Goods Program (CGP) in the Departmental Oversight Branch goes live.",
+		"Show": true
+	}, {
+		"ID": 48,
+		"Type": "Milestone",
+		"Date": "1/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Project Approval for Case Management Solution for the Public Service Pay Centre (PSCP) Pay Case in the Accounting, Banking, and Compensation Branch.",
+		"Show": true
+	}, {
+		"ID": 50,
+		"Type": "Milestone",
+		"Date": "8/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Public Service Pay Centre (PSCP) Pay Case in the Accounting, Banking, and Compensation Branch complete training on the Case Management Solution.",
+		"Show": true
+	}, {
+		"ID": 51,
+		"Type": "Milestone",
+		"Date": "8/25/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "August 25, 2016: The Case Management Solution for the Public Service Pay Centre (PSCP) Pay Case in the Accounting, Banking, and Compensation Branch goes live.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 4,
+	"Name": "Acquisitions Program Transformation",
+	"Description": "<p>The Acquisitions Program Transformation is made up of projects and activities that will change how we do procurement. This initiative will focus on four main strategies: Implementing smart procurement strategies, which means solving problems for our clients while maintaining our core values; leveraging digital technology so that employees have the right tools to do their job; supporting our people by fostering an open and innovative environment; and creating financial sustainability so that we can make more informed financial decisions.</p>\r\n\r\n<p><strong>This initiative will affect the way some employees in the Acquisitions Branch do their work and will require some training.</strong></p>\r\n\r\n<p>Acquisitions Program Transformation Timeline Tool Lead: Vicki Ghadban, Acquisitions Branch</p>\r\n\r\n<p><a href=\"http://intranet.tpsgc-pwgsc.gc.ca/app-acq/tpa-apt-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [2, 3, 5, 6, 8, 9, 10, 11, 12, 13, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 1,
+		"Branches": [7, 14],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 3,
+		"Branches": [3],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 10,
+		"Type": "Milestone",
+		"Date": "9/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Commence <a href=\"http://www.gcpedia.gc.ca/wiki/Acquisitions_Program_Transformation_-_Business_Process_Review\" target=\"_blank\">SMART Procurement</a> LEAN Pilot</p>\r\n",
+		"Hover": "Commence SMART Procurement LEAN Pilot. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 11,
+		"Type": "Milestone",
+		"Date": "7/31/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Launch of <a href=\"http://www.gcpedia.gc.ca/wiki/SmartToolkit\" target=\"_blank\">SMART Procurement Toolkit 2.0</a></p>\r\n",
+		"Hover": "Launch of SMART Procurement Toolkit 2.0. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 12,
+		"Type": "Training",
+		"Date": "8/10/2015",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "LEAN training (August 10, 2015 – October 30, 2015) for Acquisition Branch employees (NCA and Regions)",
+		"Show": true
+	}, {
+		"ID": 13,
+		"Type": "Milestone",
+		"Date": "3/9/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Request for Proposal (RFP) for an <a href=\"http://www.gcpedia.gc.ca/wiki/Acquisitions_Program_Transformation_-_Leveraging_Digital_Technology\" target=\"_blank\">e-procurement solution</a> is issued.</p>\r\n",
+		"Hover": "Request for Proposal (RFP) for an e-procurement solution is issued. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 14,
+		"Type": "Training",
+		"Date": "10/7/2015",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Ongoing training on Bid Rigging available for Acquisition Branch employees (NCA and Regions)",
+		"Show": true
+	}, {
+		"ID": 15,
+		"Type": "Training",
+		"Date": "10/13/2015",
+		"Branches": [3],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Benefits for Canadians online training module goes live for Acquisition Branch employees (NCA and Regions)",
+		"Show": true
+	}, {
+		"ID": 16,
+		"Type": "Training",
+		"Date": "2/16/2016",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Launch of Statement of Work Basics online module for Acquisition Branch employees (NCA and Regions)",
+		"Show": true
+	}, {
+		"ID": 17,
+		"Type": "Milestone",
+		"Date": "10/28/2015",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": "<p>October 28, 2015: <a href=\"http://www.gcpedia.gc.ca/wiki/Acquisitions_Program_Transformation_-_Business_Process_Review/Current_Lean_Projects\" target=\"_blank\">The Smart Procurement LEAN Pilot Concludes </a></p>\r\n",
+		"Hover": "October 28, 2015: The Smart Procurement LEAN Pilot concludes. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 18,
+		"Type": "Milestone",
+		"Date": "3/31/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "The SMART Procurement Strategic Action Plan is complete.",
+		"Show": true
+	}, {
+		"ID": 19,
+		"Type": "Milestone",
+		"Date": "6/17/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Contract Award to the successful proponent for the <a href=\"http://www.gcpedia.gc.ca/wiki/Acquisitions_Program_Transformation_-_Leveraging_Digital_Technology\" target=\"_blank\">e-procurement solution</a>.</p>\r\n",
+		"Hover": "Contract Award to the successful proponent for the e-procurement solution. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 20,
+		"Type": "Milestone",
+		"Date": "6/22/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "The e-procurement solution implementation starts.",
+		"Show": true
+	}, {
+		"ID": 21,
+		"Type": "Milestone",
+		"Date": "9/22/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Testing of the e-procurement solution commences, including a pilot.",
+		"Show": true
+	}, {
+		"ID": 22,
+		"Type": "Milestone",
+		"Date": "3/24/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Testing of the e-procurement solution is complete",
+		"Show": true
+	}, {
+		"ID": 23,
+		"Type": "Training",
+		"Date": "4/7/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Launch of Effective governance online module for Acquisition Branch employees (NCA and Regions). Planned for 2016-2017. In initial discussions with sector.",
+		"Show": true
+	}, {
+		"ID": 24,
+		"Type": "Milestone",
+		"Date": "4/3/2017",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": "Roll-out of the <a href=\"http://intranet.tpsgc-pwgsc.gc.ca/app-acq/otn-ldt-eng.html\" target=\"_blank\">e-procurement solution</a> begins.",
+		"Hover": "Roll-out of the e-procurement solution begins.",
+		"Show": true
+	}, {
+		"ID": 25,
+		"Type": "Milestone",
+		"Date": "5/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>May 1, 2015: Work begins on the <a href=\"https://buyandsell.gc.ca/initiatives-and-programs/smart-procurement/about-smart-procurement\" target=\"_blank\">SMART Procurement</a> Strategic Action Plan</p>\r\n",
+		"Hover": "May 1, 2015: Work begins on the Strategic Action Plan. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 26,
+		"Type": "Milestone",
+		"Date": "10/19/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "October 19, 2015: Ambassador Program is launched.",
+		"Show": true
+	}, {
+		"ID": 27,
+		"Type": "Training",
+		"Date": "11/22/2015",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Ongoing training on Integrity Measures available for Acquisition Branch employees (NCA and Regions)",
+		"Show": true
+	}, {
+		"ID": 28,
+		"Type": "Training",
+		"Date": "4/15/2016",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Launch of Defense Procurement Strategy online and in-class training for Acquisition Branch employees (NCA and Regions)",
+		"Show": true
+	}, {
+		"ID": 29,
+		"Type": "Training",
+		"Date": "5/30/2016",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Launch of Independent Advice online module for Acquisition Branch employees (NCA and Regions). Planned for fiscal year 2016-2017. In initial discussions with sector.",
+		"Show": true
+	}, {
+		"ID": 30,
+		"Type": "Training",
+		"Date": "4/30/2017",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Procurement Solution Contract Management Solution (core functionality) roll-out complete.",
+		"Show": true
+	}, {
+		"ID": 31,
+		"Type": "Milestone",
+		"Date": "12/8/2015",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Draft Request for Proposal (RFP) for E-Procurement Solution (EPS) published on buyandsell.gc.ca. <a href=\"http://www.gcpedia.gc.ca/wiki/Acquisitions_Program_Transformation_-_Leveraging_Digital_Technology\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+		"Hover": "Draft Request for Proposal (RFP) for E-Procurement Solution (EPS) published on buyandsell.gc.ca. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 32,
+		"Type": "Milestone",
+		"Date": "11/1/2016",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Planning and design of E-Procurement Solution implementation complete.",
+		"Show": true
+	}, {
+		"ID": 33,
+		"Type": "Milestone",
+		"Date": "5/30/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Procurement Solution e-tendering services roll-out complete.",
+		"Show": true
+	}, {
+		"ID": 34,
+		"Type": "Milestone",
+		"Date": "6/30/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Procurement Solution e-Catalogues (simple catalogues) implementation complete.",
+		"Show": true
+	}, {
+		"ID": 35,
+		"Type": "Milestone",
+		"Date": "4/30/2018",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Procurement Solution Advanced Contract Management and e-Catalogues (complex catalogues & Professional services) implementation complete.",
+		"Show": true
+	}, {
+		"ID": 36,
+		"Type": "Milestone",
+		"Date": "5/30/2018",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Procurement Solution GC-Wide Tendering Services (New MERX) implementation complete.",
+		"Show": true
+	}, {
+		"ID": 37,
+		"Type": "Milestone",
+		"Date": "1/3/2020",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Procurement Solution Year 3 implementation (system stabilization) complete. (Q4 2019/2020)",
+		"Show": true
+	}, {
+		"ID": 38,
+		"Type": "Milestone",
+		"Date": "11/3/2015",
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Automated Buyer Environment (ABE) decoupling (removing the link to Lotus Notes) complete. Click <a href=\"http://intranet.tpsgc-pwgsc.gc.ca/app-acq/text/eaa-abe/eaa-abe-eng.html\" target=\"_blank\">here to learn more about ABE.</a></p>\r\n",
+		"Hover": "Automated Buyer Environment (ABE) decoupling (removing the link to Lotus Notes) complete. (Click on the Red Dot icon to read more)",
+		"Show": true
+	}, {
+		"ID": 39,
+		"Type": "Milestone",
+		"Date": "12/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Roll-out of Galileo into AP NCA complete",
+		"Show": true
+	}, {
+		"ID": 40,
+		"Type": "Milestone",
+		"Date": "12/30/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "December 30, 2015: SMART Procurement Acquisitions Innovates Round 2 complete",
+		"Show": true
+	}, {
+		"ID": 41,
+		"Type": "Training",
+		"Date": "11/10/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Automated Buyer Environment (ABE) in-class training for PSPC NCA.</p>\r\n\r\n<ul>\r\n\t<li>English classes: October 1, 2015 / November 9, 2015 / November 13, 2015</li>\r\n\t<li>French class: November 10, 2015</li>\r\n</ul>\r\n",
+		"Hover": "Automated Buyer Environment (ABE) in-class training for PSPC NCA. (Click the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 42,
+		"Type": "Training",
+		"Date": "12/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>A variety of training has been scheduled under the &#39;Support Our People&#39; initiative. <a href=\"http://intranet.tpsgc-pwgsc.gc.ca/app-acq/text/ad-ld-eng.html\" target=\"_blank\">Click here</a> to access information and learn about the different types of courses being offered in-class and online. The SMART toolkit site on GCPedia has information about Online Training: <a href=\"http://www.gcpedia.gc.ca/wiki/SmartToolkit/OnlineTraining\" target=\"_blank\">Click here</a> to open that website in a new browser window.</p>\r\n",
+		"Hover": "A variety of training has been scheduled under the 'Support Our People' initiative. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 49,
+		"Type": "Milestone",
+		"Date": "8/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Public Service Pay Centre (PSCP) Pay Case in the Accounting, Banking, and Compensation Branch complete user testing.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 7,
+	"Name": "GCDOCS (Government Wide)",
+	"Description": "<p>GCDOCS is the official enterprise document and records management solution of the Government of Canada. In simple terms, it&rsquo;s a tool that organizations can use to create, collect and preserve data. It also has a dual function; organizations can use GCDOCS as a collaborative tool by easily sharing, organizing, evaluating, identifying and disposing of data. This initiative will be rolled out across the Government of Canada as departments and agencies commit to this tool.</p>\r\n\r\n<p><strong>This initiative will not affect the way employees do their work and will not require training.</strong></p>\r\n\r\n<p>GCDOCS (Government Wide) Transformation Timeline Tool Lead: Marie-Claude Renaud, Chief Information Branch</p>\r\n\r\n<p><a href=\"http://www.gcpedia.gc.ca/wiki/GCDOCS_%28PWGSC,_Shared_Services_Integration%29\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2019",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 52,
+		"Type": "Milestone",
+		"Date": "1/10/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Development of the GCDOCS solution is complete. Wave 1 (11 Departments / 35,000 users) installation and configuration starts.",
+		"Show": true
+	}, {
+		"ID": 53,
+		"Type": "Milestone",
+		"Date": "7/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 2 (22 Departments / 120,000 users) installation and configuration starts",
+		"Show": true
+	}, {
+		"ID": 54,
+		"Type": "Milestone",
+		"Date": "10/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 1 installation and configuration complete.",
+		"Show": true
+	}, {
+		"ID": 55,
+		"Type": "Milestone",
+		"Date": "4/1/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 3 (23 Departments / 75,000 users) installation and configuration starts",
+		"Show": true
+	}, {
+		"ID": 56,
+		"Type": "Milestone",
+		"Date": "10/6/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 4 (6 Departments / 27,000 users) installation and configuration starts",
+		"Show": true
+	}, {
+		"ID": 57,
+		"Type": "Milestone",
+		"Date": "7/1/2018",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Wave 3 installation and configuration complete.",
+		"Show": true
+	}, {
+		"ID": 58,
+		"Type": "Milestone",
+		"Date": "1/1/2018",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 4 installation and configuration complete. Total 250,000 users on-boarded to GCDOCS",
+		"Show": true
+	}, {
+		"ID": 59,
+		"Type": "Milestone",
+		"Date": "12/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "The government-wide GCDOCS service is now hosted on the Shared Services Canada end-state production environment",
+		"Show": true
+	}, {
+		"ID": 60,
+		"Type": "Milestone",
+		"Date": "12/21/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "PSPC, Office of the Commissioner of Lobbying (OCL) and Federal Economic Development Agency for Southern Ontario (FedDev) current GCDOCS service moved to the Shared Services Canada end-state production environment.",
+		"Show": true
+	}, {
+		"ID": 61,
+		"Type": "Milestone",
+		"Date": "3/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Canadian Northern Economic Development Agency (CanNor), Veterans Affairs Canada (VAC) and Natural Resources Canada (NRCAN) current GCODCS service moved to the Shared Services Canada end-state production environment.",
+		"Show": true
+	}, {
+		"ID": 62,
+		"Type": "Milestone",
+		"Date": "10/1/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 2 installation and configuration complete.",
+		"Show": true
+	}, {
+		"ID": 63,
+		"Type": "Milestone",
+		"Date": "7/1/2018",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Wave 3 installation and configuration complete.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 8,
+	"Name": "Shared Case Management (Government Wide)",
+	"Description": "<p>This initiative was created to provide a shared case management solution to departments and agencies across the Government of Canada. Aligned with the Government&rsquo;s IT strategy, this System allows the user to manage activities, tasks and workflow processes.</p>\r\n\r\n<p><strong>This initiative will not affect the way employees do their work and will not require training.</strong></p>\r\n\r\n<p>Shared Case Management System (Government Wide) Lead: Todd Biggs, Integrated Services Branch</p>\r\n\r\n<p><a href=\"http://gcintranet.tpsgc-pwgsc.gc.ca/dgsi-isb/spgc-scms-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/3/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 64,
+		"Type": "Milestone",
+		"Date": "9/16/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "A development environment is created so that the Shared Case Management System (SCMS) Program Centre team can begin work developing the application (infrastructure, servers etc).",
+		"Show": true
+	}, {
+		"ID": 65,
+		"Type": "Milestone",
+		"Date": "11/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "A Client Development / Test (CDT) environment of the Shared Case Management System is available to clients who can begin to develop and test their application solutions",
+		"Show": true
+	}, {
+		"ID": 66,
+		"Type": "Milestone",
+		"Date": "3/31/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "20 departments to be on-boarded to the Shared Case Management System.",
+		"Show": true
+	}, {
+		"ID": 67,
+		"Type": "Milestone",
+		"Date": "2/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "A production environment of the Shared Case Management System is available to clients.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 9,
+	"Name": "Email Transformation (PSPC internal)",
+	"Description": "<p>Email transformation will consolidate email systems into one consolidated, modern system. Under this initiative, all government email addresses will be simplified to the @canada.ca suffix so that communication with citizens, business and each other will be enhanced. Email Transformation will also work towards reducing cyber threats.</p>\r\n\r\n<p><strong>This initiative may affect the way employees do their work and may require employees to take training.</strong></p>\r\n\r\n<p><a href=\"http://intranet.tpsgc-pwgsc.gc.ca/dpi-cio/initiatives/itsc-eti-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n\r\n<p>The Transformation Lead is: Kim Steel, Chief Information Officer Branch</p>\r\n\r\n<p>In the regions, the Transformation Leads are the Regional Directors of Corporate Services, Strategic Management and Communications:</p>\r\n\r\n<p>Atlantic: Anne Thomas<br />\r\nOntario: Johanne Tremblay<br />\r\nQuebec: Richard Gagnon<br />\r\nWest: Mark Harrison<br />\r\nPacific: Ryan Beattie</p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "6/30/2016",
+	"Impacts": [{
+		"Level": 1,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 68,
+		"Type": "Milestone",
+		"Date": "8/30/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Internet Explorer 11 is deployed (August 30, 2015). MS Office 13, including Outlook 13 is deployed (end of September 2015).",
+		"Show": true
+	}, {
+		"ID": 69,
+		"Type": "Milestone",
+		"Date": "9/30/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "E-Vault is decommissioned (September 30, 2015).",
+		"Show": true
+	}, {
+		"ID": 70,
+		"Type": "Milestone",
+		"Date": "5/22/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Transition to @canada.ca begins May 22-june 17, 2016:</p>\r\n\r\n<ul>\r\n\t<li>Impacts: E-mail will be unavailable from 6pm to 6am on transition nights.</li>\r\n\t<li>Blackberry&rsquo;s will be unavailable until after 11 am day after transition.</li>\r\n\t<li>E-mail passwords will have to be reset.</li>\r\n\t<li>New Help Desk Procedures will be made available</li>\r\n\t<li>Impact to end users will vary greatly depending on how well they assimilate the messages and instructions provided.</li>\r\n\t<li>There will some issues of coexistence between accounts that have been migrated to @canada.ca versus those that are still on the legacy system. These issues will be mitigated by transferring entire branches each night. If resources, boardrooms or schedules bridge across branches then this might be a problem.</li>\r\n</ul>\r\n",
+		"Hover": "Employees’ email accounts begin to migrate to the new @canada.ca (May 22, 2016). (Click on the Red dot icon to read more)",
+		"Show": true
+	}, {
+		"ID": 71,
+		"Type": "Milestone",
+		"Date": "6/17/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Migration of email accounts to the new @canada.ca is complete (June 17, 2016). A total of 22,824 new accounts have been successfully migrated.",
+		"Show": true
+	}, {
+		"ID": 72,
+		"Type": "Milestone",
+		"Date": "12/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "November 2015-March 2016: Monthly Reminder notices to employees to reduce the size of their mailboxes to less than 500 Mb",
+		"Show": true
+	}, {
+		"ID": 73,
+		"Type": "Milestone",
+		"Date": "3/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Final reminder to employees to reduce the size of their mailboxes to less than 500mb. Transition notices of upcoming ETI migration begin",
+		"Show": true
+	}, {
+		"ID": 74,
+		"Type": "Milestone",
+		"Date": "4/4/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Enrollment into new system via Service Delivery Portal (SDP). Additional Transition Notices will be sent to employees.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 10,
+	"Name": "GCDOCS (PSPC internal)",
+	"Description": "<p>GCDOCS is the Government of Canada&rsquo;s solution to managing corporate information. Led by PSPC, GCDOCS is an enterprise document and records management solution that offers version control, a powerful search capability and a collaborative environment. GCDOCS is proving to be a valuable archiving and information system and was launched at PSPC in fall 2015.</p>\r\n\r\n<p><strong>This initiative will affect the way employees do their work and will require training.</strong></p>\r\n\r\n<p><a href=\"http://intranet.tpsgc-pwgsc.gc.ca/dpi-cio/initiatives/gcdocs-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n\r\n<p>Transformation Lead: Kim Steele,Chief Information Officer Branch</p>\r\n\r\n<p>In the regions, the Transformation Leads are the Regional Directors of Corporate Services, Strategic Management and Communications:</p>\r\n\r\n<p>Atlantic: Anne Thomas<br />\r\nOntario: Johanne Tremblay<br />\r\nQuebec: Richard Gagnon<br />\r\nWest: Mark Harrison<br />\r\nPacific: Ryan Beattie</p>\r\n",
+	"StartDate": "2/11/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 1,
+		"Branches": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+		"Regions": [5]
+	}, {
+		"Level": 2,
+		"Branches": [2, 3, 4, 5, 7, 8, 10, 13, 14, 15],
+		"Regions": [2, 3, 4, 6, 7]
+	}],
+	"Events": [{
+		"ID": 79,
+		"Type": "Milestone",
+		"Date": "7/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3, 6],
+		"Text": "<p>On-boarding begins by branch in Western and Atlantic and will continue through Q4 2015-2016. All accounts are created, Employees are invited to take the free, self-paced, online training course for <a href=\"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/GCDOCS-eng.aspx\" target=\"_blank\">GCDOCS (CSPS-I010)</a>and begin to use GCDOCS.</p>\r\n",
+		"Hover": "On-boarding begins by branch in Western and Atlantic. Employees are invited to take the free, self-paced, online training course. Click on the Red Dot icon to access the web link.",
+		"Show": true
+	}, {
+		"ID": 81,
+		"Type": "Training",
+		"Date": "9/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": "<p>Employees are invited to take the free, self-paced, online training course for <a href=\"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/GCDOCS-eng.aspx\" target=\"_blank\">GCDOCS from Canada School of Public Service (I010)</a></p>\r\n",
+		"Hover": "Employees are invited to take the free, self-paced, online training course for GCDOCS from Canada School of Public Service. (Click on the Book icon to access the web link.)",
+		"Show": true
+	}, {
+		"ID": 82,
+		"Type": "Training",
+		"Date": "9/14/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": "<p>Branch GCDOCS Classroom Training:</p>\r\n\r\n<ul>\r\n\t<li>Corporate Operations (September 14-18);</li>\r\n\t<li>Strategic Mgmt/Issues Mgmt/Communications (September 21-25).</li>\r\n</ul>\r\n",
+		"Hover": "Branch GCDOCS training in Western. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 83,
+		"Type": "Milestone",
+		"Date": "10/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2, 6, 7],
+		"Text": null,
+		"Hover": "The development of the folder structure for the Pacific, Atlantic, and Quebec regions has begun.",
+		"Show": true
+	}, {
+		"ID": 85,
+		"Type": "Training",
+		"Date": "10/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [7],
+		"Text": "<p>On-boarding begins. All accounts are created, employees are invited to take the free, self-paced, online training course for <a href=\"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/GCDOCS-eng.aspx\" target=\"_blank\">GCDOCS (CSPS-I010)</a>and begin to use GCDOCS.</p>\r\n",
+		"Hover": "On-boarding begins. All accounts are created, employees are invited to take the free, self-paced, online training course for GCDOCS from Canada School of Public Service. (Click on the Book icon to access the web link.)",
+		"Show": true
+	}, {
+		"ID": 87,
+		"Type": "Training",
+		"Date": "10/13/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": "<p>Branch GCDOCS Classroom Training:</p>\r\n\r\n<ul>\r\n\t<li>Finance/HR/OSME (October 5-9);</li>\r\n\t<li>Acquisitions (October 13-16);</li>\r\n\t<li>Acquisitions/Appraisals/PILT (October 19-23);</li>\r\n\t<li>Accommodation Mgmt/Leasing (October 26-30);</li>\r\n\t<li>Real Estate Services/Owner Investor (November 2-6);</li>\r\n\t<li>RPS Business Mgmt Unit/Giant Mine (November 9-13);</li>\r\n\t<li>Architectural &amp; Engineering Services Centre of Excellence/Asset and Facility Mgmt/Project Mgmt (November 23-27).</li>\r\n</ul>\r\n",
+		"Hover": "Branch GCDOCS Classroom Training in Western. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 88,
+		"Type": "Training",
+		"Date": "2/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2, 4],
+		"Text": "<p>On-boarding begins. All accounts are created, employees are invited to take the free, self-paced, online training course for <a href=\"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/GCDOCS-eng.aspx\" target=\"_blank\">GCDOCS (CSPS-I010)</a>and begin to use GCDOCS.</p>\r\n",
+		"Hover": "On-boarding begins. All accounts are created, employees are invited to take the free, self-paced, online training course for GCDOCS from Canada School of Public Service. (Click on the Book icon to access the web link.)",
+		"Show": true
+	}, {
+		"ID": 89,
+		"Type": "Milestone",
+		"Date": "1/13/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2],
+		"Text": null,
+		"Hover": "An engagement session is held with Middle Managers in Pacific to support their efforts in GCDOCS implementation.",
+		"Show": true
+	}, {
+		"ID": 90,
+		"Type": "Milestone",
+		"Date": "10/7/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [7],
+		"Text": null,
+		"Hover": "Progressive use as-and-when the implementation is rolled-out to the regions (Real Property and Acquisitions). Development of tools/guides.",
+		"Show": true
+	}, {
+		"ID": 92,
+		"Type": "Training",
+		"Date": "10/13/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2, 4, 7],
+		"Text": "<p>Pacific, Quebec, and Ontario Employees are invited to take the free, self-paced, online training course for <a href=\"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/GCDOCS-eng.aspx\" target=\"_blank\">GCDOCS from Canada School of Public Service (I010)</a></p>\r\n",
+		"Hover": "Pacific, Quebec, and Ontario Employees are invited to take the free, self-paced, online training course for GCDOCS from Canada School of Public Service. (Click on the Book icon to access the web link.)",
+		"Show": true
+	}, {
+		"ID": 93,
+		"Type": "Training",
+		"Date": "3/16/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2],
+		"Text": null,
+		"Hover": "Information Management Agents in Pacific begin to deliver hands-on coaching in their sectors.",
+		"Show": true
+	}, {
+		"ID": 94,
+		"Type": "Training",
+		"Date": "10/19/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": null,
+		"Hover": "The region will develop a training calendar and easily accessible database with the details such as where, when, etc. The goal is for 100% of staff to take the training .",
+		"Show": true
+	}, {
+		"ID": 95,
+		"Type": "Training",
+		"Date": "10/7/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [6],
+		"Text": null,
+		"Hover": "The Atlantic Information Management team begins to deliver group coaching sessions with all sectors.",
+		"Show": true
+	}, {
+		"ID": 96,
+		"Type": "Milestone",
+		"Date": "12/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "A pilot project with Parliamentary Precinct Branch (PPB) to determine a process to migrate data to GCDOCS is begun.",
+		"Show": true
+	}, {
+		"ID": 97,
+		"Type": "Milestone",
+		"Date": "1/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Approximately 300,000 documents are successfully migrated to GCDOCS.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 11,
+	"Name": "Imaging Centre of Expertise for Government",
+	"Description": "<p>As a new vehicle for service delivery, PWGSC is working to develop a Centre of Expertise that would be responsible for delivering imaging services for the Government of Canada. This Centre of Expertise would provide common services and be the sole contracting authority for government-wide imaging requirements.</p>\r\n\r\n<p><strong>This initiative will not affect the way employees do their work and will not require any training.</strong></p>\r\n\r\n<p>Imaging Centre of Expertise Lead: Mike Fabbro, Accounting, Banking and Compensation Branch</p>\r\n\r\n<p><a href=\"http://gcintranet.tpsgc-pwgsc.gc.ca/rg/txt/id-di-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 99,
+		"Type": "Milestone",
+		"Date": "8/4/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Imaging Services Contract award to 9 successful private sector companies",
+		"Show": true
+	}, {
+		"ID": 100,
+		"Type": "Milestone",
+		"Date": "8/10/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Kick off meetings with successful vendors of Imaging Services",
+		"Show": true
+	}, {
+		"ID": 101,
+		"Type": "Milestone",
+		"Date": "10/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Issue first contract (task authorization) for Imaging Services to pre-selected vendor",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 12,
+	"Name": "NOVUS Real Property Business Systems Transformation",
+	"Description": "<p>The NOVUS solution, or SIGMA Real Property, replaces several stand-alone IT systems and aligns with real property and general business processes. The solution results in greater integration of both sector and branch level operations to improve the way that PWGSC employees carry out their day-to-day work. It will also help the Real Property branch within PWGSC manage its real estate portfolio more strategically.</p>\r\n\r\n<p><strong>This initiative will affect the way some employees in Real Property Branch do their work and will require training.</strong></p>\r\n\r\n<p>The Novus Solutions Transformation National Timeline Tool Lead: Eloise Lyon, Real Property Branch</p>\r\n\r\n<p><a href=\"http://www.gcpedia.gc.ca/wiki/NOVUS\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/2/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [1, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 1,
+		"Branches": [7],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 2,
+		"Branches": [2],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 1,
+		"Branches": [11],
+		"Regions": [5]
+	}],
+	"Events": [{
+		"ID": 102,
+		"Type": "Milestone",
+		"Date": "11/21/2014",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>The technical solution for NOVUS is integrated with the existing PWGSC SAP solution for Finance &ndash; called SIGMA. The integrated solution for both finance and real property processes will be referred to collectively as SIGMA. Technical Release 1: Late June 2014. Technical Release 2: Late November 2014</p>\r\n",
+		"Hover": "NOVUS is integrated with SIGMA. (Click on the Red Dot icon to read more)",
+		"Show": true
+	}, {
+		"ID": 103,
+		"Type": "Milestone",
+		"Date": "6/16/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Work begins to enable Phase 2 functional areas (Lease-out Occupation Instruments and Space Envelope)",
+		"Show": true
+	}, {
+		"ID": 104,
+		"Type": "Milestone",
+		"Date": "10/30/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "The first 2 phases of user enablement (Lease-in, Lease-out Commercial, Lease-out Occupation Instruments and Space Envelope) are complete.",
+		"Show": true
+	}, {
+		"ID": 105,
+		"Type": "Milestone",
+		"Date": "1/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": null,
+		"Hover": "NOVUS Co-ordination Planning Meeting – These meetings are established when new functionality has or is about to come on line in order to identify gaps, issues, challenges and risks to implementation.",
+		"Show": true
+	}, {
+		"ID": 106,
+		"Type": "Milestone",
+		"Date": "4/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": null,
+		"Hover": "NOVUS Co-ordination Planning Meeting – These meetings are established when new functionality has or is about to come on line in order to identify gaps, issues, challenges and risks to implementation.",
+		"Show": true
+	}, {
+		"ID": 107,
+		"Type": "Milestone",
+		"Date": "4/6/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Activation of NOVUS functionality commences in phases. Training is provided to users as their area of functionality is activated. The approach is to train a core team in each functional area, with subsequent waves of users in future months. All functions are expected to be activated by June 2016. Work begins to enable phase 1 functional areas (Lease-in and Lease-out Commercial)</p>\r\n",
+		"Hover": "Activation of NOVUS functionality commences in phases. (Click on the Red Dot icon to read more)",
+		"Show": true
+	}, {
+		"ID": 108,
+		"Type": "Training",
+		"Date": "1/7/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "CAD Drawing/Data Publishing Training",
+		"Show": true
+	}, {
+		"ID": 109,
+		"Type": "Training",
+		"Date": "10/18/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>The following training is scheduled:</p>\r\n\r\n<ul>\r\n\t<li>Building Management Plan (BMP) Training for all regions (core users only) Oct 18 &ndash; Nov 20</li>\r\n\t<li>Master Data training for all regions Oct 28-30</li>\r\n\t<li>Planned Leasing Actions Report (PLAR) Training for all regions (core users only) Oct &ndash; Dec</li>\r\n</ul>\r\n",
+		"Hover": "Several NOVUS training courses are being offered between October and December. (Click on the Book icon to read more)",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 13,
+	"Name": "Next Generation Shared Travel Services",
+	"Description": "<p>Launched in 2014-15, this new travel services system was developed to help control and reduce costs related to travel. The Government procured this new service provider so that it could offer a more powerful technology for booking and managing Government-related travel. This, of course, has led to overall further efficiencies throughout the Government of Canada.</p>\r\n\r\n<p><strong>This initiative will affect the way some employees throughout the department do their work and will require training for these employees</strong>.</p>\r\n\r\n<p>The Transformation Lead is: <span style=\"font-family:calibri,sans-serif; font-size:11pt\">Simon Fradette, Integrated Services Branch</span></p>\r\n\r\n<p><a href=\"http://www.tpsgc-pwgsc.gc.ca/app-acq/voyage-travel/voyage-travel-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 1,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 110,
+		"Type": "Milestone",
+		"Date": "11/16/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Online Booking Tool (OBT) Enhancements – Pilot with three to four departments.",
+		"Show": true
+	}, {
+		"ID": 111,
+		"Type": "Milestone",
+		"Date": "4/5/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Mobile Functionality Rollout: Functionality to allow travellers and managers to use mobile devices to access travel information and approve trips.",
+		"Show": true
+	}, {
+		"ID": 112,
+		"Type": "Milestone",
+		"Date": "1/5/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Government wide deployment of the Online Booking Tool (OBT) Content Enhancements with supporting communications and training materials.",
+		"Show": true
+	}, {
+		"ID": 113,
+		"Type": "Training",
+		"Date": "1/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Updates to Online Booking Tool user guides.",
+		"Show": true
+	}, {
+		"ID": 114,
+		"Type": "Milestone",
+		"Date": "12/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "To boost low satisfaction with certain modules, implementation of system usability enhancements will commence and continue via quarterly technical releases (December 2015, March 2016, June 2016). Look for training materials and ‘cheat sheets’ as enhancements are introduced.",
+		"Show": true
+	}, {
+		"ID": 115,
+		"Type": "Milestone",
+		"Date": "2/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Quarterly reporting on mandatory use of BMO Travel Card by Executives and Excluded Employees",
+		"Show": true
+	}, {
+		"ID": 116,
+		"Type": "Training",
+		"Date": "1/7/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Training materials on Mobile Functionality made available.",
+		"Show": true
+	}, {
+		"ID": 181,
+		"Type": "Training",
+		"Date": "2/24/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Regional Training Rollout: Super User and Helpdesk training to be conducted across eight cities.",
+		"Show": true
+	}, {
+		"ID": 182,
+		"Type": "Milestone",
+		"Date": "3/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "To boost low satisfaction with certain modules, implementation of system usability enhancements will commence and continue via quarterly technical releases (December 2015, March 2016, June 2016). Look for training materials and ‘cheat sheets’ as enhancements are introduced.",
+		"Show": true
+	}, {
+		"ID": 183,
+		"Type": "Milestone",
+		"Date": "6/15/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "To boost low satisfaction with certain modules, implementation of system usability enhancements will commence and continue via quarterly technical releases (December 2015, March 2016, June 2016). Look for training materials and ‘cheat sheets’ as enhancements are introduced.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 14,
+	"Name": "RP-1 / RP-n",
+	"Description": "<p>In place since April 2015, this real property initiative was put in place to increase our agility as a real property service provider and provide a higher value to our clients.</p>\r\n\r\n<p><strong>RP-n:</strong> Real Property contracts (referred to as RP-n) represent an approach where the department maintains responsibility for the management and oversight of services, but leverage the private sector&rsquo;s innovation and agility for delivery of services.</p>\r\n\r\n<p><strong>RP-1</strong>: The RP-1 contracts consist of six regional, performance-based contracts that provide a comprehensive range of real property services in PWGSC and selected other government department (OGD) custodial facilities, lease-purchase and leased properties across Canada.</p>\r\n\r\n<p><strong>This initiative will affect the way some employees in Real Property Branch do their work and will require training for these employees.</strong></p>\r\n\r\n<p>Real Property (RP-1, RP-n) Transformation Timeline Tool Lead: Nathalie Laliberte, Real Property Branch</p>\r\n\r\n<p><a href=\"http://intranet.tpsgc-pwgsc.gc.ca/bi-rp/gi-rp-service-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [1, 3, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 1,
+		"Branches": [4],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 3,
+		"Branches": [2],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 117,
+		"Type": "Milestone",
+		"Date": "4/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "On April 1, 2015 PWGSC began a new facilities management and services contract with Brookfield Global Integrated Solutions (BGIS) Canada. The term of the contract is 14 years if all options are exercised (March 31, 2028).",
+		"Show": true
+	}, {
+		"ID": 118,
+		"Type": "Milestone",
+		"Date": "8/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>RP-n Oversight Committee is established. The role of the committee is to ensure overall performance of RP contracts, to ensure continued adherence of the departmental objectives and priorities, to review the implementation of the framework to ensure effectiveness, consistency and continuous improvement.</p>\r\n",
+		"Hover": "RP-n Oversight Committee is established. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 119,
+		"Type": "Training",
+		"Date": "7/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [4],
+		"Text": "<p>Training sessions on the following topics are planned (exact dates pending):</p>\r\n\r\n<ul>\r\n\t<li>Category III Projects (1/2 day WebEx);</li>\r\n\t<li>PDS Category 4, 5 &amp; 6 (1/2 day WebEx);</li>\r\n\t<li>Incident Management.</li>\r\n</ul>\r\n",
+		"Hover": "Training Session in Ontario are planned. (Click the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 120,
+		"Type": "Milestone",
+		"Date": "9/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Engagement strategy presented to the Unions for the review, update and/or creation of Work Descriptions. This work is expected to take over two years to complete.",
+		"Show": true
+	}, {
+		"ID": 121,
+		"Type": "Training",
+		"Date": "9/23/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [6],
+		"Text": null,
+		"Hover": "Client Information Session to be conducted by WebEx as follow-up to initial offering.",
+		"Show": true
+	}, {
+		"ID": 122,
+		"Type": "Milestone",
+		"Date": "10/26/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "RP-1 mailbox is created to facilitate communication with the RP-1 team.",
+		"Show": true
+	}, {
+		"ID": 123,
+		"Type": "Milestone",
+		"Date": "12/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2],
+		"Text": "<p>Early December 2015, Tenant Engagement Road Shows begin: A joint RP-1 presentation by Brookfield Global Integrated Solutions (BGIS) and PWGSC to be provided to various clients and tenants throughout the Pacific region in a series of sessions.</p>\r\n",
+		"Hover": "Early December 2015: Tenant Engagement Road Shows begin in Pacific. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 124,
+		"Type": "Training",
+		"Date": "10/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [7],
+		"Text": null,
+		"Hover": "Introduction to Real Property-1 Contracts for tenants.",
+		"Show": true
+	}, {
+		"ID": 125,
+		"Type": "Training",
+		"Date": "10/7/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [4],
+		"Text": "<p>Training sessions on the following topics are planned for the fall (exact dates pending):</p>\r\n\r\n<ul>\r\n\t<li>Claims Management;</li>\r\n\t<li>Environmental Services;</li>\r\n\t<li>Base Building;</li>\r\n\t<li>Occupational Health &amp; Safety.</li>\r\n</ul>\r\n",
+		"Hover": "Training sessions in Ontario are planned. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 126,
+		"Type": "Training",
+		"Date": "10/14/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [3],
+		"Text": "<p>Training sessions on the following topics are planned for the fall (exact dates pending):</p>\r\n\r\n<ul>\r\n\t<li>Property Management;</li>\r\n\t<li>Incident Management;</li>\r\n\t<li>Quality Management.</li>\r\n</ul>\r\n",
+		"Hover": "Training sessions in Western are planned. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 127,
+		"Type": "Training",
+		"Date": "10/19/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Training on new RP-1 directives and procedures.",
+		"Show": true
+	}, {
+		"ID": 128,
+		"Type": "Training",
+		"Date": "1/19/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [2],
+		"Text": "<p>Training sessions on the following topics are planned for Winter 2015/Spring 2016:</p>\r\n\r\n<ul>\r\n\t<li>RP-n Information Management;</li>\r\n\t<li>Property Management Service;</li>\r\n\t<li>Incident &amp; Claim Management;</li>\r\n\t<li>Data Submission Control;</li>\r\n\t<li>Quality Management.</li>\r\n</ul>\r\n",
+		"Hover": "Training sessions are planned in Pacific. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 129,
+		"Type": "Training",
+		"Date": "1/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "A training curriculum by function is developed.",
+		"Show": true
+	}, {
+		"ID": 130,
+		"Type": "Training",
+		"Date": "1/7/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "1 week in-person training for regional and HQ employees involved in quality monitoring activities.",
+		"Show": true
+	}, {
+		"ID": 131,
+		"Type": "Milestone",
+		"Date": "4/6/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "A Workforce Management Strategy for the management of RP contracts is developed.",
+		"Show": true
+	}, {
+		"ID": 132,
+		"Type": "Milestone",
+		"Date": "11/1/2014",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "RP-1 Contract Awarded: In November 2014, six regionally-based performance contracts awarded to Brookfield Global Integrated Solutions",
+		"Show": true
+	}, {
+		"ID": 133,
+		"Type": "Training",
+		"Date": "1/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "RP-1 training: Intensive series of training sessions undertaken across the country (between November 14 and March 15) to ensure consistent understanding and application of new contract requirements",
+		"Show": true
+	}, {
+		"ID": 134,
+		"Type": "Milestone",
+		"Date": "12/5/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "RP-1 Acceptance review: Final Acceptance Review by which Canada can analyze the Service Delivery Regime (SDR) proposed by the Real Property Contractor, ensuring a sound, mutual understanding of Canada’s requirements.",
+		"Show": true
+	}, {
+		"ID": 135,
+		"Type": "Milestone",
+		"Date": "1/13/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "RP-n Information Management (IM) Directive approved and posted ensuring consistent and standardized IM filing structures across the country.",
+		"Show": true
+	}, {
+		"ID": 178,
+		"Type": "Milestone",
+		"Date": "2/15/2016",
+		"Branches": [2],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "February - March 2016: Regional visits to present proposed recommendations for RP-n and get insight from regional colleagues.",
+		"Show": true
+	}, {
+		"ID": 179,
+		"Type": "Milestone",
+		"Date": "1/13/2016",
+		"Branches": [2],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "January 13, 2016: Request for Information (RFI) published on buyandsell.gc.ca to collect feedback from industry on potential Real Property contracts.",
+		"Show": true
+	}, {
+		"ID": 180,
+		"Type": "Training",
+		"Date": "4/1/2016",
+		"Branches": [2],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "April 2016: National RP-n Workshop on the development of Real Property Contracts",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 15,
+	"Name": "Transformation of Pension Administration",
+	"Description": "<p>The Transformation of Pension Administration Initiative was established in 2007 to modernize the systems and processes that support pension administration for public servants, and to centralize the delivery of services in Shediac, New Brunswick.</p>\r\n\r\n<p>Treasury Board Ministers provided authority (2010 - Royal Canadian Mounted Police; 2011 - Canadian Armed Forces) to transfer the administration of additional pension plans to PWGSC, based on the new solution. Transfer of plan administration to the new solution was completed in 2013 for public servants, in 2014 for RCMP, and is on track for transfer of Canadian Armed Forces pension administration to PWGSC in 2016.</p>\r\n\r\n<p>Benefits of the new solution include improved, more cost-effective services, increased accuracy and security, web-based self-service options, elimination of paper files, and alignment to common Government of Canada pension services and standards.</p>\r\n\r\n<p><strong>This initiative will affect the way some employees in the Accounting, Banking and Compensation Branch do their work and will require training for these employees.</strong></p>\r\n\r\n<p>Lead of the Transformation of Pension Administration for the Transformation Timeline Tool: Jeff Marcantonio, Accounting, Banking and Compensation Branch</p>\r\n\r\n<p><a href=\"http://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/projets-projects/tpa/index-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 0,
+		"Branches": [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 3,
+		"Branches": [3],
+		"Regions": [5, 6]
+	}],
+	"Events": [{
+		"ID": 136,
+		"Type": "Milestone",
+		"Date": "4/1/2014",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Project start-up and planning activities for Release 1 (Canadian Forces Regular and Reserve Force Contributors) and Release 2 (Canadian Forces Regular and Reserve Force Annuitants) is complete.",
+		"Show": true
+	}, {
+		"ID": 137,
+		"Type": "Milestone",
+		"Date": "7/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Detailed design and development of Release 1 (Canadian Forces Regular and Reserve Force Contributors) is complete.",
+		"Show": true
+	}, {
+		"ID": 138,
+		"Type": "Training",
+		"Date": "10/1/2015",
+		"Branches": [3],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Release 1.0 training sessions for 40 PWGSC Accounting, Banking and Compensation Branch employees in HQ (new Government of Canada Pension Centre):</p>\r\n\r\n<ol>\r\n\t<li>Pension Solution Training (in class, instructed), Covers the use of the new pension solution components - Siebel, Penfax, and Genesys - and includes training on the new business processes and procedures;</li>\r\n\t<li>Client Service Soft Skills Training (in class, instructed): Three Client Service Excellence courses custom tailored by Canada School of Public Service will be provided to pension administration staff (B175 Communicating Client Service; B176 Analyzing Client Service and B177 Challenging Client Service.) Check the <a href=\"http://www.csps-efpc.gc.ca/forlearners/CoursesandPrograms/index-eng.aspx\" target=\"_blank\">CSPS website</a> for course availability.</li>\r\n\t<li>Change Management Training (in class, instructed): Provides the necessary training and support to management to lead their employees through the changes;</li>\r\n\t<li>Canadian Forces Superannuation Act (CFSA) Plan Training (in class, instructed): Provides an overview of the CFSA pension plan specific to its legislation, business rules and pension rules. It is required by new resources corresponding with their roles within the new organization.</li>\r\n</ol>\r\n",
+		"Hover": "Release 1.0 training sessions for 40 PWGSC Accounting, Banking and Compensation Branch employees in HQ (new Government of Canada Pension Centre). Click on the Book icon to read more.",
+		"Show": true
+	}, {
+		"ID": 139,
+		"Type": "Training",
+		"Date": "1/1/2016",
+		"Branches": [3],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Release 1.0 training sessions for 40 PSPC Accounting, Banking and Compensation Branch employees in HQ (new Government of Canada Pension Centre):</p>\r\n\r\n<ol>\r\n\t<li>Pension Solution Training (in class, instructed), Covers the use of the new pension solution components - Siebel, Penfax, and Genesys - and includes training on the new business processes and procedures;</li>\r\n\t<li>Client Service Soft Skills Training (in class, instructed): Three Client Service Excellence courses custom tailored by Canada School of Public Service will be provided to pension administration staff (B175 Communicating Client Service; B176 Analyzing Client Service and B177 Challenging Client Service.) Check the <a href=\"http://www.csps-efpc.gc.ca/forlearners/CoursesandPrograms/index-eng.aspx\" target=\"_blank\">Canada School of Public Service website</a> for course availability.</li>\r\n\t<li>Change Management Training (in class, instructed): Provides the necessary training and support to management to lead their employees through the changes;</li>\r\n\t<li>Canadian Forces Superannuation Act (CFSA) Plan Training (in class, instructed): Provides an overview of the CFSA pension plan specific to its legislation, business rules and pension rules. It is required by new resources corresponding with their roles within the new organization.</li>\r\n</ol>\r\n",
+		"Hover": "Release 1.0 training sessions for 40 PSPC Accounting, Banking and Compensation Branch employees in HQ (new Government of Canada Pension Centre). (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 140,
+		"Type": "Milestone",
+		"Date": "7/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Testing and implementation of Release 1 (Canadian Forces Regular and Reserve Force Contributors) is complete.",
+		"Show": true
+	}, {
+		"ID": 141,
+		"Type": "Milestone",
+		"Date": "6/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Detailed design and development of Release 2 (Canadian Forces Regular and Reserve Force Annuitants) is complete.",
+		"Show": true
+	}, {
+		"ID": 142,
+		"Type": "Milestone",
+		"Date": "7/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Establish the new Pension Centre satellite office (a new <a href=\"http://www.tpsgc-pwgsc.gc.ca/biens-property/mt-wp/mt-wp-eng.html\" target=\"_blank\">Work Place 2.0</a>&nbsp;space) in Ottawa that will be home to 230 employees deployed from the Department of National Defence and 40 employees from PWGSC Accounting, Banking and Compensation Branch and part of a new organization reporting to the Government of Canada Pension Centre in Shediac, NB.</p>\r\n\r\n<p>End Date: Q2 2016/17 (July 2016 - Release 1) and Q3 2016/17 (December 2016 &ndash; Release 2)</p>\r\n",
+		"Hover": "Establish the new Pension Centre satellite office in Ottawa. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 143,
+		"Type": "Milestone",
+		"Date": "12/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Testing and implementation of Release 2 (Canadian Forces Regular and Reserve Force Annuitants) is complete.",
+		"Show": true
+	}, {
+		"ID": 144,
+		"Type": "Training",
+		"Date": "2/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "January 2016-March 2016: Train-the-Trainer training for Release 1.0 - for active member / contributor functionality. January 2016-March 2016",
+		"Show": true
+	}, {
+		"ID": 145,
+		"Type": "Training",
+		"Date": "4/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "April 2016 – July 2016: Release 1.0 end user training - for active plan member / contributor functionality.",
+		"Show": true
+	}, {
+		"ID": 146,
+		"Type": "Training",
+		"Date": "10/7/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "October 2016 – December 2016: Release 2.0 end user training - for retired plan member functionality.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 16,
+	"Name": "Pay Consolidation Project",
+	"Description": "<p>This Project falls under the Transformation of Pay Administration Initiative umbrella, launched in 2009, and includes the 46 departments and agencies were using or planning to use the PeopleSoft software when the Treasury Board Submission was approved in 2011. Its goal is to gradually consolidate pay services of participating departments and agencies to the new Public Service Pay Centre in Miramichi, NB, with limited disruption for employees.</p>\r\n\r\n<p><strong>This initiative will affect the way some employees in the Accounting Banking and Compensation Branch do their work and will require training for these employees.</strong></p>\r\n\r\n<p>The Transformation of Pay Administration Transformation Timeline Tool Lead: Kristine Renic, Transformaton of Pay Administration</p>\r\n\r\n<p><a href=\"http://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/projets-projects/tpai-itap/index-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n",
+	"StartDate": "12/7/2011",
+	"EndDate": "4/30/2018",
+	"Impacts": [{
+		"Level": 1,
+		"Branches": [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 2,
+		"Branches": [3],
+		"Regions": [2, 3, 4, 6, 7]
+	}, {
+		"Level": 3,
+		"Branches": [3],
+		"Regions": [6]
+	}],
+	"Events": [{
+		"ID": 147,
+		"Type": "Milestone",
+		"Date": "12/7/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Approximately 92,000 accounts will be serviced by the Public Service Pay Centre in Miramichi completing the scope of the Consolidation of Pay Services Project.",
+		"Show": true
+	}, {
+		"ID": 148,
+		"Type": "Milestone",
+		"Date": "10/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Estimated date for transfering compensation services for Immigration and Refugee Board of Canada (IRBC) and regional Veterans Affairs Canada (VAC) to Miramichi</p>\r\n",
+		"Hover": "Estimated date for transfering compensation services for Immigration and Refugee Board of Canada (IRBC) and regional Veterans Affairs Canada (VAC) to Miramichi",
+		"Show": true
+	}, {
+		"ID": 149,
+		"Type": "Training",
+		"Date": "10/5/2015",
+		"Branches": [3],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Professional Development Program Training for 1,165 Pay Centre employees complete.",
+		"Show": true
+	}, {
+		"ID": 150,
+		"Type": "Milestone",
+		"Date": "12/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Transfer compensation services for PWGSC to Miramichi</p>\r\n",
+		"Hover": "Transfer compensation services for PWGSC to Miramichi",
+		"Show": true
+	}, {
+		"ID": 151,
+		"Type": "Milestone",
+		"Date": "4/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [7],
+		"Text": null,
+		"Hover": "Complete closure of CESPRAS - date dependent on transferring Veterans Affairs Canada’s Ste-Anne-de-Bellevue Hospital to the Province of Quebec.",
+		"Show": true
+	}, {
+		"ID": 152,
+		"Type": "Milestone",
+		"Date": "12/31/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Construction complete on new the new Pay Centre.",
+		"Show": true
+	}, {
+		"ID": 153,
+		"Type": "Milestone",
+		"Date": "3/31/2018",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Phased move of employees to the new Pay Centre completed.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 17,
+	"Name": "Pay Modernization Project",
+	"Description": "<p>The Pay Modernization Project was developed under the government-wide Transformation of Pay Administration Initiative to replace the Government&rsquo;s outdated pay system. Launching in the fall 2015, the new pay system, known as Phoenix, will offer employees a simpler, more effective way to access and update their personal information. It will also be seamlessly integrated with the PeopleSoft program, and will renew the delivery of pay services by streamlining and modernizing business processes.</p>\r\n\r\n<p>Pay Modernization Project Transformation Timeline Lead: Kristine Renic, Accounting, Banking and Compensation Branch</p>\r\n\r\n<p><strong>This initiative will affect the way all employees do their work and will require training.</strong></p>\r\n\r\n<p><a href=\"http://www.tpsgc-pwgsc.gc.ca/remuneration-compensation/projets-projects/tpai-itap/index-eng.html\" target=\"_blank\">Click here to read more</a>.</p>\r\n",
+	"StartDate": "11/22/2012",
+	"EndDate": "5/31/2016",
+	"Impacts": [{
+		"Level": 2,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 3,
+		"Branches": [3],
+		"Regions": [6]
+	}],
+	"Events": [{
+		"ID": 154,
+		"Type": "Milestone",
+		"Date": "1/14/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Design, build and test phases of Phoenix are complete.",
+		"Show": true
+	}, {
+		"ID": 155,
+		"Type": "Milestone",
+		"Date": "3/16/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Phoenix roll out to a number of <a href=\"http://gcintranet.tpsgc-pwgsc.gc.ca/remuneration-compensation/tpai-itap/dp-rs-eng.html\" target=\"_blank\">other government departments</a> is complete between February and April 2016.</p>\r\n",
+		"Hover": "Phoenix roll out to a number of other government departments is complete. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 156,
+		"Type": "Training",
+		"Date": "12/24/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Web-based courses will be available for various Phoenix users:</p>\r\n\r\n<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"\">Web-based course name</th>\r\n\t\t\t<th scope=\"\">Estimated duration</th>\r\n\t\t\t<th scope=\"\">Target audience</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Self-Service</td>\r\n\t\t\t<td>1 hour</td>\r\n\t\t\t<td>Employees</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Manager Self-Service</td>\r\n\t\t\t<td>1 hour</td>\r\n\t\t\t<td>Section 34 managers</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix for section 33 Authorizers</td>\r\n\t\t\t<td>1 hour</td>\r\n\t\t\t<td>Section 33 authorizers</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Expenditure Control Database</td>\r\n\t\t\t<td>1 hour</td>\r\n\t\t\t<td>Financial officers</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Navigation Overview</td>\r\n\t\t\t<td>1 hour</td>\r\n\t\t\t<td>Compensation advisors</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Compensation Advisor Overview</td>\r\n\t\t\t<td>2 hours</td>\r\n\t\t\t<td>Compensation advisors</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>HR On-line Training</td>\r\n\t\t\t<td>1 hour</td>\r\n\t\t\t<td>HR advisors</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n",
+		"Hover": "Web-based courses will be available for various Phoenix users. (Click on the Book icon to read more)",
+		"Show": true
+	}, {
+		"ID": 157,
+		"Type": "Training",
+		"Date": "1/20/2016",
+		"Branches": [3],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>In-classroom training will be provided to Compensation Advisors:</p>\r\n\r\n<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\">\r\n\t<thead>\r\n\t\t<tr>\r\n\t\t\t<th scope=\"col\">In-classroom course name</th>\r\n\t\t\t<th scope=\"col\">Estimated duration</th>\r\n\t\t\t<th scope=\"col\">Target audience</th>\r\n\t\t</tr>\r\n\t</thead>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Personal and Job Information</td>\r\n\t\t\t<td>12 hours</td>\r\n\t\t\t<td>Compensation Advisors</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Personal and Job Information for Direct Entry Clients</td>\r\n\t\t\t<td>18 hours</td>\r\n\t\t\t<td>Compensation Advisors</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Benefits and Insurance</td>\r\n\t\t\t<td>3 hours</td>\r\n\t\t\t<td>Compensation Advisors</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Entitlements and Deductions</td>\r\n\t\t\t<td>9 hours</td>\r\n\t\t\t<td>Compensation Advisors</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Phoenix Reporting and Error Management for Compensation Advisors</td>\r\n\t\t\t<td>4 hours</td>\r\n\t\t\t<td>Compensation Advisors</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n",
+		"Hover": "In-Classroom training will be provided to Compensation Advisors. (Click on the Book icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 158,
+		"Type": "Milestone",
+		"Date": "2/24/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Phoenix is rolled out to <a href=\"http://gcintranet.tpsgc-pwgsc.gc.ca/remuneration-compensation/tpai-itap/dp-rs-eng.html\" target=\"_blank\"> a number of other government departments</a> by Feburary 24, 2016.</p>\r\n",
+		"Hover": "Phoenix is rolled out to a number of other government departments by February 24, 2016. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}, {
+		"ID": 159,
+		"Type": "Milestone",
+		"Date": "4/20/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "<p>Phoenix is rolled out to <a href=\"http://gcintranet.tpsgc-pwgsc.gc.ca/remuneration-compensation/tpai-itap/dp-rs-eng.html\" target=\"_blank\">PSPC and a number of other government departments</a> and the Pay Centre receives its final transfer of pay accounts from participating organizations. In total the Pay Centre will be providing pay administration services for 184,000 employees from 46 departments and agencies.</p>\r\n",
+		"Hover": "Phoenix is rolled out to PSPC and a number of other government departments and the Pay Centre receives its final transfer of pay accounts from participating organizations. (Click on the Red Dot icon to read more.)",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 18,
+	"Name": "PSPC Accommodation Renewal Initiative",
+	"Description": "<p>The Accommodation Renewal initiative was developed to create a modern workplace that will attract, retain and encourage public servants to work smarter, greener and healthier to better serve Canadians. Focusing on three pillars of change, namely the workplace, the back office, and the way we work, Accommodation Renewal will change the way we work and collaborate to conduct our day-to-day business. This initiative will be rolled out in various branches throughout the coming years, and has already been championed in several regions across the department.</p>\r\n\r\n<p><strong>This initiative will affect the way employees do their work and will require training.</strong></p>\r\n\r\n<p><a href=\"http://www.tpsgc-pwgsc.gc.ca/biens-property/mt-wp/mt-wp-eng.html\" target=\"_blank\">Click here to read more.</a></p>\r\n\r\n<p>Transformation Lead: &nbsp;<span style=\"font-family:calibri,sans-serif; font-size:11pt\">Andr&eacute;-Guy Ch&eacute;chippe</span>, <span style=\"font-family:calibri,sans-serif; font-size:11pt\">Finance &amp; Administration Branch</span></p>\r\n\r\n<p>In the regions, the Transformation Leads are the Regional Directors of Corporate Services, Strategic Management and Communications:</p>\r\n\r\n<p>Atlantic: Anne Thomas<br />\r\nOntario: Johanne Tremblay<br />\r\nQuebec: Richard Gagnon<br />\r\nWest: Mark Harrison<br />\r\nPacific: Ryan Beattie</p>\r\n",
+	"StartDate": "12/1/2013",
+	"EndDate": "3/31/2020",
+	"Impacts": [{
+		"Level": 2,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}, {
+		"Level": 1,
+		"Branches": [13],
+		"Regions": [1]
+	}],
+	"Events": [{
+		"ID": 160,
+		"Type": "Milestone",
+		"Date": "10/1/2014",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Client funding secured to proceed with Accommodation Renewal projects for the regional offices in Edmonton and Winnipeg.",
+		"Show": true
+	}, {
+		"ID": 161,
+		"Type": "Milestone",
+		"Date": "7/7/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Client funding approvals secured to proceed with Accommodation Renewal (Workplace 2.0) in Ontario and Quebec regions",
+		"Show": true
+	}, {
+		"ID": 162,
+		"Type": "Milestone",
+		"Date": "6/6/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "The Accommodation Renewal Program Management Office (ARPMO) is created to ‘coordinate’ Accommodation Renewal projects in PWGSC occupied office space.",
+		"Show": true
+	}, {
+		"ID": 163,
+		"Type": "Milestone",
+		"Date": "7/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Funding and project approval secured to proceed with 3B3 project in the NCA.",
+		"Show": true
+	}, {
+		"ID": 164,
+		"Type": "Milestone",
+		"Date": "12/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Accommodation Renewal project at Place du Portage III 3B3 is complete.",
+		"Show": true
+	}, {
+		"ID": 165,
+		"Type": "Milestone",
+		"Date": "10/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "New Project Leader position being staffed to lead the Accommodation Renewal space project at 4900 Yonge St.",
+		"Show": true
+	}, {
+		"ID": 166,
+		"Type": "Milestone",
+		"Date": "1/30/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "National Accommodation Strategy is finalized.",
+		"Show": true
+	}, {
+		"ID": 167,
+		"Type": "Milestone",
+		"Date": "2/16/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Demonstration site is complete in the Innovatec space at the base of Place du Portage III, Tower B.",
+		"Show": true
+	}, {
+		"ID": 168,
+		"Type": "Milestone",
+		"Date": "1/1/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Construction begins on the Accommodation Renewal project for the regional office in Winnipeg.",
+		"Show": true
+	}, {
+		"ID": 169,
+		"Type": "Milestone",
+		"Date": "8/1/2017",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Construction begins on the Accommodation Renewal project for the regional office in Edmonton.",
+		"Show": true
+	}, {
+		"ID": 170,
+		"Type": "Milestone",
+		"Date": "10/1/2017",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Construction is complete on the Accommodation Renewal project for the regional office in Winnipeg.",
+		"Show": true
+	}, {
+		"ID": 171,
+		"Type": "Milestone",
+		"Date": "10/30/2017",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Staff move into their new Accommodation Renewal office in Winnipeg.",
+		"Show": true
+	}, {
+		"ID": 172,
+		"Type": "Milestone",
+		"Date": "6/1/2018",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Construction is complete on the Accommodation Renewal project for the regional office in Edmonton.",
+		"Show": true
+	}, {
+		"ID": 173,
+		"Type": "Milestone",
+		"Date": "7/1/2018",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Staff move into their new Accommodation Renewal office in Winnipeg.",
+		"Show": true
+	}, {
+		"ID": 174,
+		"Type": "Milestone",
+		"Date": "9/1/2015",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Launch of DG Advisory Committee and Accommodation Renewal Steering Committee (DM chair).",
+		"Show": true
+	}, {
+		"ID": 175,
+		"Type": "Milestone",
+		"Date": "10/1/2016",
+		"Branches": [1],
+		"Regions": [1],
+		"Text": null,
+		"Hover": "Launch of Phase I of Portage Complex Program of Works; First migration from PDPIII to swing space.",
+		"Show": true
+	}],
+	"Timeline": "TransformationTimeline"
+}, {
+	"ID": 19,
+	"Name": "Mental Health Strategy/Well-being Dashboard",
+	"Description": "\u003cp\u003eMental Health and Well-being in the Workplace are emerging and important issues.  PSPC is taking a proactive, integrated approach to ensure that employees across the Department are well supported on all aspects of mental health and well-being.  HRB already provides a number of programs and activities that support employees, from employee and organization assistance and conflict management to return to work support.  By integrating these activities, PSPC will provide a broad level of support to employees through awareness and education, tools and guidance, and a long-term strategy to build capacity and expertise in the organization.\u003c/p\u003e\r\n\u003cp\u003eThe development of a PSPC Well-being Strategy, of which Mental Health and a Well-being Dashboard are an integrated part. The Well-being Strategy will promote workplace well-being and an increase in employees’ wellness by identifying areas of the department with issues in order to provide managers with the tools to help resolve them.\u003c/p\u003e\r\n",
+	"StartDate": "6/1/2015",
+	"EndDate": "12/31/2016",
+	"Impacts": [{
+		"Level": 4,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 176,
+		"Type": "Milestone",
+		"Date": "7/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Review of mental health programs in other government departments",
+		"Show": true
+	}, {
+		"ID": 177,
+		"Type": "Milestone",
+		"Date": "9/1/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Overview of existing programs at PSPC and gap analysis",
+		"Show": true
+	}, {
+		"ID": 178,
+		"Type": "Training",
+		"Date": "9/15/2015",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Presentation to HRC of new Well-being Strategy (which includes Mental Health and new Well-being Dashboard",
+		"Show": true
+	}, {
+		"ID": 179,
+		"Type": "Milestone",
+		"Date": "3/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Announcement of the creation of a new Well-being Program at PSPC",
+		"Show": true
+	}, {
+		"ID": 180,
+		"Type": "Milestone",
+		"Date": "12/25/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "review of Mental Health Tasks Force recommendations",
+		"Show": true
+	}, {
+		"ID": 181,
+		"Type": "Milestone",
+		"Date": "3/20/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "statistical analysis completed for department",
+		"Show": true
+	}, {
+		"ID": 182,
+		"Type": "Milestone",
+		"Date": "5/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": null,
+		"Hover": "Strategy to move forward",
+		"Show": true
+	}],
+	"Timeline": "BP2020"
+}, {
+	"ID": 20,
+	"Name": "Workshop on Mental Health and Employee Well-being",
+	"Description": "\u003cp\u003eThe main objectives of the session are: \u003cul\u003e\u003cli\u003eA better understanding of mental health\u003c/li\u003e\u003cli\u003eKnowledge of signs of mental illness at work\u003c/li\u003e\u003cli\u003eUnderstanding of your role as an employee and a manager\u003c/li\u003e\u003cli\u003eBecoming familiar with the resources\u003c/li\u003e\u003c/ul\u003eA new case study can be developed for each specific branch, if needed\u003c/p\u003e",
+	"StartDate": "8/1/2015",
+	"EndDate": "12/31/2016",
+	"Impacts": [{
+		"Level": 4,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 183,
+		"Type": "Milestone",
+		"Date": "8/27/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "\u003cp\u003earticle about promoting Recovery Day with a link to HRB intranet page. Recovery Day promotes recovery from addiction and substance abuse\u003c/p\u003e\r\n",
+		"Hover": "article about promoting Recovery Day",
+		"Show": true
+	}, {
+		"ID": 184,
+		"Type": "Training",
+		"Date": "11/17/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "\u003cp\u003eA workshop will be offered to managers through the National Managers’ Community this Fall; to all National Capital Region regional Health and Safety Committee members representative during the Health and Safety Seminar\u003c/p\u003e",
+		"Hover": "Health and Safety Seminar",
+		"Show": true
+	}, {
+		"ID": 185,
+		"Type": "Training",
+		"Date": "11/18/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "\u003cp\u003eA workshop will be offered to managers through the National Managers’ Community this Fall; to all National Capital Region regional Health and Safety Committee members representative during the Health and Safety Seminar\u003c/p\u003e",
+		"Hover": "Youth Network",
+		"Show": true
+	}, {
+		"ID": 186,
+		"Type": "Milestone",
+		"Date": "9/10/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "\u003cp\u003earticle about Suicide Prevention Day with a link to HRB intranet page. This day is to encourage everyone to speak openly about suicide if one has suicidal thoughts so that they can be referred to assistance or if someone speaks to you about suicidal thoughts that instead of just ignoring them that you offer to go with them to get assistance. \u003c/p\u003e\r\n",
+		"Hover": "article about Suicide Prevention Day",
+		"Show": true
+	}, {
+		"ID": 187,
+		"Type": "Training",
+		"Date": "1/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [5],
+		"Text": "\u003cp\u003eImprove wellbeing in the workplace by increasing knowledge and awareness\u003c/p\u003e",
+		"Hover": "Workshop on Mental Health and Employee Well-being",
+		"Show": true
+	}, {
+		"ID": 188,
+		"Type": "Training",
+		"Date": "3/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [6],
+		"Text": "\u003cp\u003eImprove wellbeing in the workplace by increasing knowledge and awareness\u003c/p\u003e",
+		"Hover": "Workshop on Mental Health and Employee Well-being",
+		"Show": true
+	}, {
+		"ID": 189,
+		"Type": "Training",
+		"Date": "5/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [4],
+		"Text": "\u003cp\u003eImprove wellbeing in the workplace by increasing knowledge and awareness\u003c/p\u003e",
+		"Hover": "Workshop on Mental Health and Employee Well-being",
+		"Show": true
+	}, {
+		"ID": 190,
+		"Type": "Training",
+		"Date": "7/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [2],
+		"Text": "\u003cp\u003eImprove wellbeing in the workplace by increasing knowledge and awareness\u003c/p\u003e",
+		"Hover": "Workshop on Mental Health and Employee Well-being",
+		"Show": true
+	}, {
+		"ID": 191,
+		"Type": "Training",
+		"Date": "9/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [7],
+		"Text": "\u003cp\u003eImprove wellbeing in the workplace by increasing knowledge and awareness\u003c/p\u003e",
+		"Hover": "Workshop on Mental Health and Employee Well-being",
+		"Show": true
+	}, {
+		"ID": 192,
+		"Type": "Training",
+		"Date": "11/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [3],
+		"Text": "\u003cp\u003eImprove wellbeing in the workplace by increasing knowledge and awareness\u003c/p\u003e",
+		"Hover": "Workshop on Mental Health and Employee Well-being",
+		"Show": true
+	}],
+	"Timeline": "BP2020"
+}, {
+	"ID": 21,
+	"Name": "Telework/Alternate Work Arrangements",
+	"Description": "\u003cp\u003eWorkplace 2.0, improvements in technology and employee expectations are all drivers in the effort to increase telework and alternate work arrangements.  HRB is working closely with branches and regions to share best practices and provide support to increase telework opportunities across the Department.  The adoption of telework and alternate work arrangements supports our Department’s efforts to be an innovative work place of choice. Promote telework to managers and employees, provide information and tools, eliminate myths and provide overview of successful implementation at the Translation Bureau.\u003c/p\u003e",
+	"StartDate": "1/1/2016",
+	"EndDate": "12/31/2019",
+	"Impacts": [{
+		"Level": 4,
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7]
+	}],
+	"Events": [{
+		"ID": 193,
+		"Type": "Training",
+		"Date": "2/1/2016",
+		"Branches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19],
+		"Regions": [1, 2, 3, 4, 5, 6, 7],
+		"Text": "\u003cp\u003ePresentation at EXCO\u003cul\u003e\u003cli\u003ePercentage of potential suitable positions was identified in each branch/region’s\u003c/li\u003e\u003cli\u003eTelework Guidelines details and Web Links will be reviewed\u003c/li\u003e\u003cli\u003eA Communication plan for a phased telework implementation will be created and presented to EXCO for approval\u003c/li\u003e\u003cli\u003ePromotional Video showcasing current teleworkers success will be prepared\u003c/li\u003e\u003cli\u003eCIOB will work on ensuring the technology can support telework on a broader scale as implementation phases in.\u003c/li\u003e\u003cli\u003eBranches & Regions will start implementation of new telework by April 1, 2016\u003c/li\u003e\u003c/ul\u003e\u003c/p\u003e\r\n",
+		"Hover": "Presentation at EXCO",
+		"Show": true
+	}],
+	"Timeline": "BP2020"
+}]
