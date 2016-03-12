@@ -1,0 +1,94 @@
+﻿@{
+    if (Culture == "fr")
+    {
+        Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
+        ViewBag.Title = "Report";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_IntraLayout.cshtml";
+        ViewBag.Title = "Report";
+    }
+}
+
+<script>
+    $(document).on('pagebeforecreate', function(e) {
+        $('label, input, select', e.target).attr('data-role', 'none');
+    });
+</script>
+
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+
+<h1 class="print-none">@ViewBag.Title</h1>
+
+<div class="grid-12">
+    <!-- Report type controller -->
+    <div class="print-none">
+        <div class="span-12 border-all">
+            <div class="span-12 margin-bottom-none align-center">
+                <form class="margin-bottom-none background-dark">
+                    <label class="form-label-inline font-xlarge">Report Type</label>
+                    <label class="form-radio form-label-inline" for="radio_report_quarterly">
+                        <input type="radio" name="radio-report-type" id="radio_report_quarterly" />
+                        By Quarterly
+                    </label>
+                    <label class="form-radio form-label-inline" for="radio_report_initiative">
+                        <input type="radio" name="radio-report-type" id="radio_report_initiative" />
+                        By Initiative
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div id="quarter-container" class="span-12 border-all print-none background-light hide">
+            <div class="span-12 margin-bottom-none align-center">
+                <form class="margin-bottom-none form-confirm">
+                    <label class="form-label-inline font-large">Select Quarter</label>
+                    <select name="select-quarter" id="select_quarter">
+                        <option value="0"></option>
+                    </select>
+                    <i id="icon_quarter_loading" class="fa fa-spinner fa-spin hide"></i>
+                    <label class="form-label-inline font-large">Select a Region</label>
+                    <select name="select-region" id="select_region">
+                        <option value="0"></option>
+                    </select>
+                    <i id="icon_region_loading" class="fa fa-spinner fa-spin hide"></i>
+                    <label class="form-label-inline font-large">Select a Branch</label>
+                    <select name="select-branch" id="select_branch">
+                        <option value="0"></option>
+                    </select>
+                    <i id="icon_branch_loading" class="fa fa-spinner fa-spin hide"></i>
+                </form>
+            </div>
+        </div>
+        <div id="initiative-container" class="span-12 border-all print-none background-light hide">
+            <div class="span-12 margin-bottom-none align-center">
+                <form class="margin-bottom-none form-confirm">
+                    <label class="form-label-inline font-large">Select Initiative</label>
+                    <select name="select-initiative" id="select_initiative">
+                        <option value="0"></option>
+                    </select>
+                    <i id="icon_initiative_loading" class="fa fa-spinner fa-spin hide"></i>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="timeline_container" class="span-12 border-all hide print-none">
+        potential timeline spot
+    </div>
+
+    <div id="report_container" class="span-12">
+        <div class="align-center">
+            <i id="icon_report_loading" class="fa fa-spinner fa-spin hide"></i>
+        </div>
+        <div id="report"></div>
+    </div>
+</div>
+
+<script src="~/Scripts/moment-with-locales.min.js"></script>
+<script src="~/Scripts/Report/report.js"></script>

@@ -1332,6 +1332,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\Report\report.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\server_settings.js" />
@@ -1577,6 +1579,7 @@
     <Content Include="Scripts\MockData\regions.json" />
     <Content Include="Scripts\MockData\branches.json" />
     <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Home\Report.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
