@@ -162,6 +162,15 @@
         return 0;
     };
 
+    var sortByDateComparator = function (a, b) {
+        // a.Date comes in mm/dd/yy format
+        a = a.Date.split('/');
+        b = b.Date.split('/');
+        var aDate = new Date(a[2], a[0], a[1]);
+        var bDate = new Date(b[2], b[0], b[1]);
+        return aDate - bDate;
+    };
+
     var dataset = (function () {
         var _initiatives;
         var _sortedInitiatives;
@@ -207,6 +216,7 @@
                     delete initiative.Events[j].Regions;
                     delete initiative.Events[j].Branches;
                 });
+                initiative.Events.sort(sortByDateComparator);
             });
             _sortedInitiatives = JSON.parse(JSON.stringify(_initiatives));
         }
@@ -249,10 +259,12 @@
                 if (_sortedInitiatives[i].control[controlKey] !== undefined)
                     _sortedInitiatives[i].Weight = _sortedInitiatives[i].control[controlKey];
                 else {
-                    if (regionKey > 0 && branchKey > 0)
+                    if (regionKey > 0 && branchKey > 0) {
                         _sortedInitiatives[i].Weight = _impactWeight(0);
+                    }
                 }
-                _sortedInitiatives[i].Events = initiative.Events.filter(_controlExists);
+                if (regionKey > 0 && branchKey > 0)
+                    _sortedInitiatives[i].Events = initiative.Events.filter(_controlExists);
             });
 
             // Sort by timeline, weight then name

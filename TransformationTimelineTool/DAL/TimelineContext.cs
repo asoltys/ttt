@@ -19,6 +19,7 @@ namespace TransformationTimelineTool.DAL
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Edit> Edits { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
 
         public System.Data.Entity.DbSet<TransformationTimelineTool.Models.Comment> Comments { get; set; }
     }
