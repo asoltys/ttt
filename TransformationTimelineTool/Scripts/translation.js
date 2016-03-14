@@ -143,14 +143,14 @@ dictionary = {
     },
     "viewAll": {
         "e": "View All",
-        "f": ""
+        "f": "Voir Tous"
     },
     "viewBP": {
         "e": "Blueprint 2020",
-        "f": ""
+        "f": "Objectif 2020"
     },
     "viewTransformation": {
-        "e": "Transformation Timeline",
-        "f": ""
+        "e": "Transformation",
+        "f": "Transformation"
     }
 }
