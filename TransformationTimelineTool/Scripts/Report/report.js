@@ -514,7 +514,7 @@ var contentGenerator = (function() {
 		var events = initiative.Events;
 		var milstoneCount = 0;
 		var trainingCount = 0;
-		console.log(events);
+		console.log(initiative);
 		if (events.length > 0) {
 		    events.forEach(function (event, i) {
 		    	var dateStr = moment(event.Date, apiReturnDateFormat);

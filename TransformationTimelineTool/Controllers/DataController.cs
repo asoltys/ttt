@@ -159,17 +159,37 @@ namespace TransformationTimelineTool.Controllers
         private List<object> populateJSON(List<Initiative> initiatives)
         {
             var json = new List<object>();
-            foreach (Initiative i in initiatives)
+            foreach (var init in initiatives)
             {
+                var jsonEvents = new List<object>();
+                var jsonImpacts = new List<object>();
+                var events = init.Events
+                    .OrderBy(e => e.PublishedEdit.DisplayDate);
+
+                foreach (var e in events)
+                {
+                    jsonEvents.Add(new
+                    {
+                        ID = e.ID,
+                        Type = e.PublishedEdit.Type.ToString(),
+                        Date = e.PublishedEdit.DisplayDate.ToString(dateFormat),
+                        TextE = e.PublishedEdit.TextE,
+                        HoverE = e.PublishedEdit.HoverE,
+                        TextF = e.PublishedEdit.TextF,
+                        HoverF = e.PublishedEdit.HoverF,
+                        Show = e.Show
+                    });
+                }
                 json.Add(new
                 {
-                    ID = i.ID,
-                    StartDate = i.StartDate.ToString(dateFormat),
-                    EndDate = i.EndDate.ToString(dateFormat),
-                    NameE = i.NameE,
-                    NameF = i.NameF,
-                    DescE = i.DescriptionE,
-                    DescF = i.DescriptionF
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    DescriptionE = init.DescriptionE,
+                    DescriptionF = init.DescriptionF,
+                    StartDate = init.StartDate.ToString(dateFormat),
+                    EndDate = init.EndDate.ToString(dateFormat),
+                    Events = jsonEvents
                 });
             }
             return json;
