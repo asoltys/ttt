@@ -32,12 +32,12 @@
             <div class="span-12 margin-bottom-none align-center">
                 <form class="margin-bottom-none background-dark">
                     <label class="form-label-inline font-xlarge">Report Type</label>
-                    <label class="form-radio form-label-inline" for="radio_report_quarterly">
-                        <input type="radio" name="radio-report-type" id="radio_report_quarterly" />
+                    <label class="form-radio form-label-inline" for="radio-report-quarterly">
+                        <input type="radio" name="radio-report-type" id="radio-report-quarterly" />
                         By Quarterly
                     </label>
-                    <label class="form-radio form-label-inline" for="radio_report_initiative">
-                        <input type="radio" name="radio-report-type" id="radio_report_initiative" />
+                    <label class="form-radio form-label-inline" for="radio-report-initiative">
+                        <input type="radio" name="radio-report-type" id="radio-report-initiative" />
                         By Initiative
                     </label>
                 </form>
@@ -47,44 +47,59 @@
             <div class="span-12 margin-bottom-none align-center">
                 <form class="margin-bottom-none form-confirm">
                     <label class="form-label-inline font-large">Select Quarter</label>
-                    <select name="select-quarter" id="select_quarter">
+                    <select name="select-quarter" id="select-quarter">
                         <option value="0"></option>
                     </select>
-                    <i id="icon_quarter_loading" class="fa fa-spinner fa-spin hide"></i>
-                    <label class="form-label-inline font-large">Select a Region</label>
-                    <select name="select-region" id="select_region">
+                    <label class="form-label-inline font-large">Select Timeline</label>
+                    <select name="select-timeline" id="select-quarter-timeline">
                         <option value="0"></option>
+                        <option value="All">Show All</option>
                     </select>
-                    <i id="icon_region_loading" class="fa fa-spinner fa-spin hide"></i>
-                    <label class="form-label-inline font-large">Select a Branch</label>
-                    <select name="select-branch" id="select_branch">
-                        <option value="0"></option>
-                    </select>
-                    <i id="icon_branch_loading" class="fa fa-spinner fa-spin hide"></i>
+                    <i id="icon-loading-quarter" class="fa fa-spinner fa-spin hide"></i>
+                    <div id="region-branch" class="hide">
+                        <label class="form-label-inline font-large">Select a Region</label>
+                        <select name="select-region" id="select-region">
+                            <option value="0"></option>
+                        </select>
+                        <i id="icon-loading-region" class="fa fa-spinner fa-spin hide"></i>
+                        <label class="form-label-inline font-large">Select a Branch</label>
+                        <select name="select-branch" id="select-branch">
+                            <option value="0"></option>
+                        </select>
+                        <i id="icon-loading-branch" class="fa fa-spinner fa-spin hide"></i>
+                    </div>
                 </form>
             </div>
         </div>
         <div id="initiative-container" class="span-12 border-all print-none background-light hide">
             <div class="span-12 margin-bottom-none align-center">
                 <form class="margin-bottom-none form-confirm">
-                    <label class="form-label-inline font-large">Select Initiative</label>
-                    <select name="select-initiative" id="select_initiative">
+                    <label class="form-label-inline font-large">Select Timeline</label>
+                    <select name="select-timeline" id="select-initiative-timeline">
                         <option value="0"></option>
+                        <option value="All">Show All</option>
                     </select>
-                    <i id="icon_initiative_loading" class="fa fa-spinner fa-spin hide"></i>
+                    <i id="icon-loading-initiative" class="fa fa-spinner fa-spin hide"></i>
+                    <div id ="initiative" class="hide">
+                        <label class="form-label-inline font-large">Select Initiative</label>
+                        <select name="select-initiative" id="select-initiative">
+                            <option value="0"></option>
+                            <option value="All">Show All</option>
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
     
 
-    <div id="timeline_container" class="span-12 border-all hide print-none">
+    <div id="timeline-container" class="span-12 border-all hide print-none">
         potential timeline spot
     </div>
 
-    <div id="report_container" class="span-12">
+    <div id="report-container" class="span-12">
         <div class="align-center">
-            <i id="icon_report_loading" class="fa fa-spinner fa-spin hide"></i>
+            <i id="icon-loading-report" class="fa fa-spinner fa-spin hide"></i>
         </div>
         <div id="report"></div>
     </div>

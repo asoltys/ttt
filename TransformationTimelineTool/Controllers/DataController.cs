@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace TransformationTimelineTool.Controllers
     public class DataController : Controller
     {
         private TimelineContext db = new TimelineContext();
+        private string dateFormat = "MM/dd/yy";
 
         [Route("initiatives-eng")]
         public ActionResult ReturnMockDataEng()
@@ -79,88 +81,31 @@ namespace TransformationTimelineTool.Controllers
             List<object> result = new List<object>();
             result.Add(new
             {
-                Start = initiatives.Min(i => i.StartDate).ToShortDateString(),
-                End = initiatives.Max(i => i.EndDate).ToShortDateString()
+                Start = initiatives.Min(i => i.StartDate).ToString(dateFormat),
+                End = initiatives.Max(i => i.EndDate).ToString(dateFormat)
             });
             return Json(result);
         }
 
         [HttpPost]
         [Route("initiatives")]
-        public async Task<ActionResult> ReturnInitiatives()
+        public async Task<ActionResult> ReturnInitiatives(string culture)
         {
             List<Initiative> initiatives = await db.Initiatives.ToListAsync();
-            List<object> result = new List<object>();
-            foreach (Initiative i in initiatives)
+            initiatives = culture == "fr-ca" ?
+                initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
+            var initiativeBlocks = new List<object>();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct();
+            foreach (var timeline in timelines)
             {
-                result.Add(new
-                {
-                    ID = i.ID,
-                    StartDate = i.StartDate,
-                    EndDate = i.EndDate,
-                    NameE = i.NameE,
-                    NameF = i.NameF,
-                    DescE = i.DescriptionE,
-                    DescF = i.DescriptionF,
-                    Timeline = i.Timeline
+                var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
+                initiativeBlocks.Add(new {
+                    NameE = timeline,
+                    NameF = timeline,
+                    Data = populateJSON(initiativeBlock)
                 });
             }
-            return Json(result);
-        }
-
-        [HttpPost]
-        [Route("initiative")]
-        public async Task<ActionResult> ReturnInitiative(int Id)
-        {
-            var jsonInitiatives = new List<object>();
-            List<Initiative> initiatives = await db.Initiatives.Where(i => (i.ID == Id)).ToListAsync();
-            foreach (var init in initiatives)
-            {
-                List<object> jsonEvents = new List<object>();
-                List<object> jsonImpacts = new List<object>();
-                var events = init.Events.OrderBy(e => e.PublishedEdit.DisplayDate);
-
-                foreach (var e in events)
-                {
-                    jsonEvents.Add(new
-                    {
-                        ID = e.ID,
-                        Type = e.PublishedEdit.Type.ToString(),
-                        Date = e.PublishedEdit.DisplayDate.ToShortDateString(),
-                        Branches = e.Branches.Select(b => b.ID),
-                        Regions = e.Regions.Select(r => r.ID),
-                        TextE = e.PublishedEdit.TextE,
-                        HoverE = e.PublishedEdit.HoverE,
-                        TextF = e.PublishedEdit.TextF,
-                        HoverF = e.PublishedEdit.HoverF,
-                        Show = e.Show
-                    });
-                }
-                foreach (var impact in init.Impacts)
-                {
-                    jsonImpacts.Add(new
-                    {
-                        Level = impact.Level,
-                        Branches = impact.Branches.Select(b => b.ID),
-                        Regions = impact.Regions.Select(r => r.ID)
-                    });
-                }
-
-                jsonInitiatives.Add(new
-                {
-                    ID = init.ID,
-                    NameE = init.NameE,
-                    NameF = init.NameF,
-                    DescriptionE = init.DescriptionE,
-                    DescriptionF = init.DescriptionF,
-                    StartDate = init.StartDate.ToShortDateString(),
-                    EndDate = init.EndDate.ToShortDateString(),
-                    Impacts = jsonImpacts,
-                    Events = jsonEvents,
-                    Timeline = init.Timeline
-                });
-            }
-            return Json(jsonInitiatives);
+            return Json(initiativeBlocks);
         }
 
         private List<DateTime> GetDateRage(int quarter, int year)
@@ -192,16 +137,47 @@ namespace TransformationTimelineTool.Controllers
         [Route("initiative-quarterly")]
         public async Task<ActionResult> ReturnQuarterlyInitiatives(int quarter, int year, string culture)
         {
-            var jsonInitiatives = new List<object>();
             List<Initiative> initiatives = await db.Initiatives.ToListAsync();
-            if (culture == "fr-ca")
-            {
-                initiatives = initiatives.OrderBy(i => i.NameF).ToList();
-            } else
-            {
-                initiatives = initiatives.OrderBy(i => i.NameE).ToList();
-            }
+            initiatives = culture == "fr-ca" ?
+                initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
             List<DateTime> dateRange = GetDateRage(quarter, year);
+            var initiativeBlocks = new List<object>();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct();
+            foreach (var timeline in timelines)
+            {
+                var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
+                initiativeBlocks.Add(new
+                {
+                    NameE = timeline,
+                    NameF = timeline,
+                    Data = populateQuarterlyJSON(dateRange, initiativeBlock)
+                });
+            }
+            return Json(initiativeBlocks);
+        }
+
+        private List<object> populateJSON(List<Initiative> initiatives)
+        {
+            var json = new List<object>();
+            foreach (Initiative i in initiatives)
+            {
+                json.Add(new
+                {
+                    ID = i.ID,
+                    StartDate = i.StartDate.ToString(dateFormat),
+                    EndDate = i.EndDate.ToString(dateFormat),
+                    NameE = i.NameE,
+                    NameF = i.NameF,
+                    DescE = i.DescriptionE,
+                    DescF = i.DescriptionF
+                });
+            }
+            return json;
+        }
+
+        private List<object> populateQuarterlyJSON(List<DateTime> dateRange, List<Initiative> initiatives)
+        {
+            var json = new List<object>();
             foreach (var init in initiatives)
             {
                 var jsonEvents = new List<object>();
@@ -212,45 +188,59 @@ namespace TransformationTimelineTool.Controllers
 
                 foreach (var e in events)
                 {
+                    var controlDictionary = new Dictionary<string, int>();
+                    var branches = e.Branches.Select(b => b.ID);
+                    var regions = e.Regions.Select(r => r.ID);
+                    foreach (var r in regions)
+                    {
+                        foreach (var b in branches)
+                        {
+                            controlDictionary.Add(r + "," + b, -1);
+                        }
+                    }
                     jsonEvents.Add(new
                     {
                         ID = e.ID,
                         Type = e.PublishedEdit.Type.ToString(),
-                        Date = e.PublishedEdit.DisplayDate.ToShortDateString(),
-                        Branches = e.Branches.Select(b => b.ID),
-                        Regions = e.Regions.Select(r => r.ID),
+                        Date = e.PublishedEdit.DisplayDate.ToString(dateFormat),
                         TextE = e.PublishedEdit.TextE,
                         HoverE = e.PublishedEdit.HoverE,
                         TextF = e.PublishedEdit.TextF,
                         HoverF = e.PublishedEdit.HoverF,
+                        Control = controlDictionary,
                         Show = e.Show
                     });
                 }
+                var impactDictionary = new Dictionary<string, int>();
                 foreach (var impact in init.Impacts)
                 {
-                    jsonImpacts.Add(new
+                    var branches = impact.Branches.Select(b => b.ID);
+                    var regions = impact.Regions.Select(r => r.ID);
+                    foreach (var r in regions)
                     {
-                        Level = impact.Level,
-                        Branches = impact.Branches.Select(b => b.ID),
-                        Regions = impact.Regions.Select(r => r.ID)
-                    });
+                        foreach (var b in branches)
+                        {
+                            impactDictionary.Add(r + "," + b, (int) impact.Level);
+                        }
+                    }
                 }
 
-                jsonInitiatives.Add(new
+                json.Add(new
                 {
                     ID = init.ID,
                     NameE = init.NameE,
                     NameF = init.NameF,
                     DescriptionE = init.DescriptionE,
                     DescriptionF = init.DescriptionF,
-                    StartDate = init.StartDate.ToShortDateString(),
-                    EndDate = init.EndDate.ToShortDateString(),
-                    Impacts = jsonImpacts,
-                    Events = jsonEvents,
-                    Timeline = init.Timeline
+                    StartDate = init.StartDate.ToString(dateFormat),
+                    EndDate = init.EndDate.ToString(dateFormat),
+                    Impacts = impactDictionary,
+                    Events = jsonEvents
                 });
             }
-            return Json(jsonInitiatives);
+            return json;
         }
     }
+
+   
 }

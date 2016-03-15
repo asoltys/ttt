@@ -29,9 +29,9 @@
 	        		loaderCallback();
 	        },
 	        success: function (data) {
+	        	successCallback(JSON.stringify(data));
 	        	if (loaderCallback !== undefined)
 	        		loaderCallback();
-	            successCallback(JSON.stringify(data));
 	        },
 	        error: function (jqXHR, textStatus, errorThrown) {
 	            console.log(JSON.stringify(jqXHR) + ", " + textStatus);
@@ -41,9 +41,7 @@
 
 var culture = window.location.href.indexOf('lang=fra') > -1 ? 'fr-ca':'en-ca';
 moment.locale(culture);
-// API will always return dates in DD/MM/YYYY from Database
-// -> do not forget to parse it in the right way
-var apiReturnDateFormat = 'DD/MM/YYYY';
+var apiReturnDateFormat = 'MM/DD/YYYY';
 
 // ----------------------------------------------------------------------------
 
@@ -52,7 +50,6 @@ var sortComparator = function (a, b) {
     if (a < b) return -1;
     return 0;
 }
-
 
 var getQuarterData = function (month, year) {
 	if (month >= 1 && month <= 3) return [4,year-1];
@@ -75,13 +72,16 @@ var controller = (function() {
 	var _quarterListUrl = '/data/quarters';
 	var _regionListUrl = '/data/regions';
 	var _branchListUrl = '/data/branches';
+	var _selectInitiativeTimeline = $('#select-initiative-timeline');
+	var _selectInitiative = $('#select-initiative');
 
 	var _addInitiativeOption = function(object) {
 		var textToDisplay = culture == 'en-ca' ? object.NameE : object.NameF;
-		$('#select_initiative').append($('<option>', {
-		    value: object.ID,
-		    text: textToDisplay
-		}));
+		var $option = $('<option></option>');
+		$option.attr('value', object.ID);
+		$option.text(textToDisplay);
+		$option.attr('data-delete', 'true');
+		_selectInitiative.append($option);
 	}
 
 	var _addQuarterOption = function(object) {
@@ -108,34 +108,61 @@ var controller = (function() {
 			var $option = $('<option></option>');
 			$option.text(textToDisplay[i]);
 			$option.attr('data-value', valueToHold[i]);
-			$('#select_quarter').append($option);
+			$('#select-quarter').append($option);
 		}
 	}
 
-	var _addRegionOption = function(object) {
-		var textToDisplay = culture == 'en-ca' ? object.NameE : object.NameF;
-		$('#select_region').append($('<option>', {
-		    value: object.ID,
-		    text: textToDisplay
+	var _addOption = function(optionObject, idSuffix) {
+		var text = culture == 'en-ca' ? optionObject.NameE : optionObject.NameF;
+		var value = optionObject.ID === undefined ? text : optionObject.ID;
+		$('#select-' + idSuffix).append($('<option>', {
+			value: value,
+			text: text
 		}));
 	}
 
-	var _addBranchOption = function(object) {
-		var textToDisplay = culture == 'en-ca' ? object.NameE : object.NameF;
-		$('#select_branch').append($('<option>', {
-		    value: object.ID,
-		    text: textToDisplay
-		}));
-	}
-
-	var _fillInitiativeController = function(data) {
+	var _setupInitiativeReportControllers = function(data) {
 		data = JSON.parse(data);
-		data.forEach(_addInitiativeOption);
+		initiativeReport.setData(data);
+		dataFactory.setInitiativeReport(data);
+		data.forEach(function(initiativeBlock) {
+			_setupTimelineController(initiativeBlock, 'initiative-timeline');
+			_setupTimelineController(initiativeBlock, 'quarter-timeline');
+		});
+	}
+
+	var _setupTimelineController = function(object, idSuffix) {
+		_addOption(object, idSuffix);
+	}
+
+	var _clearInitiativeController = function() {
+		var $options = _selectInitiative.children('option');
+		$options.each(function() {
+			if ($(this).attr('data-delete') == 'true')
+				$(this).remove();
+		});
+	}
+
+	var _populateInitiativeController = function() {
+		_clearInitiativeController();
+		var currentBlock = initiativeReport.getData().filter(function(obj) {
+			var timeline = _selectInitiativeTimeline.val();
+			if (timeline == 'All') return true;
+			var propertyCulture = culture == 'en-ca' ? 'NameE' : 'NameF';
+			return timeline == obj[propertyCulture];
+		});
+		currentBlock.forEach(function(block) {
+			block.Data.forEach(function(data) {
+				_addInitiativeOption(data);
+			});
+		});
 	}
 
 	var _fillQuarterController = function(data) {
 		data = JSON.parse(data);
-		data.forEach(_addQuarterOption);
+		data.forEach(function(initiativeBlock) {
+			_addQuarterOption(initiativeBlock);
+		});
 	}
 
 	var _fillRegionController = function(data) {
@@ -151,7 +178,9 @@ var controller = (function() {
 		    return object.NameShort != "nca"
 		});
 		data.unshift(nca);
-		data.forEach(_addRegionOption);
+		data.forEach(function (object) {
+			_addOption(object, 'region');
+		});
 	}
 
 	var _fillBranchController = function(data) {
@@ -160,61 +189,135 @@ var controller = (function() {
 		data = data.sort(function (a, b) {
 		    return sortComparator(a[propertyCulture], b[propertyCulture]);
 		});
-		data.forEach(_addBranchOption);
+		data.forEach(function (object) {
+			_addOption(object, 'branch');
+		});
 	}
 
-	var _toggleInitiativeLoading = function() {
-		$('#icon_initiative_loading').toggleClass('hide');
-	}
-
-	var _toggleQuarterLoading = function() {
-		$('#icon_quarter_loading').toggleClass('hide');
-	}
-
-	var _toggleRegionLoading = function() {
-		$('#icon_region_loading').toggleClass('hide');
-	}
-
-	var _toggleBranchLoading = function() {
-		$('#icon_branch_loading').toggleClass('hide');
+	var _toggleLoading = function(idSuffix) {
+		$('#icon-loading-' + idSuffix).toggleClass('hide');
 	}
 
 	var _registerEvents = function() {
-		$('#radio_report_initiative').on('click', function() {
+		$('#radio-report-initiative').on('click', function() {
 			gui.reset();
 			$('#initiative-container').removeClass('hide');
 			$('#quarter-container').addClass('hide');
-			$('#timeline_container').addClass('hide print-none');
+			$('#timeline-container').addClass('hide print-none');
 		});
-		$('#radio_report_quarterly').on('click', function() {
+		$('#radio-report-quarterly').on('click', function() {
 			gui.reset();
 			$('#quarter-container').removeClass('hide');
 			$('#initiative-container').addClass('hide');
-			$('#timeline_container').removeClass('hide print-none');
+			$('#timeline-container').removeClass('hide print-none');
+		});
+		$('#select-quarter-timeline').on('change', function() {
+			if ($(this).val() != 0) {
+				$('#region-branch').removeClass('hide');
+			} else {
+				$('#region-branch').addClass('hide');
+			}
+		});
+		$('#select-initiative-timeline').on('change', function() {
+			if ($(this).val() != 0) {
+				$('#initiative').removeClass('hide');
+				_selectInitiative.val('0');
+				_populateInitiativeController();
+			} else {
+				$('#initiative').addClass('hide');
+			}
 		});
 	}
 
 	var _initialize = (function() {
 		_registerEvents();
-		callPostAPI(_initiativeListUrl, _fillInitiativeController,
-					_toggleInitiativeLoading);
+		// initiative report API call
+		callPostAPI(_initiativeListUrl, _setupInitiativeReportControllers,
+					function () { _toggleLoading('initiative') }, {culture: culture});
+		// quarterly report API calls
 		callPostAPI(_quarterListUrl, _fillQuarterController, 
-					_toggleQuarterLoading);
+					function () { _toggleLoading('quarter') });
 		callPostAPI(_regionListUrl, _fillRegionController, 
-					_toggleRegionLoading);
+					function () { _toggleLoading('region') });
 		callPostAPI(_branchListUrl, _fillBranchController, 
-					_toggleBranchLoading);
+					function () { _toggleLoading('branch') });
 	})();
 
 	return {
-		initiative: $('#select_initiative'),
-		quarter: $('#select_quarter'),
-		region: $('#select_region'),
-		branch: $('#select_branch')
+		initiative: _selectInitiative,
+		quarter: $('#select-quarter'),
+		region: $('#select-region'),
+		branch: $('#select-branch'),
+		quarterTimeline: $('#select-quarter-timeline'),
+		initiativeTimeline: $('#select-initiative-timeline')
 	}
 })();
 
 // ----------------------------------------------------------------------------
+
+var dataFactory = (function() {
+	var _protectedInitiativeReportDataset;
+	var _filteredInitiativeReportDataset;
+	var _contentInitiativeReportDataset;
+	var _protectedQuarterlyReportDataset;
+	var _filteredQuarterlyReportDataset;
+
+	var _getInitiativeReportDataset = function() {
+		return _contentInitiativeReportDataset;
+	}
+
+	var _setInitiativeReportDataset = function(data) {
+		_protectedInitiativeReportDataset = data;
+		_filteredInitiativeReportDataset = data;
+	}
+
+	var _getQuarterlyReportDataset = function() {
+		return _filteredQuarterlyReportDataset;
+	}
+
+	var _setQuarterlyReportDataset = function(data) {
+		_protectedQuarterlyReportDataset = data;
+		_filteredQuarterlyReportDataset = data;
+	}
+
+	var _registerEvents = function() {
+		controller.initiative.on('change', function() {
+			var _filteredInitiativeReportDataset = _protectedInitiativeReportDataset.filter(function(obj) {
+				var timeline = controller.initiativeTimeline.val();
+				if (timeline == 'All') return true;
+				var propertyCulture = culture == 'en-ca' ? 'NameE' : 'NameF';
+				return timeline == obj[propertyCulture];
+			});
+			_contentInitiativeReportDataset = [];
+			_filteredInitiativeReportDataset.forEach(function(block) {
+				var temp = block.Data.filter(function(obj) {
+					var initiative = controller.initiative.val();
+					if (initiative == 'All') return true;
+					return initiative == obj.ID;
+				});
+				_contentInitiativeReportDataset = _mergeObjects(_contentInitiativeReportDataset, temp);
+			});
+		});
+	}
+
+	var _mergeObjects = function (obj1, obj2) {
+	    var temp = [];
+	    obj1.forEach(function(obj) { temp.push(obj); });
+	    obj2.forEach(function(obj) { temp.push(obj); });
+	    return temp;
+	}
+
+	var _initialize = (function() {
+		_registerEvents();
+	})();
+
+	return {
+		getInitiativeReport: _getInitiativeReportDataset,
+		setInitiativeReport: _setInitiativeReportDataset,
+		getQuarterlyReport: _getQuarterlyReportDataset,
+		setQuarterlyReport: _setQuarterlyReportDataset
+	}
+})();
 
 var quarterlyReport = (function() {
 	var _initiativesQuarterlyUrl = '/data/initiative-quarterly'
@@ -225,7 +328,7 @@ var quarterlyReport = (function() {
 	var _cultureDataAppend = culture == 'en-ca' ? 'E' : 'F';
 
 	var _toggleReportLoading = function() {
-		$('#icon_report_loading').toggleClass('hide');
+		$('#icon-report-loading').toggleClass('hide');
 	}
 
 	var _createContent = function(initiative) {
@@ -386,13 +489,10 @@ var quarterlyReport = (function() {
 	}
 })();
 
-var initiativeReport = (function() {
-	var _initiativeIdUrl = '/data/initiative'
-	var _currentInitiativeId = 0;
-	var _initiative;
+var contentGenerator = (function() {
 	var _cultureDataAppend = culture == 'en-ca' ? 'E' : 'F';
 
-	var _createContent = function(initiative) {
+	var _createInitiativeBox = function(initiative) {
 		var content = [];
 		var heading = ["Description", "Timespan", "Key milestones", "Training"];
 
@@ -414,6 +514,7 @@ var initiativeReport = (function() {
 		var events = initiative.Events;
 		var milstoneCount = 0;
 		var trainingCount = 0;
+		console.log(events);
 		if (events.length > 0) {
 		    events.forEach(function (event, i) {
 		    	var dateStr = moment(event.Date, apiReturnDateFormat);
@@ -446,9 +547,17 @@ var initiativeReport = (function() {
 			}).join("")};
 	}
 
-	var _processData = function(data) {
-		_initiative = JSON.parse(data); // one element array!
-		_initiative.forEach(function(initiative) {
+	return {
+		createInitiative: _createInitiativeBox
+	}
+})();
+
+var initiativeReport = (function(dataFactory) {
+	var _currentInitiativeId = 0;
+	var _initiative;
+
+	var _processData = function(initiatives) {
+		initiatives.forEach(function(initiative) {
 			var content = _createContent(initiative);
 			gui.makeBox(content);
 		});
@@ -459,28 +568,42 @@ var initiativeReport = (function() {
 		controller.initiative.on('change', function() {
 			gui.reset();
 			if ($(this).val() != 0) {
-				_currentInitiativeId = $(this).val();
-				_getInitiative(_processData);
+				dataFactory.getInitiativeReport().forEach(function(initiative) {
+					gui.makeBox(contentGenerator.createInitiative(initiative));
+				});
+				gui.render();
 			}
 		});
 	}
 
-	var _toggleReportLoading = function() {
-		$('#icon_report_loading').toggleClass('hide');
+	var _getInitiative = function(id) {
+		console.log(dataFactory.getInitiativeReport());
+		return _dataset.filter(function(obj) {
+			if (id == "All") return true;
+			return obj.ID == id;
+		});
 	}
 
-	var _getInitiative = function(callback) {
-		callPostAPI(
-			_initiativeIdUrl,
-			callback,
-			_toggleReportLoading, 
-			{Id : parseInt(_currentInitiativeId)});
+	var _toggleReportLoading = function() {
+		$('#icon-report-loading').toggleClass('hide');
+	}
+
+	var _setData = function(data) {
+		_dataset = data;
+	}
+
+	var _getData = function() {
+		return _dataset;
 	}
 
 	var _initialize = (function() {
 		_registerEvents();
 	})();
-})();
+	return {
+		setData: _setData,
+		getData: _getData
+	}
+})(dataFactory);
 
 // ----------------------------------------------------------------------------
 
