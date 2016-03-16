@@ -591,4 +591,28 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="TimelineNoImpact" xml:space="preserve">
     <value>There will be no changes to the way that an employee does their work.</value>
   </data>
+  <data name="Timespan" xml:space="preserve">
+    <value>Timespan</value>
+  </data>
+  <data name="ReportSelectTimeline" xml:space="preserve">
+    <value>Select Timeline</value>
+  </data>
+  <data name="ReportSelectQuarter" xml:space="preserve">
+    <value>Select Quarter</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Report Type</value>
+  </data>
+  <data name="ReportByQuarterly" xml:space="preserve">
+    <value>By Quarterly</value>
+  </data>
+  <data name="ReportByInitiative" xml:space="preserve">
+    <value>By Initiative</value>
+  </data>
+  <data name="ReportSelectInitiative" xml:space="preserve">
+    <value>Select Initiative</value>
+  </data>
+  <data name="ReportPageTitle" xml:space="preserve">
+    <value>Report</value>
+  </data>
 </root>

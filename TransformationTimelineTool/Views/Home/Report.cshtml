@@ -2,13 +2,12 @@
     if (Culture == "fr")
     {
         Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
-        ViewBag.Title = "Report";
     }
     else
     {
         Layout = "~/Views/Shared/_IntraLayout.cshtml";
-        ViewBag.Title = "Report";
     }
+    ViewBag.Title = @Resources.ReportPageTitle;
 }
 
 <script>
@@ -17,11 +16,7 @@
     });
 </script>
 
-<style>
-    .hide {
-        display: none;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="~/Content/report.css">
 
 <h1 class="print-none">@ViewBag.Title</h1>
 
@@ -31,38 +26,58 @@
         <div class="span-12 border-all">
             <div class="span-12 margin-bottom-none align-center">
                 <form class="margin-bottom-none background-dark">
-                    <label class="form-label-inline font-xlarge">Report Type</label>
+                    <label class="form-label-inline font-xlarge">@Resources.ReportType</label>
                     <label class="form-radio form-label-inline" for="radio-report-quarterly">
                         <input type="radio" name="radio-report-type" id="radio-report-quarterly" />
-                        By Quarterly
+                        @Resources.ReportByQuarterly
                     </label>
                     <label class="form-radio form-label-inline" for="radio-report-initiative">
                         <input type="radio" name="radio-report-type" id="radio-report-initiative" />
-                        By Initiative
+                        @Resources.ReportByInitiative
                     </label>
+                </form>
+            </div>
+        </div>
+        <div id="initiative-container" class="span-12 border-all print-none background-light hide">
+            <div class="span-12 margin-bottom-none align-center">
+                <form class="margin-bottom-none">
+                    <label class="form-label-inline font-large">@Resources.ReportSelectTimeline</label>
+                    <select name="select-timeline" id="select-initiative-timeline">
+                        <option value="0"></option>
+                        <option value="All">@Resources.SelectAll</option>
+                    </select>
+                    <i id="icon-loading-initiative" class="fa fa-spinner fa-spin hide"></i>
+                    <div id ="initiative" class="hide">
+                        <label class="form-label-inline font-large">@Resources.ReportSelectInitiative</label>
+                        <select name="select-initiative" id="select-initiative">
+                            <option value="0"></option>
+                            <option value="All">@Resources.SelectAll</option>
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
         <div id="quarter-container" class="span-12 border-all print-none background-light hide">
             <div class="span-12 margin-bottom-none align-center">
-                <form class="margin-bottom-none form-confirm">
-                    <label class="form-label-inline font-large">Select Quarter</label>
+                <form class="margin-bottom-none">
+                    <label class="form-label-inline font-large">@Resources.ReportSelectQuarter</label>
                     <select name="select-quarter" id="select-quarter">
                         <option value="0"></option>
                     </select>
-                    <label class="form-label-inline font-large">Select Timeline</label>
+                    <i id="icon-loading-quarter" class="fa fa-spinner fa-spin hide"></i>
+                    <label class="form-label-inline font-large">@Resources.ReportSelectTimeline</label>
                     <select name="select-timeline" id="select-quarter-timeline">
                         <option value="0"></option>
-                        <option value="All">Show All</option>
+                        <option value="All">@Resources.SelectAll</option>
                     </select>
-                    <i id="icon-loading-quarter" class="fa fa-spinner fa-spin hide"></i>
+                    <i id="icon-loading-quarter-timeline" class="fa fa-spinner fa-spin hide"></i>
                     <div id="region-branch" class="hide">
-                        <label class="form-label-inline font-large">Select a Region</label>
+                        <label class="form-label-inline font-large">@Resources.SelectYourArea</label>
                         <select name="select-region" id="select-region">
                             <option value="0"></option>
                         </select>
                         <i id="icon-loading-region" class="fa fa-spinner fa-spin hide"></i>
-                        <label class="form-label-inline font-large">Select a Branch</label>
+                        <label class="form-label-inline font-large">@Resources.SelectYourBranch</label>
                         <select name="select-branch" id="select-branch">
                             <option value="0"></option>
                         </select>
@@ -71,28 +86,8 @@
                 </form>
             </div>
         </div>
-        <div id="initiative-container" class="span-12 border-all print-none background-light hide">
-            <div class="span-12 margin-bottom-none align-center">
-                <form class="margin-bottom-none form-confirm">
-                    <label class="form-label-inline font-large">Select Timeline</label>
-                    <select name="select-timeline" id="select-initiative-timeline">
-                        <option value="0"></option>
-                        <option value="All">Show All</option>
-                    </select>
-                    <i id="icon-loading-initiative" class="fa fa-spinner fa-spin hide"></i>
-                    <div id ="initiative" class="hide">
-                        <label class="form-label-inline font-large">Select Initiative</label>
-                        <select name="select-initiative" id="select-initiative">
-                            <option value="0"></option>
-                            <option value="All">Show All</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     
-
     <div id="timeline-container" class="span-12 border-all hide print-none">
         potential timeline spot
     </div>
@@ -106,4 +101,27 @@
 </div>
 
 <script src="~/Scripts/moment-with-locales.min.js"></script>
+<script>
+    var resources = (function() {
+        var _resourceMap = {
+            'high-impact': '@Resources.TimelineHighImpact',
+            'medium-impact': '@Resources.TimelineMediumImpact',
+            'low-impact': '@Resources.TimelineLowImpact',
+            'no-impact': '@Resources.TimelineNoImpact',
+            'blueprint': 'This is blueprint (need translation)',
+            'description': '@Resources.Description',
+            'timespan': '@Resources.Timespan',
+            'milestone': '@Resources.Milestone',
+            'training': '@Resources.Training'
+        };
+
+        var _getByKey = function(key) {
+            return _resourceMap[key];
+        }
+
+        return {
+            get: _getByKey
+        }
+    })();
+</script>
 <script src="~/Scripts/Report/report.js"></script>

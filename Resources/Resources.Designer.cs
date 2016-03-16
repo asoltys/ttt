@@ -1116,6 +1116,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By Initiative.
+        /// </summary>
+        public static string ReportByInitiative {
+            get {
+                return ResourceManager.GetString("ReportByInitiative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By Quarterly.
+        /// </summary>
+        public static string ReportByQuarterly {
+            get {
+                return ResourceManager.GetString("ReportByQuarterly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string ReportPageTitle {
+            get {
+                return ResourceManager.GetString("ReportPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Initiative.
+        /// </summary>
+        public static string ReportSelectInitiative {
+            get {
+                return ResourceManager.GetString("ReportSelectInitiative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Quarter.
+        /// </summary>
+        public static string ReportSelectQuarter {
+            get {
+                return ResourceManager.GetString("ReportSelectQuarter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Timeline.
+        /// </summary>
+        public static string ReportSelectTimeline {
+            get {
+                return ResourceManager.GetString("ReportSelectTimeline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Type.
+        /// </summary>
+        public static string ReportType {
+            get {
+                return ResourceManager.GetString("ReportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Roles.
         /// </summary>
         public static string Roles {
@@ -1274,6 +1337,15 @@ namespace Resources {
         public static string TimelineNoImpact {
             get {
                 return ResourceManager.GetString("TimelineNoImpact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timespan.
+        /// </summary>
+        public static string Timespan {
+            get {
+                return ResourceManager.GetString("Timespan", resourceCulture);
             }
         }
         

@@ -1,0 +1,31 @@
+﻿.hide {
+    display: none;
+}
+
+li p {
+	margin: 0 auto !important;
+}
+
+@media print {
+	#timeline-container {
+		page-break-after: always;
+	}
+    .initiative {
+        page-break-after: always;
+        border: 1px solid black;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+    }
+
+    .initiative > h3 {
+    	border-bottom: 1px dotted #808080;
+    }
+
+    .initiative > h3 > span {
+    	font-size: 1.3em !important;
+    }
+
+    #gcwu-bnr, #gcwu-psnb, #gcwu-bc, #wb-session {
+    	display: none !important;
+    }
+}

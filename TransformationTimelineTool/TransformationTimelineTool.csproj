@@ -796,6 +796,7 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\master.css" />
     <Content Include="Content\print.css" />
+    <Content Include="Content\report.css" />
     <Content Include="Content\screen.css" />
     <Content Include="Content\table.css" />
     <Content Include="favicon.ico" />
@@ -1580,6 +1581,7 @@
     <Content Include="Scripts\MockData\branches.json" />
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Home\Report.cshtml" />
+    <Content Include="Views\Shared\_IntraLayout_v2.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
