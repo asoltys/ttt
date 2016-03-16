@@ -64,6 +64,18 @@ namespace TransformationTimelineTool.Controllers
             var userName = Utils.GetUserName();
             var addSubscriber = false;
             var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
+
+            if (selectedInitiatives == null)
+            {
+                if(subscriber != null)
+                {
+                    db.Subscribers.Remove(subscriber);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
+            }
+
             if(subscriber == null)
             {
                 subscriber = new Subscriber
@@ -111,6 +123,42 @@ namespace TransformationTimelineTool.Controllers
                 smtp.Send(message);
                 return RedirectToAction("Index");
             }
+        }
+
+        [Route("sendNotification")]
+        public ActionResult SendNotification()
+        {
+            ChangeNotify job = new ChangeNotify();
+            job.ManualExecute();
+
+            return RedirectToAction("Index");
+        }
+
+        [Route("clearEdited")]
+        public ActionResult clearEdited()
+        {
+            var editedInits = db.Initiatives.Where(i => i.Edited == true);
+            var editedEdits = db.Edits.Where(e => e.Edited == true);
+            var editedImpacts = db.Impacts.Where(e => e.Edited == true);
+
+            foreach( var init in editedInits)
+            {
+                init.Edited = false;
+            }
+
+            foreach( var edit in editedEdits)
+            {
+                edit.Edited = false;
+            }
+
+            foreach( var impact in editedImpacts)
+            {
+                impact.Edited = false;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult SetCulture(string lang)

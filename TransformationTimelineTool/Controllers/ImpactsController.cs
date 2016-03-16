@@ -126,6 +126,8 @@ namespace TransformationTimelineTool.Controllers
                         impact.Regions.Add(region);
                     }
                 }
+
+                impact.Edited = true;
                 db.Impacts.Add(impact);
                 db.SaveChanges();
                 
