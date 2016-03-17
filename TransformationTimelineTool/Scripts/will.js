@@ -438,10 +438,12 @@ timeLine = {
     // moves timeline left
     goLeft: function () {
         $("#dragContainer").css('left', "+=" + timeLine.widthMonth * 2);
+        $("#quarterMonthContainer").css('left', "+=" + timeLine.widthMonth * 2);
     },
     // moves timeline right
     goRight: function () {
         $("#dragContainer").css('left', "-=" + timeLine.widthMonth * 2);
+        $("#quarterMonthContainer").css('left', "-=" + timeLine.widthMonth * 2);
     },
     // runs filter when dropdown changes
     viewSelect: function () {
