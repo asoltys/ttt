@@ -72,7 +72,7 @@ var gui = (function(resources) {
 
 	var _addSummaryBox = function(content) {
 		var box = "<div class='module-summary module-simplify span-12 initiative'>";
-		box += "<h3><span class='color-dark'>" + content.Name + "</span></h3>";
+		box += "<h3><span class='color-dark initiative-title'>" + content.Name + "</span></h3>";
 		box += content.htmlContent;
 		box += "</div>";
 		boxes.push(box);
@@ -106,8 +106,8 @@ var gui = (function(resources) {
 				moduleColor = 'module-tool';
 		}
 		var box = "<div class='" + moduleColor + " module-simplify span-12 initiative'>";
-		box += "<h3><span class='color-dark'>" + content.Name + "</span></h3>";
-		box += impactResource != '' ? "<h3>" + impactResource + "</h3>" : "";
+		box += "<h3><span class='color-dark initiative-title'>" + content.Name + "</span></h3>";
+		box += impactResource != '' ? "<h3 class='impact'>" + impactResource + "</h3>" : "";
 		box += content.htmlContent;
 		box += "</div>";
 		boxes.push(box);
@@ -265,12 +265,14 @@ var controller = (function(gui) {
 			$('#initiative-container').removeClass('hide');
 			$('#quarter-container').addClass('hide');
 			$('#timeline-container').addClass('hide print-none');
+			$('#report-title').text('Initiative Report');
 		});
 		$('#radio-report-quarterly').on('click', function() {
 			gui.reset();
 			$('#quarter-container').removeClass('hide');
 			$('#initiative-container').addClass('hide');
 			$('#timeline-container').removeClass('hide print-none');
+			$('#report-title').text('Quarterly Report');
 		});
 		$('#select-quarter-timeline').on('change', function() {
 			gui.reset();
@@ -385,7 +387,7 @@ var contentGenerator = (function(resources) {
 		content.push(description, timespan, milestones, training);
 		for (var i = 0; i < content.length; i++) {
 		    if (content[i].length == 0) continue;
-		    content[i] = "<h3>" + heading[i] + "</h3>" + content[i];
+		    content[i] = "<h3 class='heading'>" + heading[i] + "</h3>" + content[i];
 		}
 		return {Name: initiative["Name" + _cultureDataAppend], 
 			htmlContent: content.filter(function (n) { 

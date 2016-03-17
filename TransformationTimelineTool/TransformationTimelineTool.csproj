@@ -779,6 +779,9 @@
     <Content Include="Content\form.css" />
     <Content Include="Content\images\old_ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\images\old_ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\report-footer.png" />
+    <Content Include="Content\images\report-header-logo.png" />
+    <Content Include="Content\images\report-header-purple.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />

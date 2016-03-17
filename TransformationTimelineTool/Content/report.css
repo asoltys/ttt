@@ -1,5 +1,13 @@
-﻿.hide {
+﻿.hide, #report-front-page {
     display: none;
+}
+
+.initiative-title {
+	font-size: 1.4em !important;
+}
+
+.impact {
+	font-size: 1em !important;
 }
 
 li p {
@@ -7,9 +15,47 @@ li p {
 }
 
 @media print {
+	#report-front-page {
+		display: block;
+		margin-top: -13px;
+		margin-right: -1px;
+		page-break-after: always;
+	}
+
+	#report-header-logo {
+		width: 100%;
+	}
+
+	#report-header-purple {
+		margin-top: -10px;
+		width: 100%;
+	}
+
+	#report-footer {
+		margin: 0;
+	}
+
+	#report-subtitle {
+		margin-top: -130px;
+		font-size: 2em;
+		color: #FFFF00 !important;
+		text-shadow: 0 0 1px #FFFFFF !important;
+		text-indent: 20px;
+	}
+
+	#report-title {
+		margin-top: -20px;
+		font-size: 3em;
+		color: #FFFF00 !important;
+		text-shadow: 0 0 1px #FFFFFF !important;
+		text-indent: 20px;
+		margin-bottom: 202px;
+	}
+
 	#timeline-container {
 		page-break-after: always;
 	}
+
     .initiative {
         page-break-after: always;
         border: 1px solid black;
@@ -21,11 +67,19 @@ li p {
     	border-bottom: 1px dotted #808080;
     }
 
-    .initiative > h3 > span {
-    	font-size: 1.3em !important;
+    .initiative-title {
+    	font-size: 1.5em !important;
     }
 
-    #gcwu-bnr, #gcwu-psnb, #gcwu-bc, #wb-session {
+    .impact {
+    	font-size: 1em !important;
+    }
+
+    .heading {
+    	font-size: 1.4em !important;
+    }
+
+    #gcwu-bnr, #gcwu-psnb, #gcwu-bc, #wb-session, #wb-head, #wb-foot {
     	display: none !important;
     }
 }
