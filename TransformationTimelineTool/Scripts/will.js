@@ -748,8 +748,6 @@ var setFixedHeader = function() {
     $window.on('scroll', function() {
         var currentScroll = $window.scrollTop();
         var maxBottomScroll = $dragContainer.offset().top + $dragContainer.height() - $navHeader.height();
-        console.log("current: " + currentScroll);
-        console.log(maxBottomScroll);
         if (isFixed === false && currentScroll > initialNavHeaderOffset) {
             if (currentScroll < maxBottomScroll) {
                 isFixed = true;
@@ -823,4 +821,8 @@ $.ui.plugin.add("draggable", "alsoDrag", {
     stop: function() {
         $(this).removeData("draggable-alsoDrag");
     }
+});
+
+$.extend($.ui.dialog.prototype.options, {
+    modal: true
 });
