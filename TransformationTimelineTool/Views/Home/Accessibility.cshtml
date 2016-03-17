@@ -162,6 +162,15 @@
         return 0;
     };
 
+    var sortByDateComparator = function (a, b) {
+        // a.Date comes in mm/dd/yy format
+        a = a.Date.split('/');
+        b = b.Date.split('/');
+        var aDate = new Date(a[2], a[0], a[1]);
+        var bDate = new Date(b[2], b[0], b[1]);
+        return aDate - bDate;
+    };
+
     var dataset = (function () {
         var _initiatives;
         var _sortedInitiatives;
@@ -207,6 +216,7 @@
                     delete initiative.Events[j].Regions;
                     delete initiative.Events[j].Branches;
                 });
+                initiative.Events.sort(sortByDateComparator);
             });
             _sortedInitiatives = JSON.parse(JSON.stringify(_initiatives));
         }

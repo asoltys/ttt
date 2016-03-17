@@ -791,6 +791,7 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\master.css" />
     <Content Include="Content\print.css" />
+    <Content Include="Content\report.css" />
     <Content Include="Content\screen.css" />
     <Content Include="Content\table.css" />
     <Content Include="favicon.ico" />
@@ -1327,6 +1328,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\Report\report.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\server_settings.js" />
@@ -1571,6 +1574,9 @@
     <Content Include="Views\Partials\ShareForm.cshtml" />
     <Content Include="Scripts\MockData\regions.json" />
     <Content Include="Scripts\MockData\branches.json" />
+    <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Home\Report.cshtml" />
+    <Content Include="Views\Shared\_IntraLayout_v2.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1712,6 +1718,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602101903008_AddTimelineType.resx">
       <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603090031211_Subscriber.resx">
+      <DependentUpon>201603090031211_Subscriber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

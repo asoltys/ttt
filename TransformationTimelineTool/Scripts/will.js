@@ -46,7 +46,7 @@ timeLine = {
             type: "GET",
             url: eval("timeLine.initiativesURL".concat(lang)),
             dataType: "json",
-            timeout: 6000,
+            timeout: 20000,
             success: function (initiatives) {
                 timeLine.initiatives = initiatives.sort(function (a, b) { return b.Timeline.localeCompare(a.Timeline); });
                 $("#about").append(timeLine.about);
@@ -56,14 +56,20 @@ timeLine = {
                 timeLine.areaNav();
                 timeLine.branchNav();
                 $("#rightNav").append(timeLine.rightNav());
+                $("#dateNav").append(timeLine.quarterMonthContainer());
+                $("#navHeaderSpace").height($('#navHeader').height());
                 timeLine.render += timeLine.projectContainer();
                 timeLine.render += timeLine.dragContainer(initiatives);
                 timeLine.render += timeLine.footer();
                 $("#render").append(timeLine.render);
-                $("#dragContainer").draggable({ axis: "x" });
+                $("#dragContainer").draggable({
+                    axis: "x",
+                    alsoDrag: "#quarterMonthContainer"
+                });
                 timeLine.toggleIcons();
                 timeLine.css();
                 timeLine.orderRows();
+                setFixedHeader();
             }
         });
     },
@@ -182,7 +188,6 @@ timeLine = {
     projectContainer: function () {
         var html = '';
         html += "<div id='projectContainer'>";
-        html += "<div class='projectSpace'></div>";
         var pat = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         html += "<div class='projectGroupRow' id='pg3'>" + timeLine.utility.translate("highImDesc") + pat + " <a href='#' style='color:#ffffff;' id='hide3' class='hide'>" + timeLine.utility.translate("hide") + "</a>";
         html += "<a href='#' style='color:#ffffff;' id='show3' class='show'>" + timeLine.utility.translate("show") + "</a></div>";
@@ -213,7 +218,6 @@ timeLine = {
         var html = '';
         html += "<div id='dragContainer'>";
         html += timeLine.today(timeLine.initiatives);
-        html += timeLine.quarterMonthContainer();
         html += "<div class='projectSpace'></div>";
         html += timeLine.timeLineContainer(timeLine.initiatives);
         html += "</div>";
@@ -222,7 +226,7 @@ timeLine = {
     // set quarter/month container
     quarterMonthContainer: function () {
         var html = '';
-        html += "<div id='quarterMonthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px; position: absolute;'>";
+        html += "<div id='quarterMonthContainer' style='width:" + timeLine.widthMonth * timeLine.totalMonth() + "px;'>";
         html += timeLine.quarterContainer();
         html += timeLine.monthContainer();
         html += "</div>";
@@ -434,10 +438,12 @@ timeLine = {
     // moves timeline left
     goLeft: function () {
         $("#dragContainer").css('left', "+=" + timeLine.widthMonth * 2);
+        $("#quarterMonthContainer").css('left', "+=" + timeLine.widthMonth * 2);
     },
     // moves timeline right
     goRight: function () {
         $("#dragContainer").css('left', "-=" + timeLine.widthMonth * 2);
+        $("#quarterMonthContainer").css('left', "-=" + timeLine.widthMonth * 2);
     },
     // runs filter when dropdown changes
     viewSelect: function () {
@@ -692,11 +698,18 @@ timeLine = {
         var now = new Date();
         var today = Number(now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear();
         $("#dragContainer").css("left", timeLine.getLeft(today) * -1 + 575);
+        $("#quarterMonthContainer").css("left", timeLine.getLeft(today) * -1 + 575);
     }
 }
 
 // skeleton
 $(document).ready(function () {
+    $('#navHeader').css({
+        'background-color': '#ffffff',
+        'z-index': '100',
+        'display': 'inline-block',
+        'position': 'absolute'
+    });
     timeLine.content();
     $('body').on("click", "#leftButton", timeLine.goLeft);
     $('body').on("click", "#rightButton", timeLine.goRight);
@@ -723,26 +736,95 @@ $(document).ready(function () {
             $("#dialog").dialog("close");
         }
     });
-    $(window).on('scroll', function (e) {
-        setFixedHeader();
-    })
 });
 
-var setFixedHeader = function () {
-    if (typeof($('#dragContainer').offset()) === 'undefined') return;
-    var newPosition = ($(window).scrollTop() - $('#dragContainer').offset().top) / $('#dragContainer').height() * 100;
-    if (newPosition < 0 || newPosition > 85) {
-        newPosition = 0;
-    }
-    newPosition += "%";
-    $('#quarterMonthContainer').animate({
-        top: newPosition
-    }, {
-        duration: 'fast',
-        queue: false
+var setFixedHeader = function() {
+    var $window = $(window);
+    var $mainContentArea = $('#wb-main-in');
+    var $navHeader = $('#navHeader');
+    var $dragContainer = $('#dragContainer');
+    var initialNavHeaderOffset = $navHeader.offset().top;
+    var returnNavHeaderPosition = initialNavHeaderOffset - $mainContentArea.offset().top;
+    var isFixed = false;
+    
+    $window.on('scroll', function() {
+        var currentScroll = $window.scrollTop();
+        var maxBottomScroll = $dragContainer.offset().top + $dragContainer.height() - $navHeader.height();
+        if (isFixed === false && currentScroll > initialNavHeaderOffset) {
+            if (currentScroll < maxBottomScroll) {
+                isFixed = true;
+                $navHeader.css({
+                    top: 0,
+                    position: 'fixed'
+                });   
+            }
+        } else if (isFixed === true && 
+            (currentScroll <= initialNavHeaderOffset || currentScroll >= maxBottomScroll)) {
+            isFixed = false;
+            $navHeader.css({
+                top: returnNavHeaderPosition,
+                position: 'absolute'
+            });
+        }
     });
-}
+};
 
-$.fn.scrollBottom = function () {
-    return $(document).height() - this.scrollTop() - this.height();
-}
+$.ui.plugin.add("draggable", "alsoDrag", {
+    start: function() {
+        var that = $(this).data("ui-draggable"),
+            o = that.options,
+            _store = function (exp) {
+                $(exp).each(function() {
+                    var el = $(this);
+                    el.data("ui-draggable-alsoDrag", {
+                        top: parseInt(el.css("top"), 10),
+                        left: parseInt(el.css("left"), 10)
+                    });
+                });
+            };
+
+        if (typeof(o.alsoDrag) === "object" && !o.alsoDrag.parentNode) {
+            if (o.alsoDrag.length) { o.alsoDrag = o.alsoDrag[0]; _store(o.alsoDrag); }
+            else { $.each(o.alsoDrag, function (exp) { _store(exp); }); }
+        }else{
+            _store(o.alsoDrag);
+        }
+    },
+    drag: function () {
+        var that = $(this).data("ui-draggable"),
+            o = that.options,
+            os = that.originalSize,
+            op = that.originalPosition,
+            delta = {
+                top: (that.position.top - op.top) || 0, 
+                left: (that.position.left - op.left) || 0
+            },
+
+            _alsoDrag = function (exp, c) {
+                $(exp).each(function() {
+                    var el = $(this), start = $(this).data("ui-draggable-alsoDrag"), style = {},
+                        css = ["top", "left"];
+
+                    $.each(css, function (i, prop) {
+                        var sum = (start[prop]||0) + (delta[prop]||0);
+                        style[prop] = sum || null;
+                    });
+
+                    el.css(style);
+                });
+            };
+
+        if (typeof(o.alsoDrag) === "object" && !o.alsoDrag.nodeType) {
+            $.each(o.alsoDrag, function (exp, c) { _alsoDrag(exp, c); });
+        }else{
+            _alsoDrag(o.alsoDrag);
+        }
+    },
+    stop: function() {
+        $(this).removeData("draggable-alsoDrag");
+    }
+});
+
+$.extend($.ui.dialog.prototype.options, {
+    modal: true
+});

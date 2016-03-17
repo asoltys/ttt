@@ -593,4 +593,28 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="TimelineNoImpact" xml:space="preserve">
     <value>Aucun changement ne sera apporté à la façon dont un employé effectue son travail.</value>
   </data>
+  <data name="Timespan" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportSelectTimeline" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportSelectQuarter" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportByQuarterly" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportByInitiative" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportSelectInitiative" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportPageTitle" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
 </root>
