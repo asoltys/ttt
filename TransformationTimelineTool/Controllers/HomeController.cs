@@ -43,53 +43,6 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
-        [Route("tba-Subscribe")]
-        public ActionResult Subscribe()
-        {
-            var userName = Utils.GetUserName();
-            var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
-            if(subscriber == null)
-            {
-                subscriber = new Subscriber();
-                subscriber.Initiatives = new List<Initiative>();
-            }
-
-            PopulateSubscriberInitiativeData(subscriber);
-
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("tba-Subscribe")]
-        public ActionResult Subscribe(string[] selectedInitiatives)
-        {
-            var userName = Utils.GetUserName();
-            var addSubscriber = false;
-            var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
-            if(subscriber == null)
-            {
-                subscriber = new Subscriber
-                {
-                    UserName = userName,
-                    Email = Utils.GetEmailFromUserName(userName)
-                };
-
-                subscriber.Initiatives = new List<Initiative>();
-                addSubscriber = true;
-            }
-
-            UpdateSubscriberInitiatives(selectedInitiatives, subscriber);
-
-            if (addSubscriber)
-            {
-                db.Subscribers.Add(subscriber);
-            }
-
-            db.SaveChanges();
-
-            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
-        }
 
         public ActionResult Contact()
         {
