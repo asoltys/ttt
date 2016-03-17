@@ -1039,8 +1039,6 @@
     <Content Include="Content\font-awesome-4.5.0\less\rotated-flipped.less" />
     <Content Include="Content\font-awesome-4.5.0\less\stacked.less" />
     <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
-    <Content Include="Scripts\MockData\data-eng.json" />
-    <Content Include="Scripts\MockData\data-fra.json" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1602,8 +1600,6 @@
     <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
     <Content Include="Views\Partials\Share.cshtml" />
     <Content Include="Views\Partials\ShareForm.cshtml" />
-    <Content Include="Scripts\MockData\regions.json" />
-    <Content Include="Scripts\MockData\branches.json" />
     <Content Include="Views\Home\Subscribe.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1618,6 +1614,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\MockData\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comments\" />
     <Folder Include="Views\Data\" />

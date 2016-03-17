@@ -42,16 +42,17 @@ namespace TransformationTimelineTool
                 .Build();
 
             // Trigger the job to run now for testing
-            ITrigger Trigger = TriggerBuilder.Create()
-                .WithIdentity("ChangeNotificationTrigger", "Group")
-                .Build();
             /*
             ITrigger Trigger = TriggerBuilder.Create()
                 .WithIdentity("ChangeNotificationTrigger", "Group")
-                .StartNow()
                 .Build();
                 */
-            //Schedule.ScheduleJob(Job, Trigger);
+            ITrigger Trigger = TriggerBuilder.Create()
+                .WithIdentity("ChangeNotificationTrigger", "Group")
+                .StartNow()
+                .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(10,40))
+                .Build();
+            Schedule.ScheduleJob(Job, Trigger);
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)

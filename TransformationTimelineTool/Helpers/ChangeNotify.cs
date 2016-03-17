@@ -25,18 +25,7 @@ namespace TransformationTimelineTool.Helpers
 
         public void Execute(IJobExecutionContext context)
         {
-            ChangedEdits = db.Edits.Where(e => e.Edited == true).ToList();
-            ChangedImpacts = db.Impacts.Where(i => i.Edited == true).ToList();
-            ChangedInitiatives = db.Initiatives.Where(i => i.Edited == true).ToList();
-
-            List<string> Recipients = GetRecipients();
-            string MailSubject = "There has been some changes to events you subscribed.";
-            string MailBody = GetMailBody();
-
-            foreach (var recipient in Recipients)
-            {
-                Utils.SendMail(recipient, MailSubject, MailBody);
-            }
+            ManualExecute();
         }
 
         public void ManualExecute()
@@ -65,6 +54,11 @@ namespace TransformationTimelineTool.Helpers
             }
         }
 
+        public void generateInitContent()
+        {
+
+        }
+
         private static string GetMailBody()
         {
             string Body = "<p>Following initiatives you have subscribed to have been changed since last week:</p>";
@@ -84,7 +78,7 @@ namespace TransformationTimelineTool.Helpers
 
                 if (SubscriberChangedEditsInitiatives.Contains(initiative))
                 {
-                    Body += "<p>The activities within initiative " + initiative.NameE + " have changed.</p>";
+                    Body += "<p>The following activities within initiative " + initiative.NameE + " have changed.</p>";
                     Body += "<ul>";
                     foreach (var edit in ChangedEdits)
                     {
@@ -99,7 +93,7 @@ namespace TransformationTimelineTool.Helpers
 
                 if (SubscriberChangedImpactsInitiatives.Contains(initiative))
                 {
-                    Body += "<p>The impacts within initiative " + initiative.NameE + " have changed.</p>";
+                    Body += "<p>The following impacts within initiative " + initiative.NameE + " have changed.</p>";
                     Body += "<ul>";
                     foreach (var impact in ChangedImpacts)
                     {
