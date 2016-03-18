@@ -70,44 +70,17 @@ var getQuarter = function (month, year) {
 var gui = (function(resources) {
 	var boxes = [];
 
-	var _addSummaryBox = function(content) {
-		var box = "<div class='module-summary module-simplify span-12 initiative'>";
-		box += "<h3><span class='color-dark initiative-title'>" + content.Name + "</span></h3>";
+	var _addTimelineBox = function(content) {
+		var box = "<div class='span-12 timeline'>";
+		box += "<h3><span class='color-dark timeline-title'>" + content.Name + "</span></h3>";
 		box += content.htmlContent;
-		box += "</div>";
+		box += "</div>"
 		boxes.push(box);
 	}
 
-	var _addColorSummaryBox = function(content, color) {
-		var moduleColor;
-		var impactResource = '';
-		switch (color) {
-			case 'red': 
-				moduleColor = 'module-alert';
-				impactResource = resources.get('high-impact');
-				break;
-			case 'yellow':
-				moduleColor = 'module-attention';
-				impactResource = resources.get('medium-impact');
-				break;
-			case 'green':
-			 	moduleColor = 'module-summary';
-			 	impactResource = resources.get('low-impact');
-			 	break;
-			case 'grey':
-				moduleColor = 'module-note';
-				impactResource = resources.get('no-impact');
-				break;
-			case 'blue':
-				moduleColor = 'module-info';
-				impactResource = resources.get('blueprint');
-				break;
-			default: 
-				moduleColor = 'module-tool';
-		}
-		var box = "<div class='" + moduleColor + " module-simplify span-12 initiative'>";
+	var _addSummaryBox = function(content) {
+		var box = "<div class='module-summary module-simplify span-12 initiative'>";
 		box += "<h3><span class='color-dark initiative-title'>" + content.Name + "</span></h3>";
-		box += impactResource != '' ? "<h3 class='impact'>" + impactResource + "</h3>" : "";
 		box += content.htmlContent;
 		box += "</div>";
 		boxes.push(box);
@@ -126,8 +99,8 @@ var gui = (function(resources) {
 
 	return {
 		reset: _reset,
+		addTimelineBox: _addTimelineBox,
 		makeBox: _addSummaryBox,
-		makeCustomBox: _addColorSummaryBox,
 		render: _draw
 	}
 })(resources);
@@ -264,14 +237,12 @@ var controller = (function(gui) {
 			gui.reset();
 			$('#initiative-container').removeClass('hide');
 			$('#quarter-container').addClass('hide');
-			$('#timeline-container').addClass('hide print-none');
 			$('#report-title').text('Initiative Report');
 		});
 		$('#radio-report-quarterly').on('click', function() {
 			gui.reset();
 			$('#quarter-container').removeClass('hide');
 			$('#initiative-container').addClass('hide');
-			$('#timeline-container').removeClass('hide print-none');
 			$('#report-title').text('Quarterly Report');
 		});
 		$('#select-quarter-timeline').on('change', function() {
@@ -389,14 +360,95 @@ var contentGenerator = (function(resources) {
 		    if (content[i].length == 0) continue;
 		    content[i] = "<h3 class='heading'>" + heading[i] + "</h3>" + content[i];
 		}
-		return {Name: initiative["Name" + _cultureDataAppend], 
+		return {
+			Name: initiative["Name" + _cultureDataAppend], 
 			htmlContent: content.filter(function (n) { 
 				return n != ""
-			}).join("")};
+			}).join("")
+		};
+	}
+
+	var _createTimelineContent = function(timeline) {
+		var content = '';
+		var startDate = moment(timeline.StartDate, apiReturnDateFormat);
+
+		// invariant: There will be 3 tables (3 months in 1 quarter)
+		for (var i = 0; i < 3; i++) {
+			var tableHeader = _getLocaleMonthAndYear(startDate);
+			var correspondingMonthEvents = timeline.Data.filter(function(elem, idx, arr) {
+				var eventDate = moment(elem['Date'], apiReturnDateFormat);
+				return eventDate.month() == startDate.month();
+			});
+			if (correspondingMonthEvents.length == 0) continue;
+
+			// dynamically generate table
+			content += "<table class='span-12 timeline-table'>";
+
+			// table header
+			content += "<thead>";
+			content += _generateTableRow(_generateTableHeader(tableHeader, 4));
+			content += _generateTableRow(
+				_generateTableHeader(resources.get('date')) + 
+				_generateTableHeader(resources.get('initiative')) + 
+				_generateTableHeader(resources.get('type')) +
+				_generateTableHeader(resources.get('description')));
+			content += "</thead>"
+
+			// table body
+			content += "<tbody>";
+			correspondingMonthEvents.forEach(function(elem, idx, arr) {
+				var shortDescription = elem['Hover' + _cultureDataAppend] == null ? "" : elem["Hover" + _cultureDataAppend];
+				var longDescription = elem['Text' + _cultureDataAppend] == null ? "" : elem["Text" + _cultureDataAppend];;
+				var description = longDescription.length > 0 ? longDescription : shortDescription;
+				content += _generateTableRow(
+					_generateTableCell(moment(elem['Date'], apiReturnDateFormat).format('LL')) +
+					_generateTableCell(elem['InitiativeName' + _cultureDataAppend]) +
+					_generateTableCell(elem['Type']) +
+					_generateTableCell(description))
+			});
+			content += "</tbody>";
+
+			// end of dynamically generated table
+			content += "</table>";
+
+			// add a month to startDate for table header value
+			startDate.add(1, 'month');
+		}
+
+		return {
+			Name: timeline["Name" + _cultureDataAppend],
+			htmlContent: content
+		};
+	}
+
+	var _generateTableHeader = function(content, colspan) {
+		colspan = colspan ? colspan : '';
+		return '<th colspan=' + colspan + '>' + content + '</th>';
+	}
+
+	var _generateTableCell = function(content) {
+		return '<td>' + content + '</td>'; 
+	}
+
+	var _generateTableRow = function(content) {
+		return '<tr>' + content + '</tr>';
+	}
+
+	var _getLocaleMonthAndYear = function(momentObject) {
+		return _getLocaleMonthName(momentObject) + " " + _getYear(momentObject);
+	}
+
+	var _getLocaleMonthName = function(momentObject) {
+		return moment.localeData()._months[momentObject.toObject().months];
+	}
+
+	var _getYear = function(momentObject) {
+		return momentObject.toObject().years;
 	}
 
 	return {
-		createInitiative: _createInitiativeContent
+		createInitiative: _createInitiativeContent,
+		createTimeline: _createTimelineContent
 	}
 })(resources);
 
@@ -457,56 +509,29 @@ var dataFactory = (function() {
 		});
 	}
 
-	var _getImpactValue = function(level, color) {
-		switch (level) {
-			case 0: if (color) return 'grey'; else return 10;// None
-			case 1: if (color) return 'green'; else return 20;// Low
-			case 2: if (color) return 'yellow'; else return 30;// Medium
-			case 3: if (color) return 'red'; else return 40;// High
-			case 4: if (color) return 'blue'; else return 0;// BP2020
-			default: if (color) return 'brown'; else return -1;
-		}
+	var _createQuarterReportContentDataset = function() {
+		var temp = _protectedQuarterlyReportDataset.filter(function(obj) {
+			var timeline = controller.quarterTimeline.val();
+			if (timeline == 'All') return true;
+			var propertyCulture = culture == 'en-ca' ? 'NameE' : 'NameF';
+			return timeline == obj[propertyCulture];
+		});
+		_filteredQuarterlyReportDataset = JSON.parse(JSON.stringify(temp));
+		_applyQuarterReportFilter();
 	}
 
 	var _applyQuarterReportFilter = function() {
 		var regionKey = controller.region.val();
 		var branchKey = controller.branch.val();
 		_regionBranchKey = regionKey + "," + branchKey;
-
-		_contentQuarterlyReportDataset = [];
-		_filteredQuarterlyReportDataset.forEach(function(block) {
-			block.Data.forEach(function(initiative) {
-				if (_keyExists(initiative, 'Impacts', _regionBranchKey)) {
-					if (regionKey != '0' && branchKey != '0') {
-						var impactValue = _getValueByKey(initiative, 'Impacts', _regionBranchKey);
-						initiative.color = _getImpactValue(impactValue, true);
-						initiative.weight = _getImpactValue(impactValue, false);
-					} else {
-						initiative.weight = -1;
-					}
-				}
-			});
-			_contentQuarterlyReportDataset = _mergeObjects(_contentQuarterlyReportDataset, block.Data);
+		_contentQuarterlyReportDataset = JSON.parse(JSON.stringify(_filteredQuarterlyReportDataset));
+		_contentQuarterlyReportDataset.forEach(function(block) {
+			if (regionKey != '0' && branchKey != '0') {
+				block.Data = block.Data.filter(function(elem, idx, arr) {
+					return _keyExists(elem, 'Control', _regionBranchKey);
+				});
+			}
 		});
-		if (regionKey != '0' && branchKey != '0') {
-			_contentQuarterlyReportDataset.sort(function (a,b) {
-				var nameA = a['Name' + _cultureDataAppend];
-				var nameB = b['Name' + _cultureDataAppend];
-				return (_sortComparator(b.weight, a.weight)
-					|| _sortComparator(nameA, nameB));
-			});
-		}
-	}
-
-	var _sortByWeightAndName = function(a, b) {
-		var weightA = a.weight;
-		var weightB = b.weight;
-		var nameA = a['Name' + _cultureDataAppend];
-		var nameB = b['Name' + _cultureDataAppend];
-		if (weightA == weightB) {
-			return _sortComparator(nameA, nameB);
-		}
-		return weightA < weightB ? 1 : -1;
 	}
 
 	var _sortComparator = function (a, b) {
@@ -523,16 +548,6 @@ var dataFactory = (function() {
 		return object[objectAccessor][key];
 	}
 
-	var _createQuarterReportContentDataset = function() {
-		_filteredQuarterlyReportDataset = _protectedQuarterlyReportDataset.filter(function(obj) {
-			var timeline = controller.quarterTimeline.val();
-			if (timeline == 'All') return true;
-			var propertyCulture = culture == 'en-ca' ? 'NameE' : 'NameF';
-			return timeline == obj[propertyCulture];
-		});
-		_applyQuarterReportFilter();
-	}
-
 	var _getRegionBranchKey = function() {
 		return _regionBranchKey;
 	}
@@ -545,6 +560,7 @@ var dataFactory = (function() {
 	}
 
 	var _mergeObjects = function(obj1, obj2) {
+		console.log(obj2);
 	    var temp = [];
 	    obj1.forEach(function(obj) { temp.push(obj); });
 	    obj2.forEach(function(obj) { temp.push(obj); });
@@ -571,9 +587,9 @@ var dataFactory = (function() {
 var quarterlyReport = (function(dataFactory, gui) {
 	var _drawReport = function() {
 		gui.reset();
-		dataFactory.getQuarterlyReportContent().forEach(function(initiative) {
-			var content = contentGenerator.createInitiative(initiative);
-			gui.makeCustomBox(content, initiative.color);
+		dataFactory.getQuarterlyReportContent().forEach(function(timeline) {
+			var content = contentGenerator.createTimeline(timeline);
+			gui.addTimelineBox(content);
 		});
 		gui.render();
 	}

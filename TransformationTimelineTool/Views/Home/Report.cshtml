@@ -95,16 +95,12 @@
         <p id="report-title">Title Goes Here</p>
         <img id="report-footer" src="~/Content/images/report-footer.png">
     </div>
-    
-    <div id="timeline-container" class="span-12 border-all hide print-none">
-        potential timeline spot
-    </div>
 
     <div id="report-container" class="span-12">
         <div class="align-center">
             <i id="icon-loading-report" class="fa fa-spinner fa-spin hide"></i>
         </div>
-        <div id="report"></div>
+        <div id="report" class="span-12"></div>
     </div>
 </div>
 
@@ -120,7 +116,10 @@
             'description': '@Resources.Description',
             'timespan': '@Resources.Timespan',
             'milestone': '@Resources.Milestone',
-            'training': '@Resources.Training'
+            'training': '@Resources.Training',
+            'date': '@Resources.Date',
+            'initiative': '@Resources.Initiative',
+            'type': '@Resources.Type'
         };
 
         var _getByKey = function(key) {

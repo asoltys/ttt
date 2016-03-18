@@ -10,6 +10,18 @@
 	font-size: 1em !important;
 }
 
+.timeline-table th:nth-child(1), .timeline-table th:nth-child(3) {
+	width: 10%;
+}
+
+.timeline-table th:nth-child(2) {
+	width: 20%;
+}
+
+.timeline-table th:nth-child(4) {
+	width: 70%;
+}
+
 li p {
 	margin: 0 auto !important;
 }
@@ -52,7 +64,7 @@ li p {
 		margin-bottom: 202px;
 	}
 
-	#timeline-container {
+	.timeline, .timeline-table {
 		page-break-after: always;
 	}
 
