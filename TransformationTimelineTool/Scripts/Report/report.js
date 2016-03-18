@@ -311,6 +311,10 @@ var controller = (function(gui) {
 var contentGenerator = (function(resources) {
 	var _cultureDataAppend = culture == 'en-ca' ? 'E' : 'F';
 
+	var _removeLink = function(text) {
+		return text.replace(/<a.*<\/a>/gi, '');
+	}
+
 	var _createInitiativeContent = function(initiative) {
 		var content = [];
 		var heading = [resources.get('description'), resources.get('timespan'),
@@ -319,7 +323,7 @@ var contentGenerator = (function(resources) {
 		// Create description
 		var description = "<p>" + 
 			initiative["Description" + _cultureDataAppend] + "</p>";
-
+		description = _removeLink(description);
 		// Create timespan
 		var startDate = moment(initiative.StartDate, apiReturnDateFormat);
 		startDate = getQuarter(startDate.month()+1, startDate.year());
@@ -560,8 +564,7 @@ var dataFactory = (function() {
 	}
 
 	var _mergeObjects = function(obj1, obj2) {
-		console.log(obj2);
-	    var temp = [];
+		var temp = [];
 	    obj1.forEach(function(obj) { temp.push(obj); });
 	    obj2.forEach(function(obj) { temp.push(obj); });
 	    return temp;
