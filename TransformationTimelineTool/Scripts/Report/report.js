@@ -69,6 +69,9 @@ var getQuarter = function (month, year) {
 
 var gui = (function(resources) {
 	var boxes = [];
+	var controllerText = "";
+	var $controllerInfo = $('#controller-information');
+	var $report = $('#report');
 
 	var _addTimelineBox = function(content) {
 		var box = "<div class='span-12 timeline'>";
@@ -90,15 +93,39 @@ var gui = (function(resources) {
 		boxes.forEach(function(element) {
 			$('#report').append(element);
 		});
+		var $currentControllers = $('[id$="container"]:not(.hide) [name^="select"] option:selected');
+		controllerText = '<p>';
+		$currentControllers.each(function() {
+			if ($(this).parent().parent().attr('id') == 'region-branch') {
+				if ($(this).parent().parent().hasClass('hide'))
+					return true;
+			}
+			controllerText += '<strong>' + $(this).parent().attr('data-controller-name') + '</strong>';
+			controllerText += ': ' + $(this).text() + '<br />';
+		});
+		controllerText += '</p>';
+		$controllerInfo.append(controllerText);
 	}
 
-	var _reset = function() {
+	var _empty = function() {
 		boxes = [];
-		$('#report').empty();
+		controllerText = "";
+		$report.empty();
+		$controllerInfo.empty();
+	}
+
+	var _hide = function() {
+		$report.addClass('hide');
+	}
+
+	var _unhide = function() {
+		$report.removeClass('hide');
 	}
 
 	return {
-		reset: _reset,
+		reset: _empty,
+		hide: _hide,
+		unhide: _unhide,
 		addTimelineBox: _addTimelineBox,
 		makeBox: _addSummaryBox,
 		render: _draw
@@ -112,7 +139,10 @@ var controller = (function(gui) {
 	var _regionListUrl = '/data/regions';
 	var _branchListUrl = '/data/branches';
 	var _selectInitiativeTimeline = $('#select-initiative-timeline');
+	var _selectQuarterTimeline = $('#select-quarter-timeline');
 	var _selectInitiative = $('#select-initiative');
+	var _selectRegion = $('#select-region');
+	var _selectBranch = $('#select-branch');
 
 	var _addQuarterOption = function(object) {
 		var startDate = moment(object.Start, apiReturnDateFormat);
@@ -235,12 +265,16 @@ var controller = (function(gui) {
 	var _registerEvents = function() {
 		$('#radio-report-initiative').on('click', function() {
 			gui.reset();
+			_selectInitiative.val('0');
 			$('#initiative-container').removeClass('hide');
 			$('#quarter-container').addClass('hide');
 			$('#report-title').text('Initiative Report');
 		});
 		$('#radio-report-quarterly').on('click', function() {
 			gui.reset();
+			_selectQuarterTimeline.val('0');
+			$('#region-branch').addClass('hide');
+			_setRegionBranchDefault();
 			$('#quarter-container').removeClass('hide');
 			$('#initiative-container').addClass('hide');
 			$('#report-title').text('Quarterly Report');
@@ -267,6 +301,8 @@ var controller = (function(gui) {
 		$('#select-quarter').on('change', function() {
 			gui.reset();
 			$('#region-branch').addClass('hide');
+			_selectQuarterTimeline.val('0');
+			_setRegionBranchDefault();
 			_clearControllerOptions('quarter-timeline');
 			if ($(this).val() != 0) {
 				_quarterData = $(this).find('option:selected').data('value');
@@ -344,11 +380,12 @@ var contentGenerator = (function(resources) {
 		    	dateStr = dateStr.format('LL');
 		        var hoverText = event["Hover" + _cultureDataAppend] == null ? "" : event["Hover" + _cultureDataAppend];
 		        var longText = event["Text" + _cultureDataAppend] == null ? "" : event["Text" + _cultureDataAppend];
+		        var text = longText.length > 0 ? longText : hoverText;
 		        if ((/milestone/gi).test(event.Type)) {
-		            milestones += "<li>" + dateStr + "<br>" + hoverText + longText + "</li>";
+		            milestones += "<li>" + dateStr + "<br>" + text + "</li>";
 		            milstoneCount++
 		        } else {
-		            training += "<li>" + dateStr + "<br>" + hoverText + longText + "</li>";
+		            training += "<li>" + dateStr + "<br>" + text + "</li>";
 		            trainingCount++;
 		        }
 		    });

@@ -42,14 +42,14 @@
             <div class="span-12 margin-bottom-none align-center">
                 <form class="margin-bottom-none">
                     <label class="form-label-inline font-large">@Resources.ReportSelectTimeline</label>
-                    <select name="select-timeline" id="select-initiative-timeline">
+                    <select name="select-timeline" id="select-initiative-timeline" data-controller-name='@Resources.Timeline'>
                         <option value="0"></option>
                         <option value="All">@Resources.SelectAll</option>
                     </select>
                     <i id="icon-loading-initiative" class="fa fa-spinner fa-spin hide"></i>
                     <div id ="initiative" class="hide">
                         <label class="form-label-inline font-large">@Resources.ReportSelectInitiative</label>
-                        <select name="select-initiative" id="select-initiative">
+                        <select name="select-initiative" id="select-initiative" data-controller-name='@Resources.Initiative'>
                             <option value="0"></option>
                             <option value="All">@Resources.SelectAll</option>
                         </select>
@@ -61,24 +61,24 @@
             <div class="span-12 margin-bottom-none align-center">
                 <form class="margin-bottom-none">
                     <label class="form-label-inline font-large">@Resources.ReportSelectQuarter</label>
-                    <select name="select-quarter" id="select-quarter">
+                    <select name="select-quarter" id="select-quarter" data-controller-name='@Resources.Quarter'>
                         <option value="0"></option>
                     </select>
                     <i id="icon-loading-quarter" class="fa fa-spinner fa-spin hide"></i>
                     <label class="form-label-inline font-large">@Resources.ReportSelectTimeline</label>
-                    <select name="select-timeline" id="select-quarter-timeline">
+                    <select name="select-timeline" id="select-quarter-timeline" data-controller-name='@Resources.Timeline'>
                         <option value="0"></option>
                         <option value="All">@Resources.SelectAll</option>
                     </select>
                     <i id="icon-loading-quarter-timeline" class="fa fa-spinner fa-spin hide"></i>
                     <div id="region-branch" class="hide">
                         <label class="form-label-inline font-large">@Resources.SelectYourArea</label>
-                        <select name="select-region" id="select-region">
+                        <select name="select-region" id="select-region" data-controller-name='@Resources.Region'>
                             <option value="0">@Resources.SelectAll</option>
                         </select>
                         <i id="icon-loading-region" class="fa fa-spinner fa-spin hide"></i>
                         <label class="form-label-inline font-large">@Resources.SelectYourBranch</label>
-                        <select name="select-branch" id="select-branch">
+                        <select name="select-branch" id="select-branch" data-controller-name='@Resources.Branch'>
                             <option value="0">@Resources.SelectAll</option>
                         </select>
                         <i id="icon-loading-branch" class="fa fa-spinner fa-spin hide"></i>
@@ -100,6 +100,7 @@
         <div class="align-center">
             <i id="icon-loading-report" class="fa fa-spinner fa-spin hide"></i>
         </div>
+        <div id="controller-information" class="span-12 margin-bottom-none"></div>
         <div id="report" class="span-12"></div>
     </div>
 </div>
