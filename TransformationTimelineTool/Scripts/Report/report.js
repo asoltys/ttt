@@ -310,6 +310,9 @@ var controller = (function(gui) {
 					function () { _toggleLoading('quarter-timeline'); }, _quarterData);
 			}
 		});
+		$('#print-button').on('click', function() {
+			window.print();
+		});
 	}
 
 	var _setQuarterReportDataset = function(data) {

@@ -1,4 +1,14 @@
-﻿.hide, #report-front-page {
+﻿#controller-container {
+	
+}
+
+#print-button {
+	position: absolute;
+	top: 65px;
+	right: 20px;
+}
+
+.hide, #report-front-page {
     display: none;
 }
 
