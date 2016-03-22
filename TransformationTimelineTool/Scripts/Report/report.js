@@ -637,6 +637,7 @@ var quarterlyReport = (function(dataFactory, gui) {
 			gui.addTimelineBox(content);
 		});
 		gui.render();
+		pageNavigator.per('.timeline-table');
 	}
 
 	var _registerEvents = function() {
@@ -660,6 +661,7 @@ var initiativeReport = (function(dataFactory, gui) {
 				gui.makeBox(contentGenerator.createInitiative(initiative));
 			});
 			gui.render();
+			pageNavigator.per('.initiative');
 		}
 	}
 
@@ -677,3 +679,102 @@ var initiativeReport = (function(dataFactory, gui) {
 })(dataFactory, gui);
 
 // ----------------------------------------------------------------------------
+
+var pageNavigator = (function() {
+	var _arrayOfScrollPosition = [];
+	var _arrayRelativeIndex = 0;
+	var _domToScroll = null;
+
+	var _currentScrollPosition = function() {
+		return document.documentElement.scrollTop || document.body.scrollTop;
+	}
+
+	var _similarValue = function(a, b) {
+		return Math.abs(a-b) < 10 ? true : false;
+	}
+
+	var _jumpToNextScrollPosition = function() {
+		if (_similarValue(_arrayOfScrollPosition[_arrayOfScrollPosition.length-1],
+		 	_currentScrollPosition())) return false;
+		for (var i = 0; i < _arrayOfScrollPosition.length; i++) {
+			if (_arrayOfScrollPosition[i] > _currentScrollPosition()) {
+				if (_similarValue(_arrayOfScrollPosition[i], _currentScrollPosition())) {
+					continue;
+				}
+				window.scrollTo(0, _arrayOfScrollPosition[i]);
+				break;
+			}
+		}
+		return true;
+	}
+
+	var _jumpToPrevScrollPosition = function() {
+		if (_similarValue(_arrayOfScrollPosition[0], _currentScrollPosition())) return false;
+		for (var i = _arrayOfScrollPosition.length; i >= 0; i--) {
+			if (_arrayOfScrollPosition[i] < _currentScrollPosition()) {
+				if (_similarValue(_arrayOfScrollPosition[i], _currentScrollPosition())) {
+					continue;
+				}
+				window.scrollTo(0, _arrayOfScrollPosition[i]);
+				break;
+			}
+		}
+		return true;
+	}
+
+	var _relativePositionTo = function(elem, d) {
+		var acceptedArguments = ['top', 'bottom'];
+		if (acceptedArguments.indexOf(d) > -1)
+			return elem.getBoundingClientRect()[d] + window.pageYOffset;
+		return 0;
+	}
+
+	var _populateScrollArray = function() {
+		_arrayOfScrollPosition = Array.prototype.map.call(_domToScroll, function(elem) {
+			return _relativePositionTo(elem, 'top');
+		});
+	}
+
+	var _reset = function() {
+		_arrayOfScrollPosition = [];
+		_domToScroll = null;
+		_arrayRelativeIndex = 0;
+	}
+
+	var _registerKeys = function() {
+		document.addEventListener('keydown', _keyMap, false);
+	}
+
+	var _keyMap = function(e) {
+		// 33 == page up
+		// 34 == page down
+		switch (e.keyCode) {
+			case 33:
+				if (_jumpToPrevScrollPosition())
+					e.preventDefault();	
+				break;
+			case 34:
+				if (_jumpToNextScrollPosition())
+					e.preventDefault();
+			default:
+				return;
+		}
+	}
+
+	var _initialize = function(selectorToScroll) {
+		_reset();
+		_domToScroll = document.querySelectorAll(selectorToScroll);
+		if (_domToScroll.length == 0)
+			return 'There are no elements that have "' + selectorToScroll + '" selector.';
+		else {
+			_populateScrollArray();
+			_registerKeys();
+			return _arrayOfScrollPosition;
+		}
+	}
+	return {
+		per: _initialize,
+		next: _jumpToNextScrollPosition,
+		prev: _jumpToPrevScrollPosition
+	}
+})();
