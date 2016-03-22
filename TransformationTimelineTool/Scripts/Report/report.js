@@ -441,10 +441,12 @@ var contentGenerator = (function(resources) {
 				var shortDescription = elem['Hover' + _cultureDataAppend] == null ? "" : elem["Hover" + _cultureDataAppend];
 				var longDescription = elem['Text' + _cultureDataAppend] == null ? "" : elem["Text" + _cultureDataAppend];;
 				var description = longDescription.length > 0 ? longDescription : shortDescription;
+				var eventType = elem['Type'].toLowerCase();
+				eventType = resources.get(eventType);
 				content += _generateTableRow(
 					_generateTableCell(moment(elem['Date'], apiReturnDateFormat).format('LL')) +
 					_generateTableCell(elem['InitiativeName' + _cultureDataAppend]) +
-					_generateTableCell(elem['Type']) +
+					_generateTableCell(eventType) +
 					_generateTableCell(description))
 			});
 			content += "</tbody>";
