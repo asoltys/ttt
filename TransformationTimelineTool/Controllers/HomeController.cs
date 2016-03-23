@@ -40,6 +40,12 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
+        [Route("Report")]
+        public ActionResult Report()
+        {
+            return View();
+        }
+
         [Route("Sabonner-Subscribe")]
         public ActionResult Subscribe()
         {
