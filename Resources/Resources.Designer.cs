@@ -1296,6 +1296,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subscribe.
+        /// </summary>
+        public static string Subscribe {
+            get {
+                return ResourceManager.GetString("Subscribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timeline.
         /// </summary>
         public static string Timeline {

@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Helpers;
 using TransformationTimelineTool.Models;
+using TransformationTimelineTool.ViewModels;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -29,6 +31,7 @@ namespace TransformationTimelineTool.Controllers
 
             return View();
         }
+
         [Route("Accessibility")]
         public ActionResult Accessibility()
         {
@@ -37,12 +40,65 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
-        [Route("Report")]
-        public ActionResult Report()
+        [Route("Sabonner-Subscribe")]
+        public ActionResult Subscribe()
         {
+            var userName = Utils.GetUserName();
+            var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
+            if(subscriber == null)
+            {
+                subscriber = new Subscriber();
+                subscriber.Initiatives = new List<Initiative>();
+            }
+
+            PopulateSubscriberInitiativeData(subscriber);
+
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Sabonner-Subscribe")]
+        public ActionResult Subscribe(string[] selectedInitiatives)
+        {
+            var userName = Utils.GetUserName();
+            var addSubscriber = false;
+            var subscriber = db.Subscribers.SingleOrDefault(s => s.UserName == userName);
+
+            if (selectedInitiatives == null)
+            {
+                if(subscriber != null)
+                {
+                    db.Subscribers.Remove(subscriber);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
+            }
+
+            if(subscriber == null)
+            {
+                subscriber = new Subscriber
+                {
+                    UserName = userName,
+                    Email = Utils.GetEmailFromUserName(userName)
+                };
+
+                subscriber.Initiatives = new List<Initiative>();
+                addSubscriber = true;
+            }
+
+            UpdateSubscriberInitiatives(selectedInitiatives, subscriber);
+
+            if (addSubscriber)
+            {
+                db.Subscribers.Add(subscriber);
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
+        }
 
         public ActionResult Contact()
         {
@@ -67,6 +123,42 @@ namespace TransformationTimelineTool.Controllers
                 smtp.Send(message);
                 return RedirectToAction("Index");
             }
+        }
+
+        [Route("sendNotification")]
+        public ActionResult SendNotification()
+        {
+            ChangeNotify job = new ChangeNotify();
+            job.ManualExecute();
+
+            return RedirectToAction("Index");
+        }
+
+        [Route("clearEdited")]
+        public ActionResult clearEdited()
+        {
+            var editedInits = db.Initiatives.Where(i => i.Edited == true);
+            var editedEdits = db.Edits.Where(e => e.Edited == true);
+            var editedImpacts = db.Impacts.Where(e => e.Edited == true);
+
+            foreach( var init in editedInits)
+            {
+                init.Edited = false;
+            }
+
+            foreach( var edit in editedEdits)
+            {
+                edit.Edited = false;
+            }
+
+            foreach( var impact in editedImpacts)
+            {
+                impact.Edited = false;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult SetCulture(string lang)
@@ -116,6 +208,70 @@ namespace TransformationTimelineTool.Controllers
             //db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+        private void PopulateSubscriberInitiativeData(Subscriber subscriber)
+        {
+            string Culture = Thread.CurrentThread.CurrentCulture.Name;
+            var allTTInitiatives = Culture == "fr" ? db.Initiatives.Where(i => i.Timeline == "TransformationTimeline").OrderBy(i => i.NameF) : db.Initiatives.Where(i => i.Timeline == "TransformationTimeline").OrderBy(r => r.NameE);
+            var allBPInitiatives = Culture == "fr" ? db.Initiatives.Where(i => i.Timeline == "BP2020").OrderBy(i => i.NameF) : db.Initiatives.Where(i => i.Timeline == "BP2020").OrderBy(r => r.NameE);
+            var subscriberInitiatives = new HashSet<int>(subscriber.Initiatives.Select(i => i.ID));
+            var TTviewModel = new List<InitiativeData>();
+            var BPviewModel2 = new List<InitiativeData>();
+
+            foreach (var init in allTTInitiatives)
+            {
+                TTviewModel.Add(new InitiativeData
+                {
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    Flag = subscriberInitiatives.Contains(init.ID)
+                });
+
+            }
+            foreach ( var init in allBPInitiatives)
+            {
+                BPviewModel2.Add(new InitiativeData
+                {
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    Flag = subscriberInitiatives.Contains(init.ID)
+                });
+            }
+
+            ViewBag.Initiatives = TTviewModel;
+            ViewBag.BP2020 = BPviewModel2;
+        }
+        private void UpdateSubscriberInitiatives(string[] selectedInitiatives, Subscriber subscriberToUpdate)
+        {
+            if (selectedInitiatives == null)
+            {
+                if (subscriberToUpdate.Initiatives != null || subscriberToUpdate.Initiatives.Count() > 0)
+                    subscriberToUpdate.Initiatives.Clear();
+                return;
+            }
+
+            var selectedInitiativesHS = new HashSet<string>(selectedInitiatives);
+            var subscriberInitiatives = new HashSet<int>(subscriberToUpdate.Initiatives.Select(i => i.ID));
+
+            foreach (var initiative in db.Initiatives)
+            {
+                if (selectedInitiativesHS.Contains(initiative.ID.ToString()))
+                {
+                    if (!subscriberInitiatives.Contains(initiative.ID))
+                    {
+                        subscriberToUpdate.Initiatives.Add(initiative);
+                    }
+                }
+                else
+                {
+                    if (subscriberInitiatives.Contains(initiative.ID))
+                    {
+                        subscriberToUpdate.Initiatives.Remove(initiative);
+                    }
+                }
+            }
         }
     }
 }

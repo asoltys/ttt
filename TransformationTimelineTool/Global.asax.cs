@@ -15,6 +15,8 @@ using TransformationTimelineTool.Models;
 using TransformationTimelineTool.Helpers;
 using System.Configuration;
 using System.Data.SqlClient;
+using Quartz;
+using Quartz.Impl;
 
 namespace TransformationTimelineTool
 {
@@ -28,6 +30,29 @@ namespace TransformationTimelineTool
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //SqlDependency.Start(ConfigurationManager.ConnectionStrings["TimelineContext"].ConnectionString);
+
+            // Construct a scheduler factory & get a scheduler
+            ISchedulerFactory ScheduleFactory = new StdSchedulerFactory();
+            IScheduler Schedule = ScheduleFactory.GetScheduler();
+            Schedule.Start();
+
+            // Define the job and tie it to ChangeNotify class
+            IJobDetail Job = JobBuilder.Create<ChangeNotify>()
+                .WithIdentity("ChangeNotification", "Group")
+                .Build();
+
+            // Trigger the job to run now for testing
+            /*
+            ITrigger Trigger = TriggerBuilder.Create()
+                .WithIdentity("ChangeNotificationTrigger", "Group")
+                .Build();
+                */
+            ITrigger Trigger = TriggerBuilder.Create()
+                .WithIdentity("ChangeNotificationTrigger", "Group")
+                .StartNow()
+                .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(10,40))
+                .Build();
+            Schedule.ScheduleJob(Job, Trigger);
         }
 
         protected void Application_PostAuthenticateRequest(object sender, EventArgs args)

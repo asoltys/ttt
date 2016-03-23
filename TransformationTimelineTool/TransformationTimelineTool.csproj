@@ -55,6 +55,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +84,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Quartz, Version=2.3.3.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.3.3\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
@@ -168,6 +180,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ChangeNotify.cs" />
+    <Compile Include="Helpers\EmailInitiative.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.Designer.cs">
@@ -313,9 +327,25 @@
     <Compile Include="Migrations\201602052117544_AddDepthAndChangeColName.Designer.cs">
       <DependentUpon>201602052117544_AddDepthAndChangeColName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602101903008_AddTimelineType.cs" />
-    <Compile Include="Migrations\201602101903008_AddTimelineType.Designer.cs">
-      <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
+    <Compile Include="Migrations\201603021746482_InitiativeEdited.cs" />
+    <Compile Include="Migrations\201603021746482_InitiativeEdited.Designer.cs">
+      <DependentUpon>201603021746482_InitiativeEdited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603021756412_ImpactEdited.cs" />
+    <Compile Include="Migrations\201603021756412_ImpactEdited.Designer.cs">
+      <DependentUpon>201603021756412_ImpactEdited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603021803422_ActivityEdited.cs" />
+    <Compile Include="Migrations\201603021803422_ActivityEdited.Designer.cs">
+      <DependentUpon>201603021803422_ActivityEdited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603072141245_AddTimelineType1.cs" />
+    <Compile Include="Migrations\201603072141245_AddTimelineType1.Designer.cs">
+      <DependentUpon>201603072141245_AddTimelineType1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603101756294_Subscriber.cs" />
+    <Compile Include="Migrations\201603101756294_Subscriber.Designer.cs">
+      <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -325,6 +355,7 @@
     <Compile Include="Models\Impact.cs" />
     <Compile Include="Models\Initiative.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\Subscriber.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BranchesData.cs" />
@@ -803,6 +834,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
+    <Content Include="Scripts\accessibility.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor-custom\adapters\jquery.js" />
@@ -1013,6 +1045,9 @@
     <Content Include="Content\font-awesome-4.5.0\less\rotated-flipped.less" />
     <Content Include="Content\font-awesome-4.5.0\less\stacked.less" />
     <Content Include="Content\font-awesome-4.5.0\less\variables.less" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\MockData\data-eng.json" />
     <Content Include="Scripts\MockData\data-fra.json" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
@@ -1593,6 +1628,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\MockData\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comments\" />
     <Folder Include="Views\Data\" />
@@ -1719,8 +1755,20 @@
     <EmbeddedResource Include="Migrations\201602052117544_AddDepthAndChangeColName.resx">
       <DependentUpon>201602052117544_AddDepthAndChangeColName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602101903008_AddTimelineType.resx">
-      <DependentUpon>201602101903008_AddTimelineType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603021746482_InitiativeEdited.resx">
+      <DependentUpon>201603021746482_InitiativeEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603021756412_ImpactEdited.resx">
+      <DependentUpon>201603021756412_ImpactEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603021803422_ActivityEdited.resx">
+      <DependentUpon>201603021803422_ActivityEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603072141245_AddTimelineType1.resx">
+      <DependentUpon>201603072141245_AddTimelineType1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603101756294_Subscriber.resx">
+      <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
