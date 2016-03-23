@@ -1577,7 +1577,6 @@
     <Content Include="Views\Partials\ShareForm.cshtml" />
     <Content Include="Scripts\MockData\regions.json" />
     <Content Include="Scripts\MockData\branches.json" />
-    <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Shared\_IntraLayout_v2.cshtml" />
     <None Include="Web.Development.config">
