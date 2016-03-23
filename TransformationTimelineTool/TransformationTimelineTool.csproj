@@ -180,6 +180,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ChangeNotify.cs" />
+    <Compile Include="Helpers\EmailInitiative.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.Designer.cs">

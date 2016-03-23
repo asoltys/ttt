@@ -576,4 +576,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="Timeline" xml:space="preserve">
     <value>Timeline</value>
   </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
 </root>

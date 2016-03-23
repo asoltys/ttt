@@ -1224,11 +1224,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text.
+        ///   Looks up a localized string similar to Subscribe.
         /// </summary>
-        public static string Text {
+        public static string Subscribe {
             get {
-                return ResourceManager.GetString("Text", resourceCulture);
+                return ResourceManager.GetString("Subscribe", resourceCulture);
             }
         }
         

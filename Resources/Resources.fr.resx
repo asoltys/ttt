@@ -578,4 +578,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="Timeline" xml:space="preserve">
     <value>Timeline</value>
   </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>S'abonner</value>
+  </data>
 </root>

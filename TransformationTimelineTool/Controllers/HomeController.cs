@@ -40,7 +40,7 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
-        [Route("tba-Subscribe")]
+        [Route("Sabonner-Subscribe")]
         public ActionResult Subscribe()
         {
             var userName = Utils.GetUserName();
@@ -58,7 +58,7 @@ namespace TransformationTimelineTool.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("tba-Subscribe")]
+        [Route("Sabonner-Subscribe")]
         public ActionResult Subscribe(string[] selectedInitiatives)
         {
             var userName = Utils.GetUserName();
@@ -212,13 +212,26 @@ namespace TransformationTimelineTool.Controllers
         private void PopulateSubscriberInitiativeData(Subscriber subscriber)
         {
             string Culture = Thread.CurrentThread.CurrentCulture.Name;
-            var allInitiatives = Culture == "fr" ? db.Initiatives.OrderBy(i => i.NameF) : db.Initiatives.OrderBy(r => r.NameE);
+            var allTTInitiatives = Culture == "fr" ? db.Initiatives.Where(i => i.Timeline == "TransformationTimeline").OrderBy(i => i.NameF) : db.Initiatives.Where(i => i.Timeline == "TransformationTimeline").OrderBy(r => r.NameE);
+            var allBPInitiatives = Culture == "fr" ? db.Initiatives.Where(i => i.Timeline == "BP2020").OrderBy(i => i.NameF) : db.Initiatives.Where(i => i.Timeline == "BP2020").OrderBy(r => r.NameE);
             var subscriberInitiatives = new HashSet<int>(subscriber.Initiatives.Select(i => i.ID));
-            var viewModel = new List<InitiativeData>();
+            var TTviewModel = new List<InitiativeData>();
+            var BPviewModel2 = new List<InitiativeData>();
 
-            foreach (var init in allInitiatives)
+            foreach (var init in allTTInitiatives)
             {
-                viewModel.Add(new InitiativeData
+                TTviewModel.Add(new InitiativeData
+                {
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    Flag = subscriberInitiatives.Contains(init.ID)
+                });
+
+            }
+            foreach ( var init in allBPInitiatives)
+            {
+                BPviewModel2.Add(new InitiativeData
                 {
                     ID = init.ID,
                     NameE = init.NameE,
@@ -227,7 +240,8 @@ namespace TransformationTimelineTool.Controllers
                 });
             }
 
-            ViewBag.Initiatives = viewModel;
+            ViewBag.Initiatives = TTviewModel;
+            ViewBag.BP2020 = BPviewModel2;
         }
         private void UpdateSubscriberInitiatives(string[] selectedInitiatives, Subscriber subscriberToUpdate)
         {

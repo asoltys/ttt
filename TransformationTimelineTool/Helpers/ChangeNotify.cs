@@ -21,6 +21,7 @@ namespace TransformationTimelineTool.Helpers
         private static List<Initiative> SubscriberChangedEditsInitiatives;
         private static List<Initiative> SubscriberChangedImpactsInitiatives;
         private static List<Subscriber> Subscribers;
+        private static List<EmailInitiative> EmailInits;
         TimelineContext db = new TimelineContext();
 
         public void Execute(IJobExecutionContext context)
@@ -39,6 +40,13 @@ namespace TransformationTimelineTool.Helpers
             ChangedInitiatives = db.Initiatives.Where(i => i.Edited == true).ToList();
             AllChangedInitiatives = ChangedInitiatives.Union(ChangedImpactsInitiatives.Union(ChangedEditsInitiatives)).ToList();
             Subscribers = db.Subscribers.ToList();
+
+
+            foreach( var init in AllChangedInitiatives)
+            {
+                var emailInit = new EmailInitiative();
+
+            }
 
             string MailSubject = "There has been some changes to events you subscribed.";
 
