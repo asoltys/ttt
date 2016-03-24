@@ -113,6 +113,51 @@ namespace TransformationTimelineTool.Helpers
                     Body += "</ul>";
                 }
             }
+
+            Body += "<p>Following initiatives you have subscribed to have been changed since last week:</p>";
+            foreach (var initiative in SubscriberChangedInitiatives)
+            {
+                Body += "<h2>[FRENCH]Changes within initiative " + initiative.NameF + ":</h2>";
+                if(ChangedInitiatives.Count > 0)
+                {
+                    foreach(var changedInitiative in ChangedInitiatives)
+                    {
+                        if(changedInitiative.ID == initiative.ID)
+                        {
+                            Body += "<p>[FRENCH]The details for initiative " + initiative.NameF + " have changed.</p>";
+                        }
+                    }
+                }
+
+                if (SubscriberChangedEditsInitiatives.Contains(initiative))
+                {
+                    Body += "<p>[FRENCH]The following activities within initiative " + initiative.NameF + " have changed.</p>";
+                    Body += "<ul>";
+                    foreach (var edit in ChangedEdits)
+                    {
+                        if (edit.Event.InitiativeID == initiative.ID)
+                        {
+                            Body += "<li>[FRENCH]The Activity " + edit.HoverF + " has changed.</li>";
+                        }
+                    }
+
+                    Body += "</ul>";
+                }
+
+                if (SubscriberChangedImpactsInitiatives.Contains(initiative))
+                {
+                    Body += "<p>[FRENCH]The following impacts within initiative " + initiative.NameF + " have changed.</p>";
+                    Body += "<ul>";
+                    foreach (var impact in ChangedImpacts)
+                    {
+                        if (impact.InitiativeID == initiative.ID)
+                        {
+                            Body += "<li>[FRENCH]The impact for " + impact.Initiative.NameF + " has changed. </li>";
+                        }
+                    }
+                    Body += "</ul>";
+                }
+            }
             return Body;
         }
 
