@@ -415,7 +415,7 @@ var contentGenerator = (function(resources) {
 		var startDate = moment(timeline.StartDate, apiReturnDateFormat);
 
 		// invariant: There will be 3 tables (3 months in 1 quarter)
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < 3; i++, startDate.add(1, 'month')) {
 			var tableHeader = _getLocaleMonthAndYear(startDate);
 			var correspondingMonthEvents = timeline.Data.filter(function(elem, idx, arr) {
 				var eventDate = moment(elem['Date'], apiReturnDateFormat);
@@ -454,9 +454,6 @@ var contentGenerator = (function(resources) {
 
 			// end of dynamically generated table
 			content += "</table>";
-
-			// add a month to startDate for table header value
-			startDate.add(1, 'month');
 		}
 
 		return {
