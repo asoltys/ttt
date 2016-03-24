@@ -69,7 +69,7 @@ var getQuarter = function (month, year) {
 
 var gui = (function(resources) {
 	var boxes = [];
-	var controllerText = "";
+	var controllerText = [];
 	var $controllerInfo = $('#controller-information');
 	var $report = $('#report');
 
@@ -94,22 +94,20 @@ var gui = (function(resources) {
 			$('#report').append(element);
 		});
 		var $currentControllers = $('[id$="container"]:not(.hide) [name^="select"] option:selected');
-		controllerText = '<p>';
+		controllerText = [];
 		$currentControllers.each(function() {
-			if ($(this).parent().parent().attr('id') == 'region-branch') {
-				if ($(this).parent().parent().hasClass('hide'))
-					return true;
+			console.log()
+			if ($(this).parents('#region-branch').hasClass('hide')) {
+				return true;
 			}
-			controllerText += '<strong>' + $(this).parent().attr('data-controller-name') + '</strong>';
-			controllerText += ': ' + $(this).text() + '<br />';
+			controllerText.push('<strong>' + $(this).parent().attr('data-controller-name') + '</strong>: ' + $(this).text());
 		});
-		controllerText += '</p>';
-		$controllerInfo.append(controllerText);
+		$controllerInfo.append(controllerText.join(', '));
 	}
 
 	var _empty = function() {
 		boxes = [];
-		controllerText = "";
+		controllerText = [];
 		$report.empty();
 		$controllerInfo.empty();
 	}
