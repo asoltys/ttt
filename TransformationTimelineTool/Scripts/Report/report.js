@@ -152,15 +152,15 @@ var controller = (function(gui) {
 		var textToDisplay = [];
 		var valueToHold = [];
 		for (var month = startQuarter[0], year = startQuarter[1];
-			year <= endQuarter[1];) {
+			year <= endQuarter[1]; year++) {
 			endMonth = year == endQuarter[1] ? endQuarter[0] : 4;
 			for (var i = month; i <= endMonth; i++) {
-				textToDisplay.push("Q" + i + "/" + year);
+				textToDisplay.push('FY ' + year + '-' + (year + 1) + ' Q' + i)
 				var value = {quarter: i, year: year, culture: culture};
 				valueToHold.push(JSON.stringify(value));
 			}
+			// set it to 1 because after the first iteration, the quarters should start on a new FY
 			month = 1;
-			year++;
 		}
 		for (var i = 0; i < textToDisplay.length; i++) {
 			var $option = $('<option></option>');
