@@ -2,10 +2,12 @@
     if (Culture == "fr")
     {
         Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
+        ViewBag.lang = "fra";
     }
     else
     {
         Layout = "~/Views/Shared/_IntraLayout.cshtml";
+        ViewBag.lang = "eng";
     }
     ViewBag.Title = @Resources.ReportPageTitle;
 }

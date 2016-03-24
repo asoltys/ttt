@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accessibility.
+        /// </summary>
+        public static string Accessibility {
+            get {
+                return ResourceManager.GetString("Accessibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string Action {
@@ -577,6 +586,15 @@ namespace Resources {
         public static string EventTextFra {
             get {
                 return ResourceManager.GetString("EventTextFra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        public static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
             }
         }
         
@@ -1121,6 +1139,15 @@ namespace Resources {
         public static string RejectMailSubject {
             get {
                 return ResourceManager.GetString("RejectMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
             }
         }
         

@@ -621,4 +621,13 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="Subscribe" xml:space="preserve">
     <value>Subscribe</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accessibility</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
 </root>
