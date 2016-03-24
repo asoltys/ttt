@@ -1,12 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Accessibility";
+    if (Culture == "fr")
+    {
+        Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
+        ViewBag.lang = "fra";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_IntraLayout.cshtml";
+        ViewBag.lang = "eng";
+    }
+    ViewBag.Title = @Resources.NationalTransformationTimelineTool;
 }
 <link href="@Url.Content("~/Content/accessibility.css")" rel="stylesheet" type="text/css" />
-
-<h2>Accessibility</h2>
-
-<h1 id="wb-cont">@Resources.NationalTransformationTimelineTool</h1>
-
 
 @Html.Raw(Resources.TimelineIntroduction)
 

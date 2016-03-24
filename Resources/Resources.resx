@@ -651,4 +651,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="ReportPrintCoverPageWarning" xml:space="preserve">
     <value>The dates of activities may not reflect the actual date due to frequent changes.</value>
   </data>
+  <data name="ReportPrint" xml:space="preserve">
+    <value>Print Report</value>
+  </data>
 </root>

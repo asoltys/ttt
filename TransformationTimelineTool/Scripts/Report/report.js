@@ -462,6 +462,7 @@ var contentGenerator = (function(resources) {
 		}
 
 		var unusedInitiatives = timeline['Unused'];
+		console.log(unusedInitiatives);
 		if (unusedInitiatives.length > 0) {
 			content += "<h4>";
 			content += resources.get('unused-initiatives');

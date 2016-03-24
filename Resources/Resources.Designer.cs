@@ -1179,6 +1179,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print Report.
+        /// </summary>
+        public static string ReportPrint {
+            get {
+                return ResourceManager.GetString("ReportPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Initiatives.
         /// </summary>
         public static string ReportPrintCoverPageAllInitiatives {
