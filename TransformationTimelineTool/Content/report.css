@@ -66,6 +66,10 @@ li p {
 		width: 100%;
 	}
 
+	#report-warning {
+		display: block;
+	}
+
 	#report-subtitle {
 		margin-top: -130px;
 		font-size: 1.7em;

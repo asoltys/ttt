@@ -650,4 +650,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="ReportPrintCoverPageAllInitiatives" xml:space="preserve">
     <value>Translate me</value>
   </data>
+  <data name="ReportPrintCoverPageWarning" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
 </root>

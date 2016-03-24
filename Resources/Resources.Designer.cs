@@ -1224,6 +1224,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The dates of activities may not reflect the actual date due to frequent changes..
+        /// </summary>
+        public static string ReportPrintCoverPageWarning {
+            get {
+                return ResourceManager.GetString("ReportPrintCoverPageWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Initiative.
         /// </summary>
         public static string ReportSelectInitiative {
