@@ -21,10 +21,14 @@ dictionary = {
                           "Cliquez ici pour envoyer un courriel</a>.</p>"
     },
     "legend": {
-        "e": "<img src=\"../Images/book.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Training<br />" +
-        "<img src=\"../Images/circle.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Milestone",
-        "f": "<img src=\"../Images/book.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Formation<br />" +
-        "<img src=\"../Images/circle.png\" style=\"width:24px; height:32px; margin-bottom:0px;\" /> Étape"
+        "e":  "<img src='../Images/book.png' class='align-middle' style='width:24px; height: 32px;' />" +
+              "<span>&nbsp;Training</span><br />" +
+              "<img src='../Images/circle.png' class='align-middle' style='width:24px; height: 32px;' />" +
+              "<span>&nbsp;Milestone</span>",
+        "f":  "<img src='../Images/book.png' class='align-middle' style='width:24px; height: 32px;' />" +
+              "<span>&nbsp;Formation</span><br />" +
+              "<img src='../Images/circle.png' class='align-middle' style='width:24px; height: 32px;' />" +
+              "<span>&nbsp;Étape</span>"
     },
     "training": { "e": "Training", "f": "Formation" },
     "hide": { "e": "Hide", "f": "Cacher" },
