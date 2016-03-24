@@ -3,7 +3,7 @@ namespace TransformationTimelineTool.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddTimelineType : DbMigration
+    public partial class AddTimelineType1 : DbMigration
     {
         public override void Up()
         {

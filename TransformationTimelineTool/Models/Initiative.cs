@@ -59,7 +59,7 @@ namespace TransformationTimelineTool.Models
         [AllowHtml]
         [Display(Name="Timeline", ResourceType =typeof(Resources.Resources))]
         public string Timeline { get; set; }
-
+        public Boolean Edited { get; set; }
         public string Name
         {
             get
@@ -92,5 +92,6 @@ namespace TransformationTimelineTool.Models
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Impact> Impacts { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Subscriber> Subscribers { get; set; }
     }
 }

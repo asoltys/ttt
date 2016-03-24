@@ -1,4 +1,4 @@
-﻿@model TransformationTimelineTool.Models.User
+﻿@model TransformationTimelineTool.ViewModels.UserViewModel
 
 @{
     ViewBag.Title = Resources.Details;
@@ -25,10 +25,17 @@ else
 </p>
 
 <h4>@Resources.Roles</h4>
-<p class="roleContainer">@ViewBag.Roles</p>
+<p class="roleContainer">@Model.UserRoles</p>
 
 <h4>@Resources.Approver</h4>
 <p>@Html.DisplayFor(model => model.Approver.UserName)</p>
+
+@if (HttpContext.Current.User.IsInRole("Approver"))
+{
+    <h4>@Resources.Editors</h4>
+    string Editors = String.Join(" - ", Model.Editors.Select(u => u.UserName).ToArray());
+    <p>@Html.Raw(Editors)</p>
+}
 
 <p>
     @if (HttpContext.Current.User.IsInRole("Admin"))

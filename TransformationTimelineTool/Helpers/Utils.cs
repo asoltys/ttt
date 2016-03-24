@@ -19,6 +19,18 @@ namespace TransformationTimelineTool.Helpers
 {
     public class Utils
     {
+        public static string GetUserName()
+        {
+            if(HttpContext.Current.User.Identity.Name == "DESKTOP-164KO4D\\matty")
+            {
+                return "Matty";
+            }
+
+            string[] name = HttpContext.Current.User.Identity.Name.Split('\\');
+
+            return name[1];
+        }
+
         public static string GetUserName(string FullIdentityName)
         {
             String[] name = FullIdentityName.Split('\\');
@@ -41,7 +53,7 @@ namespace TransformationTimelineTool.Helpers
                 }
             }
 
-            return opis;
+            return opis.OrderBy(o => o.UserName).ToList<User>();
         }
 
         public static User GetCurrentUser()
@@ -89,6 +101,35 @@ namespace TransformationTimelineTool.Helpers
 
             return userRoles.ToArray();
         }
+
+        public static string GetEmailFromUserName(string userName)
+        {
+            var searchString = "(mailNickname=" + userName + ")";
+            DirectoryEntry root = new DirectoryEntry(
+                "LDAP://adldap.ncr.pwgsc.gc.ca/dc=ad,dc=pwgsc-tpsgc,dc=gc,dc=ca",
+                "pacweb",
+                "god!power");
+
+            DirectorySearcher searcher = new DirectorySearcher(
+                root,
+                searchString);
+
+            string email = "";
+            SearchResult person;
+
+            try
+            {
+                person = searcher.FindOne();
+                email = person.Properties["mail"][0].ToString();
+            }
+            catch
+            {
+                email = "";
+            }
+
+            return email;
+        }
+
         public static string GetUsernameFromEmail(string email)
         {
             var mailAddress = new MailAddress(email);
@@ -188,6 +229,29 @@ namespace TransformationTimelineTool.Helpers
             return FullName;
         }
 
+        public static void SendMail(string Recipient, string Subject, string Message)
+        {
+            MailAddress FromAddress = new MailAddress("PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca", "TimelineTool");
+            MailAddress RecipientAddress = new MailAddress(Recipient);
+            using (MailMessage Mail = new MailMessage(FromAddress, RecipientAddress))
+            using (SmtpClient client = new SmtpClient())
+            {
+                Mail.Subject = Subject;
+                Mail.IsBodyHtml = true;
+                Mail.Body = Message;
+                client.Timeout = 10000;
+                client.UseDefaultCredentials = true;
+                try
+                {
+                    client.Send(Mail);
+                }
+                catch (Exception ex)
+                {
+                    log(ex.StackTrace);
+                }
+            }
+        }
+
         public async static Task SendMailAsync(String Recipient, String Subject, String Message, List<String> CC = null)
         {
             Task completedTask = Task.FromResult(false);
@@ -206,10 +270,16 @@ namespace TransformationTimelineTool.Helpers
                 if (CC.Count() > 0)
                     CC.ForEach(CopyAddress => Mail.CC.Add(new MailAddress(CopyAddress)));
                 client.Timeout = 10000;
+                client.UseDefaultCredentials = true;
                 HttpContext.Current.AllowAsyncDuringSyncStages = true;
-                await client.SendMailAsync(Mail);
+                try
+                {
+                    await client.SendMailAsync(Mail);
+                } catch (Exception ex)
+                {
+                    Utils.log(ex.StackTrace);
+                }
                 HttpContext.Current.AllowAsyncDuringSyncStages = false;
-                //log("Mail Sent!");
             }
         }
 
@@ -239,6 +309,26 @@ namespace TransformationTimelineTool.Helpers
         public static void log(String Message)
         {
             System.Diagnostics.Debug.WriteLineIf(Message.Length > 0, Message);
+        }
+
+        public static void log(List<string> list)
+        {
+            foreach (var element in list)
+            {
+                log(element);
+            }
+        }
+
+        public static void log<T>(List<T> list)
+        {
+            var props = typeof(T).GetProperties();
+            foreach (var element in list)
+            {
+                foreach (var prop in props)
+                {
+                    log(prop.Name + ": " + prop.GetValue(element, null));
+                }
+            }
         }
 
         public static void listLog(ICollection<Object> list)

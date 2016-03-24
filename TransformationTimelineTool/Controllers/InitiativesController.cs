@@ -148,6 +148,7 @@ namespace TransformationTimelineTool.Controllers
                 try
                 {
                     initiativeViewModel.BindToModel(initiativeToUpdate);
+                    initiativeToUpdate.Edited = true;
                     db.SaveChanges();
 
                     return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });

@@ -170,3 +170,15 @@ table.dataTable thead th.sorting_desc:after {
     color: red;
     content: "\f0dd";
 }
+
+table.users th:first-child {
+    width: 15%;
+}
+
+table.users th:nth-child(2) {
+    width: 73%;
+}
+
+table.users th:nth-child(3) {
+    width: 12%;
+}

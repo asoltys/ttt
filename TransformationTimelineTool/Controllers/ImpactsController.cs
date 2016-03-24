@@ -126,6 +126,8 @@ namespace TransformationTimelineTool.Controllers
                         impact.Regions.Add(region);
                     }
                 }
+
+                impact.Edited = true;
                 db.Impacts.Add(impact);
                 db.SaveChanges();
                 
@@ -248,7 +250,7 @@ namespace TransformationTimelineTool.Controllers
                     impactToUpdate.InitiativeID = impact.InitiativeID;
                     impactToUpdate.Level = impact.Level;
                     impactToUpdate.Justification = impact.Justification;
-
+                    impactToUpdate.Edited = true;
                     UpdateImpactRegions(selectedRegions, impactToUpdate);
                     UpdateImpactBranches(selectedBranches, impactToUpdate);
 

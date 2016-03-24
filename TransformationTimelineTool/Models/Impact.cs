@@ -18,6 +18,9 @@ namespace TransformationTimelineTool.Models
 
         [AllowHtml]
         public string Justification { get; set; }
+
+        public Boolean Edited { get; set; }
+
         public string BranchesList
         {
             get

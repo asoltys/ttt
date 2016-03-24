@@ -120,6 +120,7 @@ namespace TransformationTimelineTool.Controllers
                     if (eventToCreate.Status == Status.Approved)
                     {
                         edit.Published = true;
+                        edit.Edited = true;
                     }
 
                     eventToCreate.Edits = new List<Edit>();
@@ -224,6 +225,7 @@ namespace TransformationTimelineTool.Controllers
                     {
                         eventToUpdate.PublishedEdit.Published = false;
                         edit.Published = true;
+                        edit.Edited = true;
                     }
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();

@@ -34,7 +34,23 @@ namespace TransformationTimelineTool.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            UserViewModel VMUser = new UserViewModel();
+            VMUser.Admins = new List<User>();
+            VMUser.Approvers = new List<User>();
+            VMUser.Editors = new List<User>();
+            foreach (var user in db.Users.ToList<User>())
+            {
+                if (userManager.IsInRole(user.Id, "Admin"))
+                    VMUser.Admins.Add(user);
+                if (userManager.IsInRole(user.Id, "Approver"))
+                    VMUser.Approvers.Add(user);
+                if (userManager.IsInRole(user.Id, "Editor"))
+                    VMUser.Editors.Add(user);
+            }
+            VMUser.Admins = VMUser.Admins.OrderBy(u => u.UserName).ToList<User>();
+            VMUser.Approvers = VMUser.Approvers.OrderBy(u => u.UserName).ToList<User>();
+            VMUser.Editors = VMUser.Editors.OrderBy(u => u.UserName).ToList<User>();
+            return View(VMUser);
         }
 
         // GET: Users/Details/5
@@ -44,13 +60,18 @@ namespace TransformationTimelineTool.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            UserViewModel VMUser = new UserViewModel(db.Users.Find(id), userManager);
+            if (userManager.IsInRole(id, "Approver"))
+            {
+                VMUser.Editors = db.Users.Where(u => u.ApproverID == id).ToList<User>();
+            }
             User user = db.Users.Find(id);
             ViewBag.Roles = String.Join(" - ", userManager.GetRoles(user.Id));
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(VMUser);
         }
 
         // GET: Users/Create

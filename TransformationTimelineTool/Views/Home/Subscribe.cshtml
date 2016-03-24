@@ -1,0 +1,62 @@
+﻿@model TransformationTimelineTool.ViewModels.InitiativeIndexData 
+@{
+    ViewBag.Title = @Resources.Subscribe;
+}
+
+@if(Culture == "fr")
+{
+    Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
+    ViewBag.lang = "fra";
+}
+else
+{
+    Layout = "~/Views/Shared/_IntraLayout.cshtml";
+    ViewBag.lang = "eng";
+}
+
+
+<h2>@Resources.Subscribe</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-group clearfix">
+    <div id="branch_checkbox_container" class="float-left margin-right-large">
+        <strong>@Resources.TransformationTimelineTool</strong>
+        <br />
+        @foreach (var init in ViewBag.Initiatives)
+        {
+            <input type="checkbox"
+                   id="select_initiatives_@init.ID"
+                   name="selectedInitiatives"
+                   value="@init.ID" 
+                   @(Html.Raw(init.Flag ? "checked=\"checked\"" : "")) />
+            <label class="no-style" for="select_initiatives_@init.ID">@init.Name</label>
+            <br />
+        }
+    </div>
+
+    <div id="branch_checkbox_container" class="no-margin">
+        <strong>@Resources.BP2020</strong>
+        <br />
+        @foreach (var init in ViewBag.BP2020)
+        {
+            <input type="checkbox"
+                   id="select_initiatives_@init.ID"
+                   name="selectedInitiatives"
+                   value="@init.ID" 
+                   @(Html.Raw(init.Flag ? "checked=\"checked\"" : "")) />
+            <label class="no-style" for="select_initiatives_@init.ID">@init.Name</label>
+            <br />
+        }
+    </div>
+    <div class="clear"></div>
+
+    <div class="form-actions no-color margin-top-large">
+        <input type="submit" value="@Resources.Submit" class="btn btn-default" /> |
+        @Html.ActionLink( Resources.Home, "Index", new {  lang =  ViewBag.lang}, null)
+    </div>
+</div>
+}
+
