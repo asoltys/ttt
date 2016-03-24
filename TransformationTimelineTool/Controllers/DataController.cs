@@ -148,7 +148,7 @@ namespace TransformationTimelineTool.Controllers
             foreach (var timeline in timelines)
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
-                var quarterlyData = populateQuarterlyJSONTest(dateRange, initiativeBlock);
+                var quarterlyData = populateQuarterlyJSON(dateRange, initiativeBlock);
                 if (quarterlyData.Count > 0)
                 {    
                     initiativeBlocks.Add(new
@@ -159,7 +159,7 @@ namespace TransformationTimelineTool.Controllers
                         EndDate = dateRange[1].ToString(dateFormat),
                         StartMonth = dateRange[0].Month,
                         EndMonth = dateRange[1].Month,
-                        Data = populateQuarterlyJSONTest(dateRange, initiativeBlock)
+                        Data = quarterlyData
                     });
                 }
             }
@@ -219,7 +219,7 @@ namespace TransformationTimelineTool.Controllers
             public Dictionary<string, int> Control { get; set; }
         }
 
-        private List<EventInformation> populateQuarterlyJSONTest(List<DateTime> dateRange, List<Initiative> initiatives)
+        private List<EventInformation> populateQuarterlyJSON(List<DateTime> dateRange, List<Initiative> initiatives)
         {
 
             var jsonEvents = new List<EventInformation>();
@@ -258,72 +258,7 @@ namespace TransformationTimelineTool.Controllers
             }
             return jsonEvents.OrderBy(e => e.Date).ToList();
         }
-
-        private List<object> populateQuarterlyJSON(List<DateTime> dateRange, List<Initiative> initiatives)
-        {
-            var json = new List<object>();
-            foreach (var init in initiatives)
-            {
-                var jsonEvents = new List<object>();
-                var jsonImpacts = new List<object>();
-                var events = init.Events
-                    .Where(e => (e.PublishedEdit.DisplayDate >= dateRange[0] && e.PublishedEdit.DisplayDate <= dateRange[1]))
-                    .OrderBy(e => e.PublishedEdit.DisplayDate);
-
-                foreach (var e in events)
-                {
-                    var controlDictionary = new Dictionary<string, int>();
-                    var branches = e.Branches.Select(b => b.ID);
-                    var regions = e.Regions.Select(r => r.ID);
-                    foreach (var r in regions)
-                    {
-                        foreach (var b in branches)
-                        {
-                            controlDictionary.Add(r + "," + b, -1);
-                        }
-                    }
-                    jsonEvents.Add(new
-                    {
-                        ID = e.ID,
-                        Type = e.PublishedEdit.Type.ToString(),
-                        Date = e.PublishedEdit.DisplayDate.ToString(dateFormat),
-                        TextE = e.PublishedEdit.TextE,
-                        HoverE = e.PublishedEdit.HoverE,
-                        TextF = e.PublishedEdit.TextF,
-                        HoverF = e.PublishedEdit.HoverF,
-                        Control = controlDictionary,
-                        Show = e.Show
-                    });
-                }
-                var impactDictionary = new Dictionary<string, int>();
-                foreach (var impact in init.Impacts)
-                {
-                    var branches = impact.Branches.Select(b => b.ID);
-                    var regions = impact.Regions.Select(r => r.ID);
-                    foreach (var r in regions)
-                    {
-                        foreach (var b in branches)
-                        {
-                            impactDictionary.Add(r + "," + b, (int) impact.Level);
-                        }
-                    }
-                }
-
-                json.Add(new
-                {
-                    ID = init.ID,
-                    NameE = init.NameE,
-                    NameF = init.NameF,
-                    DescriptionE = init.DescriptionE,
-                    DescriptionF = init.DescriptionF,
-                    StartDate = init.StartDate.ToString(dateFormat),
-                    EndDate = init.EndDate.ToString(dateFormat),
-                    Impacts = impactDictionary,
-                    Events = jsonEvents
-                });
-            }
-            return json;
-        }
+        
     }
 
    
