@@ -111,6 +111,7 @@ namespace TransformationTimelineTool.Controllers
         private List<DateTime> GetDateRage(int quarter, int year)
         {
             int firstMonth = 0;
+            int yearOffset = 0;
             switch (quarter)
             {
                 case 1:
@@ -124,11 +125,12 @@ namespace TransformationTimelineTool.Controllers
                     break;
                 case 4:
                     firstMonth = 1;
+                    yearOffset++;
                     break;
                 default:
                     break;
             }
-            DateTime firstDayOfQuarter = new DateTime(year, firstMonth, 1);
+            DateTime firstDayOfQuarter = new DateTime(year + yearOffset, firstMonth, 1);
             DateTime lastDayOfQuarter = firstDayOfQuarter.AddMonths(3).AddDays(-1);
             return new List<DateTime> { firstDayOfQuarter, lastDayOfQuarter };
         }

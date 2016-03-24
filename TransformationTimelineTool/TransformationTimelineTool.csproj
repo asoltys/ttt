@@ -834,7 +834,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
-    <Content Include="Scripts\accessibility.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor-custom\adapters\jquery.js" />
@@ -1613,7 +1612,6 @@
     <Content Include="Scripts\MockData\regions.json" />
     <Content Include="Scripts\MockData\branches.json" />
     <Content Include="Views\Home\Report.cshtml" />
-    <Content Include="Views\Shared\_IntraLayout_v2.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1627,7 +1625,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\MockData\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Comments\" />
     <Folder Include="Views\Data\" />
