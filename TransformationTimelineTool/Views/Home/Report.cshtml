@@ -106,8 +106,9 @@
     <div id="report-front-page" class="span-12 border-all">
         <img id="report-header-logo" src="~/Content/images/report-header-logo.png">
         <img id="report-header-purple" src="~/Content/images/report-header-purple.png">
-        <p id="report-subtitle">&nbsp;</p>
-        <p id="report-title">Title Goes Here</p>
+        <p id="report-subtitle"></p>
+        <p id="report-title"></p>
+        <p id="report-more-info"></p>
         <img id="report-footer" src="~/Content/images/report-footer.png">
     </div>
 
@@ -135,7 +136,13 @@
             'training': '@Resources.Training',
             'date': '@Resources.Date',
             'initiative': '@Resources.Initiative',
-            'type': '@Resources.Type'
+            'type': '@Resources.Type',
+            'unused-initiatives': '@Resources.ReportUnusedInitiatives',
+            'report-subtitle': '@Resources.ReportPrintCoverPageSubtitle',
+            'report-print-initiative-title': '@Resources.ReportPrintCoverPageInitiativeTitle',
+            'report-print-quarterly-title': '@Resources.ReportPrintCoverPageQuarterlyTitle',
+            'report-print-overview': '@Resources.ReportPrintCoverPageOverview',
+            'report-print-all-initiatives': '@Resources.ReportPrintCoverPageAllInitiatives'
         };
 
         var _getByKey = function(key) {

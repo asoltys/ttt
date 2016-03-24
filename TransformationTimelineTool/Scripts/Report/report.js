@@ -93,10 +93,13 @@ var gui = (function(resources) {
 		boxes.forEach(function(element) {
 			$('#report').append(element);
 		});
+		_setControllerInfo();
+	}
+
+	var _setControllerInfo = function() {
 		var $currentControllers = $('[id$="container"]:not(.hide) [name^="select"] option:selected');
 		controllerText = [];
 		$currentControllers.each(function() {
-			console.log()
 			if ($(this).parents('#region-branch').hasClass('hide')) {
 				return true;
 			}
@@ -130,7 +133,7 @@ var gui = (function(resources) {
 	}
 })(resources);
 
-var controller = (function(gui) {
+var controller = (function(gui, resources) {
 	var _initiativeListUrl = '/data/initiatives';
 	var _initiativesQuarterlyUrl = '/data/initiative-quarterly';
 	var _quarterListUrl = '/data/quarters';
@@ -266,7 +269,8 @@ var controller = (function(gui) {
 			_selectInitiative.val('0');
 			$('#initiative-container').removeClass('hide');
 			$('#quarter-container').addClass('hide');
-			$('#report-title').text('Initiative Report');
+			$('#report-title').text(resources.get('report-print-initiative-title'));
+			$('#report-subtitle').text(resources.get('report-subtitle'));
 		});
 		$('#radio-report-quarterly').on('click', function() {
 			gui.reset();
@@ -275,7 +279,8 @@ var controller = (function(gui) {
 			_setRegionBranchDefault();
 			$('#quarter-container').removeClass('hide');
 			$('#initiative-container').addClass('hide');
-			$('#report-title').text('Quarterly Report');
+			$('#report-title').text(resources.get('report-print-quarterly-title'));
+			$('#report-subtitle').text(resources.get('report-subtitle'));
 		});
 		$('#select-quarter-timeline').on('change', function() {
 			gui.reset();
@@ -343,7 +348,7 @@ var controller = (function(gui) {
 		quarterTimeline: $('#select-quarter-timeline'),
 		initiativeTimeline: $('#select-initiative-timeline')
 	}
-})(gui);
+})(gui, resources);
 
 var contentGenerator = (function(resources) {
 	var _cultureDataAppend = culture == 'en-ca' ? 'E' : 'F';
@@ -454,6 +459,31 @@ var contentGenerator = (function(resources) {
 
 			// end of dynamically generated table
 			content += "</table>";
+		}
+
+		var unusedInitiatives = timeline['Unused'];
+		if (unusedInitiatives.length > 0) {
+			content += "<h4>";
+			content += resources.get('unused-initiatives');
+			content += "</h4>";
+
+			// dynamically generate table
+			content += "<table class='span-12 unused-initiatives'>";
+
+			// table header
+			content += "<thead>";
+			content += _generateTableRow(_generateTableHeader(resources.get('initiative')));
+			content += "</thead>";
+
+			// table body
+			content += "<tbody>";
+			unusedInitiatives.forEach(function(elem, idx, arr) {
+				content += _generateTableRow(_generateTableCell(elem['Name' + _cultureDataAppend]));
+			});
+			content += "</tbody>";
+
+			// end of dynamically generated table
+			content += "</table>";	
 		}
 
 		return {
@@ -633,6 +663,11 @@ var quarterlyReport = (function(dataFactory, gui) {
 		});
 		gui.render();
 		pageNavigator.per('.timeline-table');
+		_setPrintReportMoreInfo();
+	}
+
+	var _setPrintReportMoreInfo = function() {
+		$('#report-more-info').text($('#select-quarter').val() + ' ' + resources.get('report-print-overview'));
 	}
 
 	var _registerEvents = function() {
@@ -646,7 +681,7 @@ var quarterlyReport = (function(dataFactory, gui) {
 	})();
 	return {
 	}
-})(dataFactory, gui);
+})(dataFactory, gui, resources);
 
 var initiativeReport = (function(dataFactory, gui) {
 	var _drawReport = function() {
@@ -657,7 +692,16 @@ var initiativeReport = (function(dataFactory, gui) {
 			});
 			gui.render();
 			pageNavigator.per('.initiative');
+			_setPrintReportMoreInfo();
 		}
+	}
+
+	var _setPrintReportMoreInfo = function() {
+		var $selectedOption = $('#select-initiative option:selected');
+		var text = $selectedOption.val() == 'All' ?
+			resources.get('report-print-all-initiatives') : 
+			$selectedOption.text();
+		$('#report-more-info').text(text);
 	}
 
 	var _registerEvents = function() {
@@ -671,7 +715,7 @@ var initiativeReport = (function(dataFactory, gui) {
 	var _initialize = (function() {
 		_registerEvents();
 	})();
-})(dataFactory, gui);
+})(dataFactory, gui, resources);
 
 // ----------------------------------------------------------------------------
 

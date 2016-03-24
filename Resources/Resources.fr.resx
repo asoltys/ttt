@@ -632,4 +632,22 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="Feedback" xml:space="preserve">
     <value>Translate me</value>
   </data>
+  <data name="ReportUnusedInitiatives" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportPrintCoverPageInitiativeTitle" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportPrintCoverPageQuarterlyTitle" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportPrintCoverPageSubtitle" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportPrintCoverPageOverview" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
+  <data name="ReportPrintCoverPageAllInitiatives" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
 </root>

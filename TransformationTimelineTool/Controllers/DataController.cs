@@ -149,8 +149,9 @@ namespace TransformationTimelineTool.Controllers
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
                 var quarterlyData = populateQuarterlyJSON(dateRange, initiativeBlock);
+                var unusedInits = getUnusedInitiatives(dateRange, initiativeBlock);
                 if (quarterlyData.Count > 0)
-                {    
+                {
                     initiativeBlocks.Add(new
                     {
                         NameE = timeline,
@@ -159,7 +160,8 @@ namespace TransformationTimelineTool.Controllers
                         EndDate = dateRange[1].ToString(dateFormat),
                         StartMonth = dateRange[0].Month,
                         EndMonth = dateRange[1].Month,
-                        Data = quarterlyData
+                        Data = quarterlyData,
+                        Unused = unusedInits
                     });
                 }
             }
@@ -259,6 +261,23 @@ namespace TransformationTimelineTool.Controllers
             return jsonEvents.OrderBy(e => e.Date).ToList();
         }
         
+        private List<object> getUnusedInitiatives(List<DateTime> dateRange, List<Initiative> initiatives)
+        {
+            var unused = new List<object>();
+            foreach (var init in initiatives)
+            {
+                var events = init.Events
+                    .Where(e => (e.PublishedEdit.DisplayDate >= dateRange[0] && e.PublishedEdit.DisplayDate <= dateRange[1]))
+                    .ToList();
+                if (events.Count > 0)
+                    continue;
+                unused.Add(new {
+                    NameE = init.NameE,
+                    NameF = init.NameF
+                });
+            }
+            return unused;
+        }
     }
 
    

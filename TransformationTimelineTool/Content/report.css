@@ -42,6 +42,10 @@ li p {
 }
 
 @media print {
+	table {
+		width: 100%;
+	}
+
 	#report-front-page {
 		display: block;
 		margin-top: -13px;
@@ -59,27 +63,36 @@ li p {
 	}
 
 	#report-footer {
-		margin: 0;
+		width: 100%;
 	}
 
 	#report-subtitle {
 		margin-top: -130px;
-		font-size: 2em;
+		font-size: 1.7em;
 		color: #FFFF00 !important;
 		text-shadow: 0 0 1px #FFFFFF !important;
 		text-indent: 20px;
 	}
 
 	#report-title {
-		margin-top: -20px;
-		font-size: 3em;
+		margin-top: -17px;
+		font-size: 2.5em;
 		color: #FFFF00 !important;
 		text-shadow: 0 0 1px #FFFFFF !important;
 		text-indent: 20px;
 		margin-bottom: 202px;
 	}
 
-	.timeline, .timeline-table {
+	#report-more-info {
+		margin-top: -190px;
+		font-size: 1.7em;
+		color: #FFFF00 !important;
+		text-shadow: 0 0 1px #FFFFFF !important;
+		text-indent: 20px;
+		margin-bottom: 202px;
+	}
+
+	.timeline, .timeline-table, .unused-initiatives {
 		page-break-after: always;
 	}
 

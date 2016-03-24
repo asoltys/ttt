@@ -630,4 +630,22 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   <data name="Feedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
+  <data name="ReportUnusedInitiatives" xml:space="preserve">
+    <value>These Initiatives do not have any activities in the Timeline for this Quarter:</value>
+  </data>
+  <data name="ReportPrintCoverPageQuarterlyTitle" xml:space="preserve">
+    <value>Quarterly Report</value>
+  </data>
+  <data name="ReportPrintCoverPageInitiativeTitle" xml:space="preserve">
+    <value>Initiative Report</value>
+  </data>
+  <data name="ReportPrintCoverPageSubtitle" xml:space="preserve">
+    <value>PSPC Timeline Tool</value>
+  </data>
+  <data name="ReportPrintCoverPageOverview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="ReportPrintCoverPageAllInitiatives" xml:space="preserve">
+    <value>All Initiatives</value>
+  </data>
 </root>

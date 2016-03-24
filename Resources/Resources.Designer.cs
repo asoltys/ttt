@@ -1179,6 +1179,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Initiatives.
+        /// </summary>
+        public static string ReportPrintCoverPageAllInitiatives {
+            get {
+                return ResourceManager.GetString("ReportPrintCoverPageAllInitiatives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initiative Report.
+        /// </summary>
+        public static string ReportPrintCoverPageInitiativeTitle {
+            get {
+                return ResourceManager.GetString("ReportPrintCoverPageInitiativeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overview.
+        /// </summary>
+        public static string ReportPrintCoverPageOverview {
+            get {
+                return ResourceManager.GetString("ReportPrintCoverPageOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quarterly Report.
+        /// </summary>
+        public static string ReportPrintCoverPageQuarterlyTitle {
+            get {
+                return ResourceManager.GetString("ReportPrintCoverPageQuarterlyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PSPC Timeline Tool.
+        /// </summary>
+        public static string ReportPrintCoverPageSubtitle {
+            get {
+                return ResourceManager.GetString("ReportPrintCoverPageSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Initiative.
         /// </summary>
         public static string ReportSelectInitiative {
@@ -1211,6 +1256,15 @@ namespace Resources {
         public static string ReportType {
             get {
                 return ResourceManager.GetString("ReportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These Initiatives do not have any activities in the Timeline for this Quarter:.
+        /// </summary>
+        public static string ReportUnusedInitiatives {
+            get {
+                return ResourceManager.GetString("ReportUnusedInitiatives", resourceCulture);
             }
         }
         
