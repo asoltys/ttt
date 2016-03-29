@@ -165,4 +165,7 @@
   <data name="InitiativeTimelineRequired" xml:space="preserve">
     <value>The Timeline field is required.</value>
   </data>
+  <data name="ReportNoOptionSelected" xml:space="preserve">
+    <value>Please select all the options before printing.</value>
+  </data>
 </root>

@@ -314,8 +314,48 @@ var controller = (function(gui, resources) {
 			}
 		});
 		$('#print-button').on('click', function() {
-			window.print();
+			if (_confirmControllerStates()) {
+				window.print();
+			} else {
+				alert(resources.get('report-error-no-selection'));
+			}
 		});
+	}
+
+	var _confirmControllerStates = function() {
+		var states = _controllerStates();
+		if (states.reportType[0] === true || states.reportType[1] === true) {
+			return states.reportState.every(function(elem, idx, arr) {
+				return elem === true;
+			});
+		}
+		return false;
+	}
+
+	var _controllerStates = function() {
+		var reportTypeState = [
+			document.querySelector('#radio-report-quarterly').checked,
+			document.querySelector('#radio-report-initiative').checked
+		]
+		var reportState;		
+		if (reportTypeState[0] === true) {
+			// Quarterly report is selected
+			reportState = [
+				document.querySelector('#select-quarter').value != 0,
+				document.querySelector('#select-quarter-timeline').value != 0
+			]
+		} else if (reportTypeState[1] === true) {
+			// Initiative report is selected
+			reportState = [
+				document.querySelector('#select-initiative-timeline').value != 0,
+				document.querySelector('#select-initiative').value != 0
+			]
+		}
+
+		return {
+			reportType: reportTypeState,
+			reportState: reportState
+		}
 	}
 
 	var _setQuarterReportDataset = function(data) {

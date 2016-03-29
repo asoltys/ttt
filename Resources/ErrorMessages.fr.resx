@@ -165,4 +165,7 @@
   <data name="InitiativeTimelineRequired" xml:space="preserve">
     <value>tba</value>
   </data>
+  <data name="ReportNoOptionSelected" xml:space="preserve">
+    <value>Translate me</value>
+  </data>
 </root>

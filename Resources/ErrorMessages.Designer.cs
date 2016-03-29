@@ -178,16 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The English Name field is required..
-        /// </summary>
-        public static string RegionBranchRequiredNameEnglish {
-            get {
-                return ResourceManager.GetString("RegionBranchRequiredNameEnglish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The French Name field is required..
+        ///   Looks up a localized string similar to The name of the region must be provided in both English and French. .
         /// </summary>
         public static string RegionRequiredNameEnglish {
             get {
@@ -201,6 +192,15 @@ namespace Resources {
         public static string RegionRequiredNameFrench {
             get {
                 return ResourceManager.GetString("RegionRequiredNameFrench", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select all the options before printing..
+        /// </summary>
+        public static string ReportNoOptionSelected {
+            get {
+                return ResourceManager.GetString("ReportNoOptionSelected", resourceCulture);
             }
         }
         
