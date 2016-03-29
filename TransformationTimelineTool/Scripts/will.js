@@ -326,7 +326,7 @@ timeLine = {
                     return true;
                 }
                 idString = toString(id);
-                html += "<img id='icon" + id + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "," + rowID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(date, barStartDate) + "px; position:absolute;' />";
+                html += "<img id='icon" + id + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "," + rowID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEventOffset(date, barStartDate) + "px; position:absolute;' />";
             });
             html += "</div></div>";
         });
@@ -428,6 +428,24 @@ timeLine = {
         var z = z - 14;
         return z;
     },
+
+    getEventOffset: function(eventDate, initiativeDate) {
+        var dateFormat = "MM/DD/YYYY"
+        var mEventDate = moment(eventDate, dateFormat);
+        var mInitiativeDate = moment(initiativeDate, dateFormat);
+        var eventMonthsFromYearZero = mEventDate.year() * 12 + (mEventDate.month() + 1);
+        var initiativeMonthsFromYearZero = mInitiativeDate.year() * 12 + (mInitiativeDate.month() + 1);
+        var eventDateOffset = mEventDate.date() / mEventDate.daysInMonth() * timeLine.widthMonth;
+        var initiativeDateOffset = mInitiativeDate.date() / mInitiativeDate.daysInMonth() * timeLine.widthMonth;
+        var offset = eventMonthsFromYearZero - initiativeMonthsFromYearZero;
+        var IEpxFix = 14;
+        offset *= timeLine.widthMonth;
+        offset += eventDateOffset;
+        offset -= initiativeDateOffset;
+        offset -= IEpxFix;
+        return offset;
+    },
+
     // function to get width of bar
     getRight: function (s, e) {
         var start = s.split("/");
