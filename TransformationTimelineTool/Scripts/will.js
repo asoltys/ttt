@@ -314,7 +314,7 @@ timeLine = {
                 var image = '';
                 var date = '';
                 var id = '';
-                if (value.Show) {
+                if (value.Show == true) {
                     if (value.Type == 'Milestone') {
                         image = 'circle.png'
                     } else if (value.Type == 'Training') {
@@ -322,6 +322,8 @@ timeLine = {
                     };
                     date = value.Date;
                     id = value.ID;
+                } else {
+                    return true;
                 }
                 idString = toString(id);
                 html += "<img id='icon" + id + "' title='" + timeLine.hover(id) + "' onClick='timeLine.dialog(\"" + id + "," + rowID + "\")' src='/timeline/img/" + image + "' class='event' style='width:24px; height:32px; margin-left:" + timeLine.getEvent(date, barStartDate) + "px; position:absolute;' />";
@@ -373,7 +375,7 @@ timeLine = {
             if (value.ID == rowID) {
                 $.each(value.Events, function (key, value) {
                     if (timeLine.fuzzyDate(OGDate, value.Date) == 1) {
-                        if (value.Show && OGID != value.ID && value.Text != null && timeLine.iconFilter(value.Branches, value.Regions) == 1) {
+                        if (value.Show == true && OGID != value.ID && value.Text != null && timeLine.iconFilter(value.Branches, value.Regions) == 1) {
                             if (firstRunNull != 1) {
                                 text = text + "<hr />";
                             };
@@ -625,7 +627,7 @@ timeLine = {
     toggleIcons: function () {
         $(timeLine.initiatives).each(function (key, value) {
             $.each(value.Events, function (key, value) {
-                if (value.Show) {
+                if (value.Show == true) {
                     if (timeLine.iconFilter(value.Branches, value.Regions) == 1) {
                         $("#icon" + value.ID).css("display", "inline");
                     } else {
