@@ -149,7 +149,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
                 var quarterlyData = populateQuarterlyJSON(dateRange, initiativeBlock);
-                var unusedInits = getUnusedInitiatives(dateRange, initiativeBlock);
+                var allInitiatives = getAllInitiatives(dateRange, initiativeBlock);
                 if (quarterlyData.Count > 0)
                 {
                     initiativeBlocks.Add(new
@@ -161,7 +161,7 @@ namespace TransformationTimelineTool.Controllers
                         StartMonth = dateRange[0].Month,
                         EndMonth = dateRange[1].Month,
                         Data = quarterlyData,
-                        Unused = unusedInits
+                        Initiatives = allInitiatives
                     });
                 }
             }
@@ -210,6 +210,7 @@ namespace TransformationTimelineTool.Controllers
         private class EventInformation
         {
             public int ID { get; set; }
+            public int InitiativeID { get; set; }
             public string InitiativeNameE { get; set; }
             public string InitiativeNameF { get; set; }
             public string Type { get; set; }
@@ -246,6 +247,7 @@ namespace TransformationTimelineTool.Controllers
                     jsonEvents.Add(new EventInformation
                     {
                         ID = e.ID,
+                        InitiativeID = init.ID,
                         InitiativeNameE = init.NameE,
                         InitiativeNameF = init.NameF,
                         Type = e.PublishedEdit.Type.ToString(),
@@ -261,22 +263,21 @@ namespace TransformationTimelineTool.Controllers
             return jsonEvents.OrderBy(e => e.Date).ToList();
         }
         
-        private List<object> getUnusedInitiatives(List<DateTime> dateRange, List<Initiative> initiatives)
+        private List<object> getAllInitiatives(List<DateTime> dateRange, List<Initiative> initiatives)
         {
-            var unused = new List<object>();
+            var result = new List<object>();
             foreach (var init in initiatives)
             {
                 var events = init.Events
                     .Where(e => (e.PublishedEdit.DisplayDate >= dateRange[0] && e.PublishedEdit.DisplayDate <= dateRange[1]))
                     .ToList();
-                if (events.Count > 0)
-                    continue;
-                unused.Add(new {
+                result.Add(new {
+                    ID = init.ID,
                     NameE = init.NameE,
                     NameF = init.NameF
                 });
             }
-            return unused;
+            return result;
         }
     }
 

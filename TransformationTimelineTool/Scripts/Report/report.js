@@ -461,8 +461,23 @@ var contentGenerator = (function(resources) {
 			content += "</table>";
 		}
 
-		var unusedInitiatives = timeline['Unused'];
-		console.log(unusedInitiatives);
+		var unusedInitiatives = [];
+		if (timeline.Data.length == 0) {
+			unusedInitiatives = timeline.Initiatives;
+		} else {
+			var temp = [];
+			timeline.Data.forEach(function(elem, idx, arr) {
+				temp.push(elem.InitiativeID);
+			});
+			unusedInitiatives = timeline.Initiatives.filter(function(elem, idx, arr) {
+				for (var i = 0; i < temp.length; i++) {
+					console.log(temp[i] + ", " + elem.ID);
+					if (temp[i] == elem.ID) return false;
+				}
+				return true;
+			});
+		}
+		
 		if (unusedInitiatives.length > 0) {
 			content += "<h4>";
 			content += resources.get('unused-initiatives');
