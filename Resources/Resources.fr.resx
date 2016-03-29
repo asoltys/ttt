@@ -656,4 +656,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="ReportPrint" xml:space="preserve">
     <value>Translate me</value>
   </data>
+  <data name="AccessibilityIntroduction" xml:space="preserve">
+    <value>Pour vous aider à comprendre comment différentes initiatives vous touchent, sélectionnez un échéancier et puis votre région et votre direction générale ci-dessous pour produire une liste d'initiatives triées en fonction de leurs répercussions sur vous (répercussions élevées, moyennes, faibles, aucune ou Objectif 2020).Les données seront mises à jour régulièrement. Avez-vous des questions? &lt;a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'&gt;Cliquez ici pour envoyer un courriel.&lt;/a&gt;</value>
+  </data>
 </root>
