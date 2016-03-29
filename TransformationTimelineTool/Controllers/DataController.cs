@@ -279,6 +279,91 @@ namespace TransformationTimelineTool.Controllers
             }
             return result;
         }
+
+        [HttpPost]
+        [Route("accessibility")]
+        public async Task<ActionResult> ReturnAllInitiatives(string culture)
+        {
+            List<Initiative> initiatives = await db.Initiatives.ToListAsync();
+            initiatives = culture == "fr-ca" ?
+                initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
+            var initiativeBlocks = new List<object>();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct();
+            foreach (var timeline in timelines)
+            {
+                var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
+                initiativeBlocks.Add(new {
+                    NameE = timeline,
+                    NameF = timeline,
+                    Data = populateJSONWithControl(initiativeBlock)
+                });
+            }
+            return Json(initiativeBlocks);
+        }
+
+        private List<object> populateJSONWithControl(List<Initiative> initiatives)
+        {
+            var json = new List<object>();
+            foreach (var init in initiatives)
+            {
+                var jsonEvents = new List<object>();
+                var jsonImpacts = new List<object>();
+                var events = init.Events
+                    .OrderBy(e => e.PublishedEdit.DisplayDate);
+
+                foreach (var e in events)
+                {
+                    var eventControlDictionary = new Dictionary<string, int>();
+                    var branches = e.Branches.Select(b => b.ID);
+                    var regions = e.Regions.Select(r => r.ID);
+                    foreach (var r in regions)
+                    {
+                        foreach (var b in branches)
+                        {
+                            eventControlDictionary.Add(r + "," + b, -1);
+                        }
+                    }
+                    jsonEvents.Add(new
+                    {
+                        ID = e.ID,
+                        Type = e.PublishedEdit.Type.ToString(),
+                        Date = e.PublishedEdit.DisplayDate.ToString(dateFormat),
+                        TextE = e.PublishedEdit.TextE,
+                        HoverE = e.PublishedEdit.HoverE,
+                        TextF = e.PublishedEdit.TextF,
+                        HoverF = e.PublishedEdit.HoverF,
+                        Control = eventControlDictionary
+                    });
+                }
+
+                var controlDictionary = new Dictionary<string, int>();
+                foreach (var impact in init.Impacts)
+                {
+                    var branches = impact.Branches.Select(b => b.ID);
+                    var regions = impact.Regions.Select(r => r.ID);
+                    foreach (var r in regions)
+                    {
+                        foreach (var b in branches)
+                        {
+                            controlDictionary.Add(r + "," + b, (int) impact.Level);
+                        }
+                    }
+                }
+                json.Add(new
+                {
+                    ID = init.ID,
+                    NameE = init.NameE,
+                    NameF = init.NameF,
+                    DescriptionE = init.DescriptionE,
+                    DescriptionF = init.DescriptionF,
+                    StartDate = init.StartDate.ToString(dateFormat),
+                    EndDate = init.EndDate.ToString(dateFormat),
+                    Events = jsonEvents,
+                    Impacts = controlDictionary
+                });
+            }
+            return json;
+        }
     }
 
    
