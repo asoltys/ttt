@@ -617,6 +617,7 @@ timeLine = {
         html += "<div class='box' style='background-color:#CCDD44'></div> " + timeLine.utility.translate("medIm") + "<br />"
         html += "<div class='box' style='background-color:#551155'></div> " + timeLine.utility.translate("lowIm") + "<br />"
         html += "<div class='box' style='background-color:#666666'></div> " + timeLine.utility.translate("noIm") + "<br />"
+        html += "<div class='box' style='background-color:#D1E8FF'></div> " + timeLine.utility.translate("bpImDesc") + "<br />"
         html += "</div>"
         html += "<div id='clear'><a href='' id='clearResults'>" + timeLine.utility.translate("clear") + "</a></div>"
         html += "</div>"

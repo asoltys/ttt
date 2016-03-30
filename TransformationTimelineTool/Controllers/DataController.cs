@@ -95,7 +95,7 @@ namespace TransformationTimelineTool.Controllers
             initiatives = culture == "fr-ca" ?
                 initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
             var initiativeBlocks = new List<object>();
-            var timelines = initiatives.Select(i => i.Timeline).Distinct();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
             foreach (var timeline in timelines)
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
@@ -144,7 +144,7 @@ namespace TransformationTimelineTool.Controllers
                 initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
             List<DateTime> dateRange = GetDateRage(quarter, year);
             var initiativeBlocks = new List<object>();
-            var timelines = initiatives.Select(i => i.Timeline).Distinct();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
             foreach (var timeline in timelines)
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
@@ -288,7 +288,7 @@ namespace TransformationTimelineTool.Controllers
             initiatives = culture == "fr-ca" ?
                 initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
             var initiativeBlocks = new List<object>();
-            var timelines = initiatives.Select(i => i.Timeline).Distinct();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
             foreach (var timeline in timelines)
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
