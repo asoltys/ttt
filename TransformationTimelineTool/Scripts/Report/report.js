@@ -174,9 +174,10 @@ var controller = (function(gui, resources) {
 		}
 	}
 
-	var _addOption = function(optionObject, idSuffix) {
+	var _addOption = function(optionObject, idSuffix, optionalText) {
 		var text = culture == 'en-ca' ? optionObject.NameE : optionObject.NameF;
 		var value = optionObject.ID === undefined ? text : optionObject.ID;
+		text = optionalText == null ? text : optionalText;
 		var $option = $('<option></option>');
 		$option.attr('value', value);
 		$option.text(text);
@@ -193,7 +194,8 @@ var controller = (function(gui, resources) {
 	}
 
 	var _setupTimelineController = function(object, idSuffix) {
-		_addOption(object, idSuffix);
+		var translatedTimelineName = resources.get(object['NameE']);
+		_addOption(object, idSuffix, translatedTimelineName);
 	}
 
 	var _clearControllerOptions = function(idSuffix) {
@@ -543,7 +545,7 @@ var contentGenerator = (function(resources) {
 		}
 
 		return {
-			Name: timeline["Name" + _cultureDataAppend],
+			Name: resources.get(timeline['NameE']),
 			htmlContent: content
 		};
 	}

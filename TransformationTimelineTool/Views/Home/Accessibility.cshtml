@@ -113,7 +113,47 @@ var apiReturnDateFormat = 'MM/DD/YYYY';
 
 // ----------------------------------------------------------------------------
 
-var gui = (function () {
+var resources = (function() {
+    var _resourceMap = {
+        'high-impact': '@Resources.TimelineHighImpact',
+        'medium-impact': '@Resources.TimelineMediumImpact',
+        'low-impact': '@Resources.TimelineLowImpact',
+        'no-impact': '@Resources.TimelineNoImpact',
+        'blueprint': 'This is blueprint (need translation)',
+        'description': '@Resources.Description',
+        'timespan': '@Resources.Timespan',
+        'milestone': '@Resources.Milestone',
+        'milestones': '@Resources.Milestones',
+        'training': '@Resources.Training',
+        'training-plural': '@Resources.TrainingPlural',
+        'date': '@Resources.Date',
+        'initiative': '@Resources.Initiative',
+        'type': '@Resources.Type',
+        'unused-initiatives': '@Resources.ReportUnusedInitiatives',
+        'report-subtitle': '@Resources.ReportPrintCoverPageSubtitle',
+        'report-print-initiative-title': '@Resources.ReportPrintCoverPageInitiativeTitle',
+        'report-print-quarterly-title': '@Resources.ReportPrintCoverPageQuarterlyTitle',
+        'report-print-overview': '@Resources.ReportPrintCoverPageOverview',
+        'report-print-all-initiatives': '@Resources.ReportPrintCoverPageAllInitiatives',
+        'report-error-no-selection': '@ErrorMessages.ReportNoOptionSelected',
+        'report-quarter': '@Resources.ReportQuarter',
+        'report-quarter-prefix': '@Resources.ReportQuarterPrefix',
+        'report-fiscal-year': '@Resources.ReportFiscalYear',
+        'timeline': '@Resources.ReportTimeline',
+        'transformationtimeline': '@Resources.ReportTimelineTransformation',
+        'bp2020': '@Resources.ReportTimelineBP2020'
+    };
+
+    var _getByKey = function(key) {
+        return _resourceMap[key.toLowerCase()];
+    }
+
+    return {
+        get: _getByKey
+    }
+})();
+
+var gui = (function (resources) {
     var _accordionCount = 0;
 
     var _addHeading = function(title) {
@@ -137,7 +177,7 @@ var gui = (function () {
     var _render = function(data) {
         $("#timeline-accordions").empty();
         data.forEach(function(block) {
-            _addHeading(block['Name' + cultureDataAppend]);
+            _addHeading(resources.get(block['NameE']));
             block.Data.forEach(function(initiative, idx, arr) {
                 var content = _createContent(initiative);
                 var initiativeName = initiative['Name' + cultureDataAppend];
@@ -239,7 +279,7 @@ var gui = (function () {
             console.log("Took " + (later - start) + "ms to draw data");
         }
     }
-})();
+})(resources);
 
 
 var dataManager = (function() {
@@ -375,7 +415,7 @@ var dataManager = (function() {
     }
 })();
 
-var controller = (function(dataManager) {
+var controller = (function(dataManager, resources) {
     var _timeline = '#select-timeline',
         _timelineKey = document.querySelector(_timeline).value;
     var _region = '#select-region',
@@ -394,7 +434,7 @@ var controller = (function(dataManager) {
 
     var _addTimelineOptions = function() {
         dataManager.getTimelines().forEach(function(elem, idx, arr) {
-            _addOption(_timeline, {text: elem, value: elem});
+            _addOption(_timeline, {text: resources.get(elem), value: elem});
         });
     }
 
@@ -487,7 +527,7 @@ var controller = (function(dataManager) {
         controlState: _getControllerState,
         timelineKey: _getTimelineKey
     }
-})(dataManager);
+})(dataManager, resources);
 
 $(window).on('load', function() {
     dataManager.initialize(controller.generate);

@@ -680,4 +680,10 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="TrainingPlural" xml:space="preserve">
     <value>Formations</value>
   </data>
+  <data name="ReportTimelineTransformation" xml:space="preserve">
+    <value>Transformation</value>
+  </data>
+  <data name="ReportTimelineBP2020" xml:space="preserve">
+    <value>Objectif 2020</value>
+  </data>
 </root>

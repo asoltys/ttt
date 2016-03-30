@@ -1332,6 +1332,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blueprint 2020.
+        /// </summary>
+        public static string ReportTimelineBP2020 {
+            get {
+                return ResourceManager.GetString("ReportTimelineBP2020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transformation.
+        /// </summary>
+        public static string ReportTimelineTransformation {
+            get {
+                return ResourceManager.GetString("ReportTimelineTransformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report Type.
         /// </summary>
         public static string ReportType {

@@ -114,8 +114,8 @@
         <div class="align-center">
             <i id="icon-loading-report" class="fa fa-spinner fa-spin hide"></i>
         </div>
-        <div id="controller-information" class="span-12"></div>
-        <p id="report-warning" class="span-12 hide">@Resources.ReportPrintCoverPageWarning</p>
+        <span id="report-warning" class="span-12 hide dotted-bottom">@Html.Raw(Resources.ReportPrintCoverPageWarning)</span>
+        <div id="controller-information" class="span-12 margin-top-medium margin-bottom-medium"></div>
         <div id="report" class="span-12"></div>
     </div>
 </div>
@@ -148,7 +148,9 @@
             'report-quarter': '@Resources.ReportQuarter',
             'report-quarter-prefix': '@Resources.ReportQuarterPrefix',
             'report-fiscal-year': '@Resources.ReportFiscalYear',
-            'timeline': '@Resources.ReportTimeline'
+            'timeline': '@Resources.ReportTimeline',
+            'transformationtimeline': '@Resources.ReportTimelineTransformation',
+            'bp2020': '@Resources.ReportTimelineBP2020'
         };
 
         var _getByKey = function(key) {
