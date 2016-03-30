@@ -147,6 +147,8 @@ var controller = (function(gui, resources) {
 
 	var _addQuarterOption = function(object) {
 		var startDate = moment(object.Start, apiReturnDateFormat);
+		// add Teresa's quarter bypass option via hard coding
+		startDate = moment('04/01/2014', apiReturnDateFormat);
 		var endDate = moment(object.End, apiReturnDateFormat);
 		var startQuarter = getQuarterData(startDate.month()+1, 
 			startDate.year());
