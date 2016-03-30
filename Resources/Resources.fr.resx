@@ -419,9 +419,6 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
 
 &lt;p&gt;À noter: Il faut complèter les informations dans les deux langues, Francais et Anglais, pour soumettre cette activité pour l’approbation.&lt;/p&gt;</value>
   </data>
-  <data name="HoverInstrFra" xml:space="preserve">
-    <value>Resource Deleted</value>
-  </data>
   <data name="InitiativeSelectLabel" xml:space="preserve">
     <value>Choisissez une initiative dans menu déroulant.</value>
   </data>
@@ -688,5 +685,8 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   </data>
   <data name="Transformation" xml:space="preserve">
     <value>Transformation</value>
+  </data>
+  <data name="HoverInstrFra" xml:space="preserve">
+    <value>Resource Deleted</value>
   </data>
 </root>

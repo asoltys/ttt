@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using TransformationTimelineTool.DAL;
 using TransformationTimelineTool.Models;
 
@@ -69,81 +70,36 @@ namespace TransformationTimelineTool.Helpers
 
         private static string GetMailBody()
         {
-            string Body = "<p>Following initiatives you have subscribed to have been changed since last week:</p>";
+            var ServerDomain = WebConfigurationManager.AppSettings["serverURL"];
+            string Body = "<p>Les initiatives auquelles vous vous êtes abonné a été mis à jour dans la dernière semaine:</p>";
             foreach (var initiative in SubscriberChangedInitiatives)
             {
-                Body += "<h2>Changes within initiative " + initiative.NameE + ":</h2>";
-                if(ChangedInitiatives.Count > 0)
+                Body += "<h2>Changements dans l'initiative " + initiative.NameF + ":</h2>";
+                if (ChangedInitiatives.Count > 0)
                 {
-                    foreach(var changedInitiative in ChangedInitiatives)
+                    foreach (var changedInitiative in ChangedInitiatives)
                     {
-                        if(changedInitiative.ID == initiative.ID)
+                        if (changedInitiative.ID == initiative.ID)
                         {
-                            Body += "<p>The details for initiative " + initiative.NameE + " have changed.</p>";
+                            Body += "<p>La description de l'initiative a été changer.</p>";
                         }
                     }
                 }
 
                 if (SubscriberChangedEditsInitiatives.Contains(initiative))
                 {
-                    Body += "<p>The following activities within initiative " + initiative.NameE + " have changed.</p>";
+                    Body += "<p>Les activités suivantes ont été changer:</p>";
                     Body += "<ul>";
                     foreach (var edit in ChangedEdits)
                     {
                         if (edit.Event.InitiativeID == initiative.ID)
                         {
-                            Body += "<li>The Activity " + edit.HoverE + " has changed.</li>";
-                        }
-                    }
-
-                    Body += "</ul>";
-                }
-
-                if (SubscriberChangedImpactsInitiatives.Contains(initiative))
-                {
-                    Body += "<p>The following impacts within initiative " + initiative.NameE + " have changed.</p>";
-                    Body += "<ul>";
-                    foreach (var impact in ChangedImpacts)
-                    {
-                        if (impact.InitiativeID == initiative.ID)
-                        {
-                            Body += "<li>The impact for " + impact.Initiative.NameE + " has changed. </li>";
+                            Body += "<li>" + edit.HoverF + "</li>";
                         }
                     }
                     Body += "</ul>";
                 }
-            }
-
-            Body += "<p>Following initiatives you have subscribed to have been changed since last week:</p>";
-            foreach (var initiative in SubscriberChangedInitiatives)
-            {
-                Body += "<h2>[FRENCH]Changes within initiative " + initiative.NameF + ":</h2>";
-                if(ChangedInitiatives.Count > 0)
-                {
-                    foreach(var changedInitiative in ChangedInitiatives)
-                    {
-                        if(changedInitiative.ID == initiative.ID)
-                        {
-                            Body += "<p>[FRENCH]The details for initiative " + initiative.NameF + " have changed.</p>";
-                        }
-                    }
-                }
-
-                if (SubscriberChangedEditsInitiatives.Contains(initiative))
-                {
-                    Body += "<p>[FRENCH]The following activities within initiative " + initiative.NameF + " have changed.</p>";
-                    Body += "<ul>";
-                    foreach (var edit in ChangedEdits)
-                    {
-                        if (edit.Event.InitiativeID == initiative.ID)
-                        {
-                            Body += "<li>[FRENCH]The Activity " + edit.HoverF + " has changed.</li>";
-                        }
-                    }
-
-                    Body += "</ul>";
-                }
-
+                /*
                 if (SubscriberChangedImpactsInitiatives.Contains(initiative))
                 {
                     Body += "<p>[FRENCH]The following impacts within initiative " + initiative.NameF + " have changed.</p>";
@@ -156,8 +112,57 @@ namespace TransformationTimelineTool.Helpers
                         }
                     }
                     Body += "</ul>";
-                }
+                }*/
             }
+            Body += "<a href='"+ ServerDomain + "/Sabonner-Subscribe?lang=fra'>Cliquez ici pour vous déabonner ou de modifier votre abonnement.</a><br/>";
+            Body += "Avez-vous des questions? <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimeline'>Cliquez ici pour envoyer un courriel.</a>";
+            Body += "<hr>";
+
+            Body += "<p>The initiatives that you have subscribed to has been updated since last week:</p>";
+            foreach (var initiative in SubscriberChangedInitiatives)
+            {
+                Body += "<h2>Changes within initiative " + initiative.NameE + ":</h2>";
+                if(ChangedInitiatives.Count > 0)
+                {
+                    foreach(var changedInitiative in ChangedInitiatives)
+                    {
+                        if(changedInitiative.ID == initiative.ID)
+                        {
+                            Body += "<p>The initiative description has changed.</p>";
+                        }
+                    }
+                }
+
+                if (SubscriberChangedEditsInitiatives.Contains(initiative))
+                {
+                    Body += "<p>The following activities have changed:</p>";
+                    Body += "<ul>";
+                    foreach (var edit in ChangedEdits)
+                    {
+                        if (edit.Event.InitiativeID == initiative.ID)
+                        {
+                            Body += "<li>" + edit.HoverE + "</li>";
+                        }
+                    }
+                    Body += "</ul>";
+                }
+                /*
+                if (SubscriberChangedImpactsInitiatives.Contains(initiative))
+                {
+                    Body += "<p>The following impacts within initiative " + initiative.NameE + " have changed.</p>";
+                    Body += "<ul>";
+                    foreach (var impact in ChangedImpacts)
+                    {
+                        if (impact.InitiativeID == initiative.ID)
+                        {
+                            Body += "<li>The impact for " + impact.Initiative.NameE + " has changed. </li>";
+                        }
+                    }
+                    Body += "</ul>";
+                }*/
+            }
+            Body += "<a href='"+ ServerDomain + "/Sabonner-Subscribe?lang=eng'>Click here to unsubscribe or to change your subscription.</a><br/>";
+            Body += "Questions? <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimeline'>Click here to send an email.</a>";
             return Body;
         }
 
