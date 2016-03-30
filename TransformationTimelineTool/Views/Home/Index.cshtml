@@ -47,6 +47,25 @@
 <script src="/Scripts/tl_utility.js"></script>
 <script src="/Scripts/will.js"></script>
 <script src="/Scripts/moment-with-locales.min.js"></script>
+<!-- Piwik -->
+<script type="text/javascript">
+var url = window.location.href;
+var production = (/transformation-intranet/gi).test(url);
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function(run) {
+    if (!run) return false;
+    var u="//stats-int.tpsgc-pwgsc.gc.ca/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 290]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })(production);
+</script>
+<noscript><p><img src="//stats-int.tpsgc-pwgsc.gc.ca/piwik.php?idsite=290" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
 
 }
 <!--	<script src="js/Initiative.js"></script>--->
