@@ -477,6 +477,7 @@ timeLine = {
     // runs filter when dropdown changes
     branchSelect: function () {
         timeLine.filter();
+        if ($('#branchSelect').val() == '') timeLine.resetColor();
     },
     orderRows: function () {
         var getAll = [];
@@ -596,9 +597,6 @@ timeLine = {
                 $("#p" + getAll[i].id).css("background-color", color[level]);
                 $("#t" + getAll[i].id).css("background-color", color[level]);
             };
-        } else {
-            timeLine.reset();
-            timeLine.orderRows();
         }
         timeLine.toggleIcons();
         var top = timeLine.heightQuarter + timeLine.heightMonth;
@@ -632,6 +630,13 @@ timeLine = {
         timeLine.reset();
         timeLine.orderRows();
         timeLine.filter();
+    },
+    resetColor: function() {
+        $(".timeLineBar").css("background-color", "#eeeeee");
+        $(".projectRow").css("background-color", "#ffffff");
+        $(".timeLineRow").css("background-color", "#ffffff");
+        $(".tBP2020").css("background-color", "#D1E8FF");
+        $(".pBP2020").css("background-color", "#D1E8FF");
     },
     // resets filter
     reset: function () {
