@@ -725,7 +725,7 @@ var quarterlyReport = (function(dataFactory, gui) {
 	}
 
 	var _setPrintReportMoreInfo = function() {
-		$('#report-more-info').text($('#select-quarter').val() + ' ' + resources.get('report-print-overview'));
+		$('#report-more-info').html($('#select-quarter').val() + ' ' + resources.get('report-print-overview'));
 	}
 
 	var _registerEvents = function() {
