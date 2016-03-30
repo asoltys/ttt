@@ -57,8 +57,8 @@ dictionary = {
         "f": "Aucun changement ne sera apporté à la façon dont un employé effectue son travail."
     },
     "bpImDesc": {
-        "e": "Blueprint 2020.",
-        "f": ""
+        "e": "Blueprint 2020",
+        "f": "Objectif 2020"
     },
     "quarter": { "e": "Quarter", "f": "Trimestre" },
     "splash": {
