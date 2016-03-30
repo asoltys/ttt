@@ -40,6 +40,7 @@ timeLine = {
     heightQuarter: 18,
     heightMonth: 18,
     heightGroup: 20,
+    filteredOnce: false,
     // populate with content
     content: function () {
         $.ajax({
@@ -505,18 +506,13 @@ timeLine = {
     },
     // this is where the magic happens
     filter: function () {
-                var rSelected = $('#areaSelect').val();
-                var bSelected = $('#branchSelect').val();
+        var rSelected = $('#areaSelect').val();
+        var bSelected = $('#branchSelect').val();
         var vSelected = $('#viewSelect').val();
         var getAll = [];
         var color = ["#dbdbdb", "#f0caeb", "#ebf2b1", "#abdbcf", "#D1E8FF"];
         var rowsActive = timeLine.countTimeLine;
         var levelCount = [];
-        // first run popup
-        if (timeLine.runOnce == 0) {
-            //timeLine.dialogCustom(timeLine.utility.translate("splash"));
-            timeLine.runOnce = 1;
-        };
         // store all initiatives in object
         $.each(timeLine.initiatives, function (key, value) {
             getAll.push({ id: timeLine.initiatives[key].ID, name: timeLine.initiatives[key].Name, view: timeLine.initiatives[key].Timeline, impact: timeLine.initiatives[key].Impacts });
@@ -544,17 +540,28 @@ timeLine = {
             }
         }
         // if region is selected, unlock branches
-                if (rSelected != "") {
-                    $("#branchSelect").prop("disabled", false);
-                } else {
-                    $("#branchSelect").prop("disabled", true);
-                    $("#branchSelect").val('');
-                };
+        if (rSelected != "") {
+            $("#branchSelect").prop("disabled", false);
+        } else {
+            $("#branchSelect").prop("disabled", true);
+            $("#branchSelect").val('');
+        };
         //reset
         $(".projectGroupRow").css("display", "none");
         $(".timeLineGroupRow").css("display", "none");
         // if region/branch is selected, filter
-                if (rSelected != "" && bSelected != "") {
+        if (rSelected != "" && bSelected != "") {
+            if (!timeLine.filteredOnce) {
+                timeLine.filteredOnce = true;
+                try {
+                    timeLine.dialogCustom(timeLine.utility.translate("splash"));
+                    setTimeout(function() {
+                        $('#dialog').dialog('open');
+                    }, 1);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
             getAll = getAll.sort(function (a, b) { return b.name.localeCompare(a.name); });
             for (var i = 0; i < getAll.length; i++) {
                 var level = 0;
@@ -565,10 +572,10 @@ timeLine = {
                     // reset to zero
                     $("#p" + getAll[i].id).insertAfter("#pg0");
                     $("#t" + getAll[i].id).insertAfter("#tg0");
-                            if ($.inArray(parseInt(bSelected), branches) > -1 && $.inArray(parseInt(rSelected), regions) > -1) {
+                    if ($.inArray(parseInt(bSelected), branches) > -1 && $.inArray(parseInt(rSelected), regions) > -1) {
                         level = impact[j].Level;
                         levelCount.push(level);
-                                };
+                    };
                 }
                 $("#pg" + level).css("display", "inline");
                 $("#tg" + level).css("display", "inline");
@@ -588,10 +595,13 @@ timeLine = {
                 $("#t" + getAll[i].id).insertAfter("#tg" + level);
                 $("#p" + getAll[i].id).css("background-color", color[level]);
                 $("#t" + getAll[i].id).css("background-color", color[level]);
-                };
+            };
+        } else {
+            timeLine.reset();
+            timeLine.orderRows();
         }
-                timeLine.toggleIcons();
-                var top = timeLine.heightQuarter + timeLine.heightMonth;
+        timeLine.toggleIcons();
+        var top = timeLine.heightQuarter + timeLine.heightMonth;
         var uniqueLevelCount = [];
         $.each(levelCount, function (i, el) {
             if ($.inArray(el, uniqueLevelCount) === -1) uniqueLevelCount.push(el);

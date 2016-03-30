@@ -1,22 +1,9 @@
 dictionary = {
     "about": {
-        "e": "<p>To help you understand how various transformation initiatives " +
-              "impact you, select your Region and branch below to generate a list " +
-              "of initiatives sorted by their impacts on you (high, medium, " +
-              "low or none). Hold your mouse over the displayed icons to find " +
-              "links to information about the milestones or training being " +
-              "offered. Data will be updated regularly. Questions? " +
+        "e": "<p>To help you understand how various initiatives impact you, select a timeline and then your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low, none or Blueprint 2020). Hold your mouse over the displayed icons to find links to information about the milestones or training being offered. Data will be updated regularly. Questions? " +
               "<a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'>" +
               "Click here to send an email</a>.</p>",
-        "f": "<p>Pour vous aider à comprendre comment différentes initiatives " +
-                          "de transformation vous touchent, sélectionnez votre région et " +
-                          "votre direction générale ci-dessous pour produire une liste " +
-                          "d’initiatives triées en fonction de leurs répercussions sur vous " +
-                          "(répercussions élevées, moyennes, faibles ou aucune répercussion). " +
-                          "Placez le curseur de la souris sur les icônes affichées pour trouver " +
-                          "des liens vers des renseignements concernant les étapes importantes ou " +
-                          "les formations offertes. Les données seront mises à jour régulièrement. " +
-                          "Avez-vous des questions? " +
+        "f": "<p>Pour vous aider à comprendre comment différentes initiatives vous touchent, sélectionnez un échéancier et puis votre région et votre direction générale ci-dessous pour produire une liste d’initiatives triées en fonction de leurs répercussions sur vous (répercussions élevées, moyennes, faibles, aucune ou Objectif 2020). Placez le curseur de la souris sur les icônes affichées pour trouver des liens vers des renseignements concernant les étapes importantes ou les formations offertes. Les données seront mises à jour régulièrement. Avez-vous des questions? " +
                           "<a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'>" +
                           "Cliquez ici pour envoyer un courriel</a>.</p>"
     },
@@ -78,8 +65,7 @@ dictionary = {
         "e": "<p>This transformation timeline tool has been designed to provide " +
               "you with a list of the current transformation initiatives based on " +
               "the area and the branch that you have chosen.  After you close " +
-              "this message (click the “X” in the top right corner of this box), " +
-              "the tool will display a re-sorted list of initiatives that have " +
+              "this message, the tool will display a re-sorted list of initiatives that have " +
               "been organized based on the degree to which they will change the " +
               "way you do your work.</p>" +
               "<p>Within your displayed results, click on the name of the " +
@@ -93,7 +79,7 @@ dictionary = {
               "<p>Still have more questions? Please contact your manager or send " +
               "an email message by <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?" +
               "subject=TransformationTimelineTool'>clicking here</a>.</p>",
-        "f": "<p>Cet outil de calcul des délais pour la transformation a été conçu pour vous fournir une liste des initiatives de transformation actuelles en fonction de la région et de la direction générale que vous avez choisis. Lorsque vous aurez fermé ce message (cliquez sur le « X » dans le coin supérieur droit de cette fenêtre), l’outil présentera une liste d’initiatives nouvellement triées qui ont été organisées en fonction de la mesure dans laquelle elles vont changer la façon dont vous travaillez.</p>" +
+        "f": "<p>Cet outil de calcul des délais pour la transformation a été conçu pour vous fournir une liste des initiatives de transformation actuelles en fonction de la région et de la direction générale que vous avez choisis. Lorsque vous aurez fermé ce message, l’outil présentera une liste d’initiatives nouvellement triées qui ont été organisées en fonction de la mesure dans laquelle elles vont changer la façon dont vous travaillez.</p>" +
 							"<p>Parmi les résultats affichés, cliquez sur le nom de l’initiative pour en savoir plus à son sujet et pour connaître ses répercussions générales sur les employés. Vous pouvez aussi cliquer sur les icônes en forme de point rouge pour en savoir plus sur les étapes de chaque initiative. Si vous cliquez sur un icône de livre, vous obtiendrez de l’information sur la formation relative à l’initiative de transformation. Vous trouverez l’option « Recommencer » au bas de l’outil; cette option vous permet de recommencer et de choisir une direction générale et une région différentes si vous souhaitez pousser votre exploration.</p>" +
 						"<p>Avez-vous d’autres questions? Communiquez avec votre gestionnaire ou envoyez un message électronique en <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=Calendrierdestransformations'>cliquant ici</a>.</p>"
     },

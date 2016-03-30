@@ -639,7 +639,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
     <value>Rapport trimestriel</value>
   </data>
   <data name="ReportPrintCoverPageSubtitle" xml:space="preserve">
-    <value>Translate me</value>
+    <value>SPAC Timeline Tool</value>
   </data>
   <data name="ReportPrintCoverPageOverview" xml:space="preserve">
     <value>Aperçu</value>
@@ -688,5 +688,8 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   </data>
   <data name="HoverInstrFra" xml:space="preserve">
     <value>Resource Deleted</value>
+  </data>
+  <data name="PSPCTimelineTool" xml:space="preserve">
+    <value>SPAC Timeline Tool</value>
   </data>
 </root>

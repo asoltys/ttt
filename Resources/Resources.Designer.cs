@@ -1094,6 +1094,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PSPC Timeline Tool.
+        /// </summary>
+        public static string PSPCTimelineTool {
+            get {
+                return ResourceManager.GetString("PSPCTimelineTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quarter.
         /// </summary>
         public static string Quarter {
