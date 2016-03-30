@@ -254,7 +254,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BP2020.
+        ///   Looks up a localized string similar to Blueprint 2020.
         /// </summary>
         public static string BP2020 {
             get {
@@ -1571,6 +1571,15 @@ namespace Resources {
         public static string TrainingPlural {
             get {
                 return ResourceManager.GetString("TrainingPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transformation.
+        /// </summary>
+        public static string Transformation {
+            get {
+                return ResourceManager.GetString("Transformation", resourceCulture);
             }
         }
         

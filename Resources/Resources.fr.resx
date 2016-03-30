@@ -573,7 +573,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
     <value>La commentaire doit être supérieure à 0 caractère et inferieure à 200 caractères</value>
   </data>
   <data name="BP2020" xml:space="preserve">
-    <value>BP2020</value>
+    <value>Objectif 2020</value>
   </data>
   <data name="Timeline" xml:space="preserve">
     <value>Timeline</value>
@@ -685,5 +685,8 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   </data>
   <data name="ReportTimelineBP2020" xml:space="preserve">
     <value>Objectif 2020</value>
+  </data>
+  <data name="Transformation" xml:space="preserve">
+    <value>Transformation</value>
   </data>
 </root>

@@ -794,6 +794,7 @@
     <Content Include="boew-wet\wet3.1\theme-wet-boew\js\theme-min.js" />
     <Content Include="boew-wet\wet3.1\valid_versions.txt" />
     <Content Include="boew-wet\wet3.1\version.txt" />
+    <Content Include="Content\1-col-layout-master.css" />
     <Content Include="Content\accessibility.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

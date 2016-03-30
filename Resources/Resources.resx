@@ -571,7 +571,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>Comment needs to be greater than 0 character and less than 200 characters</value>
   </data>
   <data name="BP2020" xml:space="preserve">
-    <value>BP2020</value>
+    <value>Blueprint 2020</value>
   </data>
   <data name="Timeline" xml:space="preserve">
     <value>Timeline</value>
@@ -683,5 +683,8 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
   </data>
   <data name="ReportTimelineBP2020" xml:space="preserve">
     <value>Blueprint 2020</value>
+  </data>
+  <data name="Transformation" xml:space="preserve">
+    <value>Transformation</value>
   </data>
 </root>
