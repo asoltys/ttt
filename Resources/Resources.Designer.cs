@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accessibility.
+        ///   Looks up a localized string similar to Accessible.
         /// </summary>
         public static string Accessibility {
             get {
@@ -820,6 +820,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Milestones.
+        /// </summary>
+        public static string Milestones {
+            get {
+                return ResourceManager.GetString("Milestones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apr.
         /// </summary>
         public static string MonthApr {
@@ -1170,7 +1179,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By Quarterly.
+        ///   Looks up a localized string similar to By Quarter.
         /// </summary>
         public static string ReportByQuarterly {
             get {
@@ -1179,7 +1188,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report.
+        ///   Looks up a localized string similar to FY.
+        /// </summary>
+        public static string ReportFiscalYear {
+            get {
+                return ResourceManager.GetString("ReportFiscalYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeline Reports.
         /// </summary>
         public static string ReportPageTitle {
             get {
@@ -1242,11 +1260,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The dates of activities may not reflect the actual date due to frequent changes..
+        ///   Looks up a localized string similar to The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href=&apos;http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng&apos;&gt;PSPC Timeline Tool&lt;/a&gt; for up-to-date information..
         /// </summary>
         public static string ReportPrintCoverPageWarning {
             get {
                 return ResourceManager.GetString("ReportPrintCoverPageWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quarter.
+        /// </summary>
+        public static string ReportQuarter {
+            get {
+                return ResourceManager.GetString("ReportQuarter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Q.
+        /// </summary>
+        public static string ReportQuarterPrefix {
+            get {
+                return ResourceManager.GetString("ReportQuarterPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        public static string Reports {
+            get {
+                return ResourceManager.GetString("Reports", resourceCulture);
             }
         }
         
@@ -1274,6 +1319,15 @@ namespace Resources {
         public static string ReportSelectTimeline {
             get {
                 return ResourceManager.GetString("ReportSelectTimeline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeline.
+        /// </summary>
+        public static string ReportTimeline {
+            get {
+                return ResourceManager.GetString("ReportTimeline", resourceCulture);
             }
         }
         
@@ -1490,6 +1544,15 @@ namespace Resources {
         public static string Training {
             get {
                 return ResourceManager.GetString("Training", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Training.
+        /// </summary>
+        public static string TrainingPlural {
+            get {
+                return ResourceManager.GetString("TrainingPlural", resourceCulture);
             }
         }
         

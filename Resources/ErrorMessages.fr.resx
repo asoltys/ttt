@@ -166,6 +166,6 @@
     <value>tba</value>
   </data>
   <data name="ReportNoOptionSelected" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Veuillez choisir tous les options avant d'imprimer.</value>
   </data>
 </root>

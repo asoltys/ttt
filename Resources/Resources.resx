@@ -604,7 +604,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>Report Type</value>
   </data>
   <data name="ReportByQuarterly" xml:space="preserve">
-    <value>By Quarterly</value>
+    <value>By Quarter</value>
   </data>
   <data name="ReportByInitiative" xml:space="preserve">
     <value>By Initiative</value>
@@ -613,7 +613,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>Select Initiative</value>
   </data>
   <data name="ReportPageTitle" xml:space="preserve">
-    <value>Report</value>
+    <value>Timeline Reports</value>
   </data>
   <data name="Print" xml:space="preserve">
     <value>Print</value>
@@ -622,7 +622,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>Subscribe</value>
   </data>
   <data name="Accessibility" xml:space="preserve">
-    <value>Accessibility</value>
+    <value>Accessible</value>
   </data>
   <data name="Report" xml:space="preserve">
     <value>Report</value>
@@ -649,12 +649,33 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>All Initiatives</value>
   </data>
   <data name="ReportPrintCoverPageWarning" xml:space="preserve">
-    <value>The dates of activities may not reflect the actual date due to frequent changes.</value>
+    <value>The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href='http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng'&gt;PSPC Timeline Tool&lt;/a&gt; for up-to-date information.</value>
   </data>
   <data name="ReportPrint" xml:space="preserve">
     <value>Print Report</value>
   </data>
   <data name="AccessibilityIntroduction" xml:space="preserve">
     <value>To help you understand how various initiatives impact you, select a timeline and then your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low, none or Blueprint 2020). Data will be updated regularly. Questions? &lt;a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'&gt;Click here to send an email.&lt;/a&gt;</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="ReportFiscalYear" xml:space="preserve">
+    <value>FY</value>
+  </data>
+  <data name="ReportQuarter" xml:space="preserve">
+    <value>Quarter</value>
+  </data>
+  <data name="ReportTimeline" xml:space="preserve">
+    <value>Timeline</value>
+  </data>
+  <data name="ReportQuarterPrefix" xml:space="preserve">
+    <value>Q</value>
+  </data>
+  <data name="Milestones" xml:space="preserve">
+    <value>Milestones</value>
+  </data>
+  <data name="TrainingPlural" xml:space="preserve">
+    <value>Training</value>
   </data>
 </root>

@@ -43,7 +43,7 @@
                 <form class="margin-bottom-none">
                     <div class="span-6 margin-right-none margin-bottom-none">
                         <label class="form-label-inline font-large">@Resources.ReportSelectTimeline</label>
-                        <select name="select-timeline" id="select-initiative-timeline" data-controller-name='@Resources.Timeline'>
+                        <select name="select-timeline" id="select-initiative-timeline" data-controller-name='@Resources.ReportTimeline'>
                             <option value="0"></option>
                             <option value="All">@Resources.SelectAll</option>
                         </select>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="span-6 margin-left-none">
                         <label class="form-label-inline font-large">@Resources.ReportSelectTimeline</label>
-                        <select name="select-timeline" id="select-quarter-timeline" data-controller-name='@Resources.Timeline'>
+                        <select name="select-timeline" id="select-quarter-timeline" data-controller-name='@Resources.ReportTimeline'>
                             <option value="0"></option>
                             <option value="All">@Resources.SelectAll</option>
                         </select>
@@ -132,7 +132,9 @@
             'description': '@Resources.Description',
             'timespan': '@Resources.Timespan',
             'milestone': '@Resources.Milestone',
+            'milestones': '@Resources.Milestones',
             'training': '@Resources.Training',
+            'training-plural': '@Resources.TrainingPlural',
             'date': '@Resources.Date',
             'initiative': '@Resources.Initiative',
             'type': '@Resources.Type',
@@ -142,11 +144,15 @@
             'report-print-quarterly-title': '@Resources.ReportPrintCoverPageQuarterlyTitle',
             'report-print-overview': '@Resources.ReportPrintCoverPageOverview',
             'report-print-all-initiatives': '@Resources.ReportPrintCoverPageAllInitiatives',
-            'report-error-no-selection': '@ErrorMessages.ReportNoOptionSelected'
+            'report-error-no-selection': '@ErrorMessages.ReportNoOptionSelected',
+            'report-quarter': '@Resources.ReportQuarter',
+            'report-quarter-prefix': '@Resources.ReportQuarterPrefix',
+            'report-fiscal-year': '@Resources.ReportFiscalYear',
+            'timeline': '@Resources.ReportTimeline'
         };
 
         var _getByKey = function(key) {
-            return _resourceMap[key];
+            return _resourceMap[key.toLowerCase()];
         }
 
         return {

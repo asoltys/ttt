@@ -180,7 +180,8 @@ var gui = (function () {
 
     var _createContent = function (initiative) {
         var content = [];
-        var heading = ["Description", "Timespan", "Key milestones", "Training"];
+        var heading = ['@Resources.Description', '@Resources.Timespan',
+                       '@Resources.Milestones', '@Resources.TrainingPlural'];
 
         // Create description
         var description = "<p>" + initiative['Description' + cultureDataAppend] + "</p>";

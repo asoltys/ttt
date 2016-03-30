@@ -158,7 +158,8 @@ var controller = (function(gui, resources) {
 			year <= endQuarter[1]; year++) {
 			endMonth = year == endQuarter[1] ? endQuarter[0] : 4;
 			for (var i = month; i <= endMonth; i++) {
-				textToDisplay.push('FY ' + year + '-' + (year + 1) + ' Q' + i)
+				textToDisplay.push(resources.get('report-fiscal-year') + 
+					year + '-' + (year + 1) + ' ' + resources.get('report-quarter-prefix') + i);
 				var value = {quarter: i, year: year, culture: culture};
 				valueToHold.push(JSON.stringify(value));
 			}
@@ -400,7 +401,7 @@ var contentGenerator = (function(resources) {
 	var _createInitiativeContent = function(initiative) {
 		var content = [];
 		var heading = [resources.get('description'), resources.get('timespan'),
-						resources.get('milestone'), resources.get('training')];
+						resources.get('milestones'), resources.get('training-plural')];
 
 		// Create description
 		var description = "<p>" + 
@@ -511,7 +512,6 @@ var contentGenerator = (function(resources) {
 			});
 			unusedInitiatives = timeline.Initiatives.filter(function(elem, idx, arr) {
 				for (var i = 0; i < temp.length; i++) {
-					console.log(temp[i] + ", " + elem.ID);
 					if (temp[i] == elem.ID) return false;
 				}
 				return true;

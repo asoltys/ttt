@@ -594,28 +594,28 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
     <value>Aucun changement ne sera apporté à la façon dont un employé effectue son travail.</value>
   </data>
   <data name="Timespan" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Période</value>
   </data>
   <data name="ReportSelectTimeline" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Choisissez l’échéancier</value>
   </data>
   <data name="ReportSelectQuarter" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Choisissez le trimestre</value>
   </data>
   <data name="ReportType" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Type de rapport</value>
   </data>
   <data name="ReportByQuarterly" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Par trimestre</value>
   </data>
   <data name="ReportByInitiative" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Par initiative</value>
   </data>
   <data name="ReportSelectInitiative" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Choisissez une initiative</value>
   </data>
   <data name="ReportPageTitle" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Rapports des échéanciers</value>
   </data>
   <data name="Print" xml:space="preserve">
     <value>Translate me</value>
@@ -624,39 +624,60 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
     <value>S'abonner</value>
   </data>
   <data name="Accessibility" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Accessible</value>
   </data>
   <data name="Report" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Rapport</value>
   </data>
   <data name="Feedback" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Commentaires</value>
   </data>
   <data name="ReportUnusedInitiatives" xml:space="preserve">
-    <value>Translate me</value>
+    <value>L'outil n'a aucun activité dans ces initiatives pour ce trimestre:</value>
   </data>
   <data name="ReportPrintCoverPageInitiativeTitle" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Rapport des initiatives</value>
   </data>
   <data name="ReportPrintCoverPageQuarterlyTitle" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Rapport trimestriel</value>
   </data>
   <data name="ReportPrintCoverPageSubtitle" xml:space="preserve">
     <value>Translate me</value>
   </data>
   <data name="ReportPrintCoverPageOverview" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Aperçu</value>
   </data>
   <data name="ReportPrintCoverPageAllInitiatives" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Tous les Initiatives</value>
   </data>
   <data name="ReportPrintCoverPageWarning" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Les renseignements compris dans ce rapport sont exacts au date que le rapport a été publier. Veuillez visiter &lt;a href='http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=fra'&gt;l’Outil d’échéancier de SPAC&lt;/a&gt; pour des information à jour.</value>
   </data>
   <data name="ReportPrint" xml:space="preserve">
-    <value>Translate me</value>
+    <value>Imprimer Rapport</value>
   </data>
   <data name="AccessibilityIntroduction" xml:space="preserve">
     <value>Pour vous aider à comprendre comment différentes initiatives vous touchent, sélectionnez un échéancier et puis votre région et votre direction générale ci-dessous pour produire une liste d'initiatives triées en fonction de leurs répercussions sur vous (répercussions élevées, moyennes, faibles, aucune ou Objectif 2020).Les données seront mises à jour régulièrement. Avez-vous des questions? &lt;a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'&gt;Cliquez ici pour envoyer un courriel.&lt;/a&gt;</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Rapports</value>
+  </data>
+  <data name="ReportFiscalYear" xml:space="preserve">
+    <value>AF</value>
+  </data>
+  <data name="ReportQuarter" xml:space="preserve">
+    <value>Trimestre</value>
+  </data>
+  <data name="ReportTimeline" xml:space="preserve">
+    <value>L’échéancier</value>
+  </data>
+  <data name="ReportQuarterPrefix" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="Milestones" xml:space="preserve">
+    <value>Étapes</value>
+  </data>
+  <data name="TrainingPlural" xml:space="preserve">
+    <value>Formations</value>
   </data>
 </root>
