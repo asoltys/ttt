@@ -279,9 +279,9 @@ namespace TransformationTimelineTool.Controllers
             }
             return result;
         }
-
-        [HttpPost]
+        
         [Route("accessibility")]
+        [Route("all")]
         public async Task<ActionResult> ReturnAllInitiatives(string culture)
         {
             List<Initiative> initiatives = await db.Initiatives.ToListAsync();
@@ -298,7 +298,7 @@ namespace TransformationTimelineTool.Controllers
                     Data = populateJSONWithControl(initiativeBlock)
                 });
             }
-            return Json(initiativeBlocks);
+            return Json(initiativeBlocks, JsonRequestBehavior.AllowGet);
         }
 
         private List<object> populateJSONWithControl(List<Initiative> initiatives)
