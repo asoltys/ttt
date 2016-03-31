@@ -57,8 +57,8 @@ dictionary = {
         "f": "Aucun changement ne sera apporté à la façon dont un employé effectue son travail."
     },
     "bpImDesc": {
-        "e": "Blueprint 2020",
-        "f": "Objectif 2020"
+        "e": "Blueprint 2020: Initiatives are generally wide-reaching and may have department-wide applications.",
+        "f": "Objectif 2020 : Les initiatives sont généralement de grande envergure et peuvent avoir des applications à l’échelle ministérielle."
     },
     "quarter": { "e": "Quarter", "f": "Trimestre" },
     "splash": {
