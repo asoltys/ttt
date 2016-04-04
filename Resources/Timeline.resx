@@ -145,4 +145,7 @@
   <data name="Quarter" xml:space="preserve">
     <value>Quarter</value>
   </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>View All</value>
+  </data>
 </root>

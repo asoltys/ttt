@@ -203,5 +203,14 @@ namespace Resources {
                 return ResourceManager.GetString("Trainings", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View All.
+        /// </summary>
+        public static string ViewAll {
+            get {
+                return ResourceManager.GetString("ViewAll", resourceCulture);
+            }
+        }
     }
 }

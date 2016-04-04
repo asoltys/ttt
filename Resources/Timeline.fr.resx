@@ -165,4 +165,7 @@
   <data name="Quarter" xml:space="preserve">
     <value>Trimestre</value>
   </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Voir Tous</value>
+  </data>
 </root>
