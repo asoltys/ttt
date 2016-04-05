@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>&lt;p&gt;Pour vous aider à comprendre comment différentes initiatives vous touchent, sélectionnez un échéancier et puis votre région et votre direction générale ci-dessous pour produire une liste d’initiatives triées en fonction de leurs répercussions sur vous (répercussions élevées, moyennes, faibles, aucune ou Objectif 2020). Placez le curseur de la souris sur les icônes affichées pour trouver des liens vers des renseignements concernant les étapes importantes ou les formations offertes. Les données seront mises à jour régulièrement. Avez-vous des questions? &lt;a href='mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool'&gt; Cliquez ici pour envoyer un courriel&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="IconLegend" xml:space="preserve">
+    <value>&lt;img src='../Images/book.png' class='align-middle' style='width:24px; height: 32px;' /&gt; &lt;span&gt;&amp;nbsp;Formation&lt;/span&gt;&lt;br /&gt; &lt;img src='../Images/circle.png' class='align-middle' style='width:24px; height: 32px;' /&gt; &lt;span&gt;&amp;nbsp;Étape&lt;/span&gt;</value>
+  </data>
+  <data name="InitialFilterSplash" xml:space="preserve">
+    <value>&lt;p&gt;Cet outil de calcul des délais pour la transformation a été conçu pour vous fournir une liste des initiatives de transformation actuelles en fonction de la région et de la direction générale que vous avez choisis. Lorsque vous aurez fermé ce message, l’outil présentera une liste d’initiatives nouvellement triées qui ont été organisées en fonction de la mesure dans laquelle elles vont changer la façon dont vous travaillez.&lt;/p&gt;&lt;p&gt;Parmi les résultats affichés, cliquez sur le nom de l’initiative pour en savoir plus à son sujet et pour connaître ses répercussions générales sur les employés. Vous pouvez aussi cliquer sur les icônes en forme de point rouge pour en savoir plus sur les étapes de chaque initiative. Si vous cliquez sur un icône de livre, vous obtiendrez de l’information sur la formation relative à l’initiative de transformation. Vous trouverez l’option « Recommencer » au bas de l’outil; cette option vous permet de recommencer et de choisir une direction générale et une région différentes si vous souhaitez pousser votre exploration.&lt;/p&gt;&lt;p&gt;Avez-vous d’autres questions? Communiquez avec votre gestionnaire ou envoyez un message électronique en &lt;a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=Calendrierdestransformations'&gt;cliquant ici&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Cacher</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Montrer</value>
+  </data>
+  <data name="Milestone" xml:space="preserve">
+    <value>Étape</value>
+  </data>
+  <data name="Milestones" xml:space="preserve">
+    <value>Étapes</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Formation</value>
+  </data>
+  <data name="Trainings" xml:space="preserve">
+    <value>Formations</value>
+  </data>
+  <data name="HighImpact" xml:space="preserve">
+    <value>Des changements importants seront apportés à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="MediumImpact" xml:space="preserve">
+    <value>Quelques changements seront apportés à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="LowImpact" xml:space="preserve">
+    <value>Des changements minimes seront apportés à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="NoImpact" xml:space="preserve">
+    <value>Aucun changement ne sera apporté à la façon dont un employé effectue son travail.</value>
+  </data>
+  <data name="StartOver" xml:space="preserve">
+    <value>Recommencer</value>
+  </data>
+  <data name="BlueprintImpact" xml:space="preserve">
+    <value>Objectif 2020 : Les initiatives sont généralement de grande envergure et peuvent avoir des applications à l’échelle ministérielle.</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>Trimestre</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Voir Tous</value>
+  </data>
+</root>

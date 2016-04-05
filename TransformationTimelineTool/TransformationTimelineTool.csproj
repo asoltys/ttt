@@ -1371,6 +1371,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\server_settings.js" />
+    <Content Include="Scripts\timeline-tool.js" />
     <Content Include="Scripts\tl_utility.js" />
     <Content Include="Scripts\toggleRegionsBranches.js" />
     <Content Include="Scripts\translation.js" />
@@ -1614,6 +1615,8 @@
     <Content Include="Scripts\MockData\branches.json" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
+    <Content Include="Views\Home\FrontRefactor.cshtml" />
+    <Content Include="Views\Partials\Resources.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
