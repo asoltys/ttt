@@ -355,7 +355,6 @@ var dataManager = (function() {
 
     var _sortOrder = function() {
         _filteredInitiatives.forEach(function(block) {
-            console.log(block.Data);
             block.Data.sort(function(a, b) {
                 return (sortComparator(b.Weight, a.Weight) ||
                         sortComparator(a['Name' + cultureDataAppend], b['Name' + cultureDataAppend]));
@@ -386,10 +385,6 @@ var dataManager = (function() {
 
     var _getValueByKey = function(object, objectAccessor, key) {
         return object[objectAccessor][key];
-    }
-
-    var _sortByWeight = function(data) {
-        data.forEach
     }
 
     var _sortByName = function(data) {

@@ -51,7 +51,6 @@ $.ui.plugin.add("draggable", "alsoDrag", {
 		$(this).removeData("draggable-alsoDrag");
 	}
 });
-
 var helpers = (function($) { // $ => jQuery
 	var _ajax = function (method, url, callback, jsonData) {
 	    if (arguments.length == 3) 
@@ -84,19 +83,27 @@ var helpers = (function($) { // $ => jQuery
 	var _truncate = function(string, limit) {
 		return string.length >= limit ? string.substring(0, limit) + '...' : string;
 	}
+	var _keyExists = function(key, object, returnValue) {
+		return key in object ? returnValue == true ? object[key] : true : false;
+	}
 	return {
 		ajax: _ajax,
 		jsonCopy: _jsonCopy,
 		htmlDecode: _htmlDecode,
 		htmlEncode: _htmlEncode,
 		sortComparator: _sortComparator,
-		truncate: _truncate
+		truncate: _truncate,
+		keyExists: _keyExists
 	}
 })($);
 
 var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => moment, h => helpers
 	var CULTURE = window.location.href.indexOf('lang=fra') > -1 ? 'fr-ca' : 'en-ca',
 		CULTURE_APPEND = CULTURE == 'en-ca' ? 'E' : 'F',
+		NAME_CULTURE = 'Name' + CULTURE_APPEND,
+		TEXT_CULTURE = 'Text' + CULTURE_APPEND,
+		DESC_CULTURE = 'Description' + CULTURE_APPEND,
+		HOVER_CULTURE = 'Hover' + CULTURE_APPEND,
 		API_DATE_FORMAT = 'MM/DD/YYYY',
 		GET = 'get', POST = 'post';
 	m.locale(CULTURE);
@@ -110,6 +117,8 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		var TIMELINES, REGIONS, BRANCHES, TIMESPAN;
 		var timelines, regions, branches;
 		var loaded = false;
+		var timeline = 'all', region = 'all', branch = 'all';
+		var momentObject1 = moment(), momentObject2 = moment();
 
 		var _prepareData = function() {
 			_prepareRegions();
@@ -163,9 +172,37 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		}
 
 		var _sortByName = function(data) {
-		    return data.sort(function(a, b) {
-		        return h.sortComparator(a['Name' + CULTURE_APPEND], b['Name' + CULTURE_APPEND]);
-		    });
+			return data.sort(function(a, b) {
+				return h.sortComparator(a['Name' + CULTURE_APPEND], b['Name' + CULTURE_APPEND]);
+			});
+		}
+
+		var _sortByImpact = function(data) {
+			return data.sort(function(a, b) {
+				if (b.Weight == 4) return false;
+				return h.sortComparator(b.Weight, a.Weight);
+			})
+		}
+
+		// there are only 2 moment objects in data manager
+		// object index needs to be defined to return the proper object
+		var _momentize = function(date, objectIndex) {
+			date = date == '' ? moment().format('MM/DD/YY').split('/') : date.split('/');
+			if (objectIndex == 1) {
+				momentObject1.set('month', (date[0] - 1));
+				momentObject1.set('date', date[1]);
+				momentObject1.set('year', date[2]);
+				return momentObject1;
+			} else {
+				momentObject2.set('month', (date[0] - 1));
+				momentObject2.set('date', date[1]);
+				momentObject2.set('year', date[2]);
+				return momentObject2;
+			}
+		}
+
+		var _momentDiff = function() {
+			return momentObject2.diff(momentObject1);
 		}
 
 		var _setLoadState = function() { loaded = true; }
@@ -191,14 +228,51 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		})();
 
 		var _filterTimeline = function(value) {
+			timelines = h.jsonCopy(TIMELINES);
 			if (value == 'all') {
-				timelines = h.jsonCopy(TIMELINES);
+				timelines.forEach(function(timeline) {
+					_sortByName(timeline.Data);
+				});
 				return;
 			}
-			timelines = TIMELINES.filter(function(timeline) {
+			timelines = timelines.filter(function(timeline) {
 				return timeline['Name' + CULTURE_APPEND] == value;
-			})
+			});
 		}
+
+		var _filterRegionAndBranch = function() {
+			if (region == 'all' || branch == 'all') {
+				// reset timeline data structure to default
+				_filterTimeline(timeline);
+				return;
+			}
+			timelines = h.jsonCopy(TIMELINES);
+			timelines.forEach(function(timeline) {
+				// save impace weight to data structure
+				timeline.Data.forEach(function(initiative) {
+					initiative.Weight = _impactData(initiative);
+					// filter events
+					initiative.Events = initiative.Events.filter(function(event) {
+						return h.keyExists(_getControl(), event.Control, false);
+					});
+				});
+				// sort by weight then name
+				timeline.Data.sort(function(a, b) {
+					return (h.sortComparator(b.Weight, a.Weight) ||
+						h.sortComparator(a['Name' + CULTURE_APPEND], b['Name' + CULTURE_APPEND]));
+				});
+			});
+		}
+
+		var _impactData = function(initiative) {
+			return h.keyExists(_getControl(), initiative.Impacts, true);
+		}
+
+		var _setTimeline = function(key) { timeline = key; }
+		var _setRegion = function(key) { region = key; }
+		var _setBranch = function(key) { branch = key; }
+		var _getControl = function() { return region + ',' + branch };
+		var _getControlObject = function() { return { region: region, branch: branch } };
 
 		return {
 			loaded: _getLoadState,
@@ -206,7 +280,15 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			regions: _getRegions,
 			branches: _getBranches,
 			timespan: _getTimespan,
-			filterTimeline: _filterTimeline
+			filterTimeline: _filterTimeline,
+			filter: _filterRegionAndBranch,
+			setTimeline: _setTimeline,
+			setRegion: _setRegion,
+			setBranch: _setBranch,
+			getControl: _getControl,
+			getControlObject: _getControlObject,
+			momentize: _momentize,
+			momentDiff: _momentDiff
 		}
 	})($, h)
 
@@ -423,16 +505,42 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 
 			var _handleTimeline = function() {
+				dm.setTimeline(this.value);
 				dm.filterTimeline(this.value);
+				dm.filter();
 				ui.renderer.draw(dm.timelines());
 			}
 
 			var _handleRegion = function() {
-				console.log("Region changed");
+				dm.setRegion(this.value);
+				dm.filter();
+				ui.renderer.draw(dm.timelines());
 			}
 
 			var _handleBranch = function() {
-				console.log("branch changed");
+				dm.setBranch(this.value);
+				dm.filter();
+				ui.renderer.draw(dm.timelines());
+			}
+
+			var _handleOutsideDialogClick = function(e) {
+				if ($('#dialog').dialog('isOpen') && !$(e.target).is('img, a') && !$(e.target).closest('.ui-dialog').length) {
+					$('#dialog').dialog('close');
+				}
+			}
+
+			var _handleHideButton = function() {
+				var weightToHide = $(this).attr('data-weight');
+				var $domToHide = $('.initiative[data-weight=' + weightToHide + '],.timeline-row[data-weight=' + weightToHide + ']');
+				$domToHide.addClass('hide');
+				_toggleShowHide($(this));
+			}
+
+			var _handleShowButton = function() {
+				var weightToShow = $(this).attr('data-weight');
+				var $domToShow = $('.initiative[data-weight=' + weightToShow + '],.timeline-row[data-weight=' + weightToShow + ']');
+				$domToShow.removeClass('hide');
+				_toggleShowHide($(this));
 			}
 
 			var _keyMap = function(e) {
@@ -444,23 +552,37 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				}
 			}
 
+			var _toggleShowHide = function($obj) {
+				if ($obj.hasClass('hide-button')) {
+					$obj.removeClass('hide-button');
+					$obj.addClass('show-button');
+					$obj.text(r.Show);
+				} else {
+					$obj.removeClass('show-button');
+					$obj.addClass('hide-button');
+					$obj.text(r.Hide);
+				}
+			}
+
 			var _registerEvents = (function() {
+				$('#dialog').dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
+				document.addEventListener('keydown', _keyMap, false);
+				$(document).tooltip({ items: ':not(.ui-button)' });
+
 				$left.on('click', _handleLeftClick);
 				$right.on('click', _handleRightClick);
 				$timeline.on('change', _handleTimeline);
 				$region.on('change', _handleRegion);
 				$branch.on('change', _handleBranch);
-				$('#dialog').dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
-				$(document).tooltip({ items: ':not(.ui-button)' });
-				document.addEventListener('keydown', _keyMap, false);
-				$('body').bind('click', function (e) {
-					if ($('#dialog').dialog('isOpen') && !$(e.target).is('img, a') && !$(e.target).closest('.ui-dialog').length) {
-						$('#dialog').dialog('close');
-					}
+				$('body').bind('click', _handleOutsideDialogClick);
+				$('#dynamic-initiative-container').on('click', '.initiative-description', function() { 
+					ui.renderer.openDialog($(this));
 				});
 				$('#dynamic-content-container').on('click', '.icon', function() { 
 					ui.renderer.openDialog($(this));
 				});
+				$('#dynamic-initiative-container').on('click', '.hide-button', _handleHideButton);
+				$('#dynamic-initiative-container').on('click', '.show-button', _handleShowButton);
 			})();
 		}
 
@@ -471,88 +593,211 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 
 	ui.renderer = (function(dm) {
 		var $contentContainer = $('#dynamic-content-container'),
-			$calendar = $('#nav-calendar-container');
+			$initiativeContainer = $('#dynamic-initiative-container'),
+			$calendar = $('#nav-calendar-container'),
+			contentContainer = document.querySelector('#dynamic-content-container'),
+			initiativeContainer = document.querySelector('#dynamic-initiative-container'),
+			calendar = document.querySelector('#nav-calendar-container');
 		var MONTH_WIDTH = 100, 
 			ROW_WIDTH,
-			ROW_IN_MILLISECONDS;
+			ROW_IN_MILLISECONDS,
+			TODAY = moment().format('MM/DD/YY'),
+			TODAY_MARGIN;
 		var timespan;
 
 		var _momentize = function(date) {
 			return moment(date, API_DATE_FORMAT);
 		}
 
+		var _categorize = function() {
+			_addImpactStatements();
+			_addTimelineRowSpaces();
+		}
+
 		var _calculateLeftMargin = function(momentObject1, momentObject2) {
 			var leftStartInMS = momentObject1.diff(timespan.Start);
-			if (arguments.length == 2)
-				leftStartInMS = momentObject1.diff(momentObject2);
 			return Math.floor(leftStartInMS / ROW_IN_MILLISECONDS * ROW_WIDTH);
 		}
 
-		var _calculateBarWidth = function(initiative) {
-			var initiativeStartDate = _momentize(initiative.StartDate);
-			var initiativeEndDate = _momentize(initiative.EndDate);
-			return Math.floor((initiativeEndDate.diff(initiativeStartDate)) / ROW_IN_MILLISECONDS * ROW_WIDTH);
+		var _getLeftMargin = function(date1, date2) {
+			dm.momentize(date1, 1);
+			dm.momentize(date2, 2);
+			return Math.floor((dm.momentDiff()) / ROW_IN_MILLISECONDS * ROW_WIDTH);
 		}
 
-		var _addTimelineRow = function(initiative) {
-			var barLeftMargin = _calculateLeftMargin(_momentize(initiative.StartDate));
-			var barWidth = _calculateBarWidth(initiative);
-			var html = "";
-			html += "<div class='timeline-row' style='width:" + ROW_WIDTH + "px'>";
-			html += "<div class='timeline-bar align-middle' style='width: " + barWidth + "px; margin-left: " 
-					+ barLeftMargin + "px;'>";
-			html += _addIcons(initiative);
-			html += "</div>"
-			html += "</div>";
-			return html;
+		var _getBarWidth = function(initiative) {
+			dm.momentize(initiative.StartDate, 1);
+			dm.momentize(initiative.EndDate, 2);
+			return Math.floor((dm.momentDiff()) / ROW_IN_MILLISECONDS * ROW_WIDTH);
 		}
 
-		var _addIcons = function(initiative) {
-			var html = "";
-			var iconWidth = 24;
-			initiative.Events.forEach(function(event) {
-				var eventLeftMargin = _calculateLeftMargin(_momentize(event.Date), _momentize(initiative.StartDate));
-				eventLeftMargin -= iconWidth / 2; // subtract half of icon width
-				var type = event.Type == 'Milestone' ? 'circle.png' : 'book.png';
-				var hover = event['Hover' + CULTURE_APPEND];
-				var dialogText = event['Text' + CULTURE_APPEND];
-				html += "<img src='/timeline/img/" + type + "' class='icon' title='" + hover + 
-				"' style='width:24px; height:32px; margin-left:" + eventLeftMargin + "px; position:absolute;'" +
-				" data-title='" + hover + "' data-description='" + dialogText + "'/>";
+		var _escapeHTMLEntities = function(string) {
+			var newLineRE = /(\r\n|\n|\r)/gm;
+			var result = string.replace(newLineRE, '');
+			result = $('<div>').text(result).html();
+			return result;
+		}
+
+		var _addInitiativeBox = function(initiative, timeline, impactLevel) {
+			var initiativeName = initiative['Name' + CULTURE_APPEND];
+			var dialogText = initiative['Description' + CULTURE_APPEND];
+			var impactClass = impactLevel == undefined ? '' : _impactCSSClass(impactLevel, true);
+			var box = document.createElement('div'),
+				content = document.createElement('a');
+			box.className = 'initiative ' + timeline + impactClass;
+			box.setAttribute('data-weight', impactLevel);
+			content.className = 'initiative-description';
+			content.setAttribute('data-title', initiativeName);
+			content.setAttribute('data-description', dialogText);
+			content.innerHTML = initiativeName;
+			requestAnimationFrame(function() {
+				box.appendChild(content);
 			});
-			return html;
+			return box;
 		}
 
-		var _addTodayLine = function() {
-			return "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + _calculateLeftMargin(moment()) + "px' />";
+		var _addTimelineRow = function(initiative, timeline, impactLevel) {
+			var impactClass = impactLevel == undefined ? '' : _impactCSSClass(impactLevel, true);
+			var row = document.createElement('div'),
+				bar = document.createElement('div'),
+				barWidth = _getBarWidth(initiative),
+				barLeftMargin = _getLeftMargin(timespan.Start, initiative.StartDate);
+			row.className = 'timeline-row ' + timeline + impactClass;
+			row.setAttribute('data-weight', impactLevel); row.setAttribute('data-timeline', timeline);
+			bar.className = 'timeline-bar';
+			bar.style.width = barWidth + 'px';
+			bar.style.marginLeft = barLeftMargin + 'px';
+			bar.setAttribute('data-timeline', timeline);
+			bar = _makeIcons(initiative, bar);
+			row.appendChild(bar);
+			return row;
 		}
 
-		var _setDragPosition = function(leftPosition) {
-			$calendar.css('left', leftPosition + 'px');
-			$contentContainer.css('left', leftPosition + 'px');
+		var _makeIcons = function(initiative, dom) {
+			var icon,
+				iconWidth = 24,
+				halfIconWidth = 12,
+				eventLeftMargin,
+				type, hover, dialogText;
+			initiative.Events.forEach(function(event, index) {
+				eventLeftMargin = _getLeftMargin(initiative.StartDate, event.Date) - halfIconWidth;
+				type = event.Type == 'Milestone' ? 'circle.png' : 'book.png';
+				hover = event[HOVER_CULTURE];
+				dialogText = event[TEXT_CULTURE];
+				icon = document.createElement('img');
+				icon.src = '/timeline/img/' + type,
+				icon.className = dialogText != null ? 'icon icon-click' : 'icon',
+				icon.title = hover,
+				icon.style.marginLeft = eventLeftMargin + 'px',
+				icon.setAttribute('data-title', hover),
+				icon.setAttribute('data-description', dialogText);
+				dom.appendChild(icon);
+			});
+			return dom;
+		}
+
+		var _addTimelineRowSpaces = function() {
+			var rows = document.querySelectorAll('.timeline-row');
+			var row, weight, previousWeight, rowSpace;
+			for (var i = 0, length = rows.length; i < length; i++) {
+				row = rows[i];
+				weight = parseInt(row.getAttribute('data-weight'), 10);
+				if (isNaN(weight) || weight == previousWeight) continue;
+				rowSpace = document.createElement('div'); 
+				rowSpace.className = 'impact-statement-space' + _impactCSSClass(weight, false); 
+				rowSpace.setAttribute('data-weight', weight);
+				contentContainer.insertBefore(rowSpace, row);
+				previousWeight = weight;
+			}
+		}
+
+		var _addImpactStatements = function() {
+			var initiativeBoxes = document.querySelectorAll('.initiative');
+			var box, weight, previousWeight, impactCSS,
+				statement, button, hideResource = r.Hide;
+			for (var i = 0, length = initiativeBoxes.length; i < length; i++) {
+				box = initiativeBoxes[i];
+				weight = parseInt(box.getAttribute('data-weight'), 10);
+				if (isNaN(weight) || weight == previousWeight) continue;
+				impactCSS = _impactCSSClass(weight, false);
+				statement = document.createElement('p'), statement.innerHTML = _getImpactStatment(weight),
+				statement.className = 'impact-statement' + impactCSS, statement.setAttribute('data-weight', weight);
+				button = document.createElement('a'), button.innerHTML = hideResource,
+				button.className = 'hide-button' + impactCSS, button.setAttribute('data-weight', weight);
+				initiativeContainer.insertBefore(statement, box); initiativeContainer.insertBefore(button, box);
+				previousWeight = weight;
+			}
+		}
+
+		var _impactCSSClass = function(level, lighter) {
+			switch (level) {
+				case 0: return lighter == true ? ' no-impact-color-content' : ' no-impact-color';
+				case 1: return lighter == true ? ' low-impact-color-content' : ' low-impact-color';
+				case 2: return lighter == true ? ' medium-impact-color-content' : ' medium-impact-color';
+				case 3: return lighter == true ? ' high-impact-color-content' : ' high-impact-color';
+				case 4: return lighter == true ? ' blueprint-impact-color-content' : ' blueprint-impact-color';
+				default: return lighter == true ? ' no-impact-color-content' : ' no-impact-color';
+			}
+		}
+
+		var _getImpactStatment = function(level) {
+			switch (level) {
+				case 0: return r.NoImpact; case 1: return r.LowImpact; case 2: return r.MediumImpact;
+				case 3: return r.HighImpact; case 4: return r.BlueprintImpact; default: return r.NoImpact;
+			}
 		}
 
 		var _showToday = function() {
 			var viewableWidth = $contentContainer.parent().width();
-			_setDragPosition(_calculateLeftMargin(moment()) * -1 + Math.floor(viewableWidth / 2));
+			if (TODAY_MARGIN == undefined) {
+				TODAY_MARGIN = _getLeftMargin(timespan.Start, TODAY) * -1 + Math.floor(viewableWidth / 2);
+			}
+			requestAnimationFrame(function() {
+				_addTodayLine();
+				calendar.style.left = TODAY_MARGIN + 'px';
+				contentContainer.style.left = TODAY_MARGIN + 'px';
+			});
+		}
+
+		var _addTodayLine = function() {
+			var img = "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + _getLeftMargin(timespan.Start, TODAY) + "px' />";
+			var $children = $contentContainer.children('.impact-statement-space');
+			var impactStatementSpaceExists = $children.length > 0;
+			if (impactStatementSpaceExists) {
+				$(img).insertAfter($children.first());
+			} else {
+				$contentContainer.prepend(img);
+			}
 		}
 
 		var _reset = function() {
-			$contentContainer.empty();
+			initiativeContainer.innerHTML = '';
+			contentContainer.innerHTML = '';
 			timespan = dm.timespan();
-			ROW_WIDTH = timespan.Duration.Months * MONTH_WIDTH;
-			ROW_IN_MILLISECONDS = timespan.End.diff(timespan.Start);
+			if (ROW_WIDTH == undefined || ROW_IN_MILLISECONDS == undefined) {
+				ROW_WIDTH = timespan.Duration.Months * MONTH_WIDTH;
+				ROW_IN_MILLISECONDS = timespan.End.diff(timespan.Start);
+				timespan.Start = timespan.Start.format('MM/DD/YY');
+				timespan.End = timespan.End.format('MM/DD/YY');
+			}
+		}
+
+		var _drawInitiative = function(initiative) {
+			var impactLevel = initiative.Weight;
+			initiativeContainer.appendChild(_addInitiativeBox(initiative, this, impactLevel));
+			contentContainer.appendChild(_addTimelineRow(initiative, this, impactLevel));
+		}
+
+		var _drawTimeline = function(timeline) {
+			var timelineName = timeline[NAME_CULTURE];
+			timeline.Data.forEach(_drawInitiative, timelineName);
 		}
 
 		var _draw = function(timelines) {
 			if (timelines == null) return 'no argument was passed in';
 			_reset();
-			$contentContainer.append(_addTodayLine());
-			timelines.forEach(function(timeline) {
-				timeline.Data.forEach(function(initiative) {
-					$contentContainer.append(_addTimelineRow(initiative));
-				});
-			});
+			timelines.forEach(_drawTimeline);
+			_categorize();
 			_showToday();
 		}
 

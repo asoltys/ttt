@@ -507,6 +507,7 @@ timeLine = {
     },
     // this is where the magic happens
     filter: function () {
+        var start = new Date().getTime();
         var rSelected = $('#areaSelect').val();
         var bSelected = $('#branchSelect').val();
         var vSelected = $('#viewSelect').val();
@@ -607,6 +608,9 @@ timeLine = {
         var levelSum = uniqueLevelCount.length;
         $("#today").css("height", (rowsActive) * timeLine.timeLineHeight + (timeLine.heightGroup * levelSum));
         $("#dragContainer").css("margin-top", (((rowsActive) * timeLine.timeLineHeight) + top) * -1 - (timeLine.heightGroup * levelSum));
+
+        var end = new Date().getTime();
+        console.log((end-start) + "ms");
     },
     // stuff that goes under the timeline
     footer: function () {
