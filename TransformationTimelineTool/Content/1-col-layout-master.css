@@ -107,6 +107,10 @@
 	background-color: #ffffff !important;
 }
 
+.ui-widget-header {
+	background-color: #265 !important;
+}
+
 /* Not organized yet */
 a:hover {
 	cursor: pointer;
