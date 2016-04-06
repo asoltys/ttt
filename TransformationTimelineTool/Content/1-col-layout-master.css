@@ -1,16 +1,114 @@
-﻿a:hover {
-	cursor: pointer;
-}
-
+﻿/* General */
+.hide { display: none; }
+.visible { visibility: visible; }
+.invisible { visibility: none; }
 .dotted-bottom {
 	border-bottom: 1px dotted #ccc !important;
 	padding-bottom: 10px !important;
 }
 
-.hide {
-	display: none;
+/* Containers */
+#dynamic-description-container, #dynamic-content-container {
+	display: flex;
+	flex-direction: column;
+}
+#dynamic-content-container {
+	z-index: 1;
+	cursor: ew-resize;
+}
+#dynamic-description-container {
+	position: absolute;
+	z-index: 2;
+	pointer-events: none;
+}
+#timeline-tool-nav-container {
+	position: absolute;
+	z-index: 3;
+	background-color: #FFF;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
 }
 
+/* Navigation */
+#timeline-tool-nav {
+	/* This is for borders eating off on the width calculation */
+	margin-left: 9px !important;
+	margin-right: 9px !important;
+}
+
+/* Description Box - left side of the timeline tool */
+.description-box {
+	width: 250px !important;
+	height: 50px !important;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	pointer-events: auto;
+}
+.description {
+	position: relative;
+	width: 250px;
+	height: 50px;
+	width: 100%;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: underline;
+}
+.TransformationTimeline {
+	background-color: #FFFFFF;
+}
+
+.BP2020 {
+	background-color: #D1E8FF;
+}
+
+.impact-statement {
+	height: 19px;
+	float: left;
+	border-top : 1px solid #CCC;
+	margin: 0px 0px 0px 10px !important;
+}
+
+.impact-statement p {
+	margin: 0px !important;
+	float: left;
+}
+
+.impact-statement a {
+	position: absolute;
+	right: 0;
+	pointer-events: auto;
+}
+
+.hide-button, .show-button {
+	height: 19px;
+	margin-right: 10px;
+}
+
+/* Bar & its contents - right side of the timeline tool */
+.bar {
+	height: 50px !important;
+	border-left: 1px dotted #CCC;
+	border-right: 1px dotted #CCC;
+	border-bottom: 1px dotted #CCC;
+}
+.duration {
+	background-color: #EEE;
+	margin-top: 5px;
+	height: 38px;
+	border: 1px solid #CCC;
+}
+
+
+/* jQuery UI Dialog */
+#dialog, .ui-dialog, .ui-icon, .ui-button  {
+	background-color: #ffffff !important;
+}
+
+/* Not organized yet */
+a:hover {
+	cursor: pointer;
+}
 .margin-top-bottom-5px {
 	margin-top: 5px !important;
 	margin-bottom: 5px !important;
@@ -37,20 +135,6 @@ div[class$="quarter"] {
 	-ms-user-select: none; /* IE10+ */
 	-webkit-user-select: none; /* Chrome/Safari */
 	-moz-user-select: none; /* Firefox */
-}
-
-#dynamic-initiative-container {
-	position: relative;
-	z-index: 100;
-}
-
-#dynamic-content-container {
-	position: relative;
-	z-index: 50;
-}
-
-#dynamic-content-container:hover {
-	cursor: ew-resize;
 }
 
 .initiative {
@@ -89,10 +173,6 @@ div[class$="quarter"] {
 	border: 1px solid #CCC;
 }
 
-.BP2020 {
-	background-color: #D1E8FF !important;
-}
-
 #today{
 	margin: 0px auto;
 	display: block;
@@ -112,29 +192,6 @@ div[class$="quarter"] {
 
 .icon-click:hover {
 	cursor: pointer !important;
-}
-
-#dialog{
-	background-color:#ffffff;
-}
-.ui-dialog, .ui-icon, .ui-button{
-	background-color:#ffffff !important;
-}
-
-.impact-statement {
-	display: block;
-	float: left;
-	clear: both;
-	height: 19px;
-	border-top : 1px solid #CCC;
-	margin: 0px 5px 0px 5px !important;
-	width: 93%;
-}
-
-.hide-button, .show-button {
-	float: left;
-	height: 19px;
-	border-top: 1px solid #CCC;
 }
 
 .impact-statement-space {
