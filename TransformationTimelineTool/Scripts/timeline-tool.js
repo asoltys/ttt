@@ -246,7 +246,8 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			timelines.forEach(function(timeline) {
 				timeline.Data.forEach(function(initiative) {
 					// save weight to data
-					initiative.Weight = h.keyExists(_getControl(), initiative.Impacts, true);
+					var weight = h.keyExists(_getControl(), initiative.Impacts, true);
+					initiative.Weight = weight == false ? 0 : weight;
 					// save event skip data
 					initiative.Events.forEach(function(event) {
 						event.Skip = !h.keyExists(_getControl(), event.Control, false);
@@ -478,6 +479,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				$navSpace = $('#timeline-tool-nav-space'),
 				$descriptionContainer = $('#dynamic-description-container'),
 				$contentContainer = $('#dynamic-content-container'),
+				$startOver = $('#timeline-tool-start-over'),
 				$dialog = $('#dialog'),
 				$main = $('#wb-main-in'),
 				$body = $('body'),
@@ -594,6 +596,15 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				}
 			}
 
+			var _handleStartOver = function() {
+				$timeline.val('all');
+				$region.val('all');
+				$branch.val('all');
+				$timeline.trigger('change');
+				$region.trigger('change');
+				$branch.trigger('change');
+			}
+
 			var _registerEvents = (function() {
 				// tooltip & dialog initialize
 				$document.tooltip({ items: ':not(.ui-button)' });
@@ -622,6 +633,9 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 
 				// fix navigation bar
 				$window.on('scroll', _handleScroll)
+
+				// start over
+				$startOver.on('click', _handleStartOver)
 			})();
 		}
 
@@ -828,15 +842,16 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 					var idSuffix = initiative.ID;
 					var descriptionSelector = '#initiative-description-' + idSuffix;
 					var barSelector = '#initiative-' + idSuffix;
+					var weight = initiative.Weight.toString();
 					$(descriptionSelector).attr({
 						'style': ('order: ' + order),
 						'data-order': order,
-						'data-weight': (initiative.Weight)
+						'data-weight': weight
 					}).addClass(impactClass);
 					$(barSelector).attr({
 						'style': ('order: ' + order),
 						'data-order': order,
-						'data-weight': initiative.Weight
+						'data-weight': weight
 					}).addClass(impactClass);
 
 					// hide icons if needs be
@@ -857,7 +872,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				$statement = $(".impact-statement[data-weight='" + weightOrder[i] + "']").first();
 				$space = $(".impact-statement-space[data-weight='" + weightOrder[i] + "']").first();
 				order =  $box.attr('data-order');
-				if ($box.length > 0 && order != '0') {
+				if ($box.length > 0 && order != undefined && order > 0) {
 					$statement.attr({
 						'style': ('order: ' + order)
 					}).removeClass('hide');
@@ -892,8 +907,8 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		var _getFlexOrder = function(weight) {
 			switch (weight) {
 				// just a helper function to switch flex orders around
-				case 1: return 3; case 2: return 2; case 3: return 1; case 4: return 4;
-				default: return 4;
+				case 0: return 4; case 1: return 3; case 2: return 2;
+				case 3: return 1; case 4: return 5; default: return 4;
 			}
 		}
 
