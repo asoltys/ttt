@@ -229,43 +229,35 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 
 		var _filterTimeline = function(value) {
 			timelines = h.jsonCopy(TIMELINES);
-			if (value == 'all') {
+			if (timeline == 'all') {
 				timelines.forEach(function(timeline) {
 					_sortByName(timeline.Data);
 				});
 				return;
 			}
-			timelines = timelines.filter(function(timeline) {
-				return timeline['Name' + CULTURE_APPEND] == value;
+			timelines.forEach(function(timelineParam) {
+				timelineParam.Skip = timelineParam[NAME_CULTURE] == timeline ? false : true;
 			});
 		}
 
-		var _filterRegionAndBranch = function() {
-			if (region == 'all' || branch == 'all') {
-				// reset timeline data structure to default
-				_filterTimeline(timeline);
-				return;
-			}
-			timelines = h.jsonCopy(TIMELINES);
+		var _filterAll = function() {
+			_filterTimeline(timeline);
+			if (region == 'all' || branch == 'all') return;
 			timelines.forEach(function(timeline) {
-				// save impace weight to data structure
 				timeline.Data.forEach(function(initiative) {
-					initiative.Weight = _impactData(initiative);
-					// filter events
-					initiative.Events = initiative.Events.filter(function(event) {
-						return h.keyExists(_getControl(), event.Control, false);
+					// save weight to data
+					initiative.Weight = h.keyExists(_getControl(), initiative.Impacts, true);
+					// save event skip data
+					initiative.Events.forEach(function(event) {
+						event.Skip = !h.keyExists(_getControl(), event.Control, false);
 					});
 				});
 				// sort by weight then name
 				timeline.Data.sort(function(a, b) {
 					return (h.sortComparator(b.Weight, a.Weight) ||
-						h.sortComparator(a['Name' + CULTURE_APPEND], b['Name' + CULTURE_APPEND]));
+						h.sortComparator(a[NAME_CULTURE], b[NAME_CULTURE]));
 				});
 			});
-		}
-
-		var _impactData = function(initiative) {
-			return h.keyExists(_getControl(), initiative.Impacts, true);
 		}
 
 		var _setTimeline = function(key) { timeline = key; }
@@ -280,8 +272,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			regions: _getRegions,
 			branches: _getBranches,
 			timespan: _getTimespan,
-			filterTimeline: _filterTimeline,
-			filter: _filterRegionAndBranch,
+			filter: _filterAll,
 			setTimeline: _setTimeline,
 			setRegion: _setRegion,
 			setBranch: _setBranch,
@@ -301,6 +292,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			eventManager();
 			ui.renderer.draw(dm.timelines());
 			_showTool();
+			$('#timeline-tool-nav-space').height($('#timeline-tool-nav-container').height());
 		}
 
 		var _showTool = function() {
@@ -311,11 +303,13 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		// navigation, controllers, events are private submodules of ui - INACCESSIBLE FROM CONSOLE
 		// please keep it this way
 		var navigation = function() {
-			var $navContainer = $('#nav-calendar'),
-				$calendarContainer = $('#nav-calendar-container'),
+			var $calendarContainer = $('#nav-calendar'),
+				$calendar = $('#nav-calendar-container'),
 				$quarterContainer = $('#nav-calendar-quarter'),
 				$monthContainer = $('#nav-calendar-month'),
-				$dynamicContentContainer = $('#dynamic-content-container');
+				$dynamicContentContainer = $('#dynamic-content-container'),
+				$navContainer = $('#timeline-tool-nav-container'),
+				$navSpace = $('#timeline-tool-nav-space');
 			var timespan = dm.timespan(); 	// be careful in handling moment object
 											// day & year base 1, but month base 0
 			var _populateCalendar = function() {
@@ -326,7 +320,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 
 			var _attachDraggableModule = function() {
-				var xContainment = $calendarContainer.width() * -1 + $navContainer.width();
+				var xContainment = $calendar.width() * -1 + $calendarContainer.width();
 				var marginOffset = 42;
 				var dragWith = '#nav-calendar-container';
 				$dynamicContentContainer.draggable({
@@ -345,7 +339,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 
 			var _setupCalendarContainer = function() {
-				$calendarContainer.css('width', timespan.Duration.Months * MONTH_WIDTH);
+				$calendar.css('width', timespan.Duration.Months * MONTH_WIDTH);
 				$dynamicContentContainer.css('width', timespan.Duration.Months * MONTH_WIDTH);
 			}
 
@@ -478,9 +472,20 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				$timeline = $('#nav-controller-timeline'),
 				$region = $('#nav-controller-region'),
 				$branch = $('#nav-controller-branch'),
-				$navContainer = $('#nav-calendar'),
+				$navContainer = $('#timeline-tool-nav-container'),
+				$calendarContainer = $('#nav-calendar'),
 				$calendar = $('#nav-calendar-container'),
-				$dynamic = $('#dynamic-content-container');
+				$navSpace = $('#timeline-tool-nav-space'),
+				$descriptionContainer = $('#dynamic-description-container'),
+				$contentContainer = $('#dynamic-content-container'),
+				$dialog = $('#dialog'),
+				$main = $('#wb-main-in'),
+				$body = $('body'),
+				$document = $(document),
+				$window = $(window);
+
+			var INITIAL_NAV_OFFSET, NAV_RETURN_POSITION;
+			var navFixed;
 
 			var _handleLeftClick = function() {
 				var currentPosition = parseInt($calendar.css('left'), 10);
@@ -491,7 +496,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 
 			var _handleRightClick = function() {
-				var maxRightPosition = $calendar.width() * -1 + $navContainer.width();
+				var maxRightPosition = $calendar.width() * -1 + $calendarContainer.width();
 				var currentPosition = parseInt($calendar.css('left'), 10);
 				var amountToMove = MONTH_WIDTH * 2;
 				amountToMove = currentPosition - amountToMove > maxRightPosition ? 
@@ -501,44 +506,43 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 
 			var _setDragPosition = function(leftPosition) {
 				$calendar.css('left', leftPosition + 'px');
-				$dynamic.css('left', leftPosition + 'px');
+				$contentContainer.css('left', leftPosition + 'px');
 			}
 
 			var _handleTimeline = function() {
 				dm.setTimeline(this.value);
-				dm.filterTimeline(this.value);
 				dm.filter();
-				ui.renderer.draw(dm.timelines());
+				ui.renderer.sort(dm.timelines());
 			}
 
 			var _handleRegion = function() {
 				dm.setRegion(this.value);
 				dm.filter();
-				ui.renderer.draw(dm.timelines());
+				ui.renderer.sort(dm.timelines());
 			}
 
 			var _handleBranch = function() {
 				dm.setBranch(this.value);
 				dm.filter();
-				ui.renderer.draw(dm.timelines());
+				ui.renderer.sort(dm.timelines());
 			}
 
 			var _handleOutsideDialogClick = function(e) {
-				if ($('#dialog').dialog('isOpen') && !$(e.target).is('img, a') && !$(e.target).closest('.ui-dialog').length) {
-					$('#dialog').dialog('close');
+				if ($dialog.dialog('isOpen') && !$(e.target).is('img, a, p') && !$(e.target).closest('.ui-dialog').length) {
+					$dialog.dialog('close');
 				}
 			}
 
 			var _handleHideButton = function() {
 				var weightToHide = $(this).attr('data-weight');
-				var $domToHide = $('.initiative[data-weight=' + weightToHide + '],.timeline-row[data-weight=' + weightToHide + ']');
+				var $domToHide = $('.description-box[data-weight=' + weightToHide + '],.bar[data-weight=' + weightToHide + ']');
 				$domToHide.addClass('hide');
 				_toggleShowHide($(this));
 			}
 
 			var _handleShowButton = function() {
 				var weightToShow = $(this).attr('data-weight');
-				var $domToShow = $('.initiative[data-weight=' + weightToShow + '],.timeline-row[data-weight=' + weightToShow + ']');
+				var $domToShow = $('.description-box[data-weight=' + weightToShow + '],.bar[data-weight=' + weightToShow + ']');
 				$domToShow.removeClass('hide');
 				_toggleShowHide($(this));
 			}
@@ -564,25 +568,60 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				}
 			}
 
-			var _registerEvents = (function() {
-				$('#dialog').dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
-				document.addEventListener('keydown', _keyMap, false);
-				$(document).tooltip({ items: ':not(.ui-button)' });
+			var _handleScroll = function() {
 
+				if (INITIAL_NAV_OFFSET == null) {
+					INITIAL_NAV_OFFSET = $navContainer.offset().top;
+					NAV_RETURN_POSITION = INITIAL_NAV_OFFSET - $main.offset().top;
+					navFixed = false;
+				}
+				var currentScroll = $window.scrollTop();
+				var maxBottomScroll = $contentContainer.offset().top + $contentContainer.height() - $navContainer.height();
+				if (navFixed == false && currentScroll > INITIAL_NAV_OFFSET) {
+					if (currentScroll < maxBottomScroll) {
+						navFixed = true;
+						$navContainer.css({
+							top: 0,
+							position: 'fixed'
+						});
+					}
+				} else if (navFixed == true && (currentScroll <= INITIAL_NAV_OFFSET || currentScroll >= maxBottomScroll)) {
+					navFixed = false;
+					$navContainer.css({
+						top: NAV_RETURN_POSITION,
+						position: 'absolute'
+					});
+				}
+			}
+
+			var _registerEvents = (function() {
+				// tooltip & dialog initialize
+				$document.tooltip({ items: ':not(.ui-button)' });
+				$dialog.dialog({ autoOpen: false, width: "50%", maxWidth: "768px" });
+
+				// timeline tool controllers
 				$left.on('click', _handleLeftClick);
 				$right.on('click', _handleRightClick);
 				$timeline.on('change', _handleTimeline);
 				$region.on('change', _handleRegion);
 				$branch.on('change', _handleBranch);
-				$('body').bind('click', _handleOutsideDialogClick);
-				$('#dynamic-initiative-container').on('click', '.initiative-description', function() { 
-					ui.renderer.openDialog($(this));
-				});
-				$('#dynamic-content-container').on('click', '.icon', function() { 
-					ui.renderer.openDialog($(this));
-				});
-				$('#dynamic-initiative-container').on('click', '.hide-button', _handleHideButton);
-				$('#dynamic-initiative-container').on('click', '.show-button', _handleShowButton);
+				
+				// left and right keyboard navigation
+				$document.on('keydown', _keyMap);
+
+				// when outside of dialog is clicked, close dialog
+				$body.bind('click', _handleOutsideDialogClick);
+
+				// delegate click event to each class
+				$descriptionContainer.on('click', '.description', function() { ui.renderer.openDialog($(this)); });
+				$contentContainer.on('click', '.icon', function() { ui.renderer.openDialog($(this)); });
+
+				// hide and show buttons in timeline tool
+				$descriptionContainer.on('click', '.hide-button', _handleHideButton);
+				$descriptionContainer.on('click', '.show-button', _handleShowButton);
+
+				// fix navigation bar
+				$window.on('scroll', _handleScroll)
 			})();
 		}
 
@@ -592,32 +631,17 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 	})(r, $, h, dataManager);
 
 	ui.renderer = (function(dm) {
-		var $contentContainer = $('#dynamic-content-container'),
-			$initiativeContainer = $('#dynamic-initiative-container'),
-			$calendar = $('#nav-calendar-container'),
+		var descriptionContainer = document.querySelector('#dynamic-description-container'),
+			$descriptionContainer = $('#dynamic-description-container'),
 			contentContainer = document.querySelector('#dynamic-content-container'),
-			initiativeContainer = document.querySelector('#dynamic-initiative-container'),
+			$contentContainer = $('#dynamic-content-container'),
 			calendar = document.querySelector('#nav-calendar-container');
 		var MONTH_WIDTH = 100, 
 			ROW_WIDTH,
 			ROW_IN_MILLISECONDS,
 			TODAY = moment().format('MM/DD/YY'),
 			TODAY_MARGIN;
-		var timespan;
-
-		var _momentize = function(date) {
-			return moment(date, API_DATE_FORMAT);
-		}
-
-		var _categorize = function() {
-			_addImpactStatements();
-			_addTimelineRowSpaces();
-		}
-
-		var _calculateLeftMargin = function(momentObject1, momentObject2) {
-			var leftStartInMS = momentObject1.diff(timespan.Start);
-			return Math.floor(leftStartInMS / ROW_IN_MILLISECONDS * ROW_WIDTH);
-		}
+		var sortableTimelines;
 
 		var _getLeftMargin = function(date1, date2) {
 			dm.momentize(date1, 1);
@@ -629,48 +653,6 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			dm.momentize(initiative.StartDate, 1);
 			dm.momentize(initiative.EndDate, 2);
 			return Math.floor((dm.momentDiff()) / ROW_IN_MILLISECONDS * ROW_WIDTH);
-		}
-
-		var _escapeHTMLEntities = function(string) {
-			var newLineRE = /(\r\n|\n|\r)/gm;
-			var result = string.replace(newLineRE, '');
-			result = $('<div>').text(result).html();
-			return result;
-		}
-
-		var _addInitiativeBox = function(initiative, timeline, impactLevel) {
-			var initiativeName = initiative['Name' + CULTURE_APPEND];
-			var dialogText = initiative['Description' + CULTURE_APPEND];
-			var impactClass = impactLevel == undefined ? '' : _impactCSSClass(impactLevel, true);
-			var box = document.createElement('div'),
-				content = document.createElement('a');
-			box.className = 'initiative ' + timeline + impactClass;
-			box.setAttribute('data-weight', impactLevel);
-			content.className = 'initiative-description';
-			content.setAttribute('data-title', initiativeName);
-			content.setAttribute('data-description', dialogText);
-			content.innerHTML = initiativeName;
-			requestAnimationFrame(function() {
-				box.appendChild(content);
-			});
-			return box;
-		}
-
-		var _addTimelineRow = function(initiative, timeline, impactLevel) {
-			var impactClass = impactLevel == undefined ? '' : _impactCSSClass(impactLevel, true);
-			var row = document.createElement('div'),
-				bar = document.createElement('div'),
-				barWidth = _getBarWidth(initiative),
-				barLeftMargin = _getLeftMargin(timespan.Start, initiative.StartDate);
-			row.className = 'timeline-row ' + timeline + impactClass;
-			row.setAttribute('data-weight', impactLevel); row.setAttribute('data-timeline', timeline);
-			bar.className = 'timeline-bar';
-			bar.style.width = barWidth + 'px';
-			bar.style.marginLeft = barLeftMargin + 'px';
-			bar.setAttribute('data-timeline', timeline);
-			bar = _makeIcons(initiative, bar);
-			row.appendChild(bar);
-			return row;
 		}
 
 		var _makeIcons = function(initiative, dom) {
@@ -685,6 +667,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				hover = event[HOVER_CULTURE];
 				dialogText = event[TEXT_CULTURE];
 				icon = document.createElement('img');
+				icon.id = 'event-' + event.ID;
 				icon.src = '/timeline/img/' + type,
 				icon.className = dialogText != null ? 'icon icon-click' : 'icon',
 				icon.title = hover,
@@ -696,54 +679,55 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			return dom;
 		}
 
-		var _addTimelineRowSpaces = function() {
-			var rows = document.querySelectorAll('.timeline-row');
-			var row, weight, previousWeight, rowSpace;
-			for (var i = 0, length = rows.length; i < length; i++) {
-				row = rows[i];
-				weight = parseInt(row.getAttribute('data-weight'), 10);
-				if (isNaN(weight) || weight == previousWeight) continue;
-				rowSpace = document.createElement('div'); 
-				rowSpace.className = 'impact-statement-space' + _impactCSSClass(weight, false); 
-				rowSpace.setAttribute('data-weight', weight);
-				contentContainer.insertBefore(rowSpace, row);
-				previousWeight = weight;
-			}
+		var _drawBar = function(initiative, timelineName) {
+			var bar = document.createElement('div'),
+				durationBar = document.createElement('div'),
+				barWidth = _getBarWidth(initiative),
+				barLeftMargin = _getLeftMargin(timespan.Start, initiative.StartDate);
+			bar.id = 'initiative-' + initiative.ID;
+			bar.className = 'bar ' + timelineName;
+			durationBar.className = 'duration';
+			durationBar.style.width = barWidth + 'px';
+			durationBar.style.marginLeft = barLeftMargin + 'px';
+			durationBar = _makeIcons(initiative, durationBar);
+			bar.appendChild(durationBar);
+			return bar;
 		}
 
-		var _addImpactStatements = function() {
-			var initiativeBoxes = document.querySelectorAll('.initiative');
-			var box, weight, previousWeight, impactCSS,
-				statement, button, hideResource = r.Hide;
-			for (var i = 0, length = initiativeBoxes.length; i < length; i++) {
-				box = initiativeBoxes[i];
-				weight = parseInt(box.getAttribute('data-weight'), 10);
-				if (isNaN(weight) || weight == previousWeight) continue;
-				impactCSS = _impactCSSClass(weight, false);
-				statement = document.createElement('p'), statement.innerHTML = _getImpactStatment(weight),
-				statement.className = 'impact-statement' + impactCSS, statement.setAttribute('data-weight', weight);
-				button = document.createElement('a'), button.innerHTML = hideResource,
-				button.className = 'hide-button' + impactCSS, button.setAttribute('data-weight', weight);
-				initiativeContainer.insertBefore(statement, box); initiativeContainer.insertBefore(button, box);
-				previousWeight = weight;
-			}
+		var _drawDescription = function(initiative, timelineName) {
+			var initiativeName = initiative[NAME_CULTURE];
+			var dialogText = initiative[DESC_CULTURE];
+			var box = document.createElement('div'),
+				content = document.createElement('p');
+			box.id = 'initiative-description-' + initiative.ID;
+			box.className = 'description-box ' + timelineName;
+			content.className = 'description';
+			content.setAttribute('data-title', initiativeName);
+			content.setAttribute('data-description', dialogText);
+			content.innerHTML = initiativeName;
+			box.appendChild(content);
+			return box;
 		}
 
-		var _impactCSSClass = function(level, lighter) {
-			switch (level) {
-				case 0: return lighter == true ? ' no-impact-color-content' : ' no-impact-color';
-				case 1: return lighter == true ? ' low-impact-color-content' : ' low-impact-color';
-				case 2: return lighter == true ? ' medium-impact-color-content' : ' medium-impact-color';
-				case 3: return lighter == true ? ' high-impact-color-content' : ' high-impact-color';
-				case 4: return lighter == true ? ' blueprint-impact-color-content' : ' blueprint-impact-color';
-				default: return lighter == true ? ' no-impact-color-content' : ' no-impact-color';
-			}
+		var _drawRow = function(initiative) {
+			descriptionContainer.appendChild(_drawDescription(initiative, this));
+			contentContainer.appendChild(_drawBar(initiative, this));
 		}
 
-		var _getImpactStatment = function(level) {
-			switch (level) {
-				case 0: return r.NoImpact; case 1: return r.LowImpact; case 2: return r.MediumImpact;
-				case 3: return r.HighImpact; case 4: return r.BlueprintImpact; default: return r.NoImpact;
+		var _drawTimeline = function(timeline) {
+			var name = timeline[NAME_CULTURE];
+			timeline.Data.forEach(_drawRow, name);
+		}
+
+		var _reset = function() {
+			descriptionContainer.innerHTML = '';
+			contentContainer.innerHTML = '';
+			timespan = dm.timespan();
+			if (ROW_WIDTH == undefined || ROW_IN_MILLISECONDS == undefined) {
+				ROW_WIDTH = timespan.Duration.Months * MONTH_WIDTH;
+				ROW_IN_MILLISECONDS = timespan.End.diff(timespan.Start);
+				timespan.Start = timespan.Start.format('MM/DD/YY');
+				timespan.End = timespan.End.format('MM/DD/YY');
 			}
 		}
 
@@ -770,51 +754,172 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 		}
 
-		var _reset = function() {
-			initiativeContainer.innerHTML = '';
-			contentContainer.innerHTML = '';
-			timespan = dm.timespan();
-			if (ROW_WIDTH == undefined || ROW_IN_MILLISECONDS == undefined) {
-				ROW_WIDTH = timespan.Duration.Months * MONTH_WIDTH;
-				ROW_IN_MILLISECONDS = timespan.End.diff(timespan.Start);
-				timespan.Start = timespan.Start.format('MM/DD/YY');
-				timespan.End = timespan.End.format('MM/DD/YY');
-			}
-		}
-
-		var _drawInitiative = function(initiative) {
-			var impactLevel = initiative.Weight;
-			initiativeContainer.appendChild(_addInitiativeBox(initiative, this, impactLevel));
-			contentContainer.appendChild(_addTimelineRow(initiative, this, impactLevel));
-		}
-
-		var _drawTimeline = function(timeline) {
-			var timelineName = timeline[NAME_CULTURE];
-			timeline.Data.forEach(_drawInitiative, timelineName);
-		}
-
 		var _draw = function(timelines) {
 			if (timelines == null) return 'no argument was passed in';
 			_reset();
+			_addImpactHeadingElements();
 			timelines.forEach(_drawTimeline);
-			_categorize();
 			_showToday();
 		}
 
-		var _dialog = function($icon) {
+		var _createImpactHeadingElement = function(weight, impactClass) {
+			var container, statement, button, rowSpace;
+			container = document.createElement('div');
+			container.className = 'hide impact-statement ' + impactClass;
+			container.setAttribute('data-weight', weight);
+			statement = document.createElement('p');
+			statement.innerHTML = _getImpactStatment(weight);
+			button = document.createElement('a');
+			button.innerHTML = r.Hide;
+			button.className = 'hide-button';
+			button.setAttribute('data-weight', weight)
+			container.appendChild(statement);
+			container.appendChild(button);
+			rowSpace = document.createElement('div'); 
+			rowSpace.className = 'hide impact-statement-space ' + impactClass; 
+			rowSpace.setAttribute('data-weight', weight);
+			return [container, rowSpace];
+		}
+
+		var _addImpactHeadingElements = function() {
+			var weight, impactClass, element, weightOrder;
+			weightOrder = [3, 2, 1, 0, 4];
+			for (var i = 0, cond = weightOrder.length; i < cond; i++) {
+				weight = weightOrder[i], impactClass = _impactCSSClass(weightOrder[i], false);
+				element = _createImpactHeadingElement(weight, impactClass);
+				descriptionContainer.appendChild(element[0]);
+				contentContainer.appendChild(element[1]);
+			}
+		}
+
+		var _removeImpactClass = function(index, css) {
+			return (css.match(/\S+color-content($|\s)/g) || []).join(' ');
+		}
+
+		var _resetSort = function() {
+			$descriptionContainer.find('.description-box').attr({
+				'style': 'order: 0',
+				'data-order': '0'
+			}).removeClass(_removeImpactClass);
+			$contentContainer.find('.bar').attr({
+				'style': 'order: 0',
+				'data-order': '0'
+			}).removeClass(_removeImpactClass);
+			$contentContainer.find('.icon').removeClass('hide');
+		}
+
+		var _filterTimelines = function() {
+			sortableTimelines.forEach(function(timeline) {
+				var timelineSelector = '.' + timeline[NAME_CULTURE];
+				if (timeline.Skip == true) $(timelineSelector).addClass('hide');
+				else $(timelineSelector).removeClass('hide');
+			})
+		}
+
+		var _sortInitiatives = function() {
+			sortableTimelines.forEach(function(timeline) {
+				timeline.Data.forEach(function(initiative) {
+					// check if Weight is defined; if undefined, region & branch not selected
+					if (initiative.Weight == undefined) return false;
+					var order = initiative.Weight == undefined ? 0 : _getFlexOrder(initiative.Weight);
+					var impactClass = _impactCSSClass(initiative.Weight, true);
+
+					// re-order flex layout by setting order
+					var idSuffix = initiative.ID;
+					var descriptionSelector = '#initiative-description-' + idSuffix;
+					var barSelector = '#initiative-' + idSuffix;
+					$(descriptionSelector).attr({
+						'style': ('order: ' + order),
+						'data-order': order,
+						'data-weight': (initiative.Weight)
+					}).addClass(impactClass);
+					$(barSelector).attr({
+						'style': ('order: ' + order),
+						'data-order': order,
+						'data-weight': initiative.Weight
+					}).addClass(impactClass);
+
+					// hide icons if needs be
+					initiative.Events.forEach(function(event) {
+						if (event.Skip == undefined) return false;
+						var eventSelector = '#event-' + event.ID;
+						if (event.Skip == true) $(eventSelector).addClass('hide');
+						else $(eventSelector).removeClass('hide');
+					});
+				});
+			});
+		}
+
+		var _categorize = function() {
+			var $box, $statement, $space, weight, order, weightOrder = [3, 2, 1, 0, 4];
+			for (var i = 0, cond = weightOrder.length; i < cond; i++) {
+				$box = $(".description-box[data-weight='" + weightOrder[i] + "']:not(.hide)").first();
+				$statement = $(".impact-statement[data-weight='" + weightOrder[i] + "']").first();
+				$space = $(".impact-statement-space[data-weight='" + weightOrder[i] + "']").first();
+				order =  $box.attr('data-order');
+				if ($box.length > 0 && order != '0') {
+					$statement.attr({
+						'style': ('order: ' + order)
+					}).removeClass('hide');
+					$space.attr({
+						'style': ('order: ' + order)
+					}).removeClass('hide');
+				} else {
+					$statement.addClass('hide');
+					$space.addClass('hide');
+				}
+			}
+		}
+
+		var _getImpactStatment = function(level) {
+			switch (level) {
+				case 0: return r.NoImpact; case 1: return r.LowImpact; case 2: return r.MediumImpact;
+				case 3: return r.HighImpact; case 4: return r.BlueprintImpact; default: return r.NoImpact;
+			}
+		}
+
+		var _impactCSSClass = function(level, lighter) {
+			switch (level) {
+				case 0: return lighter == true ? 'no-impact-color-content' : 'no-impact-color';
+				case 1: return lighter == true ? 'low-impact-color-content' : 'low-impact-color';
+				case 2: return lighter == true ? 'medium-impact-color-content' : 'medium-impact-color';
+				case 3: return lighter == true ? 'high-impact-color-content' : 'high-impact-color';
+				case 4: return lighter == true ? 'blueprint-impact-color-content' : 'blueprint-impact-color';
+				default: return lighter == true ? 'no-impact-color-content' : 'no-impact-color';
+			}
+		}
+
+		var _getFlexOrder = function(weight) {
+			switch (weight) {
+				// just a helper function to switch flex orders around
+				case 1: return 3; case 2: return 2; case 3: return 1; case 4: return 4;
+				default: return 4;
+			}
+		}
+
+		var _sort = function(timelines) {
+			sortableTimelines = timelines;
+			_resetSort();
+			_filterTimelines();
+			_sortInitiatives();
+			_categorize();
+		}
+
+		var _dialog = function($obj) {
 			var title = '';
 			var text = '';
-			title = $icon.attr('data-title');
-			text = $icon.attr('data-description');
+			title = $obj.attr('data-title');
+			text = $obj.attr('data-description');
 			if (text != '' && text != 'null') {
-				$("#dialog").dialog("open");
 				$("#dialog").html(text);
 				$("#ui-id-1").html(title);
+				$("#dialog").dialog('open');
 			}
 		}
 
 		return {
 			draw: _draw,
+			sort: _sort,
 			openDialog: _dialog
 		}
 	})(dataManager);
