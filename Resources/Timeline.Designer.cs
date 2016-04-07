@@ -97,15 +97,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;img src=&apos;../Images/book.png&apos; class=&apos;align-middle&apos; style=&apos;width:24px; height: 32px;&apos; /&gt; &lt;span&gt;&amp;nbsp;Training&lt;/span&gt;&lt;br /&gt; &lt;img src=&apos;../Images/circle.png&apos; class=&apos;align-middle&apos; style=&apos;width:24px; height: 32px;&apos; /&gt; &lt;span&gt;&amp;nbsp;Milestone&lt;/span&gt;.
-        /// </summary>
-        public static string IconLegend {
-            get {
-                return ResourceManager.GetString("IconLegend", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;This transformation timeline tool has been designed to provide you with a list of the current transformation initiatives based on the area and the branch that you have chosen. After you close this message, the tool will display a re-sorted list of initiatives that have been organized based on the degree to which they will change the way you do your work.&lt;/p&gt; &lt;p&gt;Within your displayed results, click on the name of the initiative to read more about what it is and how it generally impacts employees.  You can [rest of string was truncated]&quot;;.
         /// </summary>
         public static string InitialFilterSplash {

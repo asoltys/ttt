@@ -530,11 +530,9 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				ui.renderer.sort(dm.timelines());
 				if (this.value != 'all' && !splashRan) {
 					splashRan = true;
-					setTimeout(function() {
-						ui.renderer.openDialog({ 
-							title: '&nbsp;', text: h.htmlDecode(r.InitialFilterSplash) 
-						}, false);
-					}, 1);
+					ui.renderer.openDialog({ 
+						title: '&nbsp;', text: h.htmlDecode(r.InitialFilterSplash) 
+					}, false);
 				}
 			}
 
@@ -634,7 +632,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 
 				// delegate click event to each class
 				$descriptionContainer.on('click', '.description', function() { ui.renderer.openDialog($(this), true); });
-				$contentContainer.on('click', '.icon', function() { ui.renderer.openDialog($(this), true); });
+				$contentContainer.on('click', '.icon-click', function() { ui.renderer.openDialog($(this), true); });
 
 				// hide and show buttons in timeline tool
 				$descriptionContainer.on('click', '.hide-button', _handleHideButton);
@@ -686,16 +684,16 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				type, hover, dialogText;
 			initiative.Events.forEach(function(event, index) {
 				eventLeftMargin = _getLeftMargin(initiative.StartDate, event.Date) - halfIconWidth;
-				type = event.Type == 'Milestone' ? 'circle.png' : 'book.png';
+				type = event.Type == 'Milestone' ? 'fa-dot-circle-o' : 'fa-book';
 				hover = event[HOVER_CULTURE];
 				dialogText = event[TEXT_CULTURE];
-				icon = document.createElement('img');
+				icon = document.createElement('i');
 				icon.id = 'event-' + event.ID;
-				icon.src = '/timeline/img/' + type,
-				icon.className = dialogText != null ? 'icon icon-click' : 'icon',
-				icon.title = hover,
-				icon.style.marginLeft = eventLeftMargin + 'px',
-				icon.setAttribute('data-title', hover),
+				icon.className = 'icon fa fa-2x ' + type + ' ' + event.Type.toLowerCase();
+				icon.className += dialogText != null ? ' icon-click' : '';
+				icon.title = hover;
+				icon.style.marginLeft = eventLeftMargin + 'px';
+				icon.setAttribute('data-title', hover);
 				icon.setAttribute('data-description', dialogText);
 				dom.appendChild(icon);
 			});
@@ -947,7 +945,9 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			if (text != '' && text != 'null') {
 				$("#dialog").html(text);
 				$("#ui-id-1").html(title);
-				$("#dialog").dialog('open');
+				setTimeout(function() {
+					$("#dialog").dialog('open');
+				}, 1);
 			}
 		}
 

@@ -12,7 +12,6 @@
         ViewBag.lang = "eng";
     }
 }
-
 <div id="timeline">
 	<div id="dialog" title="dialog"></div>
 	<div class="align-center">
@@ -24,7 +23,8 @@
 				@Html.Raw(Timeline.About)
 			</div>
 			<div id="timeline-tool-legend" class="span-1 margin-bottom-none">
-				@Html.Raw(Timeline.IconLegend)
+				<i class="icon fa fa-2x fa-book training icon-legend"></i><p>@Timeline.Training</p><br />
+				<i class="icon fa fa-2x fa-dot-circle-o milestone icon-legend"></i><p>@Timeline.Milestone</p>
 			</div>
 			<div class="clear"></div>
 		</div>
