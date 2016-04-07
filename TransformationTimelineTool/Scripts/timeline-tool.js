@@ -456,7 +456,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				});
 				dm.branches().forEach(function(element, index, array) {
 					var branch = element['Name' + CULTURE_APPEND];
-					branch = h.truncate(branch, 45);
+					branch = h.truncate(branch, 40);
 					_addOption($branch, { text: branch, value: element.ID });
 				});
 			}
@@ -571,7 +571,6 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 
 			var _handleScroll = function() {
-
 				if (INITIAL_NAV_OFFSET == null) {
 					INITIAL_NAV_OFFSET = $navContainer.offset().top;
 					NAV_RETURN_POSITION = INITIAL_NAV_OFFSET - $main.offset().top;
@@ -733,7 +732,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			timeline.Data.forEach(_drawRow, name);
 		}
 
-		var _reset = function() {
+		var _emptyContinaers = function() {
 			descriptionContainer.innerHTML = '';
 			contentContainer.innerHTML = '';
 			timespan = dm.timespan();
@@ -743,37 +742,6 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				timespan.Start = timespan.Start.format('MM/DD/YY');
 				timespan.End = timespan.End.format('MM/DD/YY');
 			}
-		}
-
-		var _showToday = function() {
-			var viewableWidth = $contentContainer.parent().width();
-			if (TODAY_MARGIN == undefined) {
-				TODAY_MARGIN = _getLeftMargin(timespan.Start, TODAY) * -1 + Math.floor(viewableWidth / 2);
-			}
-			requestAnimationFrame(function() {
-				_addTodayLine();
-				calendar.style.left = TODAY_MARGIN + 'px';
-				contentContainer.style.left = TODAY_MARGIN + 'px';
-			});
-		}
-
-		var _addTodayLine = function() {
-			var img = "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + _getLeftMargin(timespan.Start, TODAY) + "px' />";
-			var $children = $contentContainer.children('.impact-statement-space');
-			var impactStatementSpaceExists = $children.length > 0;
-			if (impactStatementSpaceExists) {
-				$(img).insertAfter($children.first());
-			} else {
-				$contentContainer.prepend(img);
-			}
-		}
-
-		var _draw = function(timelines) {
-			if (timelines == null) return 'no argument was passed in';
-			_reset();
-			_addImpactHeadingElements();
-			timelines.forEach(_drawTimeline);
-			_showToday();
 		}
 
 		var _createImpactHeadingElement = function(weight, impactClass) {
@@ -806,6 +774,37 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			}
 		}
 
+		var _showToday = function() {
+			var viewableWidth = $contentContainer.parent().width();
+			if (TODAY_MARGIN == undefined) {
+				TODAY_MARGIN = _getLeftMargin(timespan.Start, TODAY) * -1 + Math.floor(viewableWidth / 2);
+			}
+			requestAnimationFrame(function() {
+				_addTodayLine();
+				calendar.style.left = TODAY_MARGIN + 'px';
+				contentContainer.style.left = TODAY_MARGIN + 'px';
+			});
+		}
+
+		var _addTodayLine = function() {
+			var img = "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + _getLeftMargin(timespan.Start, TODAY) + "px' />";
+			var $children = $contentContainer.children('.impact-statement-space');
+			var impactStatementSpaceExists = $children.length > 0;
+			if (impactStatementSpaceExists) {
+				$(img).insertAfter($children.first());
+			} else {
+				$contentContainer.prepend(img);
+			}
+		}
+
+		var _draw = function(timelines) {
+			if (timelines == null) return 'no argument was passed in';
+			_emptyContinaers();
+			_addImpactHeadingElements();
+			timelines.forEach(_drawTimeline);
+			_showToday();
+		}
+
 		var _removeImpactClass = function(index, css) {
 			return (css.match(/\S+color-content($|\s)/g) || []).join(' ');
 		}
@@ -820,6 +819,11 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				'data-order': '0'
 			}).removeClass(_removeImpactClass);
 			$contentContainer.find('.icon').removeClass('hide');
+
+			$showButtons = $('.show-button');
+			$showButtons.each(function() {
+				$(this).removeClass('show-button').addClass('hide-button').text(r.Hide);
+			});
 		}
 
 		var _filterTimelines = function() {
