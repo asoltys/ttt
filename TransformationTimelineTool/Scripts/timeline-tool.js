@@ -727,7 +727,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			content.className = 'description';
 			content.setAttribute('data-title', initiativeName);
 			content.setAttribute('data-description', dialogText);
-			content.innerHTML = h.truncate(initiativeName, 60);
+			content.innerHTML = h.truncate(initiativeName, 55);
 			box.appendChild(content);
 			return box;
 		}
