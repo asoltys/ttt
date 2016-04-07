@@ -484,7 +484,8 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				$main = $('#wb-main-in'),
 				$body = $('body'),
 				$document = $(document),
-				$window = $(window);
+				$window = $(window),
+				splashRan = false;
 
 			var INITIAL_NAV_OFFSET, NAV_RETURN_POSITION;
 			var navFixed;
@@ -527,6 +528,14 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				dm.setBranch(this.value);
 				dm.filter();
 				ui.renderer.sort(dm.timelines());
+				if (this.value != 'all' && !splashRan) {
+					splashRan = true;
+					setTimeout(function() {
+						ui.renderer.openDialog({ 
+							title: '&nbsp;', text: h.htmlDecode(r.InitialFilterSplash) 
+						}, false);
+					}, 1);
+				}
 			}
 
 			var _handleOutsideDialogClick = function(e) {
@@ -602,6 +611,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				$timeline.trigger('change');
 				$region.trigger('change');
 				$branch.trigger('change');
+				splashRan = false;
 			}
 
 			var _registerEvents = (function() {
@@ -623,8 +633,8 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				$body.bind('click', _handleOutsideDialogClick);
 
 				// delegate click event to each class
-				$descriptionContainer.on('click', '.description', function() { ui.renderer.openDialog($(this)); });
-				$contentContainer.on('click', '.icon', function() { ui.renderer.openDialog($(this)); });
+				$descriptionContainer.on('click', '.description', function() { ui.renderer.openDialog($(this), true); });
+				$contentContainer.on('click', '.icon', function() { ui.renderer.openDialog($(this), true); });
 
 				// hide and show buttons in timeline tool
 				$descriptionContainer.on('click', '.hide-button', _handleHideButton);
@@ -924,11 +934,16 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			_categorize();
 		}
 
-		var _dialog = function($obj) {
+		var _dialog = function($obj, dom) {
 			var title = '';
 			var text = '';
-			title = $obj.attr('data-title');
-			text = $obj.attr('data-description');
+			if (!dom) {
+				title = $obj.title;
+				text = $obj.text;
+			} else {
+				title = $obj.attr('data-title');
+				text = $obj.attr('data-description');
+			}
 			if (text != '' && text != 'null') {
 				$("#dialog").html(text);
 				$("#ui-id-1").html(title);
