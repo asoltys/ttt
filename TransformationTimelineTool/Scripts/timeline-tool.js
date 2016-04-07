@@ -456,7 +456,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 				});
 				dm.branches().forEach(function(element, index, array) {
 					var branch = element['Name' + CULTURE_APPEND];
-					branch = h.truncate(branch, 45);
+					branch = h.truncate(branch, 40);
 					_addOption($branch, { text: branch, value: element.ID });
 				});
 			}
