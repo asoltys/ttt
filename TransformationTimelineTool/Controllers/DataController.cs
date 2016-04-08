@@ -1,14 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
-using TransformationTimelineTool.Helpers;
 using TransformationTimelineTool.Models;
 
 namespace TransformationTimelineTool.Controllers
@@ -284,19 +280,27 @@ namespace TransformationTimelineTool.Controllers
         [Route("all")]
         public async Task<ActionResult> ReturnAllInitiatives(string culture)
         {
-            List<Initiative> initiatives = await db.Initiatives.ToListAsync();
-            initiatives = culture == "fr-ca" ?
-                initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
-            var initiativeBlocks = new List<object>();
-            var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
-            foreach (var timeline in timelines)
+            const string cacheKey = "initiative-blocks-mem";
+            List<object> initiativeBlocks = Helpers.CacheLayer.Get<List<object>>(cacheKey);
+
+            if (initiativeBlocks == null)
             {
-                var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
-                initiativeBlocks.Add(new {
-                    NameE = timeline,
-                    NameF = timeline,
-                    Data = populateJSONWithControl(initiativeBlock)
-                });
+                initiativeBlocks = new List<object>();
+                List<Initiative> initiatives = await db.Initiatives.ToListAsync();
+                initiatives = culture == "fr-ca" ?
+                    initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
+                var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
+                foreach (var timeline in timelines)
+                {
+                    var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
+                    initiativeBlocks.Add(new
+                    {
+                        NameE = timeline,
+                        NameF = timeline,
+                        Data = populateJSONWithControl(initiativeBlock)
+                    });
+                }
+                Helpers.CacheLayer.AddItem(initiativeBlocks, cacheKey);
             }
             return Json(initiativeBlocks, JsonRequestBehavior.AllowGet);
         }
