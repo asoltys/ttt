@@ -125,7 +125,6 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 			_prepareBranches();
 			_findTimespan();
 			_deepCopyData();
-			return $.Deferred().resolve().promise();
 		}
 
 		var _prepareRegions = function() {
@@ -214,17 +213,19 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		var _getTimespan  = function() { return TIMESPAN; }
 
 		var _initialize = (function() {
-			h.ajax(POST, TIMELINES_URL, function(data) {
+			var xhr1 = h.ajax(POST, TIMELINES_URL, function(data) {
 				TIMELINES = JSON.parse(data);
-			}, CULTURE)
-			.then(h.ajax(POST, REGIONS_URL, function(data) {
+			}, CULTURE);
+			var xhr2 = h.ajax(POST, REGIONS_URL, function(data) {
 				REGIONS = JSON.parse(data);
-			}))
-			.then(h.ajax(POST, BRANCHES_URL, function(data) {
+			});
+			var xhr3 = h.ajax(POST, BRANCHES_URL, function(data) {
 				BRANCHES = JSON.parse(data);
-			}))
-			.then(_prepareData)
-			.then(_unlockScreen);
+			});
+			$.when(xhr1, xhr2, xhr3).done(function() {
+				_prepareData();
+				_unlockScreen();
+			});
 		})();
 
 		var _filterTimeline = function(value) {
