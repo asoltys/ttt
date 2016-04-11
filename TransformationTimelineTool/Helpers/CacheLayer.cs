@@ -24,5 +24,16 @@ namespace TransformationTimelineTool.Helpers
         {
             Cache.Add(key, objectToCache, DateTime.Now.AddDays(1));
         }
+
+        public static void EmptyTimelineCache()
+        {
+            if (Cache.Contains("initiative-blocks-mem-en"))
+            {
+                Cache.Remove("initiative-blocks-mem-en");
+            } else if (Cache.Contains("initiative-blocks-mem-fr"))
+            {
+                Cache.Remove("initiative-blocks-mem-fr");
+            }
+        }
     }
 }

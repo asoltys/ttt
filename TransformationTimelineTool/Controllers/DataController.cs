@@ -280,29 +280,57 @@ namespace TransformationTimelineTool.Controllers
         [Route("all")]
         public async Task<ActionResult> ReturnAllInitiatives(string culture)
         {
-            const string cacheKey = "initiative-blocks-mem";
-            List<object> initiativeBlocks = Helpers.CacheLayer.Get<List<object>>(cacheKey);
-
-            if (initiativeBlocks == null)
+            const string cacheKeyEn = "initiative-blocks-mem-en";
+            const string cacheKeyFr = "initiative-blocks-mem-fr";
+            List<object> initiativeBlocksEn = Helpers.CacheLayer.Get<List<object>>(cacheKeyEn);
+            List<object> initiativeBlocksFr = Helpers.CacheLayer.Get<List<object>>(cacheKeyFr);
+            
+            if ((culture == "fr-ca" || culture == "fr" || culture == "fra") && initiativeBlocksFr == null)
             {
-                initiativeBlocks = new List<object>();
+                initiativeBlocksFr = new List<object>();
                 List<Initiative> initiatives = await db.Initiatives.ToListAsync();
-                initiatives = culture == "fr-ca" ?
-                    initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
+                initiatives = initiatives.OrderBy(i => i.NameF).ToList();
                 var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
                 foreach (var timeline in timelines)
                 {
                     var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
-                    initiativeBlocks.Add(new
+                    initiativeBlocksFr.Add(new
                     {
                         NameE = timeline,
                         NameF = timeline,
                         Data = populateJSONWithControl(initiativeBlock)
                     });
                 }
-                Helpers.CacheLayer.AddItem(initiativeBlocks, cacheKey);
+                Helpers.CacheLayer.AddItem(initiativeBlocksFr, cacheKeyFr);
+            } else if ((culture == "en-ca" || culture == "en" || culture == "eng") && initiativeBlocksEn == null)
+            {
+                initiativeBlocksEn = new List<object>();
+                List<Initiative> initiatives = await db.Initiatives.ToListAsync();
+                initiatives = initiatives.OrderBy(i => i.NameF).ToList();
+                var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
+                foreach (var timeline in timelines)
+                {
+                    var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
+                    initiativeBlocksEn.Add(new
+                    {
+                        NameE = timeline,
+                        NameF = timeline,
+                        Data = populateJSONWithControl(initiativeBlock)
+                    });
+                }
+                Helpers.CacheLayer.AddItem(initiativeBlocksEn, cacheKeyEn);
             }
-            return Json(initiativeBlocks, JsonRequestBehavior.AllowGet);
+
+            if (culture == "fr-ca")
+            {
+                return Json(initiativeBlocksFr, JsonRequestBehavior.AllowGet);
+            } else if (culture == "en-ca")
+            {
+                return Json(initiativeBlocksEn, JsonRequestBehavior.AllowGet);
+            } else
+            {
+                return Json(initiativeBlocksEn, JsonRequestBehavior.AllowGet);
+            }
         }
 
         private List<object> populateJSONWithControl(List<Initiative> initiatives)

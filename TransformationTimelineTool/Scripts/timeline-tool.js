@@ -215,7 +215,7 @@ var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => mome
 		var _initialize = (function() {
 			var xhr1 = h.ajax(POST, TIMELINES_URL, function(data) {
 				TIMELINES = JSON.parse(data);
-			}, CULTURE);
+			}, {culture: CULTURE});
 			var xhr2 = h.ajax(POST, REGIONS_URL, function(data) {
 				REGIONS = JSON.parse(data);
 			});

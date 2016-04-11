@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -129,6 +130,7 @@ namespace TransformationTimelineTool.Controllers
                     db.Events.Add(eventToCreate);
                     db.SaveChanges();
                     HandleNotification(NotificationAction, eventToCreate.Edits);
+                    ManageCache();
                     return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -230,6 +232,7 @@ namespace TransformationTimelineTool.Controllers
                     eventToUpdate.Edits.Add(edit);
                     db.SaveChanges();
                     HandleNotification(NotificationAction, eventToUpdate.Edits);
+                    ManageCache();
                     return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -431,6 +434,7 @@ namespace TransformationTimelineTool.Controllers
             Event @event = db.Events.Find(id);
             db.Events.Remove(@event);
             db.SaveChanges();
+            ManageCache();
             return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
         }
 

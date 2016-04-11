@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TransformationTimelineTool.Helpers;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -25,6 +27,16 @@ namespace TransformationTimelineTool.Controllers
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
             return base.BeginExecuteCore(callback, state);
+        }
+
+        public void ManageCache()
+        {
+            Utils.log("Manage Cache Called");
+            Task updateCache = Task.Run(() =>
+            {
+                CacheLayer.EmptyTimelineCache();
+                new DataController().ReturnAllInitiatives(Thread.CurrentThread.CurrentCulture.Name);
+            });
         }
 
         //protected override ViewResult View(string viewName, string masterName, object model)
