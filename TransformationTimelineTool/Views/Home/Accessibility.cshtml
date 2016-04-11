@@ -299,7 +299,7 @@ var dataManager = (function() {
                 _timelines.push(elem['Name' + cultureDataAppend]);
             });
             _filteredInitiatives = JSON.parse(data);
-        }, culture).then(
+        }, {culture: culture}).then(
         callPostAPI(_regionsURL, function(data) {
             data = JSON.parse(data);
             data = _sortByName(data);
