@@ -306,7 +306,7 @@ namespace TransformationTimelineTool.Controllers
             {
                 initiativeBlocksEn = new List<object>();
                 List<Initiative> initiatives = await db.Initiatives.ToListAsync();
-                initiatives = initiatives.OrderBy(i => i.NameF).ToList();
+                initiatives = initiatives.OrderBy(i => i.NameE).ToList();
                 var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
                 foreach (var timeline in timelines)
                 {

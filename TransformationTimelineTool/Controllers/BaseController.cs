@@ -31,11 +31,11 @@ namespace TransformationTimelineTool.Controllers
 
         public void ManageCache()
         {
-            Utils.log("Manage Cache Called");
             Task updateCache = Task.Run(() =>
             {
                 CacheLayer.EmptyTimelineCache();
-                new DataController().ReturnAllInitiatives(Thread.CurrentThread.CurrentCulture.Name);
+                new DataController().ReturnAllInitiatives("en");
+                new DataController().ReturnAllInitiatives("fr");
             });
         }
 
