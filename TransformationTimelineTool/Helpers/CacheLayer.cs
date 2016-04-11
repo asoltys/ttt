@@ -30,7 +30,8 @@ namespace TransformationTimelineTool.Helpers
             if (Cache.Contains("initiative-blocks-mem-en"))
             {
                 Cache.Remove("initiative-blocks-mem-en");
-            } else if (Cache.Contains("initiative-blocks-mem-fr"))
+            }
+            if (Cache.Contains("initiative-blocks-mem-fr"))
             {
                 Cache.Remove("initiative-blocks-mem-fr");
             }
