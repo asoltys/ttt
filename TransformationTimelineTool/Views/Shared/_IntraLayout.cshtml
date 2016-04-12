@@ -205,7 +205,7 @@
                             HttpContext.Current.User.IsInRole("Approver") ||
                             HttpContext.Current.User.IsInRole("Editor") )
                             {
-                            @Html.ActionLink(Resources.Administration, "Index", "Initiatives", new { lang = "eng" }, new { @class = "button" })
+                            @Html.ActionLink(Resources.Administration, "Index", "Initiatives", new { lang=ViewBag.lang }, new { @class = "button" })
                             }
                         </ul>
                         @RenderBody()
