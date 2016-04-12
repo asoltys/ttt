@@ -18,8 +18,15 @@ else
 }
 
 
-<h2>@Html.DisplayFor(model => model.Name) (@Html.DisplayFor(model => model.Timeline))</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
     <hr />
+
+<div class="print-box">
+    <h4>@Resources.Timeline</h4>
+    <p>
+        @Html.DisplayFor(model => model.Timeline)
+    </p>
+</div>
 
 <div class="print-box">
     <h4>@Resources.InitiativeDescription</h4>
