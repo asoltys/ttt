@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;This transformation timeline tool has been designed to provide you with a list of the current transformation initiatives based on the area and the branch that you have chosen. After you close this message, the tool will display a re-sorted list of initiatives that have been organized based on the degree to which they will change the way you do your work.&lt;/p&gt; &lt;p&gt;Within your displayed results, click on the name of the initiative to read more about what it is and how it generally impacts employees.  You can [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;p&gt;This timeline tool has been designed to provide you with a list of the current transformation and Blueprint 2020 initiatives based on the area and the branch that you have chosen. After you close this message, the tool will display a re-sorted list of initiatives that have been organized based on the degree to which they will change the way you do your work.&lt;/p&gt; &lt;p&gt;Within your displayed results, click on the name of the initiative to read more about what it is and how it generally impacts employees. You  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string InitialFilterSplash {
             get {
