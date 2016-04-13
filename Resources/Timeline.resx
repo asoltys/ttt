@@ -165,4 +165,7 @@
   <data name="ViewAll" xml:space="preserve">
     <value>View All</value>
   </data>
+  <data name="InitialFilterAccessible" xml:space="preserve">
+    <value>&lt;p&gt;This timeline tool has been designed to provide you with a list of the current transformation and Blueprint 2020 initiatives based on the area and the branch that you have chosen. The tool will display a re-sorted list of initiatives that have been organized based on the degree to which they will change the way you do your work.&lt;/p&gt; &lt;p&gt;Within your displayed results, click on the name of the initiative to read more about what it is and how it generally impacts employees. You can also click on the Red Dot icons to learn more about the milestones for each initiative. Clicking on a Book icon will give you information about initiative training. You will find a “Start Over” option at the bottom of the tool that will allow you to start over and chose a different area and branch if you’d like to explore more.&lt;/p&gt; &lt;p&gt;Have more questions? Please contact your manager or send us an email message by &lt;a href='https://masource-mysource.spac-pspc.gc.ca/eng/ot-wt/pt-tp/Pages/retroaction-feedback.aspx'&gt;clicking here&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
 </root>

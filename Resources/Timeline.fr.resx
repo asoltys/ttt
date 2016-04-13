@@ -165,4 +165,7 @@
   <data name="ViewAll" xml:space="preserve">
     <value>Voir Tous</value>
   </data>
+  <data name="InitialFilterAccessible" xml:space="preserve">
+    <value>&lt;p&gt;Cet outil de calendrier a été conçu pour vous fournir une liste des initiatives de transformation et Objectif 2020 actuelles en fonction de la région et de la direction générale que vous avez choisis. L’outil présentera une liste d’initiatives nouvellement triées qui ont été organisées en fonction de la mesure dans laquelle elles vont changer la façon dont vous travaillez.&lt;/p&gt;&lt;p&gt;Parmi les résultats affichés, cliquez sur le nom de l’initiative pour en savoir plus à son sujet et pour connaître ses répercussions générales sur les employés. Vous pouvez aussi cliquer sur les icônes en forme de point rouge pour en savoir plus sur les étapes de chaque initiative. Si vous cliquez sur un icône de livre, vous obtiendrez de l’information sur la formation relative à l’initiative. Vous trouverez l’option « Recommencer » au bas de l’outil; cette option vous permet de recommencer et de choisir une direction générale et une région différentes si vous souhaitez pousser votre exploration.&lt;/p&gt;&lt;p&gt;Avez-vous d’autres questions? Communiquez avec votre gestionnaire ou envoyez-nous un message électronique en &lt;a href='https://masource-mysource.spac-pspc.gc.ca/fra/ot-wt/pt-tp/Pages/retroaction-feedback.aspx'&gt;cliquant ici&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
 </root>
