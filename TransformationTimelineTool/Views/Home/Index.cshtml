@@ -2,13 +2,13 @@
     if(Culture == "fr")
     {
         Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
-        ViewBag.Title = "L'Outil de calendrier : Transformation et Objectif 2020";
+        ViewBag.Title = @Resources.ApplicationName;
         ViewBag.lang = "fra";
     }
     else
     {
         Layout = "~/Views/Shared/_IntraLayout.cshtml";
-        ViewBag.Title = "Timeline Tool: Transformation and Blueprint 2020";
+        ViewBag.Title = @Resources.ApplicationName;
         ViewBag.lang = "eng";
     }
 }

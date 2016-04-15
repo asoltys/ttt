@@ -275,7 +275,7 @@ var controller = (function(gui, resources) {
 			$('#initiative-container').removeClass('hide');
 			$('#quarter-container').addClass('hide');
 			$('#report-title').text(resources.get('report-print-initiative-title'));
-			$('#report-subtitle').text(resources.get('report-subtitle'));
+			$('#report-subtitle').text($('<div/>').html(resources.get('application-name')).text());
 		});
 		$('#radio-report-quarterly').on('click', function() {
 			gui.reset();
@@ -285,7 +285,7 @@ var controller = (function(gui, resources) {
 			$('#quarter-container').removeClass('hide');
 			$('#initiative-container').addClass('hide');
 			$('#report-title').text(resources.get('report-print-quarterly-title'));
-			$('#report-subtitle').text(resources.get('report-subtitle'));
+			$('#report-subtitle').text($('<div/>').html(resources.get('application-name')).text());
 		});
 		$('#select-quarter-timeline').on('change', function() {
 			gui.reset();

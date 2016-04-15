@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timeline Tool: Transformation and Blueprint 2020.
+        /// </summary>
+        public static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approved.
         /// </summary>
         public static string Approved {
@@ -1269,7 +1278,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href=&apos;http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng&apos;&gt;PSPC Timeline Tool&lt;/a&gt; for up-to-date information..
+        ///   Looks up a localized string similar to The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href=&apos;http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng&apos;&gt;Timeline Tool: Transformation and Blueprint 2020&lt;/a&gt; for up-to-date information..
         /// </summary>
         public static string ReportPrintCoverPageWarning {
             get {

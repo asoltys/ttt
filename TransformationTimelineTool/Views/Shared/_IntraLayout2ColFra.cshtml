@@ -183,8 +183,8 @@ else
                                     <li><a href="http://intranet.tpsgc-pwgsc.gc.ca/intranet/index-fra.html">maSource</a></li>
 
                                     <!-- Start of pain-bread-section-fra.html / Début de pain-bread-section-fra.html -->
-                                    <li><a href="http://intranet.tpsgc-pwgsc.gc.ca/intranet/st-ps/index-fra.html">Services de <abbr title="Travaux publics et Services gouvernementaux Canada">TPSGC</abbr></a></li>
-                                    <li>Calendrier national des transformations</li> <!-- End of pain-bread-section-fra.html / Fin De pain-bread-section-fra.html -->
+                                    <li><a href="https://masource-mysource.spac-pspc.gc.ca/fra/ot-wt/pt-tp/Pages/default.aspx">Portail de la transformation</a></li>
+                                    <li>@Resources.ApplicationName</li> <!-- End of pain-bread-section-fra.html / Fin De pain-bread-section-fra.html -->
                                 </ol>
                             </div>
                         </div>
@@ -198,8 +198,6 @@ else
             <div id="wb-core-in" class="equalize">
                 <div id="wb-main" role="main">
                     <div id="wb-main-in">
-                        
-                        
                         <!--include virtual="/site/wet3.1/html5/includes/os-si-fra.html" -->
                         <!-- MainContentStart -->
                         @RenderBody()
@@ -218,7 +216,7 @@ else
                             <div class="wb-sec-def">
                                 <!-- SecNavStart -->
                                 <section>
-                                    <h3><a href="/Home/?lang=fra">@Resources.TransformationTimelineTool</a></h3>
+                                    <h3><a href="/?lang=fra">@Resources.ApplicationName</a></h3>
                                     <ul>
                                         <li style="display:inline">@Html.ActionLink(Resources.Initiatives, "Index", "Initiatives", new {  lang =  ViewBag.lang}, null)</li>
                                         <li style="display:inline">@Html.ActionLink(Resources.Impacts, "Index", "Impacts", new {  lang =  ViewBag.lang}, null)</li>

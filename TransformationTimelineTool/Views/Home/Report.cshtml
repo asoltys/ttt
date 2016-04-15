@@ -3,13 +3,14 @@
     {
         Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
         ViewBag.lang = "fra";
+        ViewBag.Title = @Resources.ApplicationName + ": Rapports";
     }
     else
     {
         Layout = "~/Views/Shared/_IntraLayout.cshtml";
         ViewBag.lang = "eng";
+        ViewBag.Title = @Resources.ApplicationName + ": Reports";
     }
-    ViewBag.Title = @Resources.ReportPageTitle;
 }
 
 <script>
@@ -150,7 +151,8 @@
             'report-fiscal-year': '@Resources.ReportFiscalYear',
             'timeline': '@Resources.ReportTimeline',
             'transformationtimeline': '@Resources.ReportTimelineTransformation',
-            'bp2020': '@Resources.ReportTimelineBP2020'
+            'bp2020': '@Resources.ReportTimelineBP2020',
+            'application-name': '@Resources.ApplicationName'
         };
 
         var _getByKey = function(key) {
