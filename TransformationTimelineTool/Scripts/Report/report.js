@@ -410,7 +410,7 @@ var contentGenerator = (function(resources) {
 		// Create description
 		var description = "<p>" + 
 			initiative["Description" + _cultureDataAppend] + "</p>";
-		description = _removeLink(description);
+		// description = _removeLink(description);
 		// Create timespan
 		var startDate = moment(initiative.StartDate, apiReturnDateFormat);
 		startDate = getQuarter(startDate.month()+1, startDate.year());
