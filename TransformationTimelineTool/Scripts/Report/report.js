@@ -416,7 +416,7 @@ var contentGenerator = (function(resources) {
 		startDate = getQuarter(startDate.month()+1, startDate.year());
 		var endDate = moment(initiative.EndDate, apiReturnDateFormat);
 		endDate = getQuarter(endDate.month()+1, endDate.year());
-		var timespan = startDate + " ~ " + endDate;
+		var timespan = startDate + " " + resources.get('to') + " " + endDate;
 		timespan = "<p>" + timespan + "</p>";
 
 		// Create milestones & training

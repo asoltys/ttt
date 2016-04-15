@@ -74,8 +74,8 @@ else
 </div>
 
 <div class="print-box">
-    <h4>@Resources.Start ~ @Resources.End</h4>
-    <p>@Html.DisplayFor(model => model.StartDate) ~ @Html.DisplayFor(model => model.EndDate)</p>
+    <h4>@Resources.Timespan</h4>
+    <p>@Html.DisplayFor(model => model.StartDate) @Resources.to @Html.DisplayFor(model => model.EndDate)</p>
 </div>
 
 <div class="print-box">
