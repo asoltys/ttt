@@ -3,13 +3,14 @@
     {
         Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
         ViewBag.lang = "fra";
+        ViewBag.Title = @Resources.ApplicationName + ": Version accessible";
     }
     else
     {
         Layout = "~/Views/Shared/_IntraLayout.cshtml";
         ViewBag.lang = "eng";
+        ViewBag.Title = @Resources.ApplicationName + ": Accessible Version";
     }
-    ViewBag.Title = @Resources.NationalTransformationTimelineTool;
 }
 <link href="@Url.Content("~/Content/accessibility.css")" rel="stylesheet" type="text/css" />
 
@@ -295,16 +296,15 @@ var dataManager = (function() {
     var _initiativesURL = "/data/accessibility";
     var _regionsURL = "/data/regions";
     var _branchesURL = "/data/branches";
-
     var _initialize = function(callback) {
-        callPostAPI(_initiativesURL, function(data) {
+        var xhr1 = callPostAPI(_initiativesURL, function(data) {
             _protectedInitiatives = JSON.parse(data);
             _protectedInitiatives.forEach(function(elem, idx, arr) {
                 _timelines.push(elem['Name' + cultureDataAppend]);
             });
             _filteredInitiatives = JSON.parse(data);
-        }, {culture: culture}).then(
-        callPostAPI(_regionsURL, function(data) {
+        }, {culture: culture});
+        var xhr2 = callPostAPI(_regionsURL, function(data) {
             data = JSON.parse(data);
             data = _sortByName(data);
             var nca;
@@ -315,11 +315,12 @@ var dataManager = (function() {
             });
             data.unshift(nca);
             _regions = data;
-        })).then(
-        callPostAPI(_branchesURL, function(data) {
+        });
+        var xhr3 = callPostAPI(_branchesURL, function(data) {
             data = JSON.parse(data);
             _branches = _sortByName(data);
-        })).then(callback);
+        });
+        $.when(xhr1, xhr2, xhr3).done(callback);
     };
 
     var _filterTimeline = function() {
