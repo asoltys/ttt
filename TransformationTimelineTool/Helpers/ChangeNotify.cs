@@ -49,7 +49,7 @@ namespace TransformationTimelineTool.Helpers
 
             }
 
-            string MailSubject = "There has been some changes to events you subscribed.";
+            string MailSubject = "L'Outil de calendrier: Il y a des changements dans vos abonnements | Timeline Tool: There are changes in your subscriptions";
 
             foreach (var subscriber in Subscribers)
             {
