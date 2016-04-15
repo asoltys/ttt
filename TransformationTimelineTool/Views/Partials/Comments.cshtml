@@ -1,7 +1,7 @@
 ﻿@model TransformationTimelineTool.Models.Comment
 
 <style>
-    #feedback {
+    #comments {
         float: left;
         margin: 10px;
         border: 1px solid #d4d4d4;
@@ -113,7 +113,7 @@
         htmlAttributes = new
         {
             @class = "form-control span-7",
-            @id = "feedback",
+            @id = "comments",
             @accesskey = "c",
             @tabindex = "1"
         }
@@ -350,7 +350,7 @@
         }
 
         function clearField() {
-            $("#feedback").val("");
+            $("#comments").val("");
         }
 
         function addEventListeners() {
@@ -359,7 +359,7 @@
             });
 
             $("#addComment").on("click", function () {
-                var $input = $("#feedback");
+                var $input = $("#comments");
                 if ($input.val().length == 0 || $input.val().length > 200) {
                     alert($("<div/>").html("@Resources.CommentLengthInvalid").text());
                     var end = $input.val().length > 200 ? 200 : $input.val().length;

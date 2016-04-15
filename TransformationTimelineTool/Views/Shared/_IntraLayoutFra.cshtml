@@ -168,7 +168,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
         @Html.ActionLink(Resources.Accessibility, "Accessibility", new { lang=ViewBag.lang }, new { @class="button" })
         @Html.ActionLink(Resources.Report, "Report", new { lang=ViewBag.lang }, new { @class="button" })
         @Html.ActionLink(Resources.Subscribe, "Subscribe", new { lang=ViewBag.lang }, new { @class="button" })
-        @Html.ActionLink(Resources.Feedback, "Index", "Home", protocol: null, hostName: null, fragment: "feedback", routeValues: new { lang=ViewBag.lang }, htmlAttributes: new { @class="button" })
+        @Html.ActionLink(Resources.Comment, "Index", "Home", protocol: null, hostName: null, fragment: "comments", routeValues: new { lang=ViewBag.lang }, htmlAttributes: new { @class="button" })
         @if (HttpContext.Current.User.IsInRole("Admin") ||
         HttpContext.Current.User.IsInRole("Approver") ||
         HttpContext.Current.User.IsInRole("Editor") )
