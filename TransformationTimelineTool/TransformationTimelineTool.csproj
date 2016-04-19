@@ -837,9 +837,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
+    <Content Include="Scripts\lib\data-manager.js" />
+    <Content Include="Scripts\lib\helper.js" />
+    <Content Include="Scripts\app\report.js" />
     <Content Include="Scripts\app\timeline-tool.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor-custom\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor-custom\build-config.js" />
     <Content Include="Scripts\ckeditor-custom\ckeditor.js" />
@@ -1051,6 +1052,10 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Scripts\lib\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\lib\jquery-private.js" />
+    <Content Include="Scripts\lib\jquery-ui.min.js" />
+    <Content Include="Scripts\lib\moment-with-locales.min.js" />
     <Content Include="Scripts\MockData\data-eng.json" />
     <Content Include="Scripts\MockData\data-fra.json" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
@@ -1371,9 +1376,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\Report\report.js" />
+    <Content Include="Scripts\require-config.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\server_settings.js" />
     <Content Include="Scripts\timeline-tool.js" />
     <Content Include="Scripts\timeline-tool.min.js" />
     <Content Include="Scripts\tl_utility.js" />
