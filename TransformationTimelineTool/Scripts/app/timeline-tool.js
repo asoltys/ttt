@@ -1,4 +1,6 @@
-﻿// jQuery custom extensions
+﻿"use strict";
+
+// jQuery custom extensions
 $.extend($.ui.dialog.prototype.options, { modal: true });
 $.ui.plugin.add("draggable", "alsoDrag", {
 	start: function() {
@@ -51,51 +53,6 @@ $.ui.plugin.add("draggable", "alsoDrag", {
 		$(this).removeData("draggable-alsoDrag");
 	}
 });
-var helpers = (function($) { // $ => jQuery
-	var _ajax = function (method, url, callback, jsonData) {
-	    if (arguments.length == 3) 
-	        return $.ajax({
-	            type: method,
-	            url: url,
-	            cache: false,
-	            success: function (data) { callback(JSON.stringify(data)); },
-	            error: function (jqXHR, textStatus, errorThrown) { console.log(JSON.stringify(jqXHR) + ", " + textStatus); }
-	        });
-	    else 
-	        return $.ajax({
-	            type: method,
-	            contentType: "application/json",
-	            url: url,
-	            cache: false,
-	            data: JSON.stringify(jsonData),
-	            success: function (data) { callback(JSON.stringify(data)); },
-	            error: function (jqXHR, textStatus, errorThrown) { console.log(JSON.stringify(jqXHR) + ", " + textStatus); }
-	        });
-	}
-	var _jsonCopy = function(jsonObj) { return JSON.parse(JSON.stringify(jsonObj)) }
-	var _htmlDecode = function(value) { return $('<div/>').html(value).text(); }
-	var _htmlEncode = function(value) { return $('<div/>').text(value).html(); }
-	var _sortComparator = function (a, b) {
-	    if (a > b) return 1;
-	    if (a < b) return -1;
-	    return 0;
-	}
-	var _truncate = function(string, limit) {
-		return string.length >= limit ? string.substring(0, limit) + '...' : string;
-	}
-	var _keyExists = function(key, object, returnValue) {
-		return key in object ? returnValue == true ? object[key] : true : false;
-	}
-	return {
-		ajax: _ajax,
-		jsonCopy: _jsonCopy,
-		htmlDecode: _htmlDecode,
-		htmlEncode: _htmlEncode,
-		sortComparator: _sortComparator,
-		truncate: _truncate,
-		keyExists: _keyExists
-	}
-})($);
 
 var timeline = (function(r, $, m, h) { // r => resources, $ => jQuery, m => moment, h => helpers
 	var CULTURE = window.location.href.indexOf('lang=fra') > -1 ? 'fr-ca' : 'en-ca',
