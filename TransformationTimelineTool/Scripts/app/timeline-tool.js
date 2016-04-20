@@ -75,52 +75,52 @@ function($, moment, helper, dataManager) {
 		
 	var ui = (function() {
 		// controllers, navigation, events are private submodules
-		var controllers = function() {
-			var $left = $('#nav-go-left-button'),
+	    var controllers = function () {
+	        var $left = $('#nav-go-left-button'),
 				$right = $('#nav-go-right-button'),
 				$timeline = $('#nav-controller-timeline'),
 				$region = $('#nav-controller-region'),
 				$branch = $('#nav-controller-branch');
 
-			var _addOption = function(jQueryObject, optionObject) {
-				var $select = jQueryObject,
+	        var _addOption = function (jQueryObject, optionObject) {
+	            var $select = jQueryObject,
 					option = document.createElement('option');
-				option.text = optionObject.text
-				option.value = optionObject.value;
-				$select.append(option);
-			}
+	            option.text = optionObject.text;
+	            option.value = optionObject.value;
+	            $select.append(option);
+	        };
 
-			var _populateTimeline = function() {
-				dm.timelines().forEach(function(element, index, array) {
-					var timeline = element['Name' + CULTURE_APPEND];
-					var translation = r[timeline];
-					_addOption($timeline, { text: translation, value: timeline });
-				});
-			}
+	        var _populateTimeline = function () {
+	            dm.timelines().forEach(function (element, index, array) {
+	                var timeline = element['Name' + CULTURE_APPEND];
+	                var translation = r[timeline];
+	                _addOption($timeline, { text: translation, value: timeline });
+	            });
+	        };
 
-			var _populateRegionsAndBranches = function() {
-				dm.regions().forEach(function(element, index, array) {
-					var region = element['Name' + CULTURE_APPEND];
-					_addOption($region, { text: region, value: element.ID });
-				});
-				dm.branches().forEach(function(element, index, array) {
-					var branch = element['Name' + CULTURE_APPEND];
-					branch = h.truncate(branch, 40);
-					_addOption($branch, { text: branch, value: element.ID });
-				});
-			}
+	        var _populateRegionsAndBranches = function () {
+	            dm.regions().forEach(function (element, index, array) {
+	                var region = element['Name' + CULTURE_APPEND];
+	                _addOption($region, { text: region, value: element.ID });
+	            });
+	            dm.branches().forEach(function (element, index, array) {
+	                var branch = element['Name' + CULTURE_APPEND];
+	                branch = h.truncate(branch, 40);
+	                _addOption($branch, { text: branch, value: element.ID });
+	            });
+	        };
 
-			var _initialize = (function() {
-				$branch.attr('disabled', 'true');
-				_populateTimeline();
-				_populateRegionsAndBranches();
-			})();
-		}
+	        var _initialize = (function () {
+	            $branch.attr('disabled', 'true');
+	            _populateTimeline();
+	            _populateRegionsAndBranches();
+	        })();
+	    };
 		
-		var navigation = function() {
-			// hoist all jQuery objects and cache them inside the submodule
-			// this results in faster interactions with document object
-			var $calendar = $('#nav-calendar-container'),
+	    var navigation = function () {
+	        // hoist all jQuery objects and cache them inside the submodule
+	        // this results in faster interactions with document object
+	        var $calendar = $('#nav-calendar-container'),
 				$calendarContainer = $('#nav-calendar'),
 				$dynamicContentContainer = $('#dynamic-content-container'),
 				$monthContainer = $('#nav-calendar-month'),
@@ -128,121 +128,121 @@ function($, moment, helper, dataManager) {
 				$navSpace = $('#timeline-tool-nav-space'),
 				$quarterContainer = $('#nav-calendar-quarter');
 
-			var timespan = dm.timespan(); // day&year[base 1], month[base 0]
+	        var timespan = dm.timespan(); // day&year[base 1], month[base 0]
 
-			var _attachDraggableModule = function() {
-				var xContainment = helper.negate($calendar.width())
-				+ $calendarContainer.width();
-				var marginOffset = 42;
-				var dragWith = '#nav-calendar-container';
-				$dynamicContentContainer.draggable({
-				    axis: 'x',
-				    alsoDrag: dragWith,
-				    stop: function(event, ui) {
-				    	if (ui.position.left > 0) {
-				    		$(this).animate({'left': '0px'}, 300);
-				    		$(dragWith).animate({'left': '0px'}, 300);
-				    	} else if (ui.position.left < xContainment) {
-				    		$(this).animate({'left': xContainment}, 300);
-				    		$(dragWith).animate({'left': xContainment}, 300);
-				    	}
-				    }
-				});
-			}
-			
-			var _generateClearBox = function() {
-				return "<div class='clear'></div>"
-			}
+	        var _attachDraggableModule = function () {
+	            var xContainment = helper.negate($calendar.width()) +
+                    $calendarContainer.width();
+	            var marginOffset = 42;
+	            var dragWith = '#nav-calendar-container';
+	            $dynamicContentContainer.draggable({
+	                axis: 'x',
+	                alsoDrag: dragWith,
+	                stop: function (event, ui) {
+	                    if (ui.position.left > 0) {
+	                        $(this).animate({ 'left': '0px' }, 300);
+	                        $(dragWith).animate({ 'left': '0px' }, 300);
+	                    } else if (ui.position.left < xContainment) {
+	                        $(this).animate({ 'left': xContainment }, 300);
+	                        $(dragWith).animate({ 'left': xContainment }, 300);
+	                    }
+	                }
+	            });
+	        };
 
-			var _generateMonthBox = function(momentObject) {
-				var content = _generateMonthString(momentObject);
-				var classToUse = _getCSSClass(momentObject.month());
-				var html = "<div class='" + classToUse + "' style='width:" + MONTH_WIDTH + "px;'>";
-				html += content;
-				html += "</div>";
-				return html;
-			}
+	        var _generateClearBox = function () {
+	            return "<div class='clear'></div>";
+	        };
 
-			var _generateMonthString = function(momentObject) {
-				var month = momentObject.month() + 1;
-				var monthString = momentObject.format('MMM');
-				var year = momentObject.year();
-				switch(month) {
-					case 4: case 7: case 10: case 1: monthString = '| ' + monthString + ' ' + year; break;
-					default: monthString = '| ' + monthString;
-				}
-				return monthString;
-			}
-			
-			var _generateQuarterBox = function(month) {
-				var content = _generateQuarterString(month);
-				var classToUse = _getCSSClass(month);
-				var html = "<div class='" + classToUse + "' style='width:" + MONTH_WIDTH + "px;'>";
-				html += content;
-				html += "</div>";
-				return html;
-			}
+	        var _generateMonthBox = function (momentObject) {
+	            var content = _generateMonthString(momentObject);
+	            var classToUse = _getCSSClass(momentObject.month());
+	            var html = "<div class='" + classToUse + "' style='width:" + MONTH_WIDTH + "px;'>";
+	            html += content;
+	            html += "</div>";
+	            return html;
+	        };
 
-			var _generateQuarterString = function(month) {
-				month++;
-				var quarterString = '| ' + r.ReportQuarterPrefix;
-				switch(month) {
-					case 4: quarterString += '1'; break; case 7: quarterString += '2'; break;
-					case 10: quarterString += '3'; break; case 1: quarterString += '4'; break;
-					default: quarterString = '&nbsp;';
-				}
-				return quarterString;
-			}
+	        var _generateMonthString = function (momentObject) {
+	            var month = momentObject.month() + 1;
+	            var monthString = momentObject.format('MMM');
+	            var year = momentObject.year();
+	            switch (month) {
+	                case 4: case 7: case 10: case 1: monthString = '| ' + monthString + ' ' + year; break;
+	                default: monthString = '| ' + monthString;
+	            }
+	            return monthString;
+	        };
 
-			var _getCSSClass = function(month) {
-				month++;
-				switch(month) {
-					case 1: case 2: case 3: return 'fourth-quarter';
-					case 4: case 5: case 6: return 'first-quarter';
-					case 7: case 8: case 9: return 'second-quarter';
-					case 10: case 11: case 12: return 'third-quarter';
-					default: return 'first-quarter';
-				}
-			}
+	        var _generateQuarterBox = function (month) {
+	            var content = _generateQuarterString(month);
+	            var classToUse = _getCSSClass(month);
+	            var html = "<div class='" + classToUse + "' style='width:" + MONTH_WIDTH + "px;'>";
+	            html += content;
+	            html += "</div>";
+	            return html;
+	        };
 
-			var _setupCalendarContainer = function() {
-				$calendar.css('width', timespan.Duration.Months * MONTH_WIDTH);
-				$dynamicContentContainer.css(
+	        var _generateQuarterString = function (month) {
+	            month++;
+	            var quarterString = '| ' + r.ReportQuarterPrefix;
+	            switch (month) {
+	                case 4: quarterString += '1'; break; case 7: quarterString += '2'; break;
+	                case 10: quarterString += '3'; break; case 1: quarterString += '4'; break;
+	                default: quarterString = '&nbsp;';
+	            }
+	            return quarterString;
+	        };
+
+	        var _getCSSClass = function (month) {
+	            month++;
+	            switch (month) {
+	                case 1: case 2: case 3: return 'fourth-quarter';
+	                case 4: case 5: case 6: return 'first-quarter';
+	                case 7: case 8: case 9: return 'second-quarter';
+	                case 10: case 11: case 12: return 'third-quarter';
+	                default: return 'first-quarter';
+	            }
+	        };
+
+	        var _setupCalendarContainer = function () {
+	            $calendar.css('width', timespan.Duration.Months * MONTH_WIDTH);
+	            $dynamicContentContainer.css(
 					'width', timespan.Duration.Months * MONTH_WIDTH
 				);
-			}
+	        };
 
-			var _populateMonthLine = function() {
-				var current = timespan.Start.clone();
-				var months = timespan.Duration.Months;
-				for (var i = 0; i < months; i++, current.add(1, 'month')) {
-					$monthContainer.append(_generateMonthBox(current));
-				}
-				$monthContainer.append(_generateClearBox());
-			}
-			
-			var _populateQuarterLine = function() {
-				var current = timespan.Start.clone();
-				var months = timespan.Duration.Months;
-				for (var i = 0; i < months; i++, current.add(1, 'month')) {
-					$quarterContainer.append(
+	        var _populateMonthLine = function () {
+	            var current = timespan.Start.clone();
+	            var months = timespan.Duration.Months;
+	            for (var i = 0; i < months; i++, current.add(1, 'month')) {
+	                $monthContainer.append(_generateMonthBox(current));
+	            }
+	            $monthContainer.append(_generateClearBox());
+	        };
+
+	        var _populateQuarterLine = function () {
+	            var current = timespan.Start.clone();
+	            var months = timespan.Duration.Months;
+	            for (var i = 0; i < months; i++, current.add(1, 'month')) {
+	                $quarterContainer.append(
 						_generateQuarterBox(current.month())
 					);
-				}
-				$quarterContainer.append(_generateClearBox());
-			}
-			
-			var _populateCalendar = (function() {
-				_setupCalendarContainer();
-				_populateMonthLine();
-				_populateQuarterLine();
-				_attachDraggableModule();
-			})();
-		}
+	            }
+	            $quarterContainer.append(_generateClearBox());
+	        };
 
-		var eventManager = function() {
-			// every other jQuery object other than controller objects
-			var $body = $('body'),
+	        var _populateCalendar = (function () {
+	            _setupCalendarContainer();
+	            _populateMonthLine();
+	            _populateQuarterLine();
+	            _attachDraggableModule();
+	        })();
+	    };
+
+	    var eventManager = function () {
+	        // every other jQuery object other than controller objects
+	        var $body = $('body'),
 				$document = $(document),
 				$calendar = $('#nav-calendar-container'),
 				$calendarContainer = $('#nav-calendar'),
@@ -254,198 +254,198 @@ function($, moment, helper, dataManager) {
 				$navSpace = $('#timeline-tool-nav-space'),
 				$startOver = $('#timeline-tool-start-over'),
 				$window = $(window);
-			
-			// controller objects
-			var $left = $('#nav-go-left-button'),
+
+	        // controller objects
+	        var $left = $('#nav-go-left-button'),
 				$right = $('#nav-go-right-button'),
 				$timeline = $('#nav-controller-timeline'),
 				$region = $('#nav-controller-region'),
 				$branch = $('#nav-controller-branch');
 
-			// for first run hover instruction display
-			var splashRan = false;
+	        // for first run hover instruction display
+	        var splashRan = false;
 
-			// constants & a variable for fixed nav header
-			var INITIAL_NAV_OFFSET, NAV_RETURN_POSITION;
-			var navFixed;
+	        // constants & a variable for fixed nav header
+	        var INITIAL_NAV_OFFSET, NAV_RETURN_POSITION;
+	        var navFixed;
 
-			// event callback handlers
-			var _handleBranch = function() {
-				dm.setBranch(this.value);
-				dm.filter();
-				ui.content.sort(dm.timelines());
-				if (this.value != 'all' && !splashRan) {
-					splashRan = true;
-					ui.content.openDialog({ 
-						title: '&nbsp;',
-						text: h.htmlDecode(r.InitialFilterSplash) 
-					}, false);
-				}
-			}
+	        // event callback handlers
+	        var _handleBranch = function () {
+	            dm.setBranch(this.value);
+	            dm.filter();
+	            ui.content.sort(dm.timelines());
+	            if (this.value != 'all' && !splashRan) {
+	                splashRan = true;
+	                ui.content.openDialog({
+	                    title: '&nbsp;',
+	                    text: h.htmlDecode(r.InitialFilterSplash)
+	                }, false);
+	            }
+	        };
 
-			var _handleHideButton = function() {
-				var weightToHide = $(this).attr('data-weight');
-				var $domToHide = $('.description-box[data-weight=' + 
+	        var _handleHideButton = function () {
+	            var weightToHide = $(this).attr('data-weight');
+	            var $domToHide = $('.description-box[data-weight=' +
 					weightToHide + '],.bar[data-weight=' + weightToHide + ']');
-				$domToHide.addClass('hide');
-				_toggleShowHide($(this));
-			}
+	            $domToHide.addClass('hide');
+	            _toggleShowHide($(this));
+	        };
 
-			var _handleOutsideDialogClick = function(e) {
-				if ($dialog.dialog('isOpen') && !$(e.target).is('img, a, p') &&
+	        var _handleOutsideDialogClick = function (e) {
+	            if ($dialog.dialog('isOpen') && !$(e.target).is('img, a, p') &&
 					!$(e.target).closest('.ui-dialog').length) {
-					$dialog.dialog('close');
-				}
-			}
+	                $dialog.dialog('close');
+	            }
+	        };
 
-			var _handleRegion = function() {
-				if (this.value.indexOf('all') === -1) {
-					$branch.removeAttr('disabled');
-				} else {
-					$branch.attr('disabled', 'disabled');
-				}
-				dm.setRegion(this.value);
-				dm.filter();
-				ui.content.sort(dm.timelines());
-			}
+	        var _handleRegion = function () {
+	            if (this.value.indexOf('all') === -1) {
+	                $branch.removeAttr('disabled');
+	            } else {
+	                $branch.attr('disabled', 'disabled');
+	            }
+	            dm.setRegion(this.value);
+	            dm.filter();
+	            ui.content.sort(dm.timelines());
+	        };
 
-			var _handleScroll = function() {
-				if (INITIAL_NAV_OFFSET === null) {
-					INITIAL_NAV_OFFSET = $navContainer.offset().top;
-					NAV_RETURN_POSITION = INITIAL_NAV_OFFSET -
+	        var _handleScroll = function () {
+	            if (INITIAL_NAV_OFFSET === null) {
+	                INITIAL_NAV_OFFSET = $navContainer.offset().top;
+	                NAV_RETURN_POSITION = INITIAL_NAV_OFFSET -
 						$main.offset().top;
-					navFixed = false;
-				}
-				var currentScroll = $window.scrollTop();
-				var maxBottomScroll = $contentContainer.offset().top + $contentContainer.height() - $navContainer.height();
-				if (navFixed == false && currentScroll > INITIAL_NAV_OFFSET) {
-					if (currentScroll < maxBottomScroll) {
-						navFixed = true;
-						$navContainer.css({
-							top: 0,
-							position: 'fixed'
-						});
-					}
-				} else if (navFixed == true &&
+	                navFixed = false;
+	            }
+	            var currentScroll = $window.scrollTop();
+	            var maxBottomScroll = $contentContainer.offset().top + $contentContainer.height() - $navContainer.height();
+	            if (navFixed == false && currentScroll > INITIAL_NAV_OFFSET) {
+	                if (currentScroll < maxBottomScroll) {
+	                    navFixed = true;
+	                    $navContainer.css({
+	                        top: 0,
+	                        position: 'fixed'
+	                    });
+	                }
+	            } else if (navFixed == true &&
 					(currentScroll <= INITIAL_NAV_OFFSET || currentScroll >= maxBottomScroll)) {
-					navFixed = false;
-					$navContainer.css({
-						top: NAV_RETURN_POSITION,
-						position: 'absolute'
-					});
-				}
-			}
+	                navFixed = false;
+	                $navContainer.css({
+	                    top: NAV_RETURN_POSITION,
+	                    position: 'absolute'
+	                });
+	            }
+	        };
 
-			var _handleShowButton = function() {
-				var weightToShow = $(this).attr('data-weight');
-				var $domToShow = $('.description-box[data-weight=' + 
+	        var _handleShowButton = function () {
+	            var weightToShow = $(this).attr('data-weight');
+	            var $domToShow = $('.description-box[data-weight=' +
 					weightToShow + '],.bar[data-weight=' + weightToShow + ']');
-				$domToShow.removeClass('hide');
-				_toggleShowHide($(this));
-			}
+	            $domToShow.removeClass('hide');
+	            _toggleShowHide($(this));
+	        };
 
-			var _handleStartOver = function() {
-				$timeline.val('all');
-				$region.val('all');
-				$branch.val('all');
-				$timeline.trigger('change');
-				$region.trigger('change');
-				$branch.trigger('change');
-				splashRan = false;
-			}
-			
-			var _handleTimeline = function() {
-				dm.setTimeline(this.value);
-				dm.filter();
-				ui.content.sort(dm.timelines());
-			}
+	        var _handleStartOver = function () {
+	            $timeline.val('all');
+	            $region.val('all');
+	            $branch.val('all');
+	            $timeline.trigger('change');
+	            $region.trigger('change');
+	            $branch.trigger('change');
+	            splashRan = false;
+	        };
 
-			var _keyMap = function(e) {
-				// 33 == page up, 34 == page down, 37 == left arrow, 39 == right arrow
-				switch (e.keyCode) {
-					case 37: _moveTimelineLeft(); return;
-					case 39: _moveTimelineRight(); return;
-					default: return;
-				}
-			}
-			
-			var _moveTimelineLeft = function() {
-				var currentPosition = parseInt($calendar.css('left'), 10);
-				var amountToMove = MONTH_WIDTH * 2;
-				amountToMove = currentPosition + amountToMove >= 0 ?
+	        var _handleTimeline = function () {
+	            dm.setTimeline(this.value);
+	            dm.filter();
+	            ui.content.sort(dm.timelines());
+	        };
+
+	        var _keyMap = function (e) {
+	            // 33 == page up, 34 == page down, 37 == left arrow, 39 == right arrow
+	            switch (e.keyCode) {
+	                case 37: _moveTimelineLeft(); return;
+	                case 39: _moveTimelineRight(); return;
+	                default: return;
+	            }
+	        };
+
+	        var _moveTimelineLeft = function () {
+	            var currentPosition = parseInt($calendar.css('left'), 10);
+	            var amountToMove = MONTH_WIDTH * 2;
+	            amountToMove = currentPosition + amountToMove >= 0 ?
 							   0 : currentPosition + amountToMove;
-				_setDragPosition(amountToMove);
-			}
+	            _setDragPosition(amountToMove);
+	        };
 
-			var _moveTimelineRight = function() {
-				var maxRightPosition = $calendar.width() * -1 + $calendarContainer.width();
-				var currentPosition = parseInt($calendar.css('left'), 10);
-				var amountToMove = MONTH_WIDTH * 2;
-				amountToMove = currentPosition - amountToMove > maxRightPosition ? 
+	        var _moveTimelineRight = function () {
+	            var maxRightPosition = $calendar.width() * -1 + $calendarContainer.width();
+	            var currentPosition = parseInt($calendar.css('left'), 10);
+	            var amountToMove = MONTH_WIDTH * 2;
+	            amountToMove = currentPosition - amountToMove > maxRightPosition ?
 							   (currentPosition - amountToMove) : maxRightPosition;
-				_setDragPosition(amountToMove);
-			}
+	            _setDragPosition(amountToMove);
+	        };
 
-			var _setDragPosition = function(leftPosition) {
-				$calendar.css('left', leftPosition + 'px');
-				$contentContainer.css('left', leftPosition + 'px');
-			}
+	        var _setDragPosition = function (leftPosition) {
+	            $calendar.css('left', leftPosition + 'px');
+	            $contentContainer.css('left', leftPosition + 'px');
+	        };
 
-			var _toggleShowHide = function($obj) {
-				if ($obj.hasClass('hide-button')) {
-					$obj.removeClass('hide-button');
-					$obj.addClass('show-button');
-					$obj.text(r.Show);
-				} else {
-					$obj.removeClass('show-button');
-					$obj.addClass('hide-button');
-					$obj.text(r.Hide);
-				}
-			}
+	        var _toggleShowHide = function ($obj) {
+	            if ($obj.hasClass('hide-button')) {
+	                $obj.removeClass('hide-button');
+	                $obj.addClass('show-button');
+	                $obj.text(r.Show);
+	            } else {
+	                $obj.removeClass('show-button');
+	                $obj.addClass('hide-button');
+	                $obj.text(r.Hide);
+	            }
+	        };
 
-			var _registerEvents = (function() {
-				// tooltip & dialog initialize
-				$document.tooltip({ items: ':not(.ui-button)' });
-				$dialog.dialog({
-					autoOpen: false, width: "50%", maxWidth: "768px"
-				});
+	        var _registerEvents = (function () {
+	            // tooltip & dialog initialize
+	            $document.tooltip({ items: ':not(.ui-button)' });
+	            $dialog.dialog({
+	                autoOpen: false, width: "50%", maxWidth: "768px"
+	            });
 
-				// timeline tool controllers
-				$left.on('click', _moveTimelineLeft);
-				$right.on('click', _moveTimelineRight);
-				$timeline.on('change', _handleTimeline);
-				$region.on('change', _handleRegion);
-				$branch.on('change', _handleBranch);
-				
-				// left and right keyboard navigation
-				$document.on('keydown', _keyMap);
+	            // timeline tool controllers
+	            $left.on('click', _moveTimelineLeft);
+	            $right.on('click', _moveTimelineRight);
+	            $timeline.on('change', _handleTimeline);
+	            $region.on('change', _handleRegion);
+	            $branch.on('change', _handleBranch);
 
-				// when outside of dialog is clicked, close dialog
-				$body.bind('click', _handleOutsideDialogClick);
+	            // left and right keyboard navigation
+	            $document.on('keydown', _keyMap);
 
-				// delegate click event to each class
-				$descriptionContainer.on('click', '.description', function() {
-					ui.content.openDialog($(this), true);
-				});
-				$contentContainer.on('click', '.icon-click', function() {
-					ui.content.openDialog($(this), true);
-				});
+	            // when outside of dialog is clicked, close dialog
+	            $body.bind('click', _handleOutsideDialogClick);
 
-				// hide and show buttons in timeline tool
-				$descriptionContainer.on(
+	            // delegate click event to each class
+	            $descriptionContainer.on('click', '.description', function () {
+	                ui.content.openDialog($(this), true);
+	            });
+	            $contentContainer.on('click', '.icon-click', function () {
+	                ui.content.openDialog($(this), true);
+	            });
+
+	            // hide and show buttons in timeline tool
+	            $descriptionContainer.on(
 					'click', '.hide-button', _handleHideButton
 				);
-				$descriptionContainer.on(
+	            $descriptionContainer.on(
 					'click', '.show-button', _handleShowButton
 				);
 
-				// fix navigation bar
-				$window.on('scroll', _handleScroll)
+	            // fix navigation bar
+	            $window.on('scroll', _handleScroll);
 
-				// start over
-				$startOver.on('click', _handleStartOver)
-			})();
-		}
+	            // start over
+	            $startOver.on('click', _handleStartOver);
+	        })();
+	    };
 
 		var _generate = function() {
 			controllers();
@@ -456,16 +456,16 @@ function($, moment, helper, dataManager) {
 			$('#timeline-tool-nav-space').height(
 				$('#timeline-tool-nav-container').height()
 			);
-		}
+		};
 
-		var _showTool = function() {
-			$('#timeline-tool-loading-icon').addClass('hide');
-			$('#timeline-tool').removeClass('hide');
-		}
+		var _showTool = function () {
+		    $('#timeline-tool-loading-icon').addClass('hide');
+		    $('#timeline-tool').removeClass('hide');
+		};
 		
 		return {
-			generate: _generate
-		}
+		    generate: _generate
+		};
 	})();
 
 	ui.content = (function() {
@@ -485,17 +485,17 @@ function($, moment, helper, dataManager) {
 		var sortableTimelines, timespan;
 
 		// content drawing functions - alphabetically ordered
-		var _addImpactHeadingElements = function() {
-			var weight, impactClass, element, weightOrder;
-			weightOrder = [3, 2, 1, 0, 4];
-			for (var i = 0, cond = weightOrder.length; i < cond; i++) {
-				weight = weightOrder[i];
-				impactClass = _getImpactClass(weightOrder[i], false);
-				element = _createImpactHeadingElement(weight, impactClass);
-				descriptionContainer.appendChild(element[0]);
-				contentContainer.appendChild(element[1]);
-			}
-		}
+		var _addImpactHeadingElements = function () {
+		    var weight, impactClass, element, weightOrder;
+		    weightOrder = [3, 2, 1, 0, 4];
+		    for (var i = 0, cond = weightOrder.length; i < cond; i++) {
+		        weight = weightOrder[i];
+		        impactClass = _getImpactClass(weightOrder[i], false);
+		        element = _createImpactHeadingElement(weight, impactClass);
+		        descriptionContainer.appendChild(element[0]);
+		        contentContainer.appendChild(element[1]);
+		    }
+		};
 
 		var _addTodayLine = function() {
 			var img = "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + _getLeftMargin(timespan.Start, TODAY) + "px' />";
@@ -506,7 +506,7 @@ function($, moment, helper, dataManager) {
 			} else {
 				$contentContainer.prepend(img);
 			}
-		}
+		};
 
 		var _createImpactHeadingElement = function(weight, impactClass) {
 			var container, statement, button, rowSpace;
@@ -518,14 +518,14 @@ function($, moment, helper, dataManager) {
 			button = document.createElement('a');
 			button.innerHTML = r.Hide;
 			button.className = 'hide-button';
-			button.setAttribute('data-weight', weight)
+			button.setAttribute('data-weight', weight);
 			container.appendChild(statement);
 			container.appendChild(button);
 			rowSpace = document.createElement('div'); 
 			rowSpace.className = 'hide impact-statement-space ' + impactClass; 
 			rowSpace.setAttribute('data-weight', weight);
 			return [container, rowSpace];
-		}
+		};
 
 		var _drawBar = function(initiative, timelineName) {
 			var bar = document.createElement('div'),
@@ -540,32 +540,32 @@ function($, moment, helper, dataManager) {
 			durationBar = _makeIcons(initiative, durationBar);
 			bar.appendChild(durationBar);
 			return bar;
-		}
+		};
 
-		var _drawDescription = function(initiative, timelineName) {
-			var initiativeName = initiative[NAME_CULTURE];
-			var dialogText = initiative[DESC_CULTURE];
-			var box = document.createElement('div'),
+		var _drawDescription = function (initiative, timelineName) {
+		    var initiativeName = initiative[NAME_CULTURE];
+		    var dialogText = initiative[DESC_CULTURE];
+		    var box = document.createElement('div'),
 				content = document.createElement('p');
-			box.id = 'initiative-description-' + initiative.ID;
-			box.className = 'description-box ' + timelineName;
-			content.className = 'description';
-			content.setAttribute('data-title', initiativeName);
-			content.setAttribute('data-description', dialogText);
-			content.innerHTML = h.truncate(initiativeName, 55);
-			box.appendChild(content);
-			return box;
-		}
+		    box.id = 'initiative-description-' + initiative.ID;
+		    box.className = 'description-box ' + timelineName;
+		    content.className = 'description';
+		    content.setAttribute('data-title', initiativeName);
+		    content.setAttribute('data-description', dialogText);
+		    content.innerHTML = h.truncate(initiativeName, 55);
+		    box.appendChild(content);
+		    return box;
+		};
 
 		var _drawRow = function(initiative) {
 			descriptionContainer.appendChild(_drawDescription(initiative, this));
 			contentContainer.appendChild(_drawBar(initiative, this));
-		}
+		};
 
 		var _drawTimeline = function(timeline) {
 			var name = timeline[NAME_CULTURE];
 			timeline.Data.forEach(_drawRow, name);
-		}
+		};
 		
 		var _emptyContinaers = function() {
 			descriptionContainer.innerHTML = '';
@@ -577,13 +577,13 @@ function($, moment, helper, dataManager) {
 				timespan.Start = timespan.Start.format('MM/DD/YY');
 				timespan.End = timespan.End.format('MM/DD/YY');
 			}
-		}
+		};
 		
 		var _getBarWidth = function(initiative) {
 			dm.momentize(initiative.StartDate, 1);
 			dm.momentize(initiative.EndDate, 2);
 			return Math.floor((dm.momentDiff()) / ROW_IN_MILLISECONDS * ROW_WIDTH);
-		}
+		};
 		
 		var _getImpactStatment = function(level) {
 			switch (level) {
@@ -592,13 +592,13 @@ function($, moment, helper, dataManager) {
 				case 4: return r.BlueprintImpact;
 				default: return r.NoImpact;
 			}
-		}
+		};
 		
 		var _getLeftMargin = function(date1, date2) {
 			dm.momentize(date1, 1);
 			dm.momentize(date2, 2);
 			return Math.floor((dm.momentDiff()) / ROW_IN_MILLISECONDS * ROW_WIDTH);
-		}
+		};
 
 		var _makeIcons = function(initiative, dom) {
 			var icon,
@@ -622,62 +622,62 @@ function($, moment, helper, dataManager) {
 				dom.appendChild(icon);
 			});
 			return dom;
-		}
+		};
 		
-		var _showToday = function() {
-			var viewableWidth = $contentContainer.parent().width();
-			if (TODAY_MARGIN == undefined) {
-				TODAY_MARGIN = _getLeftMargin(timespan.Start, TODAY) * -1
-					+ Math.floor(viewableWidth / 2);
-			}
-			requestAnimationFrame(function() {
-				_addTodayLine();
-				calendar.style.left = TODAY_MARGIN + 'px';
-				contentContainer.style.left = TODAY_MARGIN + 'px';
-			});
-		}
+		var _showToday = function () {
+		    var viewableWidth = $contentContainer.parent().width();
+		    if (TODAY_MARGIN == undefined) {
+		        TODAY_MARGIN = _getLeftMargin(timespan.Start, TODAY) * -1 +
+                    Math.floor(viewableWidth / 2);
+		    }
+		    requestAnimationFrame(function () {
+		        _addTodayLine();
+		        calendar.style.left = TODAY_MARGIN + 'px';
+		        contentContainer.style.left = TODAY_MARGIN + 'px';
+		    });
+		};
 		
 		// content sorting functions - alphabetically ordered
-		var _categorize = function() {
-			var $box, $statement, $space, weight, order, weightOrder = [3, 2, 1, 0, 4];
-			for (var i = 0, cond = weightOrder.length; i < cond; i++) {
-				$box = $(".description-box[data-weight='" + weightOrder[i] + "']:not(.hide)").first();
-				$statement = $(".impact-statement[data-weight='" + weightOrder[i] + "']").first();
-				$space = $(".impact-statement-space[data-weight='" + weightOrder[i] + "']").first();
-				order =  $box.attr('data-order');
-				if ($box.length > 0 && order != undefined && order > 0) {
-					$statement.attr({
-						'style': ('order: ' + order)
-					}).removeClass('hide');
-					$space.attr({
-						'style': ('order: ' + order)
-					}).removeClass('hide');
-				} else {
-					$statement.addClass('hide');
-					$space.addClass('hide');
-				}
-			}
-		}
+		var _categorize = function () {
+		    var $box, $statement, $space, weight, order, weightOrder = [3, 2, 1, 0, 4];
+		    for (var i = 0, cond = weightOrder.length; i < cond; i++) {
+		        $box = $(".description-box[data-weight='" + weightOrder[i] + "']:not(.hide)").first();
+		        $statement = $(".impact-statement[data-weight='" + weightOrder[i] + "']").first();
+		        $space = $(".impact-statement-space[data-weight='" + weightOrder[i] + "']").first();
+		        order = $box.attr('data-order');
+		        if ($box.length > 0 && order != undefined && order > 0) {
+		            $statement.attr({
+		                'style': ('order: ' + order)
+		            }).removeClass('hide');
+		            $space.attr({
+		                'style': ('order: ' + order)
+		            }).removeClass('hide');
+		        } else {
+		            $statement.addClass('hide');
+		            $space.addClass('hide');
+		        }
+		    }
+		};
 
 		var _filterTimelines = function() {
-			sortableTimelines.forEach(function(timeline) {
-				var timelineSelector = '.' + timeline[NAME_CULTURE];
-				if (timeline.Skip == true) $(timelineSelector).addClass('hide');
-				else $(timelineSelector).removeClass('hide');
-			})
-		}
+		    sortableTimelines.forEach(function (timeline) {
+		        var timelineSelector = '.' + timeline[NAME_CULTURE];
+		        if (timeline.Skip == true) $(timelineSelector).addClass('hide');
+		        else $(timelineSelector).removeClass('hide');
+		    });
+		};
 		
-		var _getFlexOrder = function(weight) {
-			switch (weight) {
-				// just a helper function to switch flex orders around
-				case 0: return 4; case 1: return 3; case 2: return 2;
-				case 3: return 1; case 4: return 5; default: return 4;
-			}
-		}
+		var _getFlexOrder = function (weight) {
+		    switch (weight) {
+		        // just a helper function to switch flex orders around
+		        case 0: return 4; case 1: return 3; case 2: return 2;
+		        case 3: return 1; case 4: return 5; default: return 4;
+		    }
+		};
 
-		var _removeImpactClass = function(index, css) {
-			return (css.match(/\S+color-content($|\s)/g) || []).join(' ');
-		}
+		var _removeImpactClass = function (index, css) {
+		    return (css.match(/\S+color-content($|\s)/g) || []).join(' ');
+		};
 
 		var _resetSort = function() {
 			$descriptionContainer.find('.description-box').attr({
@@ -695,7 +695,7 @@ function($, moment, helper, dataManager) {
 				$(this).removeClass('show-button')
 				.addClass('hide-button').text(r.Hide);
 			});
-		}
+		};
 		
 		var _sortInitiatives = function() {
 			sortableTimelines.forEach(function(timeline) {
@@ -731,7 +731,7 @@ function($, moment, helper, dataManager) {
 					});
 				});
 			});
-		}
+		};
 		
 		// other helper methods
 		var _getImpactClass = function(level, lighter) {
@@ -749,7 +749,7 @@ function($, moment, helper, dataManager) {
 				default: return lighter == true ?
 				'no-impact-color-content' : 'no-impact-color';
 			}
-		}
+		};
 		
 		// public functions that other submodules can use
 		var _draw = function(timelines) {
@@ -758,7 +758,7 @@ function($, moment, helper, dataManager) {
 			_addImpactHeadingElements();
 			timelines.forEach(_drawTimeline);
 			_showToday();
-		}
+		};
 
 		var _dialog = function($obj, dom) {
 			var title = '';
@@ -777,7 +777,7 @@ function($, moment, helper, dataManager) {
 					$("#dialog").dialog('open');
 				}, 1);
 			}
-		}
+		};
 
 		var _sort = function(timelines) {
 			sortableTimelines = timelines;
@@ -785,13 +785,13 @@ function($, moment, helper, dataManager) {
 			_filterTimelines();
 			_sortInitiatives();
 			_categorize();
-		}
+		};
 
 		return {
-			draw: _draw,
-			openDialog: _dialog,
-			sort: _sort
-		}
+		    draw: _draw,
+		    openDialog: _dialog,
+		    sort: _sort
+		};
 	})();
 	
 	// GET data from the server and generate UI
