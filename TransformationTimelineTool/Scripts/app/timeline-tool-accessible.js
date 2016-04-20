@@ -30,7 +30,7 @@ function($, moment, helper, dataManager) {
                 option.text = optionObject.text
                 option.value = optionObject.value;
                 $select.append(option);
-            }
+            };
 
             var _populateTimeline = function() {
                 dm.timelines().forEach(function(element, index, array) {
@@ -38,7 +38,7 @@ function($, moment, helper, dataManager) {
                     var translation = r[timeline];
                     _addOption($timeline, { text: translation, value: timeline });
                 });
-            }
+            };
 
             var _populateRegionsAndBranches = function() {
                 dm.regions().forEach(function(element, index, array) {
@@ -47,10 +47,10 @@ function($, moment, helper, dataManager) {
                 });
                 dm.branches().forEach(function(element, index, array) {
                     var branch = element[NAME_CULTURE];
-                    branch = h.truncate(branch, 40);
+                    branch = branch;
                     _addOption($branch, { text: branch, value: element.ID });
                 });
-            }
+            };
 
             var _initialize = (function() {
                 $branch.attr('disabled', 'true');
@@ -143,15 +143,46 @@ function($, moment, helper, dataManager) {
             header.innerHTML = r[title];
             accordions.appendChild(header);
         };
+        
+        var _addImpactHeaders = function(container) {
+			var weight, weights, element;
+			weights = [3, 2, 1, 0];
+            if (container.className.indexOf('BP2020') > -1) {
+                weights = [4];
+            }
+            weights.forEach(function(w, index) {
+                element = _createImpactHeader(w);
+                container.appendChild(element);
+            });
+            _hideElement('.impact-statement');
+		};
+
+		var _createImpactHeader = function(weight) {
+			var container, statement, order;
+            order = _getFlexOrder(weight);
+			container = document.createElement('div');
+			container.className = 'impact-statement';
+			container.setAttribute('data-weight', weight);
+			container.setAttribute('data-order', order);
+            container.style.order = order;
+			statement = document.createElement('p');
+			statement.innerHTML = _getImpactStatment(weight);
+			container.appendChild(statement);
+			return container;
+		};
 
 		var _drawRow = function(initiative) {
-			accordions.appendChild(_generateAccordion(initiative, this));
+			this.appendChild(_generateAccordion(initiative, this.className));
 		};
 
 		var _drawTimeline = function(timeline) {
 			var name = timeline[NAME_CULTURE];
             _addTimelineHeader(name);
-			timeline.Data.forEach(_drawRow, name);
+            var timelineContainer = document.createElement('div');
+            timelineContainer.className = 'text-timeline ' + name;
+            accordions.appendChild(timelineContainer);
+            _addImpactHeaders(timelineContainer);
+			timeline.Data.forEach(_drawRow, timelineContainer);
 		};
 		
 		var _emptyContinaers = function() {
@@ -181,7 +212,6 @@ function($, moment, helper, dataManager) {
             accordionContent.innerHTML = _generateContent(initiative);
             accordion.appendChild(accordionLink);
             accordion.appendChild(accordionContent);
-            accordions.appendChild(accordion);
             return accordion;
         };
         
@@ -252,69 +282,22 @@ function($, moment, helper, dataManager) {
             return quarterString;
         };
         
-        // **************************************************** from timeline-tool.js
-		var _addImpactHeadingElements = function() {
-			var weight, impactClass, element, weightOrder;
-			weightOrder = [3, 2, 1, 0, 4];
-			for (var i = 0, cond = weightOrder.length; i < cond; i++) {
-				weight = weightOrder[i];
-				impactClass = _getImpactClass(weightOrder[i], false);
-				element = _createImpactHeadingElement(weight, impactClass);
-				descriptionContainer.appendChild(element[0]);
-				contentContainer.appendChild(element[1]);
-			}
-		}
-
-		var _createImpactHeadingElement = function(weight, impactClass) {
-			var container, statement, button, rowSpace;
-			container = document.createElement('div');
-			container.className = 'hide impact-statement ' + impactClass;
-			container.setAttribute('data-weight', weight);
-			statement = document.createElement('p');
-			statement.innerHTML = _getImpactStatment(weight);
-			button = document.createElement('a');
-			button.innerHTML = r.Hide;
-			button.className = 'hide-button';
-			button.setAttribute('data-weight', weight)
-			container.appendChild(statement);
-			container.appendChild(button);
-			rowSpace = document.createElement('div'); 
-			rowSpace.className = 'hide impact-statement-space ' + impactClass; 
-			rowSpace.setAttribute('data-weight', weight);
-			return [container, rowSpace];
-		}
-		
-		var _getImpactStatment = function(level) {
-			switch (level) {
-				case 0: return r.NoImpact; 		case 1: return r.LowImpact;
-				case 2: return r.MediumImpact; 	case 3: return r.HighImpact;
-				case 4: return r.BlueprintImpact;
-				default: return r.NoImpact;
-			}
-		}
-        
 		// content sorting functions - alphabetically ordered
-		var _categorize = function() {
-			var $box, $statement, $space, weight, order, weightOrder = [3, 2, 1, 0, 4];
-			for (var i = 0, cond = weightOrder.length; i < cond; i++) {
-				$box = $(".description-box[data-weight='" + weightOrder[i] + "']:not(.hide)").first();
-				$statement = $(".impact-statement[data-weight='" + weightOrder[i] + "']").first();
-				$space = $(".impact-statement-space[data-weight='" + weightOrder[i] + "']").first();
-				order =  $box.attr('data-order');
-				if ($box.length > 0 && order != undefined && order > 0) {
-					$statement.attr({
-						'style': ('order: ' + order)
-					}).removeClass('hide');
-					$space.attr({
-						'style': ('order: ' + order)
-					}).removeClass('hide');
-				} else {
-					$statement.addClass('hide');
-					$space.addClass('hide');
-				}
-			}
-		};
-
+        var _categorize = function() {
+            // decide whether to hide or show impact statement
+            for (var i = 1; i < 6; i++) {
+                var order = '[data-order='+i+']';
+                var impactClass = '.impact-statement';
+                var $sameImpactInitiatives = $accordions.find(order).not(impactClass);
+                var $statement = $(impactClass + order);
+                if ($sameImpactInitiatives.length > 0) {
+                    _showElement($statement);
+                } else {
+                    _hideElement($statement);
+                }
+            }
+        }
+        
 		var _filterTimelines = function() {
 			sortableTimelines.forEach(function(timeline) {
 				var timelineSelector = '.' + timeline[NAME_CULTURE];
@@ -322,18 +305,6 @@ function($, moment, helper, dataManager) {
 				else $(timelineSelector).removeClass('hide');
 			});
 		};
-		
-		var _getFlexOrder = function(weight) {
-			switch (weight) {
-				// just a helper function to switch flex orders around
-				case 0: return 4; case 1: return 3; case 2: return 2;
-				case 3: return 1; case 4: return 5; default: return 4;
-			}
-		}
-
-		var _removeImpactClass = function(index, css) {
-			return (css.match(/\S+color-content($|\s)/g) || []).join(' ');
-		}
 
 		var _resetSort = function() {
 			$accordions.find('.accordion-section').attr({
@@ -342,7 +313,7 @@ function($, moment, helper, dataManager) {
 			});
             _showElement('[class*="header-"]');
             _showElement('.list-milestone, .list-training');
-		}
+		};
 		
 		var _sortInitiatives = function() {
 			sortableTimelines.forEach(function(timeline) {
@@ -394,9 +365,17 @@ function($, moment, helper, dataManager) {
                     });
 				});
 			});
-		}
+		};
 		
 		// other helper methods
+		var _getFlexOrder = function(weight) {
+			switch (weight) {
+				// just a helper function to switch flex orders around
+				case 0: return 4; case 1: return 3; case 2: return 2;
+				case 3: return 1; case 4: return 5; default: return 4;
+			}
+		};
+        
 		var _getImpactClass = function(level, lighter) {
 			switch (level) {
 				case 0: return lighter == true ?
@@ -412,34 +391,43 @@ function($, moment, helper, dataManager) {
 				default: return lighter == true ?
 				'no-impact-color-content' : 'no-impact-color';
 			}
-		}
-        
+		};
+		
+		var _getImpactStatment = function(level) {
+			switch (level) {
+				case 0: return r.NoImpact; 		case 1: return r.LowImpact;
+				case 2: return r.MediumImpact; 	case 3: return r.HighImpact;
+				case 4: return r.BlueprintImpact;
+				default: return r.NoImpact;
+			}
+		};
+
         var _hideElement = function(selector) {
             var obj = typeof selector === 'object' ? selector : $(selector);
             obj.attr({
                 'aria-hidden': 'true',
                 'hidden': 'hidden'
             });
-        }
+        };
         
         var _showElement = function(selector) {
             $(selector).attr('aria-hidden', 'false').removeAttr('hidden');
-        }
+        };
         
 		// public functions that other submodules can use
 		var _draw = function(timelines) {
 			if (timelines == null) return 'no argument was passed in';
 			_emptyContinaers();
 			timelines.forEach(_drawTimeline);
-		}
+		};
 
 		var _sort = function(timelines) {
 			sortableTimelines = timelines;
 			_resetSort();
 			_filterTimelines();
 			_sortInitiatives();
-			// _categorize();
-		}
+            _categorize();
+		};
 
 		return {
 			draw: _draw,
@@ -451,410 +439,3 @@ function($, moment, helper, dataManager) {
 	dm.config({CULTURE: CULTURE});
 	dm.load(ui.generate);
 });
-
-
-/*
-var getQuarterData = function (month, year) {
-    if (month >= 1 && month <= 3) return [4,year-1];
-    if (month >= 4 && month <= 6) return [1,year];
-    if (month >= 7 && month <= 9) return [2,year];
-    if (month >= 10 && month <= 12) return [3,year];
-    return [0,0];
-}
-
-var getQuarter = function (month, year) {
-    if (month >= 1 && month <= 3) return 'Q4 ' + (year-1);
-    if (month >= 4 && month <= 6) return 'Q1 ' + year;
-    if (month >= 7 && month <= 9) return 'Q2 ' + year;
-    if (month >= 10 && month <= 12) return 'Q3 ' + year;
-    return 'error';
-}
-
-function toggleAccordion(elem) {
-    elem.toggleClass('toggle');
-    var contentID = elem.attr("href");
-    $(contentID).slideToggle();
-}
-
-
-// ----------------------------------------------------------------------------
-
-var gui = (function (resources) {
-    var _accordionCount = 0;
-
-    var _addHeading = function(title) {
-        var heading = "<h2>";
-        heading += title;
-        heading += "</h2>";
-        $('#timeline-accordions').append(heading);
-    }
-
-    var _addAccordion = function (title, content, weight) {
-        weight = weight !== undefined ? weight : -1;
-        _accordionCount++;
-        var accordion = "<div class='accordion-section' data-weight=" + weight + ">";
-        accordion += "<a class='accordion-section-title' href='#accordion-" + _accordionCount + "'><span></span>&nbsp;" + title + "</a>";
-        accordion += "<div id='accordion-" + _accordionCount + "' class='accordion-section-content closed'>";
-        accordion += content;
-        accordion += "</div></div>";
-        $("#timeline-accordions").append(accordion);
-    }
-
-    var _render = function(data) {
-        $("#timeline-accordions").empty();
-        data.forEach(function(block) {
-            _addHeading(resources.get(block['NameE']));
-            block.Data.forEach(function(initiative, idx, arr) {
-                var content = _createContent(initiative);
-                var initiativeName = initiative['Name' + cultureDataAppend];
-                if (initiative.Weight === undefined) {
-                    _addAccordion(initiativeName, content);
-                } else {
-                    _addAccordion(initiativeName, content, initiative.Weight);
-                }
-            });
-        });
-    }
-
-    var _getImpactResourceByWeight = function (weight) {
-        switch (weight) {
-            case 0: return '@Resources.TimelineNoImpact';
-            case 1: return '@Resources.TimelineLowImpact';
-            case 2: return '@Resources.TimelineMediumImpact';
-            case 3: return '@Resources.TimelineHighImpact';
-            case 4: return '@Resources.BP2020';
-        }
-    }
-
-    var _categorize = function () {
-        if (!(controller.regionKey() == 0 || controller.branchKey() == 0)) {
-            var $accordions = $(".accordion-section");
-            var previousWeight;
-            $.each($accordions, function () {
-                var weight = $(this).data('weight');
-                if (weight == previousWeight)
-                    return true; // skip to next iteration
-                if (weight != 4) {
-                    $("<h4>" + _getImpactResourceByWeight(weight) + "</h4>").insertBefore($(this));
-                    previousWeight = weight;
-                } else {
-                    return true;
-                }
-            });
-        }
-    }
-
-    var _createContent = function (initiative) {
-        var content = [];
-        var heading = ['@Resources.Description', '@Resources.Timespan',
-                       '@Resources.Milestones', '@Resources.TrainingPlural'];
-
-        // Create description
-        var description = "<p>" + initiative['Description' + cultureDataAppend] + "</p>";
-
-        // Create timespan
-        var startDate = moment(initiative.StartDate, apiReturnDateFormat);
-        startDate = getQuarter(startDate.month()+1, startDate.year());
-        var endDate = moment(initiative.EndDate, apiReturnDateFormat);
-        endDate = getQuarter(endDate.month()+1, endDate.year());
-        var timespan = startDate + " @Resources.to " + endDate;
-        timespan = "<p>" + timespan + "</p>";
-
-        // Create milestones & training
-        var milestones = "<ul>";
-        var training = "<ul>";
-        var events = initiative["Events"];
-        var milstoneCount = 0;
-        var trainingCount = 0;
-        if (events.length > 0) {
-            events.forEach(function (event, i) {
-                var dateStr = moment(event.Date, apiReturnDateFormat);
-                dateStr = dateStr.format('LL');
-                var hoverText = event["Hover" + cultureDataAppend] == null ? "" : event["Hover" + cultureDataAppend];
-                var longText = event["Text" + cultureDataAppend] == null ? "" : event["Text" + cultureDataAppend];
-                var text = longText.length > 0 ? longText : hoverText;
-                if ((/milestone/gi).test(event.Type)) {
-                    milestones += "<li>" + dateStr + "<br>" + text + "</li>";
-                    milstoneCount++
-                } else {
-                    training += "<li>" + dateStr + "<br>" + text + "</li>";
-                    trainingCount++;
-                }
-            });
-        }
-        milestones += "</ul>";
-        training += "</ul>";
-        milestones = milstoneCount == 0 ? "" : milestones;
-        training = trainingCount == 0 ? "" : training;
-
-        // Create overall content 
-        content.push(description, timespan, milestones, training);
-        for (var i = 0; i < content.length; i++) {
-            if (content[i].length == 0) continue;
-            content[i] = "<h3>" + heading[i] + "</h3>" + content[i];
-        }
-        return content.filter(function (n) { return n != "" }).join("");
-    }
-
-    return {
-        draw: function (data) {
-            var start = Date.now();
-            _render(data);
-            _categorize();
-            var later = Date.now();
-            console.log("Took " + (later - start) + "ms to draw data");
-        }
-    }
-})(resources);
-
-
-var dataManager = (function() {
-    var _protectedInitiatives = null;
-    var _filteredInitiatives = null;
-    var _timelines = [];
-    var _regions = null;
-    var _branches = null;
-    var _initiativesURL = "/data/accessibility";
-    var _regionsURL = "/data/regions";
-    var _branchesURL = "/data/branches";
-    var _initialize = function(callback) {
-        var xhr1 = callPostAPI(_initiativesURL, function(data) {
-            _protectedInitiatives = JSON.parse(data);
-            _protectedInitiatives.forEach(function(elem, idx, arr) {
-                _timelines.push(elem['Name' + cultureDataAppend]);
-            });
-            _filteredInitiatives = JSON.parse(data);
-        }, {culture: culture});
-        var xhr2 = callPostAPI(_regionsURL, function(data) {
-            data = JSON.parse(data);
-            data = _sortByName(data);
-            var nca;
-            data = data.filter(function (object) {
-                if (object.NameShort == "nca")
-                    nca = object;
-                return object.NameShort != "nca"
-            });
-            data.unshift(nca);
-            _regions = data;
-        });
-        var xhr3 = callPostAPI(_branchesURL, function(data) {
-            data = JSON.parse(data);
-            _branches = _sortByName(data);
-        });
-        $.when(xhr1, xhr2, xhr3).done(callback);
-    };
-
-    var _filterTimeline = function() {
-        var timelineKey = controller.timelineKey();
-        if (timelineKey !== 'All') {
-            _filteredInitiatives = _filteredInitiatives.filter(function(elem, idx, arr) {
-                return elem['Name' + cultureDataAppend] == timelineKey;
-            });
-        }
-    }
-
-    var _determineWeight = function() {
-        _filteredInitiatives.forEach(function(block) {
-            if (controller.regionKey() != '0' && controller.branchKey() != '0') {
-                block.Data.forEach(function(elem, idx, arr) {
-                    if (_keyExists(elem, 'Impacts', controller.controlKey())) {
-                        elem.Weight = _getValueByKey(elem, 'Impacts', controller.controlKey());
-                    } else {
-                        elem.Weight = 0;
-                    }
-                })
-            }
-        });
-    }
-
-    var _filterEvents = function() {
-        _filteredInitiatives.forEach(function(block) {
-            if (controller.regionKey() != '0' && controller.branchKey() != '0') {
-                block.Data.forEach(function(initiative, idx, arr) {
-                    initiative.Events = initiative.Events.filter(function(elem, idx, arr) {
-                        return _keyExists(elem, 'Control', controller.controlKey());
-                    })
-                });
-            }
-        });
-    }
-
-    var _sortOrder = function() {
-        _filteredInitiatives.forEach(function(block) {
-            block.Data.sort(function(a, b) {
-                return (sortComparator(b.Weight, a.Weight) ||
-                        sortComparator(a['Name' + cultureDataAppend], b['Name' + cultureDataAppend]));
-            });
-        });
-    }
-
-    var _filterRegionBranch = function() {
-        _determineWeight();
-        _filterEvents();
-        _sortOrder();
-    }
-
-    var _filterInitiatives = function() {
-        _filteredInitiatives = _jsonDeepCopy(_protectedInitiatives);
-        _filterTimeline();
-        _filterRegionBranch();
-        gui.draw(_filteredInitiatives);
-    }
-
-    var _jsonDeepCopy = function(jsonToCopy) {
-        return JSON.parse(JSON.stringify(jsonToCopy));
-    }
-
-    var _keyExists = function(object, objectAccessor, key) {
-        return key in object[objectAccessor];
-    }
-
-    var _getValueByKey = function(object, objectAccessor, key) {
-        return object[objectAccessor][key];
-    }
-
-    var _sortByName = function(data) {
-        return data.sort(function(a, b) {
-            return sortComparator(a['Name' + cultureDataAppend], b['Name' + cultureDataAppend]);
-        });
-    }
-
-    var _getProtectedInitiatives = function() { return _protectedInitiatives };
-    var _getFilteredInitiatives = function() { return _filteredInitiatives };
-    var _getTimelines = function() { return _timelines };
-    var _getRegions = function() { return _regions };
-    var _getBranches = function() { return _branches };
-
-    return {
-        filterDataset: _filterInitiatives,
-        getProtectedInitiatives: _getProtectedInitiatives,
-        getFilteredInitiatives: _getFilteredInitiatives,
-        getTimelines: _getTimelines,
-        getRegions: _getRegions,
-        getBranches: _getBranches,
-        initialize: _initialize
-    }
-})();
-
-var controller = (function(dataManager, resources) {
-    var _timeline = '#select-timeline',
-        _timelineKey = document.querySelector(_timeline).value;
-    var _region = '#select-region',
-        _regionKey = document.querySelector(_region).value;
-    var _branch = '#select-branch',
-        _branchKey = document.querySelector(_branch).value;
-    var _controlKey;
-
-    var _addOption = function(selector, optionObject) {
-        var select = document.querySelector(selector);
-        var option = document.createElement('option');
-        option.text = optionObject.text;
-        option.value = optionObject.value;
-        select.add(option);
-    }
-
-    var _addTimelineOptions = function() {
-        dataManager.getTimelines().forEach(function(elem, idx, arr) {
-            _addOption(_timeline, {text: resources.get(elem), value: elem});
-        });
-    }
-
-    var _addBranchOptions = function() {
-        dataManager.getBranches().forEach(function(elem, idx, arr) {
-            _addOption(_branch, {text: elem['Name' + cultureDataAppend], value: elem['ID']});
-        });
-    }
-    
-    var _addRegionOptions = function() {
-        dataManager.getRegions().forEach(function(elem, idx, arr) {
-            _addOption(_region, {text: elem['Name' + cultureDataAppend], value: elem['ID']});
-        });
-    }
-
-    var _addEventListener = function(selector, eventType, callback) {
-        var elements = document.querySelectorAll(selector);
-        [].forEach.call(elements, function(elem) {
-            elem.addEventListener(eventType, callback);
-        });
-    }
-
-    var _lockRegionBranch = function(lock) {
-        var region = document.querySelector(_region),
-            branch = document.querySelector(_branch);
-        if (lock) {
-            region.disabled = true;
-            branch.disabled = true;
-            region.options.item(0).selected = true;
-            branch.options.item(0).selected = true;
-            _regionKey = 0;
-            _branchKey = 0;
-        } else {
-            region.disabled = false;
-            branch.disabled = false;
-        }
-    }
-
-    var _resetPage = function() {
-        _timelineKey = this.value;
-        if (_timelineKey == 0) {
-            _lockRegionBranch(true);
-        } else {
-            _lockRegionBranch(false);
-            dataManager.filterDataset();
-        }
-    }
-
-    var _applyFilter = function() {
-        _regionKey = document.querySelector(_region).value;
-        _branchKey = document.querySelector(_branch).value;
-        dataManager.filterDataset();
-    }
-
-    var _registerEvents = function() {
-        _addEventListener(_timeline, 'change', _resetPage);
-        _addEventListener(_region, 'change', _applyFilter);
-        _addEventListener(_branch, 'change', _applyFilter);
-    }
-
-    var _populateControllers = function() {
-        _addTimelineOptions();
-        _addRegionOptions();
-        _addBranchOptions();
-        _registerEvents();
-    }
-
-    var _getControlKey = function() {
-        _controlKey = _regionKey + ',' + _branchKey;
-        return _controlKey;
-    }
-
-    var _getRegionKey = function() { return _regionKey }
-
-    var _getBranchKey = function() { return _branchKey }
-
-    var _getControllerState = function() {
-        return 0;
-    }
-
-    var _getTimelineKey = function() {
-        return _timelineKey;
-    }
-
-    return {
-        generate: _populateControllers,
-        controlKey: _getControlKey,
-        regionKey: _getRegionKey,
-        branchKey: _getBranchKey,
-        controlState: _getControllerState,
-        timelineKey: _getTimelineKey
-    }
-})(dataManager, resources);
-
-$(window).on('load', function() {
-    dataManager.initialize(controller.generate);
-    // Delegated Event listener to bind events to dynamic HTML contents
-    $("#timeline-accordions").on("click", "a.accordion-section-title", function () {
-        toggleAccordion($(this));
-    });
-})
-*/

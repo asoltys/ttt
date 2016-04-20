@@ -25,12 +25,17 @@
     var momentObject2 = moment();
     
     var _prepareData = function() {
+        _prepareTimelines();
         _prepareRegions();
         _prepareBranches();
         _findTimespan();
         _deepCopyData();
-    }
+    };
 
+    var _prepareBranches = function() {
+        BRANCHES = _sortByName(BRANCHES);
+    };
+    
     var _prepareRegions = function() {
         REGIONS = _sortByName(REGIONS);
         var nca;
@@ -40,11 +45,12 @@
             return object.NameShort != "nca"
         });
         REGIONS.unshift(nca);
-    }
+    };
+    
+    var _prepareTimelines = function() {
+        TIMELINES = _sortByNameReverse(TIMELINES);
+    };
 
-    var _prepareBranches = function() {
-        BRANCHES = _sortByName(BRANCHES);
-    }
 
     var _findTimespan = function() {
         var earliestDate, latestDate, startDates = [], endDates = [];
@@ -66,26 +72,32 @@
                 Years: Math.ceil(duration.asYears())
             }
         };
-    }
+    };
 
     var _deepCopyData = function() {
         timelines = h.jsonCopy(TIMELINES);
         regions = h.jsonCopy(REGIONS);
         branches = h.jsonCopy(BRANCHES);
-    }
+    };
 
     var _sortByName = function(data) {
         return data.sort(function(a, b) {
-            return h.sortComparator(a['Name' + CULTURE_APPEND], b['Name' + CULTURE_APPEND]);
+            return h.sortComparator(a[NAME_CULTURE], b[NAME_CULTURE]);
         });
-    }
+    };
+    
+    var _sortByNameReverse = function(data) {
+        return data.sort(function(a, b) {
+            return h.sortComparator(b[NAME_CULTURE], a[NAME_CULTURE]);
+        });
+    };
 
     var _sortByImpact = function(data) {
         return data.sort(function(a, b) {
             if (b.Weight == 4) return false;
             return h.sortComparator(b.Weight, a.Weight);
         })
-    }
+    };
 
     var _filterTimeline = function(value) {
         timelines = h.jsonCopy(TIMELINES);
@@ -98,14 +110,18 @@
         timelines.forEach(function(timelineParam) {
             timelineParam.Skip = timelineParam[NAME_CULTURE] == timeline ? false : true;
         });
-    }
+    };
     
     var _config = function(config) {
         if (h.keyExists('CULTURE', config)) {
             CULTURE = config.CULTURE;
-            CULTURE_APPEND = CULTURE == 'en-ca' ? 'E' : 'F';
+            CULTURE_APPEND = CULTURE == 'en-ca' ? 'E' : 'F';         
+            NAME_CULTURE = 'Name' + CULTURE_APPEND;
+            TEXT_CULTURE = 'Text' + CULTURE_APPEND;
+            DESC_CULTURE = 'Description' + CULTURE_APPEND;
+            HOVER_CULTURE = 'Hover' + CULTURE_APPEND;
         }
-    }
+    };
 
     var _filterAll = function() {
         _filterTimeline(timeline);
@@ -127,7 +143,7 @@
                     h.sortComparator(a[NAME_CULTURE], b[NAME_CULTURE]));
             });
         });
-    }
+    };
     
     var _loadData = function(callback) {
         var xhr1 = h.ajax(POST, TIMELINES_URL, function(data) {
@@ -143,7 +159,7 @@
             _prepareData();
             callback();
         });
-    }
+    };
     
     // there are only 2 moment objects in data manager
     // object index needs to be defined to return the proper object
@@ -160,21 +176,21 @@
             momentObject2.set('year', date[2]);
             return momentObject2;
         }
-    }
+    };
 
     var _momentDiff = function() {
         return momentObject2.diff(momentObject1);
-    }
+    };
 
-    var _getTimelines = function() { return timelines; }
-    var _getRegions   = function() { return regions; }
-    var _getBranches  = function() { return branches; }
-    var _getTimespan  = function() { return TIMESPAN; }
+    var _getTimelines = function() { return timelines; };
+    var _getRegions   = function() { return regions; };
+    var _getBranches  = function() { return branches; };
+    var _getTimespan  = function() { return TIMESPAN; };
     var _getControl = function() { return region + ',' + branch };
     var _getControlObject = function() { return { region: region, branch: branch } };
-    var _setBranch = function(key) { branch = key; }
-    var _setRegion = function(key) { region = key; }
-    var _setTimeline = function(key) { timeline = key; }
+    var _setBranch = function(key) { branch = key; };
+    var _setRegion = function(key) { region = key; };
+    var _setTimeline = function(key) { timeline = key; };
 
     return {
         config: _config,

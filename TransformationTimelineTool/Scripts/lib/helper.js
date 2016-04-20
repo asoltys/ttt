@@ -32,43 +32,43 @@ define('helper', ['jquery-private'], function($) {
 			console.log('helper.ajax: expects 3 or 4 arguments');
 			console.log('arguments length is ' + arguments.length);
 		}
-	}
+	};
 	
 	var _getValueByKey = function(key, object) {
 		if (_keyExists(key, object)) {
 			return object[key];
 		}
-	}
+	};
 	
 	var _htmlDecode = function(value) {
 		return $('<div/>').html(value).text();
-	}
+	};
 	
 	var _htmlEncode = function(value) {
 		return $('<div/>').text(value).html();
-	}
+	};
 	
 	var _jsonCopy = function(jsonObj) {
 		return JSON.parse(JSON.stringify(jsonObj));
-	}
+	};
 	
 	var _keyExists = function(key, object) {
 		return key in object;
-	}
+	};
 	
 	var _negate = function(number) {
 		return -Math.abs(number);
-	}
+	};
 	
 	var _sortComparator = function (a, b) {
 	    if (a > b) return 1;
 	    if (a < b) return -1;
 	    return 0;
-	}
+	};
 	
 	var _truncate = function(str, limit) {
 		return str.length >= limit ? str.substring(0, limit) + '...' : str;
-	}
+	};
 	
 	return {
 		ajax: _ajax,
