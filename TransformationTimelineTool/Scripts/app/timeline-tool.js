@@ -1,7 +1,6 @@
-﻿'use strict';
-
-require(['jquery', 'moment', 'helper', 'data-manager', 'jquery-ui'],
+﻿require(['jquery-private', 'moment', 'helper', 'data-manager', 'jquery-ui'],
 function($, moment, helper, dataManager) {
+	'use strict';
 	// jQuery custom extensions
 	$.extend($.ui.dialog.prototype.options, { modal: true });
 	$.ui.plugin.add("draggable", "alsoDrag", {

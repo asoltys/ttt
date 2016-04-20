@@ -1,18 +1,17 @@
 ﻿requirejs.config({
 	// load any script from lib directory
+	enforceDefine: true,
 	baseUrl: 'Scripts/lib',
-	paths: {
-		'jquery': 'jquery-1.10.2.min',
-		'jquery-ui': 'jquery-ui.min',
-		'moment': 'moment-with-locales.min'
+	waitSeconds: 15,
+	config: {
+		moment: {
+			noGlobal: true
+		}	
 	},
-	map: {
-		'*': {'jquery': 'jquery-private'},
-		'jquery-private': {'jquery': 'jquery'}
+	paths: {
+		'jquery-ui': 'jquery-ui.min',
 	},
 	shim: {
-		'data-manager': ['jquery-private', 'moment', 'helper'],
-		'helper': ['jquery-private'],
 		'jquery-ui': ['jquery-private']
 	}
 });

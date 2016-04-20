@@ -1,6 +1,6 @@
-﻿'use strict';
-
-define('data-manager', ['jquery', 'moment', 'helper'], function($, moment, h) {
+﻿define('data-manager', ['jquery-private', 'moment', 'helper'], function($, moment, h) {
+    'use strict';
+    console.info('running data-manager.js');
     // constants & config variables
     var CULTURE;
     var CULTURE_APPEND = CULTURE == 'en-ca' ? 'E' : 'F';
@@ -103,6 +103,7 @@ define('data-manager', ['jquery', 'moment', 'helper'], function($, moment, h) {
     var _config = function(config) {
         if (h.keyExists('CULTURE', config)) {
             CULTURE = config.CULTURE;
+            CULTURE_APPEND = CULTURE == 'en-ca' ? 'E' : 'F';
         }
     }
 
@@ -193,4 +194,6 @@ define('data-manager', ['jquery', 'moment', 'helper'], function($, moment, h) {
         setRegion: _setRegion,
         setTimeline: _setTimeline
     }
+}, function(err) {
+    console.log(err.requireModules);
 });

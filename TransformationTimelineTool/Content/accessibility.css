@@ -3,7 +3,6 @@
 	padding-bottom: 10px !important;
 }
 
-
 #controller_container {
     display: flex;
     flex-direction: column;
@@ -12,38 +11,28 @@
 }
 
 #text_timeline_container {
-	clear: both;
+	width: 100%;
 }
 
 select {
-	width: auto;
+	width: 100%;
 }
 
 label {
-    width: 320px;
     display: inline-block;
 }
 
-#timeline_container, #region_container, #branch_container {
-	width: auto;
-	float: left;
-    clear: both;
-}
-
-#timeline_accordion {
-	width: 95%;
-	margin: 0 auto;
+#timeline-accordions {
+	display: flex;
+	flex-direction: column;
 }
 
 .closed {
 	display: none;
 }
 
-.accordion {
-    margin-left: 0px;
-}
-
 .accordion-section {
+	width: 100%;
 	margin-bottom: 10px;
 }
 
@@ -69,8 +58,14 @@ a.accordion-section-title:hover {
 
 a.accordion-section-title span:after {
     content: '\25BA';
+	margin-right: 5px;
 }
 
 a.accordion-section-title.toggle span:after {
     content: '\25BC';
+	margin-right: 5px;
+}
+
+.BP2020 {
+	background-color: white;
 }

@@ -377,7 +377,11 @@ namespace TransformationTimelineTool.Controllers
                     {
                         foreach (var b in branches)
                         {
-                            controlDictionary.Add(r + "," + b, (int) impact.Level);
+                            var key = r + "," + b;
+                            if (!controlDictionary.ContainsKey(key))
+                            {
+                                controlDictionary.Add(key, (int)impact.Level);
+                            }
                         }
                     }
                 }

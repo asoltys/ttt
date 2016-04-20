@@ -1,6 +1,6 @@
-'use strict';
-
-define(['jquery'], function($) {
+define('helper', ['jquery-private'], function($) {
+	'use strict';
+	console.info('running helper.js');
 	var _ajax = function (type, url, callback, jsonData) {
 	    if (arguments.length == 3) {
 	        return $.ajax({
@@ -81,4 +81,6 @@ define(['jquery'], function($) {
 		sortComparator: _sortComparator,
 		truncate: _truncate
 	}
+}, function(err) {
+    console.log(err.requireModules);
 });

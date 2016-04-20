@@ -837,6 +837,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
+    <Content Include="Scripts\app\timeline-tool-accessible.js" />
     <Content Include="Scripts\lib\data-manager.js" />
     <Content Include="Scripts\lib\helper.js" />
     <Content Include="Scripts\app\report.js" />
