@@ -59,16 +59,8 @@
     </div>
 </div>
 
-<script>
-    (function removeAllScripts() {
-        var scripts = document.querySelectorAll('script');
-        for (var i = 0; i < scripts.length; i++) {
-            var parent = scripts[i].parentNode;
-            parent.removeChild(scripts[i]);
-        }
-    })();
-</script>
 @Html.Partial("~/Views/Partials/Resources.cshtml")
-<script src="/Scripts/require.js"></script>
+<script src="/Scripts/app/dist/timeline-tool-accessible.js"></script>
+<!--<script src="/Scripts/require.js"></script>
 <script src="/Scripts/require-config.js"></script>
-<script src="/Scripts/app/timeline-tool-accessible.js"></script>
+<script src="/Scripts/app/timeline-tool-accessible.js"></script>-->

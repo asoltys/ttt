@@ -838,7 +838,11 @@
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
     <Content Include="Scripts\app\timeline-tool-accessible.js" />
+    <Content Include="Scripts\app\dist\timeline-tool-accessible.js" />
+    <Content Include="Scripts\build\build.html" />
+    <Content Include="Scripts\build\r.js" />
     <Content Include="Scripts\lib\data-manager.js" />
+    <Content Include="Scripts\lib\domReady.js" />
     <Content Include="Scripts\lib\helper.js" />
     <Content Include="Scripts\app\report.js" />
     <Content Include="Scripts\app\timeline-tool.js" />
@@ -1055,6 +1059,7 @@
     </None>
     <Content Include="Scripts\lib\jquery-private.js" />
     <Content Include="Scripts\lib\jquery-ui.min.js" />
+    <Content Include="Scripts\lib\jquery-v2.js" />
     <Content Include="Scripts\lib\jquery.js" />
     <Content Include="Scripts\lib\moment.js" />
     <Content Include="Scripts\old-scripts\MockData\data-eng.json" />
