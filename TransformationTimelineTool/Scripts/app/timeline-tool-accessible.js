@@ -307,8 +307,11 @@ function($, moment, helper, dataManager) {
 		var _filterTimelines = function() {
 			sortableTimelines.forEach(function(timeline) {
 				var timelineSelector = '.' + timeline[NAME_CULTURE];
-				if (timeline.Skip == true) $(timelineSelector).addClass('hide');
-				else $(timelineSelector).removeClass('hide');
+				if (timeline.Skip == true) {
+                    _hideElement(timelineSelector);
+                } else {
+                    _showElement(timelineSelector);
+                }
 			});
 		};
 
@@ -414,10 +417,13 @@ function($, moment, helper, dataManager) {
                 'aria-hidden': 'true',
                 'hidden': 'hidden'
             });
+            obj.addClass('hide');
         };
         
         var _showElement = function(selector) {
-            $(selector).attr('aria-hidden', 'false').removeAttr('hidden');
+            var obj = typeof selector === 'object' ? selector : $(selector);
+            obj.attr('aria-hidden', 'false').removeAttr('hidden');
+            obj.removeClass('hide');
         };
         
 		// public functions that other submodules can use

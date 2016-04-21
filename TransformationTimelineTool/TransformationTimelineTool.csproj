@@ -837,12 +837,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\book.png" />
     <Content Include="Images\circle.png" />
+    <Content Include="Scripts\app\dist\timeline-tool.js" />
     <Content Include="Scripts\app\timeline-tool-accessible.js" />
     <Content Include="Scripts\app\dist\timeline-tool-accessible.js" />
-    <Content Include="Scripts\build\build.html" />
+    <Content Include="Scripts\build\acc.html" />
     <Content Include="Scripts\build\r.js" />
+    <Content Include="Scripts\build\tool.html" />
     <Content Include="Scripts\lib\data-manager.js" />
-    <Content Include="Scripts\lib\domReady.js" />
     <Content Include="Scripts\lib\helper.js" />
     <Content Include="Scripts\app\report.js" />
     <Content Include="Scripts\app\timeline-tool.js" />
