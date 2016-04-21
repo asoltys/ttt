@@ -314,7 +314,7 @@ function($, moment, helper, dataManager) {
 	        };
 
 	        var _handleScroll = function () {
-	            if (INITIAL_NAV_OFFSET === null) {
+	            if (typeof INITIAL_NAV_OFFSET === 'undefined') {
 	                INITIAL_NAV_OFFSET = $navContainer.offset().top;
 	                NAV_RETURN_POSITION = INITIAL_NAV_OFFSET -
 						$main.offset().top;
