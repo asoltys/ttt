@@ -113,7 +113,8 @@ function($, moment, helper, dataManager) {
                 $branch.on('change', _handleBranch);
                 
                 // delegate click event to each class
-                $accordions.on("click", "a.accordion-section-title", function () {
+                $accordions.on("click", "a.accordion-section-title", function (e) {
+                    e.preventDefault();
                     _handleAccordionClick($(this));
                 });
             })();
