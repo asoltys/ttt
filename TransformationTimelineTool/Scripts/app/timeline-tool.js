@@ -66,6 +66,11 @@ function($, moment, helper, dataManager) {
 		TEXT_CULTURE = 'Text' + CULTURE_APPEND;
 	var MONTH_WIDTH = 100;
 	
+	// debug variables
+    var DEBUG = CURRENT_URL.indexOf('on-dev') > -1;
+    DEBUG = DEBUG ? DEBUG : CURRENT_URL.indexOf(':1803') > -1; 
+    var CONSOLE_PREFIX = 'TimelineTool: ';
+	
 	// other namespaces & config setup
 	var r = resources;
 	moment.locale(CULTURE);
@@ -796,4 +801,9 @@ function($, moment, helper, dataManager) {
 	// GET data from the server and generate UI
 	dm.config({CULTURE: CULTURE});
 	dm.load(ui.generate);
+	h.log(CONSOLE_PREFIX + 'initialized successfully', DEBUG);
+    h.log(CONSOLE_PREFIX + 'jquery v-' + $.fn.jquery, DEBUG);
+    h.log(CONSOLE_PREFIX + 'moment v-' + moment.version, DEBUG);
+    h.log(CONSOLE_PREFIX + 'helper v-' + h.version, DEBUG);
+    h.log(CONSOLE_PREFIX + 'data-manager v-' + dm.version, DEBUG);
 });

@@ -3,15 +3,13 @@
 	enforceDefine: true,
 	baseUrl: 'Scripts/lib',
 	waitSeconds: 15,
-	config: {
-		moment: {
-			noGlobal: true
-		}	
-	},
 	paths: {
 		'jquery-ui': 'jquery-ui.min',
 	},
 	shim: {
-		'jquery-ui': ['jquery-private']
+		'jquery-ui': {
+			export: '$',
+			deps: ['jquery-private']
+		} 
 	}
 });

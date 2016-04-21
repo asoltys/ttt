@@ -1053,12 +1053,12 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Scripts\lib\jquery-1.10.2.min.js" />
     <Content Include="Scripts\lib\jquery-private.js" />
     <Content Include="Scripts\lib\jquery-ui.min.js" />
-    <Content Include="Scripts\lib\moment-with-locales.min.js" />
-    <Content Include="Scripts\MockData\data-eng.json" />
-    <Content Include="Scripts\MockData\data-fra.json" />
+    <Content Include="Scripts\lib\jquery.js" />
+    <Content Include="Scripts\lib\moment.js" />
+    <Content Include="Scripts\old-scripts\MockData\data-eng.json" />
+    <Content Include="Scripts\old-scripts\MockData\data-fra.json" />
     <None Include="Properties\PublishProfiles\AtlDev.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
@@ -1381,8 +1381,8 @@
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\timeline-tool.js" />
-    <Content Include="Scripts\timeline-tool.min.js" />
+    <Content Include="Scripts\old-scripts\timeline-tool.js" />
+    <Content Include="Scripts\old-scripts\timeline-tool.min.js" />
     <Content Include="Scripts\tl_utility.js" />
     <Content Include="Scripts\toggleRegionsBranches.js" />
     <Content Include="Scripts\translation.js" />
@@ -1622,8 +1622,8 @@
     <Content Include="Views\Shared\_IntraLayoutFra.cshtml" />
     <Content Include="Views\Partials\Share.cshtml" />
     <Content Include="Views\Partials\ShareForm.cshtml" />
-    <Content Include="Scripts\MockData\regions.json" />
-    <Content Include="Scripts\MockData\branches.json" />
+    <Content Include="Scripts\old-scripts\MockData\regions.json" />
+    <Content Include="Scripts\old-scripts\MockData\branches.json" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Home\FrontRefactor.cshtml" />

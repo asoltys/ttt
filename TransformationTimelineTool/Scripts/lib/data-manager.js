@@ -1,21 +1,26 @@
 ﻿define('data-manager', ['jquery-private', 'moment', 'helper'], function($, moment, h) {
     'use strict';
-    console.info('running data-manager.js');
-    // constants & config variables
+    
+    //  mutable variables with config method
     var CULTURE;
     var CULTURE_APPEND = CULTURE == 'en-ca' ? 'E' : 'F';
     var NAME_CULTURE = 'Name' + CULTURE_APPEND;
     var TEXT_CULTURE = 'Text' + CULTURE_APPEND;
     var DESC_CULTURE = 'Description' + CULTURE_APPEND;
     var HOVER_CULTURE = 'Hover' + CULTURE_APPEND;
+    
+    // real constants
     var API_DATE_FORMAT = 'MM/DD/YYYY';
-    var TIMELINES_URL = '/data/all';
-    var REGIONS_URL = '/data/regions';
     var BRANCHES_URL = '/data/branches';
-    var TIMELINE_BUFFER = 3;
-    var TIMELINE_BUFFER_UNIT = 'month';
     var GET = 'get';
     var POST = 'post';
+    var REGIONS_URL = '/data/regions';
+    var TIMELINE_BUFFER = 3;
+    var TIMELINE_BUFFER_UNIT = 'month';
+    var TIMELINES_URL = '/data/all';
+    var VERSION = '1.0.0';
+    
+    // fake constants - used for storing initial data
     var TIMELINES, REGIONS, BRANCHES, TIMESPAN;
     
     // local variables used for sorting & filtering & retrieving values
@@ -182,12 +187,13 @@
         return momentObject2.diff(momentObject1);
     };
 
-    var _getTimelines = function() { return timelines; };
-    var _getRegions   = function() { return regions; };
     var _getBranches  = function() { return branches; };
-    var _getTimespan  = function() { return TIMESPAN; };
     var _getControl = function() { return region + ',' + branch };
     var _getControlObject = function() { return { region: region, branch: branch } };
+    var _getRegions   = function() { return regions; };
+    var _getTimelines = function() { return timelines; };
+    var _getTimespan  = function() { return TIMESPAN; };
+    var _getVersion = (function() { return VERSION; })();
     var _setBranch = function(key) { branch = key; };
     var _setRegion = function(key) { region = key; };
     var _setTimeline = function(key) { timeline = key; };
@@ -208,7 +214,8 @@
         getControlObject: _getControlObject,
         setBranch: _setBranch,
         setRegion: _setRegion,
-        setTimeline: _setTimeline
+        setTimeline: _setTimeline,
+        version: _getVersion
     }
 }, function(err) {
     console.log(err.requireModules);

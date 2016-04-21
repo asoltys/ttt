@@ -1,6 +1,10 @@
 define('helper', ['jquery-private'], function($) {
 	'use strict';
-	console.info('running helper.js');
+		
+	// constants
+	var VERSION = '1.0.0';
+	
+	// helper functions
 	var _ajax = function (type, url, callback, jsonData) {
 	    if (arguments.length == 3) {
 	        return $.ajax({
@@ -40,6 +44,10 @@ define('helper', ['jquery-private'], function($) {
 		}
 	};
 	
+	var _getVersion = (function() {
+		return VERSION;
+	})();
+	
 	var _htmlDecode = function(value) {
 		return $('<div/>').html(value).text();
 	};
@@ -50,6 +58,14 @@ define('helper', ['jquery-private'], function($) {
 	
 	var _jsonCopy = function(jsonObj) {
 		return JSON.parse(JSON.stringify(jsonObj));
+	};
+	
+	var _log = function(message, output) {
+		if (!output) return;
+		if (typeof message === 'obj') {
+			message = JSON.parse(JSON.stringify(message));	
+		}
+		console.log(message);
 	};
 	
 	var _keyExists = function(key, object) {
@@ -76,10 +92,12 @@ define('helper', ['jquery-private'], function($) {
 		htmlDecode: _htmlDecode,
 		htmlEncode: _htmlEncode,
 		jsonCopy: _jsonCopy,
+		log: _log,
 		keyExists: _keyExists,
 		negate: _negate,
 		sortComparator: _sortComparator,
-		truncate: _truncate
+		truncate: _truncate,
+		version: _getVersion
 	}
 }, function(err) {
     console.log(err.requireModules);

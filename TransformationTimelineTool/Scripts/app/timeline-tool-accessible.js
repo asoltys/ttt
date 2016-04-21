@@ -10,7 +10,12 @@ function($, moment, helper, dataManager) {
 		HOVER_CULTURE = 'Hover' + CULTURE_APPEND,
 		NAME_CULTURE = 'Name' + CULTURE_APPEND,
 		TEXT_CULTURE = 'Text' + CULTURE_APPEND;
-	
+        
+    // debug variables
+    var DEBUG = CURRENT_URL.indexOf('on-dev') > -1;
+    DEBUG = DEBUG ? DEBUG : CURRENT_URL.indexOf(':1803') > -1; 
+    var CONSOLE_PREFIX = 'Accessible: ';
+    	
 	// other namespaces & config setup
 	var r = resources;
 	moment.locale(CULTURE);
@@ -57,7 +62,7 @@ function($, moment, helper, dataManager) {
                 _populateTimeline();
                 _populateRegionsAndBranches();
             })();
-        }
+        };
         
         var eventManager = function() {
             // every other jQuery object other than controller objects
@@ -76,7 +81,7 @@ function($, moment, helper, dataManager) {
                 dm.setBranch(this.value);
                 dm.filter();
                 ui.content.sort(dm.timelines());
-            }
+            };
 
             var _handleRegion = function() {
                 if (this.value.indexOf('all') === -1) {
@@ -87,19 +92,19 @@ function($, moment, helper, dataManager) {
                 dm.setRegion(this.value);
                 dm.filter();
                 ui.content.sort(dm.timelines());
-            }
+            };
 
             var _handleTimeline = function() {
                 dm.setTimeline(this.value);
                 dm.filter();
                 ui.content.sort(dm.timelines());
-            }
+            };
             
             var _handleAccordionClick = function(elem) {
                 elem.toggleClass('toggle');
                 var contentID = elem.attr("href");
                 $(contentID).slideToggle();
-            }
+            };
 
             var _registerEvents = (function() {
                 // timeline tool controllers
@@ -112,13 +117,13 @@ function($, moment, helper, dataManager) {
                     _handleAccordionClick($(this));
                 });
             })();
-        }
+        };
         
         var _generate = function() {
             controllers();
             eventManager();
             ui.content.draw(dm.timelines());
-        }
+        };
         
         return {
 			generate: _generate
@@ -296,7 +301,7 @@ function($, moment, helper, dataManager) {
                     _hideElement($statement);
                 }
             }
-        }
+        };
         
 		var _filterTimelines = function() {
 			sortableTimelines.forEach(function(timeline) {
@@ -438,4 +443,9 @@ function($, moment, helper, dataManager) {
     // GET data from the server and generate UI
 	dm.config({CULTURE: CULTURE});
 	dm.load(ui.generate);
+    h.log(CONSOLE_PREFIX + 'initialized successfully', DEBUG);
+    h.log(CONSOLE_PREFIX + 'jquery v-' + $.fn.jquery, DEBUG);
+    h.log(CONSOLE_PREFIX + 'moment v-' + moment.version, DEBUG);
+    h.log(CONSOLE_PREFIX + 'helper v-' + h.version, DEBUG);
+    h.log(CONSOLE_PREFIX + 'data-manager v-' + dm.version, DEBUG);
 });
