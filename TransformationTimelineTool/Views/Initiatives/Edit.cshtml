@@ -30,8 +30,8 @@ else
             @Html.LabelFor(model => model.Timeline, Resources.Timeline, htmlAttributes: new { @class = "col-sm-2 control-label" })
             <div class="col-md-10">
                 <select id="Timeline" name="Timeline" class="form-control">
-                    <option>TransformationTimeline</option>
-                    <option>BP2020</option>
+                    <option value="TransformationTimeline">@Resources.ReportTimelineTransformation</option>
+                    <option value="BP2020">@Resources.ReportTimelineBP2020</option>
                 </select>
                 @Html.ValidationMessageFor(model => model.Timeline, "", new { @class = "text-danger" })
             </div>

@@ -46,7 +46,13 @@ else
         }
         <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(modelItem => item.Timeline)
+                @if (item.Timeline == "BP2020")
+                {
+                    @Resources.ReportTimelineBP2020
+                } else
+                {
+                    @Resources.ReportTimelineTransformation
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

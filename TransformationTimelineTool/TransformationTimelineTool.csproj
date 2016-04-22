@@ -1836,6 +1836,8 @@
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
+    <WarningLevel>2</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|x64'">
     <DebugSymbols>true</DebugSymbols>
