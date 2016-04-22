@@ -24,7 +24,13 @@ else
 <div class="print-box">
     <h4>@Resources.Timeline</h4>
     <p>
-        @Html.DisplayFor(model => model.Timeline)
+        @if (Model.Timeline == "BP2020")
+        {
+            @Resources.ReportTimelineBP2020
+        } else
+        {
+            @Resources.ReportTimelineTransformation
+        }
     </p>
 </div>
 

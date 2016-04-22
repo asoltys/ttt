@@ -41,7 +41,14 @@ else
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Timeline)
+            @if (Model.Timeline == "BP2020")
+            {
+                @Resources.ReportTimelineBP2020
+            }
+            else
+            {
+                @Resources.ReportTimelineTransformation
+            }
         </dd>
 
         <dt>
