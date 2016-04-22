@@ -140,12 +140,12 @@ namespace TransformationTimelineTool.Controllers
                 initiatives.OrderBy(i => i.NameF).ToList() : initiatives.OrderBy(i => i.NameE).ToList();
             List<DateTime> dateRange = GetDateRage(quarter, year);
             var initiativeBlocks = new List<object>();
-            var timelines = initiatives.Select(i => i.Timeline).Distinct().Reverse();
+            var timelines = initiatives.Select(i => i.Timeline).Distinct();
             foreach (var timeline in timelines)
             {
                 var initiativeBlock = initiatives.Where(i => i.Timeline == timeline).ToList();
                 var quarterlyData = populateQuarterlyJSON(dateRange, initiativeBlock);
-                var allInitiatives = getAllInitiatives(dateRange, initiativeBlock);
+                var allInitiatives = getAllInitiatives(initiativeBlock);
                 if (quarterlyData.Count > 0)
                 {
                     initiativeBlocks.Add(new
@@ -157,6 +157,20 @@ namespace TransformationTimelineTool.Controllers
                         StartMonth = dateRange[0].Month,
                         EndMonth = dateRange[1].Month,
                         Data = quarterlyData,
+                        Initiatives = allInitiatives
+                    });
+                } else if (quarterlyData.Count == 0)
+                {
+                    DateTime now = DateTime.Now;
+                    initiativeBlocks.Add(new
+                    {
+                        NameE = timeline,
+                        NameF = timeline,
+                        StartDate = now.ToString(dateFormat),
+                        EndDate = now.ToString(dateFormat),
+                        StartMonth = now.Month,
+                        EndMonth = now.Month,
+                        Data = new List<object>(),
                         Initiatives = allInitiatives
                     });
                 }
@@ -237,7 +251,11 @@ namespace TransformationTimelineTool.Controllers
                     {
                         foreach (var b in branches)
                         {
-                            controlDictionary.Add(r + "," + b, -1);
+                            var key = r + "," + b;
+                            if (!controlDictionary.ContainsKey(key))
+                            {
+                                controlDictionary.Add(key, -1);
+                            }
                         }
                     }
                     jsonEvents.Add(new EventInformation
@@ -259,14 +277,11 @@ namespace TransformationTimelineTool.Controllers
             return jsonEvents.OrderBy(e => e.Date).ToList();
         }
         
-        private List<object> getAllInitiatives(List<DateTime> dateRange, List<Initiative> initiatives)
+        private List<object> getAllInitiatives(List<Initiative> initiatives)
         {
             var result = new List<object>();
             foreach (var init in initiatives)
             {
-                var events = init.Events
-                    .Where(e => (e.PublishedEdit.DisplayDate >= dateRange[0] && e.PublishedEdit.DisplayDate <= dateRange[1]))
-                    .ToList();
                 result.Add(new {
                     ID = init.ID,
                     NameE = init.NameE,
@@ -352,7 +367,11 @@ namespace TransformationTimelineTool.Controllers
                     {
                         foreach (var b in branches)
                         {
-                            eventControlDictionary.Add(r + "," + b, -1);
+                            var key = r + "," + b;
+                            if (!eventControlDictionary.ContainsKey(key))
+                            {
+                                eventControlDictionary.Add(key, -1);
+                            }
                         }
                     }
                     jsonEvents.Add(new
