@@ -1,16 +1,14 @@
 ﻿@model TransformationTimelineTool.ViewModels.InitiativeIndexData 
-@{
-    ViewBag.Title = @Resources.Subscribe;
-}
-
 @if(Culture == "fr")
 {
     Layout = "~/Views/Shared/_IntraLayoutFra.cshtml";
+    ViewBag.Title = @Resources.ApplicationName + ": Abonnements";
     ViewBag.lang = "fra";
 }
 else
 {
     Layout = "~/Views/Shared/_IntraLayout.cshtml";
+    ViewBag.Title = @Resources.ApplicationName + ": Subscriptions";
     ViewBag.lang = "eng";
 }
 
