@@ -313,7 +313,7 @@ namespace TransformationTimelineTool.Controllers
         {
             string PreviousStatus = EventStatus.Item1.ToString();
             string NewStatus = EventStatus.Item2.ToString();
-            List<string> CurrentUserRoles = Utils.GetCurrentUserRoles();
+            List<string> CurrentUserRoles = Utils.GetUserRoles();
             bool IsAdmin = CurrentUserRoles.Contains("Admin");
             bool IsApprover = IsAdmin == true ? false : CurrentUserRoles.Contains("Approver");
             bool IsEditor = IsAdmin == true || IsApprover == true ? false : CurrentUserRoles.Contains("Editor");

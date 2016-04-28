@@ -66,13 +66,11 @@ namespace TransformationTimelineTool.Helpers
             return userManager.FindByName(GetUserName(HttpContext.Current.User.Identity.Name));
         }
         
-        public static string[] GetUserRoles(string FullIdentityName = "")
+        public static List<string> GetUserRoles(string FullIdentityName = "")
         {
             TimelineContext db = new TimelineContext();
-            UserManager<User> userManager;
             RoleManager<IdentityRole> roleManager;
 
-            userManager = new UserManager<User>(new UserStore<User>(db));
             roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
             List<string> userRoles = new List<string>();
@@ -84,12 +82,14 @@ namespace TransformationTimelineTool.Helpers
             }
             else
             {
-                 user = userManager.FindByName(GetUserName(FullIdentityName));
+                UserManager<User> userManager;
+                userManager = new UserManager<User>(new UserStore<User>(db));
+                user = userManager.FindByName(GetUserName(FullIdentityName));
             }
 
             if (user == null)
             {
-                return new string[] { };
+                return userRoles;
             }
             
             foreach (var role in user.Roles)
@@ -99,7 +99,7 @@ namespace TransformationTimelineTool.Helpers
                 //Debug.WriteLine(myRole.Name);
             }
 
-            return userRoles.ToArray();
+            return userRoles;
         }
 
         public static string GetEmailFromUserName(string userName)
@@ -280,29 +280,6 @@ namespace TransformationTimelineTool.Helpers
                     Utils.log(ex.StackTrace);
                 }
                 HttpContext.Current.AllowAsyncDuringSyncStages = false;
-            }
-        }
-
-        public static List<String> GetCurrentUserRoles()
-        {
-            TimelineContext db = new TimelineContext();
-            RoleManager<IdentityRole> RoleManager;
-            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-
-            List<string> UserRoles = new List<string>();
-            User CurrentUser = GetCurrentUser();
-
-            if (CurrentUser == null)
-            {
-                return UserRoles;
-            } else
-            {
-                foreach (var Role in CurrentUser.Roles)
-                {
-                    var MyRole = RoleManager.FindById(Role.RoleId);
-                    UserRoles.Add(MyRole.Name);
-                }
-                return UserRoles;
             }
         }
 
