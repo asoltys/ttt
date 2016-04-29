@@ -50,7 +50,7 @@ namespace TransformationTimelineTool
             ITrigger Trigger = TriggerBuilder.Create()
                 .WithIdentity("ChangeNotificationTrigger", "Group")
                 .StartNow()
-                .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(10,40))
+                .WithSchedule(CronScheduleBuilder.WeeklyOnDayAndHourAndMinute(DayOfWeek.Monday, 3,0))
                 .Build();
             Schedule.ScheduleJob(Job, Trigger);
         }
