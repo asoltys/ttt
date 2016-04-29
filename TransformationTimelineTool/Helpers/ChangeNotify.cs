@@ -28,6 +28,7 @@ namespace TransformationTimelineTool.Helpers
         public void Execute(IJobExecutionContext context)
         {
             ManualExecute();
+            ClearEdited();
         }
 
         public void ManualExecute()
@@ -61,6 +62,30 @@ namespace TransformationTimelineTool.Helpers
                 string MailBody = GetMailBody();
                 Utils.SendMail(subscriber.Email, MailSubject, MailBody);
             }
+        }
+
+        public void ClearEdited()
+        {
+            var editedInits = db.Initiatives.Where(i => i.Edited == true);
+            var editedEdits = db.Edits.Where(e => e.Edited == true);
+            var editedImpacts = db.Impacts.Where(e => e.Edited == true);
+
+            foreach( var init in editedInits)
+            {
+                init.Edited = false;
+            }
+
+            foreach( var edit in editedEdits)
+            {
+                edit.Edited = false;
+            }
+
+            foreach( var impact in editedImpacts)
+            {
+                impact.Edited = false;
+            }
+
+            db.SaveChanges();
         }
 
         public void generateInitContent()

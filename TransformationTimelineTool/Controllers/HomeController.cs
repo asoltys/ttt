@@ -131,26 +131,8 @@ namespace TransformationTimelineTool.Controllers
         [Route("clearEdited")]
         public ActionResult clearEdited()
         {
-            var editedInits = db.Initiatives.Where(i => i.Edited == true);
-            var editedEdits = db.Edits.Where(e => e.Edited == true);
-            var editedImpacts = db.Impacts.Where(e => e.Edited == true);
-
-            foreach( var init in editedInits)
-            {
-                init.Edited = false;
-            }
-
-            foreach( var edit in editedEdits)
-            {
-                edit.Edited = false;
-            }
-
-            foreach( var impact in editedImpacts)
-            {
-                impact.Edited = false;
-            }
-
-            db.SaveChanges();
+            ChangeNotify job = new ChangeNotify();
+            job.ClearEdited();
 
             return RedirectToAction("Index");
         }
