@@ -59,7 +59,7 @@ namespace TransformationTimelineTool.Models
         [AllowHtml]
         [Display(Name="Timeline", ResourceType =typeof(Resources.Resources))]
         public string Timeline { get; set; }
-        public DateTime Edited { get; set; }
+        public Boolean Edited { get; set; }
         public string Name
         {
             get

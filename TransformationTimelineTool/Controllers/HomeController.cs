@@ -128,6 +128,15 @@ namespace TransformationTimelineTool.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("clearEdited")]
+        public ActionResult clearEdited()
+        {
+            ChangeNotify job = new ChangeNotify();
+            job.ClearEdited();
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult SetCulture(string lang)
         {
             var Referrer = Request.UrlReferrer.ToString();

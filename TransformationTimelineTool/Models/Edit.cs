@@ -48,7 +48,7 @@ namespace TransformationTimelineTool.Models
         
         public bool Published { get; set; }
 
-        public DateTime Edited { get; set; }
+        public Boolean Edited { get; set; }
 
         public string Hover
         {

@@ -28,20 +28,18 @@ namespace TransformationTimelineTool.Helpers
         public void Execute(IJobExecutionContext context)
         {
             ManualExecute();
+            ClearEdited();
         }
 
         public void ManualExecute()
         {
-            var lastMonday = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
-            var today = DateTime.Now;
-
-            ChangedEdits = db.Edits.Where(e => e.Edited >= lastMonday && e.Edited <= today).ToList();
+            ChangedEdits = db.Edits.Where(e => e.Edited == true).ToList();
             ChangedEditsInitiatives = ChangedEdits.Select(e => e.Event.Initiative).Distinct().ToList();
 
-            ChangedImpacts = db.Impacts.Where(i => i.Edited >= lastMonday && i.Edited <= today).ToList();
+            ChangedImpacts = db.Impacts.Where(i => i.Edited == true).ToList();
             ChangedImpactsInitiatives = ChangedImpacts.Select(i => i.Initiative).Distinct().ToList();
 
-            ChangedInitiatives = db.Initiatives.Where(i => i.Edited >= lastMonday && i.Edited <= today).ToList();
+            ChangedInitiatives = db.Initiatives.Where(i => i.Edited == true).ToList();
             AllChangedInitiatives = ChangedInitiatives.Union(ChangedImpactsInitiatives.Union(ChangedEditsInitiatives)).ToList();
             Subscribers = db.Subscribers.ToList();
 
@@ -64,6 +62,30 @@ namespace TransformationTimelineTool.Helpers
                 string MailBody = GetMailBody();
                 Utils.SendMail(subscriber.Email, MailSubject, MailBody);
             }
+        }
+
+        public void ClearEdited()
+        {
+            var editedInits = db.Initiatives.Where(i => i.Edited == true);
+            var editedEdits = db.Edits.Where(e => e.Edited == true);
+            var editedImpacts = db.Impacts.Where(e => e.Edited == true);
+
+            foreach( var init in editedInits)
+            {
+                init.Edited = false;
+            }
+
+            foreach( var edit in editedEdits)
+            {
+                edit.Edited = false;
+            }
+
+            foreach( var impact in editedImpacts)
+            {
+                impact.Edited = false;
+            }
+
+            db.SaveChanges();
         }
 
         public void generateInitContent()
