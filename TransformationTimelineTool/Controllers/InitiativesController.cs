@@ -149,7 +149,7 @@ namespace TransformationTimelineTool.Controllers
                 try
                 {
                     initiativeViewModel.BindToModel(initiativeToUpdate);
-                    initiativeToUpdate.Edited = true;
+                    initiativeToUpdate.Edited = DateTime.Now;
                     db.SaveChanges();
                     ManageCache();
                     return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });

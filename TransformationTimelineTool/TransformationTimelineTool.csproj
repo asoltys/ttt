@@ -184,6 +184,7 @@
     <Compile Include="Helpers\CacheLayer.cs" />
     <Compile Include="Helpers\ChangeNotify.cs" />
     <Compile Include="Helpers\EmailInitiative.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.cs" />
     <Compile Include="Migrations\201511181942275_InitialCreate.Designer.cs">
@@ -348,6 +349,10 @@
     <Compile Include="Migrations\201603101756294_Subscriber.cs" />
     <Compile Include="Migrations\201603101756294_Subscriber.Designer.cs">
       <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605032138162_EditedFromBooleanToDateTime.cs" />
+    <Compile Include="Migrations\201605032138162_EditedFromBooleanToDateTime.Designer.cs">
+      <DependentUpon>201605032138162_EditedFromBooleanToDateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -1787,6 +1792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603101756294_Subscriber.resx">
       <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605032138162_EditedFromBooleanToDateTime.resx">
+      <DependentUpon>201605032138162_EditedFromBooleanToDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
