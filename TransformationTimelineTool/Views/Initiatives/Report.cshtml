@@ -1,0 +1,37 @@
+﻿@using TransformationTimelineTool.Models;
+@using TransformationTimelineTool.Helpers;
+@model IEnumerable<TransformationTimelineTool.ViewModels.InitiativeData>
+
+@if(Culture == "fr")
+{
+    ViewBag.lang = "fra";
+}
+else
+{
+    ViewBag.lang = "eng";
+}
+
+
+@section Styles {
+    <link href="@Url.Content("~/Content/table.css")" rel="stylesheet" type="text/css" />
+}
+
+<h2>@Resources.Initiatives @Resources.By @Resources.LastUpdated</h2>
+
+<table class="table">
+    <tr>
+        <th>@Resources.Initiative</th>
+        <th>@Resources.LastUpdated</th>
+    </tr>
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdated)
+            </td>
+        </tr>
+    }
+</table>

@@ -695,4 +695,10 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
   <data name="ApplicationName" xml:space="preserve">
     <value>L'Outil de calendrier : Transformation et Objectif 2020 </value>
   </data>
+  <data name="By" xml:space="preserve">
+    <value>par</value>
+  </data>
+  <data name="UpdateReport" xml:space="preserve">
+    <value>Rapport des mises à jour</value>
+  </data>
 </root>

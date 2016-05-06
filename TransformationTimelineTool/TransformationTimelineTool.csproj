@@ -1634,6 +1634,7 @@
     <Content Include="Views\Home\Subscribe.cshtml" />
     <Content Include="Views\Home\FrontRefactor.cshtml" />
     <Content Include="Views\Partials\Resources.cshtml" />
+    <Content Include="Views\Initiatives\Report.cshtml" />
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

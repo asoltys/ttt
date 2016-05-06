@@ -694,4 +694,10 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>Timeline Tool: Transformation and Blueprint 2020</value>
     <comment>Application name to be used throughout the entire application</comment>
   </data>
+  <data name="By" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="UpdateReport" xml:space="preserve">
+    <value>Updates Report</value>
+  </data>
 </root>

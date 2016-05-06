@@ -290,6 +290,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to by.
+        /// </summary>
+        public static string By {
+            get {
+                return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comments.
         /// </summary>
         public static string Comment {
@@ -1616,6 +1625,15 @@ namespace Resources {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updates Report.
+        /// </summary>
+        public static string UpdateReport {
+            get {
+                return ResourceManager.GetString("UpdateReport", resourceCulture);
             }
         }
         

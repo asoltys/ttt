@@ -54,6 +54,38 @@ namespace TransformationTimelineTool.Controllers
             return View(viewModel);
         }
 
+        // GET: Edits
+        public ActionResult Report()
+        {
+            List<InitiativeData> viewModel = new List<InitiativeData>();
+
+            var initiatives = db.Initiatives.ToList();
+            foreach (var initiative in initiatives)
+            {
+                DateTime lastUpdate = new DateTime(1970, 1, 1);
+
+                foreach (var e in initiative.Events)
+                {
+                    if (e.LatestEdit.Date > lastUpdate)
+                    {
+                        lastUpdate = e.LatestEdit.Date;
+                    }
+                }
+
+                viewModel.Add(new InitiativeData()
+                {                  
+                    ID = initiative.ID,
+                    NameE = initiative.NameE,
+                    NameF = initiative.NameF,
+                    LastUpdated = lastUpdate
+                });
+            }
+
+            viewModel = viewModel.OrderBy(o => o.LastUpdated).ToList();
+
+            return View(viewModel);
+        }
+
         // GET: Initiatives/Details/5
         public ActionResult Details(int? id)
         {

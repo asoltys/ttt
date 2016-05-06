@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -26,5 +27,8 @@ namespace TransformationTimelineTool.ViewModels
         public string NameE { get; set; }
         public string NameF { get; set; }
         public bool Flag { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime LastUpdated { get; set; }
     }
 }
