@@ -1,6 +1,6 @@
 ﻿@using TransformationTimelineTool.Models;
 @using TransformationTimelineTool.Helpers;
-@model IEnumerable<TransformationTimelineTool.ViewModels.InitiativeData>
+@model IEnumerable<TransformationTimelineTool.ViewModels.InitiativeViewModel>
 
 @if(Culture == "fr")
 {
@@ -17,14 +17,16 @@ else
 }
 
 <h2>@Resources.Initiatives @Resources.By @Resources.LastUpdated</h2>
-
+@foreach (string type in Model.Select(o => o.Timeline).Distinct().ToList())
+{
+<h3>@type</h3>
 <table class="table">
     <tr>
         <th>@Resources.Initiative</th>
         <th>@Resources.LastUpdated</th>
     </tr>
-    @foreach (var item in Model)
-            {
+    @foreach (var item in Model.Where(i => i.Timeline == type))
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -35,3 +37,4 @@ else
         </tr>
     }
 </table>
+}

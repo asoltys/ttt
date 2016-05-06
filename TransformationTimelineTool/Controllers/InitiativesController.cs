@@ -57,7 +57,7 @@ namespace TransformationTimelineTool.Controllers
         // GET: Edits
         public ActionResult Report()
         {
-            List<InitiativeData> viewModel = new List<InitiativeData>();
+            List<InitiativeViewModel> viewModel = new List<InitiativeViewModel>();
 
             var initiatives = db.Initiatives.ToList();
             foreach (var initiative in initiatives)
@@ -72,11 +72,12 @@ namespace TransformationTimelineTool.Controllers
                     }
                 }
 
-                viewModel.Add(new InitiativeData()
+                viewModel.Add(new InitiativeViewModel()
                 {                  
                     ID = initiative.ID,
                     NameE = initiative.NameE,
                     NameF = initiative.NameF,
+                    Timeline = initiative.Timeline,
                     LastUpdated = lastUpdate
                 });
             }

@@ -27,8 +27,5 @@ namespace TransformationTimelineTool.ViewModels
         public string NameE { get; set; }
         public string NameF { get; set; }
         public bool Flag { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime LastUpdated { get; set; }
     }
 }

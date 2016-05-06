@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TransformationTimelineTool.DAL;
@@ -21,6 +22,21 @@ namespace TransformationTimelineTool.ViewModels
         [Required]
         [Display(Name = "InitFrenchName", ResourceType = typeof(Resources.Resources))]
         public string NameF { get; set; }
+
+        public string Name
+        {
+            get
+            {
+                if (Thread.CurrentThread.CurrentCulture.Name == "fr")
+                {
+                    return NameF;
+                }
+                else
+                {
+                    return NameE;
+                }
+            }
+        }
 
         [Required]
         [Display(Name = "InitEnglishDesc", ResourceType = typeof(Resources.Resources))]
@@ -51,6 +67,10 @@ namespace TransformationTimelineTool.ViewModels
         [AllowHtml]
         [Display(Name = "Timeline", ResourceType = typeof(Resources.Resources))]
         public string Timeline { get; set; }
+
+        [AllowHtml]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime LastUpdated { get; set; }
 
         public IEnumerable<User> Users { get; set; }
 
