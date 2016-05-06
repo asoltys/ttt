@@ -54,23 +54,17 @@ namespace TransformationTimelineTool.Controllers
             return View(viewModel);
         }
 
-        // GET: Edits
         public ActionResult Report()
         {
             List<InitiativeViewModel> viewModel = new List<InitiativeViewModel>();
 
             var initiatives = db.Initiatives.ToList();
+
             foreach (var initiative in initiatives)
             {
-                DateTime lastUpdate = new DateTime(1970, 1, 1);
-
-                foreach (var e in initiative.Events)
-                {
-                    if (e.LatestEdit.Date > lastUpdate)
-                    {
-                        lastUpdate = e.LatestEdit.Date;
-                    }
-                }
+                DateTime lastUpdate = db.Edits.Where(e => e.Event.InitiativeID == initiative.ID).
+                    Select(e => e.Date).
+                    Max();
 
                 viewModel.Add(new InitiativeViewModel()
                 {                  
