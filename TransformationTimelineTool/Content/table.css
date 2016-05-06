@@ -182,3 +182,8 @@ table.users th:nth-child(2) {
 table.users th:nth-child(3) {
     width: 12%;
 }
+
+td.important {
+    color: #ff0000;
+    font-weight: bold;
+}

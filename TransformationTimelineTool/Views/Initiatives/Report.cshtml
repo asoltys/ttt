@@ -31,7 +31,7 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td @(DateTime.Now.AddDays(-60) > item.LastUpdated ? "class=important" : "")>
                 @Html.DisplayFor(modelItem => item.LastUpdated)
             </td>
         </tr>
