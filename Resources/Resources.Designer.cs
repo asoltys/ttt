@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Timeline Tool: Transformation and Blueprint 2020.
+        ///   Looks up a localized string similar to Timeline Tool: Blueprint 2020 and Transformation.
         /// </summary>
         public static string ApplicationName {
             get {
