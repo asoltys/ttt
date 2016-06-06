@@ -50,7 +50,7 @@ namespace TransformationTimelineTool.Helpers
 
             }
 
-            string MailSubject = "L'Outil de calendrier: Il y a des changements dans vos abonnements | Timeline Tool: There are changes in your subscriptions";
+            string MailSubject = "L'Outil de calendrier : Objectif 2020 et Transformation : Il y a des changements dans vos abonnements || Timeline Tool: Blueprint 2020 and Transformation: There are changes in your subscriptions";
 
             foreach (var subscriber in Subscribers)
             {
