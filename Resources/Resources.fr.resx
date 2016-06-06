@@ -242,7 +242,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
 {2} -&gt; Admin email</comment>
   </data>
   <data name="ApprovedMailSubject" xml:space="preserve">
-    <value>Calendrier des transformations: Votre poste a été approuver || Transformation Timeline Tool: Your item has been approved </value>
+    <value>L'Outil de calendrier : Objectif 2020 et Transformation : Votre poste a été approuver || Timeline Tool: Blueprint 2020 and Transformation: Your item has been approved</value>
   </data>
   <data name="PendingMailBody" xml:space="preserve">
     <value>Ceci c’est un message automatique.&lt;br/&gt;
@@ -261,7 +261,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
 {2} -&gt; Admin email</comment>
   </data>
   <data name="PendingMailSubject" xml:space="preserve">
-    <value>Calendrier des transformations: Nouvelles postes pour votre approbation  || Transformation Timeline Tool:  New items for your approval</value>
+    <value>L'Outil de calendrier : Objectif 2020 et Transformation : Nouvelles postes pour votre approbation  || Timeline Tool: Blueprint 2020 and Transformation:  New items for your approval</value>
   </data>
   <data name="ApplicationHomeURL" xml:space="preserve">
     <value>/fr/Home</value>
@@ -283,7 +283,7 @@ The National Transformation Timeline Tool can be found &lt;a href='{0}/?lang=eng
 {2}-&gt;Admin email</comment>
   </data>
   <data name="RejectMailSubject" xml:space="preserve">
-    <value>Calendrier des transformations: Votre poste était retourner pour révision  || Transformation Timeline Tool: Your item has been returned for revision</value>
+    <value>L'Outil de calendrier : Objectif 2020 et Transformation : Votre poste était retourner pour révision  || Timeline Tool: Blueprint 2020 and Transformation: Your item has been returned for revision</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Recherche</value>

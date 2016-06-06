@@ -209,7 +209,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendrier des transformations: Votre poste a été approuver || Transformation Timeline Tool: Your item has been approved .
+        ///   Looks up a localized string similar to L&apos;Outil de calendrier : Objectif 2020 et Transformation : Votre poste a été approuver || Timeline Tool: Blueprint 2020 and Transformation: Your item has been approved.
         /// </summary>
         public static string ApprovedMailSubject {
             get {
@@ -1094,7 +1094,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendrier des transformations: Nouvelles postes pour votre approbation  || Transformation Timeline Tool:  New items for your approval.
+        ///   Looks up a localized string similar to L&apos;Outil de calendrier : Objectif 2020 et Transformation : Nouvelles postes pour votre approbation  || Timeline Tool: Blueprint 2020 and Transformation:  New items for your approval.
         /// </summary>
         public static string PendingMailSubject {
             get {
@@ -1179,7 +1179,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calendrier des transformations: Votre poste était retourner pour révision  || Transformation Timeline Tool: Your item has been returned for revision.
+        ///   Looks up a localized string similar to L&apos;Outil de calendrier : Objectif 2020 et Transformation : Votre poste était retourner pour révision  || Timeline Tool: Blueprint 2020 and Transformation: Your item has been returned for revision.
         /// </summary>
         public static string RejectMailSubject {
             get {
