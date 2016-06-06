@@ -62,7 +62,7 @@ dictionary = {
     },
     "quarter": { "e": "Quarter", "f": "Trimestre" },
     "splash": {
-        "e": "<p>This transformation timeline tool has been designed to provide " +
+        "e": "<p>This Timeline Tool: Blueprint 2020 and Transformation has been designed to provide " +
               "you with a list of the current transformation initiatives based on " +
               "the area and the branch that you have chosen.  After you close " +
               "this message, the tool will display a re-sorted list of initiatives that have " +
@@ -79,7 +79,7 @@ dictionary = {
               "<p>Still have more questions? Please contact your manager or send " +
               "an email message by <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?" +
               "subject=TransformationTimelineTool'>clicking here</a>.</p>",
-        "f": "<p>Cet outil de calcul des délais pour la transformation a été conçu pour vous fournir une liste des initiatives de transformation actuelles en fonction de la région et de la direction générale que vous avez choisis. Lorsque vous aurez fermé ce message, l’outil présentera une liste d’initiatives nouvellement triées qui ont été organisées en fonction de la mesure dans laquelle elles vont changer la façon dont vous travaillez.</p>" +
+        "f": "<p>L'Outil de calendrier : Objectif 2020 et Transformation a été conçu pour vous fournir une liste des initiatives de transformation actuelles en fonction de la région et de la direction générale que vous avez choisis. Lorsque vous aurez fermé ce message, l’outil présentera une liste d’initiatives nouvellement triées qui ont été organisées en fonction de la mesure dans laquelle elles vont changer la façon dont vous travaillez.</p>" +
 							"<p>Parmi les résultats affichés, cliquez sur le nom de l’initiative pour en savoir plus à son sujet et pour connaître ses répercussions générales sur les employés. Vous pouvez aussi cliquer sur les icônes en forme de point rouge pour en savoir plus sur les étapes de chaque initiative. Si vous cliquez sur un icône de livre, vous obtiendrez de l’information sur la formation relative à l’initiative de transformation. Vous trouverez l’option « Recommencer » au bas de l’outil; cette option vous permet de recommencer et de choisir une direction générale et une région différentes si vous souhaitez pousser votre exploration.</p>" +
 						"<p>Avez-vous d’autres questions? Communiquez avec votre gestionnaire ou envoyez un message électronique en <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=Calendrierdestransformations'>cliquant ici</a>.</p>"
     },
