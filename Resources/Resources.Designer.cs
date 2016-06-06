@@ -1287,7 +1287,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href=&apos;http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng&apos;&gt;Timeline Tool: Transformation and Blueprint 2020&lt;/a&gt; for up-to-date information..
+        ///   Looks up a localized string similar to The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href=&apos;http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng&apos;&gt;Timeline Tool: Blueprint 2020 and Transformation&lt;/a&gt; for up-to-date information..
         /// </summary>
         public static string ReportPrintCoverPageWarning {
             get {

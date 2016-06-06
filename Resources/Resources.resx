@@ -649,7 +649,7 @@ If you need assistance, please contact &lt;a href=mailto:teresa.martin@pwgsc-tps
     <value>All Initiatives</value>
   </data>
   <data name="ReportPrintCoverPageWarning" xml:space="preserve">
-    <value>The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href='http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng'&gt;Timeline Tool: Transformation and Blueprint 2020&lt;/a&gt; for up-to-date information.</value>
+    <value>The information contained in this report is accurate as of the date this report was printed. Please see the &lt;a href='http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=eng'&gt;Timeline Tool: Blueprint 2020 and Transformation&lt;/a&gt; for up-to-date information.</value>
   </data>
   <data name="ReportPrint" xml:space="preserve">
     <value>Print Report</value>

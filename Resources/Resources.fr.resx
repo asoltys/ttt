@@ -648,7 +648,7 @@ The Timeline Tool: Blueprint 2020 and Transformation can be found &lt;a href='{0
     <value>Tous les Initiatives</value>
   </data>
   <data name="ReportPrintCoverPageWarning" xml:space="preserve">
-    <value>Les renseignements compris dans ce rapport sont exacts au date que le rapport a été publier. Veuillez visiter &lt;a href='http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=fra'&gt;L'Outil de calendrier : Transformation et Objectif 2020&lt;/a&gt; pour des information à jour.</value>
+    <value>Les renseignements compris dans ce rapport sont exacts au date que le rapport a été publier. Veuillez visiter &lt;a href='http://transformation-intranet.tpsgc-pwgsc.gc.ca/?lang=fra'&gt;L'Outil de calendrier : Objectif 2020 et Transformation&lt;/a&gt; pour des information à jour.</value>
   </data>
   <data name="ReportPrint" xml:space="preserve">
     <value>Imprimer Rapport</value>
