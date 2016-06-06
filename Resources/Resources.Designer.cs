@@ -197,10 +197,10 @@ namespace Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Ceci c’est un message automatique.&lt;br/&gt;
-        ///Votre poste a été approuver dans le Calendrier national G4des transformations.&lt;br/&gt;
+        ///Votre poste a été approuver dans L’Outil de calendrier : Objectif 2020 et Transformation.&lt;br/&gt;
         ///Veuillez utiliser &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
         ///Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href=&apos;mailto:{2}&apos;&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-        ///Le Calendrier national des transformations se trouve &lt;a href=&apos;{0}/?lang=fra&apos;&gt; [rest of string was truncated]&quot;;.
+        ///L’Outil de calendrier : Objectif 2020 et Transformation se trouve  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ApprovedMailBody {
             get {
@@ -1082,10 +1082,10 @@ namespace Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Ceci c’est un message automatique.&lt;br/&gt;
-        ///Votre approbation est requise pour une poste dans le Calendrier national des transformations.&lt;br/&gt;
+        ///Votre approbation est requise pour une poste dans L’Outil de calendrier : Objectif 2020 et Transformation.&lt;br/&gt;
         ///Veuillez utiliser &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
         ///Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href=&apos;mailto:{2}&apos;&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-        ///Le Calendrier national des transformations se trouve &lt;a href=&apos; [rest of string was truncated]&quot;;.
+        ///L’Outil de calendrier : Objectif 2020 et Transfor [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PendingMailBody {
             get {
@@ -1167,10 +1167,10 @@ namespace Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Ceci c’est un message automatique.&lt;br/&gt;
-        ///Un poste dans le Calendrier national des transformations n’était pas approuver. S’il vous plaît, contactez votre Approbateur.&lt;br/&gt;
+        ///Un poste dans L’Outil de calendrier : Objectif 2020 et Transformation n’était pas approuver. S’il vous plaît, contactez votre Approbateur.&lt;br/&gt;
         ///Veuillez utiliser &lt;a href=&apos;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&apos;&gt;{0}/Activites-Activities/Details?id={1}&amp;lang=fra&lt;/a&gt; pour l’accèss au système.&lt;br/&gt;
         ///Si vous avez des questions ou croyez que vous avez reçu ce message par erreur, veuillez contacter &lt;a href=&apos;mailto:{2}&apos;&gt;l’administration&lt;/a&gt;.&lt;br/&gt;
-        ///Le Calendrier national des tra [rest of string was truncated]&quot;;.
+        ///L’Outil de calend [rest of string was truncated]&quot;;.
         /// </summary>
         public static string RejectMailBody {
             get {
