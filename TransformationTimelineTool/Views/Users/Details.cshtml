@@ -33,7 +33,14 @@ else
 @if (HttpContext.Current.User.IsInRole("Approver"))
 {
     <h4>@Resources.Editors</h4>
-    string Editors = String.Join(" - ", Model.Editors.Select(u => u.UserName).ToArray());
+    string Editors;
+    if (Model.Editors != null)
+    {
+        Editors = String.Join(" - ", Model.Editors.Select(u => u.UserName).ToArray());
+    } else
+    {
+        Editors = "";
+    }
     <p>@Html.Raw(Editors)</p>
 }
 
