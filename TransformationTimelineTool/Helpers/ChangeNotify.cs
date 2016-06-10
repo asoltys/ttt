@@ -62,6 +62,27 @@ namespace TransformationTimelineTool.Helpers
                 string MailBody = GetMailBody();
                 Utils.SendMail(subscriber.Email, MailSubject, MailBody);
             }
+            string pacwebAddress = "PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca";
+            string pacwebMailSubject = "Timeline Tool: Subscription Service Information";
+            string pacwebBody = GenerateSubscriberInfo(Subscribers);
+            Utils.SendMail(pacwebAddress, pacwebMailSubject, pacwebBody);
+        }
+
+        public string GenerateSubscriberInfo(List<Subscriber> subs)
+        {
+            string date = DateTime.Now.ToLongDateString();
+            string time = DateTime.Now.ToLongTimeString();
+            string body = "Server datetime: " + date + " - " + time + "<br/>";
+            body += "Total number of subscribers: " + subs.Count() + "<br/><hr>";
+            if (subs.Count > 0)
+            {
+                foreach (var sub in subs)
+                {
+                    body += sub.ID + ": " + sub.UserName + " (" + sub.Email + ")<br/>";
+                }
+            }
+            body += "<hr>";
+            return body;
         }
 
         public void ClearEdited()
