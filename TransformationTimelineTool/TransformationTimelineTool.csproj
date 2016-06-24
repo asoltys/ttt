@@ -1574,7 +1574,7 @@
     <Content Include="site\wet3.1\html5\includes\nav_mega-mega_nav-eng.inc" />
     <Content Include="site\wet3.1\html5\includes\nav_mega-mega_nav-fra.inc" />
     <Content Include="site\wet3.1\theme-tp-pw-intranet\images\loupes.png.LCK" />
-    <Content Include="Views\Home\OldIndex.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="timeline\img\arrow.psd" />
     <Content Include="timeline\img\circle.psd" />
     <Content Include="timeline\img\Thumbs.db" />
@@ -1632,7 +1632,7 @@
     <Content Include="Scripts\old-scripts\MockData\branches.json" />
     <Content Include="Views\Home\Report.cshtml" />
     <Content Include="Views\Home\Subscribe.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\NewIndex.cshtml" />
     <Content Include="Views\Partials\Resources.cshtml" />
     <Content Include="Views\Initiatives\Report.cshtml" />
     <None Include="Web.Development.config">
