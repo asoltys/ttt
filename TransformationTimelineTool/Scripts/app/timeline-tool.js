@@ -356,6 +356,9 @@ function($, moment, helper, dataManager) {
 	            $region.trigger('change');
 	            $branch.trigger('change');
 	            splashRan = false;
+				$('html, body').animate({
+					scrollTop: NAV_RETURN_POSITION
+				}, 'slow');
 	        };
 
 	        var _handleTimeline = function () {
