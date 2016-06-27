@@ -359,6 +359,7 @@ function($, moment, helper, dataManager) {
 				$('html, body').animate({
 					scrollTop: NAV_RETURN_POSITION
 				}, 'slow');
+				ui.content.showToday();
 	        };
 
 	        var _handleTimeline = function () {
@@ -477,7 +478,7 @@ function($, moment, helper, dataManager) {
 
 	ui.content = (function() {
 		// constants
-		var ROW_IN_MILLISECONDS, ROW_WIDTH;
+		var ROW_IN_MILLISECONDS, ROW_WIDTH, TODAY_LINE_ADDED;
 		var TODAY = moment().format('MM/DD/YY'), TODAY_MARGIN;
 		
 		// selector variables
@@ -505,6 +506,7 @@ function($, moment, helper, dataManager) {
 		};
 
 		var _addTodayLine = function() {
+			if (TODAY_LINE_ADDED) return;
 			var img = "<img src='/timeline/img/red.gif' id='today' style='margin-left:" + _getLeftMargin(timespan.Start, TODAY) + "px' />";
 			var $children = $contentContainer.children('.impact-statement-space');
 			var impactStatementSpaceExists = $children.length > 0;
@@ -513,6 +515,7 @@ function($, moment, helper, dataManager) {
 			} else {
 				$contentContainer.prepend(img);
 			}
+			TODAY_LINE_ADDED = true;
 		};
 
 		var _createImpactHeadingElement = function(weight, impactClass) {
@@ -797,7 +800,8 @@ function($, moment, helper, dataManager) {
 		return {
 		    draw: _draw,
 		    openDialog: _dialog,
-		    sort: _sort
+		    sort: _sort,
+			showToday: _showToday
 		};
 	})();
 	
