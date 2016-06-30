@@ -25,12 +25,6 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
-        [Route("front")]
-        public ActionResult NewIndex()
-        {
-            return View();
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
