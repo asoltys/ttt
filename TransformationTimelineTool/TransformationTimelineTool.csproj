@@ -845,6 +845,7 @@
     <Content Include="Scripts\build\acc.html" />
     <Content Include="Scripts\build\r.js" />
     <Content Include="Scripts\build\tool.html" />
+    <Content Include="Scripts\lib\animated-validation.js" />
     <Content Include="Scripts\lib\data-manager.js" />
     <Content Include="Scripts\lib\helper.js" />
     <Content Include="Scripts\app\report.js" />
