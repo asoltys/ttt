@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity.EntityFramework;
 @model TransformationTimelineTool.ViewModels.UserViewModel
-
+@Html.MyValidationSummary()
 @{
     ViewBag.Title = Resources.CreateNew;
 }
@@ -112,7 +112,7 @@ else
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/front-end-custom-validation.js" type="text/javascript"></script>
     <script src="~/Scripts/toggleRegionsBranches.js" type="text/javascript"></script>
-
+    <script src="~/Scripts/lib/animated-validation.js" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
             if (window.location.href.indexOf('fr') > -1) {

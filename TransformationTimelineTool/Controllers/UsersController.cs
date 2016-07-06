@@ -99,7 +99,6 @@ namespace TransformationTimelineTool.Controllers
             string[] selectedInitiatives,
             string[] selectedRoles)
         {
-            string username = Utils.GetUsernameFromEmail(userViewModel.User.Email);
             var userToAdd = new User();
 
             userToAdd.Initiatives = new List<Initiative>();
@@ -112,30 +111,37 @@ namespace TransformationTimelineTool.Controllers
                     userToAdd.Initiatives.Add(initiative);
                 }
             }
-
-            if (username != "")
-            {
-                userToAdd.UserName = username;
-                userToAdd.Email = userViewModel.User.Email;
-                userToAdd.ApproverID = userViewModel.User.ApproverID;
-
-                var myResult = userManager.Create(userToAdd, "password");
-
-                if (myResult.Succeeded)
-                {
-                    var result = userManager.AddToRoles(userToAdd.Id, selectedRoles);
-                }
-                
-                return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
-            }
-            else
-            {
-                ModelState.AddModelError("", "Unable to find user");
-            }
+            
+            
 
             userViewModel.PopulatedRoles = PopulateUserRolesData(userToAdd);
             userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(userToAdd);
             userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
+
+            try
+            {
+                string username = Utils.GetUsernameFromEmail(userViewModel.User.Email);
+                if (username != "")
+                {
+                    userToAdd.UserName = username;
+                    userToAdd.Email = userViewModel.User.Email;
+                    userToAdd.ApproverID = userViewModel.User.ApproverID;
+
+                    var myResult = userManager.Create(userToAdd, "password");
+
+                    if (myResult.Succeeded)
+                    {
+                        var result = userManager.AddToRoles(userToAdd.Id, selectedRoles);
+                    }
+                    
+                    return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
+                }
+            }
+            catch (NullReferenceException nre)
+            {
+                ModelState.AddModelError(string.Empty, "We were unable to find the user");
+                return View(userViewModel);
+            }
 
             return View(userViewModel);
         }

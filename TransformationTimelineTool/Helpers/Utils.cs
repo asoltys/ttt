@@ -175,9 +175,13 @@ namespace TransformationTimelineTool.Helpers
                 person = searcher.FindOne();
                 username = person.Properties["mailNickname"][0].ToString();
             }
-            catch
+            catch (NullReferenceException nre)
             {
-                username = "";
+                throw nre;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             return username;
@@ -324,5 +328,6 @@ namespace TransformationTimelineTool.Helpers
                 return "Resource Not Found";
             }
         }
+
     }
 }
