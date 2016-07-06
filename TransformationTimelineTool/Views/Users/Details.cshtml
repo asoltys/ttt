@@ -47,8 +47,7 @@ else
 <p>
     @if (HttpContext.Current.User.IsInRole("Admin"))
     {
-        @Html.ActionLink(Resources.Edit, "Edit", new {lang = ViewBag.lang, id = Model.Id }) @:|
-
+        @Html.ActionLink(Resources.Edit, "Edit", new {lang = ViewBag.lang, id = Model.User.Id}) @:|
     }
     @Html.ActionLink(Resources.BackToList + " " + Resources.OfUsers, "Index", new {lang = ViewBag.lang})
 </p>

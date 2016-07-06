@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TransformationTimelineTool.ViewModels;
 using System.Threading;
+using TransformationTimelineTool.Exceptions;
 
 namespace TransformationTimelineTool.Controllers
 {
@@ -66,6 +67,7 @@ namespace TransformationTimelineTool.Controllers
                 VMUser.Editors = db.Users.Where(u => u.ApproverID == id).ToList<User>();
             }
             User user = db.Users.Find(id);
+            VMUser.User = user;
             ViewBag.Roles = String.Join(" - ", userManager.GetRoles(user.Id));
             if (user == null)
             {
@@ -111,10 +113,8 @@ namespace TransformationTimelineTool.Controllers
                     userToAdd.Initiatives.Add(initiative);
                 }
             }
-            
-            
 
-            userViewModel.PopulatedRoles = PopulateUserRolesData(userToAdd);
+            userViewModel.PopulatedRoles = PopulateUserRolesData(userToAdd, selectedRoles);
             userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(userToAdd);
             userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
 
@@ -126,7 +126,10 @@ namespace TransformationTimelineTool.Controllers
                     userToAdd.UserName = username;
                     userToAdd.Email = userViewModel.User.Email;
                     userToAdd.ApproverID = userViewModel.User.ApproverID;
-
+                    if (userManager.FindByName(username) != null)
+                    {
+                        throw new UserException("This user already exists in our database");
+                    }
                     var myResult = userManager.Create(userToAdd, "password");
 
                     if (myResult.Succeeded)
@@ -139,8 +142,11 @@ namespace TransformationTimelineTool.Controllers
             }
             catch (NullReferenceException nre)
             {
-                ModelState.AddModelError(string.Empty, "We were unable to find the user");
-                return View(userViewModel);
+                ModelState.AddModelError(string.Empty, "We were unable to find the user with the provided email.");
+            }
+            catch (UserException uex)
+            {
+                ModelState.AddModelError(string.Empty, uex.Message);
             }
 
             return View(userViewModel);
@@ -281,7 +287,21 @@ namespace TransformationTimelineTool.Controllers
 
             return viewModel;
         }
-
+        private List<RolesData> PopulateUserRolesData (User user, string[] selectedRoles)
+        {
+            var allRoles = db.Roles;
+            var viewModel = new List<RolesData>();
+            foreach (var role in allRoles)
+            {
+                viewModel.Add(new RolesData
+                {
+                    ID = role.Id,
+                    Name = role.Name,
+                    Flag = selectedRoles.Contains(role.Name)
+                });
+            }
+            return viewModel;
+        }
         private List<RolesData> PopulateUserRolesData(User user)
         {
             var allRoles = db.Roles;

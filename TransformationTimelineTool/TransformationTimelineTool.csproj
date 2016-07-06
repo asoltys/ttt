@@ -178,6 +178,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\TimelineContext.cs" />
     <Compile Include="Exceptions\SendMailException.cs" />
+    <Compile Include="Exceptions\UserException.cs" />
     <Compile Include="Extensions\ViewExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
