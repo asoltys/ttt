@@ -427,6 +427,7 @@ var contentGenerator = (function(resources) {
 		var trainingCount = 0;
 		if (events.length > 0) {
 		    events.forEach(function (event, i) {
+				if (event["Hover"+_cultureDataAppend] === null) return;
 		    	var dateStr = moment(event.Date, apiReturnDateFormat);
 		    	dateStr = dateStr.format('LL');
 		        var hoverText = event["Hover" + _cultureDataAppend] == null ? "" : event["Hover" + _cultureDataAppend];
@@ -434,7 +435,7 @@ var contentGenerator = (function(resources) {
 		        var text = longText.length > 0 ? longText : hoverText;
 		        if ((/milestone/gi).test(event.Type)) {
 		            milestones += "<li>" + dateStr + "<br>" + text + "</li>";
-		            milstoneCount++
+		            milstoneCount++;
 		        } else {
 		            training += "<li>" + dateStr + "<br>" + text + "</li>";
 		            trainingCount++;
