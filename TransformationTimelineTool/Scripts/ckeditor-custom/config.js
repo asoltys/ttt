@@ -16,6 +16,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
 		{ name: 'paragraph', groups: ['insert', 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph'] },
 		{ name: 'links', groups: ['links'] },
+        { name: 'image', groups: ['image'] },
 		{ name: 'styles', groups: ['styles'] },
 		{ name: 'document', groups: ['mode', 'document', 'doctools'] },
 		'/',
@@ -27,7 +28,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
-    config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Form,Checkbox,Radio,TextField,Select,Textarea,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Image,Styles,TextColor,Maximize,About,ShowBlocks,BGColor,Flash,Format,Iframe,PageBreak,SpecialChar,Smiley,HorizontalRule,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,Cut,Copy,Paste,PasteText,PasteFromWord';
+    config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Form,Checkbox,Radio,TextField,Select,Textarea,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Styles,TextColor,Maximize,About,ShowBlocks,BGColor,Flash,Format,Iframe,PageBreak,SpecialChar,Smiley,HorizontalRule,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,Cut,Copy,Paste,PasteText,PasteFromWord';
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
