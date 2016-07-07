@@ -190,6 +190,7 @@ namespace TransformationTimelineTool.Controllers
 
                 foreach (var e in events)
                 {
+                    if (e.Status != Status.Approved) continue;
                     jsonEvents.Add(new
                     {
                         ID = e.ID,
@@ -244,6 +245,7 @@ namespace TransformationTimelineTool.Controllers
 
                 foreach (var e in events)
                 {
+                    if (e.Status != Status.Approved) continue;
                     var controlDictionary = new Dictionary<string, int>();
                     var branches = e.Branches.Select(b => b.ID);
                     var regions = e.Regions.Select(r => r.ID);
@@ -360,6 +362,7 @@ namespace TransformationTimelineTool.Controllers
 
                 foreach (var e in events)
                 {
+                    if (e.Status != Status.Approved) continue;
                     var eventControlDictionary = new Dictionary<string, int>();
                     var branches = e.Branches.Select(b => b.ID);
                     var regions = e.Regions.Select(r => r.ID);
