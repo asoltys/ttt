@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;To help you understand how various initiatives impact you, select a timeline and then your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low, none or Blueprint 2020). Hold your mouse over the displayed icons to find links to information about the milestones or training being offered. Data will be updated regularly. Questions? &lt;a href=&apos;mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=Transformation%20Timeline%20Tool&apos;&gt; Click here to send an email&lt;/a&gt;. [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;p&gt;To help you understand how various initiatives impact you, select a timeline and then your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low, none or Blueprint 2020). Hold your mouse over the displayed icons to find links to information about the milestones or training being offered. Data will be updated regularly. Questions? &lt;a href=&apos;mailto:Teresa.martin@pwgsc-tpsgc.gc.ca&apos;&gt; Click here to send an email&lt;/a&gt;.&lt;/p&gt;.
         /// </summary>
         public static string About {
             get {

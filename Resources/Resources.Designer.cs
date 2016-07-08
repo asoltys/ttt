@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To help you understand how various initiatives impact you, select a timeline and then your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low, none or Blueprint 2020). Data will be updated regularly. Questions? &lt;a href=&apos;mailto:Teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimelineTool&apos;&gt;Click here to send an email.&lt;/a&gt;.
+        ///   Looks up a localized string similar to To help you understand how various initiatives impact you, select a timeline and then your Region and branch below to generate a list of initiatives sorted by their impacts on you (high, medium, low, none or Blueprint 2020). Data will be updated regularly. Questions? &lt;a href=&apos;mailto:Teresa.martin@pwgsc-tpsgc.gc.ca&apos;&gt;Click here to send an email.&lt;/a&gt;.
         /// </summary>
         public static string AccessibilityIntroduction {
             get {

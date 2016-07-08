@@ -161,7 +161,7 @@ namespace TransformationTimelineTool.Helpers
                 }*/
             }
             Body += "<a href='"+ ServerDomain + "/Sabonner-Subscribe?lang=fra'>Cliquez ici pour vous déabonner ou de modifier votre abonnement.</a><br/>";
-            Body += "Avez-vous des questions? <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimeline'>Cliquez ici pour envoyer un courriel.</a>";
+            Body += "Avez-vous des questions? <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca'>Cliquez ici pour envoyer un courriel.</a>";
             Body += "<hr>";
 
             Body += "<p>The initiatives that you have subscribed to has been updated since last week:</p>";
@@ -208,7 +208,7 @@ namespace TransformationTimelineTool.Helpers
                 }*/
             }
             Body += "<a href='"+ ServerDomain + "/Sabonner-Subscribe?lang=eng'>Click here to unsubscribe or to change your subscription.</a><br/>";
-            Body += "Questions? <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca?subject=TransformationTimeline'>Click here to send an email.</a>";
+            Body += "Questions? <a href='mailto:teresa.martin@pwgsc-tpsgc.gc.ca'>Click here to send an email.</a>";
             return Body;
         }
 
