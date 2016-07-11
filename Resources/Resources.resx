@@ -308,7 +308,7 @@ The Timeline Tool: Blueprint 2020 and Transformation can be found &lt;a href='{0
     <value>Milestone</value>
   </data>
   <data name="Pending" xml:space="preserve">
-    <value>Pending</value>
+    <value>Approver Review</value>
   </data>
   <data name="Records" xml:space="preserve">
     <value>records</value>

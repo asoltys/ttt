@@ -1072,7 +1072,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pending.
+        ///   Looks up a localized string similar to Approver Review.
         /// </summary>
         public static string Pending {
             get {
