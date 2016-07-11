@@ -205,6 +205,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This user already exists in our database..
+        /// </summary>
+        public static string UserAlreadyExists {
+            get {
+                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email address was not found in the Departmental Directory..
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An email address is required to create a user..
         /// </summary>
         public static string UserRequiredEmail {

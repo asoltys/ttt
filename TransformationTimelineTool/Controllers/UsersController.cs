@@ -128,7 +128,7 @@ namespace TransformationTimelineTool.Controllers
                     userToAdd.ApproverID = userViewModel.User.ApproverID;
                     if (userManager.FindByName(username) != null)
                     {
-                        throw new UserException("This user already exists in our database");
+                        throw new UserException(Resources.ErrorMessages.UserAlreadyExists);
                     }
                     var myResult = userManager.Create(userToAdd, "password");
 
@@ -142,7 +142,7 @@ namespace TransformationTimelineTool.Controllers
             }
             catch (NullReferenceException nre)
             {
-                ModelState.AddModelError(string.Empty, "We were unable to find the user with the provided email.");
+                ModelState.AddModelError(string.Empty, Resources.ErrorMessages.UserNotFound);
             }
             catch (UserException uex)
             {

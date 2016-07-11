@@ -168,4 +168,10 @@
   <data name="ReportNoOptionSelected" xml:space="preserve">
     <value>Veuillez choisir tous les options avant d'imprimer.</value>
   </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>Cet utilisateur existe déjà dans notre base de données.</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>L'adresse de courriel n'a pas été trouvée au Service d'annuaire du Ministère.</value>
+  </data>
 </root>

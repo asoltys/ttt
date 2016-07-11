@@ -168,4 +168,10 @@
   <data name="ReportNoOptionSelected" xml:space="preserve">
     <value>Please select all the options before printing.</value>
   </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>This user already exists in our database.</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>The email address was not found in the Departmental Directory.</value>
+  </data>
 </root>
