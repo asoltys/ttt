@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = Resources.InitiativeDescription;
+    ViewBag.isAdmin = HttpContext.Current.User.IsInRole("Admin");
 }
 @if(Culture == "fr")
 {
@@ -109,9 +110,12 @@ else
                     <a class="no-link-style" href="@Url.Action("Details", "Activities", new {  lang=ViewBag.lang, id = item.ID })">
                         <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                     </a>
-                    <a class="no-link-style" href="@Url.Action("Delete", "Activities", new {lang = ViewBag.lang, id = item.ID })">
-                        <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-                    </a>
+                    @if (ViewBag.isAdmin)
+                    {
+                        <a class="no-link-style" href="@Url.Action("Delete", "Activities", new { lang = ViewBag.lang, id = item.ID })">
+                            <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                        </a>
+                    }
                 </td>
             </tr>
         }
