@@ -90,12 +90,12 @@ else
                         <a class="no-link-style" href="@Url.Action("Details", new { id = item.ID, lang = ViewBag.lang })">
                             <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                         </a>
-                        @if (ViewBag.isAdmin)
-                        {
+                        @*@if (ViewBag.isAdmin)
+                        {*@
                             <a class="no-link-style" href="@Url.Action("Delete", new { id = item.ID, lang = ViewBag.lang })">
                                 <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
                             </a>
-                        }
+                        @*}*@
                     </td>
                 </tr>
             }
