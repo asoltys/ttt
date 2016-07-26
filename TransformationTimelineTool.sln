@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformationTimelineTool"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{4693A856-DDE0-4219-ADFB-6EF985631A07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendSubscriberNotificationConsoleApp", "SendSubscriberNotificationConsoleApp\SendSubscriberNotificationConsoleApp.csproj", "{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,26 @@ Global
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|Any CPU.Build.0 = Test|Any CPU
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|x64.ActiveCfg = Test|Any CPU
 		{4693A856-DDE0-4219-ADFB-6EF985631A07}.Test|x64.Build.0 = Test|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Development|x64.ActiveCfg = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Development|x64.Build.0 = Debug|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Release|x64.Build.0 = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Ryan|Any CPU.ActiveCfg = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Ryan|Any CPU.Build.0 = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Ryan|x64.ActiveCfg = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Ryan|x64.Build.0 = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Test|Any CPU.Build.0 = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Test|x64.ActiveCfg = Release|Any CPU
+		{966BFE4A-C98B-4BD7-9E32-0273DAF766ED}.Test|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
