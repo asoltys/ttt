@@ -289,7 +289,7 @@ var controller = (function(gui, resources) {
 		});
 		$('#select-quarter-timeline').on('change', function() {
 			gui.reset();
-			if ($(this).val() != 0 && $(this).val() != 'BP2020') {
+			if ($(this).val() != 0) {
 				$('#region-branch').removeClass('hide');
 			} else {
 				$('#region-branch').addClass('hide');
