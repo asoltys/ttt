@@ -153,6 +153,7 @@ namespace TransformationTimelineTool.Controllers
         }
 
         // GET: Users/Edit/5
+        [Authorize(Roles = "Admin")]
         [Route("Modifier-Edit")]
         public ActionResult Edit(string id)
         {
@@ -182,6 +183,7 @@ namespace TransformationTimelineTool.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         [Route("Modifier-Edit")]
         public ActionResult Edit(UserViewModel userViewModel,
             string[] selectedInitiatives,
