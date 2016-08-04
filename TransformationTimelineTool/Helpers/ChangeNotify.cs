@@ -60,7 +60,11 @@ namespace TransformationTimelineTool.Helpers
                 SubscriberChangedImpactsInitiatives = ChangedImpactsInitiatives.Intersect(subscriber.Initiatives).ToList();
 
                 string MailBody = GetMailBody();
-                Utils.SendMail(subscriber.Email, MailSubject, MailBody);
+                string recipientEmail = subscriber.Email;
+#if DEBUG
+                recipientEmail = "PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca";
+#endif
+                Utils.SendMail(recipientEmail, MailSubject, MailBody);
             }
             string pacwebAddress = "PWGSC.PacificWebServices-ReseaudesServicesduPacifique.TPSGC@pwgsc-tpsgc.gc.ca";
             string pacwebMailSubject = "Timeline Tool: Subscription Service Information";
