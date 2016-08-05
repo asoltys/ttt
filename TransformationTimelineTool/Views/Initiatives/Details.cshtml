@@ -65,15 +65,21 @@ else
                     @Html.Raw(item.RegionsList)
                 </td>
                 <td>
-                    <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { lang = ViewBag.lang, id = item.ID })">
-                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-                    </a>
+                    @if (ViewBag.isAdmin)
+                    {
+                        <a class="no-link-style" href="@Url.Action("Edit", "Impacts", new { lang = ViewBag.lang, id = item.ID })">
+                            <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                        </a>
+                    }
                     <a class="no-link-style" href="@Url.Action("Details", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
                         <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                     </a>
-                    <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { lang = ViewBag.lang,  id = item.ID })">
-                        <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
-                    </a>
+                    @if (ViewBag.isAdmin)
+                    {
+                        <a class="no-link-style" href="@Url.Action("Delete", "Impacts", new { lang = ViewBag.lang, id = item.ID })">
+                            <i title="@Resources.Delete" class="fa fa-times fa-2x"></i>
+                        </a>
+                    }
                 </td>
             </tr>
         }
@@ -141,9 +147,12 @@ else
                     @Html.DisplayFor(modelItem => user.Email)
                 </td>
                 <td>
-                    <a class="no-link-style" href="@Url.Action("Edit", "Users", new { lang = ViewBag.lang, id = user.Id })">
-                        <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
-                    </a>
+                    @if (ViewBag.isAdmin)
+                    {
+                        <a class="no-link-style" href="@Url.Action("Edit", "Users", new { lang = ViewBag.lang, id = user.Id })">
+                            <i title="@Resources.Edit" class="fa fa-pencil-square-o fa-2x"></i>
+                        </a>
+                    }
                     <a class="no-link-style" href="@Url.Action("Details", "Users", new { lang = ViewBag.lang, id = user.Id })">
                         <i title="@Resources.View" class="fa fa-eye fa-2x"></i>
                     </a>
@@ -154,7 +163,7 @@ else
 </div>
 <div class="no-print">
     <p>
-        @if (HttpContext.Current.User.IsInRole("Admin"))
+        @if (ViewBag.isAdmin)
         {
             @Html.ActionLink(Resources.Edit, "Edit", new { id = Model.ID, lang = ViewBag.lang }) @:|
         }
