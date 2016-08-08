@@ -29,9 +29,10 @@ namespace SendSubscriberNotificationConsoleApp
             {
                 Console.WriteLine("Name => {0}", init.NameE);
             }
-
+/*
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
+*/
         }
     }
 }
