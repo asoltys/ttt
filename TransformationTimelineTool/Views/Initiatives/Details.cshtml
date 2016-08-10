@@ -44,7 +44,10 @@ else
 
 <div class="print-box">
     <h4>@Resources.Impacts</h4>
-    <p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID, ViewBag.lang }, null)</p>
+    @if (ViewBag.isAdmin)
+    {
+        <p>@Html.ActionLink(Resources.AssignImpact, "Create", "Impacts", new { ID = Model.ID, ViewBag.lang }, null)</p>
+    }
     <table class="table table-condensed table-striped">
         <tr>
             <th class="fix-6em">@Resources.Level</th>
