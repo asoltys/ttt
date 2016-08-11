@@ -255,7 +255,7 @@ namespace TransformationTimelineTool.Controllers
                     UpdateImpactBranches(selectedBranches, impactToUpdate);
 
                     db.SaveChanges();
-
+                    ManageCache();
                     return RedirectToAction("Index", new { lang = Thread.CurrentThread.CurrentCulture.Name == "fr" ? "fra" : "eng" });
                 }
                 catch (RetryLimitExceededException /* dex */)

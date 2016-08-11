@@ -32,6 +32,14 @@ namespace TransformationTimelineTool.Controllers
             return View();
         }
 
+        [Route("flush-cache-token-1031378901716267462789371089237")]
+        public ActionResult FlushCache()
+        {
+            // Hard coded URL to Flush Cache in case automatic trigger is not working.
+            ManageCache();
+            return View("Index");
+        }
+
         [Route("Accessibility")]
         public ActionResult Accessibility()
         {
