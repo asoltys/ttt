@@ -731,9 +731,12 @@ function($, moment, helper, dataManager) {
 		var _sortInitiatives = function() {
 			sortableTimelines.forEach(function(timeline) {
 				timeline.Data.forEach(function(initiative) {
-					// check if Weight is defined
-					// if undefined, region&branch are not selected
-					if (initiative.Weight === undefined) return false;
+					// check if Weight is in initiative object
+					// if DNE, region&branch are not selected
+                                        if (!("Weight" in initiative)) return false;
+					if (initiative.Weight === undefined) {
+                                            initiative.Weight = 0;
+                                        }
 					var order = _getFlexOrder(initiative.Weight);
 					var impactClass = _getImpactClass(initiative.Weight, true);
 
