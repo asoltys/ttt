@@ -18,7 +18,7 @@
     var TIMELINE_BUFFER = 3;
     var TIMELINE_BUFFER_UNIT = 'month';
     var TIMELINES_URL = '/data/all';
-    var VERSION = '1.0.0';
+    var VERSION = '1.1.0';
     
     // fake constants - used for storing initial data
     var TIMELINES, REGIONS, BRANCHES, TIMESPAN;
@@ -39,6 +39,53 @@
 
     var _prepareBranches = function() {
         BRANCHES = _sortByName(BRANCHES);
+        BRANCHES.forEach(function (element, index, array) {
+            element.relatedRegions = _getRelatedRegions(element.ID);
+        });
+    };
+
+    var _getRelatedRegions = function(branchId) {
+        var related = new Array();
+        switch (branchId) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 6:
+            case 7:
+            case 9:
+            case 12:
+                related[related.length] = _getRegionIdByNameShort('nca');
+                related[related.length] = _getRegionIdByNameShort('atl');
+                related[related.length] = _getRegionIdByNameShort('ont');
+                related[related.length] = _getRegionIdByNameShort('pac');
+                related[related.length] = _getRegionIdByNameShort('que');
+                related[related.length] = _getRegionIdByNameShort('wst');
+                break;
+            case 13:
+            case 14:
+                related[related.length] = _getRegionIdByNameShort('atl');
+                related[related.length] = _getRegionIdByNameShort('ont');
+                related[related.length] = _getRegionIdByNameShort('pac');
+                related[related.length] = _getRegionIdByNameShort('que');
+                related[related.length] = _getRegionIdByNameShort('wst');
+                break;
+            default:
+                related[related.length] = _getRegionIdByNameShort('nca');
+                break;
+        }
+        return related;
+    };
+
+    var _getRegionIdByNameShort = function(regionNameShort) {
+        var region = REGIONS.filter(function(element) {
+            return element.NameShort === regionNameShort;
+        });
+        if (region.length > 1) {
+            console.log('error parsing region ID');
+            return false;
+        }
+        return region[0].ID;
     };
     
     var _prepareRegions = function() {
