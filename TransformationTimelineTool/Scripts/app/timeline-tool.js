@@ -87,10 +87,11 @@ function($, moment, helper, dataManager) {
 				$branch = $('#nav-controller-branch');
 
 	        var _addOption = function (jQueryObject, optionObject) {
-	            var $select = jQueryObject,
-					option = document.createElement('option');
+	            var $select = jQueryObject;
+		    var option = document.createElement('option');
 	            option.text = optionObject.text;
 	            option.value = optionObject.value;
+                    option.dataset.regions = optionObject.relatedRegions;
 	            $select.append(option);
 	        };
 
@@ -110,7 +111,7 @@ function($, moment, helper, dataManager) {
 	            dm.branches().forEach(function (element, index, array) {
 	                var branch = element['Name' + CULTURE_APPEND];
 	                branch = h.truncate(branch, 40);
-	                _addOption($branch, { text: branch, value: element.ID });
+	                _addOption($branch, { text: branch, value: element.ID, relatedRegions: element.relatedRegions });
 	            });
 	        };
 
@@ -303,15 +304,35 @@ function($, moment, helper, dataManager) {
 	        };
 
 	        var _handleRegion = function () {
-	            if (this.value.indexOf('all') === -1) {
+                    var selected = this.value;
+                    _enableAllBranches();
+	            if (selected.indexOf('all') === -1) {
 	                $branch.removeAttr('disabled');
 	            } else {
 	                $branch.attr('disabled', 'disabled');
 	            }
-	            dm.setRegion(this.value);
+                    _disableUnrelatedBranches(selected);
+	            dm.setRegion(selected);
 	            dm.filter();
 	            ui.content.sort(dm.timelines());
 	        };
+
+                var _enableAllBranches = function() {
+                    var $options = $branch.children().not("[value='all']");
+                    $options.each(function (index) {
+                        this.removeAttribute('disabled');
+                    });
+                };
+
+                var _disableUnrelatedBranches = function(selectedRegion) {
+                    var $options = $branch.children().not("[value='all']");
+                    $options.each(function (index) {
+                        var regions = this.dataset.regions.split(',');
+                        if (regions.indexOf(selectedRegion) === -1) {
+                            this.disabled = true;
+                        }
+                    });
+                };
 
 	        var _handleScroll = function () {
 	            if (typeof INITIAL_NAV_OFFSET === 'undefined') {
