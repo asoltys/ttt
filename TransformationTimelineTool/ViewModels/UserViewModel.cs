@@ -28,6 +28,7 @@ namespace TransformationTimelineTool.ViewModels
         public User User { get; set; }
         public virtual User Approver { get; set; }
         public List<User> Admins { get; set; }
+        public List<User> Executives { get; set; }
         public List<User> Approvers { get; set; }
         public List<User> Editors { get; set; }
         public string UserRoles { get; set; }

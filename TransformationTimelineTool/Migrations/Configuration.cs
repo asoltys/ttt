@@ -22,10 +22,12 @@ namespace TransformationTimelineTool.Migrations
             var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             string admin = "Admin";
+            string executive = "Executive";
             string opi = "Approver";
             string editor = "Editor";
 
             AddRole(RoleManager, admin);
+            AddRole(RoleManager, executive);
             AddRole(RoleManager, opi);
             AddRole(RoleManager, editor);
 

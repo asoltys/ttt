@@ -617,6 +617,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Executive.
+        /// </summary>
+        public static string Executive {
+            get {
+                return ResourceManager.GetString("Executive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feedback.
         /// </summary>
         public static string Feedback {

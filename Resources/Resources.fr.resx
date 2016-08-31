@@ -701,4 +701,7 @@ The Timeline Tool: Blueprint 2020 and Transformation can be found &lt;a href='{0
   <data name="UpdateReport" xml:space="preserve">
     <value>Rapport des mises à jour</value>
   </data>
+  <data name="Executive" xml:space="preserve">
+    <value>Directeur</value>
+  </data>
 </root>
