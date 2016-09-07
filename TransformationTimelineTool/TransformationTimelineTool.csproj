@@ -352,6 +352,10 @@
     <Compile Include="Migrations\201603101756294_Subscriber.Designer.cs">
       <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609071841285_UserRegion.cs" />
+    <Compile Include="Migrations\201609071841285_UserRegion.Designer.cs">
+      <DependentUpon>201609071841285_UserRegion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -1792,6 +1796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603101756294_Subscriber.resx">
       <DependentUpon>201603101756294_Subscriber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609071841285_UserRegion.resx">
+      <DependentUpon>201609071841285_UserRegion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

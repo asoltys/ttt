@@ -19,6 +19,9 @@ else
 <h4>@Resources.Email</h4>
 <p>@Model.User.Email</p>
 
+<h4>@Resources.Region</h4>
+<p>@Model.User.Region.Name</p>
+
 <h4>@Resources.Initiatives</h4>
 <p>
     @Html.Raw(String.Join("<br />", Model.Initiatives.Select(init => init.Name)))

@@ -90,6 +90,7 @@ namespace TransformationTimelineTool.Controllers
             userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(new User());
             userViewModel.PopulatedRoles = PopulateUserRolesData(new User());
             userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
+            userViewModel.RegionSelect = new SelectList(db.Regions.ToList(), "Id", "Name");
 
             return View(userViewModel);
         }
@@ -121,6 +122,7 @@ namespace TransformationTimelineTool.Controllers
             userViewModel.PopulatedRoles = PopulateUserRolesData(userToAdd, selectedRoles);
             userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(userToAdd);
             userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
+            userViewModel.RegionSelect = new SelectList(db.Regions.ToList(), "Id", "Name");
 
             try
             {
@@ -130,6 +132,7 @@ namespace TransformationTimelineTool.Controllers
                     userToAdd.UserName = username;
                     userToAdd.Email = userViewModel.User.Email;
                     userToAdd.ApproverID = userViewModel.User.ApproverID;
+                    userToAdd.RegionID = userViewModel.User.RegionID;
                     if (userManager.FindByName(username) != null)
                     {
                         throw new UserException(Resources.ErrorMessages.UserAlreadyExists);
@@ -174,6 +177,7 @@ namespace TransformationTimelineTool.Controllers
             userViewModel.PopulatedRoles = PopulateUserRolesData(user);
             userViewModel.PopulatedInitiatives = PopulateUserInitiativesData(user);
             userViewModel.ApproverSelect = new SelectList(Utils.GetApprover(), "Id", "UserName");
+            userViewModel.RegionSelect = new SelectList(db.Regions.ToList(), "Id", "Name");
 
             if (user == null)
             {
@@ -210,6 +214,7 @@ namespace TransformationTimelineTool.Controllers
                 userToUpdate.UserName = userViewModel.User.UserName;
                 userToUpdate.Email = userViewModel.User.Email;
                 userToUpdate.ApproverID = userViewModel.User.ApproverID;
+                userToUpdate.RegionID = userViewModel.User.RegionID;
 
                 UpdateUserInitiatives(selectedInitiatives, userToUpdate);
                 UpdateUserRoles(selectedRoles, userToUpdate);

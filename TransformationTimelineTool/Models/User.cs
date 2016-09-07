@@ -16,6 +16,7 @@ namespace TransformationTimelineTool.Models
         public string ApproverID { get; set; }
         public virtual User Approver { get; set; }
         public virtual ICollection<Initiative> Initiatives { get; set; }
-
+        public int? RegionID { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

@@ -30,6 +30,15 @@ else
                 @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.User.RegionID, Resources.Region, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(model => model.User.RegionID, Model.RegionSelect, "")
+                @Html.ValidationMessageFor(model => model.User.RegionID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-2 text-right"><strong>@Resources.Initiatives</strong></div>
             <div class="col-md-offset-2 col-md-10">

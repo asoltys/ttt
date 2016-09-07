@@ -18,6 +18,7 @@ namespace TransformationTimelineTool.ViewModels
             this.Initiatives = user.Initiatives;
             this.UserRoles = String.Join(" - ", um.GetRoles(user.Id));
             this.Approver = user.Approver;
+            this.Region = user.Region;
         }
         
         public IEnumerable<IdentityRole> Roles { get; set; }
@@ -32,5 +33,8 @@ namespace TransformationTimelineTool.ViewModels
         public List<User> Approvers { get; set; }
         public List<User> Editors { get; set; }
         public string UserRoles { get; set; }
+        public SelectList RegionSelect { get; set; }
+        public virtual Region Region { get; set; }
+
     }
 }
